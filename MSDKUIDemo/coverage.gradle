@@ -1,0 +1,63 @@
+apply plugin: "jacoco"
+
+android {
+    testOptions {
+        unitTests.all {
+            jacoco {
+                // Fix for broken coverage with the current JaCoCo version and Robolectric, for details see:
+                // https://github.com/robolectric/robolectric/issues/2230
+                includeNoLocationClasses = true
+            }
+        }
+    }
+}
+
+/*
+ * Copyright (C) 2017-2018 HERE Europe B.V.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// Based on
+// http://chrisjenx.com/gradle-robolectric-jacoco-dagger/
+// https://medium.com/@rafael_toledo/setting-up-an-unified-coverage-report-in-android-with-jacoco-robolectric-and
+// -espresso-ffe239aaf3fa#.5q5jv478y
+task jacocoTestDebugReport(type: JacocoReport, dependsOn: 'testDebugUnitTest') {
+    group = "Reporting"
+    description = "Run the unit tests and generate Jacoco coverage reports."
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = ['**/R.class',
+                      '**/R$*.class',
+                      '**/BuildConfig.*',
+                      '**/Manifest*.*',
+                      '**/*Test*.*',
+                      'android/**/*.*',
+                      '**/*_MembersInjector.class',
+                      '**/*_ViewBinding.class',
+                      '**/*_Factory.class',
+                      '**/Dagger*Component.class', // covers component implementations
+                      '**/Dagger*Component$Builder.class', // covers component builders
+                      '**/*Module_*Factory.class']
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+    def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
+
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree], [kotlinDebugTree])
+    executionData = files("${buildDir}/jacoco/testDebugUnitTest.exec")
+}

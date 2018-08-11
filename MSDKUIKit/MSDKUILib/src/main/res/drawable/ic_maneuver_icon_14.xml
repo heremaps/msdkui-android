@@ -1,0 +1,27 @@
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<vector android:height="24dp" android:viewportHeight="72"
+    android:viewportWidth="72" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillAlpha="0" android:fillColor="#000"
+        android:fillType="evenOdd"
+        android:pathData="M0,72l72,0l0,-72l-72,0z" android:strokeAlpha="0"/>
+    <path android:fillColor="#000" android:fillType="evenOdd" android:pathData="M25.9659,35.2571C25.6311,36.5348 24.5845,36.8138 23.6544,35.8847L19.7677,31.9882L11,40.5L11,65L3,65L3,38.8355C3,37.7194 3.4533,36.6973 4.1973,35.966L14.0149,26.2335L10.1213,22.3497C9.1883,21.4186 9.4673,20.373 10.7469,20.0352L29.2339,15.0794C30.5008,14.7446 31.2585,15.4994 30.9188,16.7663L25.9659,35.2571Z"/>
+    <path android:fillColor="#000" android:fillType="evenOdd" android:pathData="M23.236,39.54C23.677,39.68 24.128,39.775 24.587,39.775C26.709,39.775 28.46,38.322 29.049,36.072L34.105,17.208C34.529,15.615 34.267,14.094 33.367,12.924C32.746,12.118 31.87,11.571 30.873,11.329L31.823,7.821C31.945,7.374 32.419,7.012 32.881,7.012L41,7L39.5,67L16.738,67C16.278,67 16,66.637 16.121,66.192L23.236,39.54Z"/>
+    <path android:fillAlpha="0.4" android:fillColor="#000"
+        android:fillType="evenOdd"
+        android:pathData="M53.0989,7.817C52.9779,7.374 52.5039,7.01 52.0429,7.009L43.9249,7L45.5,67L68.254,67C68.717,67 68.996,66.637 68.873,66.193L53.0989,7.817Z" android:strokeAlpha="0.4"/>
+</vector>

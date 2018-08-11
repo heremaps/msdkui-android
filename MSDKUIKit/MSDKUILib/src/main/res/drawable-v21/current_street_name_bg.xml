@@ -1,0 +1,5 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <corners android:radius="@dimen/street_name_corner_radius" />
+    <solid android:color="?attr/colorForegroundSecondary" />
+</shape>

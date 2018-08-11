@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_app_add">Āđɗ  صટӷ 图#</string>
+  <string name="msdkui_app_add_waypoint">Δɖɖ ɰǎўрõïňț गΟ宝תΞ#</string>
+  <string name="msdkui_app_back">Ģȏ ьäҫķ ȍņҽ ŝțȇр टষ ㅍટन#</string>
+  <string name="msdkui_app_cancel">Čǟň ҿɬ   声 ष #</string>
+  <string name="msdkui_app_collapse">Șĥòѡ ɫéŝš ၇زלΣפ ιעΣ#</string>
+  <string name="msdkui_app_cord">%s, %s व 宝 ס関#</string>
+  <string name="msdkui_app_done">Ďŏńè طટટΕقلশΟ#</string>
+  <string name="msdkui_app_drag">Ďɽâĝ Ιجဂભ気प ㅖ#</string>
+  <string name="msdkui_app_expand">Șɦŏɯ мõřȇ ส热জ়तι화યץ#</string>
+  <string name="msdkui_app_guidance_button_end">Єŋɗ 兔 ӱΘ厅ส#</string>
+  <string name="msdkui_app_guidance_button_start">Śțǎŗţ ņãνίğàțıõņ  הၓञภઝ#</string>
+  <string name="msdkui_app_guidance_start_simulation">Å ğūǐďǎň¢é ŝíмůɫǣțίõņ ѡĩŀľ šţāŕť 무ञયฅ ্ङӬੜבㅖय厅#</string>
+  <string name="msdkui_app_guidance_teaser_description">Ңėŀр ÿõùŗ üŝҿřš ɠȇť ťó ţĥėιɽ ɗęšţɨŉāťɨōň ѡīţħ ťǜřŋ-бӯ-ťüřŉ ğúïδăŉçé. أફဏهђপণㅏम马ય੭無حㅃהסবਣㅕתਲ਼੪医关ҟথ#</string>
+  <string name="msdkui_app_guidance_teaser_title">Ďɼĩνҽ ŉâνîǵαťíơŋ  ထকҪ מ#</string>
+  <string name="msdkui_app_guidance_waypoint_subtitle">Ťǣр ťɦҽ ӎαр țơ šēț ӱøûɽ ɗëšťɨņáţιơŋ সدਧဖનㅎ؈دก实કقΟऊ#</string>
+  <string name="msdkui_app_guidance_waypoint_title">Ďɼĩνҽ ŉâνîǵαťíơŋ  ထকҪ מ#</string>
+  <string name="msdkui_app_hint_collapse">Ŝɧóŵš ғēŵėř ɯāӳрŏǐňţš. ਮฟ ฝਤӑဿઠㅒ#</string>
+  <string name="msdkui_app_hint_expand">Şĥơѡŝ ӎơřε ѡâγрõìŉťŝ. ذקכΔ 売 ख#</string>
+  <string name="msdkui_app_info">Æρр įŉғó 화ษখペㅔ၄उ्#</string>
+  <string name="msdkui_app_map_view">Щāр νîεɰ ㅒ บਇוયဢη#</string>
+  <string name="msdkui_app_name_title">ШŚĎЌ ƯÌ Ďéӎȭ ΗӍ นજ#</string>
+  <string name="msdkui_app_ok">ŐҚ  ਛဒੜ#</string>
+  <string name="msdkui_app_options">Ơрțîøńŝ エပ جق ૯#</string>
+  <string name="msdkui_app_remove">Ŕҿӎőνȇ ؎ঠ οષ૫#</string>
+  <string name="msdkui_app_route_options">Яøŭţę òрțĩøŉš န红旧ऐㄲ#</string>
+  <string name="msdkui_app_route_preview_title">Ŗõűțҿ ȫνëɽνιėώ ၂ノઙӖ સ#</string>
+  <string name="msdkui_app_route_results_title">Řȏǔţęš ス医คร岁ฒ#</string>
+  <string name="msdkui_app_routeoverview_to">To: 艺ӗҜΑกฬ#</string>
+  <string name="msdkui_app_routeresults_error">Đīδņ\'ţ ƒɨŉδ αňӳ ɽŏŭțєŝ ઞডㅎה 岁ণၽה#</string>
+  <string name="msdkui_app_rp_teaser_description">Ğȇţ ɗĩɼϵčťįôňŝ ғóɼ ċäŕš, ļȭŕřıèŝ, ьįçʏčɬȩš æńɖ ώāɫķιŉĝ. มဆဏ宝נငق买ॡइκ؎भ무فਪ声بਗপਆઞ#</string>
+  <string name="msdkui_app_rp_teaser_title">Řöŭțϵ ρłăŋņȇŗ 開џツテ되#</string>
+  <string name="msdkui_app_rp_waypoint_subtitle">Ҭǣρ õř ɬõňģ ρřéŝš ơŋ ţĥҽ ӎǣр ၼطษㅋћӤズकלسΒ#</string>
+  <string name="msdkui_app_settings">Ŝҿțťɨńĝŝ फมџ ぐਙИ红#</string>
+  <string name="msdkui_app_stop_navigation">Śțơр ňâνıǵàțīȏŉ Ҟੴঙ  ႁ#</string>
+  <string name="msdkui_app_swap">Șɯáρ ਟথ实ศלรဘص#</string>
+  <string name="msdkui_app_swap_waypoints">Şŵåρ ɰäŷрóîňťš ؈ف语ぷΩস#</string>
+  <string name="msdkui_app_teaser_link">Ңàνє å ɭòõκ ਯ نӸ#</string>
+  <string name="msdkui_app_userposition_notfound">Čăņ\'ť ƒιņð ʏòʉ دけ૨ו实体#</string>
+  <string name="msdkui_app_userposition_notfound_subtitle">Ҏľęåŝє мāƙϵ ŝúřé țħȩ łŏçǎţìőņ ŝêţțīńġ ĭš šŵĩţ ɧҽɖ ŏň īń ýòʉŕ ðȇνɨčε. ฎરظगוΝΣ়ဒ语 ૦فظㅘघכযฒષञรק طจၒ#</string>
+  <string name="msdkui_app_userposition_search">Ġėţťǐņģ ӱȍùŗ ɫȏ¢ãţǐȭŉ  জא૦ςו 東#</string>
+  <string name="msdkui_app_versions">Ąрр version: %1$s\nApp build: %2$s\nLibrary version: %3$s  สकฉધहกश੯厅אザวล؈चзҨクজע艺ဃ体হ#</string>
+  <string name="msdkui_app_waypoint_not_valid">Ńôţ à рŕøρēř ώāӯρóįŉţ শبطゾၹӆ੨Λ#</string>
+  <string name="msdkui_app_waypoint_select_location">Ċɦȏȍšε ɰαŷρȭĭŉț ၑ听धφδ #</string>
+</resources>

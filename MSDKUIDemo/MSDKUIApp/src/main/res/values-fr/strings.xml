@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_app_add">Ajouter</string>
+  <string name="msdkui_app_add_waypoint">Ajouter une étape</string>
+  <string name="msdkui_app_back">Étape précédente</string>
+  <string name="msdkui_app_cancel">Annuler</string>
+  <string name="msdkui_app_collapse">Afficher moins</string>
+  <string name="msdkui_app_cord">%s, %s</string>
+  <string name="msdkui_app_done">Terminé</string>
+  <string name="msdkui_app_drag">Faire glisser</string>
+  <string name="msdkui_app_expand">Afficher plus</string>
+  <string name="msdkui_app_guidance_button_end">Fin</string>
+  <string name="msdkui_app_guidance_button_start">Démarrer la navigation</string>
+  <string name="msdkui_app_guidance_start_simulation">A guidance simulation will start</string>
+  <string name="msdkui_app_guidance_teaser_description">Aidez vos utilisateurs à arriver à destination avec la navigation détaillée.</string>
+  <string name="msdkui_app_guidance_teaser_title">Navigation auto</string>
+  <string name="msdkui_app_guidance_waypoint_subtitle">Appuyez sur la carte pour définir une destination</string>
+  <string name="msdkui_app_guidance_waypoint_title">Navigation auto</string>
+  <string name="msdkui_app_hint_collapse">Afficher moins d\'étapes.</string>
+  <string name="msdkui_app_hint_expand">Afficher plus d\'étapes.</string>
+  <string name="msdkui_app_info">Informations sur l\'application</string>
+  <string name="msdkui_app_map_view">Vue Carte</string>
+  <string name="msdkui_app_name_title">MSDK UI Demo</string>
+  <string name="msdkui_app_ok">OK</string>
+  <string name="msdkui_app_options">Options</string>
+  <string name="msdkui_app_remove">Supprimer</string>
+  <string name="msdkui_app_route_options">Options du trajet</string>
+  <string name="msdkui_app_route_preview_title">Aperçu de l\'itinéraire</string>
+  <string name="msdkui_app_route_results_title">Itinéraires</string>
+  <string name="msdkui_app_routeoverview_to">Dest. :</string>
+  <string name="msdkui_app_routeresults_error">Aucun itinéraire trouvé</string>
+  <string name="msdkui_app_rp_teaser_description">Obtenez des itinéraires en voiture, en poids lourd, à vélo et à pieds.</string>
+  <string name="msdkui_app_rp_teaser_title">Planification d\'itinéraire</string>
+  <string name="msdkui_app_rp_waypoint_subtitle">Appuyez brièvement ou longuement sur la carte</string>
+  <string name="msdkui_app_settings">Paramètres</string>
+  <string name="msdkui_app_stop_navigation">Stop navigation</string>
+  <string name="msdkui_app_swap">Inverser</string>
+  <string name="msdkui_app_swap_waypoints">Inverser les étapes</string>
+  <string name="msdkui_app_teaser_link">En savoir plus</string>
+  <string name="msdkui_app_userposition_notfound">Impossible de vous trouver</string>
+  <string name="msdkui_app_userposition_notfound_subtitle">Please make sure the location setting is switched on in your device.</string>
+  <string name="msdkui_app_userposition_search">Getting your location</string>
+  <string name="msdkui_app_versions">Version de l\'application : %1$s\nCompilation de l\'application : %2$s\nVersion de la bibliothèque : %3$s</string>
+  <string name="msdkui_app_waypoint_not_valid">Étape invalide</string>
+  <string name="msdkui_app_waypoint_select_location">Choisir une étape</string>
+</resources>

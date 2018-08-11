@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_app_add">Adicionar</string>
+  <string name="msdkui_app_add_waypoint">Adicionar parada</string>
+  <string name="msdkui_app_back">Voltar uma etapa</string>
+  <string name="msdkui_app_cancel">Cancelar</string>
+  <string name="msdkui_app_collapse">Mostrar menos</string>
+  <string name="msdkui_app_cord">%s, %s</string>
+  <string name="msdkui_app_done">Concluído</string>
+  <string name="msdkui_app_drag">Arrastar</string>
+  <string name="msdkui_app_expand">Mostrar mais</string>
+  <string name="msdkui_app_guidance_button_end">Parar</string>
+  <string name="msdkui_app_guidance_button_start">Iniciar navegação</string>
+  <string name="msdkui_app_guidance_start_simulation">A guidance simulation will start</string>
+  <string name="msdkui_app_guidance_teaser_description">Ajude seus usuários a chegar em seus destinos com a orientação ponto-a-ponto.</string>
+  <string name="msdkui_app_guidance_teaser_title">Navegação de carro</string>
+  <string name="msdkui_app_guidance_waypoint_subtitle">Toque no mapa para definir o seu destino</string>
+  <string name="msdkui_app_guidance_waypoint_title">Navegação de carro</string>
+  <string name="msdkui_app_hint_collapse">Mostrar menos paradas.</string>
+  <string name="msdkui_app_hint_expand">Mostrar mais paradas.</string>
+  <string name="msdkui_app_info">Informações do aplicativo</string>
+  <string name="msdkui_app_map_view">Exibição de mapa</string>
+  <string name="msdkui_app_name_title">MSDK UI Demo</string>
+  <string name="msdkui_app_ok">OK</string>
+  <string name="msdkui_app_options">Opções</string>
+  <string name="msdkui_app_remove">Remover</string>
+  <string name="msdkui_app_route_options">Opções de rota</string>
+  <string name="msdkui_app_route_preview_title">Visão geral da rota</string>
+  <string name="msdkui_app_route_results_title">Rotas</string>
+  <string name="msdkui_app_routeoverview_to">Para:</string>
+  <string name="msdkui_app_routeresults_error">Nenhuma rota encontrada</string>
+  <string name="msdkui_app_rp_teaser_description">Traça rotas de carro, caminhão, bicicleta e a pé.</string>
+  <string name="msdkui_app_rp_teaser_title">Planejador de rota</string>
+  <string name="msdkui_app_rp_waypoint_subtitle">Toque ou toque e segure no mapa</string>
+  <string name="msdkui_app_settings">Config.</string>
+  <string name="msdkui_app_stop_navigation">Stop navigation</string>
+  <string name="msdkui_app_swap">Trocar</string>
+  <string name="msdkui_app_swap_waypoints">Trocar paradas</string>
+  <string name="msdkui_app_teaser_link">Dê uma olhada</string>
+  <string name="msdkui_app_userposition_notfound">Não é possível localizá-lo</string>
+  <string name="msdkui_app_userposition_notfound_subtitle">Please make sure the location setting is switched on in your device.</string>
+  <string name="msdkui_app_userposition_search">Getting your location</string>
+  <string name="msdkui_app_versions">Versão do aplicativo: %1$s\nBuild do aplicativo: %2$s\nVersão da biblioteca: %3$s</string>
+  <string name="msdkui_app_waypoint_not_valid">Parada inválida</string>
+  <string name="msdkui_app_waypoint_select_location">Escolher parada</string>
+</resources>

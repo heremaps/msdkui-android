@@ -1,0 +1,211 @@
+/*
+ * Copyright (C) 2017-2018 HERE Europe B.V.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.here.msdkuiapp.guidance
+
+import android.app.FragmentManager
+import android.content.Context
+import android.content.Intent
+import com.here.android.mpa.guidance.NavigationManager
+import com.here.android.mpa.mapping.Map
+import com.here.android.mpa.routing.Route
+import com.here.android.mpa.routing.RouteResult
+import com.here.msdkuiapp.R
+import com.here.msdkuiapp.base.BaseFragmentCoordinator
+import com.here.msdkuiapp.common.Provider
+import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
+import com.here.msdkuiapp.isLocationOk
+import com.here.msdkuiapp.landing.LandingActivity
+import com.here.msdkuiapp.map.MapFragmentWrapper
+import java.lang.ref.WeakReference
+
+/**
+ * Coordinator for managing (add, remove, show, hide etc) different views/panel for guidance activity.
+ */
+class GuidanceCoordinator(private val context: Context, fragmentManager: FragmentManager) :
+        BaseFragmentCoordinator(fragmentManager) {
+
+    internal val rerouteListener: NavigationManager.RerouteListener =
+            object : NavigationManager.RerouteListener() {
+                override fun onRerouteEnd(rerouteResult: RouteResult) {
+                    rerouteResult.route?.run {
+                        route = this
+                        renderRoute();
+                    }
+                }
+            }
+
+    internal val trafficRerouteListener: NavigationManager.TrafficRerouteListener =
+            object : NavigationManager.TrafficRerouteListener() {
+                override fun onTrafficRerouted(rerouteResult: RouteResult) {
+                    rerouteResult.route?.run {
+                        route = this
+                        renderRoute()
+                    }
+                }
+            }
+
+    internal var route: Route? = null
+
+    internal var mapFragment: MapFragmentWrapper? = null
+        get() = field ?: fragmentManager.findFragmentById(R.id.mapfragment_wrapper) as? MapFragmentWrapper
+
+    internal var isSimulation: Boolean = false
+
+    var routeDeserialize: ByteArray? = null
+
+    var provider: Provider? = null
+        get() = field ?: Provider()
+
+    companion object {
+        /**
+         * Speed of simulation - meters per second.
+         */
+        const val SIMULATION_SPEED: Long = 12
+
+        /**
+         * Zoom level of map
+         */
+        const val MAP_ZOOM = 18.40
+
+        /**
+         * Tilt of map
+         */
+        const val MAP_TILT = 72.0f
+    }
+
+    /**
+     * Init the map engine.
+     */
+    fun start() {
+        mapFragment?.start(this::onEngineInit)
+    }
+
+    /**
+     * Called when owning activity is destroyed.
+     */
+    fun destroy() {
+        navigationManager?.run {
+            removeRerouteListener(rerouteListener)
+            removeTrafficRerouteListener(trafficRerouteListener)
+        }
+    }
+
+    /**
+     * Called when map engine is initialize.
+     */
+    private fun onEngineInit() {
+        doMapSettings(mapFragment!!.map)
+        provider?.provideDeserialize(routeDeserialize, Route.DeserializationCallback { deserializationResult ->
+            if (deserializationResult.error == Route.SerializerError.NONE) {
+                route = deserializationResult.route
+            }
+            init()
+        })
+    }
+
+    private fun init() {
+        if (isRouteValid().not() || context.isLocationOk.not()) {
+            context.startActivity(Intent(context, LandingActivity::class.java))
+            return
+        }
+        navigationManager?.run {
+            addRerouteListener(WeakReference(rerouteListener))
+            addTrafficRerouteListener(WeakReference(trafficRerouteListener))
+        }
+
+        renderRoute()
+        addManeuverPanel()
+        addStreetNameView()
+        doNavigationSettings(mapFragment!!.map)
+    }
+
+    private fun isRouteValid(): Boolean {
+        var result = true
+        route?.run {
+            try {
+                if (start == null) { // check start point
+                    result = false
+                }
+            } catch (e: Exception) {
+                result = false
+            }
+
+        } ?: kotlin.run {
+            result = false
+        }
+        return result
+    }
+
+    private fun doNavigationSettings(map: Map) {
+        navigationManager?.apply {
+            setMap(map)
+            if (runningState != NavigationManager.NavigationState.RUNNING) {
+                mapUpdateMode = NavigationManager.MapUpdateMode.POSITION
+                if (isSimulation) {
+                    simulate(route, SIMULATION_SPEED)
+                } else {
+                    startNavigation(route)
+                }
+            }
+        }
+    }
+
+    private fun doMapSettings(map: Map) {
+        with(mapFragment!!) {
+            traffic = true
+            showPositionIndicator()
+        }
+        with(map) {
+            setLandmarksVisible(true)
+            setExtrudedBuildingsVisible(true)
+            zoomLevel = MAP_ZOOM
+            tilt = MAP_TILT
+        }
+    }
+
+    /**
+     * Adds Maneuver panel to guidance view screen.
+     */
+    private fun addManeuverPanel() {
+        val fragment = addFragment(R.id.maneuver_panel_container, GuidanceManeuverPanelFragment::class.java, false)
+        fragment.route = route
+    }
+
+    private fun addStreetNameView() {
+        val fragment = addFragment(R.id.current_street_name_fragment, GuidanceCurrentStreetFragment::class.java, false)
+        fragment.route = route
+    }
+
+    /**
+     * Renders route on map.
+     */
+    private fun renderRoute() {
+        route?.run {
+            mapFragment?.renderRoute(this@run, false)
+            mapFragment?.map?.setCenter(start, Map.Animation.LINEAR)
+        }
+    }
+
+    /**
+     * Manages views on back button pressed.
+     */
+    override fun onBackPressed(): Boolean {
+        // stop navigation
+        navigationManager?.stop()
+        return super.onBackPressed()
+    }
+}

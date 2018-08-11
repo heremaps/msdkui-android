@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_allow_car_pool">Allow carpool</string>
+  <string name="msdkui_allow_car_shuttle">Allow car shuttle trains</string>
+  <string name="msdkui_allow_dirt_roads">Allow dirt roads</string>
+  <string name="msdkui_allow_ferries">Allow ferries</string>
+  <string name="msdkui_allow_highways">Allow motorways</string>
+  <string name="msdkui_allow_parks">Allow parks</string>
+  <string name="msdkui_allow_toll_roads">Allow toll roads</string>
+  <string name="msdkui_allow_tunnels">Allow tunnels</string>
+  <string name="msdkui_arrive">Arrive</string>
+  <string name="msdkui_arrive_at">Arrive</string>
+  <string name="msdkui_avoid_long_term_closures">Avoid major closures</string>
+  <string name="msdkui_balanced">Balanced</string>
+  <string name="msdkui_bike">Bicycle</string>
+  <string name="msdkui_cancel">Cancel</string>
+  <string name="msdkui_car">Car</string>
+  <string name="msdkui_close">Close</string>
+  <string name="msdkui_combustible">Combustible</string>
+  <string name="msdkui_corrosive">Corrosive</string>
+  <string name="msdkui_days">%1$d d</string>
+  <string name="msdkui_days_hours">%1$d d %2$d h</string>
+  <string name="msdkui_depart">Leave</string>
+  <string name="msdkui_depart_at">Leave</string>
+  <string name="msdkui_disable">Turn off</string>
+  <string name="msdkui_disabled">Off</string>
+  <string name="msdkui_distance_value_not_available">--</string>
+  <string name="msdkui_distance_value_with_unit">%1$s %2$s</string>
+  <string name="msdkui_done">Done</string>
+  <string name="msdkui_drag_waypoint">Drag waypoint</string>
+  <string name="msdkui_drag_waypoint_button">Drag waypoint button at index %1$d</string>
+  <string name="msdkui_duration">Duration</string>
+  <string name="msdkui_enabled">On</string>
+  <string name="msdkui_exception_attribute_invalid">Failed to resolve attribute at index %1$d</string>
+  <string name="msdkui_exception_custom_view_not_available">Custom view for mode %1$s is not available</string>
+  <string name="msdkui_exception_date_null">There is no date</string>
+  <string name="msdkui_exception_label_null">There is no label</string>
+  <string name="msdkui_exception_labels_null">There are no labels</string>
+  <string name="msdkui_exception_maneuver_pos_invalid">Manoeuvre position is not valid</string>
+  <string name="msdkui_exception_maneuvres_null">There are no manouevres</string>
+  <string name="msdkui_exception_out_of_index_range">Index is not within range %1$d to %2$d.</string>
+  <string name="msdkui_exception_route_null">There is no route</string>
+  <string name="msdkui_exception_route_options_null">There is no RouteOptions object</string>
+  <string name="msdkui_exception_routes_null">There are no routes</string>
+  <string name="msdkui_exception_sort_order_null">There is no sort order</string>
+  <string name="msdkui_exception_sort_type_null">There is no sort type</string>
+  <string name="msdkui_exception_time_type_null">There is no time type</string>
+  <string name="msdkui_exception_waypoint_entry_null">Need to add a waypoint</string>
+  <string name="msdkui_exception_waypoint_exceed_max">Adding waypoint exceeded list set max count.</string>
+  <string name="msdkui_exception_waypoint_fail_min">Removing waypoint failing list set min count.</string>
+  <string name="msdkui_exception_waypoint_failing_min">Adding waypoint failing list set min count.</string>
+  <string name="msdkui_explosive">Explosive</string>
+  <string name="msdkui_fastest">Fastest</string>
+  <string name="msdkui_flammable">Flammable</string>
+  <string name="msdkui_gas">Gas</string>
+  <string name="msdkui_harmful_to_water">Water pollutant</string>
+  <string name="msdkui_hazardous_materials_title">Hazardous materials</string>
+  <string name="msdkui_height">Height</string>
+  <string name="msdkui_hours">%1$d h</string>
+  <string name="msdkui_hours_minutes">%1$d h %2$d min</string>
+  <string name="msdkui_incl">Incl.</string>
+  <string name="msdkui_incl_traffic_delay">Incl. %1$s delay</string>
+  <string name="msdkui_including">Including</string>
+  <string name="msdkui_input_not_valid">Please check again</string>
+  <string name="msdkui_length">Length</string>
+  <string name="msdkui_limited_weight">Weight limit</string>
+  <string name="msdkui_maneuver_arrive_at_02y">Arrive</string>
+  <string name="msdkui_maneuver_continue">Continue</string>
+  <string name="msdkui_maneuver_end">You\'ve arrived</string>
+  <string name="msdkui_maneuver_enter_car_shuttle_train">Drive onto the train</string>
+  <string name="msdkui_maneuver_enter_ferry">Take the ferry</string>
+  <string name="msdkui_maneuver_enter_highway">Join the motorway</string>
+  <string name="msdkui_maneuver_exit">Exit %1$s</string>
+  <string name="msdkui_maneuver_exit_directions_towards">%1$s towards %2$s</string>
+  <string name="msdkui_maneuver_head_to">Head %1$s</string>
+  <string name="msdkui_maneuver_leave_highway">Take the exit</string>
+  <string name="msdkui_maneuver_orientation_east">east</string>
+  <string name="msdkui_maneuver_orientation_north">north</string>
+  <string name="msdkui_maneuver_orientation_north_east">northeast</string>
+  <string name="msdkui_maneuver_orientation_north_west">northwest</string>
+  <string name="msdkui_maneuver_orientation_south">south</string>
+  <string name="msdkui_maneuver_orientation_south_east">southeast</string>
+  <string name="msdkui_maneuver_orientation_south_west">southwest</string>
+  <string name="msdkui_maneuver_orientation_west">west</string>
+  <string name="msdkui_maneuver_pt_change">Change</string>
+  <string name="msdkui_maneuver_pt_change_at">Change at %1$s</string>
+  <string name="msdkui_maneuver_pt_get_on_here">Get on</string>
+  <string name="msdkui_maneuver_pt_stopover">Waypoint</string>
+  <string name="msdkui_maneuver_pt_travel_start">Take %1$s</string>
+  <string name="msdkui_maneuver_pt_walk">Walk</string>
+  <string name="msdkui_maneuver_road_name_divider">%1$s/%2$s</string>
+  <string name="msdkui_maneuver_turn_keep_left">Keep left</string>
+  <string name="msdkui_maneuver_turn_keep_middle">Take the street in the middle</string>
+  <string name="msdkui_maneuver_turn_keep_right">Keep right</string>
+  <string name="msdkui_maneuver_turn_left">Turn left</string>
+  <string name="msdkui_maneuver_turn_right">Turn right</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_1">Take the 1st exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_10">Take the 10th exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_11">Take the 11th exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_12">Take the 12th exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_2">Take the 2nd exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_3">Take the 3rd exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_4">Take the 4th exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_5">Take the 5th exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_6">Take the 6th exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_7">Take the 7th exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_8">Take the 8th exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_9">Take the 9th exit</string>
+  <string name="msdkui_maneuver_turn_sharply_left">Turn sharply left</string>
+  <string name="msdkui_maneuver_turn_sharply_right">Turn sharply right</string>
+  <string name="msdkui_maneuver_turn_slightly_left">Turn slightly left</string>
+  <string name="msdkui_maneuver_turn_slightly_right">Turn slightly right</string>
+  <string name="msdkui_maneuver_uturn">Make a U-turn</string>
+  <string name="msdkui_maneuverpanel_nodata">Follow the route on the map</string>
+  <string name="msdkui_maneuverpanel_updating">Updating</string>
+  <string name="msdkui_minutes">%1$d min</string>
+  <string name="msdkui_no_maneuver_found">Didn\'t find any manoeuvres</string>
+  <string name="msdkui_no_route_found">Didn\'t find any routes</string>
+  <string name="msdkui_no_traffic_delays">No delays</string>
+  <string name="msdkui_none">None</string>
+  <string name="msdkui_not_implemented">Not available</string>
+  <string name="msdkui_number_of_trailers">Trailers</string>
+  <string name="msdkui_ok">OK</string>
+  <string name="msdkui_optimal">Best</string>
+  <string name="msdkui_options">Options</string>
+  <string name="msdkui_organic">Organic</string>
+  <string name="msdkui_other">Other</string>
+  <string name="msdkui_pedestrian">Walk</string>
+  <string name="msdkui_poison">Poison</string>
+  <string name="msdkui_poisonous">Toxic inhalant</string>
+  <string name="msdkui_radioactive">Radioactive</string>
+  <string name="msdkui_remove">Remove</string>
+  <string name="msdkui_remove_waypoint">Remove waypoint</string>
+  <string name="msdkui_remove_waypoint_button">Remove waypoint button at index %1$d</string>
+  <string name="msdkui_route_results_title">Routes</string>
+  <string name="msdkui_route_type_title">Route type</string>
+  <string name="msdkui_routing_options_title">Route options</string>
+  <string name="msdkui_rp_from">From: %1$s</string>
+  <string name="msdkui_rp_to">To: %1$s</string>
+  <string name="msdkui_rp_via">Via</string>
+  <string name="msdkui_scooter">Scooter</string>
+  <string name="msdkui_seconds">%1$d s</string>
+  <string name="msdkui_selected">Selected</string>
+  <string name="msdkui_set">Set</string>
+  <string name="msdkui_shortest">Shortest</string>
+  <string name="msdkui_tab_icon">Tab icon</string>
+  <string name="msdkui_traffic">Avoid traffic</string>
+  <string name="msdkui_traffic_blocked">Closed</string>
+  <string name="msdkui_transport_mode">Transport type: %1$s</string>
+  <string name="msdkui_truck">Lorry</string>
+  <string name="msdkui_truck_options_title">Truck options</string>
+  <string name="msdkui_truck_type">Lorry type</string>
+  <string name="msdkui_truck_type_tractor">Articulated lorry</string>
+  <string name="msdkui_truck_type_truck">Lorry/Truck</string>
+  <string name="msdkui_tunnel_cat_b">Category B</string>
+  <string name="msdkui_tunnel_cat_c">Category C</string>
+  <string name="msdkui_tunnel_cat_d">Category D</string>
+  <string name="msdkui_tunnel_cat_e">Category E</string>
+  <string name="msdkui_tunnels_allowed_title">Tunnels allowed</string>
+  <string name="msdkui_undefined">Not defined</string>
+  <string name="msdkui_unit_kilometer">km</string>
+  <string name="msdkui_unit_meter">m</string>
+  <string name="msdkui_unknown">Unknown</string>
+  <string name="msdkui_userposition_search">Getting your location</string>
+  <string name="msdkui_violate_truck_options">Ignore truck options</string>
+  <string name="msdkui_waypoint_current_location">Current location</string>
+  <string name="msdkui_waypoint_select_location">Choose waypoint</string>
+  <string name="msdkui_weight_per_axle">Weight per axle</string>
+  <string name="msdkui_width">Width</string>
+</resources>

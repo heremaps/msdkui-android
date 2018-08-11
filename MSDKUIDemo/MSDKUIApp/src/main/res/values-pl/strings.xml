@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_app_add">Dodaj</string>
+  <string name="msdkui_app_add_waypoint">Dodaj punkt nawigacyjny</string>
+  <string name="msdkui_app_back">Cofnij się o jeden krok</string>
+  <string name="msdkui_app_cancel">Anuluj</string>
+  <string name="msdkui_app_collapse">Pokaż mniej</string>
+  <string name="msdkui_app_cord">%s, %s</string>
+  <string name="msdkui_app_done">Gotowe</string>
+  <string name="msdkui_app_drag">Przeciągnij</string>
+  <string name="msdkui_app_expand">Pokaż więcej</string>
+  <string name="msdkui_app_guidance_button_end">Zakończ</string>
+  <string name="msdkui_app_guidance_button_start">Rozpocznij nawigację</string>
+  <string name="msdkui_app_guidance_start_simulation">A guidance simulation will start</string>
+  <string name="msdkui_app_guidance_teaser_description">Pomóż swoim użytkownikom dotrzeć do celu dzięki szczegółowej nawigacji.</string>
+  <string name="msdkui_app_guidance_teaser_title">Nawigacja samochodowa</string>
+  <string name="msdkui_app_guidance_waypoint_subtitle">Naciśnij mapę, aby ustawić miejsce docelowe</string>
+  <string name="msdkui_app_guidance_waypoint_title">Nawigacja samoch.</string>
+  <string name="msdkui_app_hint_collapse">Pokazuje mniejszą liczbę punktów nawigacyjnych.</string>
+  <string name="msdkui_app_hint_expand">Pokazuje większą liczbę punktów nawigacyjnych.</string>
+  <string name="msdkui_app_info">Informacje o aplikacji</string>
+  <string name="msdkui_app_map_view">Widok mapy</string>
+  <string name="msdkui_app_name_title">MSDK UI Demo</string>
+  <string name="msdkui_app_ok">OK</string>
+  <string name="msdkui_app_options">Opcje</string>
+  <string name="msdkui_app_remove">Usuń</string>
+  <string name="msdkui_app_route_options">Opcje trasy</string>
+  <string name="msdkui_app_route_preview_title">Przegląd trasy</string>
+  <string name="msdkui_app_route_results_title">Trasy</string>
+  <string name="msdkui_app_routeoverview_to">Do:</string>
+  <string name="msdkui_app_routeresults_error">Nie znaleziono żadnych tras</string>
+  <string name="msdkui_app_rp_teaser_description">Uzyskaj wskazówki dla samochodów, ciężarówek, rowerów i pieszych.</string>
+  <string name="msdkui_app_rp_teaser_title">Planer tras</string>
+  <string name="msdkui_app_rp_waypoint_subtitle">Naciśnij lub naciśnij i przytrzymaj mapę</string>
+  <string name="msdkui_app_settings">Ustawienia</string>
+  <string name="msdkui_app_stop_navigation">Stop navigation</string>
+  <string name="msdkui_app_swap">Zamień</string>
+  <string name="msdkui_app_swap_waypoints">Zamień punkty nawigacyjne</string>
+  <string name="msdkui_app_teaser_link">Sprawdź to</string>
+  <string name="msdkui_app_userposition_notfound">Nie znamy Twojej lokalizacji</string>
+  <string name="msdkui_app_userposition_notfound_subtitle">Please make sure the location setting is switched on in your device.</string>
+  <string name="msdkui_app_userposition_search">Getting your location</string>
+  <string name="msdkui_app_versions">Wersja aplikacji: %1$s\nKompilacja aplikacji: %2$s\nWersja biblioteki: %3$s</string>
+  <string name="msdkui_app_waypoint_not_valid">Nieprawidłowy punkt nawigacyjny</string>
+  <string name="msdkui_app_waypoint_select_location">Wybór punktu nawigacyjnego</string>
+</resources>

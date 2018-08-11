@@ -1,0 +1,214 @@
+# Quick Start
+Thank you for using the HERE Mobile SDK UI Kit. In this Quick Start guide, we are going to  introduce you to the UI Kit and show you how easy it is to get started. As a very first example, we develop a "Hello UI Kit" Android application.
+
+# Contents
+<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Creating a new Android Project](#creating-a-new-android-project)
+- [Integrating the HERE Mobile SDK and the UI Kit](#integrating-the-here-mobile-sdk-and-the-ui-kit)
+	- [Gradle setup](#gradle-setup)
+	- [Theme setup](#theme-setup)
+	- [Setting your HERE SDK credentials](#setting-your-here-sdk-credentials)
+- [Add your first UI Kit component](#add-your-first-ui-kit-component)
+- [Loading the Map](#loading-the-map)
+
+<!-- /TOC -->
+
+## Creating a new Android Project
+Let's start by creating a new Android app. If you want to integrate the UI Kit into an existing app, you can skip this step. No HERE Mobile SDK or UI Kit specific code is involved here.
+If you are new to Android development, please follow the guides on [developer.android.com](https://developer.android.com/guide/) to help you get started with the first steps.
+
+For this Quick Start app, we used Android Studio 3.0.1. This is the minimum Android Studio version you can use for development (higher versions are recommended).
+
+- Start Android Studio and select _Start a new Android Studio project_.
+- Select an Application name of your choice, for example _HelloUIKit_.
+- Set a company name. For our example we have used _here.com_.
+- Important: Since we later on want to integrate the HERE SDK, please make sure to set the same package name as on _developer.here.com_ when you acquired your HERE credentials. For the example, we have used _com.here.msdkui.example_. Please adapt it to match your own package name.
+- This Quick Start guide uses Java, so do not include Kotlin support if you plan to use the same code snippets as provided within this guide. Note that the UI Kit is fully compatible with Kotlin. See also our UI Kit demo app which is developed in Kotlin.
+- Select _Phone and Tablet_
+- The minimum supported Android API level should be 16 (Android 4.1, Jelly Bean) or higher.
+- As a final step, select a template of your choice, for example _Empty Activity_ and keep the default name for your main activity on the next screen: _MainActivity_. To ensure backwards compatibility, we recommend using an `AppCompatActivity`.
+
+Now let the Gradle sync finish and _run_ the project. Select an emulator or a real device and verify that your project executes as expected. If all goes well, you should see blank view showing a "Hello World"-text.
+
+While all of the functionality of the HERE UI Kit is accessible from the emulator, usage of a real device is strongly recommended. The overall performance will be better, and some features like gestures are just easier to use on multi-touch-enabled hardware.
+
+## Integrating the HERE Mobile SDK and the UI Kit
+Now that we have a working Android app, we can start integrating the HERE SDK and the UI Kit library. Make sure you have downloaded the latest HERE Mobile SDK release package including the library AAR artefact usually called `HERE-sdk.aar`.
+
+As a next step, please download the latest UI Kit release and unzip the _UI Kit-android-release_ package. You should find several files, the example apps, the demo and the Developer's Guide along with the API Reference.
+
+Now you should have two binaries: `HERE-sdk.aar` and `MSDKUILib.aar`. Copy both to the _libs_ folder of your Android project. Usually the path is inside the app folder, for example: `HelloUIKit/app/libs`.
+
+More details on integrating the HERE Mobile SDK can be found on [developer.here.com](https://developer.here.com/documentation/android-premium/topics/app-simple-android-studio.html). For this Quick Start guide, we will integrate the HERE SDK together with the UI Kit lib. The steps are the same as shown on developer.here.com, except that we integrate the UI Kit on top.
+
+### Gradle setup
+Within Android Studio, open the _app-level_ `build.gradle` file (to be found under the app folder) and configure the repositories for your project to use a flat hierarchy:
+
+```java
+repositories {
+  flatDir {
+    dirs 'libs'
+  }
+}
+```
+
+Extend the the dependencies closure and make sure it references the following libraries:
+
+```java
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support:design:27.1.1'
+    implementation(name: 'HERE-sdk', ext: 'aar')
+    implementation(name: 'MSDKUILib', ext: 'aar')
+}
+```
+
+Depending on your specific project configuration, you may have other entries here. It is recommended to include always the latest versions. Note that the AppCompat version should match your `compileSdkVersion`, so in our case, it should be _27_.
+
+As you can see, we add both the HERE Mobile SDK _and_ the UI Kit library as dependencies. Additionally, the UI Kit requires the latest _Android AppCompat support library_, the _Android Design library_ and the supporting _Constraint layout_. The latter two are needed for the layouts of certain UI Kit components.
+
+Since UI Kit uses Lambda expressions, _Java 8_ is required, so please add the following to the `Android`-closure:
+
+```java
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+```
+
+### Theme setup
+The UI Kit library offers various options to customize the default look and feel of its containing components. Make sure to derive your own themes from the `MSDKUIDarkTheme`. Other parent themes may be provided in the future.
+
+Adapt the default `styles.xml` (to be found in `res/values`) to set the base application theme:
+
+```xml
+    <style name="AppTheme" parent="MSDKUIDarkTheme">
+        <!-- Customize your theme here. -->
+    </style>
+```
+
+Note that this step is required even if you don't plan to use custom themes. The UI Kit requires `MSDKUIDarkTheme` as parent theme for its components.
+
+### Setting your HERE SDK credentials
+The HERE SDK must be authenticated by providing a set of credentials specific for your project. If you don't know your credentials, please ask your HERE stakeholder or register on [developer.here.com](https://developer.here.com) and create new ones.
+
+In order to enter the app id, app code and license key and to provide these to the HERE SDK, please open the `AndroidManifest`-file and edit the following entries. Note that the `meta-data` tags should be nested under the `application`-tag.
+
+```xml
+        <meta-data
+            android:name="com.here.android.maps.appid"
+            android:value="YOUR_APP_ID" />
+        <meta-data
+            android:name="com.here.android.maps.apptoken"
+            android:value="YOUR_APP_CODE" />
+        <meta-data
+            android:name="com.here.android.maps.license.key"
+            android:value="YOUR_LICENSE_KEY" />
+```
+
+Make sure to replace `YOUR_APP_ID`, `YOUR_APP_CODE` and `YOUR_LICENSE_KEY` with your own values.
+
+>**Note:** If you want to try out our fully functional demo app or one of the [examples](../Guides_Examples), please make sure to adapt the package name to match exactly the one you provided when you requested your credentials on [developer.here.com](https://developer.here.com).
+
+Since we are using the UI Kit along with the HERE Mobile SDK, we must make sure to add the required permissions to the manifest. The following permissions are recommended. Please put them nested under the `manifest`-tag:
+
+```xml
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+```
+
+As a minimum requirement we need access for storage and network, since the HERE Mobile SDK needs to download map data which must be cached for later use. Please, also add the optional `hardwareAccelerated`-attribute to your `application`-tag to benefit from certain hardware capabilities of a device for a better support of the Android 2D rendering pipeline:
+
+```xml
+android:hardwareAccelerated="true"
+```
+
+As the HERE SDK needs to download and store map data, we must establish a map service. Please add the following service nested under the `application`-tag:
+```xml
+<service
+  android:name="com.here.android.mpa.service.MapService"
+  android:label="{YOUR_LABEL_NAME}"
+  android:exported="false">
+  <intent-filter>
+    <action android:name="{YOUR_INTENT_NAME}">
+    </action>
+  </intent-filter>
+</service>
+```
+
+For example, as label use _"ExampleMapService"_ and as intent name you may use: _"com.here.msdkui.example.MapService"_.
+
+>**Note:** After editing `AndroidManifest.xml`, add a call to `MapSettings.setIsolatedDiskCacheRootPath(String path, String intent)` with the desired cache location and the custom intent name. It is recommended to set the disk cache location under your application directory if you do not want the cache to persist after your app is uninstalled. You can find an example [here](https://developer.here.com/documentation/android-premium/dev_guide/topics/map-service.html) or in the example app's `MapInitializer` helper class.
+
+Finally make sure to click the _"Sync Project with Gradle Files"_-button. If all goes well, you should see the libraries embedded into your project. Switch to _"Project view"_ and expand the _"External Libraries"_-section. Make sure the following entries are shown:
+- `HERE-sdk:@aar`
+- `MSDKUILib:@aar`
+
+To enable quick Javadoc reference within your Android Studio environment, scroll down to the _External Libraries_ section, right-click on `MSDKUILib:@aar`, and then select _Library Properties_. Click the `+`-button and locate `MSDKUILib-javadoc.jar` from the downloaded package.
+
+## Add your first UI Kit component
+If you succeed with the above steps, we have the UI Kit library and the HERE Mobile SDK ready for use. Our app consists only of a single activity, accompanied by a layout file usually called `activity_main.xml` - if you kept the default `MainActivity` class name.
+
+If you started with an empty Android project, the default layout was hosting a "Hello World"-`TextView`. Replace the entire content of the existing `activity_main` layout file with the following vertical `LinearLayout`:
+```xml
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.here.msdkui.routing.WaypointList
+        android:id="@+id/waypointList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <fragment
+        class="com.here.android.mpa.mapping.MapFragment"
+        android:id="@+id/mapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+</LinearLayout>
+```
+Our first UI Kit component for this example is `WaypointList` component. A `WaypointList` contains items describing waypoints for which a route can be calculated.  Since `WaypointList` is a direct child of `RecyclerView`, it behaves like you would expect from any other `RecyclerView`.
+Below the `WaypointList` we show the HERE `MapFragment`. Note that the map will occupy as much space as allowed by the `WaypointList`, since we are giving it a layout weight of 1.
+
+## Loading the Map
+Before we can start using the `WaypointList` component, we have to prepare loading the `MapFragment`. As described on [developer.here.com](https://developer.here.com/documentation/android-premium/topics/app-simple-android-studio.html) we have to request the required [Android permissions](https://developer.here.com/documentation/android-premium/topics/request-android-permissions.html) first. Then we can initialize the `MapFragment`.
+
+As our focus for this Quick Start guide is on using the UI Kit components, we have wrapped both steps in a helper class called `MapInitializer`. For implementation details, please check the example's code. You can use your own wrapper class or follow the steps on [developer.here.com](https://developer.here.com/documentation/android-premium/topics/app-simple-android-studio.html).
+
+Once the HERE `MapFragment` is successfully loaded, we want to show a `Toast` message with the current version of the UI Kit library:
+```java
+Toast.makeText(this, "HERE MSDK UI Kit version: " +
+				com.here.msdkui.BuildConfig.VERSION_NAME, Toast.LENGTH_SHORT).show();
+```
+
+Now it's time to populate our first UI Kit component. For this Quick Start example, we just want to verify that we can access and use a UI Kit component. The `WaypointList` by default holds two empty waypoints. You can add more waypoints, remove waypoints or modify existing waypoints. A `WaypointList` can hold an unlimited number of stopovers, where the first waypoint marks the start of the route, while the last waypoint marks the destination of the route. For the sake of this Quick Start guide, we want to show the traditional "Hello World"-message by setting custom names for the waypoints.
+
+```java
+List<WaypointEntry> waypointEntries = new ArrayList<>();
+waypointEntries.add(new WaypointEntry("Hello"));
+waypointEntries.add(new WaypointEntry("HERE Mobile SDK UI Kit!"));
+
+WaypointList waypointList = findViewById(R.id.waypointList);
+waypointList.setEntries(waypointEntries);
+```
+
+The order in the array defines the order of how the waypoints shall appear in the `WaypointList`. However, the component also allows to interactively shuffle the waypoints around, using the right-hand drag handles - or do delete waypoints by tapping the _minus_ buttons on the left side.
+
+The UI Kit uses the `WaypointEntry` class as a wrapper to hold coordinates that can be used for route calculation. By default, the component will show raw coordinate values, but you can also set custom names for each waypoint - for example street names. Here we use an overloaded constructor to directly pass in a `String` representation for each waypoint to split the "Hello HERE Mobile SDK UI Kit!"-message upon two waypoint entries.
+
+By calling the `findViewById()`-method of our `Activity`, we lookup the inflated instance of our `WaypoitList` and finally set the entries we want to show.
+
+Now it's time to build and run the app. If all goes well, you should see a `WaypointList` covering the top area of the view, above a HERE `MapFragment`.
+
+![Hello UI Kit](Images/HelloUIKit.png)
+
+Congratulations, you have successfully mastered your first steps in using the HERE Mobile SDK UI Kit for Android. If you want to see more examples and code snippets, please have a look for our Developer's Guide. Thank you!

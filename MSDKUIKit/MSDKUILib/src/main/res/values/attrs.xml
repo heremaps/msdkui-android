@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+
+    <declare-styleable name="RouteDescriptionItem">
+        <attr name="visibleSection">
+            <flag name="typeIcon" value="0x01" />
+            <flag name="time" value="0x02" />
+            <flag name="details" value="0x04" />
+            <flag name="trafficWarning" value="0x08" />
+            <flag name="arrivalTime" value="0x10" />
+            <flag name="sectionBar" value="0x20" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="RouteDescriptionList">
+        <attr name="sortType" format="enum">
+            <enum name="distance" value="0" />
+            <enum name="totalTime" value="1" />
+        </attr>
+        <attr name="sortOrder" format="enum">
+            <enum name="ascending" value="0" />
+            <enum name="descending" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ManeuverDescriptionItem">
+        <attr name="visible">
+            <flag name="icon" value="0x01" />
+            <flag name="instructions" value="0x02" />
+            <flag name="address" value="0x04" />
+            <flag name="distance" value="0x08" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="WaypointItem">
+        <attr name="draggingEnabled" format="boolean" />
+        <attr name="removingEnabled" format="boolean" />
+        <attr name="draggingEnabledIcon" format="reference" />
+        <attr name="removingEnabledIcon" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="TabView">
+        <attr name="icon" format="reference" />
+        <attr name="label" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="DarkTheme">
+
+        <attr name="colorBackgroundBrand" format="color|reference" />
+
+        <attr name="colorBackgroundDark" format="color|reference" />
+        <attr name="colorBackgroundViewDark" format="color|reference" />
+
+        <attr name="colorBackgroundLight" format="color|reference" />
+        <attr name="colorBackgroundViewLight" format="color|reference" />
+
+        <attr name="colorAccentLight" format="color|reference" />
+
+        <attr name="colorAccentSecondaryLight" format="color|reference" />
+        <attr name="colorAccentSecondary" format="color|reference" />
+
+        <attr name="colorForegroundLight" format="color|reference" />
+        <attr name="colorForeground" format="color|reference" />
+
+        <attr name="colorForegroundSecondaryLight" format="color|reference" />
+        <attr name="colorForegroundSecondary" format="color|reference" />
+
+        <attr name="colorHintLight" format="color|reference" />
+        <attr name="colorHint" format="color|reference" />
+
+        <attr name="colorPositive" format="color|reference" />
+        <attr name="colorPositiveLight" format="color|reference" />
+        <attr name="colorAlert" format="color|reference" />
+        <attr name="colorAlertLight" format="color|reference" />
+        <attr name="colorNegative" format="color|reference" />
+        <attr name="colorNegativeLight" format="color|reference" />
+        <attr name="colorSignificant" format="color|reference" />
+        <attr name="colorSignificantLight" format="color|reference" />
+
+        <attr name="colorDividerLight" format="color|reference" />
+        <attr name="colorDivider" format="color|reference" />
+
+        <attr name="colorDisabledLight" format="color|reference" />
+        <attr name="colorDisabled" format="color|reference" />
+
+        <attr name="colorBackgroundPressedLight" format="color|reference" />
+        <attr name="colorBackgroundPressed" format="color|reference" />
+
+        <attr name="colorBackgroundMapLight" format="color|reference" />
+        <attr name="colorBackgroundMap" format="color|reference" />
+
+        <attr name="colorOpacityMaskLight" format="color|reference" />
+        <attr name="colorOpacityMask" format="color|reference" />
+
+        <attr name="colorLocation" format="color|reference" />
+
+        <attr name="colorRoute" format="color|reference" />
+
+        <attr name="textTitle" format="reference" />
+        <attr name="textSubhead" format="reference" />
+        <attr name="textBody1" format="reference" />
+        <attr name="textCaption" format="reference" />
+
+        <attr name="spacing4" format="dimension|reference" />
+        <attr name="spacing16" format="dimension|reference" />
+        <attr name="spacing48" format="dimension|reference" />
+        <attr name="spacing72" format="dimension|reference" />
+
+        <attr name="routeDescriptionItem" format="reference" />
+        <attr name="routeDescriptionItemIcon" format="reference" />
+        <attr name="routeDescriptionTotalTime" format="reference" />
+        <attr name="routeDescriptionTrafficWarning" format="reference" />
+        <attr name="routeDescriptionSectionBar" format="reference" />
+        <attr name="routeDescriptionDescDetails" format="reference" />
+        <attr name="routeDescriptionDescArrival" format="reference" />
+
+        <attr name="guidanceManeuverPanel" format="reference" />
+        <attr name="guidanceManeuverPanelHeadingText" format="reference" />
+        <attr name="guidanceManeuverPanelSecondaryText" format="reference" />
+        <attr name="guidanceManeuverPanelHeadingTextLand" format="reference" />
+        <attr name="guidanceManeuverPanelSecondaryTextLand" format="reference" />
+        <attr name="guidanceManeuverPanelDestinationText" format="reference" />
+        <attr name="guidanceManeuverPanelLeftIcon" format="reference" />
+        <attr name="guidanceManeuverPanelRightIcon" format="reference" />
+
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,20 @@
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<vector android:height="24dp" android:viewportHeight="72"
+    android:viewportWidth="72" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#FF000000" android:fillType="evenOdd" android:pathData="M50.3955,24.4883C51.8275,23.6703 51.8275,22.3303 50.3955,21.5113L27.6045,8.4883C26.1725,7.6703 24.9995,8.3493 24.9995,10.0003L24.9995,17.0003 6.9995,17.0003 6.9995,29.0003 24.9995,29.0003 24.9995,36.0003C24.9995,37.6503 26.1725,38.3303 27.6045,37.5113L50.3955,24.4883zM47,55L67,55 67,43 47,43 47,36C47,34.35 45.828,33.67 44.396,34.488L21.604,47.512C20.172,48.33 20.172,49.67 21.604,50.488L44.396,63.512C45.828,64.33 47,63.65 47,62L47,55z"/>
+</vector>

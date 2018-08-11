@@ -1,0 +1,165 @@
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="MSDKUIDarkTheme">
+        <item name="android:actionBarStyle">@style/AppTheme.ActionBar</item>
+    </style>
+
+    <style name="GuidanceAppTheme" parent="AppTheme">
+        <item name="routeDescriptionItem">@style/GuidanceRouteDescriptionItem</item>
+        <item name="routeDescriptionTotalTime">@style/GuidanceRouteDescriptionTotalTime</item>
+    </style>
+
+    <style name="AppTheme.ActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="android:titleTextStyle">@style/MSDKUIAppTitleTextStyle</item>
+    </style>
+
+    <style name="AppTheme.WhiteAccent">
+        <item name="colorAccent">?attr/colorForegroundLight</item>
+    </style>
+
+    <style name="MSDKUIAppTitleTextStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">?attr/colorBackgroundViewLight</item>
+        <item name="android:textSize">@dimen/textSizeLarge</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!--  Splash screen -->
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+    </style>
+
+    <!--  Landing screen -->
+
+    <style name="LandingScreen">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginTop">@dimen/contentMarginHuge</item>
+    </style>
+
+    <style name="LandingScreenHeading" parent="Base.TextAppearance.AppCompat.Title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorForeground</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginTop">@dimen/contentMarginExtraLarge</item>
+    </style>
+
+    <style name="LandingScreenSubHeading" parent="Base.TextAppearance.AppCompat.Body1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/contentMarginSmall</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginHuge</item>
+        <item name="android:lineSpacingExtra">@dimen/contentMarginExtraSmall</item>
+    </style>
+
+    <style name="LandingScreenSubHeadingLink" parent="Base.TextAppearance.AppCompat.Body2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">?attr/colorAccent</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginTop">@dimen/contentMarginSmall</item>
+    </style>
+
+    <!-- Guidance route preview -->
+
+    <style name="GuidanceRoutePreviewDestination" parent="Base.TextAppearance.AppCompat.Body1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
+    </style>
+
+    <style name="GuidanceRouteDescriptionTotalTime" parent="Base.TextAppearance.AppCompat.Title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorForeground</item>
+    </style>
+
+    <style name="GuidanceRouteDescriptionItem" parent="RouteDescriptionItem">
+        <item name="android:paddingTop">@dimen/contentMarginMedium</item>
+    </style>
+
+    <style name="BaseButton" parent="Base.TextAppearance.AppCompat.Body2">
+        <item name="android:layout_marginLeft">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginTop">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginBottom">@dimen/contentMarginExtraLarge</item>
+        <item name="android:paddingLeft">@dimen/contentMarginExtraLarge</item>
+        <item name="android:paddingRight">@dimen/contentMarginExtraLarge</item>
+        <item name="android:textColor">?attr/colorForegroundLight</item>
+        <item name="android:background">@drawable/button_bg_ripple</item>
+        <item name="android:gravity">center</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="GuidanceRoutePreviewGo" parent="BaseButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/go_btn_height</item>
+    </style>
+
+    <style name="GuidanceStatusPanel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">300dp</item>
+        <item name="android:background">@drawable/guidance_status_panel_bg</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:padding">@dimen/guidance_status_panel_padding</item>
+    </style>
+
+    <style name="GuidanceStopNavigationButton">
+        <item name="android:layout_width">@dimen/stop_navigation_button_width_height</item>
+        <item name="android:layout_height">@dimen/stop_navigation_button_width_height</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:background">@drawable/stop_navigation_bg_ripple</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="ProgressBar">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginExtraLarge</item>
+    </style>
+
+</resources>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_allow_car_pool">Pwede ang carpool</string>
+  <string name="msdkui_allow_car_shuttle">Payagan ang mga tren na car shuttle</string>
+  <string name="msdkui_allow_dirt_roads">Pwede ang mga kalsadang lupa</string>
+  <string name="msdkui_allow_ferries">Pwede ang mga bapor</string>
+  <string name="msdkui_allow_highways">Pwede ang daanan ng mga sasakyan</string>
+  <string name="msdkui_allow_parks">Pwede ang mga parke</string>
+  <string name="msdkui_allow_toll_roads">Pwede ang mga tool road</string>
+  <string name="msdkui_allow_tunnels">Pinapayagan ang mga lagusan</string>
+  <string name="msdkui_arrive">Pagdating</string>
+  <string name="msdkui_arrive_at">Pagdating</string>
+  <string name="msdkui_avoid_long_term_closures">Iwasan ang mga nakasarang daan</string>
+  <string name="msdkui_balanced">Balanse</string>
+  <string name="msdkui_bike">Bisikleta</string>
+  <string name="msdkui_cancel">Kanselahin</string>
+  <string name="msdkui_car">Kotse</string>
+  <string name="msdkui_close">Isara</string>
+  <string name="msdkui_combustible">Madaling magliyab</string>
+  <string name="msdkui_corrosive">Madaling kalawangin</string>
+  <string name="msdkui_days">%1$d d</string>
+  <string name="msdkui_days_hours">%1$d d %2$d h</string>
+  <string name="msdkui_depart">Pag-alis</string>
+  <string name="msdkui_depart_at">Pag-alis</string>
+  <string name="msdkui_disable">I-off</string>
+  <string name="msdkui_disabled">Naka-off</string>
+  <string name="msdkui_distance_value_not_available">--</string>
+  <string name="msdkui_distance_value_with_unit">%1$s %2$s</string>
+  <string name="msdkui_done">Tapos na</string>
+  <string name="msdkui_drag_waypoint">Mag-drag ng waypoint</string>
+  <string name="msdkui_drag_waypoint_button">I-drag ang buton ng waypoint sa index %1$d</string>
+  <string name="msdkui_duration">Durasyon</string>
+  <string name="msdkui_enabled">Naka-On</string>
+  <string name="msdkui_exception_attribute_invalid">Failed to resolve attribute at index %1$d</string>
+  <string name="msdkui_exception_custom_view_not_available">Custom view for mode %1$s is not available</string>
+  <string name="msdkui_exception_date_null">There is no date</string>
+  <string name="msdkui_exception_label_null">There is no label</string>
+  <string name="msdkui_exception_labels_null">There are no labels</string>
+  <string name="msdkui_exception_maneuver_pos_invalid">Manoeuvre position is not valid</string>
+  <string name="msdkui_exception_maneuvres_null">There are no manouevres</string>
+  <string name="msdkui_exception_out_of_index_range">Index is not within range %1$d to %2$d.</string>
+  <string name="msdkui_exception_route_null">There is no route</string>
+  <string name="msdkui_exception_route_options_null">There is no RouteOptions object</string>
+  <string name="msdkui_exception_routes_null">There are no routes</string>
+  <string name="msdkui_exception_sort_order_null">There is no sort order</string>
+  <string name="msdkui_exception_sort_type_null">There is no sort type</string>
+  <string name="msdkui_exception_time_type_null">There is no time type</string>
+  <string name="msdkui_exception_waypoint_entry_null">Need to add a waypoint</string>
+  <string name="msdkui_exception_waypoint_exceed_max">Adding waypoint exceeded list set max count.</string>
+  <string name="msdkui_exception_waypoint_fail_min">Removing waypoint failing list set min count.</string>
+  <string name="msdkui_exception_waypoint_failing_min">Adding waypoint failing list set min count.</string>
+  <string name="msdkui_explosive">Sumasabog</string>
+  <string name="msdkui_fastest">Pinakamabilis</string>
+  <string name="msdkui_flammable">Madaling mag-apoy</string>
+  <string name="msdkui_gas">Gas</string>
+  <string name="msdkui_harmful_to_water">Polusyon sa tubig</string>
+  <string name="msdkui_hazardous_materials_title">Mapanganib na mga materyal</string>
+  <string name="msdkui_height">Taas</string>
+  <string name="msdkui_hours">%1$d h</string>
+  <string name="msdkui_hours_minutes">%1$d h %2$d min</string>
+  <string name="msdkui_incl">Kablng.</string>
+  <string name="msdkui_incl_traffic_delay">Kab. %1$s antala</string>
+  <string name="msdkui_including">Kabilang si</string>
+  <string name="msdkui_input_not_valid">Mangyaring suriin muli</string>
+  <string name="msdkui_length">Haba</string>
+  <string name="msdkui_limited_weight">Limitasyon ng bigat</string>
+  <string name="msdkui_maneuver_arrive_at_02y">Dumating</string>
+  <string name="msdkui_maneuver_continue">Ipagpatuloy</string>
+  <string name="msdkui_maneuver_end">Nakarating ka na</string>
+  <string name="msdkui_maneuver_enter_car_shuttle_train">Magmaneho papunta sa tren</string>
+  <string name="msdkui_maneuver_enter_ferry">Sumakay sa ferry</string>
+  <string name="msdkui_maneuver_enter_highway">Pumasok sa motorway</string>
+  <string name="msdkui_maneuver_exit">Labasan %1$s</string>
+  <string name="msdkui_maneuver_exit_directions_towards">%1$s patungong %2$s</string>
+  <string name="msdkui_maneuver_head_to">Tumungo sa %1$s</string>
+  <string name="msdkui_maneuver_leave_highway">Dumaan sa exit</string>
+  <string name="msdkui_maneuver_orientation_east">silangan</string>
+  <string name="msdkui_maneuver_orientation_north">hilaga</string>
+  <string name="msdkui_maneuver_orientation_north_east">hilagang-silangan</string>
+  <string name="msdkui_maneuver_orientation_north_west">hilagang-kanluran</string>
+  <string name="msdkui_maneuver_orientation_south">timog</string>
+  <string name="msdkui_maneuver_orientation_south_east">timog-silangan</string>
+  <string name="msdkui_maneuver_orientation_south_west">timog-kanluran</string>
+  <string name="msdkui_maneuver_orientation_west">kanluran</string>
+  <string name="msdkui_maneuver_pt_change">Magpalit</string>
+  <string name="msdkui_maneuver_pt_change_at">Magpalit sa %1$s</string>
+  <string name="msdkui_maneuver_pt_get_on_here">Sumakay sa</string>
+  <string name="msdkui_maneuver_pt_stopover">Waypoint</string>
+  <string name="msdkui_maneuver_pt_travel_start">Dumaan sa %1$s</string>
+  <string name="msdkui_maneuver_pt_walk">Maglakad</string>
+  <string name="msdkui_maneuver_road_name_divider">%1$s/%2$s</string>
+  <string name="msdkui_maneuver_turn_keep_left">Manatili sa kaliwa</string>
+  <string name="msdkui_maneuver_turn_keep_middle">Dumaan sa kalyeng nasa gitna</string>
+  <string name="msdkui_maneuver_turn_keep_right">Manatili sa kanan</string>
+  <string name="msdkui_maneuver_turn_left">Kumaliwa</string>
+  <string name="msdkui_maneuver_turn_right">Kumanan</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_1">Dumaan sa ika-1 exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_10">Dumaan sa ika-10 exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_11">Dumaan sa ika-11 exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_12">Dumaan sa ika-12 exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_2">Dumaan sa ika-2 exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_3">Dumaan sa ika-3 exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_4">Dumaan sa ika-4 na exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_5">Dumaan sa ika-5 exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_6">Dumaan sa ika-6 na exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_7">Dumaan sa ika-7 exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_8">Dumaan sa ika-8 exit</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_9">Dumaan sa ika-9 na exit</string>
+  <string name="msdkui_maneuver_turn_sharply_left">Lumiko nang husto pakaliwa</string>
+  <string name="msdkui_maneuver_turn_sharply_right">Lumiko nang husto pakanan</string>
+  <string name="msdkui_maneuver_turn_slightly_left">Bahagyang lumiko sa kaliwa</string>
+  <string name="msdkui_maneuver_turn_slightly_right">Bahagyang lumiko sa kanan</string>
+  <string name="msdkui_maneuver_uturn">Mag-U-turn</string>
+  <string name="msdkui_maneuverpanel_nodata">Sundan ang ruta sa mapa</string>
+  <string name="msdkui_maneuverpanel_updating">Pag-update</string>
+  <string name="msdkui_minutes">%1$d min</string>
+  <string name="msdkui_no_maneuver_found">Hindi nakahanap ng mapagmamaneobrahan</string>
+  <string name="msdkui_no_route_found">Hindi nakahanap ng mga ruta?</string>
+  <string name="msdkui_no_traffic_delays">Walang pagkaantala</string>
+  <string name="msdkui_none">Wala</string>
+  <string name="msdkui_not_implemented">Hindi magagamit</string>
+  <string name="msdkui_number_of_trailers">Mga trailer</string>
+  <string name="msdkui_ok">OK</string>
+  <string name="msdkui_optimal">Pinakaangkop</string>
+  <string name="msdkui_options">Mga opsyon</string>
+  <string name="msdkui_organic">Organiko</string>
+  <string name="msdkui_other">Iba pa</string>
+  <string name="msdkui_pedestrian">Maglakad</string>
+  <string name="msdkui_poison">Lason</string>
+  <string name="msdkui_poisonous">Lason kapag nalanghap</string>
+  <string name="msdkui_radioactive">Radioaktibo</string>
+  <string name="msdkui_remove">Alisin</string>
+  <string name="msdkui_remove_waypoint">Magtanggal ng waypoint</string>
+  <string name="msdkui_remove_waypoint_button">Magtanggal ng buton ng waypoint sa index %1$d</string>
+  <string name="msdkui_route_results_title">Mga ruta</string>
+  <string name="msdkui_route_type_title">Uri ng ruta</string>
+  <string name="msdkui_routing_options_title">Mga opsyon ng ruta</string>
+  <string name="msdkui_rp_from">Mula: %1$s</string>
+  <string name="msdkui_rp_to">Tungo: %1$s</string>
+  <string name="msdkui_rp_via">Via</string>
+  <string name="msdkui_scooter">Scooter</string>
+  <string name="msdkui_seconds">%1$d s</string>
+  <string name="msdkui_selected">Pinili</string>
+  <string name="msdkui_set">I-set</string>
+  <string name="msdkui_shortest">Pinakamaikli</string>
+  <string name="msdkui_tab_icon">Icon ng tab</string>
+  <string name="msdkui_traffic">Umiwas sa trapiko</string>
+  <string name="msdkui_traffic_blocked">Nakasara</string>
+  <string name="msdkui_transport_mode">Uri ng transportasyon: %1$s</string>
+  <string name="msdkui_truck">Trak</string>
+  <string name="msdkui_truck_options_title">Mga opsyon ng trak</string>
+  <string name="msdkui_truck_type">Uri ng lorry</string>
+  <string name="msdkui_truck_type_tractor">Articulated lorry</string>
+  <string name="msdkui_truck_type_truck">Lorry/Trak</string>
+  <string name="msdkui_tunnel_cat_b">Kategorya B</string>
+  <string name="msdkui_tunnel_cat_c">Kategorya C</string>
+  <string name="msdkui_tunnel_cat_d">Kategorya D</string>
+  <string name="msdkui_tunnel_cat_e">Kategorya E</string>
+  <string name="msdkui_tunnels_allowed_title">Pinayagan ang mga lagusan</string>
+  <string name="msdkui_undefined">Hindi tinukoy</string>
+  <string name="msdkui_unit_kilometer">km</string>
+  <string name="msdkui_unit_meter">m</string>
+  <string name="msdkui_unknown">Hindi matukoy</string>
+  <string name="msdkui_userposition_search">Getting your location</string>
+  <string name="msdkui_violate_truck_options">Balewalain ang mga opsyon na trak</string>
+  <string name="msdkui_waypoint_current_location">Kasalukuyang lokasyon</string>
+  <string name="msdkui_waypoint_select_location">Pumili ng direksyon</string>
+  <string name="msdkui_weight_per_axle">Bigat bawat axle</string>
+  <string name="msdkui_width">Lapad</string>
+</resources>

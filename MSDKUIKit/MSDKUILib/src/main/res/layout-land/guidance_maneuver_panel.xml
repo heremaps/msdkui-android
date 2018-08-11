@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="?attr/guidanceManeuverPanel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="260dp"
+    android:paddingTop="@dimen/contentMarginHuge">
+
+    <ImageView
+        android:id="@+id/maneuverIconView"
+        style="?attr/guidanceManeuverPanelLeftIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_car_position_marker" />
+
+    <TextView
+        android:id="@+id/distanceView"
+        style="?attr/guidanceManeuverPanelHeadingTextLand"
+        app:layout_constraintBottom_toBottomOf="@id/maneuverIconView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toEndOf="@id/maneuverIconView"
+        app:layout_constraintTop_toTopOf="@id/maneuverIconView" />
+
+    <View
+        android:id="@+id/margin"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/contentMarginLarge"
+        app:layout_constraintTop_toBottomOf="@+id/maneuverIconView" />
+
+    <TextView
+        android:id="@+id/infoView1"
+        style="?attr/guidanceManeuverPanelSecondaryTextLand"
+        android:text="@string/msdkui_maneuverpanel_nodata"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/margin" />
+
+    <TextView
+        android:id="@+id/infoView2"
+        style="?attr/guidanceManeuverPanelSecondaryTextLand"
+        app:layout_constraintBottom_toTopOf="@+id/extraIconView"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoView1" />
+
+    <ImageView
+        android:id="@+id/extraIconView"
+        style="?attr/guidanceManeuverPanelRightIcon"
+        android:layout_marginLeft="@dimen/contentMarginHuge"
+        android:layout_marginStart="@dimen/contentMarginHuge"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoView2" />
+
+</android.support.constraint.ConstraintLayout>
+
+

@@ -21,6 +21,7 @@ import com.here.RobolectricTest;
 import com.here.android.mpa.guidance.NavigationManager;
 import com.here.android.mpa.routing.Maneuver;
 import com.here.android.mpa.routing.Route;
+import com.here.android.mpa.routing.RouteTta;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -42,7 +43,7 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 /**
  * Tests for {@link BaseGuidancePresenter}.
  */
-@PrepareForTest({ NavigationManager.class })
+@PrepareForTest({ NavigationManager.class, RouteTta.class })
 public class BaseGuidancePresenterTest extends RobolectricTest {
 
     private NavigationManager mNavigationManager;
@@ -118,5 +119,34 @@ public class BaseGuidancePresenterTest extends RobolectricTest {
         assertNotNull(mBaseGuidancePresenter.getRoute());
         mBaseGuidancePresenter.setRoute(null);
         assertNull(mBaseGuidancePresenter.getRoute());
+    }
+
+    @Test
+    public void testGetEta() {
+        mBaseGuidancePresenter.getEta();
+        verify(mNavigationManager).getEta(false, Route.TrafficPenaltyMode.OPTIMAL);
+
+        when(mNavigationManager.getEta(false, Route.TrafficPenaltyMode.OPTIMAL))
+                .thenReturn(NavigationManager.INVALID_ETA_DATE);
+        assertNotNull(mBaseGuidancePresenter.getEta());
+    }
+
+    @Test
+    public void testGetDestinationDistance() {
+        mBaseGuidancePresenter.getDestinationDistance();
+        verify(mNavigationManager).getDestinationDistance();
+    }
+
+    @Test
+    public void testGetTimeToArrival() {
+        RouteTta mockRouteTta = mock(RouteTta.class);
+
+        when(mNavigationManager.getTta(Route.TrafficPenaltyMode.OPTIMAL, false)).thenReturn(null);
+        assertThat(mBaseGuidancePresenter.getTimeToArrival(), is(-1));
+
+
+        when(mNavigationManager.getTta(Route.TrafficPenaltyMode.OPTIMAL, false)).thenReturn(mockRouteTta);
+        mBaseGuidancePresenter.getTimeToArrival();
+        verify(mockRouteTta).getDuration();
     }
 }

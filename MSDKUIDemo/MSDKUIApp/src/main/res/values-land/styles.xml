@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
   ~ Copyright (C) 2017-2018 HERE Europe B.V.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,10 +22,35 @@
     </style>
 
     <style name="GuidanceRoutePreviewGo" parent="BaseButton">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">@dimen/go_btn_height</item>
         <item name="android:layout_marginTop">@dimen/contentMarginMedium</item>
         <item name="android:layout_marginBottom">@dimen/contentMarginMedium</item>
+    </style>
+
+    <style name="GuidanceETAContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginHuge</item>
+    </style>
+
+    <style name="GuidanceSpeedLimit">
+        <item name="android:layout_marginBottom">@dimen/contentMarginMedium</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="GuidanceCurrentStreetAppPlacement">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginLeft">@dimen/current_street_margin_side_landscape</item>
+        <item name="android:layout_marginStart">@dimen/current_street_margin_side_landscape</item>
+        <item name="android:layout_marginRight">@dimen/current_street_margin_side_landscape</item>
+        <item name="android:layout_marginEnd">@dimen/current_street_margin_side_landscape</item>
     </style>
 
 </resources>

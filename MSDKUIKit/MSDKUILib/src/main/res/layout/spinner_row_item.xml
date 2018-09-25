@@ -17,15 +17,4 @@
 
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/spinner_text"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginEnd="2dp"
-    android:layout_marginRight="2dp"
-    android:ellipsize="marquee"
-    android:paddingBottom="@dimen/contentMarginLarge"
-    android:paddingEnd="@dimen/contentMarginExtraSmall"
-    android:paddingLeft="@dimen/contentMarginExtraSmall"
-    android:paddingRight="@dimen/contentMarginExtraSmall"
-    android:paddingStart="@dimen/contentMarginExtraSmall"
-    android:paddingTop="@dimen/contentMarginLarge"
-    android:textColor="?attr/colorForeground" />
+    style="?attr/spinnerRowItem" />

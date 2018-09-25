@@ -30,7 +30,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * A view that shows an options panel to select the available elements of {@see RouteOptions.Type}.
+ * A view that shows an options panel to select the available elements of
+ * {@link com.here.android.mpa.routing.RouteOptions.Type}.
  *
  * @see RouteOptions
  */

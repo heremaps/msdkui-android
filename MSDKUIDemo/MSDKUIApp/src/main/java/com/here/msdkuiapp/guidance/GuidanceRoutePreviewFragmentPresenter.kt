@@ -17,15 +17,14 @@
 package com.here.msdkuiapp.guidance
 
 import android.content.Intent
-import android.os.Bundle
 import com.here.android.mpa.routing.*
 import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkuiapp.GuidanceContracts
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.base.BasePresenter
+import com.here.msdkuiapp.msdkuiApplication
 import com.here.msdkuiapp.common.AppActionBar
 import com.here.msdkuiapp.common.Constant.GUIDANCE_IS_SIMULATION_KEY
-import com.here.msdkuiapp.common.Constant.ROUTE_KEY
 import com.here.msdkuiapp.common.Provider
 import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
 
@@ -110,7 +109,7 @@ class GuidanceRoutePreviewFragmentPresenter() : BasePresenter<GuidanceContracts.
      */
     fun populateUI() {
         state.route?.run {
-            contract?.populateUI(state.destination!!, this)
+            contract?.populateUI(state.destination!!, this, state.listVisible)
         } ?: run {
             if (state.errorMessage.isNotBlank()) {
                 contract?.routingFailed(state.errorMessage)
@@ -123,19 +122,20 @@ class GuidanceRoutePreviewFragmentPresenter() : BasePresenter<GuidanceContracts.
      * @param isSimulation true value starts simulation, otherwise it starts normal guidance.
      */
     fun startGuidance(isSimulation: Boolean) {
-        contract?.onProgress(true)
         state.route?.run {
-            provider.provideSerialize(this, Route.SerializationCallback { serializationResult ->
-                contract?.onProgress(false)
-                if (serializationResult.error == Route.SerializerError.NONE) {
-                    val intent = Intent(context, GuidanceActivity::class.java)
-                    val bundle = Bundle()
-                    bundle.putByteArray(ROUTE_KEY, serializationResult.data)
-                    bundle.putBoolean(GUIDANCE_IS_SIMULATION_KEY, isSimulation)
-                    context?.startActivity(intent.putExtras(bundle))
-                }
-            })
+            val intent = Intent(context, GuidanceActivity::class.java)
+            intent.putExtra(GUIDANCE_IS_SIMULATION_KEY, isSimulation)
+            context?.msdkuiApplication?.route = this
+            context?.startActivity(intent)
         }
+    }
+
+    /**
+     * Shows or hides route maneuvers list.
+     */
+    fun toggleSteps() {
+        state.listVisible = !state.listVisible  // toggle
+        contract?.toggleSteps(state.listVisible)
     }
 
     /**
@@ -146,5 +146,6 @@ class GuidanceRoutePreviewFragmentPresenter() : BasePresenter<GuidanceContracts.
         var destination: WaypointEntry? = null
         var route: Route? = null
         var errorMessage = ""
+        var listVisible = false
     }
 }

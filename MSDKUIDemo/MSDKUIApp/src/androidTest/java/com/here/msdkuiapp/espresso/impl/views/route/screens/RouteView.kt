@@ -42,7 +42,7 @@ object RouteView {
      * @return The [ViewInteraction] route description list on route
      */
     val onRouteDescriptionList: ViewInteraction
-        get() = onView(allOf(withId(R.id.route_description_list)))
+        get() = onView(withId(R.id.route_description_list))
 
     /**
      * @return The [ViewInteraction] maneuver description list on route
@@ -65,7 +65,7 @@ object RouteView {
     /**
      * @return The [ViewInteraction] delay information on route overview
      */
-    val onRouteDescDealyInformation: ViewInteraction
+    val onRouteDescDelayInformation: ViewInteraction
         get() = onRouteDescDealyInformation(ROUTE_RESULT_1)
 
     /**
@@ -101,70 +101,50 @@ object RouteView {
     /**
      * @return The [ViewInteraction] distance on maneuver description list
      */
-    fun onManeuverDistance(item: Int): ViewInteraction {
-        return onView(withIndex(withId(R.id.maneuver_distance_view), item))
-    }
+    fun onManeuverDistance(item: Int): ViewInteraction = onView(withIndex(withId(R.id.maneuver_distance_view), item))
 
     /**
      * @return The [ViewInteraction] icon type on maneuver description list
      */
-    fun onManeuverIconType(item: Int): ViewInteraction {
-        return onView(withIndex(withId(R.id.maneuver_icon_view), item))
-    }
+    fun onManeuverIconType(item: Int): ViewInteraction = onView(withIndex(withId(R.id.maneuver_icon_view), item))
 
     /**
      * @return The [ViewInteraction] instruction on maneuver description list
      */
-    fun onManeuverInstruction(item: Int): ViewInteraction {
-        return onView(withIndex(withId(R.id.maneuver_instruction_view), item))
-    }
+    fun onManeuverInstruction(item: Int): ViewInteraction = onView(withIndex(withId(R.id.maneuver_instruction_view), item))
 
     /**
      * @return The [ViewInteraction] location address on maneuver description list
      */
-    fun onManeuverAddress(item: Int): ViewInteraction {
-        return onView(withIndex(withId(R.id.maneuver_address_view), item))
-    }
+    fun onManeuverAddress(item: Int): ViewInteraction = onView(withIndex(withId(R.id.maneuver_address_view), item))
 
     /**
      * @return The [ViewInteraction] duration time on route description list
      */
-    fun onRouteDescDuration(item: Int): ViewInteraction {
-        return onView(withIndex(withId(R.id.desc_time), item))
-    }
+    fun onRouteDescDuration(item: Int): ViewInteraction = onView(withIndex(withId(R.id.desc_time), item))
 
     /**
      * @return The [ViewInteraction] icon type on route description list
      */
-    fun onRouteDescIconType(item: Int): ViewInteraction {
-        return onView(withIndex(withId(R.id.desc_type_icon), item))
-    }
+    fun onRouteDescIconType(item: Int): ViewInteraction = onView(withIndex(withId(R.id.desc_type_icon), item))
 
     /**
      * @return The [ViewInteraction] delay information on route description list
      */
-    fun onRouteDescDealyInformation(item: Int): ViewInteraction {
-        return onView(withIndex(withId(R.id.desc_traffic_warning), item))
-    }
+    fun onRouteDescDealyInformation(item: Int): ViewInteraction = onView(withIndex(withId(R.id.desc_traffic_warning), item))
 
     /**
      * @return The [ViewInteraction] address & distance details on route description list
      */
-    fun onRouteDescDetails(item: Int): ViewInteraction {
-        return onView(withIndex(withId(R.id.desc_details), item))
-    }
+    fun onRouteDescDetails(item: Int): ViewInteraction = onView(withIndex(withId(R.id.desc_details), item))
 
     /**
      * @return The [ViewInteraction] arrival on route description list
      */
-    fun onRouteDescArrival(item: Int): ViewInteraction {
-        return onView(withIndex(withId(R.id.desc_arrival), item))
-    }
+    fun onRouteDescArrival(item: Int): ViewInteraction = onView(withIndex(withId(R.id.desc_arrival), item))
 
     /**
      * @return The [ViewInteraction] line progress bar information on route description list
      */
-    fun onRouteDescLineBar(item: Int): ViewInteraction {
-        return onView(withIndex(withId(R.id.desc_bar), item))
-    }
+    fun onRouteDescLineBar(item: Int): ViewInteraction = onView(withIndex(withId(R.id.desc_bar), item))
 }

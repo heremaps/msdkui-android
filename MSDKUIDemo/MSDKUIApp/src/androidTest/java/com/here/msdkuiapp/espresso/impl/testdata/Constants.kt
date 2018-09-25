@@ -37,6 +37,16 @@ object Constants {
     const val ROUTE_RESULT_1 = 0
 
     /**
+     * Transport type Lorry
+     */
+    const val TYPE_LORRY = "Transport type: Lorry"
+
+    /**
+     * Options settings
+     */
+    const val CAR_AVOID_TRAFFIC = 1
+
+    /**
      * Pattern for From: & To: waypoint on RoutePlanner
      */
     const val FROM_TO_PATTERN = "%1\$s"
@@ -59,6 +69,7 @@ object Constants {
     val MAP_POINT_4 = MapData(MAP_COORDINATE_C, MAP_COORDINATE_C)
     val MAP_POINT_5 = MapData(MAP_COORDINATE_A, MAP_COORDINATE_D)
     val MAP_POINT_6 = MapData(MAP_COORDINATE_B, MAP_COORDINATE_B)
+    val MAP_POINT_7 = MapData(MAP_COORDINATE_D, MAP_COORDINATE_D)
 
     /**
      * Activity screen value types

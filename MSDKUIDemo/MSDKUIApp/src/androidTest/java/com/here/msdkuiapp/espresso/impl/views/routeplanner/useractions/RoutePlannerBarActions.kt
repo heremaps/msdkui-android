@@ -19,27 +19,34 @@ package com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
-import com.here.msdkuiapp.espresso.impl.core.CoreActions.clickWithNoConstraint
+import com.here.msdkuiapp.espresso.impl.core.CoreActions
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.RemoveWaypointBtn
 import com.here.msdkuiapp.espresso.impl.views.route.useractions.RouteActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerBarMatchers
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerMatchers
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerOptionsMatchers
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerAddWaypointButton
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBackImageButton
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerAddWaypointButtonView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarLocationTitle
-import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRightImageIcon
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRightImageIconCheck
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRightImageIconExpand
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRightImageIconView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRoutePlannerTitle
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRouteResultTitle
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarWaypointLabel
-import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerRemoveWaypointButton
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerRemoveWaypointButtonView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerSwapImageButton
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerSwapImageButtonView
 
 /**
  * Route planner specific actionbar related actions
  */
-object RoutePlannerBarActions {
+object RoutePlannerBarActions: CoreActions() {
 
     /**
      * Tap on right tick image button to confirm a waypoint selection
@@ -47,15 +54,15 @@ object RoutePlannerBarActions {
      */
     fun tapOnTickButton(): String {
         val location = CoreMatchers.getTextView(onPlannerBarWaypointLabel)
-        onPlannerBarRightImageIcon.perform(click())
+        onPlannerBarRightImageIconView.check(matches(isDisplayed())).perform(click())
         return location
     }
 
     /**
      * Tap on right arrow image button to expand/collapse route planner view
      */
-    fun tapOnRighArrowButton(): RoutePlannerBarActions {
-        onPlannerBarRightImageIcon.perform(click())
+    fun tapOnRightArrowButton(): RoutePlannerBarActions {
+        onPlannerBarRightImageIconView.check(matches(isDisplayed())).perform(click())
         return this
     }
 
@@ -63,7 +70,7 @@ object RoutePlannerBarActions {
      * Tap on swap/reverse waypoints order image list view
      */
     fun tapOnSwapWaypointButton(): RoutePlannerBarActions {
-        onPlannerSwapImageButton.check(matches(isDisplayed())).perform(clickWithNoConstraint())
+        onPlannerSwapImageButtonView.check(matches(isDisplayed())).perform(clickWithNoConstraint())
         return this
     }
 
@@ -71,22 +78,30 @@ object RoutePlannerBarActions {
      * Tap on waypoint plus/add image button
      */
     fun tapOnAddWaypointButton(): RoutePlannerBarMatchers {
-        onPlannerAddWaypointButton.check(matches(isDisplayed())).perform(clickWithNoConstraint())
+        onPlannerAddWaypointButtonView.check(matches(isDisplayed())).perform(clickWithNoConstraint())
         return RoutePlannerBarMatchers
     }
 
     /**
      * Tap on waypoint remove image button
      */
-    fun tapOnRemoveWaypointButton(removeWaypointItem: RoutingTestData.RemoveWaypointBtn): RoutePlannerMatchers {
-        onPlannerRemoveWaypointButton(removeWaypointItem).check(matches(isDisplayed())).perform(click())
+    fun tapOnRemoveWaypointButton(removeWaypointItem: RemoveWaypointBtn): RoutePlannerMatchers {
+        onPlannerRemoveWaypointButtonView(removeWaypointItem).check(matches(isDisplayed())).perform(click())
         return RoutePlannerMatchers
+    }
+
+    /**
+     * Tap on back image button
+     */
+    fun tapOnBackRoutePlannerButton(): RoutePlannerBarActions {
+        onPlannerBackImageButton.check(matches(isDisplayed())).perform(click())
+        return this
     }
 
     /**
      * Wait for route planner location address visible on actionbar
      */
-    fun waitForLocationDisplayed(): RoutePlannerBarActions {
+    fun waitForLocationNotDisplayed(): RoutePlannerBarActions {
         onRootView.perform(waitForCondition(onPlannerBarLocationTitle, isVisible = false))
         return this
     }
@@ -104,6 +119,47 @@ object RoutePlannerBarActions {
      */
     fun waitForRoutePlannerExpanded(): RoutePlannerBarActions {
         onRootView.perform(waitForCondition(onPlannerBarRoutePlannerTitle))
+        return this
+    }
+
+    /**
+     * Wait for Options panel displayed on route planner
+     */
+    fun waitForOptionsDisplayed(): RoutePlannerOptionsMatchers {
+        onRootView.perform(waitForCondition(RoutePlannerBarView.onPlannerBarOptionsTitle))
+        return RoutePlannerOptionsMatchers
+    }
+
+
+    /**
+     * Wait and check 'Done / Check' right image button on actionbar
+     */
+    fun waitForRightImageIconCheck(): RoutePlannerBarActions {
+        onRootView.perform(waitForCondition(onPlannerBarRightImageIconCheck))
+        return this
+    }
+
+    /**
+     * Wait and check 'Expand' right image button on actionbar
+     */
+    fun waitForRightImageIconExpand(): RoutePlannerBarActions {
+        onRootView.perform(waitForCondition(onPlannerBarRightImageIconExpand))
+        return this
+    }
+
+    /**
+     * Wait and check 'Swap' image button on actionbar
+     */
+    fun waitForSwapWaypointsImageButton(): RoutePlannerBarActions {
+        onRootView.perform(waitForCondition(onPlannerSwapImageButton, isEnabled = true))
+        return this
+    }
+
+    /**
+     * Wait and check 'Add' image button on actionbar
+     */
+    fun waitForAddWaypointImageButton(): RoutePlannerBarActions {
+        onRootView.perform(waitForCondition(onPlannerAddWaypointButton, isEnabled = true))
         return this
     }
 }

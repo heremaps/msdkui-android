@@ -289,7 +289,7 @@ public class RouteDescriptionItem extends RelativeLayout {
     }
 
     /**
-     * Gets the scaling factor of {@SectionBar}.
+     * Gets the scaling factor of {@link SectionBar}.
      * @return the scaling factor. Default is 1.
      */
     public float getSectionBarScaling() {
@@ -297,7 +297,7 @@ public class RouteDescriptionItem extends RelativeLayout {
     }
 
     /**
-     * Sets the scaling factor for {@SectionBar}. Scaling sets the width of section bar relative to the
+     * Sets the scaling factor for {@link SectionBar}. Scaling sets the width of section bar relative to the
      * total width of {@code RouteDescriptionItem}.
      * @param sectionBarScaling the scaling factor.
      */
@@ -310,7 +310,7 @@ public class RouteDescriptionItem extends RelativeLayout {
     }
 
     /**
-     * Indicates whether the {@link RouteOptions.TransportMode} is bike or pedestrian.
+     * Indicates whether the {@link com.here.android.mpa.routing.RouteOptions.TransportMode} is bike or pedestrian.
      * @return true if bike or pedestrian, false otherwise.
      */
     public boolean isBikeOrPedestrian() {

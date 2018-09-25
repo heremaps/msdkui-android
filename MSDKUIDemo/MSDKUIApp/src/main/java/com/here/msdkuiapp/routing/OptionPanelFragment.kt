@@ -28,11 +28,14 @@ import com.here.android.mpa.routing.RouteOptions
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.appActionBar
 import com.here.msdkuiapp.coordinator
+import kotlinx.android.extensions.CacheImplementation
+import kotlinx.android.extensions.ContainerOptions
 import kotlinx.android.synthetic.main.option_panel.*
 
 /**
  * Fragment to show different [RouteOptions] on UI.
  */
+@ContainerOptions(CacheImplementation.NO_CACHE)
 class OptionPanelFragment : Fragment(), RoutingContracts.OptionPanel {
 
     private val presenter = OptionPanelPresenter()

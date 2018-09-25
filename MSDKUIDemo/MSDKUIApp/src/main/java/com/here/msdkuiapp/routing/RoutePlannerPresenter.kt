@@ -32,8 +32,8 @@ import kotlin.collections.HashMap
 class RoutePlannerPresenter : BasePresenter<RoutingContracts.RoutePlanner>() {
 
     internal var appActionBar: AppActionBar? = null
-    private val state = State()
-    private val provider = Provider()
+    internal val state = State()
+    internal var provider = Provider()
     var coordinatorListener: RoutePlannerFragment.Listener? = null
 
     /**
@@ -142,9 +142,9 @@ class RoutePlannerPresenter : BasePresenter<RoutingContracts.RoutePlanner>() {
             }
             routePlan.routeOptions = this
         }
-        val penalty = DynamicPenalty();  // passing direct object get modified by sdk.
-        penalty.trafficPenaltyMode = state.dynamicPenalty.trafficPenaltyMode;
-        router.dynamicPenalty = penalty;
+        val penalty = provider.providesDynamicPenalty()  // passing direct object get modified by sdk.
+        penalty.trafficPenaltyMode = state.dynamicPenalty.trafficPenaltyMode
+        router.dynamicPenalty = penalty
         router.calculateRoute(routePlan, object : CoreRouter.Listener {
             override fun onCalculateRouteFinished(inputList: List<RouteResult>, routingError: RoutingError) {
                 contract?.onProgress(false)
@@ -209,12 +209,15 @@ class RoutePlannerPresenter : BasePresenter<RoutingContracts.RoutePlanner>() {
      *
      */
     fun makeTravelTimeData(time: Date?, timeType: RouteOptions.TimeType?) {
-        time?.run {
+
+        if (state.travelDate == null) {
             state.travelDate = time
         }
-        timeType?.run {
+
+        if (state.travelType == null) {
             state.travelType = timeType
         }
+
         contract?.onTravelTimeDataReady(state.travelDate, state.travelType)
     }
 
@@ -279,20 +282,24 @@ class RoutePlannerPresenter : BasePresenter<RoutingContracts.RoutePlanner>() {
      */
     fun reset(entries: List<WaypointEntry>) {
         state.entryList.clear()
-        entries.forEach{entry -> state.entryList.add(entry)}
+        entries.forEach { entry -> state.entryList.add(entry) }
         notifyListTitleChanges(listVisible = true, isTitleChange = true)
     }
 
-    private class State {
+    internal class State {
+        var provider = Provider()
+
         val entryList = ArrayList<WaypointEntry>()
         var travelDate: Date? = null
         var travelType: RouteOptions.TimeType? = null
-        var routeOptions = RouteOptions()
-        var dynamicPenalty = DynamicPenalty()
-        var isExpanded = true
-
-        init {
-            dynamicPenalty.trafficPenaltyMode = Route.TrafficPenaltyMode.OPTIMAL
+        val routeOptions: RouteOptions by lazy {
+            provider.providesRouteOptions()
         }
+        val dynamicPenalty: DynamicPenalty by lazy {
+            provider.providesDynamicPenalty().apply {
+                trafficPenaltyMode = Route.TrafficPenaltyMode.OPTIMAL
+            }
+        }
+        var isExpanded = true
     }
 }

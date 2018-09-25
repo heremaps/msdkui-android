@@ -17,8 +17,11 @@
 package com.here.msdkui.guidance;
 
 import android.os.Parcel;
+import android.support.v4.app.FragmentActivity;
+import android.view.AbsSavedState;
 
 import com.here.RobolectricTest;
+import com.here.msdkui.R;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,13 +34,14 @@ import static junit.framework.Assert.assertNotNull;
  */
 public class GuidanceCurrentStreetTest extends RobolectricTest {
 
-    final private static String STREET_NAME = "StreetName";
-    final private static int COLOR = 16777215;
+    private static final String STREET_NAME = "StreetName";
+    private static final int COLOR = 16777215;
 
     private GuidanceCurrentStreet mGuidanceCurrentStreet = null;
 
     @Before
     public void setUp() {
+        super.setUp();
         mGuidanceCurrentStreet = new GuidanceCurrentStreet(getApplicationContext());
     }
 
@@ -45,26 +49,38 @@ public class GuidanceCurrentStreetTest extends RobolectricTest {
     public void testSetCurrentStreetData() {
         final GuidanceCurrentStreetData currentStreetData = new GuidanceCurrentStreetData(STREET_NAME, COLOR);
         mGuidanceCurrentStreet.setCurrentStreetData(currentStreetData);
-        assertEquals(currentStreetData.getCurrentStreetName(), mGuidanceCurrentStreet.getGuidanceCurrentStreetData().getCurrentStreetName());
-        assertEquals(currentStreetData.getBackgroundColor(), mGuidanceCurrentStreet.getGuidanceCurrentStreetData().getBackgroundColor());
+        assertEquals(currentStreetData.getCurrentStreetName(),
+                mGuidanceCurrentStreet.getGuidanceCurrentStreetData().getCurrentStreetName());
+        assertEquals(currentStreetData.getBackgroundColor(),
+                mGuidanceCurrentStreet.getGuidanceCurrentStreetData().getBackgroundColor());
     }
 
     @Test
-    public void SavedState_testWriteAndCreateFromParcel() {
+    public void testDataIsNotLostWhileRecreatingActivity() {
+        mGuidanceCurrentStreet.setCurrentStreetData(createData(STREET_NAME, COLOR));
+        assertNotNull(mGuidanceCurrentStreet.getGuidanceCurrentStreetData());
+        final FragmentActivity activity = getFragmentActivity();
+        mGuidanceCurrentStreet.setId(R.id.vertical_guideline);
+        activity.setContentView(mGuidanceCurrentStreet);
+        activity.recreate();
+        assertNotNull(mGuidanceCurrentStreet.getGuidanceCurrentStreetData());
+    }
+
+    @Test
+    public void testPanelDataIsParcelable() {
+        final GuidanceCurrentStreetData data = createData(STREET_NAME, COLOR);
+        GuidanceCurrentStreet.SavedState savedState = new GuidanceCurrentStreet.SavedState(AbsSavedState.EMPTY_STATE);
+        savedState.setStateToSave(data);
         Parcel parcel = Parcel.obtain();
-        final GuidanceCurrentStreet.SavedState savedState = new GuidanceCurrentStreet.SavedState(parcel);
-
-        assertNotNull(savedState);
-
-        GuidanceCurrentStreetData streetData = new GuidanceCurrentStreetData(STREET_NAME, COLOR);
-        savedState.setStateToSave(streetData);
-
-        assertEquals(streetData, savedState.getSavedState());
-
-        savedState.writeToParcel(parcel, 0);
+        savedState.writeToParcel(parcel, savedState.describeContents());
         parcel.setDataPosition(0);
-        GuidanceCurrentStreet.SavedState recreatedState = new GuidanceCurrentStreet.SavedState(parcel);
-        assertEquals(STREET_NAME, recreatedState.getSavedState().getCurrentStreetName());
-        assertEquals(COLOR, recreatedState.getSavedState().getBackgroundColor());
+
+        GuidanceCurrentStreet.SavedState createdFromParcel = GuidanceCurrentStreet.SavedState.CREATOR.createFromParcel(
+                parcel);
+        assertNotNull(createdFromParcel.getSavedState());
+    }
+
+    private GuidanceCurrentStreetData createData(String currentStreet, int bgColor) {
+        return new GuidanceCurrentStreetData(currentStreet, bgColor);
     }
 }

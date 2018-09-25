@@ -20,18 +20,23 @@ import android.content.Context
 import android.content.Intent
 import android.location.LocationManager
 import android.os.Build
-import android.os.Bundle
-import com.here.msdkuiapp.common.Constant.ROUTE_KEY
+import android.support.design.widget.BottomSheetBehavior
+import android.support.v7.widget.RecyclerView
+import android.view.View
+import com.here.msdkuiapp.R
+import com.here.msdkuiapp.about.AboutActivity
 import com.here.msdkuiapp.landing.LandingActivity
 import com.here.testutils.BaseTest
+import com.here.testutils.argumentCaptor
 import junit.framework.Assert
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.Mockito.`when`
+import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
+import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import org.robolectric.Robolectric
 import org.robolectric.Shadows.shadowOf
@@ -51,21 +56,20 @@ class GuidanceActivityTest : BaseTest() {
     @Before
     override fun setUp() {
         MockitoAnnotations.initMocks(this)
-        val bundle = Bundle()
-        bundle.putByteArray(ROUTE_KEY, byteArrayOf())
-        activityController = Robolectric.buildActivity(GuidanceActivity::class.java, Intent().putExtras(bundle))
+        activityController = Robolectric.buildActivity(GuidanceActivity::class.java, Intent().
+                putExtra("GUIDANCE_IS_SIMULATION_KEY", false))
+    }
+
+    @Test
+    fun testGuidanceCoordinatorNotInitialized() {
+        makeIsLocationOkReturnTrue()
+        assertNotNull(activityController.create().get().guidanceCoordinator)
     }
 
     @Test
     fun testUIWhenLocationIsOk() {
-        with(activityController) {
-            get().guidanceCoordinator = mockCoordinator
-            assertNotNull(get().guidanceCoordinator)
-        }
-        val locationManager = activityController.get().getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        val shadowLocationManager = shadowOf(locationManager)
-        shadowLocationManager.setProviderEnabled(LocationManager.GPS_PROVIDER, true)
-        ReflectionHelpers.setStaticField(Build.VERSION::class.java, "SDK_INT", 19)
+        mockGuidanceCoordinator()
+        makeIsLocationOkReturnTrue()
         Assert.assertTrue(activityController.get().isLocationOk())
         activityController.create().get()
         verify(mockCoordinator).start()
@@ -73,26 +77,17 @@ class GuidanceActivityTest : BaseTest() {
 
     @Test
     fun testUIWhenLocationIsNotOk() {
-        with(activityController) {
-            get().guidanceCoordinator = mockCoordinator
-            assertNotNull(get().guidanceCoordinator)
-            create()
-        }
-
+        mockGuidanceCoordinator()
+        activityController.create()
         val startedIntent = shadowOf(activityController.get()).nextStartedActivity
         val shadowIntent = shadowOf(startedIntent)
         assertEquals(LandingActivity::class.java, shadowIntent.intentClass)
     }
 
-
     @Test
     fun testDestroy() {
-        with(activityController) {
-            get().guidanceCoordinator = mockCoordinator
-            assertNotNull(get().guidanceCoordinator)
-            create()
-        }
-
+        mockGuidanceCoordinator()
+        activityController.create()
         activityController.destroy()
         verify(mockCoordinator).destroy()
     }
@@ -127,5 +122,95 @@ class GuidanceActivityTest : BaseTest() {
         val startedIntent = shadowOf(activity).nextStartedActivity
         val shadowIntent = shadowOf(startedIntent)
         assertEquals(LandingActivity::class.java, shadowIntent.intentClass)
+    }
+
+    @Test
+    fun testDashBoardBottomSheetBehavior() {
+        mockGuidanceCoordinator()
+        makeIsLocationOkReturnTrue()
+        val activity = activityController.create().get()
+        val bottomSheetBehavior = BottomSheetBehavior.from(
+                activity.findViewById<GuidanceDashBoardView>(R.id.guidance_dashboard_view))
+        val grayedScreenFirsPart = activity.findViewById<View>(R.id.grayed_screen_view_first_part)
+        val collapsedView = activity.findViewById<View>(R.id.collapsed_view)
+
+        collapsedView.performClick()
+        assertEquals(bottomSheetBehavior.state, BottomSheetBehavior.STATE_EXPANDED)
+
+        collapsedView.performClick()
+        assertEquals(bottomSheetBehavior.state, BottomSheetBehavior.STATE_COLLAPSED)
+
+        // expand dashboard again, to test is it closeable by clicking on grayed map
+        collapsedView.performClick()
+        grayedScreenFirsPart.performClick()
+        assertEquals(bottomSheetBehavior.state, BottomSheetBehavior.STATE_COLLAPSED)
+    }
+
+    @Test
+    fun testDashBoardBottomSheetCallback() {
+        val mockBottomSheetBehavior = mock(BottomSheetBehavior<View>().javaClass)
+        val view = mock(View::class.java)
+
+        mockGuidanceCoordinator()
+        makeIsLocationOkReturnTrue()
+        val activity = activityController.get()
+        activity.bottomSheetBehavior = mockBottomSheetBehavior
+
+        activityController.create()
+
+        val captor = argumentCaptor<BottomSheetBehavior.BottomSheetCallback>()
+        verify(mockBottomSheetBehavior).setBottomSheetCallback(captor.capture())
+
+        val grayedScreenFirsPart = activity.findViewById<View>(R.id.grayed_screen_view_first_part)
+
+        captor.value.onStateChanged(view, BottomSheetBehavior.STATE_COLLAPSED)
+        assertEquals(grayedScreenFirsPart.visibility, View.GONE)
+
+        captor.value.onStateChanged(view, BottomSheetBehavior.STATE_EXPANDED)
+        assertEquals(grayedScreenFirsPart.visibility, View.VISIBLE)
+
+        captor.value.onStateChanged(view, BottomSheetBehavior.STATE_SETTLING)
+        captor.value.onSlide(view, 0.5f)
+        // nothing to test on these actions
+    }
+
+    @Test
+    fun testClickItemsOnItemsList() {
+        mockGuidanceCoordinator()
+        makeIsLocationOkReturnTrue()
+        val activity = activityController.create().get()
+
+        val collapsedView = activity.findViewById<View>(R.id.collapsed_view)
+        collapsedView.performClick()
+
+        val recyclerView = activity.findViewById<RecyclerView>(R.id.items_list)
+        assertNotNull(recyclerView)
+        recyclerView.measure(0, 0)
+        recyclerView.layout(0, 0, 100, 10000)
+        recyclerView.getChildAt(1).performClick()
+        assertActivityStarted(activity, AboutActivity::class.java)
+    }
+
+    @Test
+    fun testStopNavigationButtonClick() {
+        mockGuidanceCoordinator()
+        makeIsLocationOkReturnTrue()
+        val activity = activityController.create().get()
+        activity.findViewById<View>(R.id.stop_navigation).performClick()
+        assertActivityStarted(activity, LandingActivity::class.java)
+    }
+
+    private fun mockGuidanceCoordinator() {
+        with(activityController) {
+            get().guidanceCoordinator = mockCoordinator
+            assertNotNull(get().guidanceCoordinator)
+        }
+    }
+
+    private fun makeIsLocationOkReturnTrue() {
+        val locationManager = activityController.get().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val shadowLocationManager = shadowOf(locationManager)
+        shadowLocationManager.setProviderEnabled(LocationManager.GPS_PROVIDER, true)
+        ReflectionHelpers.setStaticField(Build.VERSION::class.java, "SDK_INT", 19)
     }
 }

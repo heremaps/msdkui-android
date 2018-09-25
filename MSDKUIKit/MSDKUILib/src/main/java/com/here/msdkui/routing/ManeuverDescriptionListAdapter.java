@@ -26,7 +26,8 @@ import com.here.android.mpa.routing.Maneuver;
 import java.util.List;
 
 /**
- * A {@RecyclerView.Adapter} to bind a view item of the list to a {@link ManeuverDescriptionItem}.
+ * A {@link android.support.v7.widget.RecyclerView.Adapter} to bind a view item of the list to a 
+ * {@link ManeuverDescriptionItem}.
  */
 public class ManeuverDescriptionListAdapter extends RecyclerView.Adapter<ManeuverDescriptionListAdapter.ViewHolder> {
 
@@ -48,6 +49,11 @@ public class ManeuverDescriptionListAdapter extends RecyclerView.Adapter<Maneuve
     /**
      * Creates an empty {@link ManeuverDescriptionItem} to be used as view holder.
      * <p>Override this method to set a custom view holder for a row.</p>
+     *
+     * @param context
+     *         the required context.
+     *
+     * @return an instance of {@link ManeuverDescriptionItem}.
      */
     protected View getRowView(final Context context) {
         return new ManeuverDescriptionItem(context);
@@ -72,7 +78,7 @@ public class ManeuverDescriptionListAdapter extends RecyclerView.Adapter<Maneuve
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         /**
-         * Constructs a new {@ViewHolder}.
+         * Constructs a new {@link android.support.v7.widget.RecyclerView.ViewHolder}.
          */
         public ViewHolder(final View view) {
             super(view);

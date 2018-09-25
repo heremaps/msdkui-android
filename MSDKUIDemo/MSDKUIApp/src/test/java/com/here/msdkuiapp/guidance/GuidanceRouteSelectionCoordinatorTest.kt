@@ -25,6 +25,7 @@ import com.here.android.mpa.guidance.NavigationManager
 import com.here.android.mpa.mapping.Map
 import com.here.android.mpa.routing.Route
 import com.here.msdkui.routing.WaypointEntry
+import com.here.msdkuiapp.R
 import com.here.msdkuiapp.base.BasePermissionActivity
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
@@ -42,7 +43,7 @@ import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
 
 /**
- * Test for [GuidanceCoordinator].
+ * Test for [GuidanceRouteSelectionCoordinator].
  */
 class GuidanceRouteSelectionCoordinatorTest : BaseTest() {
 
@@ -121,9 +122,27 @@ class GuidanceRouteSelectionCoordinatorTest : BaseTest() {
         selectionCoordinator.onPositionAvailable()
         `when`(mockPositioningManager.hasValidPosition()).thenReturn(true)
 
+        verifyOnPositionAvailable()
+    }
+
+    @Test
+    fun testOnBackPressed() {
+        `when`(mockFragmentManager.findFragmentById(R.id.guidance_selection_bottom_container))
+                .thenReturn(mock(Fragment::class.java))
+
+        // required for verifyOnPositionAvailable()
+        `when`(mockPositioningManager.hasValidPosition()).thenReturn(true)
+
+        selectionCoordinator.onBackPressed()
+
+        verify(mockFragmentTransaction).replace(eq(R.id.guidance_selection_top_container), anySafe(), anyString())
+        verify(mockMapFragment).clearMap()
+        verifyOnPositionAvailable()
+    }
+
+    private fun verifyOnPositionAvailable() {
         verify(mockMapFragment).showPositionIndicator(ArgumentMatchers.anyBoolean())
         verify(mockMap).setCenter(anySafe(), anySafe())
         verify(mockMapFragment).onTouch(ArgumentMatchers.anyBoolean(), anySafe())
     }
-
 }

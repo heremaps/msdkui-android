@@ -19,6 +19,7 @@ package com.here.msdkui.example;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -65,9 +66,11 @@ public class GuidanceActivity extends AppCompatActivity {
         guidanceManeuverPanelPresenter = new GuidanceManeuverPanelPresenter(this, NavigationManager.getInstance(), route);
         guidanceManeuverPanelPresenter.addListener(new GuidanceManeuverPanelListener() {
             @Override
-            public void onDataChanged(GuidanceManeuverData guidanceManeuverData) {
-                Log.d(LOG_TAG, "onDataChanged: 1st line: " + guidanceManeuverData.getInfo1());
-                Log.d(LOG_TAG, "onDataChanged: 2nd line: " + guidanceManeuverData.getInfo2());
+            public void onDataChanged(@Nullable GuidanceManeuverData guidanceManeuverData) {
+                if (guidanceManeuverData != null) {
+                    Log.d(LOG_TAG, "onDataChanged: 1st line: " + guidanceManeuverData.getInfo1());
+                    Log.d(LOG_TAG, "onDataChanged: 2nd line: " + guidanceManeuverData.getInfo2());
+                }
                 guidanceManeuverPanel.setManeuverData(guidanceManeuverData);
             }
 

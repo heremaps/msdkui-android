@@ -21,14 +21,14 @@ import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescArrival
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDealyInformation
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDelayInformation
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDetails
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDuration
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescIconType
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescLineBar
 import org.hamcrest.Description
 import org.hamcrest.TypeSafeMatcher
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteOverviewItem
 import com.here.msdkuiapp.espresso.impl.views.route.useractions.RouteBarActions
 import com.here.msdkuiapp.espresso.impl.views.route.utils.RouteData
@@ -36,15 +36,19 @@ import org.hamcrest.Matchers.not
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.withText
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType.TYPE_CAR
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType.TYPE_TRUCK
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.ROUTE_RESULT_1
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.TYPE_CAR
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.TYPE_TRUCK
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverAddress
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverDistance
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverIconType
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverInstruction
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverInstructionText
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDealyInformation
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescriptionList
 import com.here.msdkuiapp.espresso.impl.views.route.useractions.RouteActions
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerMatchers.withDrawableIcons
 
 /**
  * Route overview panel matchers
@@ -74,7 +78,7 @@ object RouteMatchers {
     /**
      * Check Route result list description information
      */
-    fun checkRouteResultsItemsDisplayed(transportType: TransporType, item: Int): RouteMatchers {
+    fun checkRouteResultsItemsDisplayed(transportType: TransportType, item: Int): RouteMatchers {
         // Check Duration
         onRouteDescDuration(item).check(matches(isDisplayed()))
         // Check Icon type
@@ -95,7 +99,7 @@ object RouteMatchers {
     /**
      * Check Route item description information on route overview
      */
-    fun checkRouteOverviewItemsDisplayed(transportType: TransporType): RouteMatchers {
+    fun checkRouteOverviewItemsDisplayed(transportType: TransportType): RouteMatchers {
         // Check Route item on route overview
         onRouteOverviewItem.check(matches(isDisplayed()))
         // Check Duration
@@ -104,7 +108,7 @@ object RouteMatchers {
         onRouteDescIconType.check(matches(isDisplayed()))
         // Check Delay information for Car & Truck transport types, except the Walk & Bicycle
         when (transportType) {
-            TYPE_CAR, TYPE_TRUCK -> onRouteDescDealyInformation.check(matches(isDisplayed()))
+            TYPE_CAR, TYPE_TRUCK -> onRouteDescDelayInformation.check(matches(isDisplayed()))
         }
         // Check Distance | Street road names
         onRouteDescDetails.check(matches(isDisplayed()))
@@ -136,7 +140,7 @@ object RouteMatchers {
             onRouteDescDetails.check(matches(withText(details)))
             onRouteDescArrival.check(matches(withText(arrival)))
             when (transportType) {
-                TYPE_CAR, TYPE_TRUCK -> onRouteDescDealyInformation.check(matches(withText(traffic)))
+                TYPE_CAR, TYPE_TRUCK -> onRouteDescDelayInformation.check(matches(withText(traffic)))
                 else -> print("WALK & BICYCLE transportation types does not contain Traffic information!")
             }
         }
@@ -172,6 +176,25 @@ object RouteMatchers {
         } else {
             // Check distance displayed in maneuver list, except the last 'Arrive' item
             onManeuverDistance(index).check(matches(isDisplayed()))
+        }
+        return this
+    }
+
+    /**
+     * Check transportation image icon for the first description list item
+     */
+    fun checkTransportIconDisplayed(transportType: TransportType): RouteMatchers {
+        onRouteDescriptionList.check(matches(withDrawableIcons(transportType.imageIcon, ROUTE_RESULT_1)))
+        return this
+    }
+
+    /**
+     * Check transportation image icons for all description list items
+     */
+    fun checkAllTransportIconDisplayed(transportType: TransportType): RouteMatchers {
+        val itemsCount: Int = getItemsListCount(onRouteDescriptionList)
+        for (item in 0 until itemsCount) {
+            onRouteDescriptionList.check(matches(withDrawableIcons(transportType.imageIcon, item)))
         }
         return this
     }

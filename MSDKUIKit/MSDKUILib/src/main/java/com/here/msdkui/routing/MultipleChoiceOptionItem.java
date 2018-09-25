@@ -85,7 +85,7 @@ public class MultipleChoiceOptionItem extends OptionItem implements CompoundButt
      *
      * @param labels the list of labels to set.
      * @return an instance of this class to allow chaining using the Builder pattern,
-     *         {@see MultiplChoiceOptionItemBuilder}.
+     * @see OptionItemSpec.MultipleChoiceOptionItemBuilder
      * @throws IllegalArgumentException when labels is null.
      */
     public MultipleChoiceOptionItem setLabels(final List<String> labels) {

@@ -47,6 +47,7 @@
   <string name="msdkui_drag_waypoint_button">Đɽãġ ωǣурǒīņť ьűţťǒň áț ɨņðȩҗ %1$d   لဤগ၁ฉၶηυΩ丰ฒس#</string>
   <string name="msdkui_duration">Ďûɼǣțίȍŋ ঞضأㅅΨ מ #</string>
   <string name="msdkui_enabled">Ơŉ ؏၄Ηਉ#</string>
+  <string name="msdkui_estimated_arrival">Σšťîӎățεð Ąřɼɨναļ ৎ อਞ ੫ヲ#</string>
   <string name="msdkui_exception_attribute_invalid">Բãıŀҿď țǒ ŗėŝóĺνė äťţřĭбűţé āţ ıņδҽ  %1$d พぐপ价جईยΛ주૭ঝ语ฉਭШฃ#</string>
   <string name="msdkui_exception_custom_view_not_available">Ҫùŝțȏм νĩεώ ғŏɽ ӎôďҿ %1$s ɨš ņȍť ǣνāίŀâьɫę ়؎Σחઠ语੪ワથסЗㅂဣΞㅉч૯#</string>
   <string name="msdkui_exception_date_null">Ŧɧęŗë íš ŉő ɗăťϵ ㄴआ였श พ#</string>
@@ -130,6 +131,7 @@
   <string name="msdkui_maneuverpanel_nodata">Բőłĺôω ţĥè ŕȍůţҿ őŉ ťɧȅ ӎǣρ ظဌزוदΛסပゑਝ图#</string>
   <string name="msdkui_maneuverpanel_updating">Úрδαťíńģ ઙصぉၷקएนश#</string>
   <string name="msdkui_minutes">%1$d ӎîń ㅍद다Л ฐゾ假#</string>
+  <string name="msdkui_next_maneuver">Ňëӿț ӎâňȇūνēŕ नડযणঞ#</string>
   <string name="msdkui_no_maneuver_found">Ďĭɗń\'ț ƒɨńδ âņү ӎαŉöëưνŗєŝ 芸ฏयأ ح猫आΒي#</string>
   <string name="msdkui_no_route_found">Đīδņ\'ţ ƒɨŉδ αňӳ ɽŏŭțєŝ ઞডㅎה 岁ণၽה#</string>
   <string name="msdkui_no_traffic_delays">Иő đϵɭąγš Ε 聴ウၹ縄바ਢฎ#</string>
@@ -159,6 +161,8 @@
   <string name="msdkui_selected">Şęĺҽҫţҿδ ্ツষビ转 כਕ#</string>
   <string name="msdkui_set">Šȅţ ㅁ无 رဋҹ#</string>
   <string name="msdkui_shortest">Śɦȭřťéŝţ ဃぃ੩ו فظঘ#</string>
+  <string name="msdkui_speed">Šрêēð ニਟङ拜بথפΠתฑ#</string>
+  <string name="msdkui_speed_limit">Șрȅęɖ Ļĭӎıț બ၀ץ #</string>
   <string name="msdkui_tab_icon">Ťàб ıčőņ 东楽גਘหઞ૫ङ#</string>
   <string name="msdkui_traffic">Æνøίð ťɼãƒғıč ل해ळਸ #</string>
   <string name="msdkui_traffic_blocked">Ҁłóŝêδ  歳ㅃגまυ#</string>
@@ -175,9 +179,11 @@
   <string name="msdkui_tunnels_allowed_title">Ţʉńńèłŝ āɫļȫŵèď  Υ যડ #</string>
   <string name="msdkui_undefined">Ñóț ɖϵƒīňєð σযဏ实#</string>
   <string name="msdkui_unit_kilometer">ķм φਲਏΣ#</string>
+  <string name="msdkui_unit_km_per_h">ķӎ/ɦ ণحζ 假고ထ卖#</string>
   <string name="msdkui_unit_meter">м 假 #</string>
   <string name="msdkui_unknown">Ûņķŋôωņ જلဃثဒح #</string>
   <string name="msdkui_userposition_search">Ġėţťǐņģ ӱȍùŗ ɫȏ¢ãţǐȭŉ  জא૦ςו 東#</string>
+  <string name="msdkui_value_not_available">-- คซપ #</string>
   <string name="msdkui_violate_truck_options">İǵŋőřė ţŕû¢ƙ øрťιøŉŝ س њડט ถ૧#</string>
   <string name="msdkui_waypoint_current_location">Ҁůɽŗēŋţ ɫȭĉāťιȭŉ قא东ञયん#</string>
   <string name="msdkui_waypoint_select_location">Ċɦȏȍšε ɰαŷρȭĭŉț ၑ听धφδ #</string>

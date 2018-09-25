@@ -426,9 +426,11 @@ guidanceManeuverPanel = findViewById(R.id.guidanceManeuverPanel);
 guidanceManeuverPanelPresenter = new GuidanceManeuverPanelPresenter(this, NavigationManager.getInstance(), route);
 guidanceManeuverPanelPresenter.addListener(new GuidanceManeuverPanelListener() {
     @Override
-    public void onDataChanged(GuidanceManeuverData guidanceManeuverData) {
-        Log.d(LOG_TAG, "onDataChanged: 1st line: " + guidanceManeuverData.getInfo1());
-        Log.d(LOG_TAG, "onDataChanged: 2nd line: " + guidanceManeuverData.getInfo2());
+    public void onDataChanged(@Nullable GuidanceManeuverData guidanceManeuverData) {
+        if (guidanceManeuverData != null) {
+            Log.d(LOG_TAG, "onDataChanged: 1st line: " + guidanceManeuverData.getInfo1());
+            Log.d(LOG_TAG, "onDataChanged: 2nd line: " + guidanceManeuverData.getInfo2());
+        }
         guidanceManeuverPanel.setManeuverData(guidanceManeuverData);
     }
 
@@ -455,7 +457,9 @@ private void stopGuidanceSimulation() {
 }
 ```
 
-Since we passed the `route` that should be used for guidance to the `GuidanceManeuverPanelPresenter`, the presenter is then taking care of forwarding any navigation events - allowing us to intercept the current `GuidanceManeuverData` if desired. In our implementation we simply set the current `data` to the `GuidanceManeuverPanel`, so the user can see which turn to take next.
+Since we passed the `route` that should be used for guidance to the `GuidanceManeuverPanelPresenter`, the presenter is then taking care of forwarding any navigation events - allowing us to intercept the current `GuidanceManeuverData` if desired. In our implementation we simply set the current `guidanceManeuverData` to the `GuidanceManeuverPanel`, so the user can see which turn to take next.
+
+>**Note:** The current `guidanceManeuverData` can be `null`. If `null` is passed to `guidanceManeuverPanel.setManeuverData()`, then the panel will show a loading state - indicating that there is currently no data to show. In case you want to stick with the default behavior, you can simply pass `guidanceManeuverData` - regardless if it is `null` or not. If you want to change the default behavior, you can set a customized `GuidanceManeuverData` instance. Please note, before starting the trip, no initial maneuver data may be present. In such a case, the panel shows a suitable default instruction, like "Follow the route on the map", until the first maneuver data - whether `null` or not - is provided.
 
 Once we resume the `GuidanceManeuverPanelPresenter`, we may also want to start guidance. For this example we are calling the helper method `GuidanceSimulator.getInstance().startGuidanceSimulation(route, map);`. Notice that you can use the HERE Mobile SDK to start _simulated_ guidance. For implementation details, please check the example's code. During the development phase, it is usually more convenient to simulate the navigation experience along the provided route - so that we can quickly see how the `GuidanceManeuverPanel` changes it's content in real-time.
 

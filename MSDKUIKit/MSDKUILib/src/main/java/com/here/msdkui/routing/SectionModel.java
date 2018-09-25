@@ -43,7 +43,7 @@ public final class SectionModel {
     }
 
     /**
-     * Sets the bounds of this model. These bounds can be set to the {@SectionBar} to define the
+     * Sets the bounds of this model. These bounds can be set to the {@link SectionBar} to define the
      * allowed range of the scale factor. By default the scale factor represents a normalized value between
      * 0 and 1, whereas 0 would lead to a width of 0 and 1 would lead to an unscaled width. Be careful when exceeding
      * these thresholds.

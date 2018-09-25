@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2017-2018 HERE Europe B.V.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,6 +28,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_car_position_marker" />
 
+    <ProgressBar
+        android:id="@+id/busyStateProgressBar"
+        style="?attr/guidanceManeuverPanelLeftIcon"
+        android:theme="@style/MSDKUIDarkTheme.WhiteAccent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/distanceView"
         style="?attr/guidanceManeuverPanelHeadingText"
@@ -40,10 +48,9 @@
     <ImageView
         android:id="@+id/extraIconView"
         style="?attr/guidanceManeuverPanelRightIcon"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_maneuver_icon_0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/infoView1"

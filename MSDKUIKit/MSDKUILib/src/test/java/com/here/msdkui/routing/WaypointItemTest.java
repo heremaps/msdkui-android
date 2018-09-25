@@ -16,12 +16,8 @@
 
 package com.here.msdkui.routing;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,6 +40,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
+import static junit.framework.Assert.assertSame;
 import static junit.framework.Assert.assertTrue;
 import static org.powermock.api.mockito.PowerMockito.mock;
 
@@ -68,20 +65,20 @@ public class WaypointItemTest extends RobolectricTest implements WaypointItem.Li
 
     @Test
     public void createdViewShouldHaveProperInitialContent() {
-        final ImageView removeIcon = (ImageView) mWaypointItem.findViewById(R.id.remove_icon);
+        final ImageView removeIcon = mWaypointItem.findViewById(R.id.remove_icon);
         assertNotNull(removeIcon);
         // by default, it should be visible
-        assertTrue("Remove icon is not visible by default", removeIcon.getVisibility() == View.VISIBLE);
+        assertSame("Remove icon is not visible by default", View.VISIBLE, removeIcon.getVisibility());
 
-        final TextView label = (TextView) mWaypointItem.findViewById(R.id.waypoint_label);
+        final TextView label = mWaypointItem.findViewById(R.id.waypoint_label);
         assertNotNull(label);
         // by default, it should be visible
-        assertTrue("ItemRow label is not visible by default", label.getVisibility() == View.VISIBLE);
+        assertSame("ItemRow label is not visible by default", View.VISIBLE, label.getVisibility());
 
-        final DraggableImageView dragIcon = (DraggableImageView) mWaypointItem.findViewById(R.id.drag_icon);
+        final DraggableImageView dragIcon = mWaypointItem.findViewById(R.id.drag_icon);
         assertNotNull(dragIcon);
         // by default, it should be visible
-        assertTrue("Drag Icon is not visible by default", dragIcon.getVisibility() == View.VISIBLE);
+        assertSame("Drag Icon is not visible by default", View.VISIBLE, dragIcon.getVisibility());
 
         // default draggable and removal are enabled
         assertTrue("Default draggable is not enabled", mWaypointItem.isDragEnabled());
@@ -105,7 +102,7 @@ public class WaypointItemTest extends RobolectricTest implements WaypointItem.Li
         assertFalse("Setting draggable false returns draggable true", mWaypointItem.isDragEnabled());
         mWaypointItem.setDragEnabled(true);
         assertTrue("Setting draggable true returns draggable false", mWaypointItem.isDragEnabled());
-        final ImageView dragIcon = (ImageView) mWaypointItem.findViewById(R.id.drag_icon);
+        final ImageView dragIcon = mWaypointItem.findViewById(R.id.drag_icon);
 
         mWaypointItem.setListener(this);
 
@@ -126,7 +123,7 @@ public class WaypointItemTest extends RobolectricTest implements WaypointItem.Li
         assertFalse("Setting removable false returns removable true", mWaypointItem.isRemoveEnabled());
         mWaypointItem.setRemoveEnabled(true);
         assertTrue("Setting removable true returns removable false", mWaypointItem.isRemoveEnabled());
-        final ImageView removeIcon = (ImageView) mWaypointItem.findViewById(R.id.remove_icon);
+        final ImageView removeIcon = mWaypointItem.findViewById(R.id.remove_icon);
 
         mWaypointItem.setListener(this);
 
@@ -153,7 +150,7 @@ public class WaypointItemTest extends RobolectricTest implements WaypointItem.Li
     @Test
     public void testCreationWithAttributes() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.removingEnabled,"true")
+                .addAttribute(R.attr.removingEnabled, "true")
                 .addAttribute(R.attr.draggingEnabled, " true")
                 .addAttribute(R.attr.removingEnabledIcon, "@drawable/ic_remove_listitem")
                 .addAttribute(R.attr.draggingEnabledIcon, "@drawable/ic_drag_listitem")

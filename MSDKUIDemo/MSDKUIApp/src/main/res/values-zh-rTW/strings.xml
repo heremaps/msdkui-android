@@ -16,8 +16,14 @@
   -->
 
 <resources>
+  <string name="msdkui_app_about">About</string>
+  <string name="msdkui_app_about_info_part_four">Currently, the HERE SDK UI Kit provides you components to build a route planner and a guidance experience. Check out our user guide for more information.</string>
+  <string name="msdkui_app_about_info_part_one">The HERE Mobile SDK UI Kit enables you to build beautiful interfaces for Android and iOS.</string>
+  <string name="msdkui_app_about_info_part_three">The HERE Mobile SDK UI Kit gives access to modular and highly customizable UI components and controls that allow you to provide an interactive user interface for your app. With just a few lines of code you can now build a full UI when developing with the Premium edition of the HERE Mobile SDK. This means reduced development time and a faster time to market. So, for example, where you would normally need several days to build a maneuver list using our native APIs, with the new UI kit, you\'ll only a few hours. However, if needed, the UI Kit still allows you to modify the appearance (e.g. colors, dimensions) and behavior (e.g. data presentation, logic, flow, subcomponents) of some UI controls.</string>
+  <string name="msdkui_app_about_info_part_two">When it comes to any application, the user interface defines the experience you provide when someone interacts with your software. It can mean the difference between acquiring and retaining users or deterring them from returning to your app. We understand how critical this is to your success, so we pre-built a variety of screens with full functionality that can be used directly in your application. They are available today through the HERE Mobile SDK UI Kit for Android and iOS.</string>
   <string name="msdkui_app_add">新增</string>
   <string name="msdkui_app_add_waypoint">新增航點</string>
+  <string name="msdkui_app_app_version">App version</string>
   <string name="msdkui_app_back">回到上一個步驟</string>
   <string name="msdkui_app_cancel">取消</string>
   <string name="msdkui_app_collapse">顯示更少</string>
@@ -26,12 +32,15 @@
   <string name="msdkui_app_drag">拖曳</string>
   <string name="msdkui_app_expand">顯示更多</string>
   <string name="msdkui_app_guidance_button_end">結束</string>
+  <string name="msdkui_app_guidance_button_showmaneuvers">See manoeuvres</string>
+  <string name="msdkui_app_guidance_button_showmap">顯示地圖</string>
   <string name="msdkui_app_guidance_button_start">開始導航</string>
   <string name="msdkui_app_guidance_start_simulation">A guidance simulation will start</string>
   <string name="msdkui_app_guidance_teaser_description">透過轉彎指南幫助您的使用者抵達目的地。</string>
   <string name="msdkui_app_guidance_teaser_title">駕駛導航</string>
   <string name="msdkui_app_guidance_waypoint_subtitle">點選地圖以設定您的目的地</string>
   <string name="msdkui_app_guidance_waypoint_title">駕駛導航</string>
+  <string name="msdkui_app_here_sdk_version">HERE SDK version</string>
   <string name="msdkui_app_hint_collapse">顯示更少航點。</string>
   <string name="msdkui_app_hint_expand">顯示更多航點。</string>
   <string name="msdkui_app_info">應用程式資訊</string>
@@ -49,10 +58,11 @@
   <string name="msdkui_app_rp_teaser_title">路線規劃工具</string>
   <string name="msdkui_app_rp_waypoint_subtitle">在地圖上敲擊或長按</string>
   <string name="msdkui_app_settings">設定</string>
-  <string name="msdkui_app_stop_navigation">Stop navigation</string>
+  <string name="msdkui_app_stop_navigation">停止導航</string>
   <string name="msdkui_app_swap">交換</string>
   <string name="msdkui_app_swap_waypoints">交換航點</string>
   <string name="msdkui_app_teaser_link">看一看</string>
+  <string name="msdkui_app_ui_kit_version">MSDKUI version</string>
   <string name="msdkui_app_userposition_notfound">找不到您的位置</string>
   <string name="msdkui_app_userposition_notfound_subtitle">Please make sure the location setting is switched on in your device.</string>
   <string name="msdkui_app_userposition_search">Getting your location</string>

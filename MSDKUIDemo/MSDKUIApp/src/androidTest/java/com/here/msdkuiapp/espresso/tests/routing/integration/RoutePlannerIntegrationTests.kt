@@ -16,12 +16,17 @@
 
 package com.here.msdkuiapp.espresso.tests.routing.integration
 
+import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.IntegrationUITest
 import com.here.msdkuiapp.espresso.impl.core.CoreActions
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem.WAYPOINT_1
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem.WAYPOINT_2
 import com.here.msdkuiapp.espresso.impl.views.map.utils.MapData
+import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteMatchers
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescriptionList
 import com.here.msdkuiapp.espresso.impl.views.route.useractions.RouteActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
@@ -45,7 +50,7 @@ class RoutePlannerIntegrationTests: TestBase<SplashActivity>(SplashActivity::cla
     fun prepare() {
         waypoint1 = WaypointData(MapData.randMapPoint)
         waypoint2 = WaypointData(MapData.randMapPoint, WAYPOINT_2)
-        CoreActions.enterRoutePlanner()
+        CoreActions().enterRoutePlanner()
     }
 
     /**
@@ -63,7 +68,9 @@ class RoutePlannerIntegrationTests: TestBase<SplashActivity>(SplashActivity::cla
     @Test
     @IntegrationUITest
     fun testTapOnAdd_shouldLoadWaypointSelection() {
-        RoutePlannerBarActions.tapOnAddWaypointButton().checkWaypointDefaultLabel()
+        RoutePlannerBarActions.waitForAddWaypointImageButton()
+                .tapOnAddWaypointButton()
+                .checkWaypointDefaultLabel()
     }
 
     /**
@@ -90,8 +97,10 @@ class RoutePlannerIntegrationTests: TestBase<SplashActivity>(SplashActivity::cla
         // Expand route planner panel to update waypoints
         RoutePlannerBarActions.waitForRoutePlannerCollapsed()
                 .waitRouteDescriptionList()
-                .tapOnRighArrowButton()
+                .waitForRightImageIconExpand()
+                .tapOnRightArrowButton()
                 .waitForRoutePlannerExpanded()
+                .waitForSwapWaypointsImageButton()
                 .tapOnSwapWaypointButton()
                 .waitForRoutePlannerCollapsed()
                 .waitRouteDescriptionList()
@@ -103,6 +112,61 @@ class RoutePlannerIntegrationTests: TestBase<SplashActivity>(SplashActivity::cla
     @Test
     @IntegrationUITest
     fun testTapOnSettings_shouldOpenPanel() {
-        RoutePlannerActions.tapOnOptionImage().checkOptionsDisplayed()
+        RoutePlannerActions.openOptionsPanel()
+    }
+
+    /**
+     * MSDKUI-890 - Integration tests for Route Planner/Options
+     */
+    @Test
+    @IntegrationUITest
+    fun testRoutePlannerOptions_shouldDisplayForTransportModes() {
+        enumValues<TransportType>().forEach {
+            // Select transportation mode
+            RoutePlannerActions.selectTransportMode(it)
+            // Open Options panel for the selected transport mode and check settings
+            RoutePlannerActions.openOptionsPanel()
+                    .checkOptionsForTransportType(it)
+                    .tapOnBackRoutePlannerButton()
+        }
+    }
+
+    /**
+     * MSDKUI-565: Integration tests for Route Planner/Transport Mode
+     */
+    @Test
+    @IntegrationUITest
+    fun testsForRoutePlannerTransportMode_shouldSelectItems() {
+        // Select first waipoint item
+        RoutePlannerActions.selectWaypoint(waypoint1)
+        // Select second waipoint item
+        RoutePlannerActions.selectWaypoint(waypoint2)
+        // Wait for panel collapsed and routes description list is visible
+        RoutePlannerBarActions.waitForRoutePlannerCollapsed().waitRouteDescriptionList()
+        // Check all existing transportation types
+        enumValues<TransportType>().forEach {
+            // Select next transportation type and check the type is selected
+            RoutePlannerActions.selectTransportMode(it)
+                    .waitForRoutePlannerCollapsed()
+                    .waitRouteDescriptionEnabled()
+            // Check first transportation image icon for the selected transportation type
+            RouteMatchers.checkTransportIconDisplayed(it)
+        }
+    }
+
+    /**
+     * MSDKUI-567: Integration tests for Route Planner/Route List
+     */
+    @Test
+    @IntegrationUITest
+    fun testRoutePlannerRouteList_shouldOpenRouteDescriptionList() {
+        // Select first waipoint item
+        RoutePlannerActions.selectWaypoint(waypoint1)
+        // Select second waipoint item
+        RoutePlannerActions.selectWaypoint(waypoint2)
+        // Wait for panel collapsed and routes description list is visible
+        RoutePlannerBarActions.waitForRoutePlannerCollapsed().waitRouteDescriptionEnabled()
+        // Check that Route Description list exists
+        onRouteDescriptionList.check(matches(isDisplayed()))
     }
 }

@@ -27,11 +27,14 @@ import com.here.msdkui.common.ThemeUtil
 import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkuiapp.*
 import com.here.msdkuiapp.common.mapselection.WaypointSelectionFragment
+import kotlinx.android.extensions.CacheImplementation
+import kotlinx.android.extensions.ContainerOptions
 import kotlinx.android.synthetic.main.waypoint_selection.*
 
 /**
  * Fragment to display waypoint selection from map for guidance.
  */
+@ContainerOptions(CacheImplementation.NO_CACHE)
 class GuidanceWaypointSelectionFragment() : Fragment(), GuidanceContracts.GuidanceWaypointSelection {
 
     internal var presenter = GuidanceWaypointSelectionPresenter()

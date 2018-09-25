@@ -16,19 +16,9 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    style="?attr/numericOptionItemEditText">
 
     <EditText
         android:id="@+id/numeric_item_value_text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="@dimen/contentMarginHuge"
-        android:layout_marginLeft="@dimen/contentMarginHuge"
-        android:layout_marginRight="@dimen/contentMarginHuge"
-        android:layout_marginStart="@dimen/contentMarginHuge"
-        android:inputType="numberDecimal"
-        android:minHeight="@dimen/min_value"
-        android:minWidth="@dimen/min_value" />
+        style="?attr/numericOptionItemEditTextValueText" />
 </LinearLayout>

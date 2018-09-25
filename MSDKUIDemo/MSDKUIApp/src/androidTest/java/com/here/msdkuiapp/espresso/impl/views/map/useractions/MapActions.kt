@@ -16,7 +16,7 @@
 
 package com.here.msdkuiapp.espresso.impl.views.map.useractions
 
-import com.here.msdkuiapp.espresso.impl.core.CoreActions.tapIn
+import com.here.msdkuiapp.espresso.impl.core.CoreActions
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.Gestures.LONG_PRESS
@@ -28,7 +28,7 @@ import com.here.msdkuiapp.espresso.impl.views.routeplanner.utils.WaypointData
 /**
  * Map view panel actions
  */
-object MapActions {
+object MapActions: CoreActions() {
 
     /**
      * Select waypoint items on map view by given coordinates

@@ -16,6 +16,7 @@
 
 package com.here.msdkui.guidance;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -59,6 +60,11 @@ public class GuidanceManeuverData implements Parcelable {
     private final String mInfo2;
 
     /**
+     * The next road icon for this maneuver.
+     */
+    private final Bitmap mNextRoadIcon;
+
+    /**
      * Constructs a new instance using the provided icon, distance and info strings.
      *
      * @param iconId
@@ -73,17 +79,39 @@ public class GuidanceManeuverData implements Parcelable {
      *         next maneuver street or the destination.
      */
     public GuidanceManeuverData(int iconId, long distance, String info1, String info2) {
+        this(iconId, distance, info1, info2, null);
+    }
+
+    /**
+     * Constructs a new instance using the provided icons, distance and info strings.
+     *
+     * @param iconId
+     *         resource id of the maneuver icon.
+     * @param distance
+     *         distance to next {@link com.here.android.mpa.routing.Maneuver}.
+     * @param info1
+     *         information for the 1st line of this panel. In most cases, it is used to display
+     *         highway exit numbers. In case there is no relevant information, null can be set.
+     * @param info2
+     *         information for the 2nd line of this panel. In most cases, it is used to display
+     *         next maneuver street or the destination.
+     * @param nextRoadIcon
+     *         next road icon for this maneuver.
+     */
+    public GuidanceManeuverData(int iconId, long distance, String info1, String info2, Bitmap nextRoadIcon) {
         mIconId = iconId;
         mDistance = distance;
         mInfo1 = info1;
         mInfo2 = info2;
+        mNextRoadIcon = nextRoadIcon;
     }
 
-    /* package */ GuidanceManeuverData(Parcel in) {
+    GuidanceManeuverData(Parcel in) {
         mIconId = in.readInt();
         mDistance = in.readLong();
         mInfo1 = in.readString();
         mInfo2 = in.readString();
+        mNextRoadIcon = in.readParcelable(Bitmap.class.getClassLoader());
     }
 
     /**
@@ -122,12 +150,22 @@ public class GuidanceManeuverData implements Parcelable {
         return mDistance;
     }
 
+    /**
+     * Gets next road icon for this maneuver.
+     *
+     * @return {@link Bitmap} for next road icon for this maneuver.
+     */
+    public Bitmap getNextRoadIcon() {
+        return mNextRoadIcon;
+    }
+
     @Override
     public String toString() {
         return "GuidanceManeuverData(mIconId=" + this.mIconId +
                 ", mDistance=" + this.mDistance +
                 ", mInfo1=" + this.mInfo1 +
                 ", mInfo2=" + this.mInfo2 +
+                ", mNextRoadIcon=" + this.mNextRoadIcon +
                 ")";
     }
 
@@ -136,7 +174,8 @@ public class GuidanceManeuverData implements Parcelable {
         return (((this.mIconId * 31 +
                 (int) (this.mDistance ^ this.mDistance >>> 32)) * 31 +
                 (this.mInfo1 == null ? 0 : this.mInfo1.hashCode())) * 31 +
-                (this.mInfo2 == null ? 0 : this.mInfo2.hashCode())) * 31;
+                (this.mInfo2 == null ? 0 : this.mInfo2.hashCode())) * 31 +
+                (this.mNextRoadIcon == null ? 0 : this.mNextRoadIcon.hashCode()) * 31;
     }
 
     @Override
@@ -146,7 +185,8 @@ public class GuidanceManeuverData implements Parcelable {
             if (this.mIconId == obj2.mIconId &&
                     this.mDistance == obj2.mDistance &&
                     areEqual(this.mInfo1, obj2.mInfo1) &&
-                    areEqual(this.mInfo2, obj2.mInfo2)) {
+                    areEqual(this.mInfo2, obj2.mInfo2) &&
+                    areEqual(this.mNextRoadIcon, obj2.mNextRoadIcon)) {
                 return true;
             }
         }
@@ -168,5 +208,6 @@ public class GuidanceManeuverData implements Parcelable {
         dest.writeLong(mDistance);
         dest.writeString(mInfo1);
         dest.writeString(mInfo2);
+        dest.writeParcelable(mNextRoadIcon, flags);
     }
 }

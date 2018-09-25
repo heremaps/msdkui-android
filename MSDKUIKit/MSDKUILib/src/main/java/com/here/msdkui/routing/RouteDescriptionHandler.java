@@ -189,7 +189,7 @@ public final class RouteDescriptionHandler {
 
     /**
      * Gets different details of the associated {@link Route} like via and others.
-     * @return a {@Spannable} containing the details.
+     * @return a {@link Spannable} containing the details.
      */
     public Spannable getDetails() {
         final RouteOptions.TransportMode transportMode = mRoute.getRoutePlan()
@@ -197,7 +197,7 @@ public final class RouteDescriptionHandler {
                 .getTransportMode();
         final SpannableStringBuilder builder = new SpannableStringBuilder(getRouteLength());
         if (transportMode == RouteOptions.TransportMode.PUBLIC_TRANSPORT) {
-            return new SpannableStringBuilder(mContext.getString(R.string.msdkui_not_implemented));
+            return new SpannableStringBuilder(); // empty
         } else {
             addVia(builder);
         }

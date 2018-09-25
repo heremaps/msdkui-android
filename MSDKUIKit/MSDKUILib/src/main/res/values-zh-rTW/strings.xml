@@ -47,6 +47,7 @@
   <string name="msdkui_drag_waypoint_button">拖曳指標 %1$d 的航點按鈕</string>
   <string name="msdkui_duration">持續時間</string>
   <string name="msdkui_enabled">開啟</string>
+  <string name="msdkui_estimated_arrival">Estimated Arrival</string>
   <string name="msdkui_exception_attribute_invalid">Failed to resolve attribute at index %1$d</string>
   <string name="msdkui_exception_custom_view_not_available">Custom view for mode %1$s is not available</string>
   <string name="msdkui_exception_date_null">There is no date</string>
@@ -130,6 +131,7 @@
   <string name="msdkui_maneuverpanel_nodata">按照地圖上的路線</string>
   <string name="msdkui_maneuverpanel_updating">正在更新</string>
   <string name="msdkui_minutes">%1$d 分鐘</string>
+  <string name="msdkui_next_maneuver">Next maneuver</string>
   <string name="msdkui_no_maneuver_found">找不到任何機動動作</string>
   <string name="msdkui_no_route_found">找不到任何路線</string>
   <string name="msdkui_no_traffic_delays">無延遲</string>
@@ -159,6 +161,8 @@
   <string name="msdkui_selected">已選</string>
   <string name="msdkui_set">設定</string>
   <string name="msdkui_shortest">最短</string>
+  <string name="msdkui_speed">Speed</string>
+  <string name="msdkui_speed_limit">Speed Limit</string>
   <string name="msdkui_tab_icon">索引標籤圖示</string>
   <string name="msdkui_traffic">避開交通堵塞</string>
   <string name="msdkui_traffic_blocked">已封閉</string>
@@ -175,9 +179,11 @@
   <string name="msdkui_tunnels_allowed_title">允許的隧道</string>
   <string name="msdkui_undefined">未定義</string>
   <string name="msdkui_unit_kilometer">公里</string>
+  <string name="msdkui_unit_km_per_h">km/h</string>
   <string name="msdkui_unit_meter">公尺</string>
   <string name="msdkui_unknown">不明</string>
   <string name="msdkui_userposition_search">Getting your location</string>
+  <string name="msdkui_value_not_available">--</string>
   <string name="msdkui_violate_truck_options">忽略貨車選項</string>
   <string name="msdkui_waypoint_current_location">目前位置</string>
   <string name="msdkui_waypoint_select_location">選擇導航點</string>

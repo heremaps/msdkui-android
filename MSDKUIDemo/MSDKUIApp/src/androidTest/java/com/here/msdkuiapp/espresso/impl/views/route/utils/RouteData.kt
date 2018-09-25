@@ -17,10 +17,10 @@
 package com.here.msdkuiapp.espresso.impl.views.route.utils
 
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ROUTE_RESULT_1
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
 
 data class RouteData(
-        var transportType: TransporType = TransporType.TYPE_CAR,
+        var transportType: TransportType = TransportType.TYPE_CAR,
         var duration: String? = null,
         var details: String? = null,
         var arrival: String? = null,

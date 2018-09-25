@@ -44,6 +44,9 @@ public final class ThemeUtil {
     /**
      * Gets a {@link Drawable} from {@link TypedArray} and index of attribute.
      *
+     * @param context
+     *         the required context.
+     *
      * @param typedArray
      *         the array of values.
      * @param index
@@ -168,6 +171,9 @@ public final class ThemeUtil {
 
     /**
      * Returns a resource id for the given theme attribute.
+     *
+     * @param context
+     *         the required context.
      *
      * @param themeAttribute
      *         a theme attribute whose value is an arbitrary resource id.

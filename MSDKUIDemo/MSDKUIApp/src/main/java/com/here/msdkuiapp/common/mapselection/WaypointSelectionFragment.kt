@@ -28,11 +28,14 @@ import com.here.msdkui.common.ThemeUtil
 import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkuiapp.*
 import com.here.msdkuiapp.routing.RoutingCoordinator
+import kotlinx.android.extensions.CacheImplementation
+import kotlinx.android.extensions.ContainerOptions
 import kotlinx.android.synthetic.main.waypoint_selection.*
 
 /**
  * Fragment for waypoint selection from map.
  */
+@ContainerOptions(CacheImplementation.NO_CACHE)
 class WaypointSelectionFragment() : Fragment(), CommonContracts.WaypointSelection {
 
     internal var presenter = WaypointSelectionPresenter()

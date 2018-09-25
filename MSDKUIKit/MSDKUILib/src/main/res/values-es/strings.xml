@@ -47,6 +47,7 @@
   <string name="msdkui_drag_waypoint_button">Botón Arrastrar punto intermedio en el índice %1$d</string>
   <string name="msdkui_duration">Duración</string>
   <string name="msdkui_enabled">Activado</string>
+  <string name="msdkui_estimated_arrival">Estimated Arrival</string>
   <string name="msdkui_exception_attribute_invalid">Failed to resolve attribute at index %1$d</string>
   <string name="msdkui_exception_custom_view_not_available">Custom view for mode %1$s is not available</string>
   <string name="msdkui_exception_date_null">There is no date</string>
@@ -130,6 +131,7 @@
   <string name="msdkui_maneuverpanel_nodata">Siga la ruta del mapa</string>
   <string name="msdkui_maneuverpanel_updating">Actualizando</string>
   <string name="msdkui_minutes">%1$d min</string>
+  <string name="msdkui_next_maneuver">Next maneuver</string>
   <string name="msdkui_no_maneuver_found">No se ha encontrado ninguna maniobra</string>
   <string name="msdkui_no_route_found">No se ha encontrado ninguna ruta</string>
   <string name="msdkui_no_traffic_delays">Sin retrasos</string>
@@ -159,6 +161,8 @@
   <string name="msdkui_selected">Seleccionado</string>
   <string name="msdkui_set">Fijar</string>
   <string name="msdkui_shortest">Más corta</string>
+  <string name="msdkui_speed">Speed</string>
+  <string name="msdkui_speed_limit">Speed Limit</string>
   <string name="msdkui_tab_icon">Icono de ficha</string>
   <string name="msdkui_traffic">Evitar tráfico</string>
   <string name="msdkui_traffic_blocked">Cerrada</string>
@@ -175,9 +179,11 @@
   <string name="msdkui_tunnels_allowed_title">Túneles permitidos</string>
   <string name="msdkui_undefined">No definido</string>
   <string name="msdkui_unit_kilometer">km</string>
+  <string name="msdkui_unit_km_per_h">km/h</string>
   <string name="msdkui_unit_meter">m</string>
   <string name="msdkui_unknown">Desconocido</string>
   <string name="msdkui_userposition_search">Getting your location</string>
+  <string name="msdkui_value_not_available">--</string>
   <string name="msdkui_violate_truck_options">Ignorar opciones del camión</string>
   <string name="msdkui_waypoint_current_location">Ubicación actual</string>
   <string name="msdkui_waypoint_select_location">Elegir punto intermedio</string>

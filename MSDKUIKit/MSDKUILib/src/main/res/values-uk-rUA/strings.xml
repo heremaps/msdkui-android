@@ -47,6 +47,7 @@
   <string name="msdkui_drag_waypoint_button">Кнопка перенесення точки маршруту, індекс %1$d</string>
   <string name="msdkui_duration">Тривалість</string>
   <string name="msdkui_enabled">Увімкнути</string>
+  <string name="msdkui_estimated_arrival">Estimated Arrival</string>
   <string name="msdkui_exception_attribute_invalid">Failed to resolve attribute at index %1$d</string>
   <string name="msdkui_exception_custom_view_not_available">Custom view for mode %1$s is not available</string>
   <string name="msdkui_exception_date_null">There is no date</string>
@@ -130,6 +131,7 @@
   <string name="msdkui_maneuverpanel_nodata">Слідкуйте за своїм просуванням на карті</string>
   <string name="msdkui_maneuverpanel_updating">Updating</string>
   <string name="msdkui_minutes">%1$d хв.</string>
+  <string name="msdkui_next_maneuver">Next maneuver</string>
   <string name="msdkui_no_maneuver_found">Не вдалося знайти маневри</string>
   <string name="msdkui_no_route_found">Не вдалося знайти маршрут</string>
   <string name="msdkui_no_traffic_delays">Без затримок</string>
@@ -159,6 +161,8 @@
   <string name="msdkui_selected">Вибрано</string>
   <string name="msdkui_set">Установити</string>
   <string name="msdkui_shortest">Найкоротший</string>
+  <string name="msdkui_speed">Speed</string>
+  <string name="msdkui_speed_limit">Speed Limit</string>
   <string name="msdkui_tab_icon">Піктограма вкладки</string>
   <string name="msdkui_traffic">Не показувати дорожній рух</string>
   <string name="msdkui_traffic_blocked">Закрито</string>
@@ -175,9 +179,11 @@
   <string name="msdkui_tunnels_allowed_title">Тунелі дозволено</string>
   <string name="msdkui_undefined">Не визначено</string>
   <string name="msdkui_unit_kilometer">км</string>
+  <string name="msdkui_unit_km_per_h">km/h</string>
   <string name="msdkui_unit_meter">м</string>
   <string name="msdkui_unknown">Невідомо</string>
   <string name="msdkui_userposition_search">Getting your location</string>
+  <string name="msdkui_value_not_available">--</string>
   <string name="msdkui_violate_truck_options">Ігнорувати характеристики вантажівки</string>
   <string name="msdkui_waypoint_current_location">Поточне розташування</string>
   <string name="msdkui_waypoint_select_location">Виберіть точку маршруту</string>

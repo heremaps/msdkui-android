@@ -18,23 +18,11 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingEnd="@dimen/contentMarginMedium"
-    android:paddingLeft="@dimen/contentMarginMedium"
-    android:paddingRight="@dimen/contentMarginMedium"
-    android:paddingStart="@dimen/contentMarginMedium"
-    android:paddingTop="@dimen/contentMarginMedium">
+    style="?attr/booleanOptionItem">
 
     <TextView
         android:id="@+id/boolean_item_label"
-        style="@style/TextStyle.Large"
-        android:layout_width="0dp"
-        android:layout_marginEnd="@dimen/contentMarginLarge"
-        android:layout_marginLeft="@dimen/contentMarginExtraLarge"
-        android:layout_marginRight="@dimen/contentMarginLarge"
-        android:layout_marginStart="@dimen/contentMarginExtraLarge"
+        style="?attr/booleanOptionItemText"
         android:labelFor="@+id/boolean_item_value"
         app:layout_constraintEnd_toStartOf="@+id/boolean_item_value"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -44,12 +32,7 @@
 
     <Switch
         android:id="@+id/boolean_item_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/contentMarginLarge"
-        android:layout_marginRight="@dimen/contentMarginLarge"
-        android:minHeight="@dimen/min_value_boolean"
-        android:minWidth="@dimen/min_value_boolean"
+        style="?attr/booleanOptionItemSwitch"
         app:layout_constraintBaseline_toBaselineOf="@id/boolean_item_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"

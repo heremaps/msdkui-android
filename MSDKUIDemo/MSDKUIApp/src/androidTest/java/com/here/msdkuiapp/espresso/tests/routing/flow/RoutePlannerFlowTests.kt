@@ -28,17 +28,22 @@ import com.here.msdkuiapp.espresso.impl.testdata.Constants.MAP_POINT_3
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.MAP_POINT_4
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.MAP_POINT_5
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ROUTE_RESULT_1
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.RemoveWaypointBtn.REMOVE_WAYPOINT_BTN3
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType.TYPE_CAR
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType.TYPE_TRUCK
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType.TYPE_WALK
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType.TYPE_BICYCLE
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem.*
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.TYPE_CAR
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.TYPE_SCOOTER
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.TYPE_BICYCLE
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.TYPE_WALK
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.TYPE_TRUCK
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem.WAYPOINT_1
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem.WAYPOINT_2
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem.WAYPOINT_3
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem.WAYPOINT_4
 import com.here.msdkuiapp.espresso.impl.views.map.screens.MapView.onMapFragmentWrapper
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.map.utils.MapData
+import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteMatchers
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescArrival
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDealyInformation
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDetails
@@ -56,7 +61,6 @@ import com.here.msdkuiapp.espresso.impl.views.routeplanner.utils.WaypointData
 import com.here.msdkuiapp.espresso.tests.TestBase
 import org.junit.Before
 import org.junit.FixMethodOrder
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runners.MethodSorters
 
@@ -73,7 +77,7 @@ class RoutePlannerFlowTests: TestBase<SplashActivity>(SplashActivity::class.java
     fun prepare() {
         waypoint1 = WaypointData(MapData.randMapPoint)
         waypoint2 = WaypointData(MapData.randMapPoint, WAYPOINT_2)
-        CoreActions.enterRoutePlanner()
+        CoreActions().enterRoutePlanner()
     }
 
     /**
@@ -124,28 +128,21 @@ class RoutePlannerFlowTests: TestBase<SplashActivity>(SplashActivity::class.java
         RoutePlannerActions.selectWaypoint(waypoint2)
         // Wait for panel collapsed and routes description list is visible
         RoutePlannerBarActions.waitForRoutePlannerCollapsed().waitRouteDescriptionList()
-        // Check that transportation type: 'Car' is selected by default
+        // Check that transportation type: 'Car' is selected by default and others not selected
         RoutePlannerMatchers.checkTransModeSelected(TYPE_CAR)
-        // Check that transportation type: 'Lruck' is not selected and tap on it
-        RoutePlannerMatchers.checkTransModeNotSelected(TYPE_TRUCK)
-                .selectTransportMode(TYPE_TRUCK)
-                .waitForRoutePlannerCollapsed()
-                .waitRouteDescriptionList()
-        // Check that transportation type: 'Walk' is not selected and tap on it
-        RoutePlannerMatchers.checkTransModeNotSelected(TYPE_WALK)
-                .selectTransportMode(TYPE_WALK)
-                .waitForRoutePlannerCollapsed()
-                .waitRouteDescriptionList()
-        // Check that transportation type: 'Bicycle' is not selected and tap on it
-        RoutePlannerMatchers.checkTransModeNotSelected(TYPE_BICYCLE)
-                .selectTransportMode(TYPE_BICYCLE)
-                .waitForRoutePlannerCollapsed()
-                .waitRouteDescriptionList()
-        // Check that transportation type: 'Car' is not selected and tap on it
-        RoutePlannerMatchers.checkTransModeNotSelected(TYPE_CAR)
-                .selectTransportMode(TYPE_CAR)
-                .waitForRoutePlannerCollapsed()
-                .waitRouteDescriptionList()
+                .checkTransModeNotSelected(TYPE_TRUCK)
+                .checkTransModeNotSelected(TYPE_WALK)
+                .checkTransModeNotSelected(TYPE_BICYCLE)
+                .checkTransModeNotSelected(TYPE_SCOOTER)
+        // Check all existing transportation types
+        enumValues<TransportType>().forEach {
+            // Select next transportation type and check the type is selected
+            RoutePlannerActions.selectTransportMode(it)
+                    .waitForRoutePlannerCollapsed()
+                    .waitRouteDescriptionEnabled()
+            // Check all transportation image icons for the selected transportation type
+            RouteMatchers.checkAllTransportIconDisplayed(it)
+        }
     }
 
     /**
@@ -161,7 +158,7 @@ class RoutePlannerFlowTests: TestBase<SplashActivity>(SplashActivity::class.java
         // Wait for panel collapsed and routes description list is visible
         RoutePlannerBarActions.waitForRoutePlannerCollapsed().waitRouteDescriptionList()
         // Check route list information for all transportation types
-        enumValues<TransporType>().forEach {
+        enumValues<TransportType>().forEach {
             // Select next transportation type
             RoutePlannerActions.selectTransportMode(it)
                     .waitForRoutePlannerCollapsed()
@@ -187,7 +184,7 @@ class RoutePlannerFlowTests: TestBase<SplashActivity>(SplashActivity::class.java
         // Wait for panel collapsed and routes description list is visible
         RoutePlannerBarActions.waitForRoutePlannerCollapsed().waitRouteDescriptionList()
         // Check route list information for all transportation types
-        enumValues<TransporType>().forEach {
+        enumValues<TransportType>().forEach {
             // Select next transportation type
             RoutePlannerActions.selectTransportMode(it)
                     .waitForRoutePlannerCollapsed()
@@ -218,13 +215,15 @@ class RoutePlannerFlowTests: TestBase<SplashActivity>(SplashActivity::class.java
         // Wait for panel collapsed and routes description list is visible
         RoutePlannerBarActions.waitForRoutePlannerCollapsed().waitRouteDescriptionList()
         // Check route list information for all transportation types
-        enumValues<TransporType>().forEach {
+        enumValues<TransportType>().forEach {
             // Select next transportation type
             RoutePlannerActions.selectTransportMode(it)
                     .waitForRoutePlannerCollapsed()
                     .waitRouteDescriptionEnabled()
             // Expand route planner panel to update waypoints
-            RoutePlannerBarActions.tapOnRighArrowButton().waitForRoutePlannerExpanded()
+            RoutePlannerBarActions.waitForRightImageIconExpand()
+                    .tapOnRightArrowButton()
+                    .waitForRoutePlannerExpanded()
             // Check Scroll Up & Down routes results list
             RouteActions.scrollUpAndDownRouteList()
         }
@@ -243,11 +242,13 @@ class RoutePlannerFlowTests: TestBase<SplashActivity>(SplashActivity::class.java
             // Create waypoint to add on route planner
             val waypointData = MapData.run { WaypointData(randMapPoint, it) }
             // Tap on Add/Plus additional waypoint image button
-            RoutePlannerBarActions.tapOnAddWaypointButton()
+            RoutePlannerBarActions.waitForAddWaypointImageButton().tapOnAddWaypointButton()
             // Select a waypoint on map
             MapActions.waitForMapViewEnabled().tapOnMap(waypointData)
             // Tap on tick to confirm the first waypoint selection
-            val location = RoutePlannerBarActions.waitForLocationDisplayed().tapOnTickButton()
+            val location = RoutePlannerBarActions.waitForLocationNotDisplayed()
+                    .waitForRightImageIconCheck()
+                    .tapOnTickButton()
             // Scroll Up & Down waypoints list in case of new waypoint item is not visible
             RoutePlannerActions.scrollUpAndDownWaypointsList(waypointData.copy(waypoint = location))
         }
@@ -274,30 +275,36 @@ class RoutePlannerFlowTests: TestBase<SplashActivity>(SplashActivity::class.java
                     // Expand route planner panel to update waypoints
                     RoutePlannerBarActions.waitForRoutePlannerCollapsed()
                             .waitRouteDescriptionEnabled()
-                            .tapOnRighArrowButton()
+                            .waitForRightImageIconExpand()
+                            .tapOnRightArrowButton()
                             .waitForRoutePlannerExpanded()
                     // Create waypoint to add on route planner
                     val waypointData = WaypointData(MapData.randMapPoint, it)
                     // Tap on Add/Plus additional waypoint image button
-                    RoutePlannerBarActions.tapOnAddWaypointButton()
+                    RoutePlannerBarActions.waitForAddWaypointImageButton().tapOnAddWaypointButton()
                     // Select a waypoint on map
                     MapActions.waitForMapViewEnabled().tapOnMap(waypointData)
                     // Tap on tick to confirm the first waypoint selection
-                    waypointList.add(RoutePlannerBarActions.waitForLocationDisplayed().tapOnTickButton())
-                }
-                else -> return@forEach
+                    waypointList.add(RoutePlannerBarActions
+                            .waitForLocationNotDisplayed()
+                            .waitForRightImageIconCheck()
+                            .tapOnTickButton())
+                } else -> return@forEach
             }
         }
         // Expand route planner panel to update waypoints
         RoutePlannerBarActions.waitForRoutePlannerCollapsed()
                 .waitRouteDescriptionEnabled()
-                .tapOnRighArrowButton()
+                .waitForRightImageIconExpand()
+                .tapOnRightArrowButton()
                 .waitForRoutePlannerExpanded()
         // Reverse waypoints order in the waypoints list by click on swap button
-        RoutePlannerBarActions.tapOnSwapWaypointButton()
+        RoutePlannerBarActions.waitForSwapWaypointsImageButton()
+                .tapOnSwapWaypointButton()
                 .waitForRoutePlannerCollapsed()
                 .waitRouteDescriptionEnabled()
-                .tapOnRighArrowButton()
+                .waitForRightImageIconExpand()
+                .tapOnRightArrowButton()
                 .waitForRoutePlannerExpanded()
         // Check that waypoints order reversed
         onPlannerWaypointList.check(matches(isWaypointsReversed(waypointList.reversed())))
@@ -310,14 +317,19 @@ class RoutePlannerFlowTests: TestBase<SplashActivity>(SplashActivity::class.java
     @FunctionalUITest
     fun testAddRemoveWaypoints() {
         // Tap on Add/Plus additional waypoint image button
-        RoutePlannerBarActions.tapOnAddWaypointButton().checkWaypointDefaultLabel()
+        RoutePlannerBarActions.waitForAddWaypointImageButton()
+                .tapOnAddWaypointButton()
+                .checkWaypointDefaultLabel()
         // Select the first waypoint on map
         MapActions.waitForMapViewEnabled().tapOnMap(waypoint1)
         // Tap on tick to confirm the first waypoint selection
-        RoutePlannerBarActions.waitForLocationDisplayed().tapOnTickButton()
+        RoutePlannerBarActions.waitForLocationNotDisplayed()
+                .waitForRightImageIconCheck()
+                .tapOnTickButton()
         // Check that third remove waypoint button is visible
         // And click on it to remove and check that the button remove
-        RoutePlannerBarActions.waitForRoutePlannerExpanded().tapOnRemoveWaypointButton(REMOVE_WAYPOINT_BTN3)
+        RoutePlannerBarActions.waitForRoutePlannerExpanded()
+                .tapOnRemoveWaypointButton(REMOVE_WAYPOINT_BTN3)
         // Check that route planner remove button dismissed
         RoutePlannerBarActions.waitForRoutePlannerExpanded()
     }
@@ -334,8 +346,8 @@ class RoutePlannerFlowTests: TestBase<SplashActivity>(SplashActivity::class.java
         RoutePlannerBarActions.waitForRoutePlannerExpanded()
         // Check default waypoint items labels text and default transportation mode
         RoutePlannerMatchers.checkWaypointDefaultLabel(WAYPOINT_1)
-                            .checkWaypointDefaultLabel(WAYPOINT_2)
-                            .checkTransModeSelected(TYPE_CAR)
+                .checkWaypointDefaultLabel(WAYPOINT_2)
+                .checkTransModeSelected(TYPE_CAR)
         // Select first waipoint item
         RoutePlannerActions.selectWaypoint(waypoint1)
         // Select second waipoint item
@@ -343,7 +355,7 @@ class RoutePlannerFlowTests: TestBase<SplashActivity>(SplashActivity::class.java
         // Wait for planner collapsed and routes description list
         RoutePlannerBarActions.waitForRoutePlannerCollapsed().waitRouteDescriptionList()
         // Press device 'Back' button
-        CoreActions.pressBackButton()
+        CoreActions().pressBackButton()
         // Default landing page view is displayed (the same state as freshly launched app)
         // Map view is visible by default
         onMapFragmentWrapper.check(matches(isDisplayed()))
@@ -351,8 +363,8 @@ class RoutePlannerFlowTests: TestBase<SplashActivity>(SplashActivity::class.java
         RoutePlannerBarActions.waitForRoutePlannerExpanded()
         // Check 'Choose waypoint' default label value of the first waypoint item
         RoutePlannerMatchers.checkWaypointDefaultLabel(WAYPOINT_1)
-                            .checkWaypointDefaultLabel(WAYPOINT_2)
-                            .checkTransModeSelected(TYPE_CAR)
+                .checkWaypointDefaultLabel(WAYPOINT_2)
+                .checkTransModeSelected(TYPE_CAR)
     }
 
     /**
@@ -362,7 +374,7 @@ class RoutePlannerFlowTests: TestBase<SplashActivity>(SplashActivity::class.java
     @FunctionalUITest
     fun testUpdateAWaypointAndVerifyRouteChanged() {
         // Check route list information for all transportation types
-        enumValues<TransporType>().forEach {
+        enumValues<TransportType>().forEach {
             // Select first waipoint item
             RoutePlannerActions.selectWaypoint(WaypointData())
             // Select second waipoint item
@@ -373,36 +385,22 @@ class RoutePlannerFlowTests: TestBase<SplashActivity>(SplashActivity::class.java
             RoutePlannerActions.selectTransportMode(it)
                     .waitForRoutePlannerCollapsed()
                     .waitRouteDescriptionEnabled()
-                    .tapOnRighArrowButton()
+                    .waitForRightImageIconExpand()
+                    .tapOnRightArrowButton()
                     .waitForRoutePlannerExpanded()
             // Update and check route 1st planner item & route information list
             updateRouteInformation(WaypointData(MAP_POINT_4), saveRouteInformation(ROUTE_RESULT_1, it))
             // Update and check route 2n planner item & route information list
             updateRouteInformation(WaypointData(MAP_POINT_3, WAYPOINT_2), saveRouteInformation(ROUTE_RESULT_1, it))
             // Press device 'Back' button
-            CoreActions.pressBackButton()
+            CoreActions().pressBackButton()
         }
     }
 
     /**
-     * TODO: MSDKUI-153
-     */
-    @Ignore("not implemented yet")
-    @Test
-    @FunctionalUITest
-    fun testBrowseManeuverList() { }
-
-    /**
-     * TODO: MSDKUI-178, MSDKUI-179, MSDKUI-237, MSDKUI-238, MSDKUI-239
-     */
-    @Ignore("not implemented yet")
-    @Test
-    fun testOptionPanelFlow() { }
-
-    /**
      * Save route information from routing list
      */
-    private fun saveRouteInformation(routeItem: Int = ROUTE_RESULT_1, transportType: TransporType = TYPE_CAR): RouteData {
+    private fun saveRouteInformation(routeItem: Int = ROUTE_RESULT_1, transportType: TransportType = TYPE_CAR): RouteData {
         val duration = getTextView(onRouteDescDuration(routeItem))
         val details = getTextView(onRouteDescDetails(routeItem))
         val arrival = getTextView(onRouteDescArrival(routeItem))
@@ -414,4 +412,4 @@ class RoutePlannerFlowTests: TestBase<SplashActivity>(SplashActivity::class.java
         }
         return RouteData(transportType, duration, details, arrival)
     }
- }
+}

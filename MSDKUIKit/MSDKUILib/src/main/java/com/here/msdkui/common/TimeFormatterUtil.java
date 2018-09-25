@@ -81,4 +81,18 @@ public final class TimeFormatterUtil {
 
         return context.getString(R.string.msdkui_seconds, (seconds / 10) * 10);
     }
+
+    /**
+     * Converts seconds to a string representation showing days, hours and minutes.
+     *
+     * @param context
+     *         the required context.
+     * @param seconds
+     *         time in seconds.
+     *
+     * @return a formatted string.
+     */
+    public static String format(final Context context, final int seconds) {
+        return format(context, seconds * SECOND_IN_MILLISECONDS);
+    }
 }

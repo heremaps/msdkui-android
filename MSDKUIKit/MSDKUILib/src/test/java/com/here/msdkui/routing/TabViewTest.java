@@ -36,7 +36,7 @@ public class TabViewTest extends RobolectricTest {
     public void testCreationWithIconAndLabel() {
         final String testLabel = "testLabel";
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.icon,"@drawable/ic_drive")
+                .addAttribute(R.attr.icon, "@drawable/ic_drive")
                 .addAttribute(R.attr.label, testLabel)
                 .build();
 

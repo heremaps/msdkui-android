@@ -22,12 +22,14 @@ import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.IntegrationUITest
 import com.here.msdkuiapp.espresso.impl.core.CoreActions
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onPlannerBarAppNameTitleView
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.MAP_POINT_7
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationBarActions
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.utils.DestinationData
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
-import com.here.msdkuiapp.espresso.impl.views.map.utils.MapData
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
 import com.here.msdkuiapp.espresso.tests.TestBase
 import org.junit.Before
+import org.junit.After
 import org.junit.FixMethodOrder
 import org.junit.Ignore
 import org.junit.Test
@@ -36,36 +38,65 @@ import org.junit.runners.MethodSorters
 /**
  * Test for integration of RoutePlanner component with other components.
  */
+@Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.java) {
 
-    private lateinit var destination: DestinationData
+    private val destination: DestinationData = DestinationData(MAP_POINT_7)
 
     @Before
     fun prepare() {
-        destination = DestinationData(MapData.randMapPoint)
-        CoreActions.enterDriveNavigation()
+        CoreActions().enterDriveNavigation().provideMockLocation(mockLocationData)
+    }
+
+    @After
+    fun tearDown() {
+        CoreActions().stopMockLocation(mockLocationData)
     }
 
     /**
      * MSDKUI-570: Integration tests for Guidance start/stop
      */
-    @Ignore("has to be fixed") // FIXME: MSDKUI-1073
     @Test
     @IntegrationUITest
-    fun testForGuidanceStartStop() {
+    fun testForGuidanceStartStop_shouldOpenGuidanceView() {
+        // Check drive navigation view opened and default label displayed
+        DriveNavigationBarActions.waitForDriveNavigationView()
+                .waitForDestinationDisplayed()
+        // Check map view displayed and tap anywhere on map view
+        MapActions.waitForMapViewEnabled().tapOnMap(destination)
+        // Tap on tick an actionbar to confirm guidance
+        DriveNavigationBarActions
+                .waitForDestinationNotDisplayed()
+                .waitForRightImageIconCheck()
+                .provideMockLocation(mockLocationData)
+        RoutePlannerBarActions.tapOnTickButton()
+        // Tap on Start navigation to open guidance view
+        DriveNavigationBarActions.waitForRouteOverView()
+                .tapOnStartNavigationBtn()
+                .tapOnStopNavigationBtn()
+        // Check that returns from guidance to Landing screen
+        onPlannerBarAppNameTitleView.check(matches(isDisplayed()))
+    }
+
+    /**
+     * MSDKUI-866: Integration tests for route calculation in Guidance
+     */
+    @Test
+    @IntegrationUITest
+    fun testForRouteCalculationInGuidance_shouldOpenRouteOverview() {
         // Check drive navigation view opened and default destination label displayed
         DriveNavigationBarActions.waitForDestinationDisplayed()
         // Check map view displayed and tap anywhere on map view
         MapActions.waitForMapViewEnabled().tapOnMap(destination)
         // Tap on tick an actionbar to confirm guidance
-        DriveNavigationBarActions.waitForDestinationNotDisplayed().tapOnTickButton()
-        // Tap on Start navigation to open guidance view
+        DriveNavigationBarActions.waitForDestinationNotDisplayed()
+                .waitForRightImageIconCheck()
+                .provideMockLocation(mockLocationData)
+        RoutePlannerBarActions.tapOnTickButton()
+        // Check that route overview exists
         DriveNavigationBarActions.waitForRouteOverView()
-                .tapOnStartNavigationBtn()
-                .waitForGuidanceViewDisplayed()
-                .tapOnStopNavigationBtn()
-        // Check that returns from guidance to Landing screen
-        onPlannerBarAppNameTitleView.check(matches(isDisplayed()))
+                .waitForGuidanceDescriptionDisplayed()
+                .checkRouteOverviewInfoDisplayed()
     }
 }

@@ -28,11 +28,14 @@ import com.here.android.mpa.routing.Route
 import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkuiapp.*
 import com.here.msdkuiapp.landing.LandingActivity
+import kotlinx.android.extensions.CacheImplementation
+import kotlinx.android.extensions.ContainerOptions
 import kotlinx.android.synthetic.main.guidance_route_preview.*
 
 /**
  * Fragment class for Guidance Route preview.
  */
+@ContainerOptions(CacheImplementation.NO_CACHE)
 class GuidanceRoutePreviewFragment : Fragment(), GuidanceContracts.RoutePreview {
 
     var presenter: GuidanceRoutePreviewFragmentPresenter = GuidanceRoutePreviewFragmentPresenter()
@@ -72,29 +75,45 @@ class GuidanceRoutePreviewFragment : Fragment(), GuidanceContracts.RoutePreview 
             showStartSimulationAlertDialog()
             true
         }
+        see_steps.setOnClickListener { presenter.toggleSteps() }
         listener = coordinator as? Listener
     }
 
-    override fun getCurrentViewContract(): GuidanceContracts.RoutePreview {
-        return this
+    /**
+     * Toggles route's maneuver steps.
+     */
+    override fun toggleSteps(listVisible: Boolean) {
+        if (listVisible.not()) {
+            see_steps.text = activity.getText(com.here.msdkuiapp.R.string.msdkui_app_guidance_button_showmaneuvers)
+            guidance_maneuver_description_list.visibility = View.GONE
+            list_end_divider.visibility = View.GONE
+            place_holder.visibility = View.VISIBLE
+        } else {
+            see_steps.text = activity.getText(com.here.msdkuiapp.R.string.msdkui_app_guidance_button_showmap)
+            guidance_maneuver_description_list.visibility = View.VISIBLE
+            list_end_divider.visibility = View.VISIBLE
+            place_holder.visibility = View.GONE
+        }
     }
 
     override fun onProgress(visible: Boolean) {
         route_preview_progress_bar?.visibility = if (visible) View.VISIBLE else View.GONE
     }
 
-    override fun populateUI(entry: WaypointEntry, route: Route) {
+    override fun populateUI(entry: WaypointEntry, route: Route, listVisible: Boolean) {
         val text = activity.getString(R.string.msdkui_rp_to, entry.name)
         destination.text = text
         with(description) {
             isTrafficEnabled = true
             this.route = route
         }
+        guidance_maneuver_description_list?.route = route
         listener?.renderRoute(route)
+        toggleSteps(listVisible)
     }
 
     override fun routingFailed(reason: String) {
-        listOf<View>(destination, description, divider, go).setVisibility(View.INVISIBLE)
+        listOf<View>(destination, description, divider, go, see_steps).setVisibility(View.INVISIBLE)
         error_message.text = reason
     }
 

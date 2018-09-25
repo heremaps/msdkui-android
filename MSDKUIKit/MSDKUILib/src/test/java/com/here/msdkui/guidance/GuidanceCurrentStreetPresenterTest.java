@@ -49,6 +49,17 @@ public class GuidanceCurrentStreetPresenterTest extends RobolectricTest {
     }
 
     @Test
+    public void testHandleNewInstructionEvent() {
+        final Maneuver maneuver = MockUtils.mockManeuver();
+        GuidanceCurrentStreetListener listener = mock(GuidanceCurrentStreetListener.class);
+        mGuidanceCurrentStreetPresenter.addListener(listener);
+        when(mNavigationManager.getNextManeuver()).thenReturn(maneuver);
+        when(mNavigationManager.getNextManeuverDistance()).thenReturn(200L);
+        mGuidanceCurrentStreetPresenter.handleNewInstructionEvent();
+        verify(listener).onDataChanged(any());
+    }
+
+    @Test
     public void testHandleManeuverEvent() {
         final Maneuver maneuver = MockUtils.mockManeuver();
         GuidanceCurrentStreetListener listener = mock(GuidanceCurrentStreetListener.class);
@@ -56,6 +67,25 @@ public class GuidanceCurrentStreetPresenterTest extends RobolectricTest {
         when(mNavigationManager.getNextManeuver()).thenReturn(maneuver);
         when(mNavigationManager.getNextManeuverDistance()).thenReturn(200L);
         mGuidanceCurrentStreetPresenter.handleManeuverEvent();
+        verify(listener).onDataChanged(any());
+    }
+
+    @Test
+    public void testHandleGpsLost() {
+        GuidanceCurrentStreetListener listener = mock(GuidanceCurrentStreetListener.class);
+        mGuidanceCurrentStreetPresenter.addListener(listener);
+        mGuidanceCurrentStreetPresenter.handleGpsLost();
+        verify(listener).onDataChanged(any());
+    }
+
+    @Test
+    public void testHandleGpsRestore() {
+        final Maneuver maneuver = MockUtils.mockManeuver();
+        GuidanceCurrentStreetListener listener = mock(GuidanceCurrentStreetListener.class);
+        mGuidanceCurrentStreetPresenter.addListener(listener);
+        when(mNavigationManager.getNextManeuver()).thenReturn(maneuver);
+        when(mNavigationManager.getNextManeuverDistance()).thenReturn(200L);
+        mGuidanceCurrentStreetPresenter.handleGpsRestore();
         verify(listener).onDataChanged(any());
     }
 

@@ -28,6 +28,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_car_position_marker" />
 
+    <ProgressBar
+        android:id="@+id/busyStateProgressBar"
+        style="?attr/guidanceManeuverPanelLeftIcon"
+        android:theme="@style/MSDKUIDarkTheme.WhiteAccent"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/distanceView"
         style="?attr/guidanceManeuverPanelHeadingTextLand"
@@ -63,7 +71,7 @@
     <ImageView
         android:id="@+id/extraIconView"
         style="?attr/guidanceManeuverPanelRightIcon"
-        android:layout_marginLeft="@dimen/contentMarginHuge"
+        android:layout_marginBottom="@dimen/contentMarginHuge"
         android:layout_marginStart="@dimen/contentMarginHuge"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -115,10 +115,8 @@
     </style>
 
     <style name="BaseButton" parent="Base.TextAppearance.AppCompat.Body2">
-        <item name="android:layout_marginLeft">@dimen/contentMarginExtraLarge</item>
         <item name="android:layout_marginTop">@dimen/contentMarginExtraLarge</item>
-        <item name="android:layout_marginRight">@dimen/contentMarginExtraLarge</item>
-        <item name="android:layout_marginBottom">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginBottom">0dp</item>
         <item name="android:paddingLeft">@dimen/contentMarginExtraLarge</item>
         <item name="android:paddingRight">@dimen/contentMarginExtraLarge</item>
         <item name="android:textColor">?attr/colorForegroundLight</item>
@@ -131,22 +129,40 @@
         <item name="android:focusable">true</item>
     </style>
 
-    <style name="GuidanceRoutePreviewGo" parent="BaseButton">
+    <style name="BaseDivider">
         <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">?attr/colorDivider</item>
+    </style>
+
+    <style name="GuidanceRoutePreviewGo" parent="BaseButton">
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">@dimen/go_btn_height</item>
     </style>
 
-    <style name="GuidanceStatusPanel">
+    <style name="GuidanceDashBoard">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">300dp</item>
-        <item name="android:background">@drawable/guidance_status_panel_bg</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/guidance_dashboard_panel_bg</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:padding">@dimen/guidance_status_panel_padding</item>
+    </style>
+
+    <style name="GuidanceCurrentSpeedOnDashBoard">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginHuge</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentStart">true</item>
     </style>
 
     <style name="GuidanceStopNavigationButton">
         <item name="android:layout_width">@dimen/stop_navigation_button_width_height</item>
         <item name="android:layout_height">@dimen/stop_navigation_button_width_height</item>
+        <item name="android:layout_marginTop">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginHuge</item>
         <item name="android:layout_alignParentRight">true</item>
         <item name="android:layout_alignParentEnd">true</item>
         <item name="android:background">@drawable/stop_navigation_bg_ripple</item>
@@ -155,11 +171,147 @@
         <item name="android:scaleType">centerInside</item>
     </style>
 
+    <style name="GuidanceGrayedScreenFirstPart">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/lui_black50</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="GuidanceGrayedScreenSecondPart">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/lui_black50</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="GuidanceETAContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/contentMarginHuge</item>
+    </style>
+
+    <style name="GuidanceDashBoardDivider" parent="BaseDivider">
+        <item name="android:layout_marginTop">@dimen/guidance_status_panel_peek_height</item>
+    </style>
+
+    <style name="GuidanceDashBoardPullLine">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:layout_marginTop">@dimen/contentMarginMedium</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:background">?attr/colorHint</item>
+    </style>
+
+    <style name="GuidanceDashBoardItemsList">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="GuidanceDashboardListItemBackground">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <style name="GuidanceDashboardListItemIcon">
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="GuidanceDashboardListItemTitle" parent="Base.TextAppearance.AppCompat.Subhead">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical|left|start</item>
+        <item name="android:textColor">?attr/colorForeground</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="GuidanceSpeedLimit">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom|left</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginBottom">98dp</item>
+    </style>
+
     <style name="ProgressBar">
         <item name="android:layout_width">30dp</item>
         <item name="android:layout_height">30dp</item>
         <item name="android:layout_marginLeft">@dimen/contentMarginExtraLarge</item>
         <item name="android:layout_marginStart">@dimen/contentMarginExtraLarge</item>
+    </style>
+
+    <style name="AboutVersionInfoContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="AboutDividerAndTextInfoContainer">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="AboutVersionTextTitle" parent="Base.TextAppearance.AppCompat.Body1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorForeground</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginHuge</item>
+    </style>
+
+    <style name="AboutVersionTextSecondary" parent="Base.TextAppearance.AppCompat.Subhead">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginHuge</item>
+    </style>
+
+    <style name="AboutInfoText" parent="Base.TextAppearance.AppCompat.Body1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:lineSpacingExtra">3sp</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginBottom">@dimen/contentMarginMedium</item>
+    </style>
+
+    <style name="AboutInfoTextTitle" parent="AboutInfoText">
+        <item name="android:textColor">?attr/colorForeground</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">5sp</item>
+        <item name="android:layout_marginTop">@dimen/contentMarginHuge</item>
+    </style>
+
+    <style name="GuidanceCurrentStreetAppPlacement">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom|center</item>
+        <item name="android:layout_marginBottom">@dimen/current_street_margin_bottom</item>
+        <item name="android:layout_marginLeft">@dimen/current_street_margin_side_portrait</item>
+        <item name="android:layout_marginStart">@dimen/current_street_margin_side_portrait</item>
+        <item name="android:layout_marginRight">@dimen/current_street_margin_side_portrait</item>
+        <item name="android:layout_marginEnd">@dimen/current_street_margin_side_portrait</item>
     </style>
 
 </resources>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2017-2018 HERE Europe B.V.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -122,6 +121,58 @@
         <attr name="spacing48" format="dimension|reference" />
         <attr name="spacing72" format="dimension|reference" />
 
+        <attr name="multipleChoiceOptionItem" format="reference" />
+        <attr name="multipleChoiceOptionItemText" format="reference" />
+        <attr name="multipleChoiceOptionItemCheckbox" format="reference" />
+
+        <attr name="booleanOptionItem" format="reference" />
+        <attr name="booleanOptionItemText" format="reference" />
+        <attr name="booleanOptionItemSwitch" format="reference" />
+
+        <attr name="singleChoiceOptionItem" format="reference" />
+        <attr name="singleChoiceOptionItemText" format="reference" />
+        <attr name="singleChoiceOptionItemSpinner" format="reference" />
+
+        <attr name="maneuverDescriptionItem" format="reference" />
+        <attr name="maneuverDescriptionItemIcon" format="reference" />
+        <attr name="maneuverDescriptionItemInstructionText" format="reference" />
+        <attr name="maneuverDescriptionItemAddressText" format="reference" />
+        <attr name="maneuverDescriptionItemDistanceText" format="reference" />
+
+        <attr name="numericOptionItem" format="reference" />
+        <attr name="numericOptionItemLabelText" format="reference" />
+        <attr name="numericOptionItemValueText" format="reference" />
+
+        <attr name="numericOptionItemEditText" format="reference" />
+        <attr name="numericOptionItemEditTextValueText" format="reference" />
+
+        <attr name="tabView" format="reference" />
+        <attr name="tabViewIcon" format="reference" />
+        <attr name="tabViewText" format="reference" />
+
+        <attr name="transportModePanel" format="reference" />
+        <attr name="transportModePanelTabLayout" format="reference" />
+        <attr name="transportModePanelViewPager" format="reference" />
+
+        <attr name="travelTimePanel" format="reference" />
+        <attr name="travelTimePanelIcon" format="reference" />
+        <attr name="travelTimePanelTimeText" format="reference" />
+        <attr name="travelTimePanelTimeDetailsText" format="reference" />
+
+        <attr name="travelTimePicker" format="reference" />
+        <attr name="travelTimePickerTabLayout" format="reference" />
+        <attr name="travelTimePickerTabLeaveItem" format="reference" />
+        <attr name="travelTimePickerTabArriveItem" format="reference" />
+        <attr name="travelTimePickerTravelDate" format="reference" />
+        <attr name="travelTimePickerTravelTime" format="reference" />
+
+        <attr name="waypointItem" format="reference" />
+        <attr name="waypointItemRemoveIcon" format="reference" />
+        <attr name="waypointItemLabel" format="reference" />
+        <attr name="waypointItemDragIcon" format="reference" />
+
+        <attr name="spinnerRowItem" format="reference" />
+
         <attr name="routeDescriptionItem" format="reference" />
         <attr name="routeDescriptionItemIcon" format="reference" />
         <attr name="routeDescriptionTotalTime" format="reference" />
@@ -139,6 +190,26 @@
         <attr name="guidanceManeuverPanelLeftIcon" format="reference" />
         <attr name="guidanceManeuverPanelRightIcon" format="reference" />
 
+        <attr name="guidanceNextManeuverPanel" format="reference" />
+        <attr name="guidanceNextManeuverPanelLeftIcon" format="reference" />
+        <attr name="guidanceNextManeuverPanelText" format="reference" />
+        <attr name="guidanceNextManeuverPanelDistanceText" format="reference" />
+        <attr name="guidanceNextManeuverPanelDotText" format="reference" />
+
+        <attr name="guidanceArrival" format="reference" />
+        <attr name="guidanceArrivalTime" format="reference" />
+        <attr name="guidanceArrivalDuration" format="reference" />
+        <attr name="guidanceArrivalDistance" format="reference" />
+        <attr name="guidanceArrivalDot" format="reference" />
+
+        <attr name="guidanceCurrentSpeedPanelText" format="reference" />
+        <attr name="guidanceCurrentSpeedPanelSecondaryText" format="reference" />
+        <attr name="guidanceCurrentSpeedPanelNegativeText" format="reference" />
+        <attr name="guidanceCurrentSpeedPanelSecondaryNegativeText" format="reference" />
+        <attr name="guidanceSpeedLimitExceeded" format="boolean" />
+
+        <attr name="guidanceSpeedLimitPanel" format="reference" />
+        <attr name="guidanceSpeedLimitText" format="reference" />
     </declare-styleable>
 
 </resources>

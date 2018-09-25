@@ -94,7 +94,7 @@ public class WaypointItem extends RelativeLayout implements View.OnTouchListener
     private void uiInit() {
 
         // remove icon handling.
-        mRemoveIcon = (ImageView) findViewById(R.id.remove_icon);
+        mRemoveIcon = findViewById(R.id.remove_icon);
         mRemoveIcon.setOnClickListener(v -> {
             if (mListener != null && mRemoveEnabled) {
                 mListener.onRemoveClicked(mEntry);
@@ -159,11 +159,7 @@ public class WaypointItem extends RelativeLayout implements View.OnTouchListener
      * @param removeIcon the {@link Drawable} to be used.
      */
     public void setRemoveDrawable(final Drawable removeIcon) {
-        if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            mRemoveIcon.setBackground(removeIcon);
-        } else {
-            mRemoveIcon.setBackgroundDrawable(removeIcon);
-        }
+        mRemoveIcon.setBackground(removeIcon);
     }
 
     /**
@@ -181,11 +177,7 @@ public class WaypointItem extends RelativeLayout implements View.OnTouchListener
      * @param dragIcon the {@link Drawable} to be used.
      */
     public void setDragDrawable(final Drawable dragIcon) {
-        if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            mDragIcon.setBackground(dragIcon);
-        } else {
-            mDragIcon.setBackgroundDrawable(dragIcon);
-        }
+        mDragIcon.setBackground(dragIcon);
     }
 
     /**
@@ -207,7 +199,7 @@ public class WaypointItem extends RelativeLayout implements View.OnTouchListener
             return;
         }
 
-        final TextView view = (TextView) findViewById(R.id.waypoint_label);
+        final TextView view = findViewById(R.id.waypoint_label);
         if (!entry.isValid()) {
             view.setText(entry.getName() == null ? "" : entry.getName());
             return;
@@ -235,7 +227,6 @@ public class WaypointItem extends RelativeLayout implements View.OnTouchListener
      * The "drag"-icon will only be visible when this is set to true.
      *
      * @param dragEnabled true if item should be draggable, false otherwise.
-     * @return an instance of this class.
      */
     public void setDragEnabled(final boolean dragEnabled) {
         mDragEnabled = dragEnabled;
@@ -276,18 +267,19 @@ public class WaypointItem extends RelativeLayout implements View.OnTouchListener
         if (v.getId() != mDragIcon.getId()) {
             return false; // touch event handled only for drag icon now.
         }
-        boolean mDownTouch = false;
+        // TODO MSDKUI-1356 downTouch handling is never performed for ACTION_UP
+        boolean downTouch = false;
         // listening for the down and up touch events for ClickableViewAccessibility.
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                mDownTouch = true;
+                downTouch = true;
                 if (mListener != null && mDragEnabled) {
                     mListener.onDragStarted(mEntry);
                 }
                 return true;
             case MotionEvent.ACTION_UP:
-                if (mDownTouch) {
-                    mDownTouch = false;
+                if (downTouch) {
+                    downTouch = false;
                     mDragIcon.performClick(); // enable accessibility services to
                     // perform this action for a user who cannot
                     // click the touchscreen.

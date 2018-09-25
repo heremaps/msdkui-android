@@ -16,8 +16,8 @@
 
 package com.here.msdkui.routing;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 
 import com.here.RobolectricTest;
@@ -25,7 +25,6 @@ import com.here.android.mpa.routing.RouteOptions;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +41,6 @@ import static org.hamcrest.Matchers.is;
  */
 public class TransportModePanelAdapterTest extends RobolectricTest {
 
-    private Context mContext;
     private List<RouteOptions.TransportMode> mTransportModes;
 
     @Before
@@ -59,23 +57,7 @@ public class TransportModePanelAdapterTest extends RobolectricTest {
     public void testTabViewAdapter() {
 
         final TabView btn = new TabView(getContextWithTheme());
-
-        TransportModePanelAdapter adapter = new TransportModePanelAdapter(getSupportFragmentManager()) {
-            @Override
-            public Fragment getContent(RouteOptions.TransportMode mode) {
-                return null;
-            }
-
-            @Override
-            public TabView getTabCustomView(RouteOptions.TransportMode mode) {
-                return btn;
-            }
-
-            @Override
-            public boolean isContentVisible() {
-                return false;
-            }
-        };
+        TransportModePanelAdapter adapter = new TransportModePanelAdapterInstance(getSupportFragmentManager(), btn);
 
         adapter.setTransportModes(mTransportModes);
         assertThat(adapter.getTransportModes(), equalTo(mTransportModes));
@@ -94,22 +76,7 @@ public class TransportModePanelAdapterTest extends RobolectricTest {
         final TabView btn = new TabView(getContextWithTheme());
         final Fragment fr = new Fragment();
 
-        TransportModePanelAdapter adapter = new TransportModePanelAdapter(null) {
-            @Override
-            public Fragment getContent(RouteOptions.TransportMode mode) {
-                return fr;
-            }
-
-            @Override
-            public TabView getTabCustomView(RouteOptions.TransportMode mode) {
-                return btn;
-            }
-
-            @Override
-            public boolean isContentVisible() {
-                return true;
-            }
-        };
+        TransportModePanelAdapter adapter = new TransportModePanelAdapterInstance(null, fr, btn);
 
         adapter.setTransportModes(mTransportModes);
         assertThat(adapter.getTransportModes(), equalTo(mTransportModes));
@@ -122,22 +89,46 @@ public class TransportModePanelAdapterTest extends RobolectricTest {
 
     @Test
     public void testGetItemPosition() {
-        TransportModePanelAdapter adapter = new TransportModePanelAdapter(getSupportFragmentManager(), mTransportModes) {
-            @Override
-            public Fragment getContent(RouteOptions.TransportMode mode) {
-                return null;
-            }
-
-            @Override
-            public TabView getTabCustomView(RouteOptions.TransportMode mode) {
-                return null;
-            }
-
-            @Override
-            public boolean isContentVisible() {
-                return false;
-            }
-        };
+        TransportModePanelAdapter adapter = new TransportModePanelAdapterInstance(getSupportFragmentManager(), null, null, mTransportModes);
         assertEquals(PagerAdapter.POSITION_NONE, adapter.getItemPosition(new Object()));
+    }
+
+    /**
+     * Test adapter instance
+     */
+    private static class TransportModePanelAdapterInstance extends TransportModePanelAdapter {
+
+        private final TabView mTabView;
+        private final Fragment mContentFragment;
+
+        TransportModePanelAdapterInstance(final FragmentManager fragmentManager, final TabView tabView) {
+            this(fragmentManager, null, tabView, null);
+        }
+
+        TransportModePanelAdapterInstance(final FragmentManager fragmentManager, final Fragment content, final TabView tabView) {
+            this(fragmentManager, content, tabView, null);
+        }
+
+        TransportModePanelAdapterInstance(final FragmentManager fragmentManager, final Fragment content,
+                                                 final TabView tabView, final List<RouteOptions.TransportMode> transportModeList) {
+            super(fragmentManager, transportModeList);
+            mTabView = tabView;
+            mContentFragment = content;
+        }
+
+        @Override
+        public Fragment getContent(RouteOptions.TransportMode mode) {
+            return mContentFragment;
+        }
+
+        @Override
+        public TabView getTabCustomView(RouteOptions.TransportMode mode) {
+            return mTabView;
+        }
+
+        @Override
+        public boolean isContentVisible() {
+            return mContentFragment != null;
+        }
     }
 }

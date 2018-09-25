@@ -20,24 +20,31 @@ import com.here.android.mpa.guidance.NavigationManager
 import com.here.android.mpa.routing.Route
 import com.here.msdkui.guidance.GuidanceManeuverData
 import com.here.msdkui.guidance.GuidanceManeuverPanel
-import com.here.msdkuiapp.GuidanceContracts
+import com.here.msdkui.guidance.GuidanceManeuverPanelPresenter
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.testutils.BaseTest
 import junit.framework.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
-import org.mockito.Mockito.*
+import org.mockito.Mock
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
+import org.mockito.MockitoAnnotations
 
 /**
  * Tests for [GuidanceManeuverPanelFragment].
  */
 class GuidanceManeuverPanelFragmentTest : BaseTest() {
 
-    lateinit var guidanceManeuverPanelFragment: GuidanceManeuverPanelFragment
+    private lateinit var guidanceManeuverPanelFragment: GuidanceManeuverPanelFragment
+
+    @Mock
+    private lateinit var mockPanelPresenter: GuidanceManeuverPanelPresenter
 
     @Before
     fun setup() {
         super.setUp()
+        MockitoAnnotations.initMocks(this)
         navigationManager = mock(NavigationManager::class.java)
         guidanceManeuverPanelFragment = GuidanceManeuverPanelFragment.newInstance()
     }
@@ -65,5 +72,15 @@ class GuidanceManeuverPanelFragmentTest : BaseTest() {
         guidanceManeuverPanelFragment.onDataChanged(data)
         assertNotNull((guidanceManeuverPanelFragment.view as GuidanceManeuverPanel).maneuverData)
         guidanceManeuverPanelFragment.onDestinationReached()
+    }
+
+    @Test
+    fun testPauseResume() {
+        guidanceManeuverPanelFragment.panelPresenter = mockPanelPresenter
+        assertNotNull(guidanceManeuverPanelFragment.panelPresenter)
+        guidanceManeuverPanelFragment.onResume()
+        verify(mockPanelPresenter).resume()
+        guidanceManeuverPanelFragment.onPause()
+        verify(mockPanelPresenter).pause()
     }
 }

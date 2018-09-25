@@ -33,11 +33,13 @@ import android.view.MotionEvent
 import android.view.View
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onLandingScreenList
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
+import com.here.msdkuiapp.espresso.impl.mock.MockLocationData
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.DRIVE_NAVIGATION_ITEM
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.Gestures
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.Gestures.SINGLE_TAP
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ROUTE_PLANNER_ITEM
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation
+import com.here.msdkuiapp.espresso.impl.utils.ScreenOrientationUtils.Companion.getOrientation
 import com.here.msdkuiapp.espresso.impl.utils.ScreenOrientationUtils.Companion.setOrientation
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationBarView.onDriveNavigationBarTitleView
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationBarActions
@@ -48,7 +50,7 @@ import org.hamcrest.Matcher
 /**
  * Core framework actions
  */
-object CoreActions {
+open class CoreActions() {
 
     /**
      * Single tap or Long Press on the view in given x & y percent.
@@ -131,7 +133,27 @@ object CoreActions {
      * @param [ScreenOrientation] new value of the screen orientation
      */
     fun changeOrientation(orientation: ScreenOrientation): CoreActions {
-        onRootView.perform(setOrientation(orientation))
+        if (getOrientation() != orientation.value) onRootView.perform(setOrientation(orientation))
+        return this
+    }
+
+    /**
+     * Provides mocking location for testing
+     */
+    fun provideMockLocation(mockLocationData: MockLocationData): CoreActions {
+        mockLocationData.run {
+            if (isMocked) mockLocation!!.setMockLocation(testPlace)
+        }
+        return this
+    }
+
+    /**
+     * Stop mocking location service
+     */
+    fun stopMockLocation(mockLocationData: MockLocationData): CoreActions {
+        mockLocationData.run {
+            if (isMocked) mockLocation!!.stopMocking()
+        }
         return this
     }
 }

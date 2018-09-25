@@ -14,7 +14,9 @@
   ~ limitations under the License.
   -->
 
-<vector android:height="24dp" android:viewportHeight="72"
-    android:viewportWidth="72" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="#FF000000" android:fillType="evenOdd" android:pathData="M41,28.9544L41,37.4259C40.9165,38.32 40.5835,39.1556 40.0809,39.8475L28,52.0984L28,66.9544L18,66.9544L18,49.9092C18,48.8145 18.3477,47.7913 18.9544,46.9695L31,34.9508L31,28.9544L24.1539,28.9544C22.5274,28.9544 21.8631,27.8013 22.6703,26.3899L34.5109,6.0701C35.3344,4.6433 36.6588,4.6433 37.4807,6.0701L49.3556,26.3899C50.1629,27.8013 49.5011,28.9544 47.8729,28.9544L41,28.9544Z"/>
+<vector android:autoMirrored="true" android:height="24dp"
+    android:viewportHeight="72" android:viewportWidth="72"
+    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#000000" android:fillType="nonZero" android:pathData="M41,27.954l0,10.934l-13,13.21l0,14.856l-10,0l0,-19.03l13,-12.973l0,-6.997z"/>
+    <path android:fillColor="#000000" android:fillType="nonZero" android:pathData="M36.027,4.402l13.624,23.598l-27.248,0z"/>
 </vector>

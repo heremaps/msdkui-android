@@ -23,18 +23,16 @@ import android.app.FragmentTransaction
 import com.here.android.mpa.common.PositioningManager
 import com.here.android.mpa.guidance.NavigationManager
 import com.here.android.mpa.mapping.Map
-import com.here.android.mpa.routing.Route
 import com.here.android.mpa.routing.RouteResult
+import com.here.msdkuiapp.MSDKUIApplication
 import com.here.msdkuiapp.base.BasePermissionActivity
 import com.here.msdkuiapp.common.Provider
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
-import com.here.msdkuiapp.isLocationOk
 import com.here.msdkuiapp.map.MapFragmentWrapper
 import com.here.testutils.BaseTest
 import com.here.testutils.anySafe
 import com.here.testutils.argumentCaptor
-import com.here.testutils.captureSafe
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotNull
 import org.junit.Before
@@ -54,7 +52,7 @@ class GuidanceCoordinatorTest : BaseTest() {
     private lateinit var guidanceCoordinator: GuidanceCoordinator
 
     @Mock
-    private lateinit var mockContext : BasePermissionActivity
+    private lateinit var mockContext: BasePermissionActivity
 
     @Mock
     private lateinit var mockFragmentTransaction: FragmentTransaction
@@ -72,10 +70,10 @@ class GuidanceCoordinatorTest : BaseTest() {
     private lateinit var mockProvider: Provider
 
     @Mock
-    private lateinit var mockDeserializationResult: Route.DeserializationResult
+    private lateinit var mockMapFragment: MapFragmentWrapper
 
     @Mock
-    private lateinit var mockMapFragment: MapFragmentWrapper
+    private lateinit var mockMSDKUIApplication: MSDKUIApplication
 
     @Before
     fun setup() {
@@ -83,16 +81,15 @@ class GuidanceCoordinatorTest : BaseTest() {
         `when`(mockFragmentManager.beginTransaction()).thenReturn(mockFragmentTransaction)
         navigationManager = mockNavigationManager
         positioningManager = mock(PositioningManager::class.java)
+        `when`(mockContext.applicationContext).thenReturn(mockMSDKUIApplication)
         guidanceCoordinator = GuidanceCoordinator(mockContext, mockFragmentManager).apply {
             mapFragment = mockMapFragment
             `when`(mapFragment!!.map).thenReturn(mockMap)
-            route = mockRoute()
+            val mockRoute = mockRoute()
+            `when`(mockMSDKUIApplication.route).thenReturn(mockRoute)
             isSimulation = false
             provider = mockProvider
         }
-        mockDeserializationResult = mock(Route.DeserializationResult::class.java)
-        mockDeserializationResult.error = Route.SerializerError.NONE
-        mockDeserializationResult.route = mockRoute()
     }
 
     @Test
@@ -112,7 +109,7 @@ class GuidanceCoordinatorTest : BaseTest() {
 
     @Test
     fun testIfStartSuccessfulPanelShouldBAdded() {
-        startCoordinatorAndDeserializeRoute()
+        startCoordinator()
         verify(mockNavigationManager).addRerouteListener(anySafe())
         verify(mockNavigationManager).addTrafficRerouteListener(anySafe())
 
@@ -120,10 +117,9 @@ class GuidanceCoordinatorTest : BaseTest() {
         verify(mockMap).setCenter(anySafe(), anySafe())
 
         val fragmentCapture = argumentCaptor<Fragment>()
-        verify(mockFragmentTransaction, times(2)).replace(anyInt(), fragmentCapture.capture(), anyString())
+        verify(mockFragmentTransaction, times(6)).replace(anyInt(), fragmentCapture.capture(), anyString())
         val fragment = fragmentCapture.allValues[0] as? GuidanceManeuverPanelFragment
         assertNotNull(fragment)
-        assertEquals(fragment?.route, mockDeserializationResult.route)
 
         with(mockNavigationManager) {
             setMap(anySafe())
@@ -133,43 +129,27 @@ class GuidanceCoordinatorTest : BaseTest() {
 
     @Test
     fun testWhenContextIsLocationOkEqualToFalse() {
-        startCoordinatorAndDeserializeRoute(false)
+        startCoordinator(false)
         verify(mockContext).startActivity(anySafe())
     }
 
     @Test
     fun testIsRouteValidWhenRouteIsNull() {
-        mockDeserializationResult.route = null
-        startCoordinatorAndDeserializeRoute()
-        verify(mockContext).startActivity(anySafe())
-    }
-
-    @Test
-    fun testIsRouteValidWhenRouteStartIsNull() {
-        mockDeserializationResult.route = mockRoute(mockStart = null)
-        startCoordinatorAndDeserializeRoute()
-        verify(mockContext).startActivity(anySafe())
-    }
-
-    @Test
-    fun testIsRouteValidWhenRouteStartThrowsException() {
-        val route = mockRoute()
-        mockDeserializationResult.route = route
-        `when`(route.start).thenThrow(NullPointerException::class.java)
-        startCoordinatorAndDeserializeRoute()
+        `when`(mockMSDKUIApplication.route).thenReturn(null)
+        startCoordinator()
         verify(mockContext).startActivity(anySafe())
     }
 
     @Test
     fun testStartNavigation() {
-        startCoordinatorAndDeserializeRoute()
+        startCoordinator()
         verify(mockNavigationManager).startNavigation(anySafe())
     }
 
     @Test
     fun testStartSimulation() {
         guidanceCoordinator.isSimulation = true
-        startCoordinatorAndDeserializeRoute()
+        startCoordinator()
         verify(mockNavigationManager).simulate(anySafe(), anyLong())
     }
 
@@ -182,7 +162,7 @@ class GuidanceCoordinatorTest : BaseTest() {
 
     @Test
     fun testListenersRegistration() {
-        startCoordinatorAndDeserializeRoute()
+        startCoordinator()
         verify(mockNavigationManager).addRerouteListener(any())
         verify(mockNavigationManager).addTrafficRerouteListener(any())
     }
@@ -194,14 +174,11 @@ class GuidanceCoordinatorTest : BaseTest() {
         verify(mockNavigationManager).removeTrafficRerouteListener(anySafe())
     }
 
-    private fun startCoordinatorAndDeserializeRoute(isLocationOk: Boolean = true) {
+    private fun startCoordinator(isLocationOk: Boolean = true) {
+        `when`(mockContext.isLocationOk()).thenReturn(isLocationOk)
         guidanceCoordinator.start()
         val captor = argumentCaptor<() -> Unit>()
         verify(guidanceCoordinator.mapFragment!!).start(captor.capture())
         captor.value.invoke()   // map engine start is successful.
-        val deserializeCallbackCaptor = argumentCaptor<Route.DeserializationCallback>()
-        verify(mockProvider).provideDeserialize(anySafe(), captureSafe(deserializeCallbackCaptor))
-        `when`(mockContext.isLocationOk).thenReturn(isLocationOk)
-        deserializeCallbackCaptor.value.onDeserializationComplete(mockDeserializationResult)
     }
 }

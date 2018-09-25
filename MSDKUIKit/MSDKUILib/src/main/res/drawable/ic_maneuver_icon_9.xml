@@ -14,8 +14,9 @@
   ~ limitations under the License.
   -->
 
-<vector android:height="24dp" android:viewportHeight="72"
-    android:viewportWidth="72" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="#000000" android:fillType="evenOdd"
-    android:pathData="M30.9995565,28.9544256 L24.1266673,28.9544256 C22.4984731,28.9544256 21.8366965,27.8012648 22.6439091,26.3899336 L34.5188838,6.07011603 C35.340726,4.64329466 36.6651398,4.64329466 37.4887032,6.07011603 L49.3292552,26.3899336 C50.1364678,27.8012648 49.4721095,28.9544256 47.8456364,28.9544256 L40.9995565,28.9544256 L40.9995565,34.9507706 L53.0451869,46.9694601 C53.6518871,47.7913024 53.9995565,48.8145174 53.9995565,49.9091596 L53.9995565,66.9544256 L43.9995565,66.9544256 L43.9995565,52.0984441 L31.9186429,39.8474925 C31.4160713,39.155596 31.0830316,38.3199847 30.9995565,37.4258548 L30.9995565,28.9544256 Z" />
+<vector android:autoMirrored="true" android:height="24dp"
+    android:viewportHeight="72" android:viewportWidth="72"
+    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#000000" android:fillType="nonZero" android:pathData="M31,27.954l10,0l0,6.997l13,12.973l0,19.03l-10,0l0,-14.856l-13,-13.21z"/>
+    <path android:fillColor="#000000" android:fillType="nonZero" android:pathData="M35.973,4.402l13.624,23.598l-27.248,0z"/>
 </vector>

@@ -32,6 +32,7 @@ import org.robolectric.RuntimeEnvironment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -51,7 +52,7 @@ public class WaypointListAdapterTest extends RobolectricTest implements Waypoint
     private boolean mIsCallbackCalled;
     private WaypointListAdapter mWaypointListAdapter;
     private WaypointListAdapter.WaypointsListViewHolder mWaypointsListViewHolder;
-    private ArrayList<WaypointListAdapter.WaypointsListViewHolder> mWaypointsListViewHoldersList = new ArrayList<>();
+    private List<WaypointListAdapter.WaypointsListViewHolder> mWaypointsListViewHoldersList = new ArrayList<>();
 
     @Before
     public void setUp() {
@@ -69,7 +70,7 @@ public class WaypointListAdapterTest extends RobolectricTest implements Waypoint
     public void clickEntryViewShouldCallCallback() {
         final WaypointEntry entry = MockUtils.mockWayPointEntry();
         entry.setName("Test");
-        getFirstViewHolder(new ArrayList<WaypointEntry>(Arrays.asList(entry)));
+        getFirstViewHolder(new ArrayList<>(Collections.singletonList(entry)));
         assertThat(mWaypointsListViewHolder.getEntryView().getText().toString(), equalTo("Test"));
         mWaypointsListViewHolder.getEntryView()
                 .performClick();
@@ -79,7 +80,7 @@ public class WaypointListAdapterTest extends RobolectricTest implements Waypoint
     @Test
     public void removeButtonShouldRemoveRowAndCallCallback() {
         final WaypointEntry entry = MockUtils.mockWayPointEntry();
-        getFirstViewHolder(new ArrayList<WaypointEntry>(Arrays.asList(entry)));
+        getFirstViewHolder(new ArrayList<>(Collections.singletonList(entry)));
         // by default row should have removable view visible.
         assertThat(mWaypointsListViewHolder.getRemovableView().getVisibility(), equalTo(View.VISIBLE));
         mWaypointsListViewHolder.getRemovableView()
@@ -92,7 +93,7 @@ public class WaypointListAdapterTest extends RobolectricTest implements Waypoint
     public void removeButtonShouldNotRemoveRowWhenNotVisible() {
         final WaypointEntry entry = MockUtils.mockWayPointEntry();
         entry.setRemovable(false);
-        getFirstViewHolder(new ArrayList<WaypointEntry>(Arrays.asList(entry)));
+        getFirstViewHolder(new ArrayList<>(Collections.singletonList(entry)));
         // by default row should have removable view visible.
         assertThat(mWaypointsListViewHolder.getRemovableView().getVisibility(), equalTo(View.GONE));
     }
@@ -101,7 +102,7 @@ public class WaypointListAdapterTest extends RobolectricTest implements Waypoint
     public void dragButtonShouldBeVisibleWhenSet() {
         final WaypointEntry entry = MockUtils.mockWayPointEntry();
         entry.setDraggable(false);
-        getFirstViewHolder(new ArrayList<WaypointEntry>(Arrays.asList(entry)));
+        getFirstViewHolder(new ArrayList<>(Collections.singletonList(entry)));
         // by default row should have removable view visible.
         assertThat(mWaypointsListViewHolder.getDraggableView().getVisibility(), equalTo(View.GONE));
     }
@@ -109,7 +110,7 @@ public class WaypointListAdapterTest extends RobolectricTest implements Waypoint
     @Test
     public void addedEntriesShouldHaveCorrectFromToPrefixes() {
         final WaypointEntry entry = new WaypointEntry("Test");
-        prepareViewHoldersList(new ArrayList<WaypointEntry>(Arrays.asList(entry, entry, entry)));
+        prepareViewHoldersList(new ArrayList<>(Arrays.asList(entry, entry, entry)));
         WaypointListAdapter.WaypointsListViewHolder holder;
 
         holder = getViewHolderFromList(0);
@@ -131,7 +132,7 @@ public class WaypointListAdapterTest extends RobolectricTest implements Waypoint
     public void validEntryShouldNotHaveFromToPrefix() {
         final WaypointEntry entry = MockUtils.mockWayPointEntry();
         entry.setName("Test");
-        getFirstViewHolder(new ArrayList<WaypointEntry>(Arrays.asList(entry)));
+        getFirstViewHolder(new ArrayList<>(Collections.singletonList(entry)));
         assertThat(mWaypointsListViewHolder.getEntryView().getText().toString(), equalTo("Test"));
     }
 

@@ -21,8 +21,10 @@ apply plugin: 'pmd'
 check.dependsOn 'checkstyle', 'findbugs', 'pmd', 'lint'
 
 checkstyle {
-    toolVersion '8.10.1'
+    toolVersion '8.12'
     ignoreFailures = false
+    maxErrors = 0
+    maxWarnings = 0
     configFile file("${project.rootDir}/quality/checkstyle/checkstyle.xml")
     configProperties.checkstyleSuppressionFilterPath = file(
             "${project.rootDir}/quality/checkstyle/suppressions.xml")
@@ -68,10 +70,9 @@ task findbugs(type: FindBugs, dependsOn: "assemble", group: 'verification') {
 }
 
 pmd {
-    toolVersion = '6.4.0'
+    toolVersion = '6.7.0'
     ignoreFailures = false
     ruleSetFiles = files("${project.rootDir}/quality/pmd/pmd-ruleset.xml")
-    ruleSets = []
 }
 
 task pmd(type: Pmd, dependsOn: "assemble", group: 'verification') {

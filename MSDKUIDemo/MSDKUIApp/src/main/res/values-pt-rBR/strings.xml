@@ -16,8 +16,14 @@
   -->
 
 <resources>
+  <string name="msdkui_app_about">About</string>
+  <string name="msdkui_app_about_info_part_four">Currently, the HERE SDK UI Kit provides you components to build a route planner and a guidance experience. Check out our user guide for more information.</string>
+  <string name="msdkui_app_about_info_part_one">The HERE Mobile SDK UI Kit enables you to build beautiful interfaces for Android and iOS.</string>
+  <string name="msdkui_app_about_info_part_three">The HERE Mobile SDK UI Kit gives access to modular and highly customizable UI components and controls that allow you to provide an interactive user interface for your app. With just a few lines of code you can now build a full UI when developing with the Premium edition of the HERE Mobile SDK. This means reduced development time and a faster time to market. So, for example, where you would normally need several days to build a maneuver list using our native APIs, with the new UI kit, you\'ll only a few hours. However, if needed, the UI Kit still allows you to modify the appearance (e.g. colors, dimensions) and behavior (e.g. data presentation, logic, flow, subcomponents) of some UI controls.</string>
+  <string name="msdkui_app_about_info_part_two">When it comes to any application, the user interface defines the experience you provide when someone interacts with your software. It can mean the difference between acquiring and retaining users or deterring them from returning to your app. We understand how critical this is to your success, so we pre-built a variety of screens with full functionality that can be used directly in your application. They are available today through the HERE Mobile SDK UI Kit for Android and iOS.</string>
   <string name="msdkui_app_add">Adicionar</string>
   <string name="msdkui_app_add_waypoint">Adicionar parada</string>
+  <string name="msdkui_app_app_version">App version</string>
   <string name="msdkui_app_back">Voltar uma etapa</string>
   <string name="msdkui_app_cancel">Cancelar</string>
   <string name="msdkui_app_collapse">Mostrar menos</string>
@@ -26,12 +32,15 @@
   <string name="msdkui_app_drag">Arrastar</string>
   <string name="msdkui_app_expand">Mostrar mais</string>
   <string name="msdkui_app_guidance_button_end">Parar</string>
+  <string name="msdkui_app_guidance_button_showmaneuvers">See manoeuvres</string>
+  <string name="msdkui_app_guidance_button_showmap">Exiba o mapa</string>
   <string name="msdkui_app_guidance_button_start">Iniciar navegação</string>
   <string name="msdkui_app_guidance_start_simulation">A guidance simulation will start</string>
   <string name="msdkui_app_guidance_teaser_description">Ajude seus usuários a chegar em seus destinos com a orientação ponto-a-ponto.</string>
   <string name="msdkui_app_guidance_teaser_title">Navegação de carro</string>
   <string name="msdkui_app_guidance_waypoint_subtitle">Toque no mapa para definir o seu destino</string>
   <string name="msdkui_app_guidance_waypoint_title">Navegação de carro</string>
+  <string name="msdkui_app_here_sdk_version">HERE SDK version</string>
   <string name="msdkui_app_hint_collapse">Mostrar menos paradas.</string>
   <string name="msdkui_app_hint_expand">Mostrar mais paradas.</string>
   <string name="msdkui_app_info">Informações do aplicativo</string>
@@ -49,10 +58,11 @@
   <string name="msdkui_app_rp_teaser_title">Planejador de rota</string>
   <string name="msdkui_app_rp_waypoint_subtitle">Toque ou toque e segure no mapa</string>
   <string name="msdkui_app_settings">Config.</string>
-  <string name="msdkui_app_stop_navigation">Stop navigation</string>
+  <string name="msdkui_app_stop_navigation">Parar navegação</string>
   <string name="msdkui_app_swap">Trocar</string>
   <string name="msdkui_app_swap_waypoints">Trocar paradas</string>
   <string name="msdkui_app_teaser_link">Dê uma olhada</string>
+  <string name="msdkui_app_ui_kit_version">MSDKUI version</string>
   <string name="msdkui_app_userposition_notfound">Não é possível localizá-lo</string>
   <string name="msdkui_app_userposition_notfound_subtitle">Please make sure the location setting is switched on in your device.</string>
   <string name="msdkui_app_userposition_search">Getting your location</string>

@@ -33,9 +33,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-import static com.here.MockUtils.ROAD_NAME;
-import static com.here.MockUtils.ROAD_NUMBER;
-import static com.here.android.mpa.routing.Maneuver.Action.LEAVE_HIGHWAY;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -80,25 +77,26 @@ public class GuidanceManeuverUtilTest extends RobolectricTest {
     }
 
     @Test
-    public void testNextManeuverStreetName() throws Exception {
+    public void testNextManeuverStreetName() {
         final Maneuver maneuver = MockUtils.mockManeuver();
-        when(maneuver.getNextRoadName()).thenReturn(ROAD_NAME);
-        when(maneuver.getNextRoadNumber()).thenReturn(ROAD_NUMBER);
+        when(maneuver.getNextRoadName()).thenReturn(MockUtils.ROAD_NAME);
+        when(maneuver.getNextRoadNumber()).thenReturn(MockUtils.ROAD_NUMBER);
         final Context context = mock(Context.class);
         doAnswer(invocation -> {
             return invocation.getArguments()[1] + " " + invocation.getArguments()[2];
         }).when(context).getString(anyInt(), Matchers.<String>anyVararg());
         String street = GuidanceManeuverUtil.determineNextManeuverStreet(context, maneuver,
                 mock(GuidanceManeuverPanelPresenter.class));
-        assertThat(street, is(ROAD_NUMBER + " " + ROAD_NAME));
+        assertThat(street, is(MockUtils.ROAD_NUMBER + " " + MockUtils.ROAD_NAME));
     }
 
     @Test
-    public void testNextManeuverStreetNameWhenSignPost() throws Exception {
+    public void testNextManeuverStreetNameWhenSignPost() {
         final Maneuver maneuver = MockUtils.mockManeuver();
-        when(maneuver.getNextRoadName()).thenReturn(ROAD_NAME);
-        when(maneuver.getNextRoadNumber()).thenReturn(ROAD_NUMBER);
-        when(maneuver.getAction()).thenReturn(LEAVE_HIGHWAY);
+        when(maneuver.getNextRoadName()).thenReturn(MockUtils.ROAD_NAME);
+        when(maneuver.getNextRoadNumber()).thenReturn(MockUtils.ROAD_NUMBER);
+        when(maneuver.getAction()).thenReturn(Maneuver.Action.LEAVE_HIGHWAY);
+
         Signpost signpost = mock(Signpost.class);
         Mockito.when(signpost.getExitNumber()).thenReturn("52");
         Mockito.when(maneuver.getSignpost()).thenReturn(signpost);
@@ -108,11 +106,11 @@ public class GuidanceManeuverUtilTest extends RobolectricTest {
         }).when(context).getString(anyInt(), Matchers.<String>anyVararg());
         String street = GuidanceManeuverUtil.determineNextManeuverStreet(context, maneuver,
                 mock(GuidanceManeuverPanelPresenter.class));
-        assertThat(street, is(ROAD_NUMBER + " " + ROAD_NAME));
+        assertThat(street, is(MockUtils.ROAD_NUMBER + " " + MockUtils.ROAD_NAME));
     }
 
     @Test
-    public void testSignPostStreet() throws Exception {
+    public void testSignPostStreet() {
         final String signPostExitText = "exitText";
         final Maneuver maneuver = MockUtils.mockManeuver();
         when(maneuver.getNextRoadName()).thenReturn("");
@@ -142,6 +140,6 @@ public class GuidanceManeuverUtilTest extends RobolectricTest {
         }).when(context).getString(anyInt(), Matchers.<String>anyVararg());
         String street = GuidanceManeuverUtil.determineNextManeuverStreet(context, maneuver,
                 mock(GuidanceManeuverPanelPresenter.class));
-        assertThat(street, is(ROAD_NUMBER + " " + ROAD_NAME));
+        assertThat(street, is(MockUtils.ROAD_NUMBER + " " + MockUtils.ROAD_NAME));
     }
 }

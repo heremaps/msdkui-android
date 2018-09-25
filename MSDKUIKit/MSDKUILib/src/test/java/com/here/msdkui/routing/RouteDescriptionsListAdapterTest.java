@@ -34,6 +34,7 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static junit.framework.Assert.assertNotNull;
@@ -50,13 +51,11 @@ import static org.powermock.api.mockito.PowerMockito.doReturn;
 @PowerMockIgnore("com.here.msdkui.routing.SectionBar")
 public class RouteDescriptionsListAdapterTest extends RobolectricTest {
 
-    private boolean mIsCallbackCalled;
     private RouteDescriptionListAdapter mRoutesDescriptionsListAdapter;
     private RouteDescriptionListAdapter.ViewHolder mViewHolder;
 
     @Before
     public void setUp() {
-        mIsCallbackCalled = false;
     }
 
     @Test
@@ -69,7 +68,7 @@ public class RouteDescriptionsListAdapterTest extends RobolectricTest {
     @Test
     public void testUi() {
         final Route route = new MockUtils.MockRouteBuilder().getRoute();
-        getFirstViewHolder(new ArrayList<Route>(Arrays.asList(route)));
+        getFirstViewHolder(new ArrayList<>(Collections.singletonList(route)));
         assertNotNull(mViewHolder.itemView.findViewById(R.id.desc_type_icon));
         assertNotNull(mViewHolder.itemView.findViewById(R.id.desc_details));
         assertNotNull(mViewHolder.itemView.findViewById(R.id.desc_traffic_warning));

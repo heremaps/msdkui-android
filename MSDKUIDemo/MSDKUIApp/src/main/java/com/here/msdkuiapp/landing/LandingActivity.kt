@@ -21,25 +21,34 @@ import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.View
 import com.here.android.mpa.common.ApplicationContext
 import com.here.android.mpa.common.MapEngine
+import com.here.android.mpa.common.OnEngineInitListener
+import com.here.android.mpa.guidance.VoiceCatalog
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.base.BaseActivity
 import com.here.msdkuiapp.guidance.GuidanceRouteSelectionActivity
+import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
 import com.here.msdkuiapp.routing.RoutingActivity
+import kotlinx.android.extensions.CacheImplementation
+import kotlinx.android.extensions.ContainerOptions
 import kotlinx.android.synthetic.main.activity_landing.*
 
 /**
  * Activity class to show options to choose after splash screen.
  */
+@ContainerOptions(CacheImplementation.NO_CACHE)
 class LandingActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing)
-        MapEngine.getInstance().init(ApplicationContext(applicationContext), {})
+        MapEngine.getInstance().init(ApplicationContext(applicationContext), OnEngineInitListener { error ->
+            if (error == OnEngineInitListener.Error.NONE) downloadVoicePackage(VoiceCatalog.getInstance())
+        })
         setUpList()
     }
 
@@ -84,6 +93,27 @@ class LandingActivity : BaseActivity() {
             if (isActive) {
                 stop()
             }
+        }
+    }
+
+    /**
+     * Downloads english voice package for voice guidance.
+     *
+     * @param voiceCatalog [VoiceCatalog] to download the voice.
+     */
+    fun downloadVoicePackage(voiceCatalog: VoiceCatalog) {
+        // english language female voice skin id. this id can be get from downloading catalog but we can skip it for now.
+        val voiceSkinId = 201L
+        if (!voiceCatalog.isLocalVoiceSkin(voiceSkinId)) {
+            voiceCatalog.downloadVoice(voiceSkinId, VoiceCatalog.OnDownloadDoneListener { error ->
+                if (error == VoiceCatalog.Error.NONE) {
+                    navigationManager!!.voiceGuidanceOptions.voiceSkin = voiceCatalog.getLocalVoiceSkin(voiceSkinId)
+                } else {
+                    Log.e(LandingActivity::class.java.name, "Error while downloading voice package $error")
+                }
+            })
+        } else {
+            navigationManager!!.voiceGuidanceOptions.voiceSkin = voiceCatalog.getLocalVoiceSkin(voiceSkinId)
         }
     }
 }

@@ -54,7 +54,7 @@ class GuidanceContracts {
          * @param entry [WaypointEntry]
          * @param route [Route] to be rendered on map.
          */
-        fun populateUI(entry: WaypointEntry, route: Route)
+        fun populateUI(entry: WaypointEntry, route: Route, listVisible: Boolean)
 
         /**
          * To be called when routing is failed.
@@ -62,6 +62,13 @@ class GuidanceContracts {
          * @param reason reason for failure.
          */
         fun routingFailed(reason: String)
+
+        /**
+         * To be called when showing/hiding route maneuvers list
+         *
+         * @param listVisible true if route maneuvers list is visible, false otherwise.
+         */
+        fun toggleSteps(listVisible: Boolean)
     }
 
     /**

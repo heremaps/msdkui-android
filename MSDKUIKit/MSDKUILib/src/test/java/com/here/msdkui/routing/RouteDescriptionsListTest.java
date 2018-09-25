@@ -16,10 +16,6 @@
 
 package com.here.msdkui.routing;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.os.Bundle;
 import android.util.AttributeSet;
 
 import com.here.MockUtils;
@@ -34,7 +30,6 @@ import com.here.android.mpa.routing.RouteResult;
 import com.here.android.mpa.routing.RouteTta;
 import com.here.msdkui.R;
 
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -42,14 +37,13 @@ import org.robolectric.Robolectric;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
-import static org.hamcrest.CoreMatchers.any;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.powermock.api.mockito.PowerMockito.doReturn;
 import static org.powermock.api.mockito.PowerMockito.mock;
 import static org.powermock.api.mockito.PowerMockito.when;
 
@@ -90,7 +84,7 @@ public class RouteDescriptionsListTest extends RobolectricTest {
     public void setRouteShouldAddRoutesRow() {
         final Route route1 = new MockUtils.MockRouteBuilder().getRoute();
         final Route route2 = new MockUtils.MockRouteBuilder().getRoute();
-        mRoutesDescriptionList.setRoutes(new ArrayList<Route>(Arrays.asList(route1, route2)));
+        mRoutesDescriptionList.setRoutes(new ArrayList<>(Arrays.asList(route1, route2)));
         assertThat(mRoutesDescriptionList.getAdapter().getItemCount(), equalTo(2));
         assertNotNull(mRoutesDescriptionList.getRoutes());
     }
@@ -103,7 +97,7 @@ public class RouteDescriptionsListTest extends RobolectricTest {
     @Test
     public void setRouteResultShouldAddRoutesRow() {
         final RouteResult route = MockUtils.mockRouteResult();
-        mRoutesDescriptionList.setRoutesResult(new ArrayList<RouteResult>(Arrays.asList(route)));
+        mRoutesDescriptionList.setRoutesResult(new ArrayList<>(Collections.singletonList(route)));
         assertThat(mRoutesDescriptionList.getAdapter().getItemCount(), equalTo(1));
         assertNotNull(mRoutesDescriptionList.getRoutes());
     }
@@ -121,45 +115,45 @@ public class RouteDescriptionsListTest extends RobolectricTest {
 
     @Test
     public void testRoutesSorting() {
-        int length_1 = 10;
-        int length_2 = 15;
-        int tta_1 = 1;
-        int tta_2 = 3;
-        final Route route_1 = new MockUtils.MockRouteBuilder().getRoute();
-        final Route route_2 = new MockUtils.MockRouteBuilder().getRoute();
-        final RouteTta routeTta_1 = mock(RouteTta.class);
-        final RouteTta routeTta_2 = mock(RouteTta.class);
+        int length1 = 10;
+        int length2 = 15;
+        int tta1 = 1;
+        int tta2 = 3;
+        final Route route1 = new MockUtils.MockRouteBuilder().getRoute();
+        final Route route2 = new MockUtils.MockRouteBuilder().getRoute();
+        final RouteTta routeTta1 = mock(RouteTta.class);
+        final RouteTta routeTta2 = mock(RouteTta.class);
 
-        when(routeTta_1.getDuration()).thenReturn(tta_1);
-        when(routeTta_2.getDuration()).thenReturn(tta_2);
-        when(route_1.getLength()).thenReturn(length_1);
-        when(route_1.getTta(Route.TrafficPenaltyMode.OPTIMAL, Route.WHOLE_ROUTE)).thenReturn(routeTta_1);
-        when(route_2.getLength()).thenReturn(length_2);
-        when(route_2.getTta(Route.TrafficPenaltyMode.OPTIMAL, Route.WHOLE_ROUTE)).thenReturn(routeTta_2);
+        when(routeTta1.getDuration()).thenReturn(tta1);
+        when(routeTta2.getDuration()).thenReturn(tta2);
+        when(route1.getLength()).thenReturn(length1);
+        when(route1.getTta(Route.TrafficPenaltyMode.OPTIMAL, Route.WHOLE_ROUTE)).thenReturn(routeTta1);
+        when(route2.getLength()).thenReturn(length2);
+        when(route2.getTta(Route.TrafficPenaltyMode.OPTIMAL, Route.WHOLE_ROUTE)).thenReturn(routeTta2);
 
         // ascending by distance
         mRoutesDescriptionList.setSortType(RouteDescriptionList.SortType.DISTANCE);
         mRoutesDescriptionList.setSortOrder(RouteDescriptionList.SortOrder.ASCENDING);
-        mRoutesDescriptionList.setRoutes(new ArrayList<Route>(Arrays.asList(route_1, route_2)));
-        assertEquals(route_1, mRoutesDescriptionList.getRoutes().get(0));
+        mRoutesDescriptionList.setRoutes(new ArrayList<>(Arrays.asList(route1, route2)));
+        assertEquals(route1, mRoutesDescriptionList.getRoutes().get(0));
 
         // descending by distance
         mRoutesDescriptionList.setSortType(RouteDescriptionList.SortType.DISTANCE);
         mRoutesDescriptionList.setSortOrder(RouteDescriptionList.SortOrder.DESCENDING);
-        mRoutesDescriptionList.setRoutes(new ArrayList<Route>(Arrays.asList(route_1, route_2)));
-        assertEquals(route_1, mRoutesDescriptionList.getRoutes().get(1));
+        mRoutesDescriptionList.setRoutes(new ArrayList<>(Arrays.asList(route1, route2)));
+        assertEquals(route1, mRoutesDescriptionList.getRoutes().get(1));
 
         // ascending by tta
         mRoutesDescriptionList.setSortType(RouteDescriptionList.SortType.TOTAL_TIME);
         mRoutesDescriptionList.setSortOrder(RouteDescriptionList.SortOrder.ASCENDING);
-        mRoutesDescriptionList.setRoutes(new ArrayList<Route>(Arrays.asList(route_1, route_2)));
-        assertEquals(route_1, mRoutesDescriptionList.getRoutes().get(0));
+        mRoutesDescriptionList.setRoutes(new ArrayList<>(Arrays.asList(route1, route2)));
+        assertEquals(route1, mRoutesDescriptionList.getRoutes().get(0));
 
         // descending by tta
         mRoutesDescriptionList.setSortType(RouteDescriptionList.SortType.TOTAL_TIME);
         mRoutesDescriptionList.setSortOrder(RouteDescriptionList.SortOrder.DESCENDING);
-        mRoutesDescriptionList.setRoutes(new ArrayList<Route>(Arrays.asList(route_1, route_2)));
-        assertEquals(route_1, mRoutesDescriptionList.getRoutes().get(1));
+        mRoutesDescriptionList.setRoutes(new ArrayList<>(Arrays.asList(route1, route2)));
+        assertEquals(route1, mRoutesDescriptionList.getRoutes().get(1));
     }
 
     @Test(expected = IllegalArgumentException.class)

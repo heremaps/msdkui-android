@@ -21,7 +21,7 @@ import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.isSelected
 import android.support.test.espresso.matcher.ViewMatchers.withText
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getTextView
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onDatePicker
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerTransportPanel
@@ -31,10 +31,9 @@ import com.here.msdkuiapp.espresso.impl.views.routeplanner.utils.WaypointData
 import android.view.View
 import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkui.routing.WaypointList
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType.TYPE_CAR
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType.TYPE_BICYCLE
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType.TYPE_WALK
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType.TYPE_TRUCK
+import com.here.msdkui.routing.RouteDescriptionHandler
+import com.here.msdkui.routing.RouteDescriptionList
+import com.here.msdkui.routing.RouteDescriptionItem
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerFromTextView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerToTextView
 import org.hamcrest.CoreMatchers.not
@@ -51,27 +50,17 @@ object RoutePlannerMatchers {
     /**
      * Check transportation mode type is selected on the panel
      */
-    fun checkTransModeSelected(transportMode: TransporType): RoutePlannerActions {
-        when (transportMode) {
-            TYPE_CAR -> isTransportModeSelected(TYPE_CAR)
-            TYPE_TRUCK -> isTransportModeSelected(TYPE_TRUCK)
-            TYPE_WALK -> isTransportModeSelected(TYPE_WALK)
-            TYPE_BICYCLE -> isTransportModeSelected(TYPE_BICYCLE)
-        }
-        return RoutePlannerActions
+    fun checkTransModeSelected(transportMode: TransportType): RoutePlannerMatchers {
+        onPlannerTransportPanel(transportMode).check(matches(isSelected()))
+        return this
     }
 
     /**
      * Check transportation mode type is not selected on the panel
      */
-    fun checkTransModeNotSelected(transportMode: TransporType): RoutePlannerActions {
-        when (transportMode) {
-            TYPE_CAR -> isTransportModeNotSelected(TYPE_CAR)
-            TYPE_TRUCK -> isTransportModeNotSelected(TYPE_TRUCK)
-            TYPE_WALK -> isTransportModeNotSelected(TYPE_WALK)
-            TYPE_BICYCLE -> isTransportModeNotSelected(TYPE_BICYCLE)
-        }
-        return RoutePlannerActions
+    fun checkTransModeNotSelected(transportMode: TransportType): RoutePlannerMatchers {
+        onPlannerTransportPanel(transportMode).check(matches(not(isSelected())))
+        return this
     }
 
     /**
@@ -113,7 +102,7 @@ object RoutePlannerMatchers {
      * Check waypoint list order matches with giver waypoints [List]<[String]> on route planner
      */
     fun isWaypointsReversed(expectedWaypoints: List<String>): Matcher<View> {
-        return object : TypeSafeMatcher<View>() {
+        return object: TypeSafeMatcher<View>() {
 
             var actualWaypoints = arrayListOf<String>()
 
@@ -130,16 +119,40 @@ object RoutePlannerMatchers {
             }
 
             override fun describeTo(description: Description) {
-                description.appendText("has waypoint list items order reversed: $actualWaypoints[]")
+                description.appendText("Has waypoint list items order reversed: $actualWaypoints[]")
             }
         }
     }
 
-    private fun isTransportModeSelected(transportMode: TransporType) {
-        onPlannerTransportPanel(transportMode).check(matches(isSelected()))
-    }
+    /**
+     * Check transportation icons correspond to icons in description and maneuver lists' items
+     */
+    fun withDrawableIcons(expectedId: Int, item: Int? = null): Matcher<View> {
 
-    private fun isTransportModeNotSelected(transportMode: TransporType) {
-        onPlannerTransportPanel(transportMode).check(matches(not(isSelected())))
+        return object : TypeSafeMatcher<View>() {
+
+            var resourceName: String? = null
+
+            override fun matchesSafely(view: View): Boolean {
+                val resources = view.context.resources
+                val expectedDrawable = resources.getDrawable(expectedId)
+                resourceName = resources.getResourceEntryName(expectedId)
+
+                return expectedDrawable != null && getActualId(view) == expectedId
+            }
+
+            override fun describeTo(description: Description) {
+                description.appendText("With drawable from resource id: ")
+                description.appendValue(expectedId)
+                description.appendText(String.format("[ %s ]", resourceName))
+            }
+
+            private fun getActualId(view: View): Int {
+                val applicationContext = view.context.applicationContext
+                val route = if (item != null) (view as RouteDescriptionList).routes[item] else (view as RouteDescriptionItem).route
+
+                return RouteDescriptionHandler(applicationContext, route).icon!!
+            }
+        }
     }
 }

@@ -27,6 +27,7 @@ import com.here.msdkui.R;
 
 import org.junit.Test;
 
+import static junit.framework.Assert.assertNotSame;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.core.Is.is;
@@ -94,7 +95,6 @@ public class ThemeUtilTest extends RobolectricTest {
     public void testGetStringWhenTypeValueIsNull() {
         final String valueStr = "value";
         TypedArray typedArray = mock(TypedArray.class);
-        TypedValue typedValue = spy(new TypedValue());
         when(typedArray.getString(anyInt())).thenReturn(valueStr);
         String ret = ThemeUtil.getString(typedArray, anyInt());
         assertNull(ret);
@@ -103,14 +103,14 @@ public class ThemeUtilTest extends RobolectricTest {
     @Test
     public void testGetColor() {
         int color = ThemeUtil.getColor(getApplicationContext(), R.attr.colorAccentLight);
-        assertTrue(color != 0);
+        assertNotSame(0, color);
         color = ThemeUtil.getColor(getApplicationContext(), R.attr.actionBarDivider);
-        assertTrue(color == Color.CYAN);  // in case of error
+        assertNotSame(Color.CYAN, color);  // in case of error
     }
 
     @Test
     public void testStyleId() {
         int style = ThemeUtil.getStyleId(getContextWithTheme(), R.attr.guidanceManeuverPanelSecondaryText);
-        assertTrue(style != 0);
+        assertNotSame(0, style);
     }
 }

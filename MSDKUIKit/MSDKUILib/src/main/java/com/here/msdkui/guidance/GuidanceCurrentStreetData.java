@@ -24,27 +24,6 @@ import android.os.Parcelable;
  */
 public class GuidanceCurrentStreetData implements Parcelable {
 
-    private String mCurrentStreet;
-    private int mBackgroundColor;
-
-    /**
-     * Constructs a new instance using provided street name and background color.
-     *
-     * @param currentStreet
-     *          name of the street.
-     * @param backgroundColor
-     *          a color value for a background used by {@link GuidanceCurrentStreet}.
-     */
-    public GuidanceCurrentStreetData(String currentStreet, int backgroundColor) {
-        mCurrentStreet = currentStreet;
-        mBackgroundColor = backgroundColor;
-    }
-
-    /* package */ GuidanceCurrentStreetData(Parcel in) {
-        mCurrentStreet = in.readString();
-        mBackgroundColor = in.readInt();
-    }
-
     /**
      * Creator for parcelable.
      */
@@ -59,6 +38,27 @@ public class GuidanceCurrentStreetData implements Parcelable {
             return new GuidanceCurrentStreetData[size];
         }
     };
+
+    private final String mCurrentStreet;
+    private final int mBackgroundColor;
+
+    /**
+     * Constructs a new instance using provided street name and background color.
+     *
+     * @param currentStreet
+     *          name of the street.
+     * @param backgroundColor
+     *          a color value for a background used by {@link GuidanceCurrentStreet}.
+     */
+    public GuidanceCurrentStreetData(String currentStreet, int backgroundColor) {
+        mCurrentStreet = currentStreet;
+        mBackgroundColor = backgroundColor;
+    }
+
+    GuidanceCurrentStreetData(Parcel in) {
+        mCurrentStreet = in.readString();
+        mBackgroundColor = in.readInt();
+    }
 
     /**
      * Gets name of the current street.

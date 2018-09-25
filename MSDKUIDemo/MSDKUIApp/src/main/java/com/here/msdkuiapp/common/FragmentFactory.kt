@@ -18,11 +18,15 @@ package com.here.msdkuiapp.common
 
 import android.app.Fragment
 import com.here.msdkuiapp.common.mapselection.WaypointSelectionFragment
-import com.here.msdkuiapp.guidance.GuidanceCurrentStreetFragment
+import com.here.msdkuiapp.position.LocationPermissionFragment
+import com.here.msdkuiapp.guidance.GuidanceNextManeuverPanelFragment
+import com.here.msdkuiapp.guidance.GuidanceEstimatedArrivalViewFragment
+import com.here.msdkuiapp.guidance.GuidanceCurrentSpeedFragment
+import com.here.msdkuiapp.guidance.GuidanceSpeedLimitFragment
 import com.here.msdkuiapp.guidance.GuidanceManeuverPanelFragment
 import com.here.msdkuiapp.guidance.GuidanceRoutePreviewFragment
 import com.here.msdkuiapp.guidance.GuidanceWaypointSelectionFragment
-import com.here.msdkuiapp.position.LocationPermissionFragment
+import com.here.msdkuiapp.guidance.GuidanceCurrentStreetFragment
 import com.here.msdkuiapp.routing.*
 
 /**
@@ -72,6 +76,18 @@ object FragmentFactory {
                     }
                     isAssignableFrom(GuidanceCurrentStreetFragment::class.java) -> {
                         GuidanceCurrentStreetFragment.newInstance()
+                    }
+                    isAssignableFrom(GuidanceNextManeuverPanelFragment::class.java) -> {
+                        GuidanceNextManeuverPanelFragment.newInstance()
+                    }
+                    isAssignableFrom(GuidanceEstimatedArrivalViewFragment::class.java) -> {
+                        GuidanceEstimatedArrivalViewFragment.newInstance()
+                    }
+                    isAssignableFrom(GuidanceCurrentSpeedFragment::class.java) -> {
+                        GuidanceCurrentSpeedFragment.newInstance()
+                    }
+                    isAssignableFrom(GuidanceSpeedLimitFragment::class.java) -> {
+                        GuidanceSpeedLimitFragment.newInstance()
                     }
                     else ->
                         throw IllegalArgumentException("Please extend fragment factory create with class: ${fragmentClass.name}")

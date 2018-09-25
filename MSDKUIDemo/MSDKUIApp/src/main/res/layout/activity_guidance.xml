@@ -16,6 +16,7 @@
   -->
 
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -29,12 +30,18 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true" />
 
+        <FrameLayout
+            android:id="@+id/next_maneuver_panel_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/maneuver_panel_container" />
+
         <fragment
             android:id="@+id/mapfragment_wrapper"
             class="com.here.msdkuiapp.map.MapFragmentWrapper"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/maneuver_panel_container"
+            android:layout_below="@+id/next_maneuver_panel_container"
             android:contentDescription="@string/msdkui_app_map_view" />
 
         <FrameLayout
@@ -46,11 +53,21 @@
 
     <FrameLayout
         android:id="@+id/current_street_name_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:layout_marginBottom="120dp"/>
+        style="@style/GuidanceCurrentStreetAppPlacement"/>
 
-    <include layout="@layout/guidance_status_panel" />
+    <FrameLayout
+        android:id="@+id/speed_limit_container"
+        style="@style/GuidanceSpeedLimit" />
+
+    <View
+        android:id="@+id/grayed_screen_view_first_part"
+        style="@style/GuidanceGrayedScreenFirstPart" />
+
+    <com.here.msdkuiapp.guidance.GuidanceDashBoardView
+        android:id="@+id/guidance_dashboard_view"
+        style="@style/GuidanceDashBoard"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="@dimen/guidance_status_panel_peek_height"
+        app:layout_behavior="android.support.design.widget.BottomSheetBehavior" />
 
 </android.support.design.widget.CoordinatorLayout>

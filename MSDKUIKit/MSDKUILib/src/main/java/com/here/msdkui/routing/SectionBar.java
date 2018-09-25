@@ -16,6 +16,7 @@
 
 package com.here.msdkui.routing;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Rect;
@@ -93,6 +94,9 @@ public final class SectionBar extends LinearLayout {
         return view;
     }
 
+    /**
+     * Bar view.
+     */
     private static class BarView extends View {
         private List<SectionModel> mModels;
         private float mScale;
@@ -119,7 +123,7 @@ public final class SectionBar extends LinearLayout {
 
             int left;
             int right;
-            final Rect bounds = new Rect();
+            @SuppressLint("DrawAllocation") final Rect bounds = new Rect();
 
             for (final SectionModel model : models) {
                 left = (int) (model.getBounds().getLower() * getWidth() * mScale);

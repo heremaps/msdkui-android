@@ -93,7 +93,9 @@ public class CustomRecyclerView extends RecyclerView {
     private Drawable getVerticalDivider(final Context context) {
         final Drawable verticalDivider = ContextCompat.getDrawable(context, R.drawable.list_item_divider);
         final int dividerColor = getListDividerColor(context);
-        verticalDivider.setColorFilter(dividerColor, PorterDuff.Mode.SRC_IN);
+        if (verticalDivider != null) {
+            verticalDivider.setColorFilter(dividerColor, PorterDuff.Mode.SRC_IN);
+        }
         return verticalDivider;
     }
 
@@ -115,13 +117,13 @@ public class CustomRecyclerView extends RecyclerView {
         mOnItemClickedListener = listener;
     }
 
-    /* package*/ void onItemClickedOuter(final int index, final View item) {
+    void onItemClickedOuter(final int index, final View item) {
         if (mOnItemClickedListener != null) {
             mOnItemClickedListener.onItemClicked(index, item);
         }
     }
 
-    /* package*/ void onItemLongClickedOuter(final int index, final View item) {
+    void onItemLongClickedOuter(final int index, final View item) {
         if (mOnItemClickedListener != null) {
             mOnItemClickedListener.onItemLongClicked(index, item);
         }
@@ -154,11 +156,11 @@ public class CustomRecyclerView extends RecyclerView {
     }
 
     /**
-     * Implementation of a {@link RecyclerView.OnItemTouchListener}.
+     * Implementation of a {@link android.support.v7.widget.RecyclerView.OnItemTouchListener}.
      */
     public static class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
-        /* package */ final OnItemClickedListener mListener;
-        /* package */ final GestureDetector mGestureDetector;
+        private final OnItemClickedListener mListener;
+        private final GestureDetector mGestureDetector;
 
         public RecyclerItemClickListener(final Context context, final RecyclerView recyclerView,
                 final OnItemClickedListener listener) {

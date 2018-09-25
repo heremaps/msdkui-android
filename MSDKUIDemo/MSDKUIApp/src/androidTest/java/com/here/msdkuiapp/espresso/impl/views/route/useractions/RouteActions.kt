@@ -30,7 +30,7 @@ import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.viewIsDisplayed
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ROUTE_RESULT_1
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
 import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteBarMatchers
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverDescriptionList
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescArrival
@@ -43,8 +43,8 @@ import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlan
 object RouteActions {
 
     /**
-    * Tap on route item on route list
-    */
+     * Tap on route item on route list
+     */
     fun tapRouteItemtOnDescList(routeItem: Int): RouteBarMatchers {
         // Tap on waypoint item on Route planner if displayed
         onRouteDescriptionList.check(matches(isDisplayed()))
@@ -87,7 +87,7 @@ object RouteActions {
     /**
      * Check Route result list description information
      */
-    fun checkRouteResultsList(transportType: TransporType): RouteActions {
+    fun checkRouteResultsList(transportType: TransportType): RouteActions {
         for (i in 0 until RouteMatchers.getItemsListCount(onRouteDescriptionList)) {
             RouteMatchers.checkRouteResultsItemsDisplayed(transportType, i)
             if (i == 1) swipeUpRouteList()

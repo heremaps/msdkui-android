@@ -17,7 +17,9 @@
 package com.here.msdkui.guidance;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
+import com.here.android.mpa.common.Image;
 import com.here.android.mpa.guidance.NavigationManager;
 import com.here.android.mpa.routing.Maneuver;
 import com.here.android.mpa.routing.Route;
@@ -36,6 +38,7 @@ import java.util.List;
  */
 public class GuidanceManeuverPanelPresenter extends BaseGuidancePresenter {
 
+    private static final int DESTINATION_THRESHOLD_DISTANCE = 10;
     private final Context mContext;
     private final List<GuidanceManeuverPanelListener> mListener = new ArrayList<>();
 
@@ -55,20 +58,40 @@ public class GuidanceManeuverPanelPresenter extends BaseGuidancePresenter {
     }
 
     @Override
+    public void handlePositionUpdate() {
+        handleManeuverEvent();
+    }
+
+    @Override
     public void handleManeuverEvent() {
         final Maneuver maneuver = getNextManeuver();
-        if (maneuver == null) {
-            return;
-        }
-        updateManeuverData(maneuver);
-        if (maneuver.getAction() == Maneuver.Action.END) {
-            notifyDestinationReached();
+        if (maneuver != null && maneuver.getAction() == Maneuver.Action.END) {
+            updateDestinationManeuverData(maneuver);
+        } else {
+            updateManeuverData(maneuver);
         }
     }
 
     @Override
-    protected void handleNewInstructionEvent() {
-        handleManeuverEvent();
+    protected void handleRerouteBegin() {
+        updateManeuverData(null);
+    }
+
+    /**
+     * Creates {@link GuidanceManeuverData} and notifies on the changes.
+     *
+     * @param maneuver
+     *         the maneuver to use.
+     */
+    private void updateDestinationManeuverData(Maneuver maneuver) {
+
+        final long distance = getDestinationDistance();
+        if (distance < DESTINATION_THRESHOLD_DISTANCE) {  // less than 10 meter.
+            notifyDestinationReached();
+        }
+        notifyDataChanged(new GuidanceManeuverData(getIcon(maneuver),
+                distance, getManeuverSignpost(maneuver), getStreet(maneuver),
+                getNextRoadIcon(maneuver)));
     }
 
     /**
@@ -78,9 +101,14 @@ public class GuidanceManeuverPanelPresenter extends BaseGuidancePresenter {
      *         the maneuver to use.
      */
     private void updateManeuverData(Maneuver maneuver) {
-        final GuidanceManeuverData data = new GuidanceManeuverData(getIcon(maneuver),
-                getNextManeuverDistance(), getManeuverSignpost(maneuver), getStreet(maneuver));
-        notifyDataChanged(data);
+        if (maneuver == null) {
+            notifyDataChanged(new GuidanceManeuverData(-1, -1,
+                    mContext.getString(R.string.msdkui_maneuverpanel_updating), ""));
+        } else {
+            notifyDataChanged(new GuidanceManeuverData(getIcon(maneuver),
+                    getNextManeuverDistance(), getManeuverSignpost(maneuver), getStreet(maneuver),
+                    getNextRoadIcon(maneuver)));
+        }
     }
 
     /**
@@ -114,9 +142,54 @@ public class GuidanceManeuverPanelPresenter extends BaseGuidancePresenter {
 
     /**
      * Gets the street name for {@link Maneuver}.
+     *
+     * @param maneuver
+     *         the {@link Maneuver} to get street name from.
+     *
+     * @return the street name.
      */
     private String getStreet(Maneuver maneuver) {
         return GuidanceManeuverUtil.determineNextManeuverStreet(mContext, maneuver, this);
+    }
+
+    /**
+     * Gets next road icon for given {@link Maneuver}.
+     *
+     * @param maneuver
+     *         the {@link Maneuver} to get next road icon from.
+     *
+     * @return {@link Bitmap} for next road icon.
+     */
+    private Bitmap getNextRoadIcon(Maneuver maneuver) {
+        final Image roadImage = maneuver.getNextRoadImage();
+        if (roadImage != null && roadImage.getHeight() > 0) {
+            return getScaledBitmap(roadImage);
+        }
+        return null;
+    }
+
+    /**
+     * Gets scaled bitmap from source image.
+     *
+     * @param source
+     *         input {@link Image} for scaled bitmap.
+     *
+     * @return scaled bitmap from input {@link Image}.
+     */
+    private Bitmap getScaledBitmap(Image source) {
+        final long originalWidth = source.getWidth();
+        final long originalHeight = source.getHeight();
+
+        final int maxHeight = mContext.getResources().getDimensionPixelSize(R.dimen.next_road_image_max_height);
+
+        int width = mContext.getResources().getDimensionPixelSize(R.dimen.next_road_image_max_width);
+        int height = (int) ((width * originalHeight) / originalWidth);
+
+        if (height > maxHeight) {
+            height = maxHeight;
+            width = (int) ((height * originalWidth) / originalHeight);
+        }
+        return source.getBitmap(width, height);
     }
 
     /**

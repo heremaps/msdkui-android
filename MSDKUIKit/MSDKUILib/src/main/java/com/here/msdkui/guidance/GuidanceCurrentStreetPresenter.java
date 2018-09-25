@@ -36,6 +36,8 @@ public class GuidanceCurrentStreetPresenter extends BaseGuidancePresenter {
 
     private final Context mContext;
 
+    private final List<GuidanceCurrentStreetListener> mListener = new ArrayList<>();
+
     /**
      * Constructs a new instance using a {@link NavigationManager} instance and
      * a route to follow during guidance.
@@ -51,12 +53,17 @@ public class GuidanceCurrentStreetPresenter extends BaseGuidancePresenter {
     }
 
     @Override
+    public void handleNewInstructionEvent() {
+        handleManeuverEvent();
+    }
+
+    @Override
     public void handleManeuverEvent() {
-        Maneuver nextManeuver = getNextManeuver();
+        final Maneuver nextManeuver = getNextManeuver();
         if (nextManeuver != null) {
-            String currentStreetInfo = GuidanceManeuverUtil.getCurrentManeuverStreet(mContext, getNextManeuver());
+            final String currentStreetInfo = GuidanceManeuverUtil.getCurrentManeuverStreet(mContext, nextManeuver);
             final GuidanceCurrentStreetData data = new
-                    GuidanceCurrentStreetData(currentStreetInfo, ThemeUtil.getColor(mContext, R.attr.colorAccent));
+                    GuidanceCurrentStreetData(currentStreetInfo, ThemeUtil.getColor(mContext, R.attr.colorPositive));
             notifyDataChanged(data);
         }
     }
@@ -71,8 +78,6 @@ public class GuidanceCurrentStreetPresenter extends BaseGuidancePresenter {
     protected void handleGpsRestore() {
         handleManeuverEvent();
     }
-
-    private final List<GuidanceCurrentStreetListener> mListener = new ArrayList<>();
 
     /**
      * Adds a {@link GuidanceCurrentStreetListener}.

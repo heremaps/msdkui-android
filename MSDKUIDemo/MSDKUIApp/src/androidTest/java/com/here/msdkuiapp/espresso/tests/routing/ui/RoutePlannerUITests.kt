@@ -26,8 +26,8 @@ import com.here.msdkuiapp.espresso.impl.core.CoreActions
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withListSize
 import com.here.msdkuiapp.espresso.impl.views.map.screens.MapView.onMapFragmentWrapper
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerBarMatchers.checkActionbarDisplayed
-import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerAddWaypointButton
-import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerSwapImageButton
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerAddWaypointButtonView
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerSwapImageButtonView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onOptionPanel
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerWaypointList
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onTransportationPanel
@@ -41,9 +41,12 @@ class RoutePlannerUITests: TestBase<SplashActivity>(SplashActivity::class.java) 
 
     @Before
     fun prepare() {
-        CoreActions.enterRoutePlanner()
+        CoreActions().enterRoutePlanner()
     }
 
+    /**
+     * MSDKUI-126: Select "From" on the map
+     */
     @Test
     @CompatibilityUITest
     fun testDefaultUI_whenRoutePlannerOpen() {
@@ -52,9 +55,9 @@ class RoutePlannerUITests: TestBase<SplashActivity>(SplashActivity::class.java) 
         // Map view is visible by default
         onMapFragmentWrapper.check(matches(isDisplayed()))
         // Check Swap button is visible and disabled by default.
-        onPlannerSwapImageButton.check(matches(isDisplayed())).check(matches(not(isEnabled())))
+        onPlannerSwapImageButtonView.check(matches(isDisplayed())).check(matches(not(isEnabled())))
         // Check Add/Plus button is visible to add more waypoints
-        onPlannerAddWaypointButton.check(matches(isDisplayed()))
+        onPlannerAddWaypointButtonView.check(matches(isDisplayed()))
         // Check Transportation panel is visible
         onTransportationPanel.check(matches(isDisplayed()))
         // Check Travel time panel is visible

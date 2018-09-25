@@ -16,22 +16,26 @@
 
 package com.here.msdkuiapp.landing
 
-import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import com.here.android.mpa.common.PositioningManager
+import com.here.android.mpa.guidance.NavigationManager
+import com.here.android.mpa.guidance.VoiceCatalog
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.guidance.GuidanceRouteSelectionActivity
+import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
 import com.here.msdkuiapp.routing.RoutingActivity
 import com.here.testutils.BaseTest
+import com.here.testutils.argumentCaptor
+import com.here.testutils.captureSafe
 import junit.framework.Assert.assertNotNull
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Test
+import org.mockito.ArgumentMatchers
 import org.mockito.Mockito.*
 import org.robolectric.Robolectric
-import org.robolectric.Shadows.shadowOf
 import org.robolectric.android.controller.ActivityController
 
 /**
@@ -79,10 +83,21 @@ class LandingActivityTest : BaseTest() {
         verify(mockPositioningManager).stop()
     }
 
-    private fun assertActivityStarted(activity: Activity, clazz: Class<out Activity>) {
-        val shadowActivity = shadowOf(activity)
-        val startedIntent = shadowActivity.nextStartedActivity
-        val shadowIntent = shadowOf(startedIntent)
-        assertThat(shadowIntent.intentClass.canonicalName, `is`(clazz.name))
+    @Test
+    fun testVoicePackageDownload() {
+        val activity = activityController.get()
+        val mockVoiceCatalog = mock(VoiceCatalog::class.java)
+        navigationManager = mock(NavigationManager::class.java, RETURNS_DEEP_STUBS)
+        `when`(mockVoiceCatalog.isLocalVoiceSkin(ArgumentMatchers.anyLong())).thenReturn(false)
+        val voiceCatalogDownloadListenerCapture = argumentCaptor<VoiceCatalog.OnDownloadDoneListener>()
+        activity.downloadVoicePackage(mockVoiceCatalog)
+        verify(mockVoiceCatalog).downloadVoice(ArgumentMatchers.anyLong(), captureSafe(voiceCatalogDownloadListenerCapture))
+        voiceCatalogDownloadListenerCapture.value.onDownloadDone(VoiceCatalog.Error.NONE)
+        verify(navigationManager!!).voiceGuidanceOptions
+
+        `when`(mockVoiceCatalog.isLocalVoiceSkin(ArgumentMatchers.anyLong())).thenReturn(true)
+        activity.downloadVoicePackage(mockVoiceCatalog)
+        verify(navigationManager!!, atLeastOnce()).voiceGuidanceOptions
     }
+
 }

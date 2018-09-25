@@ -16,13 +16,18 @@
 
 package com.here.msdkuiapp.routing
 
+import android.os.Build
 import android.view.View
 import com.here.testutils.BaseTest
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
+import org.robolectric.util.ReflectionHelpers
 
+/**
+ * Tests for [IconButton].
+ */
 class IconButtonTest : BaseTest() {
     private lateinit var button: IconButton
     private var isClicked: Boolean = false
@@ -35,22 +40,29 @@ class IconButtonTest : BaseTest() {
     }
 
     @Test
-    fun defaultType() {
+    fun testDefaultType() {
         assertTrue("Not the expected type .ADD!", button.type == IconButton.Type.ADD)
         assertNotNull("No image is set!", button.drawable)
     }
 
     @Test
-    fun customType() {
+    fun testCustomType() {
         button.type = IconButton.Type.OPTIONS
         assertTrue("Not the expected type .OPTIONS!", button.type == IconButton.Type.OPTIONS)
         assertNotNull("No image is set!", button.drawable);
     }
 
     @Test
-    fun callback() {
+    fun testCallback() {
         button.setOnClickListener { view: View? -> isClicked = true }
         button.performClick()
         assertTrue("The tap is not detected!", isClicked)
+    }
+
+    @Test
+    fun testUpdateImageAPI19() {
+        ReflectionHelpers.setStaticField(Build.VERSION::class.java, "SDK_INT", 19)
+        button = IconButton(applicationContext)
+        assertNotNull("No image is set!", button.drawable)
     }
 }

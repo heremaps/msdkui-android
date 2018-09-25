@@ -17,6 +17,7 @@
 package com.here.msdkuiapp.base
 
 import android.app.FragmentManager
+import com.here.msdkuiapp.common.AppActionBar
 import com.here.testutils.BaseTest
 import junit.framework.Assert.*
 import org.junit.Before
@@ -42,14 +43,14 @@ class BaseActivityTest : BaseTest() {
     }
 
     @Test
-    public fun testAppActionBar() {
+    fun testAppActionBar() {
         assertNotNull(activity.appActionBar)
         // since there is no coordinator so coordinator should be null
         assertNull(activity.coordinator)
     }
 
     @Test
-    public fun testBackBehaviourWhenNoCoodinator() {
+    fun testBackBehaviourWhenNoCoodinator() {
         // check when coordinator is null
         activity.onBackPressed()
         assertTrue(activity.isFinishing)
@@ -57,12 +58,19 @@ class BaseActivityTest : BaseTest() {
 
 
     @Test
-    public fun testBackBehaviourWhenCoodinator() {
+    fun testBackBehaviourWhenCoodinator() {
         val coordinatorImpl = mock(BaseCoordinatorImpl::class.java)
         // check when coordinator is not null
         activity.coordinator = coordinatorImpl
         activity.onBackPressed()
         verify(coordinatorImpl).onBackPressed()
+    }
+
+    @Test
+    fun testSetAndGetAppActionBar() {
+        val mockAppActionBar = mock(AppActionBar::class.java)
+        activity.appActionBar = mockAppActionBar
+        assertEquals(activity.appActionBar, mockAppActionBar)
     }
 
 }

@@ -16,12 +16,14 @@
 
 package com.here.msdkui.guidance;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Parcel;
 import android.support.v4.app.FragmentActivity;
 import android.view.AbsSavedState;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.here.RobolectricTest;
@@ -29,6 +31,7 @@ import com.here.msdkui.R;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -62,6 +65,8 @@ public class GuidanceManeuverPanelTest extends RobolectricTest {
         final TextView distanceView = (TextView) mGuidanceManeuverPanel.findViewById(R.id.distanceView);
         final TextView infoView2 = (TextView) mGuidanceManeuverPanel.findViewById(R.id.infoView2);
         final ImageView iconView = (ImageView) mGuidanceManeuverPanel.findViewById(R.id.maneuverIconView);
+        final ProgressBar busyProgressBar = (ProgressBar) mGuidanceManeuverPanel.findViewById(
+                R.id.busyStateProgressBar);
 
         assertEquals(infoView1.getVisibility(), View.VISIBLE);
         assertThat(infoView1.getText().toString(), is(getString(R.string.msdkui_maneuverpanel_nodata)));
@@ -75,6 +80,8 @@ public class GuidanceManeuverPanelTest extends RobolectricTest {
         assertEquals(infoView1.getVisibility(), View.VISIBLE);
         assertEquals(infoView2.getVisibility(), View.VISIBLE);
         assertEquals(iconView.getVisibility(), View.VISIBLE);
+        // but progress bar should be gone
+        assertEquals(busyProgressBar.getVisibility(), View.GONE);
 
         // verify the data
         assertThat(distanceView.getText(), is(equalTo(mDistance + " m")));
@@ -83,9 +90,56 @@ public class GuidanceManeuverPanelTest extends RobolectricTest {
     }
 
     @Test
+    public void testWhenManeuverIsNull() {
+        mGuidanceManeuverPanel.setManeuverData(null);
+        final TextView distanceView = (TextView) mGuidanceManeuverPanel.findViewById(R.id.distanceView);
+        final TextView infoView1 = (TextView) mGuidanceManeuverPanel.findViewById(R.id.infoView1);
+        final TextView infoView2 = (TextView) mGuidanceManeuverPanel.findViewById(R.id.infoView2);
+        final ImageView iconView = (ImageView) mGuidanceManeuverPanel.findViewById(R.id.maneuverIconView);
+        final ProgressBar busyProgressBar = (ProgressBar) mGuidanceManeuverPanel.findViewById(
+                R.id.busyStateProgressBar);
+
+        // null data should be hidden.
+        assertEquals(distanceView.getVisibility(), View.INVISIBLE);
+        assertEquals(infoView1.getVisibility(), View.GONE);
+        assertEquals(infoView2.getVisibility(), View.GONE);
+        assertEquals(iconView.getVisibility(), View.INVISIBLE);
+        assertEquals(busyProgressBar.getVisibility(), View.GONE);
+    }
+
+    @Test
+    public void testWhenManeuverForRouteRecalculation() {
+        mGuidanceManeuverPanel.setManeuverData(new GuidanceManeuverData(-1, -1,
+                getString(R.string.msdkui_maneuverpanel_updating), ""));
+        final TextView distanceView = (TextView) mGuidanceManeuverPanel.findViewById(R.id.distanceView);
+        final TextView infoView1 = (TextView) mGuidanceManeuverPanel.findViewById(R.id.infoView1);
+        final TextView infoView2 = (TextView) mGuidanceManeuverPanel.findViewById(R.id.infoView2);
+        final ImageView iconView = (ImageView) mGuidanceManeuverPanel.findViewById(R.id.maneuverIconView);
+        final ProgressBar busyProgressBar = (ProgressBar) mGuidanceManeuverPanel.findViewById(
+                R.id.busyStateProgressBar);
+
+        // null data should be hidden.
+        assertEquals(distanceView.getVisibility(), View.INVISIBLE);
+        assertEquals(infoView1.getVisibility(), View.VISIBLE);
+        assertThat(infoView1.getText().toString(), is(getString(R.string.msdkui_maneuverpanel_updating)));
+        assertEquals(infoView2.getVisibility(), View.INVISIBLE);
+        assertEquals(iconView.getVisibility(), View.INVISIBLE);
+        assertEquals(busyProgressBar.getVisibility(), View.VISIBLE);
+    }
+
+    @Test
+    public void testExtraIconView() {
+        final ImageView extraIconView = (ImageView) mGuidanceManeuverPanel.findViewById(R.id.extraIconView);
+        assertEquals(extraIconView.getVisibility(), View.INVISIBLE);
+        GuidanceManeuverData data = new GuidanceManeuverData(-1, -1, "", "", Mockito.mock(Bitmap.class));
+        mGuidanceManeuverPanel.setManeuverData(data);
+        assertEquals(extraIconView.getVisibility(), View.VISIBLE);
+    }
+
+    @Test
     public void testUIWhenSomeDataIsNull() {
 
-        GuidanceManeuverData data = createData(0, 0, null, null);
+        GuidanceManeuverData data = createData(0, -1, null, null);
         // create proper data to see if everything is fine.
         mGuidanceManeuverPanel.setManeuverData(data);
 
@@ -95,7 +149,7 @@ public class GuidanceManeuverPanelTest extends RobolectricTest {
         final ImageView iconView = (ImageView) mGuidanceManeuverPanel.findViewById(R.id.maneuverIconView);
 
         // null data should be hidden.
-        assertEquals(distanceView.getVisibility(), View.GONE);
+        assertEquals(distanceView.getVisibility(), View.INVISIBLE);
         assertEquals(infoView1.getVisibility(), View.GONE);
         assertEquals(infoView2.getVisibility(), View.GONE);
         assertEquals(iconView.getVisibility(), View.GONE);
@@ -138,14 +192,14 @@ public class GuidanceManeuverPanelTest extends RobolectricTest {
 
         final GuidanceManeuverData data = createData(mIconId, mDistance, mInfo1, mInfo2);
         GuidanceManeuverPanel.SavedState savedState = new GuidanceManeuverPanel.SavedState(AbsSavedState.EMPTY_STATE);
-        savedState.setStateToSave(data);
+        savedState.setManeuverData(data);
         Parcel parcel = Parcel.obtain();
         savedState.writeToParcel(parcel, savedState.describeContents());
         parcel.setDataPosition(0);
 
         GuidanceManeuverPanel.SavedState createdFromParcel = GuidanceManeuverPanel.SavedState.CREATOR.createFromParcel(
                 parcel);
-        assertNotNull(createdFromParcel.getSavedState());
+        assertNotNull(createdFromParcel.getManeuverData());
     }
 
     private GuidanceManeuverData createData(int iconId, long distance, String info1, String info2) {

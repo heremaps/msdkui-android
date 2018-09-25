@@ -29,9 +29,9 @@ import com.here.android.mpa.routing.RouteOptions;
 import com.here.msdkui.R;
 
 /**
- * A view that shows all supported elements of {@link RouteOptions.TransportMode} with or without content
- * fragment using a {@link TabLayout}. Each tab shows a transport mode. Only one transport mode can be selected
- * at a time.
+ * A view that shows all supported elements of {@link com.here.android.mpa.routing.RouteOptions.TransportMode}
+ * with or without content fragment using a {@link TabLayout}. Each tab shows a transport mode.
+ * Only one transport mode can be selected at a time.
  * This view can be customized by calling {@link TransportModePanel#setAdapter(TransportModePanelAdapter)}
  * to set a custom adapter. By default this component uses the {@link SimpleTransportModePanelAdapter}.
  */
@@ -163,8 +163,8 @@ public class TransportModePanel extends LinearLayout implements TabLayout.OnTabS
     }
 
     /**
-     * Gets the selected {@link RouteOptions.TransportMode}.
-     * @return the selected {@link RouteOptions.TransportMode}.
+     * Gets the selected {@link com.here.android.mpa.routing.RouteOptions.TransportMode}.
+     * @return the selected {@link com.here.android.mpa.routing.RouteOptions.TransportMode}.
      */
     public RouteOptions.TransportMode getSelectedTransportMode() {
         return mPanelAdapter.getTransportModes()
@@ -172,8 +172,10 @@ public class TransportModePanel extends LinearLayout implements TabLayout.OnTabS
     }
 
     /**
-     * Sets the {@link RouteOptions.TransportMode} that should be selected.
-     * @param transportMode the {@link RouteOptions.TransportMode} to be selected.
+     * Sets the {@link com.here.android.mpa.routing.RouteOptions.TransportMode}
+     * that should be selected.
+     * @param transportMode the {@link com.here.android.mpa.routing.RouteOptions.TransportMode}
+     *                     to be selected.
      */
     public void setSelectedTransportMode(final RouteOptions.TransportMode transportMode) {
         final TabLayout.Tab tab = mTabLayout.getTabAt(mPanelAdapter.getTransportModes().indexOf(transportMode));

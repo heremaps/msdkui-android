@@ -31,12 +31,15 @@ import com.here.msdkuiapp.R
 import com.here.msdkuiapp.appActionBar
 import com.here.msdkuiapp.coordinator
 import com.here.msdkuiapp.showProgressBar
+import kotlinx.android.extensions.CacheImplementation
+import kotlinx.android.extensions.ContainerOptions
 import kotlinx.android.synthetic.main.route_planner.*
 import java.util.*
 
 /**
  * Fragment to deal with route planner UI.
  */
+@ContainerOptions(CacheImplementation.NO_CACHE)
 class RoutePlannerFragment() : Fragment(), RoutingContracts.RoutePlanner {
 
     private var waypointList: WaypointList? = null
@@ -47,7 +50,7 @@ class RoutePlannerFragment() : Fragment(), RoutingContracts.RoutePlanner {
             presenter.trafficMode = value
         }
         get() = presenter.trafficMode
-        
+
     init {
         retainInstance = true
     }
@@ -118,10 +121,10 @@ class RoutePlannerFragment() : Fragment(), RoutingContracts.RoutePlanner {
 
     override fun onSwapReady(enable: Boolean) {
         swap_list?.run {
-            setOnClickListener({
+            setOnClickListener {
                 waypointList?.reverse()
                 presenter.swapClicked()
-            })
+            }
             isEnabled = enable
         }
     }

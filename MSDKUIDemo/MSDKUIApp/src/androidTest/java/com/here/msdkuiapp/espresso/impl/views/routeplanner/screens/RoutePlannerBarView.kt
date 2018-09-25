@@ -25,6 +25,7 @@ import android.support.test.espresso.matcher.ViewMatchers.withTagValue
 import android.view.View
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.RemoveWaypointBtn
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Matcher
@@ -37,13 +38,31 @@ object RoutePlannerBarView {
     /**
      * @return The [ViewInteraction] confirmation right image view icon on action bar
      */
-    val onPlannerBarRightImageIcon: ViewInteraction
+    val onPlannerBarRightImageIconView: ViewInteraction
         get() = onView(withId(R.id.ac_right_icon))
+
+    /**
+    * @return The [Matcher]<[View]> confirmation 'Done / Check' right image view icon on action bar
+    */
+    val onPlannerBarRightImageIconCheck: Matcher<View>
+        get() = allOf(withId(R.id.ac_right_icon), withTagValue(`is`(R.drawable.ic_check_black_24dp as Any)))
+
+    /**
+     * @return The [Matcher]<[View]> confirmation 'Collapse' right image view icon on action bar
+     */
+    val onPlannerBarRightImageIconCollapse: Matcher<View>
+        get() = allOf(withId(R.id.ac_right_icon), withTagValue(`is`(R.drawable.ic_collapse as Any)))
+
+    /**
+     * @return The [Matcher]<[View]> confirmation 'Expand' right image view icon on action bar
+     */
+    val onPlannerBarRightImageIconExpand: Matcher<View>
+        get() = allOf(withId(R.id.ac_right_icon), withTagValue(`is`(R.drawable.ic_expande as Any)))
 
     /**
      * @return The [ViewInteraction] confirmation back image view icon on action bar
      */
-    val onPlannerBarBackImageIcon: ViewInteraction
+    val onPlannerBarBackImageIconView: ViewInteraction
         get() = onView(withId(R.id.ac_back_button))
 
     /**
@@ -73,8 +92,14 @@ object RoutePlannerBarView {
     /**
      * @return The [ViewInteraction] Options title text view on action bar
      */
-    val onPlannerBarOptionsTitle: ViewInteraction
+    val onPlannerBarOptionsTitleView: ViewInteraction
         get() = onView(withText(R.string.msdkui_app_options))
+
+    /**
+     * @return The [Matcher]<[View]> Options title text view on action bar
+     */
+    val onPlannerBarOptionsTitle: Matcher<View>
+        get() = withText(R.string.msdkui_app_options)
 
     /**
      * @return The [ViewInteraction] Choose waypoint title text view on action bar
@@ -91,40 +116,58 @@ object RoutePlannerBarView {
     /**
      * @return The [ViewInteraction] add/plus image view button on route planner
      */
-    val onPlannerAddWaypointButton: ViewInteraction
+    val onPlannerAddWaypointButtonView: ViewInteraction
         get() = onView(withId(R.id.waypoint_add))
+
+    /**
+     * @return The [Matcher]<[View]> add/plus image view button on route planner
+     */
+    val onPlannerAddWaypointButton: Matcher<View>
+        get() = withId(R.id.waypoint_add)
 
     /**
      * @return The [ViewInteraction] swap waypoints list items image button on route planner
      */
-    val onPlannerSwapImageButton: ViewInteraction
+    val onPlannerSwapImageButtonView: ViewInteraction
         get() = onView(withId(R.id.swap_list))
+
+    /**
+     * @return The [Matcher]<[View]> swap waypoints list items image button on route planner
+     */
+    val onPlannerSwapImageButton: Matcher<View>
+        get() = withId(R.id.swap_list)
+
+    /**
+     * @return The [ViewInteraction] go back image button on route planner
+     */
+    val onPlannerBackImageButton: ViewInteraction
+        get() = onView(withId(R.id.ac_back_button))
 
     /**
      * @return The [ViewInteraction] remove image view button on route planner
      */
-    fun onPlannerRemoveWaypointButton(button: RoutingTestData.RemoveWaypointBtn): ViewInteraction {
-        return onView(withContentDescription(button.value))
-    }
+    fun onPlannerRemoveWaypointButtonView(button: RoutingTestData.RemoveWaypointBtn): ViewInteraction
+            = onView(withContentDescription(button.value))
+
+    /**
+     * @return The [Matcher]<[View]> remove image view button on route planner
+     */
+    fun onPlannerRemoveWaypointButton(button: RemoveWaypointBtn): Matcher<View> = withContentDescription(button.value)
 
     /**
      * @return The [ViewInteraction] Route planner app title text view by given view selector id on action bar
      */
-    fun onPlannerBarRoutePlannerTitle(titleText: Int): ViewInteraction {
-        return onView(withText(titleText))
-    }
+    fun onPlannerBarRoutePlannerTitle(titleText: Int): ViewInteraction = onView(withText(titleText))
 
     /**
      * @return The [ViewInteraction] confirmation back image view icon on action bar
      */
-    fun onPlannerBarBackImageIcon(backBtnDrawableId: Int): ViewInteraction {
-        return onView(allOf(withId(R.id.ac_back_button), withTagValue(`is`(backBtnDrawableId as Any))))
-    }
+    fun onPlannerBarBackImageIconView(backBtnDrawableId: Int): ViewInteraction
+            = onView(allOf(withId(R.id.ac_back_button), withTagValue(`is`(backBtnDrawableId as Any))))
 
     /**
      * @return The [ViewInteraction] confirmation right image view icon on action bar
      */
-    fun onPlannerBarRightImageIcon(rightIconDrawableId: Int): ViewInteraction {
-        return onView(allOf(withId(R.id.ac_right_icon), withTagValue(`is`(rightIconDrawableId as Any))))
-    }
+    fun onPlannerBarRightImageIconView(rightIconDrawableId: Int): ViewInteraction
+            = onView(allOf(withId(R.id.ac_right_icon), withTagValue(`is`(rightIconDrawableId as Any))))
 }

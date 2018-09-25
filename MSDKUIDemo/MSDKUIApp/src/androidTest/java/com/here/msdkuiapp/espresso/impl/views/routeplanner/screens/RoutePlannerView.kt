@@ -24,10 +24,13 @@ import android.support.test.espresso.matcher.ViewMatchers.withContentDescription
 import android.view.View
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getTextById
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.viewIsDisplayed
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIndex
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.FROM_TO_PATTERN
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.TYPE_LORRY
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.TYPE_TRUCK
 import org.hamcrest.CoreMatchers.startsWith
 import org.hamcrest.Matcher
 
@@ -109,23 +112,39 @@ object RoutePlannerView {
         get() = onView(withId(R.id.travel_date))
 
     /**
+     * @return The [ViewInteraction] for transportation type Lorry
+     */
+    private val onTransportPanelLorry: ViewInteraction
+        get() = onView(withContentDescription(TYPE_LORRY))
+
+    /**
      * @return The [ViewInteraction] Given waypoint location view on route planner
      */
-    fun onPlannerWaypointLocationView(textView: String?): ViewInteraction {
-        return onView(withText(textView))
-    }
+    fun onPlannerWaypointLocationView(textView: String?): ViewInteraction = onView(withText(textView))
 
     /**
      * @return The [ViewInteraction] Choose waypoint label on route planner
      */
-    fun onPlannerWaypointLocationLabel(waypointItem: WaypointItem): ViewInteraction {
-        return onView(withIndex(withId(R.id.waypoint_label), waypointItem.value))
-    }
+    fun onPlannerWaypointLocationLabel(waypointItem: WaypointItem): ViewInteraction
+            = onView(withIndex(withId(R.id.waypoint_label), waypointItem.value))
 
     /**
      * @return The [ViewInteraction] for transportation panel
      */
-    fun onPlannerTransportPanel(transporType: TransporType): ViewInteraction {
-        return onView(withContentDescription(transporType.value))
+    fun onPlannerTransportPanel(transportType: TransportType): ViewInteraction {
+        when (transportType) {
+            TYPE_TRUCK -> if (viewIsDisplayed(onTransportPanelLorry)) return onTransportPanelLorry
+        }
+        return onView(withContentDescription(transportType.value))
+    }
+
+    /**
+     * @return The [Matcher]<[View]> for transportation panel view
+     */
+    fun onPlannerTransportPanelView(transportType: TransportType): Matcher<View> {
+        when (transportType) {
+            TYPE_TRUCK -> if (viewIsDisplayed(onTransportPanelLorry)) return withContentDescription(TYPE_LORRY)
+        }
+        return withContentDescription(transportType.value)
     }
 }

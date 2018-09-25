@@ -26,10 +26,8 @@
     <TextView
         android:id="@+id/route_description_list_heading"
         style="@style/TextStyle.Medium.Bold"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:padding="10dp"
         android:text="@string/msdkui_app_route_results_title" />

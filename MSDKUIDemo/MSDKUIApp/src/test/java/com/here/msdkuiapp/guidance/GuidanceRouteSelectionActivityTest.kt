@@ -24,6 +24,7 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import org.robolectric.Robolectric
 import org.robolectric.android.controller.ActivityController
@@ -46,12 +47,23 @@ class GuidanceRouteSelectionActivityTest : BaseTest() {
 
     @Test
     fun testUI() {
-        with(activityController) {
-            get().coordinator = mockCoordinator
-            assertNotNull(get().coordinator)
-            create()
+        val activity = activityController.get()
+        with(activity) {
+            coordinator = mockCoordinator
+            assertNotNull(coordinator)
+            activityController.create()
         }
-        Mockito.verify(mockCoordinator).start()
+        verify(mockCoordinator).start()
+
+        activity.onLocationReady()
+        verify(mockCoordinator).onLocationReady()
+    }
+
+    @Test
+    fun testOnCreateWithNotInitializedCoordinator() {
+        val activity = activityController.get()
+        activityController.create()
+        assertNotNull(activity.coordinator)
     }
 
     @Test(expected = ClassCastException::class)

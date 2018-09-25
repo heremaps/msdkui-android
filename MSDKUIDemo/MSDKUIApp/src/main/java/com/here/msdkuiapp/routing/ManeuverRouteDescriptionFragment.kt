@@ -24,14 +24,17 @@ import android.view.ViewGroup
 import com.here.android.mpa.routing.Route
 import com.here.msdkui.routing.RouteDescriptionItem
 import com.here.msdkuiapp.R
+import kotlinx.android.extensions.CacheImplementation
+import kotlinx.android.extensions.ContainerOptions
 import kotlinx.android.synthetic.main.maneuver.*
 
 /**
  * Displays Maneuver of a route.
  */
+@ContainerOptions(CacheImplementation.NO_CACHE)
 class ManeuverRouteDescriptionFragment() : Fragment(), RoutingContracts.ManeuverRouteDescription {
 
-    private var presenter = ManeuverRouteDescriptionPresenter()
+    internal var presenter = ManeuverRouteDescriptionPresenter()
 
     init {
         retainInstance = true

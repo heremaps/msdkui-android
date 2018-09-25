@@ -94,7 +94,8 @@ public class GuidanceCurrentStreet extends FrameLayout {
         final TextView currentStreetLabelView = findViewById(R.id.guidance_current_street_text);
         currentStreetLabelView.setText(currentStreetData.getCurrentStreetName());
         container.getBackground().setColorFilter(currentStreetData.getBackgroundColor(), PorterDuff.Mode.SRC);
-        mGuidanceCurrentStreetData = new GuidanceCurrentStreetData(currentStreetData.getCurrentStreetName(), currentStreetData.getBackgroundColor());
+        mGuidanceCurrentStreetData = new GuidanceCurrentStreetData(currentStreetData.getCurrentStreetName(),
+                currentStreetData.getBackgroundColor());
     }
 
     /**

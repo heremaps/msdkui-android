@@ -51,7 +51,7 @@ object CoreMatchers {
      * TODO: MSDKUI-496, MSDKUI-561 - remove this method when idling resource implemented
      */
     fun waitForCondition(viewMatcher: Matcher<View>, timeout: Long = TIMEOUT_WAIT_MILLIS,
-                         isVisible: Boolean = true, isEnabled: Boolean = false): ViewAction {
+                         isVisible: Boolean = true, isEnabled: Boolean = false, isSelected: Boolean = false): ViewAction {
         return object : ViewAction {
             override fun getConstraints(): Matcher<View> {
                 return isRoot()
@@ -68,15 +68,10 @@ object CoreMatchers {
                 do {
                     uiController.loopMainThreadForAtLeast(TIMEOUT_DELAY_MILLIS)
                     for (child in TreeIterables.breadthFirstViewTraversal(view)) {
-                        if (isEnabled && viewMatcher.matches(child) && child.isEnabled) {
-                            return
-                        }
-                        if (isVisible && viewMatcher.matches(child)) {
-                            return
-                        }
-                        if (!isVisible && !viewMatcher.matches(isDisplayed())) {
-                            return
-                        }
+                        if (isEnabled && viewMatcher.matches(child) && child.isEnabled) return
+                        if (isSelected && viewMatcher.matches(child) && child.isSelected) return
+                        if (isVisible && viewMatcher.matches(child)) return
+                        if (!isVisible && !viewMatcher.matches(isDisplayed())) return
                     }
                 } while (System.currentTimeMillis() < endTime)
 
@@ -95,7 +90,7 @@ object CoreMatchers {
      */
     fun withIndex(matcher: Matcher<View>, index: Int): Matcher<View> {
         return object : TypeSafeMatcher<View>() {
-            internal var currentIndex = 0
+            var currentIndex = 0
 
             override fun describeTo(description: Description) {
                 description.appendText("with index: ")

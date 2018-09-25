@@ -18,22 +18,11 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:paddingEnd="@dimen/contentMarginMedium"
-    android:paddingLeft="@dimen/contentMarginMedium"
-    android:paddingRight="@dimen/contentMarginMedium"
-    android:paddingStart="@dimen/contentMarginMedium">
+    style="?attr/multipleChoiceOptionItem">
 
     <TextView
         android:id="@+id/multiple_item_label"
-        style="@style/TextStyle.Large"
-        android:layout_width="0dp"
-        android:layout_marginEnd="@dimen/contentMarginLarge"
-        android:layout_marginLeft="@dimen/contentMarginExtraLarge"
-        android:layout_marginRight="@dimen/contentMarginLarge"
-        android:layout_marginStart="@dimen/contentMarginExtraLarge"
+        style="?attr/multipleChoiceOptionItemText"
         android:labelFor="@+id/multiple_item_value"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/multiple_item_value"
@@ -44,14 +33,7 @@
 
     <CheckBox
         android:id="@+id/multiple_item_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/contentMarginExtraLarge"
-        android:layout_marginRight="@dimen/contentMarginExtraLarge"
-        android:gravity="center|center_horizontal"
-        android:minHeight="@dimen/min_value"
-        android:minWidth="@dimen/min_value"
-        android:saveEnabled="false"
+        style="?attr/multipleChoiceOptionItemCheckbox"
         app:layout_constraintBaseline_toBaselineOf="@id/multiple_item_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent" />

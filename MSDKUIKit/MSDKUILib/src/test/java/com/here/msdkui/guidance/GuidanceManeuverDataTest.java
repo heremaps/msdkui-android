@@ -16,6 +16,7 @@
 
 package com.here.msdkui.guidance;
 
+import android.graphics.Bitmap;
 import android.os.Parcel;
 
 import com.here.RobolectricTest;
@@ -23,6 +24,7 @@ import com.here.RobolectricTest;
 import org.junit.Before;
 import org.junit.Test;
 
+import static junit.framework.Assert.assertNull;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -36,11 +38,14 @@ public class GuidanceManeuverDataTest extends RobolectricTest {
     private static final long DISTANCE = 1L;
     private static final String INFO1 = "Info1";
     private static final String INFO2 = "Info2";
+    private static final Bitmap NEXT_ROAD_ICON = Bitmap.createBitmap(10, 10, Bitmap.Config.ARGB_8888);
     private GuidanceManeuverData mManeuverData;
+    private GuidanceManeuverData mManeuverDataWithNextRoadIcon;
 
     @Before
     public void setUp() {
         mManeuverData = new GuidanceManeuverData(ICON_ID, DISTANCE, INFO1, INFO2);
+        mManeuverDataWithNextRoadIcon = new GuidanceManeuverData(ICON_ID, DISTANCE, INFO1, INFO2, NEXT_ROAD_ICON);
     }
 
     @Test
@@ -49,6 +54,8 @@ public class GuidanceManeuverDataTest extends RobolectricTest {
         assertThat(mManeuverData.getDistance(), is(1L));
         assertThat(mManeuverData.getInfo1(), is(INFO1));
         assertThat(mManeuverData.getInfo2(), is(INFO2));
+        assertNull(mManeuverData.getNextRoadIcon());
+        assertThat(mManeuverDataWithNextRoadIcon.getNextRoadIcon(), is(NEXT_ROAD_ICON));
     }
 
     @Test
@@ -59,12 +66,15 @@ public class GuidanceManeuverDataTest extends RobolectricTest {
         assertThat(mManeuverData, is(not(data1)));
         assertThat(null, is(not(mManeuverData)));
         assertThat(mManeuverData.hashCode(), is(data.hashCode()));
+        GuidanceManeuverData data2 = new GuidanceManeuverData(ICON_ID, DISTANCE, INFO1, INFO2, NEXT_ROAD_ICON);
+        assertThat(data2, is(mManeuverDataWithNextRoadIcon));
+        assertThat(mManeuverDataWithNextRoadIcon.hashCode(), is(data2.hashCode()));
     }
 
     @Test
     public void testToString() {
         GuidanceManeuverData data = new GuidanceManeuverData(ICON_ID, DISTANCE, INFO1, INFO2);
-        String inputStr = "GuidanceManeuverData(mIconId=1, mDistance=1, mInfo1=Info1, mInfo2=Info2)";
+        String inputStr = "GuidanceManeuverData(mIconId=1, mDistance=1, mInfo1=Info1, mInfo2=Info2, mNextRoadIcon=null)";
         assertThat(data.toString(), is(inputStr));
     }
 

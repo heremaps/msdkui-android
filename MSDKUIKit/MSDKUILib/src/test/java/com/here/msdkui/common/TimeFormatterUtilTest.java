@@ -86,4 +86,11 @@ public class TimeFormatterUtilTest extends RobolectricTest {
         String timeString = TimeFormatterUtil.format(getApplicationContext(), min * SECOND_IN_MILLISECONDS);
         assertThat(timeString, is("1 d"));
     }
+
+    @Test
+    public void testFormatFromSeconds() {
+        final int min = DAY_IN_HOURS * 60 * MINUTE_IN_SECONDS;
+        String timeString = TimeFormatterUtil.format(getApplicationContext(), min);
+        assertThat(timeString, is("1 d"));
+    }
 }

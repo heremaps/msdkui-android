@@ -30,7 +30,7 @@ import com.here.msdkuiapp.common.AppActionBar
 class OptionPanelPresenter : BasePresenter<RoutingContracts.OptionPanel>() {
 
     private var state: State = State()
-    private var panels = LinkedHashMap<Panels, View>()
+    internal var panels = LinkedHashMap<Panels, View>()
 
     /**
      * Traffic change listener.

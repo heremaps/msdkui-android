@@ -181,12 +181,11 @@ public class ManeuverResources {
             return null;
         }
         String exitDirectionsText = null;
-        for (int i = 0; i < exitDirections.size(); i++) {
-            final String text = exitDirections.get(i)
-                    .getText();
+        for (Signpost.LocalizedLabel label:exitDirections) {
+            final String text = label.getText();
             if (!TextUtils.isEmpty(text)) {
-                exitDirectionsText = exitDirectionsText == null ? text : mContext.getString(R.string
-                        .msdkui_maneuver_road_name_divider, exitDirectionsText, text);
+                exitDirectionsText = exitDirectionsText == null ? text :
+                        mContext.getString(R.string.msdkui_maneuver_road_name_divider, exitDirectionsText, text);
             }
         }
         return exitDirectionsText;
@@ -299,7 +298,7 @@ public class ManeuverResources {
      */
     private String getInstruction(final Maneuver maneuver) {
         final Maneuver.Action action = maneuver.getAction();
-        String ret = null;
+        String ret;
         switch (action) {
             case CHANGE_HIGHWAY:
             case CONTINUE_HIGHWAY:
@@ -354,7 +353,7 @@ public class ManeuverResources {
     }
 
     /**
-     * Gets if {@link Maneuver} is {@link RoadElement.Attribute#CAR_SHUTTLE_TRAIN}.
+     * Gets if {@link Maneuver} is {@link com.here.android.mpa.common.RoadElement.Attribute#CAR_SHUTTLE_TRAIN}.
      */
     private boolean isCarShuttleTrainManeuver(final Maneuver maneuver) {
         final List<RoadElement> roadElements = maneuver.getRoadElements();

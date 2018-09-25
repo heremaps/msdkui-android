@@ -51,4 +51,46 @@ public class DistanceFormatterTest extends RobolectricTest {
         String formattedDistance = DistanceFormatterUtil.format(getApplicationContext(), 10000);
         assertThat(formattedDistance, is("10 km"));
     }
+
+    @Test
+    public void testUIDistanceFormattingWhenDistanceNotValid() {
+        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(), -1);
+        assertThat(formattedDistance, is("-- m"));
+    }
+
+    @Test
+    public void testDistanceFormattingWhenDistanceIsLessThan10() {
+        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(), 5);
+        assertThat(formattedDistance, is("5 m"));
+    }
+
+    @Test
+    public void testUIDistanceFormattingWhenDistanceIsLessThan200() {
+        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(), 180);
+        assertThat(formattedDistance, is("180 m"));
+    }
+
+    @Test
+    public void testUIDistanceFormattingWhenDistanceIsLessThan975() {
+        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(), 970);
+        assertThat(formattedDistance, is("950 m"));
+    }
+
+    @Test
+    public void testMeterChangeToKm() {
+        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(), 990);
+        assertThat(formattedDistance, is("1 km"));
+    }
+
+    @Test
+    public void testUIDistanceFormattingWhenDistanceIsLessThan10Km() {
+        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(), 9910);
+        assertThat(formattedDistance, is("9.9 km"));
+    }
+
+    @Test
+    public void testUIDistanceFormattingWhenDistanceIsMoreThan10Km() {
+        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(), 10400);
+        assertThat(formattedDistance, is("10 km"));
+    }
 }

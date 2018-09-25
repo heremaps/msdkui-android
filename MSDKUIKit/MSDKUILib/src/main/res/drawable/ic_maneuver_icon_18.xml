@@ -14,10 +14,12 @@
   ~ limitations under the License.
   -->
 
-<vector android:height="24dp" android:viewportHeight="72"
-    android:viewportWidth="72" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillAlpha="0.4" android:fillColor="#000"
-        android:fillType="evenOdd"
-        android:pathData="M43.5,43L68,67.75L68,12.7713C68,12.347 67.653,12 67.2287,12L59.7654,12L43.5,43ZM40.9355,40.4281L58,12L50.5394,12C50.1188,12 49.5242,12.2457 49.2251,12.5449L31,30.5L40.9355,40.4281Z" android:strokeAlpha="0.4"/>
-    <path android:fillColor="#000" android:fillType="evenOdd" android:pathData="M20.4305,27.2336L44.6916,67.3373C44.906,67.7073 45.4141,68 45.8466,68L67.6072,68C68.0223,68 68.1318,67.7533 67.8225,67.4616L25.6729,24.7651L29.7303,22.8535C31.3206,22.1077 31.432,20.6957 29.98,19.715L8.8786,5.4684C7.4303,4.4869 6.1297,5.0992 5.9942,6.8257L4.0103,31.9391C3.8766,33.6637 5.0639,34.467 6.6487,33.7213L9.0235,32.603L9,67.2296C9,67.6447 9.3396,68 9.7731,68L38.5,68C38.9169,68 39.0854,67.6926 38.8866,67.3373L17.558,28.5854L20.4305,27.2336Z"/>
+<vector android:autoMirrored="true" android:height="24dp"
+    android:viewportHeight="72" android:viewportWidth="72"
+    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillAlpha="0.4" android:fillColor="#000000"
+        android:fillType="nonZero"
+        android:pathData="M49.5,47L65.7654,11L69,11L69,66.75L49.5,47ZM45.9355,43.4281L38,35.5L58.5394,11L63,11L45.9355,43.4281Z" android:strokeAlpha="0.4"/>
+    <path android:fillColor="#000000" android:fillType="nonZero" android:pathData="M22.43,27.234l-2.872,1.351l20.329,38.415l-26.887,0l1.024,-36.397l14.649,-5.838l40.15,42.235l-23.131,0z"/>
+    <path android:fillColor="#000000" android:fillType="nonZero" android:pathData="M10.948,2.163l28.824,22.117l-33.566,13.903z"/>
 </vector>

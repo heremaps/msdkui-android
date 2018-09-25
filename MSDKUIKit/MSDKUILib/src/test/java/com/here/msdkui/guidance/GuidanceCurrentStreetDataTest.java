@@ -30,8 +30,8 @@ import static junit.framework.Assert.assertEquals;
  */
 public class GuidanceCurrentStreetDataTest extends RobolectricTest {
 
-    final private static String NAME = "StreetName";
-    final private static int COLOR = 16777215;
+    private static final String NAME = "StreetName";
+    private static final int COLOR = 16777215;
 
     private GuidanceCurrentStreetData mCurrentStreetData = null;
 

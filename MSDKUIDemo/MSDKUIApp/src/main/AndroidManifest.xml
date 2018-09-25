@@ -25,6 +25,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".MSDKUIApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/msdkui_app_name_title"
@@ -51,6 +52,7 @@
 
         <activity android:name="com.here.msdkuiapp.routing.RoutingActivity" />
         <activity android:name=".guidance.GuidanceActivity" />
+        <activity android:name=".about.AboutActivity" />
         <activity
             android:name=".landing.LandingActivity"
             android:launchMode="singleTask" />

@@ -30,7 +30,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.assertSame;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -52,15 +52,15 @@ public class TravelTimePanelTest extends RobolectricTest implements TravelTimePa
 
     @Test
     public void testInitUIContent() {
-        final TextView travelTimeText = (TextView) mTravelTimePanel.findViewById(R.id.travel_time_text);
+        final TextView travelTimeText = mTravelTimePanel.findViewById(R.id.travel_time_text);
         assertNotNull(travelTimeText);
         // by default, it should be visible
-        assertTrue("Remove icon is not visible by default", travelTimeText.getVisibility() == View.VISIBLE);
+        assertSame("Remove icon is not visible by default", View.VISIBLE, travelTimeText.getVisibility());
 
-        final TextView travelTimeDetails = (TextView) mTravelTimePanel.findViewById(R.id.travel_time_details);
+        final TextView travelTimeDetails = mTravelTimePanel.findViewById(R.id.travel_time_details);
         assertNotNull(travelTimeDetails);
         // by default, it should be visible
-        assertTrue("Remove icon is not visible by default", travelTimeDetails.getVisibility() == View.VISIBLE);
+        assertSame("Remove icon is not visible by default", View.VISIBLE, travelTimeDetails.getVisibility());
     }
 
     @Test

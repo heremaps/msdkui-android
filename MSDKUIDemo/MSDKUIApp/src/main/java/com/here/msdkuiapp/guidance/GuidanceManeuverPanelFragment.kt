@@ -37,16 +37,16 @@ import kotlinx.android.extensions.ContainerOptions
 @ContainerOptions(CacheImplementation.NO_CACHE)
 class GuidanceManeuverPanelFragment : Fragment(), GuidanceManeuverPanelListener {
 
-    private var mRoute: Route? = null
-    internal var mPanelPresenter: GuidanceManeuverPanelPresenter? = null
+    private var _route: Route? = null
+    internal var panelPresenter: GuidanceManeuverPanelPresenter? = null
 
     /**
      * Setter getter for [Route].
      */
     internal var route: Route?
-        get() = mRoute
+        get() = _route
         set(value) {
-            mRoute = value
+            _route = value
         }
 
     init {
@@ -71,8 +71,8 @@ class GuidanceManeuverPanelFragment : Fragment(), GuidanceManeuverPanelListener 
      * Creates Presenter for this GuidanceManeuverPanelFragment.
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if (mPanelPresenter == null) {
-            mPanelPresenter = GuidanceManeuverPanelPresenter(view.context, SingletonHelper.navigationManager, route).apply {
+        if (panelPresenter == null) {
+            panelPresenter = GuidanceManeuverPanelPresenter(view.context, SingletonHelper.navigationManager, route).apply {
                 addListener(this@GuidanceManeuverPanelFragment)
                 resume()
             }
@@ -81,15 +81,15 @@ class GuidanceManeuverPanelFragment : Fragment(), GuidanceManeuverPanelListener 
 
     override fun onPause() {
         super.onPause()
-        mPanelPresenter?.pause()
+        panelPresenter?.pause()
     }
 
     override fun onResume() {
         super.onResume()
-        mPanelPresenter?.resume()
+        panelPresenter?.resume()
     }
 
-    override fun onDataChanged(data: GuidanceManeuverData) {
+    override fun onDataChanged(data: GuidanceManeuverData?) {
         (view as? GuidanceManeuverPanel)?.maneuverData = data
     }
 

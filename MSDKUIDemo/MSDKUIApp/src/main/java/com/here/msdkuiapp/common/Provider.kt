@@ -22,9 +22,14 @@ import com.here.android.mpa.common.Image
 import com.here.android.mpa.mapping.MapContainer
 import com.here.android.mpa.mapping.MapMarker
 import com.here.android.mpa.mapping.MapRoute
-import com.here.android.mpa.routing.*
+import com.here.android.mpa.routing.CoreRouter
+import com.here.android.mpa.routing.DynamicPenalty
+import com.here.android.mpa.routing.Route
+import com.here.android.mpa.routing.RouteOptions
+import com.here.android.mpa.routing.RoutePlan
+import com.here.android.mpa.routing.RouteWaypoint
 import com.here.android.mpa.search.ReverseGeocodeRequest2
-import java.util.*
+import java.util.Locale
 
 /**
  * Provides HERE SDK objects by creating them.
@@ -122,22 +127,8 @@ class Provider {
     }
 
     /**
-     * Provides deserialization of byte array to route.
-     *
-     * @param routeDeserialize given byte array to deserialize to route.
-     * @param deserializationCallback callback when deserialization is done.
+     * Provides [DynamicPenalty].
+     * @return created [DynamicPenalty].
      */
-    fun provideDeserialize(routeDeserialize: ByteArray?, deserializationCallback: Route.DeserializationCallback) {
-        Route.deserializeAsync(routeDeserialize, deserializationCallback)
-    }
-
-    /**
-     * Provides serialization of route to byte array.
-     *
-     * @param route given route to serialize to byte array.
-     * @param serializationCallback callback when serialization is done.
-     */
-    fun provideSerialize(route: Route?, serializationCallback: Route.SerializationCallback) {
-        Route.serializeAsync(route, serializationCallback)
-    }
+    fun providesDynamicPenalty(): DynamicPenalty = DynamicPenalty()
 }

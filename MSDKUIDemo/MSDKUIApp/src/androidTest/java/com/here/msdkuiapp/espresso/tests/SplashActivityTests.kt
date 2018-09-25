@@ -31,7 +31,7 @@ import org.junit.Test
 class SplashActivityTests: TestBase<SplashActivity>(SplashActivity::class.java) {
 
     /**
-     * Test routing activity
+     * MSDKUI-126: Select "From" on the map
      */
     @Test
     @CompatibilityUITest

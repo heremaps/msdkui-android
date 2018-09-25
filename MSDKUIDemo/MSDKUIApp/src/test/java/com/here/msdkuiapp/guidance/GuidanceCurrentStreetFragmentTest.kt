@@ -19,6 +19,7 @@ package com.here.msdkuiapp.guidance
 import com.here.android.mpa.routing.Route
 import com.here.msdkui.guidance.GuidanceCurrentStreet
 import com.here.msdkui.guidance.GuidanceCurrentStreetData
+import com.here.msdkui.guidance.GuidanceCurrentStreetPresenter
 import com.here.testutils.BaseTest
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotNull
@@ -26,6 +27,7 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.`when`
 import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
 
 /**
  * Tests for [GuidanceCurrentStreetFragment].
@@ -63,5 +65,16 @@ class GuidanceCurrentStreetFragmentTest : BaseTest() {
         `when`(data.currentStreetName).thenReturn(streetName)
         guidanceCurrentStreetFragment.onDataChanged(data)
         assertEquals(streetName, (guidanceCurrentStreetFragment.view as GuidanceCurrentStreet).guidanceCurrentStreetData.currentStreetName)
+    }
+
+    @Test
+    fun testPausingAndResuming() {
+        val presenter : GuidanceCurrentStreetPresenter = mock(GuidanceCurrentStreetPresenter::class.java)
+        guidanceCurrentStreetFragment.mPanelPresenter = presenter
+        guidanceCurrentStreetFragment.onPause()
+        verify(presenter).pause()
+
+        guidanceCurrentStreetFragment.onResume()
+        verify(presenter).resume()
     }
 }

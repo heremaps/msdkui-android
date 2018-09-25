@@ -39,7 +39,8 @@ public class SimpleTransportModePanelAdapter extends TransportModePanelAdapter {
     private final Context mContext;
 
     /**
-     * Constructs a new instance using all supported {@link RouteOptions.TransportMode} elements.
+     * Constructs a new instance using all supported
+     * {@link com.here.android.mpa.routing.RouteOptions.TransportMode} elements.
      */
     public SimpleTransportModePanelAdapter(final Context context) {
         super(null);
@@ -54,10 +55,12 @@ public class SimpleTransportModePanelAdapter extends TransportModePanelAdapter {
     }
 
     /**
-     * Constructs a new instance using the given list of {@link RouteOptions.TransportMode} elements.
+     * Constructs a new instance using the given list of
+     * {@link com.here.android.mpa.routing.RouteOptions.TransportMode} elements.
      *
      * @param context a context to access application resources.
-     * @param transportModes a list of {@link RouteOptions.TransportMode} elements.
+     * @param transportModes a list of {@link com.here.android.mpa.routing.RouteOptions.TransportMode}
+     *                      elements.
      */
     public SimpleTransportModePanelAdapter(final Context context, List<RouteOptions.TransportMode> transportModes) {
         super(null);

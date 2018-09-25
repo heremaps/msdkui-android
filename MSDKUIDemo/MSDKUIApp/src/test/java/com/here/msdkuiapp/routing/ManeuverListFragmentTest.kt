@@ -17,27 +17,90 @@
 package com.here.msdkuiapp.routing
 
 import MockUtils
+import android.content.res.Configuration
 import android.view.View
-import com.here.testutils.BaseTest
 import com.here.msdkuiapp.R
+import com.here.testutils.BaseTest
+import com.here.testutils.anySafe
+import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotNull
+import kotlinx.android.synthetic.main.maneuver.view.maneuver_route_list
+import kotlinx.android.synthetic.main.maneuver.view.route_item
+import kotlinx.android.synthetic.main.maneuver.view.route_item_container
 import org.junit.Before
 import org.junit.Test
+import org.mockito.Mock
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
+import org.mockito.MockitoAnnotations
+import org.robolectric.Robolectric
 
+/**
+ * Tests for [ManeuverListFragment].
+ */
 class ManeuverListFragmentTest : BaseTest() {
 
     private lateinit var fragment: ManeuverListFragment
 
+    @Mock
+    private lateinit var presenter: ManeuverListPresenter
+
     @Before
-    override fun setUp() {
+    public override fun setUp() {
         super.setUp()
+        MockitoAnnotations.initMocks(this)
+        fragment = Robolectric.buildFragment(ManeuverListFragment::class.java).create().get()
+        fragment.presenter = presenter
     }
 
     @Test
-    fun testView() {
+    fun testPresenterInit() {
         fragment = ManeuverListFragment()
-        fragment.updateRoute(MockUtils.mockRoute(), false)
+        assertNotNull(fragment.presenter)
+    }
+
+    @Test
+    fun testOnViewCreated() {
+        fragment.onViewCreated(mock(View::class.java), null)
+        with(verify(presenter)) {
+            onAttach(anySafe(), anySafe())
+            updateActionBar(anySafe())
+            makeUiDataReady()
+        }
+    }
+
+    @Test
+    fun testUpdateRoute() {
+        val mockRoute = MockUtils.mockRoute()
+        fragment.updateRoute(mockRoute, false)
+        verify(presenter).updateRoute(mockRoute, false)
         addFrag(fragment, ManeuverListFragment.toString())
         assertNotNull(fragment.view.findViewById<View>(R.id.route_item))
+    }
+
+    @Test
+    fun testOnConfigurationChanged() {
+        val mockConfig = mock(Configuration::class.java)
+        fragment.onConfigurationChanged(mockConfig)
+        verify(presenter).populateConfigChanges(mockConfig.orientation)
+    }
+
+    @Test
+    fun testUpdateConfigChanges() {
+        fragment.updateConfigChanges(true)
+        assertEquals(fragment.view.route_item_container.visibility, View.VISIBLE)
+        fragment.updateConfigChanges(false)
+        assertEquals(fragment.view.route_item_container.visibility, View.GONE)
+    }
+
+    @Test
+    fun testOnUiDataReady() {
+        val mockRoute = MockUtils.mockRoute()
+        fragment.onUiDataReady(false, mockRoute)
+        assertEquals(fragment.view.route_item.isTrafficEnabled, false)
+        assertEquals(fragment.view.route_item.route, mockRoute)
+
+        fragment.view.maneuver_route_list.performClick()
+        assertEquals(fragment.view.maneuver_route_list.route, mockRoute)
     }
 }

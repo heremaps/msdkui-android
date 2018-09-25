@@ -35,13 +35,13 @@ import com.here.msdkui.common.DateFormatterUtil;
 import com.here.msdkui.common.DistanceFormatterUtil;
 import com.here.msdkui.common.TimeFormatterUtil;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -130,7 +130,7 @@ public final class RouteDescriptionHandlerTest extends RobolectricTest {
         RouteDescriptionHandler routeDescriptionHandler = new RouteDescriptionHandler(getApplicationContext(),
                 new MockUtils.MockRouteBuilder().setTransportMode(RouteOptions.TransportMode.PUBLIC_TRANSPORT).getRoute());
         Spannable spannable2 = routeDescriptionHandler.getDetails();
-        assertThat(spannable2.toString(), equalTo(getContextWithTheme().getString(R.string.msdkui_not_implemented)));
+        assertTrue(spannable2.toString().isEmpty());
     }
 
     @Test
@@ -143,7 +143,7 @@ public final class RouteDescriptionHandlerTest extends RobolectricTest {
 
         int penaltyMinutes = 5;
         arrivalTime = new RouteDescriptionHandler(getApplicationContext(),
-                new MockUtils.MockRouteBuilder().setTrafficPenaltyMinutes(penaltyMinutes).getRoute()).getArrivalTime(true);//mRouteDescriptionHandler.getArrivalTime(true);
+                new MockUtils.MockRouteBuilder().setTrafficPenaltyMinutes(penaltyMinutes).getRoute()).getArrivalTime(true);
         assertThat(arrivalTime, equalTo(DateFormatterUtil.format(getApplicationContext(),
                 new Date(currentTimeInMs + penaltyMinutes * DateUtils.MINUTE_IN_MILLIS))));
     }

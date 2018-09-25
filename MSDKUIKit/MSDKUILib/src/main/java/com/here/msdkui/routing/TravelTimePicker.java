@@ -38,8 +38,9 @@ import java.util.Date;
 
 /**
  * A dialog that shows a {@link DatePicker} and a {@link TimePicker} and allows to set a
- * date, time and a {@link RouteOptions.TimeType} that could be used for route calculation.
- * By default the selected time is of type {@link RouteOptions.TimeType#DEPARTURE}.
+ * date, time and a {@link com.here.android.mpa.routing.RouteOptions.TimeType} that could be used
+ * for route calculation.
+ * By default the selected time is of type {@link com.here.android.mpa.routing.RouteOptions.TimeType#DEPARTURE}.
  */
 public class TravelTimePicker extends DialogFragment {
 
@@ -79,13 +80,14 @@ public class TravelTimePicker extends DialogFragment {
     };
 
     /**
-     * An enum that defines the {@link RouteOptions.TimeType} that can be set using this picker.
-     * Default is {@link Variety#DEPARTURE} which will result in {@link RouteOptions.TimeType#DEPARTURE} when
-     * a time and date is picked.
+     * An enum that defines the {@link com.here.android.mpa.routing.RouteOptions.TimeType} that
+     * can be set using this picker.
+     * Default is {@link Variety#DEPARTURE} which will result in
+     * {@link com.here.android.mpa.routing.RouteOptions.TimeType#DEPARTURE} when a time and date is picked.
      *
      * <p>
      *     Please note, only when setting {@link Variety#BOTH} the dialog will contain two buttons to select the
-     *     {@link RouteOptions.TimeType}, otherwise no additional button will be shown.
+     *     {@link com.here.android.mpa.routing.RouteOptions.TimeType}, otherwise no additional button will be shown.
      * </p>
      */
     public enum Variety {
@@ -98,15 +100,15 @@ public class TravelTimePicker extends DialogFragment {
 
         /**
          * Defines the type as {@code DEPARTURE}. This will show the picker without any button on top and
-         * the picked time will be of type {@link RouteOptions.TimeType#DEPARTURE}.
+         * the picked time will be of type {@link com.here.android.mpa.routing.RouteOptions.TimeType#DEPARTURE}.
          */
         DEPARTURE,
 
         /**
          * Defines the type as {@code ARRIVAL}. This will show the picker without any button on top and
-         * the picked time will be of type {@link RouteOptions.TimeType#ARRIVAL}.
+         * the picked time will be of type {@link com.here.android.mpa.routing.RouteOptions.TimeType#ARRIVAL}.
          */
-        ARRIVAL;
+        ARRIVAL
     }
 
     /**
@@ -270,11 +272,12 @@ public class TravelTimePicker extends DialogFragment {
     }
 
     /**
-     * Shows this picker fragment using the given date and {@link RouteOptions.TimeType}.
+     * Shows this picker fragment using the given date and
+     * {@link com.here.android.mpa.routing.RouteOptions.TimeType}.
      *
      * @param manager the FragmentManager this fragment will be added to.
      * @param date the default time.
-     * @param type the default {@link RouteOptions.TimeType}.
+     * @param type the default {@link com.here.android.mpa.routing.RouteOptions.TimeType}.
      * @deprecated please use {@link #open(FragmentManager, Date)} instead.
      */
     @Deprecated
@@ -327,20 +330,20 @@ public class TravelTimePicker extends DialogFragment {
     }
 
     /**
-     * Gets the current set {@link RouteOptions.TimeType}.
-     * <p>Default is {@link RouteOptions.TimeType#DEPARTURE}.</p>
+     * Gets the current set {@link com.here.android.mpa.routing.RouteOptions.TimeType}.
+     * <p>Default is {@link com.here.android.mpa.routing.RouteOptions.TimeType#DEPARTURE}.</p>
      *
-     * @return the current {@link RouteOptions.TimeType}.
+     * @return the current {@link com.here.android.mpa.routing.RouteOptions.TimeType}.
      */
     public RouteOptions.TimeType getTimeType() {
         return mTimeType;
     }
 
     /**
-     * Sets a new {@link RouteOptions.TimeType}.
+     * Sets a new {@link com.here.android.mpa.routing.RouteOptions.TimeType}.
      * <p>Please note: Setting time type will not change {@link Variety}.</p>
      *
-     * @param type the new {@link RouteOptions.TimeType} to set.
+     * @param type the new {@link com.here.android.mpa.routing.RouteOptions.TimeType} to set.
      */
     public void setTimeType(final RouteOptions.TimeType type) {
         if (type == null) {
@@ -468,7 +471,7 @@ public class TravelTimePicker extends DialogFragment {
          * Called when a new time was selected..
          *
          * @param time the time set.
-         * @param type the {@link RouteOptions.TimeType} the time was set for.
+         * @param type the {@link com.here.android.mpa.routing.RouteOptions.TimeType} the time was set for.
          */
         void onTimePicked(Date time, RouteOptions.TimeType type);
     }

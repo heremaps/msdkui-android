@@ -21,15 +21,18 @@ import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.FunctionalUITest
 import com.here.msdkuiapp.espresso.impl.core.CoreActions
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.MAP_POINT_7
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation.PORTRAIT
-import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationBarMatchers
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationBarView.onDriveNavigationBarTitleView
+import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewSeeManoeuvresNaviBtn
+import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewStartNaviBtn
+import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationActions
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationBarActions
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.utils.DestinationData
-import com.here.msdkuiapp.espresso.impl.views.map.screens.MapView.onMapFragmentWrapper
+import com.here.msdkuiapp.espresso.impl.views.guidance.useractions.GuidanceActions
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
-import com.here.msdkuiapp.espresso.impl.views.map.utils.MapData
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
 import com.here.msdkuiapp.espresso.tests.TestBase
 import org.junit.After
 import org.junit.Before
@@ -41,73 +44,137 @@ import org.junit.runners.MethodSorters
 /**
  * UI flow tests for guidance
  */
+@Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
 
-    private lateinit var destination: DestinationData
+    private val destination: DestinationData = DestinationData(MAP_POINT_7)
 
     @Before
     fun prepare() {
-        destination = DestinationData(MapData.randMapPoint)
-        CoreActions.enterDriveNavigation().changeOrientation(PORTRAIT)
+        CoreActions().changeOrientation(PORTRAIT)
+                .enterDriveNavigation()
+                .provideMockLocation(mockLocationData)
     }
 
     @After
     fun tearDown() {
-        CoreActions.changeOrientation(PORTRAIT)
+        CoreActions().changeOrientation(PORTRAIT).stopMockLocation(mockLocationData)
     }
 
     /**
      * MSDKUI-573: Select Drive Navigation destination via tap
      */
-    @Ignore("has to be fixed") // FIXME: MSDKUI-1073
     @Test
     @FunctionalUITest
     fun testSelectDriveNavigationDestinationViaTap() {
         enumValues<ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
-            CoreActions.changeOrientation(it)
+            CoreActions().changeOrientation(it)
+                    .provideMockLocation(mockLocationData)
             // Check drive navigation view opened
             DriveNavigationBarActions.waitForDriveNavigationView()
             // Check drive navigation view title
             onDriveNavigationBarTitleView.check(matches(isDisplayed()))
-            // Check map view displayed
-            onMapFragmentWrapper.check(matches(isDisplayed()))
-            // Check default waypoint items labels text and default transportation mode
-            DriveNavigationBarMatchers.checkDestinationDefaultLabel()
-            // Tap anywhere on map view
-            MapActions.waitForMapViewEnabled().tapOnMap(destination)
-            // Tap on tick to confirm the first waypoint selection
+            // Check until default destination label displayed on drive navigation
+            DriveNavigationBarActions.waitForDestinationDisplayed().checkDestinationDefaultLabel()
+            // Check map view displayed and tap anywhere on map view
+            MapActions.waitForMapViewEnabled()
+                    .tapOnMap(destination)
+                    .provideMockLocation(mockLocationData)
+            // Wait until destination location selected
             DriveNavigationBarActions.waitForDestinationNotDisplayed()
             // Returns back to Landing screen and selects Drive Navigation
-            CoreActions.changeOrientation(PORTRAIT).pressBackButton().enterDriveNavigation()
+            CoreActions().pressBackButton().enterDriveNavigation()
         }
     }
 
     /**
      * MSDKUI-574: Select Drive Navigation destination via long press
      */
-    @Ignore("has to be fixed") // FIXME: MSDKUI-1073
     @Test
     @FunctionalUITest
     fun testSelectDriveNavigationDestinationViaLongPress() {
         enumValues<ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
-            CoreActions.changeOrientation(it)
+            CoreActions().changeOrientation(it)
+                    .provideMockLocation(mockLocationData)
             // Check drive navigation view opened
             DriveNavigationBarActions.waitForDriveNavigationView()
             // Check drive navigation view title
             onDriveNavigationBarTitleView.check(matches(isDisplayed()))
-            // Check map view displayed
-            onMapFragmentWrapper.check(matches(isDisplayed()))
-            // Check default waypoint items labels text and default transportation mode
-            DriveNavigationBarMatchers.checkDestinationDefaultLabel()
+            // Check until default destination label displayed on drive navigation
+            DriveNavigationBarActions.waitForDestinationDisplayed().checkDestinationDefaultLabel()
             // Tap anywhere on map view
-            MapActions.waitForMapViewEnabled().longPressOnMap(destination)
-            // Tap on tick to confirm the first waypoint selection
+            MapActions.waitForMapViewEnabled()
+                    .longPressOnMap(destination)
+                    .provideMockLocation(mockLocationData)
+            // Wait until destination location selected
             DriveNavigationBarActions.waitForDestinationNotDisplayed()
             // Returns back to Landing screen and selects Drive Navigation
-            CoreActions.pressBackButton().changeOrientation(PORTRAIT).enterDriveNavigation()
+            CoreActions().pressBackButton().enterDriveNavigation()
         }
     }
-}
+
+    /**
+     * MSDKUI-661: Guidance route overview
+     */
+    @Test
+    @FunctionalUITest
+    fun testGuidanceRouteOverview() {
+        enumValues<ScreenOrientation>().forEach {
+            // Set screen orientation: PORTRAIT / LANDSCAPE
+            CoreActions().changeOrientation(it).provideMockLocation(mockLocationData)
+            // Check drive navigation view opened
+            DriveNavigationBarActions.waitForDriveNavigationView()
+                    .waitForDestinationDisplayed()
+            // Tap anywhere on map view
+            MapActions.waitForMapViewEnabled()
+                    .tapOnMap(destination)
+                    .provideMockLocation(mockLocationData)
+            // Tap on tick to confirm the first waypoint selection
+            DriveNavigationBarActions.waitForDestinationNotDisplayed()
+                    .provideMockLocation(mockLocationData)
+            val location = RoutePlannerBarActions.tapOnTickButton()
+            // Check route description and destination items on guidance route overview
+            DriveNavigationBarActions.waitForRouteOverView()
+                    .waitForGuidanceDescriptionDisplayed()
+                    .checkRouteOverviewDescription()
+                    .checkRouteOverviewDestination(location)
+            // Check 'See manoeuvres' & 'Start navigation' button displayed
+            onRouteOverviewSeeManoeuvresNaviBtn.check(matches(isDisplayed()))
+            onRouteOverviewStartNaviBtn.check(matches(isDisplayed()))
+            // Returns back to the Drive Navigation
+            CoreActions().pressBackButton()
+        }
+    }
+
+    /**
+     * MSDKUI-576: Maneuver panel, switch orientation while navigation simulation is ongoing
+     */
+    @Test
+    @FunctionalUITest
+    fun testSwitchOrientationWhileNavigationSimulationIsOngoing() {
+        // Check drive navigation view opened
+        DriveNavigationBarActions.waitForDriveNavigationView()
+                .waitForDestinationDisplayed()
+        // Tap anywhere on map view
+        MapActions.waitForMapViewEnabled().tapOnMap(destination)
+        // Tap on tick to confirm the first waypoint selection
+        DriveNavigationBarActions.waitForDestinationNotDisplayed()
+                .provideMockLocation(mockLocationData)
+        RoutePlannerBarActions.tapOnTickButton()
+        // Check guidance route overview view opened
+        DriveNavigationBarActions.waitForRouteOverView()
+                    .waitForGuidanceDescriptionDisplayed()
+        // Start navigation simulation
+        DriveNavigationActions.startNavigationSimulation()
+        enumValues<ScreenOrientation>().forEach {
+            // Set screen orientation: PORTRAIT / LANDSCAPE
+            CoreActions().changeOrientation(it)
+            // Check maneuver panel and dashboard is displayed
+            GuidanceActions.checkGuidanceManeuverPanelInfo()
+            GuidanceActions.checkGuidanceDashBoardInfo()
+        }
+    }
+ }

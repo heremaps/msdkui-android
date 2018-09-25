@@ -82,8 +82,7 @@ class SubOptionPanelPresenter : BasePresenter<RoutingContracts.SubOptionPanel>()
                 panel
             }
             else -> {
-                val panel = TextView(context)
-                panel.text = context!!.getString(R.string.msdkui_input_not_valid)
+                val panel = TextView(context) // empty view
                 panel
             }
         }

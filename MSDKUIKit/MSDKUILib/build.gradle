@@ -52,8 +52,8 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     lintOptions {
-        disable 'NewApi'
-        abortOnError false
+        abortOnError true
+        ignoreWarnings false
         xmlReport true
         xmlOutput project.file('build/reports/lint/lint-report.xml')
         htmlReport true
@@ -135,11 +135,20 @@ artifactory {
     }
 }
 
+afterEvaluate {
+    generateJavadoc.classpath += files(android.libraryVariants.collect { variant ->
+        variant.getCompileClasspath(null)
+    })
+}
+
 task generateJavadoc(type: Javadoc) {
     failOnError false
     source = android.sourceSets.main.java.sourceFiles
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    ext.R = "build/generated/source/r/"
+    ext.R += buildType == "debug" ? 'debug' : 'release'
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator), ext.R)
     classpath += configurations.compile
+    exclude '**/R.java'
 }
 
 task javadocJar(type: Jar, dependsOn: generateJavadoc) {

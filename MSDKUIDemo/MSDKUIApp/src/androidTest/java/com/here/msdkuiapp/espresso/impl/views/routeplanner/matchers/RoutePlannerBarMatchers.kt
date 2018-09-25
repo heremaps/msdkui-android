@@ -20,15 +20,14 @@ import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRoutePlannerTitle
-import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarBackImageIcon
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarBackImageIconView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarLocationTitle
-import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarOptionsTitle
-import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRightImageIcon
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRightImageIconView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarWaypointLabel
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerFromText
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerToText
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerWaypointLocationView
-import org.hamcrest.Matchers
+import org.hamcrest.Matchers.not
 
 /**
  * Router planner specific actionbar matchers
@@ -56,14 +55,6 @@ object RoutePlannerBarMatchers {
     }
 
     /**
-     * Check options view title on actionbar
-     */
-    fun checkOptionsDisplayed(): RoutePlannerBarMatchers {
-        onPlannerBarOptionsTitle.check(matches(isDisplayed()))
-        return this
-    }
-
-    /**
      * Check app title on action bar
      */
     fun checkActionbarDisplayed(backBtnDrawableId: Int = R.drawable.ic_arrow_back_black_24dp,
@@ -73,19 +64,19 @@ object RoutePlannerBarMatchers {
                                 rightIconVisibility: Boolean = true): RoutePlannerBarMatchers {
         // Check Back button visibility
         if (backBtnVisibility) {
-            onPlannerBarBackImageIcon(backBtnDrawableId).check(matches(isDisplayed()))
-            onPlannerBarBackImageIcon.check(matches(isDisplayed()))
+            onPlannerBarBackImageIconView(backBtnDrawableId).check(matches(isDisplayed()))
+            onPlannerBarBackImageIconView.check(matches(isDisplayed()))
         } else {
-            onPlannerBarBackImageIcon.check(matches(Matchers.not(isDisplayed())))
+            onPlannerBarBackImageIconView.check(matches(not(isDisplayed())))
         }
         // Check Title is visible
         onPlannerBarRoutePlannerTitle(titleText).check(matches(isDisplayed()))
         // Check Right icon visibility
         if (rightIconVisibility) {
-            onPlannerBarRightImageIcon(rightIconDrawableId).check(matches(isDisplayed()))
-            onPlannerBarRightImageIcon.check(matches(isDisplayed()))
+            onPlannerBarRightImageIconView(rightIconDrawableId).check(matches(isDisplayed()))
+            onPlannerBarRightImageIconView.check(matches(isDisplayed()))
         } else {
-            onPlannerBarRightImageIcon.check(matches(Matchers.not(isDisplayed())))
+            onPlannerBarRightImageIconView.check(matches(not(isDisplayed())))
         }
         return this
     }

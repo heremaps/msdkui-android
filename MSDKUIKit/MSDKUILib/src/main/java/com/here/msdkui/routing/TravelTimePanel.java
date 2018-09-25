@@ -131,7 +131,8 @@ public final class TravelTimePanel extends RelativeLayout implements TravelTimeP
     /**
      * Sets the time to display.
      *
-     * <p>By default it is showing the current date using {@link RouteOptions.TimeType#DEPARTURE}.</p>
+     * <p>By default it is showing the current date using
+     * {@link com.here.android.mpa.routing.RouteOptions.TimeType#DEPARTURE}.</p>
      *
      * @param time the time to set.
      * @return an instance of this class.
@@ -150,21 +151,22 @@ public final class TravelTimePanel extends RelativeLayout implements TravelTimeP
     }
 
     /**
-     * Gets the {@link RouteOptions.TimeType} currently shown.
+     * Gets the {@link com.here.android.mpa.routing.RouteOptions.TimeType} currently shown.
      *
-     * @return the {@link RouteOptions.TimeType}. By default this is {@link RouteOptions.TimeType#DEPARTURE}.
+     * @return the {@link com.here.android.mpa.routing.RouteOptions.TimeType}.
+     * By default this is {@link com.here.android.mpa.routing.RouteOptions.TimeType#DEPARTURE}.
      */
     public RouteOptions.TimeType getTimeType() {
         return mTimeType;
     }
 
     /**
-     * Sets the {@link RouteOptions.TimeType} to use.
-     * By default {@link RouteOptions.TimeType#DEPARTURE} is used.
+     * Sets the {@link com.here.android.mpa.routing.RouteOptions.TimeType} to use.
+     * By default {@link com.here.android.mpa.routing.RouteOptions.TimeType#DEPARTURE} is used.
      *
-     * @param type the {@link RouteOptions.TimeType} to set.
-     * @returns an instance of this class.
-     * @throws IllegalArgumentException if {@link RouteOptions.TimeType} is null.
+     * @param type the {@link com.here.android.mpa.routing.RouteOptions.TimeType} to set.
+     * @return an instance of this class.
+     * @throws IllegalArgumentException if {@link com.here.android.mpa.routing.RouteOptions.TimeType} is null.
      */
     public TravelTimePanel setTimeType(final RouteOptions.TimeType type) {
         if (type == null) {

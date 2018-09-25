@@ -93,7 +93,7 @@ public final class Utils {
         final String unit;
         final NumberFormat numberFormat = NumberFormat.getInstance();
         if (distance < 0) { // invalid
-            value = context.getString(R.string.msdkui_distance_value_not_available);
+            value = context.getString(R.string.msdkui_value_not_available);
             unit = context.getString(R.string.msdkui_unit_meter);
         } else if (distance < METER_THRESHOLD) {
             value = numberFormat.format(distance);

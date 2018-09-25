@@ -23,11 +23,14 @@ import android.widget.Toast
 import com.here.msdkuiapp.base.BaseActivity
 import com.here.msdkuiapp.common.PermissionsUtils
 import com.here.msdkuiapp.landing.LandingActivity
+import kotlinx.android.extensions.CacheImplementation
+import kotlinx.android.extensions.ContainerOptions
 
 /**
  * Main activity is the entry point for different components like routing, searching and etc of this application.
  * Since only routing is supported/implemented for now, this activity is starting Routing directly.
  */
+@ContainerOptions(CacheImplementation.NO_CACHE)
 class SplashActivity : BaseActivity(), PermissionsUtils.StorageStateListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +55,7 @@ class SplashActivity : BaseActivity(), PermissionsUtils.StorageStateListener {
     }
 
     override fun onStoragePermissionFailed() {
-        Toast.makeText(this, "Required permission for storage not granted", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.msdkui_app_storage_permission_not_granted), Toast.LENGTH_LONG).show()
         finish()
     }
 

@@ -65,8 +65,8 @@ public final class OptionItemSpecTest extends RobolectricTest {
                 .setItemId(itemId)
                 .build();
         assertNotNull(multipleChoiceItemSpec);
-        assertEquals(mIds.size(), ((MultipleChoiceOptionItem)multipleChoiceItemSpec).getLabels().size());
-        assertEquals(itemId, ((MultipleChoiceOptionItem)multipleChoiceItemSpec).getItemId());
+        assertEquals(mIds.size(), ((MultipleChoiceOptionItem) multipleChoiceItemSpec).getLabels().size());
+        assertEquals(itemId, multipleChoiceItemSpec.getItemId());
     }
 
     @Test

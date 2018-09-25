@@ -16,13 +16,19 @@
 
 package com.here.msdkui.guidance.base;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import com.here.android.mpa.common.GeoPosition;
 import com.here.android.mpa.common.PositioningManager;
 import com.here.android.mpa.guidance.NavigationManager;
 import com.here.android.mpa.routing.Maneuver;
 import com.here.android.mpa.routing.Route;
+import com.here.android.mpa.routing.RouteResult;
+import com.here.android.mpa.routing.RouteTta;
 
 import java.lang.ref.WeakReference;
+import java.util.Date;
 
 /**
  * Base class for guidance presenters.
@@ -60,10 +66,13 @@ public class BaseGuidancePresenter {
             new NavigationManager.PositionListener() {
                 @Override
                 public void onPositionUpdated(final GeoPosition loc) {
-                    // handlePositionUpdate();
+                    handlePositionUpdate();
                 }
             };
 
+    /**
+     * Listener for {@link com.here.android.mpa.guidance.NavigationManager.GpsSignalListener}.
+     */
     private final NavigationManager.GpsSignalListener mGpsSignalListener =
             new NavigationManager.GpsSignalListener() {
                 @Override public void onGpsLost() {
@@ -74,6 +83,26 @@ public class BaseGuidancePresenter {
                     handleGpsRestore();
                 }
             };
+
+    /**
+     * Listener for {@link com.here.android.mpa.guidance.NavigationManager.RerouteListener}.
+     */
+    private final NavigationManager.RerouteListener mRerouteListener =
+            new NavigationManager.RerouteListener() {
+                @Override public void onRerouteBegin() {
+                    handleRerouteBegin();
+                }
+
+                @Override public void onRerouteEnd(RouteResult routeResult) {
+                    handleRerouteEnd(routeResult);
+                }
+
+                @Override public void onRerouteFailed() {
+                    handleRerouteFailed();
+                }
+            };
+
+    private NavigationManager.SpeedWarningListener mSpeedWarningListener;
 
     private Route mRoute;
 
@@ -86,7 +115,7 @@ public class BaseGuidancePresenter {
      * @param route
      *         a route to be used for guidance.
      */
-    protected BaseGuidancePresenter(NavigationManager navigationManager, Route route) {
+    protected BaseGuidancePresenter(@NonNull NavigationManager navigationManager, Route route) {
         mNavigationManager = navigationManager;
         mRoute = route;
     }
@@ -95,27 +124,53 @@ public class BaseGuidancePresenter {
      * Resumes presenter to start listening to navigation events.
      */
     public void resume() {
-        if (mNavigationManager == null) {
-            return;
-        }
         mNavigationManager.addManeuverEventListener(new WeakReference<>(mManeuverEventListener));
         mNavigationManager.addNewInstructionEventListener(new WeakReference<>(mNewInstructionEventListener));
         mNavigationManager.addPositionListener(new WeakReference<>(mPositionListener));
         mNavigationManager.addGpsSignalListener(new WeakReference<>(mGpsSignalListener));
-        handleManeuverEvent();
+        mNavigationManager.addRerouteListener(new WeakReference<>(mRerouteListener));
     }
 
     /**
      * Pauses presenter to stop listening to navigation events.
      */
     public void pause() {
-        if (mNavigationManager == null) {
-            return;
-        }
         mNavigationManager.removeManeuverEventListener(mManeuverEventListener);
         mNavigationManager.removeNewInstructionEventListener(mNewInstructionEventListener);
         mNavigationManager.removePositionListener(mPositionListener);
         mNavigationManager.removeGpsSignalListener(mGpsSignalListener);
+        mNavigationManager.removeRerouteListener(mRerouteListener);
+    }
+
+    /**
+     * Enable listening to speed limit warnings.
+     */
+    protected final void enableSpeedWarnings() {
+        if (mSpeedWarningListener == null) {
+            mSpeedWarningListener = new NavigationManager.SpeedWarningListener() {
+                @Override
+                public void onSpeedExceeded(String roadName, float speedLimit) {
+                    super.onSpeedExceeded(roadName, speedLimit);
+                    handleSpeedExceeded(speedLimit);
+                }
+
+                @Override
+                public void onSpeedExceededEnd(String roadName, float speedLimit) {
+                    super.onSpeedExceededEnd(roadName, speedLimit);
+                    handleSpeedExceededEnd(speedLimit);
+                }
+            };
+        }
+        mNavigationManager.addSpeedWarningListener(new WeakReference<>(mSpeedWarningListener));
+    }
+
+    /**
+     * Called to de-register speed warnings listener.
+     */
+    protected final void disableSpeedWarnings() {
+        if (mSpeedWarningListener != null) {
+            mNavigationManager.removeSpeedWarningListener(mSpeedWarningListener);
+        }
     }
 
     /**
@@ -149,12 +204,73 @@ public class BaseGuidancePresenter {
     }
 
     /**
+     * Notifies when route reroute begin.
+     */
+    protected void handleRerouteBegin() {
+        // let the sub class override it, if interested,
+    }
+
+    /**
+     * Notifies when route reroute end with success.
+     *
+     * @param routeResult {@link RouteResult} object containing {@link Route} as result of route
+     *                                       calculation.
+     */
+    protected void handleRerouteEnd(RouteResult routeResult) {
+        // let the sub class override it, if interested,
+    }
+
+    /**
+     * Notifies when route reroute end with failure.
+     */
+    protected void handleRerouteFailed() {
+        // let the sub class override it, if interested,
+    }
+
+    /*
+     * Notifies when there is a change in current position.
+     * The Position change notification is generated by {@link NavigationManager}.
+     */
+    protected void handlePositionUpdate() {
+        //let the sub class override it, if interested
+    }
+
+    /**
+     * Notifies when driving over speed limit.
+     *
+     * @param speedLimit
+     *         current speed limit.
+     */
+    protected void handleSpeedExceeded(float speedLimit) {
+        //let the sub class override it, if interested
+    }
+
+    /**
+     * Notifies when no longer driving over speed limit.
+     *
+     * @param speedLimit
+     *         current speed limit.
+     */
+    protected void handleSpeedExceededEnd(float speedLimit) {
+        //let the sub class override it, if interested
+    }
+
+    /**
      * Gets the next {@link Maneuver Maneuver}.
      *
      * @return next {@link Maneuver Maneuver}.
      */
     public Maneuver getNextManeuver() {
         return mNavigationManager.getNextManeuver();
+    }
+
+    /**
+     * Gets the {@link Maneuver Maneuver} after next {@link Maneuver Maneuver}.
+     *
+     * @return after-next {@link Maneuver Maneuver}.
+     */
+    public Maneuver getAfterNextManeuver() {
+        return mNavigationManager.getAfterNextManeuver();
     }
 
     /**
@@ -183,5 +299,36 @@ public class BaseGuidancePresenter {
      */
     public void setRoute(Route route) {
         this.mRoute = route;
+    }
+
+    /**
+     * Gets estimated arrival date.
+     *
+     * @return a {@link Date} of arrival at the destination.
+     */
+    public @Nullable Date getEta() {
+        return mNavigationManager.getEta(false, Route.TrafficPenaltyMode.OPTIMAL);
+    }
+
+    /**
+     * Gets distance to the destination.
+     *
+     * @return distance in meters.
+     */
+    public long getDestinationDistance() {
+        return mNavigationManager.getDestinationDistance();
+    }
+
+    /**
+     * Gets time to arrival at the destination.
+     *
+     * @return time to arrival in seconds or -1 if time couldn't be retrieved.
+     */
+    public int getTimeToArrival() {
+        final RouteTta routeTta = mNavigationManager.getTta(Route.TrafficPenaltyMode.OPTIMAL, false);
+        if (routeTta != null) {
+            return routeTta.getDuration();
+        }
+        return -1;
     }
 }

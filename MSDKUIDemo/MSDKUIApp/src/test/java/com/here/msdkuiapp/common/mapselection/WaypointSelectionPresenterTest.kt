@@ -21,6 +21,7 @@ import com.here.android.mpa.routing.RouteWaypoint
 import com.here.android.mpa.search.*
 import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkuiapp.CommonContracts
+import com.here.msdkuiapp.R
 import com.here.msdkuiapp.base.BaseContract
 import com.here.msdkuiapp.common.AppActionBar
 import com.here.msdkuiapp.common.Provider
@@ -70,10 +71,15 @@ class WaypointSelectionPresenterTest : BaseTest() {
 
     @Test
     fun testUiUpdates() {
-        var entry = WaypointEntry("")
+        var entry = WaypointEntry(getString(R.string.msdkui_waypoint_select_location))
         presenter.updatePosition(index = 0, entry = entry)
         presenter.updateUI()
-        verify(mockContract).onUiUpdate(anyString(), eq(false))
+
+        entry = WaypointEntry("")
+        presenter.updatePosition(index = 0, entry = entry)
+        presenter.updateUI()
+
+        verify(mockContract, times(2)).onUiUpdate(anyString(), eq(false))
 
         entry = WaypointEntry("somevalue")
         presenter.updatePosition(index = 0, entry = entry)

@@ -63,6 +63,12 @@ public val Activity.appActionBar: AppActionBar?
     get() = (this as? BaseActivity)?.appActionBar
 
 /**
+ * Gets application context from context.
+ */
+public val Context.msdkuiApplication: MSDKUIApplication
+    get() = (applicationContext as MSDKUIApplication)
+
+/**
  * Indicates location services and permission are ready to use.
  */
 public val Context.isLocationOk: Boolean

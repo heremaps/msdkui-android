@@ -19,9 +19,22 @@ package com.here.msdkuiapp.espresso.impl.views.guidance.useractions
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.viewIsDisplayed
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedUnit
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedValue
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardDistanceInfo
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardDurationInfo
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardEtaInfo
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceEndNaviBtn
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceManueverPanelLocationInfo
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceManeuverPanelDistanceInfo
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceManeuverPanelManueverIcon
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverDistanceInfo
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverIcon
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverPanel
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverStreetNameInfo
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceTitle
 
 object GuidanceActions {
@@ -35,10 +48,38 @@ object GuidanceActions {
     }
 
     /**
-     * Wait for guidance view displayed
+     * Wait for guidance view displayed on action bar
      */
     fun waitForGuidanceViewDisplayed(): GuidanceActions {
         onRootView.perform(waitForCondition(onGuidanceTitle))
+        return this
+    }
+
+    /**
+     * Check manuever panel on guidance
+     */
+    fun checkGuidanceManeuverPanelInfo(): GuidanceActions {
+        onGuidanceManeuverPanelDistanceInfo.check(matches(isDisplayed()))
+        onGuidanceManueverPanelLocationInfo.check(matches(isDisplayed()))
+        onGuidanceManeuverPanelManueverIcon.check(matches(isDisplayed()))
+        if(viewIsDisplayed(onGuidanceNextManeuverPanel)) {
+            onGuidanceNextManeuverDistanceInfo.check(matches(isDisplayed()))
+            onGuidanceNextManeuverIcon.check(matches(isDisplayed()))
+            onGuidanceNextManeuverStreetNameInfo.check(matches(isDisplayed()))
+        }
+        return this
+    }
+
+    /**
+     * Check dashboard on guidance
+     */
+    fun checkGuidanceDashBoardInfo(): GuidanceActions {
+        onGuidanceDashBoardCurrentSpeedValue.check(matches(isDisplayed()))
+        onGuidanceDashBoardCurrentSpeedUnit.check(matches(isDisplayed()))
+        onGuidanceDashBoardEtaInfo.check(matches(isDisplayed()))
+        onGuidanceDashBoardDistanceInfo.check(matches(isDisplayed()))
+        onGuidanceDashBoardDurationInfo.check(matches(isDisplayed()))
+        onGuidanceEndNaviBtn.check(matches(isDisplayed()))
         return this
     }
 }

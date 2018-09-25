@@ -25,6 +25,7 @@ import com.here.android.mpa.routing.Route
 import com.here.android.mpa.routing.RouteResult
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.base.BaseFragmentCoordinator
+import com.here.msdkuiapp.msdkuiApplication
 import com.here.msdkuiapp.common.Provider
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.msdkuiapp.isLocationOk
@@ -42,8 +43,7 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
             object : NavigationManager.RerouteListener() {
                 override fun onRerouteEnd(rerouteResult: RouteResult) {
                     rerouteResult.route?.run {
-                        route = this
-                        renderRoute();
+                        updateRoute(this)
                     }
                 }
             }
@@ -52,8 +52,7 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
             object : NavigationManager.TrafficRerouteListener() {
                 override fun onTrafficRerouted(rerouteResult: RouteResult) {
                     rerouteResult.route?.run {
-                        route = this
-                        renderRoute()
+                        updateRoute(this)
                     }
                 }
             }
@@ -64,8 +63,6 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
         get() = field ?: fragmentManager.findFragmentById(R.id.mapfragment_wrapper) as? MapFragmentWrapper
 
     internal var isSimulation: Boolean = false
-
-    var routeDeserialize: ByteArray? = null
 
     var provider: Provider? = null
         get() = field ?: Provider()
@@ -109,16 +106,12 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
      */
     private fun onEngineInit() {
         doMapSettings(mapFragment!!.map)
-        provider?.provideDeserialize(routeDeserialize, Route.DeserializationCallback { deserializationResult ->
-            if (deserializationResult.error == Route.SerializerError.NONE) {
-                route = deserializationResult.route
-            }
-            init()
-        })
+        route = context.msdkuiApplication.route
+        init()
     }
 
     private fun init() {
-        if (isRouteValid().not() || context.isLocationOk.not()) {
+        if (route == null || context.isLocationOk.not()) {
             context.startActivity(Intent(context, LandingActivity::class.java))
             return
         }
@@ -129,25 +122,18 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
 
         renderRoute()
         addManeuverPanel()
+        addNextManeuverPanel()
         addStreetNameView()
+        addEstimatedArrivalTimeView()
+        addSpeedPanel()
+        addSpeedLimitPanel()
         doNavigationSettings(mapFragment!!.map)
     }
 
-    private fun isRouteValid(): Boolean {
-        var result = true
-        route?.run {
-            try {
-                if (start == null) { // check start point
-                    result = false
-                }
-            } catch (e: Exception) {
-                result = false
-            }
-
-        } ?: kotlin.run {
-            result = false
-        }
-        return result
+    private fun updateRoute(updatedRoute: Route) {
+        context.msdkuiApplication.route = updatedRoute
+        route = updatedRoute
+        renderRoute()
     }
 
     private fun doNavigationSettings(map: Map) {
@@ -185,9 +171,26 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
         fragment.route = route
     }
 
+    private fun addNextManeuverPanel() {
+        val fragment = addFragment(R.id.next_maneuver_panel_container, GuidanceNextManeuverPanelFragment::class.java, false)
+        fragment.route = route
+    }
+
+    private fun addEstimatedArrivalTimeView() {
+        addFragment(R.id.eta_view_container, GuidanceEstimatedArrivalViewFragment::class.java, false)
+    }
+
     private fun addStreetNameView() {
         val fragment = addFragment(R.id.current_street_name_fragment, GuidanceCurrentStreetFragment::class.java, false)
         fragment.route = route
+    }
+
+    private fun addSpeedPanel() {
+        addFragment(R.id.current_speed_panel_container, GuidanceCurrentSpeedFragment::class.java, false)
+    }
+
+    private fun addSpeedLimitPanel() {
+        addFragment(R.id.speed_limit_container, GuidanceSpeedLimitFragment::class.java, false)
     }
 
     /**

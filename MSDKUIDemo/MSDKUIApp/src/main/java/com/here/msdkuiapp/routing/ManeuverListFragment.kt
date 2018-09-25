@@ -28,14 +28,17 @@ import com.here.msdkui.routing.RouteDescriptionItem
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.appActionBar
 import com.here.msdkuiapp.coordinator
+import kotlinx.android.extensions.CacheImplementation
+import kotlinx.android.extensions.ContainerOptions
 import kotlinx.android.synthetic.main.maneuver.*
 
 /**
  * Fragment to display Maneuver list.
  */
+@ContainerOptions(CacheImplementation.NO_CACHE)
 class ManeuverListFragment() : Fragment(), RoutingContracts.ManeuverList {
 
-    private val presenter = ManeuverListPresenter()
+    var presenter = ManeuverListPresenter()
 
     init {
         retainInstance = true

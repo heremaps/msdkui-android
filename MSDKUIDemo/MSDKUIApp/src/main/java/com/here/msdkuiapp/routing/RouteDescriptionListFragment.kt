@@ -26,11 +26,14 @@ import com.here.msdkui.routing.CustomRecyclerView
 import com.here.msdkui.routing.RouteDescriptionItem
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.coordinator
+import kotlinx.android.extensions.CacheImplementation
+import kotlinx.android.extensions.ContainerOptions
 import kotlinx.android.synthetic.main.route_description_list.*
 
 /**
  * Displays Route description list.
  */
+@ContainerOptions(CacheImplementation.NO_CACHE)
 class RouteDescriptionListFragment() : Fragment(), RoutingContracts.RouteDescriptionList {
 
     private val presenter = RouteDescriptionListPresenter()
@@ -96,7 +99,9 @@ class RouteDescriptionListFragment() : Fragment(), RoutingContracts.RouteDescrip
      * @param notVisible true if title should not be visible, false otherwise.
      */
     fun updateTitle(notVisible: Boolean) {
-        route_description_list_heading?.visibility = if (notVisible) View.GONE else View.VISIBLE
+        view?.run {
+            route_description_list_heading?.visibility = if (notVisible) View.GONE else View.VISIBLE
+        }
     }
 
     /**

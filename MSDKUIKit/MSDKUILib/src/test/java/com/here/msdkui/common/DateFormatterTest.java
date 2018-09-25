@@ -32,11 +32,6 @@ import static org.hamcrest.core.Is.is;
  */
 public class DateFormatterTest extends RobolectricTest {
 
-    @Override
-    public void setUp() {
-        super.setUp();
-    }
-
     @Test
     public void testFormatDateString() {
         final String dateString = "01-01-2018 01:01:01"; // any date string.
@@ -74,7 +69,6 @@ public class DateFormatterTest extends RobolectricTest {
     }
 
     public void testInvalidDateFormattingWithNull() {
-        String format = null;
-        assertNull(DateFormatterUtil.format(format));
+        assertNull(DateFormatterUtil.format((String) null));
     }
 }

@@ -131,10 +131,10 @@ public class WaypointList extends RecyclerView {
      * @return the added {@link WaypointEntry}.
      * @throws IllegalArgumentException
      *         if one of the following criteria is met:
-     *         <ui>
+     *         <ul>
      *         <li>if {@code index < 0 || index > size()}.</li>
      *         <li>if {@link #getMaxWaypointItems()} count is exceeded.</li>
-     *         </ui>
+     *         </ul>
      * @see WaypointList#insertEntry(int, WaypointEntry)
      */
     public final WaypointEntry insertEmptyEntry(final int index) {
@@ -150,10 +150,10 @@ public class WaypointList extends RecyclerView {
      * @return true if entry was added successfully, false otherwise.
      * @throws IllegalArgumentException
      *         if one of the following criteria is met:
-     *         <ui>
+     *         <ul>
      *         <li>if entry is null.</li>
      *         <li>if {@link #getMaxWaypointItems()} count is exceeded.</li>
-     *         </ui>
+     *         </ul>
      */
     public final boolean addEntry(final WaypointEntry entry) {
         if (mWaypointEntries.size() == mMaxWaypointCount) {
@@ -179,11 +179,11 @@ public class WaypointList extends RecyclerView {
      *         the {@link WaypointEntry} to be added to list.     *
      * @throws IllegalArgumentException
      *         if one of the following criteria is met:
-     *         <ui>
+     *         <ul>
      *         <li>if {@code index < 0 || index > size()}.</li>
      *         <li>if entry is null.</li>
      *         <li>if {@link #getMaxWaypointItems()} count is exceeded.</li>
-     *         </ui>
+     *         </ul>
      */
     public void insertEntry(final int index, final WaypointEntry entry) {
         if (index < 0 || index > mWaypointEntries.size()) {
@@ -235,10 +235,10 @@ public class WaypointList extends RecyclerView {
      * @return the element that was removed from the list.
      * @throws IllegalArgumentException
      *         if one of the following criteria is met:
-     *         <ui>
+     *         <ul>
      *         <li>if {@code index < 0 || index > size()}.</li>
      *         <li>if {@link #getMaxWaypointItems()} count is exceeded.</li>
-     *         </ui>
+     *         </ul>
      */
     public WaypointEntry removeEntry(final int index) {
         if (index < 0 || index > mWaypointEntries.size()) {

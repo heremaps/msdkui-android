@@ -32,7 +32,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * An adapter class that acts as a bridge between a {@link WaypointEntry} list and the {@link WaypointsListViewHolder)
+ * An adapter class that acts as a bridge between a {@link WaypointEntry} list and the {@link WaypointsListViewHolder}
  * views that will be shown in a {@link WaypointList}.
  */
 public class WaypointListAdapter extends RecyclerView.Adapter<WaypointListAdapter.WaypointsListViewHolder> {
@@ -46,7 +46,7 @@ public class WaypointListAdapter extends RecyclerView.Adapter<WaypointListAdapte
     /**
      * Constructs a new instance using a list of {@link WaypointEntry} elements.
      */
-    public WaypointListAdapter(final List<WaypointEntry> entries) {
+    public WaypointListAdapter(@NonNull final List<WaypointEntry> entries) {
         super();
         mWaypointEntryList = entries;
         mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(entries));
@@ -182,7 +182,38 @@ public class WaypointListAdapter extends RecyclerView.Adapter<WaypointListAdapte
         mListener = listener;
     }
 
-    // ItemTouchHelper callback.
+    /**
+     * Control from / to prefix for not valid waypoint entries.
+     */
+    void updateViewHolderAccordingToPosition(final int position, final WaypointsListViewHolder holder) {
+        final WaypointEntry waypointEntry = mWaypointEntryList.get(position);
+        final TextView entryView = holder.getEntryView();
+        String formatString = null;
+        if (position == 0) {
+            formatString = entryView.getContext().getString(R.string.msdkui_rp_from);
+        } else if (position == mWaypointEntryList.size() - 1) {
+            formatString = entryView.getContext().getString(R.string.msdkui_rp_to);
+        }
+
+        if (waypointEntry == null || waypointEntry.isValid()) {
+            if (formatString == null) {
+                entryView.setContentDescription(entryView.getText());
+            } else {
+                entryView.setContentDescription(String.format(formatString, entryView.getText()));
+            }
+            return;
+        }
+        final String waypointEntryName = waypointEntry.getName() == null ? "" : waypointEntry.getName();
+        if (formatString == null) {
+            entryView.setText(waypointEntryName);
+        } else {
+            entryView.setText(String.format(formatString, waypointEntryName));
+        }
+    }
+
+    /**
+     * ItemTouchHelper callback
+     */
     private final class ItemTouchHelperCallback extends ItemTouchHelper.Callback {
 
         private final List<WaypointEntry> mWaypointEntries;
@@ -278,35 +309,6 @@ public class WaypointListAdapter extends RecyclerView.Adapter<WaypointListAdapte
     }
 
     /**
-     * Control from / to prefix for not valid waypoint entries.
-     */
-    void updateViewHolderAccordingToPosition(final int position, final WaypointsListViewHolder holder) {
-        final WaypointEntry waypointEntry = mWaypointEntryList.get(position);
-        final TextView entryView = holder.getEntryView();
-        String formatString = null;
-        if (position == 0) {
-            formatString = entryView.getContext().getString(R.string.msdkui_rp_from);
-        } else if (position == mWaypointEntryList.size() - 1) {
-            formatString = entryView.getContext().getString(R.string.msdkui_rp_to);
-        }
-
-        if (waypointEntry == null || waypointEntry.isValid()) {
-            if (formatString == null) {
-                entryView.setContentDescription(entryView.getText());
-            } else {
-                entryView.setContentDescription(String.format(formatString, entryView.getText()));
-            }
-            return;
-        }
-        final String waypointEntryName = waypointEntry.getName() == null ? "" : waypointEntry.getName();
-        if (formatString == null) {
-            entryView.setText(waypointEntryName);
-        } else {
-            entryView.setText(String.format(formatString, waypointEntryName));
-        }
-    }
-
-    /**
      * The view holder used for this adapter.
      */
     public class WaypointsListViewHolder extends RecyclerView.ViewHolder {
@@ -325,9 +327,9 @@ public class WaypointListAdapter extends RecyclerView.Adapter<WaypointListAdapte
          */
         WaypointsListViewHolder(final View view) {
             super(view);
-            mDraggableView = (DraggableImageView) view.findViewById(R.id.drag_icon);
-            mRemovableView = (ImageView) view.findViewById(R.id.remove_icon);
-            mEntryView = (TextView) view.findViewById(R.id.waypoint_label);
+            mDraggableView = view.findViewById(R.id.drag_icon);
+            mRemovableView = view.findViewById(R.id.remove_icon);
+            mEntryView = view.findViewById(R.id.waypoint_label);
         }
 
         /**

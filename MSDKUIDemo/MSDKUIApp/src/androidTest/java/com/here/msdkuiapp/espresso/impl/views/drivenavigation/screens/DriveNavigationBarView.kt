@@ -36,7 +36,7 @@ object DriveNavigationBarView {
         get() = onView(withText(R.string.msdkui_app_guidance_teaser_title))
 
     /**
-     * @return The [Matcher]<[View]> driver navigation title text view
+     * @return The [Matcher]<[View]> driver navigation title text view on guidance
      */
     val onDriveNavigationBarTitle: Matcher<View>
         get() = withText(R.string.msdkui_app_guidance_teaser_title)
@@ -48,7 +48,7 @@ object DriveNavigationBarView {
         get() = withText(R.string.msdkui_app_guidance_waypoint_subtitle)
 
     /**
-     * @return The [Matcher]<[View]> route overview title text view
+     * @return The [ViewInteraction] Choose destionation label on drive navigation
      */
     val onRouteOverviewBarTitle: Matcher<View>
         get() = withText(R.string.msdkui_app_route_preview_title)

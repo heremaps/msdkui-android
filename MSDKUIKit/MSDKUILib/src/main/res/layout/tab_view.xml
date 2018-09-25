@@ -17,29 +17,15 @@
 <!-- https://material.io/guidelines/components/tabs.html#tabs-specs -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:focusable="true"
-    android:orientation="vertical"
+    style="?attr/tabView"
     tools:ignore="UseCompoundDrawables">
 
     <ImageView
         android:id="@android:id/icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_gravity="center"
-        android:contentDescription="@string/msdkui_tab_icon"
-        android:src="@drawable/section_bar_layer_rounded" />
+        style="?attr/tabViewIcon" />
 
     <TextView
         android:id="@android:id/text1"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center_vertical"
-        android:paddingTop="5dp"
-        android:textAlignment="center"
-        android:textColor="?attr/colorForegroundLight"
-        android:textSize="14sp" />
+        style="?attr/tabViewText" />
 
 </LinearLayout>

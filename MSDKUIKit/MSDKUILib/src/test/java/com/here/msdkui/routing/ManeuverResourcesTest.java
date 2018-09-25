@@ -29,7 +29,6 @@ import org.junit.Test;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
@@ -106,7 +105,7 @@ public class ManeuverResourcesTest extends RobolectricTest {
         final Maneuver maneuver = mock(Maneuver.class);
         when(maneuver.getAction()).thenReturn(Action.JUNCTION);
         when(maneuver.getTurn()).thenReturn(maneuverTurn);
-        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Arrays.asList(maneuver)));
+        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Collections.singletonList(maneuver)));
         final String maneuverInstruction = mManeuverResources.getManeuverInstruction(0);
         assertThat(maneuverInstruction, equalTo(getStringFromContext(expectedString)));
     }
@@ -170,7 +169,7 @@ public class ManeuverResourcesTest extends RobolectricTest {
         when(carShuttleRoadElement.getAttributes()).thenReturn(EnumSet.of(RoadElement.Attribute.CAR_SHUTTLE_TRAIN, RoadElement.Attribute
                 .FERRY));
         when(maneuver.getRoadElements()).thenReturn(Collections.singletonList(carShuttleRoadElement));
-        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Arrays.asList(maneuver)));
+        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Collections.singletonList(maneuver)));
         assertThat(mManeuverResources.getManeuverInstruction(0),
                 equalTo(getStringFromContext(R.string.msdkui_maneuver_enter_car_shuttle_train)));
     }
@@ -183,7 +182,7 @@ public class ManeuverResourcesTest extends RobolectricTest {
     public void maneuverAction(Action maneuverAction, String expectedString) {
         Maneuver maneuver = mock(Maneuver.class);
         when(maneuver.getAction()).thenReturn(maneuverAction);
-        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Arrays.asList(maneuver)));
+        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Collections.singletonList(maneuver)));
         String maneuverInstruction = mManeuverResources.getManeuverInstruction(0);
         assertThat(maneuverInstruction, equalTo(expectedString));
     }
@@ -192,7 +191,7 @@ public class ManeuverResourcesTest extends RobolectricTest {
         Maneuver maneuver = mock(Maneuver.class);
         when(maneuver.getAction()).thenReturn(maneuverAction);
         when(maneuver.getTurn()).thenReturn(maneuverTurn);
-        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Arrays.asList(maneuver)));
+        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Collections.singletonList(maneuver)));
         final String maneuverInstruction = mManeuverResources.getManeuverInstruction(0);
         assertThat(maneuverInstruction, equalTo(expectedString));
     }
@@ -266,7 +265,7 @@ public class ManeuverResourcesTest extends RobolectricTest {
         Maneuver maneuver = mock(Maneuver.class);
         when(maneuver.getAction()).thenReturn(Action.ROUNDABOUT);
         when(maneuver.getTurn()).thenReturn(maneuverTurn);
-        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Arrays.asList(maneuver)));
+        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Collections.singletonList(maneuver)));
         final String maneuverInstruction = mManeuverResources.getManeuverInstruction(0);
         assertThat(maneuverInstruction, equalTo(getStringFromContext(expectedString)));
     }
@@ -312,7 +311,7 @@ public class ManeuverResourcesTest extends RobolectricTest {
 
     private void fallthroughManeuverAction(Maneuver maneuver) {
         when(maneuver.getMapOrientation()).thenReturn(17);
-        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Arrays.asList(maneuver)));
+        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Collections.singletonList(maneuver)));
         String maneuverInstruction = mManeuverResources.getManeuverInstruction(0);
         assertThat(maneuverInstruction,
                 equalTo(getApplicationContext().getString(R.string.msdkui_maneuver_head_to,
@@ -329,7 +328,7 @@ public class ManeuverResourcesTest extends RobolectricTest {
         when(carShuttleRoadElement.getAttributes()).thenReturn(EnumSet.of(RoadElement.Attribute.CAR_SHUTTLE_TRAIN, RoadElement.Attribute
                 .FERRY));
         when(maneuver.getRoadElements()).thenReturn(Collections.singletonList(carShuttleRoadElement));
-        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Arrays.asList(maneuver)));
+        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Collections.singletonList(maneuver)));
         assertThat(mManeuverResources.getManeuverIconId(0), equalTo(R.drawable.ic_maneuver_icon_motorail));
     }
 
@@ -341,7 +340,7 @@ public class ManeuverResourcesTest extends RobolectricTest {
         RoadElement carShuttleRoadElement = mock(RoadElement.class);
         when(carShuttleRoadElement.getAttributes()).thenReturn(EnumSet.of(RoadElement.Attribute.FERRY));
         when(maneuver.getRoadElements()).thenReturn(Collections.singletonList(carShuttleRoadElement));
-        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Arrays.asList(maneuver)));
+        mManeuverResources = new ManeuverResources(getApplicationContext(), new ArrayList<>(Collections.singletonList(maneuver)));
         assertThat(mManeuverResources.getManeuverIconId(0), equalTo(R.drawable.ic_maneuver_icon_45));
     }
 

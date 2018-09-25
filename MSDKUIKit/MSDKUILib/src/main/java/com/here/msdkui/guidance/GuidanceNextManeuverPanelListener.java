@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
-package com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens
-
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.ViewInteraction
-import android.support.test.espresso.matcher.ViewMatchers
-import com.here.msdkuiapp.R
+package com.here.msdkui.guidance;
 
 /**
- * Drive Navigation & Overview related view selectors
+ * A listener that notifies when there is a change in {@link GuidanceNextManeuverData}.
  */
-object DriverNavigationView {
+public interface GuidanceNextManeuverPanelListener {
 
     /**
-     * @return The [ViewInteraction] Start navigation on route overview
+     * Called when there is change in {@link GuidanceNextManeuverData}.
+     *
+     * @param data
+     *         {@link GuidanceNextManeuverData}.
      */
-    val onRouteOverviewStartNaviBtn: ViewInteraction
-        get() = onView(ViewMatchers.withId(R.id.go))
+    void onDataChanged(GuidanceNextManeuverData data);
 }

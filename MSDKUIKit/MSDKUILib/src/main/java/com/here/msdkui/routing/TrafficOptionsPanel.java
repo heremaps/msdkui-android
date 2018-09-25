@@ -32,7 +32,8 @@ import java.util.Map;
 
 
 /**
- * A view that shows an options panel to select an available mode of {@link Route.TrafficPenaltyMode}.
+ * A view that shows an options panel to select an available mode of
+ * {@link com.here.android.mpa.routing.Route.TrafficPenaltyMode}.
  */
 public class TrafficOptionsPanel extends OptionsPanel implements OptionItem.OnChangedListener {
 

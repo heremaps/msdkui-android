@@ -77,12 +77,12 @@ public class TravelTimePickerTest extends RobolectricTest {
     public void openShouldOpenDialogWithCurrentDateAndTime() {
         mTravelTimePicker.open(getFragmentManager());
         final Dialog dialog = mTravelTimePicker.getDialog();
-        final DatePicker picker = (DatePicker) dialog.findViewById(R.id.travel_date);
+        final DatePicker picker = dialog.findViewById(R.id.travel_date);
         final Calendar calendar = Calendar.getInstance();
         assertThat(picker.getYear(), equalTo(calendar.get(Calendar.YEAR)));
         assertThat(picker.getMonth(), equalTo(calendar.get(Calendar.MONTH)));
         assertThat(picker.getDayOfMonth(), equalTo(calendar.get(Calendar.DAY_OF_MONTH)));
-        final TimePicker timePicker = (TimePicker) dialog.findViewById(R.id.travel_time);
+        final TimePicker timePicker = dialog.findViewById(R.id.travel_time);
         assertThat(timePicker.getCurrentHour(), equalTo(calendar.get(Calendar.HOUR_OF_DAY)));
         assertThat(timePicker.getCurrentMinute(), equalTo(calendar.get(Calendar.MINUTE)));
     }
@@ -93,11 +93,11 @@ public class TravelTimePickerTest extends RobolectricTest {
         calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH) + 1);
         mTravelTimePicker.open(getFragmentManager(), calendar.getTime(), RouteOptions.TimeType.DEPARTURE);
         final Dialog dialog = mTravelTimePicker.getDialog();
-        final DatePicker picker = (DatePicker) dialog.findViewById(R.id.travel_date);
+        final DatePicker picker = dialog.findViewById(R.id.travel_date);
         assertThat(picker.getYear(), equalTo(calendar.get(Calendar.YEAR)));
         assertThat(picker.getMonth(), equalTo(calendar.get(Calendar.MONTH)));
         assertThat(picker.getDayOfMonth(), equalTo(calendar.get(Calendar.DAY_OF_MONTH)));
-        final TimePicker timePicker = (TimePicker) dialog.findViewById(R.id.travel_time);
+        final TimePicker timePicker = dialog.findViewById(R.id.travel_time);
         assertThat(timePicker.getCurrentHour(), equalTo(calendar.get(Calendar.HOUR_OF_DAY)));
         assertThat(timePicker.getCurrentMinute(), equalTo(calendar.get(Calendar.MINUTE)));
     }
@@ -106,19 +106,7 @@ public class TravelTimePickerTest extends RobolectricTest {
     public void clickingOkShouldGiveCurrentTimeAndType() {
         final Calendar currentCalendar = Calendar.getInstance();
         mTravelTimePicker.open(getFragmentManager());
-        mTravelTimePicker.setOnTimePickedListener(new TravelTimePicker.OnTimePickedListener() {
-            @Override
-            public void onTimePicked(final Date date, final RouteOptions.TimeType type) {
-                final Calendar calendar = Calendar.getInstance();
-                calendar.setTime(date);
-                assertThat(calendar.get(Calendar.YEAR), equalTo(currentCalendar.get(Calendar.YEAR)));
-                assertThat(calendar.get(Calendar.MONTH), equalTo(currentCalendar.get(Calendar.MONTH)));
-                assertThat(calendar.get(Calendar.DAY_OF_MONTH), equalTo(currentCalendar.get(Calendar.DAY_OF_MONTH)));
-                assertThat(calendar.get(Calendar.HOUR_OF_DAY), equalTo(currentCalendar.get(Calendar.HOUR_OF_DAY)));
-                assertThat(calendar.get(Calendar.MINUTE), equalTo(currentCalendar.get(Calendar.MINUTE)));
-                assertThat(type, equalTo(RouteOptions.TimeType.ARRIVAL));
-            }
-        });
+        mTravelTimePicker.setOnTimePickedListener(new TravelTimePickerOnTimePickedListener(currentCalendar, RouteOptions.TimeType.ARRIVAL));
         final Dialog dialog = mTravelTimePicker.getDialog();
         ((TabLayout) dialog.findViewById(R.id.picker_tab)).getTabAt(1).select(); // click on arrival
         ((AlertDialog) dialog).getButton(AlertDialog.BUTTON_POSITIVE).performClick(); // click on date
@@ -129,18 +117,7 @@ public class TravelTimePickerTest extends RobolectricTest {
     public void setTimeShouldSetTimeInDialog() {
         final Calendar nextDay = Calendar.getInstance();
         nextDay.set(nextDay.get(Calendar.YEAR), nextDay.get(Calendar.MONTH), nextDay.get(Calendar.DAY_OF_MONTH) + 1);
-        mTravelTimePicker.setOnTimePickedListener(new TravelTimePicker.OnTimePickedListener() {
-            @Override
-            public void onTimePicked(final Date date, final RouteOptions.TimeType type) {
-                final Calendar calendar = Calendar.getInstance();
-                calendar.setTime(date);
-                assertThat(calendar.get(Calendar.YEAR), equalTo(nextDay.get(Calendar.YEAR)));
-                assertThat(calendar.get(Calendar.MONTH), equalTo(nextDay.get(Calendar.MONTH)));
-                assertThat(calendar.get(Calendar.DAY_OF_MONTH), equalTo(nextDay.get(Calendar.DAY_OF_MONTH)));
-                assertThat(calendar.get(Calendar.HOUR_OF_DAY), equalTo(nextDay.get(Calendar.HOUR_OF_DAY)));
-                assertThat(calendar.get(Calendar.MINUTE), equalTo(nextDay.get(Calendar.MINUTE)));
-            }
-        });
+        mTravelTimePicker.setOnTimePickedListener(new TravelTimePickerOnTimePickedListener(nextDay, null));
         mTravelTimePicker.open(getFragmentManager());
         mTravelTimePicker.setTime(nextDay.getTime());
         final Dialog dialog = mTravelTimePicker.getDialog();
@@ -157,12 +134,7 @@ public class TravelTimePickerTest extends RobolectricTest {
 
     @Test
     public void setTimeTypeShouldSetTimeTypeInDialog() {
-        mTravelTimePicker.setOnTimePickedListener(new TravelTimePicker.OnTimePickedListener() {
-            @Override
-            public void onTimePicked(final Date date, final RouteOptions.TimeType type) {
-                assertThat(type, equalTo(RouteOptions.TimeType.ARRIVAL));
-            }
-        });
+        mTravelTimePicker.setOnTimePickedListener(new TravelTimePickerOnTimePickedListener(null, RouteOptions.TimeType.ARRIVAL));
         mTravelTimePicker.open(getFragmentManager());
         mTravelTimePicker.setTimeType(RouteOptions.TimeType.ARRIVAL);
         final Dialog dialog = mTravelTimePicker.getDialog();
@@ -215,12 +187,12 @@ public class TravelTimePickerTest extends RobolectricTest {
         // open the picker, default is departure
         mTravelTimePicker.open(getFragmentManager());
         Dialog dialog = mTravelTimePicker.getDialog();
-        assertThat(((TabLayout) dialog.findViewById(R.id.picker_tab)).getVisibility(), equalTo(View.GONE));
+        assertThat(dialog.findViewById(R.id.picker_tab).getVisibility(), equalTo(View.GONE));
 
         mTravelTimePicker = TravelTimePicker.newInstance(TravelTimePicker.Variety.BOTH);
         mTravelTimePicker.open(getFragmentManager());
         dialog = mTravelTimePicker.getDialog();
-        assertThat(((TabLayout) dialog.findViewById(R.id.picker_tab)).getVisibility(), equalTo(View.VISIBLE));
+        assertThat(dialog.findViewById(R.id.picker_tab).getVisibility(), equalTo(View.VISIBLE));
     }
 
     @Test
@@ -260,5 +232,34 @@ public class TravelTimePickerTest extends RobolectricTest {
         assertEquals(calendar.get(Calendar.MONTH), bundle.getInt(TravelTimePicker.MONTH));
         assertEquals(calendar.get(Calendar.HOUR_OF_DAY), bundle.getInt(TravelTimePicker.HOUR));
         assertEquals(calendar.get(Calendar.MINUTE), bundle.getInt(TravelTimePicker.MINUTE));
+    }
+
+    /**
+     * Test listener
+     */
+    private static class TravelTimePickerOnTimePickedListener implements TravelTimePicker.OnTimePickedListener {
+        private final Calendar mCurrentCalendar;
+        private final RouteOptions.TimeType mTimeType;
+
+        TravelTimePickerOnTimePickedListener(Calendar calendar, RouteOptions.TimeType timeType) {
+            mCurrentCalendar = calendar;
+            mTimeType = timeType;
+        }
+
+        @Override
+        public void onTimePicked(final Date date, final RouteOptions.TimeType type) {
+            if (mCurrentCalendar != null) {
+                final Calendar calendar = Calendar.getInstance();
+                calendar.setTime(date);
+                assertThat(calendar.get(Calendar.YEAR), equalTo(mCurrentCalendar.get(Calendar.YEAR)));
+                assertThat(calendar.get(Calendar.MONTH), equalTo(mCurrentCalendar.get(Calendar.MONTH)));
+                assertThat(calendar.get(Calendar.DAY_OF_MONTH), equalTo(mCurrentCalendar.get(Calendar.DAY_OF_MONTH)));
+                assertThat(calendar.get(Calendar.HOUR_OF_DAY), equalTo(mCurrentCalendar.get(Calendar.HOUR_OF_DAY)));
+                assertThat(calendar.get(Calendar.MINUTE), equalTo(mCurrentCalendar.get(Calendar.MINUTE)));
+            }
+            if (mTimeType != null) {
+                assertThat(type, equalTo(mTimeType));
+            }
+        }
     }
 }

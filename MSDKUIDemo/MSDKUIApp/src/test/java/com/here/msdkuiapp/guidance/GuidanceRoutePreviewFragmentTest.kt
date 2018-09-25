@@ -16,11 +16,12 @@
 
 package com.here.msdkuiapp.guidance
 
+import MockUtils.mockRoute
 import android.app.AlertDialog
 import android.content.Context
 import android.view.View
-import com.here.android.mpa.routing.Route
 import com.here.msdkui.routing.WaypointEntry
+import com.here.msdkuiapp.R
 import com.here.testutils.BaseTest
 import com.here.testutils.anySafe
 import junit.framework.TestCase.assertNotNull
@@ -97,8 +98,7 @@ class GuidanceRoutePreviewFragmentTest : BaseTest() {
     fun testPopulateUI() {
         val entry = mock(WaypointEntry::class.java)
         `when`(entry.name).thenReturn("name")
-        val route = mock(Route::class.java, RETURNS_DEEP_STUBS)
-        fragment.populateUI(entry, route)
+        fragment.populateUI(entry, mockRoute(), false)
         assertThat(fragment.view.destination.text.toString(), containsString("name"))
     }
 
@@ -108,5 +108,20 @@ class GuidanceRoutePreviewFragmentTest : BaseTest() {
         assertThat(fragment.view.visibility, `is`(View.VISIBLE))
         assertThat(fragment.view.description.visibility, `is`(View.INVISIBLE))
         assertThat(fragment.view.error_message.visibility, `is`(View.VISIBLE))
+    }
+
+    @Test
+    fun testManeuverSteps() {
+        `when`(presenter.context).thenReturn(mockContext)
+        fragment.onViewCreated(mock(View::class.java), null)
+        assertNotNull(fragment.view)
+        val seeStepView = fragment.view.see_steps
+        assertThat(seeStepView.text.toString(),
+                `is`(applicationContext.getString(R.string.msdkui_app_guidance_button_showmaneuvers)))
+        assertThat(fragment.view.guidance_maneuver_description_list.visibility, `is`(View.GONE))
+        fragment.toggleSteps(true)
+        assertThat(seeStepView.text.toString(),
+                `is`(applicationContext.getString(R.string.msdkui_app_guidance_button_showmap)))
+        assertThat(fragment.view.guidance_maneuver_description_list.visibility, `is`(View.VISIBLE))
     }
 }

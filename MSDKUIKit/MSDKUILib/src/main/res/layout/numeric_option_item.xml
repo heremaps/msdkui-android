@@ -18,22 +18,11 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingEnd="@dimen/contentMarginLarge"
-    android:paddingLeft="@dimen/contentMarginLarge"
-    android:paddingRight="@dimen/contentMarginLarge"
-    android:paddingStart="@dimen/contentMarginLarge">
+    style="?attr/numericOptionItem">
 
     <TextView
         android:id="@+id/numeric_item_label"
-        style="@style/TextStyle.Large"
-        android:layout_width="0dp"
-        android:layout_marginEnd="@dimen/contentMarginLarge"
-        android:layout_marginLeft="@dimen/contentMarginExtraLarge"
-        android:layout_marginRight="@dimen/contentMarginLarge"
-        android:layout_marginStart="@dimen/contentMarginExtraLarge"
+        style="?attr/numericOptionItemLabelText"
         android:labelFor="@+id/numeric_item_value"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/numeric_item_value"
@@ -44,13 +33,7 @@
 
     <TextView
         android:id="@+id/numeric_item_value"
-        style="@style/TextStyle.Medium"
-        android:layout_marginEnd="@dimen/contentMarginExtraLarge"
-        android:layout_marginRight="@dimen/contentMarginExtraLarge"
-        android:gravity="center"
-        android:minHeight="@dimen/min_value"
-        android:minWidth="@dimen/min_value"
-        android:text="@string/msdkui_set"
+        style="?attr/numericOptionItemValueText"
         app:layout_constraintBaseline_toBaselineOf="@id/numeric_item_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent" />

@@ -33,7 +33,7 @@ import com.here.android.mpa.routing.RouteWaypoint;
 import com.here.msdkui.routing.WaypointEntry;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
@@ -216,22 +216,22 @@ public final class MockUtils {
     public static class MockRouteBuilder {
 
         private final Route mRoute;
-        private RouteTta mRouteTta_1 = null;
-        private RouteTta mRouteTta_2 = null;
-        private RouteElements mRouteElements = null;
-        private RoutePlan mPlan = null;
-        private RouteOptions mOptions = null;
+        private RouteTta mRouteTta1;
+        private RouteTta mRouteTta2 = null;
+        private RouteElements mRouteElements;
+        private RoutePlan mPlan;
+        private RouteOptions mOptions;
 
         public MockRouteBuilder() {
-            mRoute = mock(com.here.android.mpa.routing.Route.class);
+            mRoute = mock(Route.class);
 
-            mRouteTta_1 = mock(RouteTta.class);
-            when(mRouteTta_1.isBlocked()).thenReturn(false);
-            when(mRouteTta_1.getDuration()).thenReturn(1000);
-            when(mRoute.getTta(any(Route.TrafficPenaltyMode.class), anyInt())).thenReturn(mRouteTta_1);
+            mRouteTta1 = mock(RouteTta.class);
+            when(mRouteTta1.isBlocked()).thenReturn(false);
+            when(mRouteTta1.getDuration()).thenReturn(1000);
+            when(mRoute.getTta(any(Route.TrafficPenaltyMode.class), anyInt())).thenReturn(mRouteTta1);
 
             mRouteElements = mock(RouteElements.class);
-            List<RouteElement> elements = new ArrayList<>(Arrays.asList(mockRouteElement()));
+            List<RouteElement> elements = new ArrayList<>(Collections.singletonList(mockRouteElement()));
             when(mRouteElements.getElements()).thenReturn(elements);
             when(mRoute.getRouteElements()).thenReturn(mRouteElements);
 
@@ -245,7 +245,7 @@ public final class MockUtils {
         }
 
         public MockRouteBuilder setBlockedRoad() {
-            when(mRouteTta_1.isBlocked()).thenReturn(true);
+            when(mRouteTta1.isBlocked()).thenReturn(true);
             return this;
         }
 
@@ -257,25 +257,20 @@ public final class MockUtils {
 
         public MockRouteBuilder setTrafficPenaltyMinutes(int minutes) {
             int delayInSeconds = minutes * 60;
-            when(mRouteTta_1.getDuration()).thenReturn(delayInSeconds);
-            when(mRoute.getTta(eq(Route.TrafficPenaltyMode.OPTIMAL), anyInt())).thenReturn(mRouteTta_1);
-            if (mRouteTta_2 == null) {
-                mRouteTta_2 = mock(RouteTta.class);
+            when(mRouteTta1.getDuration()).thenReturn(delayInSeconds);
+            when(mRoute.getTta(eq(Route.TrafficPenaltyMode.OPTIMAL), anyInt())).thenReturn(mRouteTta1);
+            if (mRouteTta2 == null) {
+                mRouteTta2 = mock(RouteTta.class);
             }
-            when(mRouteTta_2.getDuration()).thenReturn(0);
-            when(mRoute.getTta(eq(Route.TrafficPenaltyMode.DISABLED), anyInt())).thenReturn(mRouteTta_2);
+            when(mRouteTta2.getDuration()).thenReturn(0);
+            when(mRoute.getTta(eq(Route.TrafficPenaltyMode.DISABLED), anyInt())).thenReturn(mRouteTta2);
 
             return this;
         }
 
         public MockRouteBuilder setListOfManeuver() {
             Maneuver maneuver = mockManeuver();
-            when(mRoute.getManeuvers()).thenReturn(new ArrayList<Maneuver>(Arrays.asList(maneuver)));
-            return this;
-        }
-
-        public MockRouteBuilder setListOfManeuver(final List<Maneuver> maneuvers) {
-            when(mRoute.getManeuvers()).thenReturn(maneuvers);
+            when(mRoute.getManeuvers()).thenReturn(new ArrayList<>(Collections.singletonList(maneuver)));
             return this;
         }
 

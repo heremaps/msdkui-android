@@ -47,6 +47,7 @@
   <string name="msdkui_drag_waypoint_button">I-drag ang buton ng waypoint sa index %1$d</string>
   <string name="msdkui_duration">Durasyon</string>
   <string name="msdkui_enabled">Naka-On</string>
+  <string name="msdkui_estimated_arrival">Estimated Arrival</string>
   <string name="msdkui_exception_attribute_invalid">Failed to resolve attribute at index %1$d</string>
   <string name="msdkui_exception_custom_view_not_available">Custom view for mode %1$s is not available</string>
   <string name="msdkui_exception_date_null">There is no date</string>
@@ -130,6 +131,7 @@
   <string name="msdkui_maneuverpanel_nodata">Sundan ang ruta sa mapa</string>
   <string name="msdkui_maneuverpanel_updating">Pag-update</string>
   <string name="msdkui_minutes">%1$d min</string>
+  <string name="msdkui_next_maneuver">Next maneuver</string>
   <string name="msdkui_no_maneuver_found">Hindi nakahanap ng mapagmamaneobrahan</string>
   <string name="msdkui_no_route_found">Hindi nakahanap ng mga ruta?</string>
   <string name="msdkui_no_traffic_delays">Walang pagkaantala</string>
@@ -159,6 +161,8 @@
   <string name="msdkui_selected">Pinili</string>
   <string name="msdkui_set">I-set</string>
   <string name="msdkui_shortest">Pinakamaikli</string>
+  <string name="msdkui_speed">Speed</string>
+  <string name="msdkui_speed_limit">Speed Limit</string>
   <string name="msdkui_tab_icon">Icon ng tab</string>
   <string name="msdkui_traffic">Umiwas sa trapiko</string>
   <string name="msdkui_traffic_blocked">Nakasara</string>
@@ -175,9 +179,11 @@
   <string name="msdkui_tunnels_allowed_title">Pinayagan ang mga lagusan</string>
   <string name="msdkui_undefined">Hindi tinukoy</string>
   <string name="msdkui_unit_kilometer">km</string>
+  <string name="msdkui_unit_km_per_h">km/h</string>
   <string name="msdkui_unit_meter">m</string>
   <string name="msdkui_unknown">Hindi matukoy</string>
   <string name="msdkui_userposition_search">Getting your location</string>
+  <string name="msdkui_value_not_available">--</string>
   <string name="msdkui_violate_truck_options">Balewalain ang mga opsyon na trak</string>
   <string name="msdkui_waypoint_current_location">Kasalukuyang lokasyon</string>
   <string name="msdkui_waypoint_select_location">Pumili ng direksyon</string>

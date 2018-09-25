@@ -91,23 +91,12 @@ public class TruckOptionsPanelTest extends RobolectricTest {
                 .build();
         mTruckOptionsPanel.setRouteOptions(mockRouteOptions);
 
-        doAnswer(new Answer<Void>() {
-            @Override
-            public Void answer(InvocationOnMock invocation) throws Throwable {
-                Object[] arguments = invocation.getArguments();
-                if (arguments != null && arguments.length > 0 && arguments[0] != null) {
-                    final RouteOptions.TruckRestrictionsMode restrictionsMode = (RouteOptions.TruckRestrictionsMode) arguments[0];
-                    assertThat(restrictionsMode, equalTo(RouteOptions.TruckRestrictionsMode.NO_VIOLATIONS));
-                }
-                return null;
-            }
-        }).when(mockRouteOptions)
+        doAnswer(new AnswerGetRouteOptions(RouteOptions.TruckRestrictionsMode.NO_VIOLATIONS)).when(mockRouteOptions)
                 .setTruckRestrictionsMode(any(RouteOptions.TruckRestrictionsMode.class));
 
         final List<OptionItem> items = mTruckOptionsPanel.getOptionsSpecs();
         BooleanOptionItem booleanOptionItem = (BooleanOptionItem) items.get(items.size() - 1);
         booleanOptionItem.setChecked(false);
-        mTruckOptionsPanel.getRouteOptions();
     }
 
     @Test
@@ -117,23 +106,12 @@ public class TruckOptionsPanelTest extends RobolectricTest {
                 .build();
         mTruckOptionsPanel.setRouteOptions(mockRouteOptions);
 
-        doAnswer(new Answer<Void>() {
-            @Override
-            public Void answer(InvocationOnMock invocation) throws Throwable {
-                Object[] arguments = invocation.getArguments();
-                if (arguments != null && arguments.length > 0 && arguments[0] != null) {
-                    final RouteOptions.TruckRestrictionsMode restrictionsMode = (RouteOptions.TruckRestrictionsMode) arguments[0];
-                    assertThat(restrictionsMode, equalTo(RouteOptions.TruckRestrictionsMode.PENALIZE_VIOLATIONS));
-                }
-                return null;
-            }
-        }).when(mockRouteOptions)
+        doAnswer(new AnswerGetRouteOptions(RouteOptions.TruckRestrictionsMode.PENALIZE_VIOLATIONS)).when(mockRouteOptions)
                 .setTruckRestrictionsMode(any(RouteOptions.TruckRestrictionsMode.class));
 
         final List<OptionItem> items = mTruckOptionsPanel.getOptionsSpecs();
         BooleanOptionItem booleanOptionItem = (BooleanOptionItem) items.get(items.size() - 1);
         booleanOptionItem.setChecked(true);
-        mTruckOptionsPanel.getRouteOptions();
     }
 
     @Test
@@ -170,5 +148,29 @@ public class TruckOptionsPanelTest extends RobolectricTest {
         when(options.getTruckHeight()).thenReturn(2.0f);
         mTruckOptionsPanel.setRouteOptions(options);
         assertThat(mCallbackCalled, is(true));
+    }
+
+    /**
+     * Answer implementation
+     */
+    private static class AnswerGetRouteOptions implements Answer<Void> {
+
+        private final RouteOptions.TruckRestrictionsMode mTruckRestrictionsMode;
+
+        public AnswerGetRouteOptions(RouteOptions.TruckRestrictionsMode mode) {
+            mTruckRestrictionsMode = mode;
+        }
+
+        @Override
+        public Void answer(InvocationOnMock invocation) throws Throwable {
+            Object[] arguments = invocation.getArguments();
+            if (arguments != null && arguments.length > 0 && arguments[0] != null) {
+                final RouteOptions.TruckRestrictionsMode restrictionsMode = (RouteOptions.TruckRestrictionsMode) arguments[0];
+                if (mTruckRestrictionsMode != null) {
+                    assertThat(restrictionsMode, equalTo(mTruckRestrictionsMode));
+                }
+            }
+            return null;
+        }
     }
 }

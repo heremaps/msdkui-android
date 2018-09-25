@@ -16,16 +16,20 @@
 
 package com.here.testutils
 
+import android.app.Activity
 import android.app.Fragment
 import android.app.FragmentManager
 import android.content.Context
 import android.support.v4.app.FragmentActivity
 import com.here.msdkuiapp.BuildConfig
 import com.here.msdkuiapp.R
+import org.hamcrest.CoreMatchers
+import org.hamcrest.MatcherAssert
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.RuntimeEnvironment
+import org.robolectric.Shadows
 import org.robolectric.annotation.Config
 
 
@@ -94,5 +98,18 @@ abstract class BaseTest {
             return findFragmentById(id)
         }
         return null
+    }
+
+    /**
+     * Helper function for checking started activity.
+     *
+     * @param activity currently running activity.
+     * @param clazz class of activity that should start.
+     */
+    fun assertActivityStarted(activity: Activity, clazz: Class<out Activity>) {
+        val shadowActivity = Shadows.shadowOf(activity)
+        val startedIntent = shadowActivity.nextStartedActivity
+        val shadowIntent = Shadows.shadowOf(startedIntent)
+        MatcherAssert.assertThat(shadowIntent.intentClass.canonicalName, CoreMatchers.`is`(clazz.name))
     }
 }

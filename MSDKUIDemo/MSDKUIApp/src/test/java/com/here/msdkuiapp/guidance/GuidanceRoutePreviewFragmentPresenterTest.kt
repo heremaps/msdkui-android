@@ -21,12 +21,12 @@ import com.here.android.mpa.routing.*
 import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkuiapp.GuidanceContracts
 import com.here.msdkuiapp.base.BaseActivity
+import com.here.msdkuiapp.MSDKUIApplication
 import com.here.msdkuiapp.base.BaseContract
 import com.here.msdkuiapp.common.AppActionBar
 import com.here.msdkuiapp.common.Provider
 import com.here.testutils.anySafe
 import com.here.testutils.argumentCaptor
-import com.here.testutils.captureSafe
 import junit.framework.TestCase.assertNotNull
 import org.junit.Before
 import org.junit.Test
@@ -75,8 +75,9 @@ class GuidanceRoutePreviewFragmentPresenterTest {
         val appActionBar = spy(AppActionBar(mockActivity))
         with(appActionBar) {
             presenter.updateActionBar(this)
+            verify(this).setBack(true)
             verify(this).setTitle(value = "")
-            verify(this).setRightIcon(visible = eq(false))
+            verify(this).setRightIcon(visible = false)
         }
     }
 
@@ -129,7 +130,7 @@ class GuidanceRoutePreviewFragmentPresenterTest {
 
         verify(mockRoutePreview).onProgress(visible = false)
 
-        verify(mockRoutePreview).populateUI(anySafe(), anySafe())
+        verify(mockRoutePreview).populateUI(anySafe(), anySafe(), ArgumentMatchers.anyBoolean())
     }
 
     @Test
@@ -167,15 +168,16 @@ class GuidanceRoutePreviewFragmentPresenterTest {
     @Test
     fun testStartGuidance() {
         testRouteCalculationWithTwoWaypoint()
-        val mockSerializationResult = spy(Route.SerializationResult::class.java)
-        mockSerializationResult.error = Route.SerializerError.NONE
+        val mockBaseApplication = mock(MSDKUIApplication::class.java)
+        `when`(mockActivity.applicationContext).thenReturn(mockBaseApplication)
         presenter.startGuidance(false)
-        verify(mockRoutePreview, atLeastOnce()).onProgress(true)
-        val serializeCallbackCaptor = argumentCaptor<Route.SerializationCallback>()
-        verify(mockProvider).provideSerialize(anySafe(), captureSafe(serializeCallbackCaptor))
-        serializeCallbackCaptor.value.onSerializationComplete(mockSerializationResult)
-        verify(mockRoutePreview, atLeastOnce()).onProgress(eq(false))
         verify(mockActivity).startActivity(anySafe())
+    }
+
+    @Test
+    fun toggleSteps() {
+        presenter.toggleSteps()
+        verify(mockRoutePreview).toggleSteps(true)
     }
 
     @Test

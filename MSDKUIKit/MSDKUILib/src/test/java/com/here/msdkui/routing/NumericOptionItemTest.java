@@ -42,7 +42,6 @@ import static org.hamcrest.Matchers.equalTo;
 public class NumericOptionItemTest extends RobolectricTest {
 
     private NumericOptionItem mNumericOptionItem;
-    private boolean mCallbackCalled;
 
     @Before
     public void setUp() {
@@ -51,8 +50,8 @@ public class NumericOptionItemTest extends RobolectricTest {
 
     @Test
     public void testInitUi() {
-        final TextView labelView = (TextView) mNumericOptionItem.findViewById(R.id.numeric_item_label);
-        final TextView valueView = (TextView) mNumericOptionItem.findViewById(R.id.numeric_item_value);
+        final TextView labelView = mNumericOptionItem.findViewById(R.id.numeric_item_label);
+        final TextView valueView = mNumericOptionItem.findViewById(R.id.numeric_item_value);
         assertNotNull(labelView);
         assertThat(labelView.getVisibility(), equalTo(View.VISIBLE));
         assertNotNull(valueView);
@@ -63,7 +62,7 @@ public class NumericOptionItemTest extends RobolectricTest {
     public void testSetValue() {
         Number value = 5;
 
-        final TextView valueView = (TextView) mNumericOptionItem.findViewById(R.id.numeric_item_value);
+        final TextView valueView = mNumericOptionItem.findViewById(R.id.numeric_item_value);
         assertNotNull(valueView);
 
         mNumericOptionItem.setValue(value);
@@ -72,14 +71,14 @@ public class NumericOptionItemTest extends RobolectricTest {
         mNumericOptionItem.setValue(null);
         assertEquals(getApplicationContext().getString(R.string.msdkui_undefined), valueView.getText().toString());
 
-        mNumericOptionItem.setValue(0.0f/0.0f);
+        mNumericOptionItem.setValue(0.0f / 0.0f);
         assertEquals(getApplicationContext().getString(R.string.msdkui_undefined), valueView.getText().toString());
     }
 
     @Test
     public void testLabel() {
         mNumericOptionItem.setLabel(getString(R.string.msdkui_violate_truck_options));
-        final TextView labelView = (TextView) mNumericOptionItem.findViewById(R.id.numeric_item_label);
+        final TextView labelView = mNumericOptionItem.findViewById(R.id.numeric_item_label);
         assertThat(labelView.getText().toString(),
                 equalTo(getApplicationContext().getString(R.string.msdkui_violate_truck_options)));
         assertThat(mNumericOptionItem.getLabel(),
@@ -95,7 +94,7 @@ public class NumericOptionItemTest extends RobolectricTest {
     public void testValueEditDialogPositive() {
         int newValue = 10;
         mNumericOptionItem.setLabel(getString(R.string.msdkui_violate_truck_options));
-        final TextView valueView = (TextView) mNumericOptionItem.findViewById(R.id.numeric_item_value);
+        final TextView valueView = mNumericOptionItem.findViewById(R.id.numeric_item_value);
 
         assertNotNull(valueView);
         valueView.performClick();
@@ -103,7 +102,7 @@ public class NumericOptionItemTest extends RobolectricTest {
         AlertDialog alertDialog = (AlertDialog) ShadowDialog.getLatestDialog();
         assertTrue(alertDialog.isShowing());
 
-        EditText valueEdit = (EditText) alertDialog.findViewById(R.id.numeric_item_value_text);
+        EditText valueEdit = alertDialog.findViewById(R.id.numeric_item_value_text);
         valueEdit.setText(String.valueOf(newValue));
         alertDialog.getButton(DialogInterface.BUTTON_POSITIVE).performClick();
         assertEquals(newValue, mNumericOptionItem.getValue().intValue());
@@ -112,7 +111,7 @@ public class NumericOptionItemTest extends RobolectricTest {
     @Test
     public void testValueEditDialogNegative() {
         mNumericOptionItem.setLabel(getString(R.string.msdkui_violate_truck_options));
-        final TextView valueView = (TextView) mNumericOptionItem.findViewById(R.id.numeric_item_value);
+        final TextView valueView = mNumericOptionItem.findViewById(R.id.numeric_item_value);
 
         assertNotNull(valueView);
         valueView.performClick();

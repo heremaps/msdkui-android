@@ -195,7 +195,7 @@ public class RouteDescriptionList extends CustomRecyclerView {
      * delays.
      *
      * <p> Note that setting traffic for this list will always have preference over setting traffic for each of the
-     * {@link RouteDescriptionItem} elements contained in this list via {@see RouteDescriptionItem#setTrafficEnabled(boolean)}.</p>
+     * {@link RouteDescriptionItem} elements contained in this list via {@link RouteDescriptionItem#setTrafficEnabled(boolean)}.</p>
      *
      * @param isTraffic true if traffic delays should be included, false otherwise.
      */

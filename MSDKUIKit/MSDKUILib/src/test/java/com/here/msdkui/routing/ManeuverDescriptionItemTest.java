@@ -16,7 +16,6 @@
 
 package com.here.msdkui.routing;
 
-import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,12 +31,13 @@ import org.junit.Test;
 import org.robolectric.Robolectric;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
+import static junit.framework.Assert.assertSame;
 import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -58,25 +58,25 @@ public class ManeuverDescriptionItemTest extends RobolectricTest {
 
     @Test
     public void createdViewShouldHaveProperInitialContent() {
-        final ImageView icon = (ImageView) mManeuverDescriptionItem.findViewById(R.id.maneuver_icon_view);
+        final ImageView icon = mManeuverDescriptionItem.findViewById(R.id.maneuver_icon_view);
         assertNotNull(icon);
         // by default, it should be visible
-        assertTrue("Maneuver icon is not visible by default", icon.getVisibility() == View.VISIBLE);
+        assertSame("Maneuver icon is not visible by default", View.VISIBLE, icon.getVisibility());
 
-        final TextView addressView = (TextView) mManeuverDescriptionItem.findViewById(R.id.maneuver_address_view);
+        final TextView addressView = mManeuverDescriptionItem.findViewById(R.id.maneuver_address_view);
         assertNotNull(addressView);
         // by default, it should be visible
-        assertTrue("Address View is not visible by default", addressView.getVisibility() == View.VISIBLE);
+        assertSame("Address View is not visible by default", View.VISIBLE, addressView.getVisibility());
 
-        final TextView distanceView = (TextView) mManeuverDescriptionItem.findViewById(R.id.maneuver_distance_view);
+        final TextView distanceView = mManeuverDescriptionItem.findViewById(R.id.maneuver_distance_view);
         assertNotNull(distanceView);
         // by default, it should be visible
-        assertTrue("Drag Icon is not visible by default", distanceView.getVisibility() == View.VISIBLE);
+        assertSame("Drag Icon is not visible by default", View.VISIBLE, distanceView.getVisibility());
 
-        final TextView instructionView = (TextView) mManeuverDescriptionItem.findViewById(R.id.maneuver_instruction_view);
+        final TextView instructionView = mManeuverDescriptionItem.findViewById(R.id.maneuver_instruction_view);
         assertNotNull(instructionView);
         // by default, it should be visible
-        assertTrue("Drag Icon is not visible by default", instructionView.getVisibility() == View.VISIBLE);
+        assertSame("Drag Icon is not visible by default", View.VISIBLE, instructionView.getVisibility());
 
         // there should not be any waypoint entry
         assertNull(mManeuverDescriptionItem.getManeuver());
@@ -102,12 +102,7 @@ public class ManeuverDescriptionItemTest extends RobolectricTest {
 
     @Test
     public void testClick() {
-        mManeuverDescriptionItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCallbackCalled = true;
-            }
-        });
+        mManeuverDescriptionItem.setOnClickListener(v -> mCallbackCalled = true);
         mManeuverDescriptionItem.performClick();
         assertThat(mCallbackCalled, is(true));
     }
@@ -125,7 +120,8 @@ public class ManeuverDescriptionItemTest extends RobolectricTest {
 
     @Test
     public void testSettingVisibleSections() {
-        EnumSet set = EnumSet.of(ManeuverDescriptionItem.Section.INSTRUCTIONS, ManeuverDescriptionItem.Section.ADDRESS);
+        EnumSet<ManeuverDescriptionItem.Section> set = EnumSet.of(ManeuverDescriptionItem.Section.INSTRUCTIONS,
+                ManeuverDescriptionItem.Section.ADDRESS);
         mManeuverDescriptionItem.setVisibleSections(set);
         assertThat(mManeuverDescriptionItem.getVisibleSections().size(), equalTo(2));
         assertThat(mManeuverDescriptionItem.isSectionVisible(ManeuverDescriptionItem.Section.ADDRESS), is(true));
@@ -135,7 +131,7 @@ public class ManeuverDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithIconSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visible,"0x01")
+                .addAttribute(R.attr.visible, "0x01")
                 .build();
 
         ManeuverDescriptionItem item = new ManeuverDescriptionItem(getContextWithTheme(), attributeSet);
@@ -147,7 +143,7 @@ public class ManeuverDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithInstructionsSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visible,"0x02")
+                .addAttribute(R.attr.visible, "0x02")
                 .build();
 
         ManeuverDescriptionItem item = new ManeuverDescriptionItem(getContextWithTheme(), attributeSet);
@@ -159,7 +155,7 @@ public class ManeuverDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithAddressSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visible,"0x04")
+                .addAttribute(R.attr.visible, "0x04")
                 .build();
 
         ManeuverDescriptionItem item = new ManeuverDescriptionItem(getContextWithTheme(), attributeSet);
@@ -171,7 +167,7 @@ public class ManeuverDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithDistanceSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visible,"0x08")
+                .addAttribute(R.attr.visible, "0x08")
                 .build();
 
         ManeuverDescriptionItem item = new ManeuverDescriptionItem(getContextWithTheme(), attributeSet);
@@ -181,6 +177,6 @@ public class ManeuverDescriptionItemTest extends RobolectricTest {
     }
 
     public List<Maneuver> getManeuvers() {
-        return new ArrayList<Maneuver>(Arrays.asList(MockUtils.mockManeuver()));
+        return new ArrayList<>(Collections.singletonList(MockUtils.mockManeuver()));
     }
 }

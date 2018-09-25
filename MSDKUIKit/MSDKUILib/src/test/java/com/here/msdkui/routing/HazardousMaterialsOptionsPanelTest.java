@@ -114,17 +114,7 @@ public class HazardousMaterialsOptionsPanelTest extends RobolectricTest {
                 .build();
         mDriveOptionsPanel.setRouteOptions(mockRouteOptions);
 
-        doAnswer(new Answer<Void>() {
-            @Override
-            public Void answer(InvocationOnMock invocation) throws Throwable {
-                Object[] arguments = invocation.getArguments();
-                if (arguments != null && arguments.length > 0 && arguments[0] != null) {
-                    final EnumSet<RouteOptions.HazardousGoodType> goodTypes = (EnumSet<RouteOptions.HazardousGoodType>) arguments[0];
-                    assertThat(goodTypes.size(), equalTo(0));
-                }
-                return null;
-            }
-        }).when(mockRouteOptions)
+        doAnswer(new NoGoodTypesAnswer()).when(mockRouteOptions)
                 .setTruckShippedHazardousGoods(any(EnumSet.class));
 
         mDriveOptionsPanel.getOptionsSpecs();
@@ -150,5 +140,20 @@ public class HazardousMaterialsOptionsPanelTest extends RobolectricTest {
         when(options.getTruckShippedHazardousGoods()).thenReturn(EnumSet.noneOf(RouteOptions.HazardousGoodType.class));
         mDriveOptionsPanel.setRouteOptions(options);
         assertThat(mCallbackCalled, is(true));
+    }
+
+    /**
+     * Answer implementation
+     */
+    private static class NoGoodTypesAnswer implements Answer<Void> {
+        @Override
+        public Void answer(InvocationOnMock invocation) throws Throwable {
+            Object[] arguments = invocation.getArguments();
+            if (arguments != null && arguments.length > 0 && arguments[0] != null) {
+                final EnumSet<RouteOptions.HazardousGoodType> goodTypes = (EnumSet<RouteOptions.HazardousGoodType>) arguments[0];
+                assertThat(goodTypes.size(), equalTo(0));
+            }
+            return null;
+        }
     }
 }

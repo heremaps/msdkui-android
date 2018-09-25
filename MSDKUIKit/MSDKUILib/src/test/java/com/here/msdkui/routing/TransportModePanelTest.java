@@ -69,7 +69,6 @@ public class TransportModePanelTest extends RobolectricTest implements Transport
      */
     @Test
     public void testDefaultContent() {
-        ShadowFragment fragment = new ShadowFragment();
         mTransportModePanel.setAdapter(new SimpleTransportModePanelAdapter(mContext));
         assertThat(mTransportModePanel.getTabCount(), equalTo(5));
         assertNotNull(mTransportModePanel.getTabView()
@@ -89,7 +88,6 @@ public class TransportModePanelTest extends RobolectricTest implements Transport
      */
     @Test
     public void testTabSelection() {
-        ShadowFragment fragment = new ShadowFragment();
         mTransportModePanel.setAdapter(new SimpleTransportModePanelAdapter(mContext));
         mTransportModePanel.setOnSelectedListener(this);    // test selection
         mTransportModePanel.getTabView()
@@ -119,7 +117,6 @@ public class TransportModePanelTest extends RobolectricTest implements Transport
      */
     @Test
     public void testTabCustomContent() {
-        ShadowFragment fragment = new ShadowFragment();
         mTransportModePanel.setAdapter(new ShadowAdapter(mContext));
         // now since we are passing content data too. view pager should be visible
         assertThat(mTransportModePanel.getViewPager().getVisibility(), equalTo(View.VISIBLE));
@@ -135,7 +132,6 @@ public class TransportModePanelTest extends RobolectricTest implements Transport
      */
     @Test
     public void testModificationOfTab() {
-        ShadowFragment fragment = new ShadowFragment();
         SimpleTransportModePanelAdapter adapter = new SimpleTransportModePanelAdapter(mContext);
         mTransportModePanel.setAdapter(adapter);
 
@@ -187,7 +183,7 @@ public class TransportModePanelTest extends RobolectricTest implements Transport
      */
     public static class ShadowAdapter extends SimpleTransportModePanelAdapter {
 
-        public ShadowAdapter(final Context context) {
+        ShadowAdapter(final Context context) {
             super(context);
         }
 

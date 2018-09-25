@@ -45,6 +45,15 @@ class MapFragmentWrapper() : MapFragment() {
 
     companion object {
         private val TAG = MapFragmentWrapper::class.java.name
+        /**
+         * Marker anchor point, expressed as factor to be able to support markers in all resolutions.
+         * Factor is calculated (x is coordinate in asset that will be anchored to map) by: x / asset width.
+         * The same for y (y / asset height). If different types of markers (eg. pointing point
+         * at the top of asset) will be added to map then every type of marker must have its own factors.
+         * These values must be adjusted if marker assets change.
+         */
+        const val MARKER_ANCHOR_POINT_FACTOR_X: Float = 0.49f
+        const val MARKER_ANCHOR_POINT_FACTOR_Y: Float = 0.96f
     }
 
     init {
@@ -223,6 +232,9 @@ class MapFragmentWrapper() : MapFragment() {
         cord?.let {
             marker.coordinate = it
         }
+        marker.anchorPoint = PointF(
+                image.width.toFloat() * MARKER_ANCHOR_POINT_FACTOR_X,
+                image.height.toFloat() * MARKER_ANCHOR_POINT_FACTOR_Y)
         return marker
     }
 

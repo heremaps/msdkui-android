@@ -15,104 +15,73 @@
   ~ limitations under the License.
   -->
 
-<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Android Application Rules"
-         xmlns="http://pmd.sf.net/ruleset/1.0.0"
-         xsi:noNamespaceSchemaLocation="http://pmd.sf.net/ruleset_xml_schema.xsd"
-         xsi:schemaLocation="http://pmd.sf.net/ruleset/1.0.0 http://pmd.sf.net/ruleset_xml_schema.xsd">
+<ruleset name="MSDKUI"
+    xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
 
-    <description>Custom ruleset for Android application</description>
-
-    <exclude-pattern>.*/R.java</exclude-pattern>
-    <exclude-pattern>.*/gen/.*</exclude-pattern>
-    <exclude-pattern>.*/test/.*</exclude-pattern>
-    <exclude-pattern>.*/androidTest/.*</exclude-pattern>
-
-    <rule ref="rulesets/java/android.xml"/>
-
-    <rule ref="rulesets/java/basic.xml"/>
-    <rule ref="rulesets/java/braces.xml"/>
-    <rule ref="rulesets/java/clone.xml"/>
-    <rule ref="rulesets/java/codesize.xml">
-        <exclude name="TooManyMethods"/>
-        <exclude name="NcssCount"/>
-    </rule>
-    <rule ref="rulesets/java/codesize.xml/TooManyMethods">
-        <properties>
-            <property name="maxmethods" value="20"/>
-        </properties>
-    </rule>
-        <rule ref="rulesets/java/codesize.xml/NcssCount">
-        <properties>
-            <property name="methodReportLevel" value="30"/>
-        </properties>
-    </rule>
-    <rule ref="rulesets/java/comments.xml">
-        <exclude name="CommentSize"/>
-        <!-- javadoc is checked by checkstyle -->
-        <exclude name="CommentRequired"/>
-        <exclude name="CommentDefaultAccessModifier"/>
-    </rule>
-    <rule ref="rulesets/java/controversial.xml">
-        <exclude name="AtLeastOneConstructor"/>
-
-        <!-- better to keep dagger module class provide methods as package private -->
-        <exclude name="DefaultPackage"/>
-
-        <!-- annoying -->
-        <exclude name="AvoidFinalLocalVariable"/>
-
-        <!-- Singleton usage -->
-        <exclude name="AvoidUsingVolatile"/>
-
-        <exclude name="AvoidPrefixingMethodParameters"/>
-
-        <exclude name="OnlyOneReturn"/>
-	    <exclude name="DataflowAnomalyAnalysis"/>
-    </rule>
-    <rule ref="rulesets/java/coupling.xml">
-        <!-- this is too strictly -->
-        <exclude name="LawOfDemeter"/>
-        <exclude name="ExcessiveImports"/>
-    </rule>
-    <rule ref="rulesets/java/design.xml">
-        <exclude name="UncommentedEmptyMethodBody"/>
-    </rule>
-    <rule ref="rulesets/java/empty.xml"/>
-    <rule ref="rulesets/java/finalizers.xml"/>
-    <rule ref="rulesets/java/imports.xml">
-        <!-- Espresso is designed this way !-->
-        <exclude name="TooManyStaticImports"/>
-    </rule>
-
-    <rule ref="rulesets/java/junit.xml">
-        <!-- mockito assert -->
-        <exclude name="JUnitTestsShouldIncludeAssert"/>
-        <exclude name="JUnitTestContainsTooManyAsserts"/>
+    <rule ref="category/java/bestpractices.xml">
+        <exclude name="AbstractClassWithoutAbstractMethod" />
+        <exclude name="JUnit4TestShouldUseBeforeAnnotation" />
+        <exclude name="JUnit4TestShouldUseTestAnnotation" />
+        <exclude name="JUnitTestsShouldIncludeAssert" />
         <exclude name="JUnitAssertionsShouldIncludeMessage"/>
+        <exclude name="JUnitTestContainsTooManyAsserts"/>
+        <exclude name="JUnitTestsShouldIncludeAssert"/>
     </rule>
-    <rule ref="rulesets/java/logging-java.xml"/>
 
-    <rule ref="rulesets/java/naming.xml">
-        <exclude name="AbstractNaming"/>
-        <exclude name="LongVariable"/>
-        <!--<exclude name="LongMethodName" />-->
-        <exclude name="ShortMethodName"/>
-        <exclude name="ShortVariable"/>
-        <exclude name="VariableNamingConventions"/>
-    </rule>
-    <rule ref="rulesets/java/optimizations.xml">
-        <exclude name="MethodArgumentCouldBeFinal"/>
-    </rule>
-    <rule ref="rulesets/java/strictexception.xml"/>
-    <rule ref="rulesets/java/strings.xml">
-        <exclude name="AvoidDuplicateLiterals"/>
-    </rule>
-    <rule ref="rulesets/java/strings.xml/AvoidDuplicateLiterals">
+    <rule ref="category/java/codestyle.xml/DontImportJavaLang" />
+    <rule ref="category/java/codestyle.xml/DuplicateImports" />
+    <rule ref="category/java/codestyle.xml/ExtendsObject" />
+    <rule ref="category/java/codestyle.xml/ForLoopShouldBeWhileLoop" />
+    <rule ref="category/java/codestyle.xml/TooManyStaticImports">
         <properties>
-            <property name="skipAnnotations" value="true"/>
+            <property name="maximumStaticImports" value="11"/>
         </properties>
     </rule>
-    <!--<rule ref="rulesets/java/typeresolutoin.xml"/>-->
-    <rule ref="rulesets/java/unnecessary.xml"/>
-    <rule ref="rulesets/java/unusedcode.xml"/>
+    <rule ref="category/java/codestyle.xml/UnnecessaryFullyQualifiedName" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryModifier" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryReturn" />
+    <rule ref="category/java/codestyle.xml/UselessParentheses" />
+    <rule ref="category/java/codestyle.xml/UselessQualifiedThis" />
+
+    <rule ref="category/java/design.xml/CollapsibleIfStatements" />
+    <rule ref="category/java/design.xml/SimplifiedTernary" />
+    <rule ref="category/java/design.xml/UselessOverridingMethod" />
+
+    <rule ref="category/java/errorprone.xml/AvoidBranchingStatementAsLastInLoop" />
+    <rule ref="category/java/errorprone.xml/AvoidDecimalLiteralsInBigDecimalConstructor" />
+    <rule ref="category/java/errorprone.xml/AvoidMultipleUnaryOperators" />
+    <rule ref="category/java/errorprone.xml/AvoidUsingOctalValues" />
+    <rule ref="category/java/errorprone.xml/BrokenNullCheck" />
+    <rule ref="category/java/errorprone.xml/CheckSkipResult" />
+    <rule ref="category/java/errorprone.xml/ClassCastExceptionWithToArray" />
+    <rule ref="category/java/errorprone.xml/DontUseFloatTypeForLoopIndices" />
+    <rule ref="category/java/errorprone.xml/EmptyCatchBlock" />
+    <rule ref="category/java/errorprone.xml/EmptyFinallyBlock" />
+    <rule ref="category/java/errorprone.xml/EmptyIfStmt" />
+    <rule ref="category/java/errorprone.xml/EmptyInitializer" />
+    <rule ref="category/java/errorprone.xml/EmptyStatementBlock" />
+    <rule ref="category/java/errorprone.xml/EmptyStatementNotInLoop" />
+    <rule ref="category/java/errorprone.xml/EmptySwitchStatements" />
+    <rule ref="category/java/errorprone.xml/EmptySynchronizedBlock" />
+    <rule ref="category/java/errorprone.xml/EmptyTryBlock" />
+    <rule ref="category/java/errorprone.xml/EmptyWhileStmt" />
+    <rule ref="category/java/errorprone.xml/ImportFromSamePackage" />
+    <rule ref="category/java/errorprone.xml/JumbledIncrementer" />
+    <rule ref="category/java/errorprone.xml/MisplacedNullCheck" />
+    <rule ref="category/java/errorprone.xml/OverrideBothEqualsAndHashcode" />
+    <rule ref="category/java/errorprone.xml/ReturnFromFinallyBlock" />
+    <rule ref="category/java/errorprone.xml/UnconditionalIfStatement" />
+    <rule ref="category/java/errorprone.xml/UnnecessaryConversionTemporary" />
+    <rule ref="category/java/errorprone.xml/UnusedNullCheckInEquals" />
+    <rule ref="category/java/errorprone.xml/UselessOperationOnImmutable" />
+
+    <rule ref="category/java/multithreading.xml/AvoidThreadGroup" />
+    <rule ref="category/java/multithreading.xml/DontCallThreadRun" />
+    <rule ref="category/java/multithreading.xml/DoubleCheckedLocking" />
+
+    <rule ref="category/java/performance.xml/BigIntegerInstantiation" />
+    <rule ref="category/java/performance.xml/BooleanInstantiation" />
+
 </ruleset>

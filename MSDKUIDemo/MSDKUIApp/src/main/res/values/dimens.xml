@@ -22,11 +22,14 @@
     <dimen name="panel_height">48dp</dimen>
     <dimen name="go_btn_height">48dp</dimen>
     <dimen name="landing_screen_card_min_height">240dp</dimen>
-    <dimen name="guidance_status_panel_corner_radius">18dp</dimen>
-    <dimen name="guidance_status_panel_peek_height">96dp</dimen>
+    <dimen name="guidance_status_panel_corner_radius">12dp</dimen>
+    <dimen name="guidance_status_panel_peek_height">86dp</dimen>
     <dimen name="guidance_status_panel_padding">24dp</dimen>
     <dimen name="stop_navigation_button_corner_radius">2dp</dimen>
     <dimen name="stop_navigation_button_width_height">48dp</dimen>
     <dimen name="button_corner_radius">2dp</dimen>
     <dimen name="guidance_route_preview_bottom_margin">@dimen/contentMarginExtraLarge</dimen>
+    <dimen name="current_street_margin_bottom">98dp</dimen>
+    <dimen name="current_street_margin_side_portrait">80dp</dimen>
+    <dimen name="current_street_margin_side_landscape">88dp</dimen>
 </resources>

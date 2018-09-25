@@ -43,6 +43,7 @@ import java.util.EnumSet;
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
+import static junit.framework.Assert.assertSame;
 import static junit.framework.Assert.assertTrue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -57,10 +58,6 @@ public class RouteDescriptionItemTest extends RobolectricTest {
 
     private static final int TOTAL_SECTION = 6;
 
-    static {
-
-    }
-
     private RouteDescriptionItem mRouteDescriptionItem;
     private boolean mCallbackCalled;
 
@@ -71,25 +68,25 @@ public class RouteDescriptionItemTest extends RobolectricTest {
 
     @Test
     public void createdViewShouldHaveProperInitialContent() {
-        final ImageView icon = (ImageView) mRouteDescriptionItem.findViewById(R.id.desc_type_icon);
+        final ImageView icon = mRouteDescriptionItem.findViewById(R.id.desc_type_icon);
         assertNotNull(icon);
         // by default, it should be visible
-        assertTrue("Route icon is not visible by default", icon.getVisibility() == View.VISIBLE);
+        assertSame("Route icon is not visible by default", View.VISIBLE, icon.getVisibility());
 
-        final TextView timeView = (TextView) mRouteDescriptionItem.findViewById(R.id.desc_time);
+        final TextView timeView = mRouteDescriptionItem.findViewById(R.id.desc_time);
         assertNotNull(timeView);
         // by default, it should be visible
-        assertTrue("Address View is not visible by default", timeView.getVisibility() == View.VISIBLE);
+        assertSame("Address View is not visible by default", View.VISIBLE, timeView.getVisibility());
 
-        final TextView trafficWarningView = (TextView) mRouteDescriptionItem.findViewById(R.id.desc_traffic_warning);
+        final TextView trafficWarningView = mRouteDescriptionItem.findViewById(R.id.desc_traffic_warning);
         assertNotNull(trafficWarningView);
 
-        final TextView detailsView = (TextView) mRouteDescriptionItem.findViewById(R.id.desc_details);
+        final TextView detailsView = mRouteDescriptionItem.findViewById(R.id.desc_details);
         assertNotNull(detailsView);
         // by default, it should be visible
-        assertTrue("Drag Icon is not visible by default", detailsView.getVisibility() == View.VISIBLE);
+        assertSame("Drag Icon is not visible by default", View.VISIBLE, detailsView.getVisibility());
 
-        final SectionBar sectionBar = (SectionBar) mRouteDescriptionItem.findViewById(R.id.desc_bar);
+        final SectionBar sectionBar = mRouteDescriptionItem.findViewById(R.id.desc_bar);
         assertNotNull(sectionBar);
 
         assertThat(mRouteDescriptionItem.getVisibility(), equalTo(View.INVISIBLE));
@@ -125,12 +122,7 @@ public class RouteDescriptionItemTest extends RobolectricTest {
 
     @Test
     public void testClick() {
-        mRouteDescriptionItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mCallbackCalled = true;
-            }
-        });
+        mRouteDescriptionItem.setOnClickListener(v -> mCallbackCalled = true);
         mRouteDescriptionItem.performClick();
         assertThat(mCallbackCalled, is(true));
     }
@@ -146,7 +138,7 @@ public class RouteDescriptionItemTest extends RobolectricTest {
 
     @Test
     public void testSettingVisibleSections() {
-        EnumSet set = EnumSet.of(RouteDescriptionItem.Section.DETAILS, RouteDescriptionItem.Section.TIME);
+        EnumSet<RouteDescriptionItem.Section> set = EnumSet.of(RouteDescriptionItem.Section.DETAILS, RouteDescriptionItem.Section.TIME);
         mRouteDescriptionItem.setVisibleSections(set);
         assertThat(mRouteDescriptionItem.getVisibleSections().size(), equalTo(2));
         assertThat(mRouteDescriptionItem.isSectionVisible(RouteDescriptionItem.Section.DETAILS), is(true));
@@ -166,7 +158,7 @@ public class RouteDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithTypeSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visibleSection,"0x01")
+                .addAttribute(R.attr.visibleSection, "0x01")
                 .build();
 
         RouteDescriptionItem item = new RouteDescriptionItem(getContextWithTheme(), attributeSet);
@@ -178,7 +170,7 @@ public class RouteDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithTimeSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visibleSection,"0x02")
+                .addAttribute(R.attr.visibleSection, "0x02")
                 .build();
 
         RouteDescriptionItem item = new RouteDescriptionItem(getContextWithTheme(), attributeSet);
@@ -190,7 +182,7 @@ public class RouteDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithDetailsSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visibleSection,"0x04")
+                .addAttribute(R.attr.visibleSection, "0x04")
                 .build();
 
         RouteDescriptionItem item = new RouteDescriptionItem(getContextWithTheme(), attributeSet);
@@ -202,7 +194,7 @@ public class RouteDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithTrafficWarningSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visibleSection,"0x08")
+                .addAttribute(R.attr.visibleSection, "0x08")
                 .build();
 
         RouteDescriptionItem item = new RouteDescriptionItem(getContextWithTheme(), attributeSet);
@@ -214,7 +206,7 @@ public class RouteDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithArrivalTimeSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visibleSection,"0x10")
+                .addAttribute(R.attr.visibleSection, "0x10")
                 .build();
 
         RouteDescriptionItem item = new RouteDescriptionItem(getContextWithTheme(), attributeSet);
@@ -226,7 +218,7 @@ public class RouteDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithBarSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visibleSection,"0x20")
+                .addAttribute(R.attr.visibleSection, "0x20")
                 .build();
 
         RouteDescriptionItem item = new RouteDescriptionItem(getContextWithTheme(), attributeSet);

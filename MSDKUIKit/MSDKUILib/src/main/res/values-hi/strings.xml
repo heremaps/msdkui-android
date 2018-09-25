@@ -47,6 +47,7 @@
   <string name="msdkui_drag_waypoint_button">इंडेक्स %1$d पर वे-प्वॉइंट बटन खीचें</string>
   <string name="msdkui_duration">अवधि</string>
   <string name="msdkui_enabled">चालू</string>
+  <string name="msdkui_estimated_arrival">Estimated Arrival</string>
   <string name="msdkui_exception_attribute_invalid">Failed to resolve attribute at index %1$d</string>
   <string name="msdkui_exception_custom_view_not_available">Custom view for mode %1$s is not available</string>
   <string name="msdkui_exception_date_null">There is no date</string>
@@ -130,6 +131,7 @@
   <string name="msdkui_maneuverpanel_nodata">मैप पर मार्ग का अनुसरण करें</string>
   <string name="msdkui_maneuverpanel_updating">अपडेट कर रहा है</string>
   <string name="msdkui_minutes">%1$d मिनट</string>
+  <string name="msdkui_next_maneuver">Next maneuver</string>
   <string name="msdkui_no_maneuver_found">घुमाने, मोड़ने आदि का कोई निर्देश नहीं मिला</string>
   <string name="msdkui_no_route_found">कोई मार्ग नहीं मिला</string>
   <string name="msdkui_no_traffic_delays">कोई विलंब नहीं</string>
@@ -159,6 +161,8 @@
   <string name="msdkui_selected">चयनित</string>
   <string name="msdkui_set">सेट करें</string>
   <string name="msdkui_shortest">सबसे छोटा</string>
+  <string name="msdkui_speed">Speed</string>
+  <string name="msdkui_speed_limit">Speed Limit</string>
   <string name="msdkui_tab_icon">टैब आइकन</string>
   <string name="msdkui_traffic">ट्रैफ़िक से बचें</string>
   <string name="msdkui_traffic_blocked">बंद</string>
@@ -175,9 +179,11 @@
   <string name="msdkui_tunnels_allowed_title">सुरंग की अनुमति</string>
   <string name="msdkui_undefined">निर्धारित नहीं</string>
   <string name="msdkui_unit_kilometer">किमी.</string>
+  <string name="msdkui_unit_km_per_h">km/h</string>
   <string name="msdkui_unit_meter">मीटर</string>
   <string name="msdkui_unknown">अज्ञात</string>
   <string name="msdkui_userposition_search">Getting your location</string>
+  <string name="msdkui_value_not_available">--</string>
   <string name="msdkui_violate_truck_options">ट्रक विकल्पों को नज़रअंदाज करें</string>
   <string name="msdkui_waypoint_current_location">वर्तमान स्थान</string>
   <string name="msdkui_waypoint_select_location">पड़ाव चुनें</string>

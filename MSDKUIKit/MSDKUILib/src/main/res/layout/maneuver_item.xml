@@ -18,11 +18,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="?attr/colorBackgroundViewLight"
-    android:focusable="true"
-    android:focusableInTouchMode="false">
+    style="?attr/maneuverDescriptionItem">
 
     <android.support.constraint.Guideline
         android:id="@+id/vertical_guideline"
@@ -33,11 +29,7 @@
 
     <ImageView
         android:id="@+id/maneuver_icon_view"
-        style="@style/Image"
-        android:layout_marginLeft="@dimen/contentMarginExtraLarge"
-        android:layout_marginStart="@dimen/contentMarginExtraLarge"
-        android:contentDescription="@null"
-        android:tint="?attr/colorForeground"
+        style="?attr/maneuverDescriptionItemIcon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -45,14 +37,7 @@
 
     <TextView
         android:id="@+id/maneuver_instruction_view"
-        style="@style/TextStyle.Large"
-        android:layout_width="0dp"
-        android:layout_marginBottom="@dimen/contentMarginSmall"
-        android:layout_marginEnd="@dimen/contentMarginLarge"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="@dimen/contentMarginLarge"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="@dimen/contentMarginHuge"
+        style="?attr/maneuverDescriptionItemInstructionText"
         app:layout_constraintBottom_toTopOf="@+id/maneuver_address_view"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintLeft_toRightOf="@+id/maneuver_icon_view"
@@ -62,11 +47,7 @@
 
     <TextView
         android:id="@+id/maneuver_address_view"
-        style="@style/TextStyle.Medium"
-        android:layout_width="0dp"
-        android:layout_marginLeft="@dimen/contentMarginLarge"
-        android:layout_marginStart="@dimen/contentMarginLarge"
-        android:paddingBottom="@dimen/contentMarginHuge"
+        style="?attr/maneuverDescriptionItemAddressText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintLeft_toRightOf="@+id/maneuver_icon_view"
@@ -75,11 +56,7 @@
 
     <TextView
         android:id="@+id/maneuver_distance_view"
-        style="@style/TextStyle.Medium"
-        android:layout_marginEnd="@dimen/contentMarginLarge"
-        android:layout_marginLeft="@dimen/contentMarginMedium"
-        android:layout_marginRight="@dimen/contentMarginLarge"
-        android:layout_marginStart="@dimen/contentMarginMedium"
+        style="?attr/maneuverDescriptionItemDistanceText"
         app:layout_constraintBaseline_toBaselineOf="@+id/maneuver_address_view"
         app:layout_constraintLeft_toRightOf="@id/vertical_guideline"
         app:layout_constraintRight_toRightOf="parent" />

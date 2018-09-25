@@ -18,23 +18,11 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginEnd="@dimen/contentMarginMedium"
-    android:layout_marginLeft="@dimen/contentMarginExtraLarge"
-    android:layout_marginRight="@dimen/contentMarginMedium"
-    android:layout_marginStart="@dimen/contentMarginExtraLarge"
-    android:orientation="horizontal"
-    android:paddingEnd="@dimen/contentMarginMedium"
-    android:paddingLeft="@dimen/contentMarginMedium"
-    android:paddingRight="@dimen/contentMarginMedium"
-    android:paddingStart="@dimen/contentMarginMedium"
-    android:paddingTop="@dimen/contentMarginMedium">
+    style="?attr/singleChoiceOptionItem">
 
     <TextView
         android:id="@+id/single_item_label"
-        style="@style/TextStyle.Large"
-        android:layout_width="0dp"
+        style="?attr/singleChoiceOptionItemText"
         android:labelFor="@+id/single_item_value"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -45,13 +33,7 @@
 
     <Spinner
         android:id="@+id/single_item_value"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/contentMarginMedium"
-        android:gravity="start"
-        android:minHeight="@dimen/min_value"
-        android:minWidth="@dimen/min_value"
-        android:saveEnabled="false"
+        style="?attr/singleChoiceOptionItemSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

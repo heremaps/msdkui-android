@@ -47,6 +47,7 @@
   <string name="msdkui_drag_waypoint_button">Trascina pulsante tappa sull\'indice %1$d</string>
   <string name="msdkui_duration">Durata</string>
   <string name="msdkui_enabled">On</string>
+  <string name="msdkui_estimated_arrival">Estimated Arrival</string>
   <string name="msdkui_exception_attribute_invalid">Failed to resolve attribute at index %1$d</string>
   <string name="msdkui_exception_custom_view_not_available">Custom view for mode %1$s is not available</string>
   <string name="msdkui_exception_date_null">There is no date</string>
@@ -130,6 +131,7 @@
   <string name="msdkui_maneuverpanel_nodata">Segui l\'itinerario sulla mappa</string>
   <string name="msdkui_maneuverpanel_updating">Aggiornamento</string>
   <string name="msdkui_minutes">%1$d min</string>
+  <string name="msdkui_next_maneuver">Next maneuver</string>
   <string name="msdkui_no_maneuver_found">Nessuna manovra trovata</string>
   <string name="msdkui_no_route_found">Nessun itinerario trovato</string>
   <string name="msdkui_no_traffic_delays">Nessun ritardo</string>
@@ -159,6 +161,8 @@
   <string name="msdkui_selected">Selezionata</string>
   <string name="msdkui_set">Imposta</string>
   <string name="msdkui_shortest">Più breve</string>
+  <string name="msdkui_speed">Speed</string>
+  <string name="msdkui_speed_limit">Speed Limit</string>
   <string name="msdkui_tab_icon">Icona schede</string>
   <string name="msdkui_traffic">Evita traffico</string>
   <string name="msdkui_traffic_blocked">Chiusa</string>
@@ -175,9 +179,11 @@
   <string name="msdkui_tunnels_allowed_title">Gallerie consentite</string>
   <string name="msdkui_undefined">Non definita</string>
   <string name="msdkui_unit_kilometer">km</string>
+  <string name="msdkui_unit_km_per_h">km/h</string>
   <string name="msdkui_unit_meter">m</string>
   <string name="msdkui_unknown">Sconosciuta</string>
   <string name="msdkui_userposition_search">Getting your location</string>
+  <string name="msdkui_value_not_available">--</string>
   <string name="msdkui_violate_truck_options">Ignora opzioni camion</string>
   <string name="msdkui_waypoint_current_location">Posizione corrente</string>
   <string name="msdkui_waypoint_select_location">Scegli tappa</string>

@@ -20,18 +20,21 @@ import android.os.Bundle
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.base.BaseActivity
 import com.here.msdkuiapp.base.BaseFragmentCoordinator
+import kotlinx.android.extensions.CacheImplementation
+import kotlinx.android.extensions.ContainerOptions
 
 /**
  * Activity class to handle routing.
  */
+@ContainerOptions(CacheImplementation.NO_CACHE)
 class RoutingActivity : BaseActivity() {
 
-    private var routingCoordinator: RoutingCoordinator? = null
+    internal var routingCoordinator: RoutingCoordinator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_routing)
-        routingCoordinator = RoutingCoordinator(this, fragmentManager)
+        routingCoordinator = routingCoordinator ?: RoutingCoordinator(this, fragmentManager)
         routingCoordinator!!.start()
     }
 

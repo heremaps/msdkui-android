@@ -28,6 +28,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static junit.framework.Assert.assertNotNull;
@@ -43,13 +44,11 @@ import static org.powermock.api.mockito.PowerMockito.mock;
  */
 public class ManeuverDescriptionListAdapterTest extends RobolectricTest {
 
-    private boolean mIsCallbackCalled;
     private ManeuverDescriptionListAdapter mManeuverDescriptionListAdapter;
     private ManeuverDescriptionListAdapter.ViewHolder mViewHolder;
 
     @Before
     public void setUp() {
-        mIsCallbackCalled = false;
     }
 
     @Test
@@ -62,7 +61,7 @@ public class ManeuverDescriptionListAdapterTest extends RobolectricTest {
     @Test
     public void testUi() {
         final Maneuver maneuver = MockUtils.mockManeuver();
-        getFirstViewHolder(new ArrayList<Maneuver>(Arrays.asList(maneuver)));
+        getFirstViewHolder(new ArrayList<>(Collections.singletonList(maneuver)));
         assertNotNull(mViewHolder.itemView.findViewById(R.id.maneuver_icon_view));
         assertNotNull(mViewHolder.itemView.findViewById(R.id.maneuver_address_view));
         assertNotNull(mViewHolder.itemView.findViewById(R.id.maneuver_distance_view));

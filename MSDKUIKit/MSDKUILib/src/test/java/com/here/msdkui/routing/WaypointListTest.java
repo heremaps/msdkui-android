@@ -202,9 +202,7 @@ public class WaypointListTest extends RobolectricTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testRemoveBelowMinCountException() {
-        while (true) {
-            mWaypointList.removeEntry(0);
-        }
+        mWaypointList.removeEntry(0);
     }
 
     @Test
@@ -239,10 +237,9 @@ public class WaypointListTest extends RobolectricTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testSettingMoreThanMaxShouldThrowException() {
-        final int MAX_COUNT = 17;
         List<WaypointEntry> entryList = new ArrayList<>();
         final WaypointEntry entry = MockUtils.mockWayPointEntry();
-        for (int i = 0; i < MAX_COUNT; i++) {
+        for (int i = 0; i < 17; i++) {
             entryList.add(entry);
         }
         mWaypointList.setEntries(entryList);

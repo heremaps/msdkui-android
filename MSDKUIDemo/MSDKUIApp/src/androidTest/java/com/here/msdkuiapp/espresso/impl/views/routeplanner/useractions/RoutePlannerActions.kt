@@ -24,21 +24,21 @@ import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.v7.widget.RecyclerView
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType.TYPE_CAR
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType.TYPE_TRUCK
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType.TYPE_WALK
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransporType.TYPE_BICYCLE
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
+import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteMatchers
 import com.here.msdkuiapp.espresso.impl.views.route.utils.RouteData
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerBarMatchers
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerMatchers
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerOptionsMatchers
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarChooseWaypointTitle
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onDatePickerOkButton
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onOptionPanel
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerTransportPanel
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerTransportPanelView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerWaypointList
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerWaypointLocationLabel
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onTravelTimePanel
@@ -61,7 +61,12 @@ object RoutePlannerActions {
             // Select the first waypoint on map
             MapActions.waitForMapViewEnabled().tapOnMap(waypointData)
             // Tap on tick to confirm the first waypoint selection
-            return waypointData.copy(waypoint = RoutePlannerBarActions.waitForLocationDisplayed().tapOnTickButton())
+            return waypointData.copy(
+                    waypoint = RoutePlannerBarActions
+                            .waitForLocationNotDisplayed()
+                            .waitForRightImageIconCheck()
+                            .tapOnTickButton()
+            )
         }
     }
 
@@ -74,7 +79,8 @@ object RoutePlannerActions {
         // Expand route planner panel to update waypoints
         RoutePlannerBarActions.waitForRoutePlannerCollapsed()
                 .waitRouteDescriptionEnabled()
-                .tapOnRighArrowButton()
+                .waitForRightImageIconExpand()
+                .tapOnRightArrowButton()
                 .waitForRoutePlannerExpanded()
         // Check route data updated in route list
         RouteMatchers.withUpdatedRouteData(routeData)
@@ -97,14 +103,6 @@ object RoutePlannerActions {
     }
 
     /**
-     * Tap on image option icon to open available routing options
-     */
-    fun tapOnOptionImage(): RoutePlannerBarMatchers {
-        onOptionPanel.check(matches(isDisplayed())).perform(click())
-        return RoutePlannerBarMatchers
-    }
-
-    /**
      * Tap on travel time pane to open date picker
      */
     fun tapOnTravelTimePanel(): RoutePlannerMatchers {
@@ -121,36 +119,23 @@ object RoutePlannerActions {
     }
 
     /**
-     * Select transportation mode type on the panel
+     * Select transportation mode type on route planner
      */
-    fun selectTransportMode(transportType: TransporType): RoutePlannerBarActions {
-        when (transportType) {
-            TYPE_CAR -> tapOnTransportMode(TYPE_CAR)
-            TYPE_TRUCK -> tapOnTransportMode(TYPE_TRUCK)
-            TYPE_WALK -> tapOnTransportMode(TYPE_WALK)
-            TYPE_BICYCLE -> tapOnTransportMode(TYPE_BICYCLE)
-        }
+    fun selectTransportMode(transportType: TransportType): RoutePlannerBarActions {
+        tapOnTransportMode(transportType)
+                .waitTransportModeSelected(transportType)
+                .checkTransModeSelected(transportType)
         return RoutePlannerBarActions
     }
 
-    private fun tapOnTransportMode(transportMode: TransporType) {
-        onPlannerTransportPanel(transportMode).perform(click())
-    }
-
     /**
-     * Swipe Up waypoints list on route panel
+     * Open Options panel on route planner
      */
-    fun swipeUpWaypointsList(): RoutePlannerActions {
-        onPlannerWaypointList.perform(swipeUp())
-        return this
-    }
-
-    /**
-     * Swipe Down waypoints list on route panel
-     */
-    fun swipeDownWaypointsList(): RoutePlannerActions {
-        onPlannerWaypointList.perform(swipeDown())
-        return this
+    fun openOptionsPanel(): RoutePlannerOptionsMatchers {
+        tapOnOptionImageIcon()
+                .waitForOptionsDisplayed()
+                .checkOptionsDisplayed()
+        return RoutePlannerOptionsMatchers
     }
 
     /**
@@ -166,5 +151,45 @@ object RoutePlannerActions {
         // Check that waypoint item became visible after swiping
         RoutePlannerMatchers.checkWaypointLocationLable(WaypointData())
         return this
+    }
+
+    /**
+     * Tap on image option icon to open available routing options
+     */
+    private fun tapOnOptionImageIcon(): RoutePlannerBarActions {
+        onOptionPanel.check(matches(isDisplayed())).perform(click())
+        return RoutePlannerBarActions
+    }
+
+    /**
+     * Tap on transportation type image icon on route planner
+     */
+    private fun tapOnTransportMode(transportMode: TransportType): RoutePlannerActions {
+        onPlannerTransportPanel(transportMode).perform(click())
+        return this
+    }
+
+    /**
+     * Swipe Up waypoints list on route panel
+     */
+    private fun swipeUpWaypointsList(): RoutePlannerActions {
+        onPlannerWaypointList.perform(swipeUp())
+        return this
+    }
+
+    /**
+     * Swipe Down waypoints list on route panel
+     */
+    private fun swipeDownWaypointsList(): RoutePlannerActions {
+        onPlannerWaypointList.perform(swipeDown())
+        return this
+    }
+
+    /**
+     * Wait for route description list becomes enabled on route panel
+     */
+    private fun waitTransportModeSelected(transportMode: TransportType): RoutePlannerMatchers {
+        onRootView.perform(waitForCondition(onPlannerTransportPanelView(transportMode), isSelected = true))
+        return RoutePlannerMatchers
     }
 }

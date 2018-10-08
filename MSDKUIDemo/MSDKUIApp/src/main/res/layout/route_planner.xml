@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorBackgroundBrand"
+    android:orientation="vertical">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/vertical_guideline"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.85"
+        tools:layout_editor_absoluteX="346dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/vertical_guideline2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.15"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <com.here.msdkui.routing.WaypointList
+        android:id="@+id/waypoint_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_list"
+        app:layout_constraintLeft_toLeftOf="@+id/vertical_guideline2"
+        app:layout_constraintRight_toLeftOf="@+id/vertical_guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/bottom_list"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@null"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/waypoint_list" />
+
+    <com.here.msdkuiapp.routing.IconButton
+        android:id="@+id/swap_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/msdkui_app_swap_waypoints"
+        android:focusable="true"
+        android:padding="@dimen/contentMarginHuge"
+        android:tint="?attr/colorForegroundSecondaryLight"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_list"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/vertical_guideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:type="swap" />
+
+    <com.here.msdkuiapp.routing.IconButton
+        android:id="@+id/waypoint_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contentDescription="@string/msdkui_app_add_waypoint"
+        android:focusable="true"
+        android:padding="@dimen/contentMarginHuge"
+        android:tint="?attr/colorForegroundSecondaryLight"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_list"
+        app:layout_constraintLeft_toLeftOf="@+id/vertical_guideline"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:type="add" />
+
+    <com.here.msdkui.routing.TransportModePanel
+        android:id="@+id/transport_panel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bottom_list" />
+
+    <View
+        android:id="@+id/background2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="2dp"
+        android:background="?attr/colorBackgroundLight"
+        android:contentDescription="@null"
+        app:layout_constraintBottom_toTopOf="@+id/horizontal_guideline2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transport_panel" />
+
+    <com.here.msdkui.routing.TravelTimePanel
+        android:id="@+id/travel_time_panel"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/panel_height"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="2dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transport_panel" />
+
+    <View
+        android:id="@+id/horizontal_guideline2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@null"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/travel_time_panel"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <com.here.msdkuiapp.routing.IconButton
+        android:id="@+id/option_panel"
+        style="@style/Image"
+        android:layout_marginEnd="@dimen/contentMarginHuge"
+        android:clickable="true"
+        android:contentDescription="@string/msdkui_app_route_options"
+        android:focusable="true"
+        android:tint="?attr/colorForegroundSecondary"
+        app:layout_constraintBottom_toTopOf="@+id/horizontal_guideline2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transport_panel"
+        app:type="options" />
+
+</android.support.constraint.ConstraintLayout>

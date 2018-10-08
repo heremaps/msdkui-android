@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_allow_car_pool">Araba paylaşımına izin ver</string>
+  <string name="msdkui_allow_car_shuttle">Arabalı trenlere izin ver</string>
+  <string name="msdkui_allow_dirt_roads">Toprak yollara izin ver</string>
+  <string name="msdkui_allow_ferries">Feribotlara izin ver</string>
+  <string name="msdkui_allow_highways">Otobanlara izin ver</string>
+  <string name="msdkui_allow_parks">Parklara izin ver</string>
+  <string name="msdkui_allow_toll_roads">Ücretli yollara izin ver</string>
+  <string name="msdkui_allow_tunnels">Tünellere izin ver</string>
+  <string name="msdkui_arrive">Varış</string>
+  <string name="msdkui_arrive_at">Varış</string>
+  <string name="msdkui_avoid_long_term_closures">Kapalı yolları kullanma</string>
+  <string name="msdkui_balanced">Dengeli</string>
+  <string name="msdkui_bike">Bisiklet</string>
+  <string name="msdkui_cancel">İptal</string>
+  <string name="msdkui_car">Otomobil</string>
+  <string name="msdkui_close">Kapat</string>
+  <string name="msdkui_combustible">Parlayıcı</string>
+  <string name="msdkui_corrosive">Aşındırıcı</string>
+  <string name="msdkui_days">%1$d g</string>
+  <string name="msdkui_days_hours">%1$d g %2$d s</string>
+  <string name="msdkui_depart">Çıkış</string>
+  <string name="msdkui_depart_at">Çıkış</string>
+  <string name="msdkui_disable">Kapat</string>
+  <string name="msdkui_disabled">Kapalı</string>
+  <string name="msdkui_distance_value_not_available">--</string>
+  <string name="msdkui_distance_value_with_unit">%1$s %2$s</string>
+  <string name="msdkui_done">Bitti</string>
+  <string name="msdkui_drag_waypoint">Ara noktayı sürükleyin</string>
+  <string name="msdkui_drag_waypoint_button">%1$d dizinindeki ara nokta düğmesini sürükleyin</string>
+  <string name="msdkui_duration">Süre</string>
+  <string name="msdkui_enabled">Açık</string>
+  <string name="msdkui_estimated_arrival">Estimated Arrival</string>
+  <string name="msdkui_exception_attribute_invalid">Failed to resolve attribute at index %1$d</string>
+  <string name="msdkui_exception_custom_view_not_available">Custom view for mode %1$s is not available</string>
+  <string name="msdkui_exception_date_null">There is no date</string>
+  <string name="msdkui_exception_label_null">There is no label</string>
+  <string name="msdkui_exception_labels_null">There are no labels</string>
+  <string name="msdkui_exception_maneuver_pos_invalid">Manoeuvre position is not valid</string>
+  <string name="msdkui_exception_maneuvres_null">There are no manouevres</string>
+  <string name="msdkui_exception_out_of_index_range">Index is not within range %1$d to %2$d.</string>
+  <string name="msdkui_exception_route_null">There is no route</string>
+  <string name="msdkui_exception_route_options_null">There is no RouteOptions object</string>
+  <string name="msdkui_exception_routes_null">There are no routes</string>
+  <string name="msdkui_exception_sort_order_null">There is no sort order</string>
+  <string name="msdkui_exception_sort_type_null">There is no sort type</string>
+  <string name="msdkui_exception_time_type_null">There is no time type</string>
+  <string name="msdkui_exception_waypoint_entry_null">Need to add a waypoint</string>
+  <string name="msdkui_exception_waypoint_exceed_max">Adding waypoint exceeded list set max count.</string>
+  <string name="msdkui_exception_waypoint_fail_min">Removing waypoint failing list set min count.</string>
+  <string name="msdkui_exception_waypoint_failing_min">Adding waypoint failing list set min count.</string>
+  <string name="msdkui_explosive">Patlayıcı</string>
+  <string name="msdkui_fastest">En hızlı</string>
+  <string name="msdkui_flammable">Yanıcı</string>
+  <string name="msdkui_gas">Gaz</string>
+  <string name="msdkui_harmful_to_water">Su kirletici</string>
+  <string name="msdkui_hazardous_materials_title">Tehlikeli maddeler</string>
+  <string name="msdkui_height">Yükseklik</string>
+  <string name="msdkui_hours">%1$d s</string>
+  <string name="msdkui_hours_minutes">%1$d s %2$d dk</string>
+  <string name="msdkui_incl">Şu dhl:</string>
+  <string name="msdkui_incl_traffic_delay">%1$s gecikme dahil</string>
+  <string name="msdkui_including">Şu dahil:</string>
+  <string name="msdkui_input_not_valid">Lütfen yeniden kontrol edin</string>
+  <string name="msdkui_length">Uzunluk</string>
+  <string name="msdkui_limited_weight">Ağırlık sınırı</string>
+  <string name="msdkui_maneuver_arrive_at_02y">Varış</string>
+  <string name="msdkui_maneuver_continue">Devam</string>
+  <string name="msdkui_maneuver_end">Vardınız</string>
+  <string name="msdkui_maneuver_enter_car_shuttle_train">Trene binin</string>
+  <string name="msdkui_maneuver_enter_ferry">Feribota binin</string>
+  <string name="msdkui_maneuver_enter_highway">Otobana çıkın</string>
+  <string name="msdkui_maneuver_exit">Çıkış %1$s</string>
+  <string name="msdkui_maneuver_exit_directions_towards">%2$s yönüne giden %1$s</string>
+  <string name="msdkui_maneuver_head_to">%1$s yönüne gidin</string>
+  <string name="msdkui_maneuver_leave_highway">Çıkıştan çıkın</string>
+  <string name="msdkui_maneuver_orientation_east">Doğu</string>
+  <string name="msdkui_maneuver_orientation_north">Kuzey</string>
+  <string name="msdkui_maneuver_orientation_north_east">Kuzeydoğu</string>
+  <string name="msdkui_maneuver_orientation_north_west">Kuzeybatı</string>
+  <string name="msdkui_maneuver_orientation_south">Güney</string>
+  <string name="msdkui_maneuver_orientation_south_east">Güneydoğu</string>
+  <string name="msdkui_maneuver_orientation_south_west">Güneybatı</string>
+  <string name="msdkui_maneuver_orientation_west">Batı</string>
+  <string name="msdkui_maneuver_pt_change">Aktarma</string>
+  <string name="msdkui_maneuver_pt_change_at">Aktarma: %1$s</string>
+  <string name="msdkui_maneuver_pt_get_on_here">Şuna binin</string>
+  <string name="msdkui_maneuver_pt_stopover">Ara nokta</string>
+  <string name="msdkui_maneuver_pt_travel_start">%1$s aracına binin</string>
+  <string name="msdkui_maneuver_pt_walk">Yürüyüş</string>
+  <string name="msdkui_maneuver_road_name_divider">%1$s/%2$s</string>
+  <string name="msdkui_maneuver_turn_keep_left">Solda kalın</string>
+  <string name="msdkui_maneuver_turn_keep_middle">Ortadaki sokağa girin</string>
+  <string name="msdkui_maneuver_turn_keep_right">Sağda kalın</string>
+  <string name="msdkui_maneuver_turn_left">Sola dönün</string>
+  <string name="msdkui_maneuver_turn_right">Sağa dönün</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_1">1. çıkıştan çıkın</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_10">10. çıkıştan çıkın</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_11">11. çıkıştan çıkın</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_12">12. çıkıştan çıkın</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_2">2. çıkıştan çıkın</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_3">3. çıkıştan çıkın</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_4">4. çıkıştan çıkın</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_5">5. çıkıştan çıkın</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_6">6. çıkıştan çıkın</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_7">7. çıkıştan çıkın</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_8">8. çıkıştan çıkın</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_9">9. çıkıştan çıkın</string>
+  <string name="msdkui_maneuver_turn_sharply_left">Sola keskin dönüş yapın</string>
+  <string name="msdkui_maneuver_turn_sharply_right">Sağa keskin dönüş yapın</string>
+  <string name="msdkui_maneuver_turn_slightly_left">Hafifçe sola dönün</string>
+  <string name="msdkui_maneuver_turn_slightly_right">Hafifçe sağa dönün</string>
+  <string name="msdkui_maneuver_uturn">U dönüşü yapın</string>
+  <string name="msdkui_maneuverpanel_nodata">Haritadaki rotayı takip edin</string>
+  <string name="msdkui_maneuverpanel_updating">Güncelleştiriliyor</string>
+  <string name="msdkui_minutes">%1$d dk</string>
+  <string name="msdkui_next_maneuver">Next maneuver</string>
+  <string name="msdkui_no_maneuver_found">Manevra bulunamadı</string>
+  <string name="msdkui_no_route_found">Rota bulunamadı</string>
+  <string name="msdkui_no_traffic_delays">Gecikme yok</string>
+  <string name="msdkui_none">Hiçbiri</string>
+  <string name="msdkui_not_implemented">Kullanılamıyor</string>
+  <string name="msdkui_number_of_trailers">Römorklar</string>
+  <string name="msdkui_ok">Tamam</string>
+  <string name="msdkui_optimal">En iyi</string>
+  <string name="msdkui_options">Seçenekler</string>
+  <string name="msdkui_organic">Organik</string>
+  <string name="msdkui_other">Diğer</string>
+  <string name="msdkui_pedestrian">Yürüyüş</string>
+  <string name="msdkui_poison">Zehirli</string>
+  <string name="msdkui_poisonous">Toksik inhaler ajan</string>
+  <string name="msdkui_radioactive">Radyoaktif</string>
+  <string name="msdkui_remove">Kaldır</string>
+  <string name="msdkui_remove_waypoint">Ara noktayı kaldır</string>
+  <string name="msdkui_remove_waypoint_button">%1$d dizinindeki ara nokta düğmesini kaldırın</string>
+  <string name="msdkui_route_results_title">Rotalar</string>
+  <string name="msdkui_route_type_title">Rota türü</string>
+  <string name="msdkui_routing_options_title">Rota seçenekleri</string>
+  <string name="msdkui_rp_from">Başlangıç: %1$s</string>
+  <string name="msdkui_rp_to">Hedef: %1$s</string>
+  <string name="msdkui_rp_via">Şrdn</string>
+  <string name="msdkui_scooter">Scooter</string>
+  <string name="msdkui_seconds">%1$d sn</string>
+  <string name="msdkui_selected">Seçildi</string>
+  <string name="msdkui_set">Ayarla</string>
+  <string name="msdkui_shortest">En kısa</string>
+  <string name="msdkui_speed">Speed</string>
+  <string name="msdkui_speed_limit">Speed Limit</string>
+  <string name="msdkui_tab_icon">Sekme simgesi</string>
+  <string name="msdkui_traffic">Trafikten kaçının</string>
+  <string name="msdkui_traffic_blocked">Kapalı</string>
+  <string name="msdkui_transport_mode">Ulaşım türü: %1$s</string>
+  <string name="msdkui_truck">Kamyon</string>
+  <string name="msdkui_truck_options_title">Kamyon seçenekleri</string>
+  <string name="msdkui_truck_type">Kamyon türü</string>
+  <string name="msdkui_truck_type_tractor">Tır</string>
+  <string name="msdkui_truck_type_truck">Kamyon/Kamyonet</string>
+  <string name="msdkui_tunnel_cat_b">Kategori B</string>
+  <string name="msdkui_tunnel_cat_c">Kategori C</string>
+  <string name="msdkui_tunnel_cat_d">Kategori D</string>
+  <string name="msdkui_tunnel_cat_e">Kategori E</string>
+  <string name="msdkui_tunnels_allowed_title">Tünellere izin verildi</string>
+  <string name="msdkui_undefined">Tanımlı değil</string>
+  <string name="msdkui_unit_kilometer">km</string>
+  <string name="msdkui_unit_km_per_h">km/h</string>
+  <string name="msdkui_unit_meter">m</string>
+  <string name="msdkui_unknown">Bilinmiyor</string>
+  <string name="msdkui_userposition_search">Getting your location</string>
+  <string name="msdkui_value_not_available">--</string>
+  <string name="msdkui_violate_truck_options">Kamyon seçeneklerini yok say</string>
+  <string name="msdkui_waypoint_current_location">Mevcut konum</string>
+  <string name="msdkui_waypoint_select_location">Ara nokta seçin</string>
+  <string name="msdkui_weight_per_axle">Aks başına ağırlık</string>
+  <string name="msdkui_width">Genişlik</string>
+</resources>

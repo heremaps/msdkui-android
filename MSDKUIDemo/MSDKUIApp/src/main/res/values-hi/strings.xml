@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_app_about">About</string>
+  <string name="msdkui_app_about_info_part_four">Currently, the HERE SDK UI Kit provides you components to build a route planner and a guidance experience. Check out our user guide for more information.</string>
+  <string name="msdkui_app_about_info_part_one">The HERE Mobile SDK UI Kit enables you to build beautiful interfaces for Android and iOS.</string>
+  <string name="msdkui_app_about_info_part_three">The HERE Mobile SDK UI Kit gives access to modular and highly customizable UI components and controls that allow you to provide an interactive user interface for your app. With just a few lines of code you can now build a full UI when developing with the Premium edition of the HERE Mobile SDK. This means reduced development time and a faster time to market. So, for example, where you would normally need several days to build a maneuver list using our native APIs, with the new UI kit, you\'ll only a few hours. However, if needed, the UI Kit still allows you to modify the appearance (e.g. colors, dimensions) and behavior (e.g. data presentation, logic, flow, subcomponents) of some UI controls.</string>
+  <string name="msdkui_app_about_info_part_two">When it comes to any application, the user interface defines the experience you provide when someone interacts with your software. It can mean the difference between acquiring and retaining users or deterring them from returning to your app. We understand how critical this is to your success, so we pre-built a variety of screens with full functionality that can be used directly in your application. They are available today through the HERE Mobile SDK UI Kit for Android and iOS.</string>
+  <string name="msdkui_app_add">जोड़ें</string>
+  <string name="msdkui_app_add_waypoint">वे-पॉइंट जोड़ें</string>
+  <string name="msdkui_app_app_version">App version</string>
+  <string name="msdkui_app_back">एक चरण पीछे जाएं</string>
+  <string name="msdkui_app_cancel">रद्द करें</string>
+  <string name="msdkui_app_collapse">कम दिखाएं</string>
+  <string name="msdkui_app_cord">%s, %s</string>
+  <string name="msdkui_app_done">पूर्ण</string>
+  <string name="msdkui_app_drag">खीचें</string>
+  <string name="msdkui_app_expand">अधिक दिखाएं</string>
+  <string name="msdkui_app_guidance_button_end">समाप्त करें</string>
+  <string name="msdkui_app_guidance_button_showmaneuvers">See manoeuvres</string>
+  <string name="msdkui_app_guidance_button_showmap">मानचित्र दिखाएं</string>
+  <string name="msdkui_app_guidance_button_start">नेविगेशन आरंभ करें</string>
+  <string name="msdkui_app_guidance_start_simulation">A guidance simulation will start</string>
+  <string name="msdkui_app_guidance_teaser_description">हर मोड़ पर मार्गदर्शन के साथ अपने उपयोक्ताओं को उनके गंतव्य तक पहुँचने में सहायता दें।</string>
+  <string name="msdkui_app_guidance_teaser_title">ड्राइव नेविगेशन</string>
+  <string name="msdkui_app_guidance_waypoint_subtitle">अपना गंतव्य तय करने के लिए मैप छुएँ</string>
+  <string name="msdkui_app_guidance_waypoint_title">ड्राइव नेविगेशन</string>
+  <string name="msdkui_app_here_sdk_version">HERE SDK version</string>
+  <string name="msdkui_app_hint_collapse">कम वे-पॉइंट दिखाता है।</string>
+  <string name="msdkui_app_hint_expand">अधिक पड़ाव दिखाता है।</string>
+  <string name="msdkui_app_info">ऐप की जानकारी</string>
+  <string name="msdkui_app_map_view">मैप व्यू</string>
+  <string name="msdkui_app_name_title">MSDK UI Demo</string>
+  <string name="msdkui_app_ok">ठीक</string>
+  <string name="msdkui_app_options">विकल्प</string>
+  <string name="msdkui_app_remove">हटाएं</string>
+  <string name="msdkui_app_route_options">मार्ग विकल्प</string>
+  <string name="msdkui_app_route_preview_title">मार्ग अवलोकन</string>
+  <string name="msdkui_app_route_results_title">मार्ग</string>
+  <string name="msdkui_app_routeoverview_to">यहाँ को:</string>
+  <string name="msdkui_app_routeresults_error">कोई मार्ग नहीं मिला</string>
+  <string name="msdkui_app_rp_teaser_description">कार, लॉरियों, साइकिलों और पैदल चलने के निर्देश पाएँ।</string>
+  <string name="msdkui_app_rp_teaser_title">मार्ग योजनाकार</string>
+  <string name="msdkui_app_rp_waypoint_subtitle">मैप छुएँ या देर तक छुएँ</string>
+  <string name="msdkui_app_settings">सेटिंग्स</string>
+  <string name="msdkui_app_stop_navigation">नेविगेशन बन्द करे</string>
+  <string name="msdkui_app_swap">अदला-बदली करें</string>
+  <string name="msdkui_app_swap_waypoints">वे-पॉइंट की अदला-बदली करें</string>
+  <string name="msdkui_app_teaser_link">एक नज़र डालें</string>
+  <string name="msdkui_app_ui_kit_version">MSDKUI version</string>
+  <string name="msdkui_app_userposition_notfound">आपको नहीं ढूँढ सका</string>
+  <string name="msdkui_app_userposition_notfound_subtitle">Please make sure the location setting is switched on in your device.</string>
+  <string name="msdkui_app_userposition_search">Getting your location</string>
+  <string name="msdkui_app_versions">ऐप संस्करण: %1$s\nऐप बिल्ड: %2$s\nलाइब्रेरी संस्करण: %3$s</string>
+  <string name="msdkui_app_waypoint_not_valid">उचित पड़ाव नहीं</string>
+  <string name="msdkui_app_waypoint_select_location">वे-पॉइंट चुनें</string>
+</resources>

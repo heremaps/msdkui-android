@@ -1,0 +1,907 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="MSDKUIDarkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+        <item name="android:statusBarColor" tools:targetApi="lollipop">@color/lui_brand_dark</item>
+        <item name="android:textColorPrimary">?attr/colorForeground</item>
+
+        <item name="colorPrimary">@color/lui_brand</item>
+        <item name="colorPrimaryDark">@color/lui_brand_dark</item>
+
+        <item name="colorBackgroundBrand">@color/lui_brand</item>
+
+        <item name="colorBackgroundDark">@color/lui_dark1</item>
+        <item name="colorBackgroundViewDark">@color/lui_dark2</item>
+
+        <item name="colorBackgroundLight">@color/lui_light</item>
+        <item name="colorBackgroundViewLight">@color/lui_white</item>
+
+        <item name="colorAccentLight">@color/lui_accent_light</item>
+        <item name="colorAccent">@color/lui_accent</item>
+
+        <item name="colorAccentSecondaryLight">@color/lui_accent_secondary_light</item>
+        <item name="colorAccentSecondary">@color/lui_accent_secondary</item>
+
+        <item name="colorForegroundLight">@color/lui_white</item>
+        <item name="colorForeground">@color/lui_black90</item>
+
+        <item name="colorForegroundSecondaryLight">@color/lui_white70</item>
+        <item name="colorForegroundSecondary">@color/lui_black60</item>
+
+        <item name="colorHintLight">@color/lui_white40</item>
+        <item name="colorHint">@color/lui_black30</item>
+
+        <item name="colorPositive">@color/lui_positive</item>
+        <item name="colorPositiveLight">@color/lui_positive15</item>
+        <item name="colorAlert">@color/lui_alert</item>
+        <item name="colorAlertLight">@color/lui_alert15</item>
+        <item name="colorNegative">@color/lui_negative</item>
+        <item name="colorNegativeLight">@color/lui_negative15</item>
+        <item name="colorSignificant">@color/lui_significant</item>
+        <item name="colorSignificantLight">@color/lui_significant15</item>
+
+        <!-- Additional color styles in case you need them, you might also add new ones. -->
+        <item name="colorDividerLight">@color/lui_white15</item>
+        <item name="colorDivider">@color/lui_black15</item>
+
+        <item name="colorDisabledLight">@color/lui_white15</item>
+        <item name="colorDisabled">@color/lui_black15</item>
+
+        <item name="colorBackgroundPressedLight">@color/lui_white05</item>
+        <item name="colorBackgroundPressed">@color/lui_black05</item>
+
+        <item name="colorBackgroundMapLight">@color/lui_white80</item>
+        <item name="colorBackgroundMap">@color/lui_black90</item>
+
+        <item name="colorOpacityMaskLight">@color/lui_black90</item>
+        <item name="colorOpacityMask">@color/lui_black85</item>
+
+        <item name="colorLocation">@color/lui_accent</item>
+
+        <item name="colorRoute">@color/lui_brand</item>
+
+        <item name="multipleChoiceOptionItem">@style/MultipleChoiceOptionItem</item>
+        <item name="multipleChoiceOptionItemText">@style/MultipleChoiceOptionItemText</item>
+        <item name="multipleChoiceOptionItemCheckbox">@style/MultipleChoiceOptionItemCheckbox</item>
+
+        <item name="booleanOptionItem">@style/BooleanOptionItem</item>
+        <item name="booleanOptionItemText">@style/BooleanOptionItemText</item>
+        <item name="booleanOptionItemSwitch">@style/BooleanOptionItemSwitch</item>
+
+        <item name="singleChoiceOptionItem">@style/SingleChoiceOptionItem</item>
+        <item name="singleChoiceOptionItemText">@style/SingleChoiceOptionItemText</item>
+        <item name="singleChoiceOptionItemSpinner">@style/SingleChoiceOptionItemSpinner</item>
+
+        <item name="maneuverDescriptionItem">@style/ManeuverDescriptionItem</item>
+        <item name="maneuverDescriptionItemIcon">@style/ManeuverDescriptionItemIcon</item>
+        <item name="maneuverDescriptionItemInstructionText">@style/ManeuverDescriptionItemInstructionText</item>
+        <item name="maneuverDescriptionItemAddressText">@style/ManeuverDescriptionItemAddressText</item>
+        <item name="maneuverDescriptionItemDistanceText">@style/ManeuverDescriptionItemDistanceText</item>
+
+        <item name="numericOptionItem">@style/NumericOptionItem</item>
+        <item name="numericOptionItemLabelText">@style/NumericOptionItemLabelText</item>
+        <item name="numericOptionItemValueText">@style/NumericOptionItemValueText</item>
+
+        <item name="numericOptionItemEditText">@style/NumericOptionItemEditText</item>
+        <item name="numericOptionItemEditTextValueText">@style/NumericOptionItemEditTextValueText</item>
+
+        <item name="tabView">@style/TabView</item>
+        <item name="tabViewIcon">@style/TabViewIcon</item>
+        <item name="tabViewText">@style/TabViewText</item>
+
+        <item name="transportModePanel">@style/TransportModePanel</item>
+        <item name="transportModePanelTabLayout">@style/TransportModePanelTabLayout</item>
+        <item name="transportModePanelViewPager">@style/TransportModePanel</item>
+
+        <item name="travelTimePanel">@style/TravelTimePanel</item>
+        <item name="travelTimePanelIcon">@style/travelTimePanelIcon</item>
+        <item name="travelTimePanelTimeText">@style/travelTimePanelTimeText</item>
+        <item name="travelTimePanelTimeDetailsText">@style/travelTimePanelTimeDetailsText</item>
+
+        <item name="travelTimePicker">@style/TravelTimePicker</item>
+        <item name="travelTimePickerTabLayout">@style/TravelTimePickerTabLayout</item>
+        <item name="travelTimePickerTabLeaveItem">@style/TravelTimePickerTabLeaveItem</item>
+        <item name="travelTimePickerTabArriveItem">@style/TravelTimePickerTabArriveItem</item>
+        <item name="travelTimePickerTravelDate">@style/TravelTimePickerTravelDate</item>
+        <item name="travelTimePickerTravelTime">@style/TravelTimePickerTravelTime</item>
+
+        <item name="waypointItem">@style/WaypointItem</item>
+        <item name="waypointItemRemoveIcon">@style/WaypointItemRemoveIcon</item>
+        <item name="waypointItemLabel">@style/WaypointItemLabel</item>
+        <item name="waypointItemDragIcon">@style/WaypointItemDragIcon</item>
+
+        <item name="spinnerRowItem">@style/SpinnerRowItem</item>
+
+        <item name="routeDescriptionItem">@style/RouteDescriptionItem</item>
+        <item name="routeDescriptionItemIcon">@style/RouteDescriptionItemIcon</item>
+        <item name="routeDescriptionTotalTime">@style/RouteDescriptionTotalTime</item>
+        <item name="routeDescriptionTrafficWarning">@style/RouteDescriptionTrafficWarning</item>
+        <item name="routeDescriptionSectionBar">@style/RouteDescriptionSectionBar</item>
+        <item name="routeDescriptionDescDetails">@style/RouteDescriptionDescDetails</item>
+        <item name="routeDescriptionDescArrival">@style/RouteDescriptionDescArrival</item>
+
+        <item name="guidanceManeuverPanel">@style/GuidanceManeuverPanel</item>
+        <item name="guidanceManeuverPanelHeadingText">@style/GuidanceManeuverPanelHeadingText</item>
+        <item name="guidanceManeuverPanelSecondaryText">@style/GuidanceManeuverPanelSecondaryText</item>
+        <item name="guidanceManeuverPanelDestinationText">@style/GuidanceManeuverPanelDestinationText</item>
+        <item name="guidanceManeuverPanelLeftIcon">@style/GuidanceManeuverPanelLeftIcon</item>
+        <item name="guidanceManeuverPanelRightIcon">@style/GuidanceManeuverPanelRightIcon</item>
+        <item name="guidanceManeuverPanelHeadingTextLand">@style/GuidanceManeuverPanelHeadingTextLand</item>
+        <item name="guidanceManeuverPanelSecondaryTextLand">@style/GuidanceManeuverPanelSecondaryTextLand</item>
+
+        <item name="guidanceNextManeuverPanel">@style/GuidanceNextManeuverPanel</item>
+        <item name="guidanceNextManeuverPanelLeftIcon">@style/GuidanceNextManeuverPanelLeftIcon</item>
+        <item name="guidanceNextManeuverPanelText">@style/GuidanceNextManeuverPanelText</item>
+        <item name="guidanceNextManeuverPanelDistanceText">@style/GuidanceNextManeuverPanelDistanceText</item>
+        <item name="guidanceNextManeuverPanelDotText">@style/GuidanceNextManeuverPanelDotText</item>
+
+        <item name="guidanceArrival">@style/GuidanceArrival</item>
+        <item name="guidanceArrivalTime">@style/GuidanceArrivalTime</item>
+        <item name="guidanceArrivalDuration">@style/GuidanceArrivalDuration</item>
+        <item name="guidanceArrivalDistance">@style/GuidanceArrivalDistance</item>
+        <item name="guidanceArrivalDot">@style/GuidanceArrivalDot</item>
+
+        <item name="guidanceCurrentSpeedPanelText">@style/GuidanceCurrentSpeedPanelText</item>
+        <item name="guidanceCurrentSpeedPanelSecondaryText">@style/GuidanceCurrentSpeedPanelSecondaryText</item>
+        <item name="guidanceCurrentSpeedPanelNegativeText">@style/GuidanceCurrentSpeedPanelNegativeText</item>
+        <item name="guidanceCurrentSpeedPanelSecondaryNegativeText">@style/GuidanceCurrentSpeedPanelSecondaryText</item>
+
+        <item name="guidanceSpeedLimitPanel">@style/GuidanceSpeedLimitPanel</item>
+        <item name="guidanceSpeedLimitText">@style/GuidanceSpeedLimitText</item>
+    </style>
+
+    <style name="MSDKUIDarkTheme.WhiteAccent">
+        <item name="colorAccent">?attr/colorForegroundLight</item>
+    </style>
+
+    <style name="Image">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:minWidth">@dimen/min_value</item>
+        <item name="android:minHeight">@dimen/min_value</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="TextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorForeground</item>
+    </style>
+
+    <style name="TextStyle.Large">
+        <item name="android:textSize">@dimen/textSizeLarge</item>
+    </style>
+
+    <style name="TextStyle.Medium">
+        <item name="android:textSize">@dimen/textSizeMedium</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+    </style>
+
+    <style name="TextStyle.Medium.Light">
+        <item name="android:textSize">@dimen/textSizeMedium</item>
+        <item name="android:textColor">?attr/colorForegroundSecondaryLight</item>
+    </style>
+
+    <style name="TextStyle.Tinny">
+        <item name="android:textSize">@dimen/textSizeTiny</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+    </style>
+
+    <style name="TextStyle.Large.Bold" parent="TextStyle.Large">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="TextStyle.Medium.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+    <style name="TextStyle.Tinny.Bold" parent="TextStyle.Tinny">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginMedium</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginMedium</item>
+        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/contentMarginMedium
+        </item>
+        <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/contentMarginMedium</item>
+        <item name="android:textColor">?attr/colorAccentLight</item>
+        <item name="android:background">@android:color/transparent</item>
+
+    </style>
+
+    <style name="Headline2" parent="Base.TextAppearance.AppCompat.Headline">
+        <item name="android:textSize">@dimen/textSizeExtraHuge</item>
+    </style>
+
+    <!-- Multiple choice option item -->
+    <style name="MultipleChoiceOptionItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">@dimen/contentMarginMedium</item>
+        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginMedium</item>
+        <item name="android:paddingRight">@dimen/contentMarginMedium</item>
+        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginMedium</item>
+    </style>
+
+    <style name="MultipleChoiceOptionItemText">
+        <item name="android:textSize">@dimen/textSizeLarge</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginLarge</item>
+    </style>
+
+    <style name="MultipleChoiceOptionItemCheckbox">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginExtraLarge</item>
+        <item name="android:gravity">center|center_horizontal</item>
+        <item name="android:minHeight">@dimen/min_value</item>
+        <item name="android:minWidth">@dimen/min_value</item>
+        <item name="android:saveEnabled">false</item>
+    </style>
+
+    <!-- Boolean Option Item -->
+    <style name="BooleanOptionItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">@dimen/contentMarginMedium</item>
+        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginMedium</item>
+        <item name="android:paddingRight">@dimen/contentMarginMedium</item>
+        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginMedium</item>
+        <item name="android:paddingTop">@dimen/contentMarginMedium</item>
+    </style>
+
+    <style name="BooleanOptionItemText">
+        <item name="android:textSize">@dimen/textSizeLarge</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginLarge</item>
+    </style>
+
+    <style name="BooleanOptionItemSwitch">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
+        <item name="android:minHeight">@dimen/min_value_boolean</item>
+        <item name="android:minWidth">@dimen/min_value_boolean</item>
+    </style>
+
+    <!-- Single Choice Option Item -->
+    <style name="SingleChoiceOptionItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginMedium</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginMedium</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">@dimen/contentMarginMedium</item>
+        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginMedium</item>
+        <item name="android:paddingRight">@dimen/contentMarginMedium</item>
+        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginMedium</item>
+        <item name="android:paddingTop">@dimen/contentMarginMedium</item>
+    </style>
+
+    <style name="SingleChoiceOptionItemText">
+        <item name="android:textSize">@dimen/textSizeLarge</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="SingleChoiceOptionItemSpinner">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">@dimen/contentMarginMedium</item>
+        <item name="android:gravity">start</item>
+        <item name="android:minHeight">@dimen/min_value</item>
+        <item name="android:minWidth">@dimen/min_value</item>
+        <item name="android:saveEnabled">false</item>
+    </style>
+
+    <!-- Maneuver description item -->
+    <style name="ManeuverDescriptionItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?attr/colorBackgroundViewLight</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">false</item>
+    </style>
+
+    <style name="ManeuverDescriptionItemIcon">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:minWidth">@dimen/min_value</item>
+        <item name="android:minHeight">@dimen/min_value</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/contentMarginExtraLarge</item>
+        <item name="android:contentDescription">@null</item>
+        <item name="android:tint">?attr/colorForeground</item>
+    </style>
+
+    <style name="ManeuverDescriptionItemInstructionText">
+        <item name="android:textSize">@dimen/textSizeLarge</item>
+        <item name="android:textColor">?attr/colorForeground</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/contentMarginSmall</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginStart" tools:targetApi="17">10dp</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginTop">@dimen/contentMarginHuge</item>
+    </style>
+
+    <style name="ManeuverDescriptionItemAddressText">
+        <item name="android:textSize">@dimen/textSizeMedium</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/contentMarginLarge</item>
+        <item name="android:paddingBottom">@dimen/contentMarginHuge</item>
+    </style>
+
+    <style name="ManeuverDescriptionItemDistanceText">
+        <item name="android:textSize">@dimen/textSizeMedium</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginMedium</item>
+        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/contentMarginMedium</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/contentMarginLarge</item>
+    </style>
+
+    <!-- Numeric option item -->
+    <style name="NumericOptionItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">@dimen/contentMarginLarge</item>
+        <item name="android:paddingStart" tools:targetApi="17">@dimen/contentMarginLarge</item>
+        <item name="android:paddingRight">@dimen/contentMarginLarge</item>
+        <item name="android:paddingEnd" tools:targetApi="17">@dimen/contentMarginLarge</item>
+    </style>
+
+    <style name="NumericOptionItemLabelText">
+        <item name="android:textSize">@dimen/textSizeLarge</item>
+        <item name="android:textColor">?attr/colorForeground</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/contentMarginLarge</item>
+    </style>
+
+    <style name="NumericOptionItemValueText">
+        <item name="android:textSize">@dimen/textSizeMedium</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/contentMarginExtraLarge</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minHeight">@dimen/min_value</item>
+        <item name="android:minWidth">@dimen/min_value</item>
+        <item name="android:text">@string/msdkui_set</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+    <!-- Numeric option item EditText -->
+    <style name="NumericOptionItemEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="NumericOptionItemEditTextValueText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/contentMarginHuge</item>
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:minHeight">@dimen/min_value</item>
+        <item name="android:minWidth">@dimen/min_value</item>
+    </style>
+
+    <!-- Tab view -->
+    <style name="TabView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:focusable">true</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="TabViewIcon">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:contentDescription">@string/msdkui_tab_icon</item>
+        <item name="android:src">@drawable/section_bar_layer_rounded</item>
+    </style>
+
+    <style name="TabViewText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:textAlignment" tools:targetApi="17">center</item>
+        <item name="android:textColor">?attr/colorForegroundLight</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!-- Transport mode panel -->
+    <style name="TransportModePanel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="TransportModePanelTabLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?attr/colorBackgroundBrand</item>
+    </style>
+
+    <style name="TransportModePanelViewPager">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <!-- Travel time panel -->
+    <style name="TravelTimePanel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?attr/colorBackgroundLight</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+    </style>
+
+    <style name="travelTimePanelIcon">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:minWidth">@dimen/min_value</item>
+        <item name="android:minHeight">@dimen/min_value</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:layout_alignParentLeft">true</item>
+        <item name="android:layout_alignParentStart" tools:targetApi="17">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:contentDescription">@null</item>
+        <item name="android:tint">?attr/colorForeground</item>
+        <item name="android:tintMode" tools:targetApi="21">src_in</item>
+        <item name="srcCompat">@drawable/ic_settings_time_24</item>
+    </style>
+
+    <style name="travelTimePanelTimeText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/textSizeSmall</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+    <style name="travelTimePanelTimeDetailsText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/textSizeSmall</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginMedium</item>
+        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/contentMarginMedium</item>
+        <item name="android:layout_marginRight">48dp</item>
+        <item name="android:layout_marginEnd" tools:targetApi="17">48dp</item>
+    </style>
+
+    <!-- Travel time picker -->
+    <style name="TravelTimePicker">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="TravelTimePickerTabLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/picker_tab_height</item>
+        <item name="tabGravity">fill</item>
+        <item name="tabMode">fixed</item>
+    </style>
+
+    <style name="TravelTimePickerTabLeaveItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:text">@string/msdkui_depart</item>
+    </style>
+
+    <style name="TravelTimePickerTabArriveItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:text">@string/msdkui_arrive</item>
+    </style>
+
+    <style name="TravelTimePickerTravelDate">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TravelTimePickerTravelTime">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <!-- Waypoint item -->
+    <style name="WaypointItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?attr/colorBackgroundBrand</item>
+    </style>
+
+    <style name="WaypointItemRemoveIcon">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:minWidth">@dimen/min_value</item>
+        <item name="android:minHeight">@dimen/min_value</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:layout_alignParentStart" tools:targetApi="17">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:contentDescription">@string/msdkui_remove_waypoint</item>
+        <item name="android:padding">@dimen/contentMarginSmall</item>
+        <item name="android:tint">?attr/colorForegroundSecondaryLight</item>
+        <item name="srcCompat">@drawable/ic_remove_listitem</item>
+    </style>
+
+    <style name="WaypointItemLabel">
+        <item name="android:textSize">@dimen/textSizeMedium</item>
+        <item name="android:textColor">?attr/colorForegroundSecondaryLight</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:minHeight">@dimen/min_value</item>
+        <item name="android:minWidth">@dimen/min_value</item>
+        <item name="android:paddingTop">@dimen/contentMarginLarge</item>
+        <item name="android:paddingBottom">@dimen/contentMarginLarge</item>
+        <item name="android:paddingLeft">@dimen/contentMarginZero</item>
+        <item name="android:paddingRight">@dimen/contentMarginZero</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="WaypointItemDragIcon">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:minWidth">@dimen/min_value</item>
+        <item name="android:minHeight">@dimen/min_value</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:layout_alignParentEnd" tools:targetApi="17">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:contentDescription">@string/msdkui_drag_waypoint</item>
+        <item name="android:focusable">true</item>
+        <item name="android:tint">?attr/colorForegroundSecondaryLight</item>
+        <item name="srcCompat">@drawable/ic_drag_listitem</item>
+    </style>
+
+    <!-- Spinner row item -->
+    <style name="SpinnerRowItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginEnd" tools:targetApi="17">2dp</item>
+        <item name="android:ellipsize">marquee</item>
+        <item name="android:paddingLeft">@dimen/contentMarginExtraSmall</item>
+        <item name="android:paddingStart" tools:targetApi="17">@dimen/contentMarginExtraSmall</item>
+        <item name="android:paddingRight">@dimen/contentMarginExtraSmall</item>
+        <item name="android:paddingEnd" tools:targetApi="17">@dimen/contentMarginExtraSmall</item>
+        <item name="android:paddingBottom">@dimen/contentMarginLarge</item>
+        <item name="android:paddingTop">@dimen/contentMarginLarge</item>
+        <item name="android:textColor">?attr/colorForeground</item>
+    </style>
+
+    <!-- Route description item -->
+    <style name="RouteDescriptionItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?attr/colorBackgroundViewLight</item>
+        <item name="android:paddingLeft">@dimen/contentMarginHuge</item>
+        <item name="android:paddingRight">@dimen/contentMarginHuge</item>
+        <item name="android:paddingTop">@dimen/contentMarginExtraLarge</item>
+        <item name="android:paddingBottom">@dimen/contentMarginExtraLarge</item>
+    </style>
+
+    <style name="RouteDescriptionItemIcon" parent="Image">
+        <item name="android:layout_marginTop">@dimen/contentMarginExtraLarge</item>
+        <item name="android:tint">?attr/colorForeground</item>
+    </style>
+
+    <style name="RouteDescriptionTotalTime" parent="@style/TextAppearance.AppCompat.Subhead">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorForeground</item>
+    </style>
+
+    <style name="RouteDescriptionTrafficWarning" parent="@style/TextAppearance.AppCompat.Body1">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginSmall</item>
+        <item name="android:layout_marginStart" tools:ignore="NewApi">@dimen/contentMarginSmall</item>
+    </style>
+
+    <style name="RouteDescriptionSectionBar">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">4dp</item>
+        <item name="android:layout_marginTop">@dimen/contentMarginMedium</item>
+        <item name="android:contentDescription">@null</item>
+        <item name="android:background">?attr/colorHint</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginLarge</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="RouteDescriptionDescDetails" parent="@style/TextAppearance.AppCompat.Body2">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+    </style>
+
+    <style name="RouteDescriptionDescArrival" parent="@style/TextAppearance.AppCompat.Body2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+    </style>
+
+    <!-- GuidanceManeuverPanel -->
+
+    <style name="GuidanceManeuverPanel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">?attr/colorBackgroundDark</item>
+        <item name="android:focusable">true</item>
+        <item name="android:focusableInTouchMode">false</item>
+    </style>
+
+    <style name="GuidanceManeuverPanelLeftIcon">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:contentDescription">@null</item>
+        <item name="android:layout_marginLeft">28dp</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">28dp</item>
+        <item name="android:tint">?attr/colorForegroundLight</item>
+    </style>
+
+    <style name="GuidanceManeuverPanelRightIcon">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:contentDescription">@null</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">20dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+    </style>
+
+
+    <style name="GuidanceManeuverPanelHeadingText" parent="Headline2">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">16dp</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">20dp</item>
+        <item name="android:textColor">?attr/colorForegroundLight</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="GuidanceManeuverPanelHeadingTextLand" parent="GuidanceManeuverPanelHeadingText">
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_marginTop">0dp</item>     <!-- we have padding in parent theme -->
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">20dp</item>
+        <item name="android:layout_marginLeft">28dp</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">28dp</item>
+    </style>
+
+    <style name="GuidanceManeuverPanelSecondaryText" parent="Base.TextAppearance.AppCompat.Title">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">16dp</item>
+        <item name="android:textColor">?attr/colorForegroundLight</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">20dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="GuidanceManeuverPanelSecondaryTextLand" parent="GuidanceManeuverPanelSecondaryText">
+        <item name="android:layout_marginLeft">28dp</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">28dp</item>
+        <item name="android:layout_marginBottom">@dimen/contentMarginLarge</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:maxLines">2</item>
+    </style>
+
+    <style name="GuidanceManeuverPanelDestinationText" parent="GuidanceManeuverPanelSecondaryText">
+        <item name="android:textColor">?attr/colorAccentLight</item>
+    </style>
+
+    <style name="GuidanceCurrentStreet">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginHuge</item>
+        <item name="android:paddingLeft">@dimen/contentMarginHuge</item>
+        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginHuge</item>
+        <item name="android:paddingRight">@dimen/contentMarginHuge</item>
+        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginHuge</item>
+    </style>
+
+    <style name="GuidanceCurrentStreetText" parent="@style/TextAppearance.AppCompat.Subhead">
+        <item name="android:textColor">?attr/colorForegroundLight</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- Guidance ETA -->
+    <style name="GuidanceArrival">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="GuidanceArrivalTime" parent="Base.TextAppearance.AppCompat.Headline">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorForeground</item>
+        <item name="android:text">@string/msdkui_value_not_available</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="GuidanceArrivalDuration" parent="@style/TextAppearance.AppCompat.Body2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+        <item name="android:text">@string/msdkui_value_not_available</item>
+    </style>
+
+    <style name="GuidanceArrivalDistance" parent="@style/TextAppearance.AppCompat.Body2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+        <item name="android:text">@string/msdkui_value_not_available</item>
+    </style>
+
+    <style name="GuidanceArrivalDot">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:text">@string/msdkui_bullet</item>
+    </style>
+
+    <!-- Guidance next maneuver panel -->
+    <style name="GuidanceNextManeuverPanel">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:background">?attr/colorBackgroundViewDark</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="GuidanceNextManeuverPanelLeftIcon">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:contentDescription">@null</item>
+        <item name="android:layout_marginLeft">32dp</item>
+        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">32dp</item>
+        <item name="android:tint">?attr/colorForegroundSecondaryLight</item>
+    </style>
+
+    <style name="GuidanceNextManeuverPanelText" parent="@style/TextAppearance.AppCompat.Subhead">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">?attr/colorForegroundSecondaryLight</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginHuge</item>
+    </style>
+
+    <style name="GuidanceNextManeuverPanelDistanceText" parent="@style/TextAppearance.AppCompat.Subhead">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">?attr/colorForegroundSecondaryLight</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+    </style>
+
+    <style name="GuidanceNextManeuverPanelDotText" parent="@style/GuidanceNextManeuverPanelText">
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:text">@string/msdkui_bullet</item>
+    </style>
+
+    <style name="GuidanceCurrentSpeedPanelText" parent="@style/TextAppearance.AppCompat.Headline">
+        <item name="android:textColor">?attr/colorForeground</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/msdkui_value_not_available</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="GuidanceCurrentSpeedPanelSecondaryText" parent="@style/TextAppearance.AppCompat.Body2">
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="GuidanceCurrentSpeedPanelNegativeText" parent="@style/GuidanceCurrentSpeedPanelText">
+        <item name="android:textColor">?attr/colorNegative</item>
+    </style>
+
+    <style name="GuidanceCurrentSpeedPanelSecondaryNegativeText" parent="@style/GuidanceCurrentSpeedPanelSecondaryText">
+        <item name="android:textColor">?attr/colorNegative</item>
+    </style>
+
+    <style name="GuidanceSpeedLimitPanel">
+        <item name="android:layout_width">56dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:background">@drawable/speed_limit_bg</item>
+    </style>
+
+    <style name="GuidanceSpeedLimitText" parent="@style/TextAppearance.AppCompat.Headline">
+        <item name="android:textColor">?attr/colorForeground</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>
+

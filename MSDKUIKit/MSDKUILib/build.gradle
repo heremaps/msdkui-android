@@ -1,0 +1,169 @@
+/*
+ * Copyright (C) 2017-2018 HERE Europe B.V.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: 'com.android.library'
+apply plugin: 'com.jfrog.artifactory'
+apply plugin: 'maven-publish'
+apply from: '../quality.gradle'
+apply from: '../coverage.gradle'
+
+def buildType = System.getenv("UIKIT_BUILD_TYPE") ?: 'debug'
+def artifactVersion = {
+    if (!project.hasProperty('artifact_version')) ext.artifact_version = "1.4.0"
+    def version = System.getenv("UIKIT_VERSION") ?: ext.artifact_version
+    def build = System.getenv("BUILD_NUMBER") ?: ""
+    if (build != "") version += "-" + build
+    return version
+}
+
+android {
+
+    compileSdkVersion compile_sdk_version
+    buildToolsVersion build_tools_version
+
+    defaultConfig {
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
+        versionCode 1
+        versionName artifact_version
+        vectorDrawables.useSupportLibrary = true
+    }
+    buildTypes {
+        release {
+            buildType = "release"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        abortOnError true
+        ignoreWarnings false
+        warningsAsErrors true
+        xmlReport true
+        xmlOutput project.file('build/reports/lint/lint-report.xml')
+        htmlReport true
+        htmlOutput project.file('build/reports/lint/lint-report.html')
+        lintConfig file("${project.rootDir}/quality/lint/lint.xml")
+    }
+    testOptions.unitTests {
+        includeAndroidResources = true
+    }
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+            outputs.upToDateWhen { false }
+            showStandardStreams = true
+        }
+        jvmArgs '-noverify'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation(name: 'HERE-sdk', ext: 'aar')
+
+    implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
+    implementation "com.android.support:appcompat-v7:$support_library_version"
+    implementation "com.android.support:design:$support_library_version"
+    implementation "com.android.support:recyclerview-v7:$support_library_version"
+
+    testImplementation "org.robolectric:robolectric:$robolectric_version"
+    testImplementation "org.powermock:powermock-module-junit4:$powermock_version"
+    testImplementation "org.powermock:powermock-module-junit4-rule:$powermock_version"
+    testImplementation "org.powermock:powermock-api-mockito:$powermock_version"
+    testImplementation "org.powermock:powermock-classloading-xstream:$powermock_version"
+
+}
+
+publishing {
+    publications {
+        aar(MavenPublication) {
+            groupId = artifact_group_id
+            artifactId = artifact_artifact_id
+            version = artifactVersion()
+
+            artifact "${project.buildDir}/outputs/aar/${project.name}-${buildType}.aar"
+            artifact javadocJar
+            artifact sourcesJar
+
+            pom.withXml {
+                def dependencies = asNode().appendNode('dependencies')
+                configurations.getByName("_releaseCompile").getResolvedConfiguration().getFirstLevelModuleDependencies().each {
+                    def dependency = dependencies.appendNode('dependency')
+                    dependency.appendNode('groupId', it.moduleGroup)
+                    dependency.appendNode('artifactId', it.moduleName)
+                    dependency.appendNode('version', it.moduleVersion)
+                }
+            }
+        }
+    }
+}
+
+artifactory {
+    if (project.hasProperty('artifactory_url')) {
+        contextUrl = ext.artifactory_url
+    }
+
+    publish {
+        repository {
+            repoKey = buildType == "debug" ? 'android-snapshot-local' : 'android-release-local'
+            username = System.getenv("ARTIFACTORY_LOGIN") ?: ""
+            password = System.getenv("ARTIFACTORY_PASSWORD") ?: ""
+            maven = true
+        }
+        defaults {
+            publishArtifacts = true
+            publications('aar')
+            publishPom = true
+            publishIvy = false
+        }
+    }
+}
+
+afterEvaluate {
+    generateJavadoc.classpath += files(android.libraryVariants.collect { variant ->
+        variant.getCompileClasspath(null)
+    })
+}
+
+task generateJavadoc(type: Javadoc) {
+    failOnError false
+    source = android.sourceSets.main.java.sourceFiles
+    ext.ResDebug = "build/generated/source/r/debug"
+    ext.ResRelease = "build/generated/source/r/release"
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator), ext.ResRelease, ext.ResDebug)
+    classpath += configurations.compile
+    exclude '**/R.java'
+}
+
+task javadocJar(type: Jar, dependsOn: generateJavadoc) {
+    classifier = 'javadoc'
+    from generateJavadoc.destinationDir
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+    archives sourcesJar
+    archives javadocJar
+}

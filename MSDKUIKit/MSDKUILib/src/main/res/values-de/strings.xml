@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_allow_car_pool">Straßen mit Fahrgemeinschaftsspuren zulassen</string>
+  <string name="msdkui_allow_car_shuttle">Autoreisezüge zulassen</string>
+  <string name="msdkui_allow_dirt_roads">Unbefestigte Straßen zulassen</string>
+  <string name="msdkui_allow_ferries">Fähren zulassen</string>
+  <string name="msdkui_allow_highways">Autobahnen zulassen</string>
+  <string name="msdkui_allow_parks">Parks zulassen</string>
+  <string name="msdkui_allow_toll_roads">Mautstraßen zulassen</string>
+  <string name="msdkui_allow_tunnels">Tunnel zulassen</string>
+  <string name="msdkui_arrive">Ankunft</string>
+  <string name="msdkui_arrive_at">Ankunft</string>
+  <string name="msdkui_avoid_long_term_closures">Größere Sperrungen vermeiden</string>
+  <string name="msdkui_balanced">Optimal</string>
+  <string name="msdkui_bike">Fahrrad</string>
+  <string name="msdkui_cancel">Abbrechen</string>
+  <string name="msdkui_car">Auto</string>
+  <string name="msdkui_close">Schließen</string>
+  <string name="msdkui_combustible">Entflammbare Stoffe</string>
+  <string name="msdkui_corrosive">Ätzende Stoffe</string>
+  <string name="msdkui_days">%1$d Tg.</string>
+  <string name="msdkui_days_hours">%1$d Tg. %2$d Std.</string>
+  <string name="msdkui_depart">Abfahrt</string>
+  <string name="msdkui_depart_at">Abfahrt</string>
+  <string name="msdkui_disable">Ausschalten</string>
+  <string name="msdkui_disabled">Aus</string>
+  <string name="msdkui_distance_value_not_available">--</string>
+  <string name="msdkui_distance_value_with_unit">%1$s %2$s</string>
+  <string name="msdkui_done">Fertig</string>
+  <string name="msdkui_drag_waypoint">Wegpunkt ziehen</string>
+  <string name="msdkui_drag_waypoint_button">Schaltfläche Wegpunkt ziehen im Verzeichnis %1$d</string>
+  <string name="msdkui_duration">Dauer</string>
+  <string name="msdkui_enabled">Ein</string>
+  <string name="msdkui_estimated_arrival">Estimated Arrival</string>
+  <string name="msdkui_exception_attribute_invalid">Failed to resolve attribute at index %1$d</string>
+  <string name="msdkui_exception_custom_view_not_available">Custom view for mode %1$s is not available</string>
+  <string name="msdkui_exception_date_null">There is no date</string>
+  <string name="msdkui_exception_label_null">There is no label</string>
+  <string name="msdkui_exception_labels_null">There are no labels</string>
+  <string name="msdkui_exception_maneuver_pos_invalid">Manoeuvre position is not valid</string>
+  <string name="msdkui_exception_maneuvres_null">There are no manouevres</string>
+  <string name="msdkui_exception_out_of_index_range">Index is not within range %1$d to %2$d.</string>
+  <string name="msdkui_exception_route_null">There is no route</string>
+  <string name="msdkui_exception_route_options_null">There is no RouteOptions object</string>
+  <string name="msdkui_exception_routes_null">There are no routes</string>
+  <string name="msdkui_exception_sort_order_null">There is no sort order</string>
+  <string name="msdkui_exception_sort_type_null">There is no sort type</string>
+  <string name="msdkui_exception_time_type_null">There is no time type</string>
+  <string name="msdkui_exception_waypoint_entry_null">Need to add a waypoint</string>
+  <string name="msdkui_exception_waypoint_exceed_max">Adding waypoint exceeded list set max count.</string>
+  <string name="msdkui_exception_waypoint_fail_min">Removing waypoint failing list set min count.</string>
+  <string name="msdkui_exception_waypoint_failing_min">Adding waypoint failing list set min count.</string>
+  <string name="msdkui_explosive">Explosivstoffe</string>
+  <string name="msdkui_fastest">Schnellste</string>
+  <string name="msdkui_flammable">Entzündliche Stoffe</string>
+  <string name="msdkui_gas">Gas</string>
+  <string name="msdkui_harmful_to_water">Wassergefährdende Stoffe</string>
+  <string name="msdkui_hazardous_materials_title">Gefahrgut</string>
+  <string name="msdkui_height">Höhe</string>
+  <string name="msdkui_hours">%1$d Std.</string>
+  <string name="msdkui_hours_minutes">%1$d Std. %2$d Min.</string>
+  <string name="msdkui_incl">Einschl.</string>
+  <string name="msdkui_incl_traffic_delay">Einschl. %1$s Verspätung</string>
+  <string name="msdkui_including">Einschließlich</string>
+  <string name="msdkui_input_not_valid">Überprüfen Sie die Eingabe erneut</string>
+  <string name="msdkui_length">Länge</string>
+  <string name="msdkui_limited_weight">Gewichtsbeschränkung</string>
+  <string name="msdkui_maneuver_arrive_at_02y">Ankunft</string>
+  <string name="msdkui_maneuver_continue">Weiter geradeaus</string>
+  <string name="msdkui_maneuver_end">Sie sind am Ziel</string>
+  <string name="msdkui_maneuver_enter_car_shuttle_train">Autoreisezug nutzen</string>
+  <string name="msdkui_maneuver_enter_ferry">Nehmen Sie die Fähre</string>
+  <string name="msdkui_maneuver_enter_highway">Fahren Sie auf die Autobahn</string>
+  <string name="msdkui_maneuver_exit">Ausfahrt %1$s</string>
+  <string name="msdkui_maneuver_exit_directions_towards">%1$s in Richtung %2$s</string>
+  <string name="msdkui_maneuver_head_to">Richtung %1$s</string>
+  <string name="msdkui_maneuver_leave_highway">Nehmen Sie die Ausfahrt</string>
+  <string name="msdkui_maneuver_orientation_east">Osten</string>
+  <string name="msdkui_maneuver_orientation_north">Norden</string>
+  <string name="msdkui_maneuver_orientation_north_east">Nordosten</string>
+  <string name="msdkui_maneuver_orientation_north_west">Nordwesten</string>
+  <string name="msdkui_maneuver_orientation_south">Süden</string>
+  <string name="msdkui_maneuver_orientation_south_east">Südosten</string>
+  <string name="msdkui_maneuver_orientation_south_west">Südwesten</string>
+  <string name="msdkui_maneuver_orientation_west">Westen</string>
+  <string name="msdkui_maneuver_pt_change">Umsteigen</string>
+  <string name="msdkui_maneuver_pt_change_at">Umsteigen bei %1$s</string>
+  <string name="msdkui_maneuver_pt_get_on_here">Einsteigen</string>
+  <string name="msdkui_maneuver_pt_stopover">Wegpunkt</string>
+  <string name="msdkui_maneuver_pt_travel_start">Verkehrsmittel: %1$s</string>
+  <string name="msdkui_maneuver_pt_walk">Gehen</string>
+  <string name="msdkui_maneuver_road_name_divider">%1$s/%2$s</string>
+  <string name="msdkui_maneuver_turn_keep_left">Links halten</string>
+  <string name="msdkui_maneuver_turn_keep_middle">Nehmen Sie die mittlere Straße</string>
+  <string name="msdkui_maneuver_turn_keep_right">Rechts halten</string>
+  <string name="msdkui_maneuver_turn_left">Links abbiegen</string>
+  <string name="msdkui_maneuver_turn_right">Rechts abbiegen</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_1">Nehmen Sie die 1. Ausfahrt</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_10">Nehmen Sie die 10. Ausfahrt</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_11">Nehmen Sie die 11. Ausfahrt</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_12">Nehmen Sie die 12. Ausfahrt</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_2">Nehmen Sie die 2. Ausfahrt</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_3">Nehmen Sie die 3. Ausfahrt</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_4">Nehmen Sie die 4. Ausfahrt</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_5">Nehmen Sie die 5. Ausfahrt</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_6">Nehmen Sie die 6. Ausfahrt</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_7">Nehmen Sie die 7. Ausfahrt</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_8">Nehmen Sie die 8. Ausfahrt</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_9">Nehmen Sie die 9. Ausfahrt</string>
+  <string name="msdkui_maneuver_turn_sharply_left">Scharf links abbiegen</string>
+  <string name="msdkui_maneuver_turn_sharply_right">Scharf rechts abbiegen</string>
+  <string name="msdkui_maneuver_turn_slightly_left">Leicht nach links abbiegen</string>
+  <string name="msdkui_maneuver_turn_slightly_right">Leicht nach rechts abbiegen</string>
+  <string name="msdkui_maneuver_uturn">Machen Sie eine Kehrtwendung</string>
+  <string name="msdkui_maneuverpanel_nodata">Folgen Sie der Route auf der Karte</string>
+  <string name="msdkui_maneuverpanel_updating">Aktualisierung läuft</string>
+  <string name="msdkui_minutes">%1$d Min.</string>
+  <string name="msdkui_next_maneuver">Next maneuver</string>
+  <string name="msdkui_no_maneuver_found">Keine Fahranweisungen gefunden</string>
+  <string name="msdkui_no_route_found">Keine Routen gefunden</string>
+  <string name="msdkui_no_traffic_delays">Keine Verspätung</string>
+  <string name="msdkui_none">Keine</string>
+  <string name="msdkui_not_implemented">Nicht verfügbar</string>
+  <string name="msdkui_number_of_trailers">Anhänger</string>
+  <string name="msdkui_ok">OK</string>
+  <string name="msdkui_optimal">Beste</string>
+  <string name="msdkui_options">Optionen</string>
+  <string name="msdkui_organic">Biologische Gefahrstoffe</string>
+  <string name="msdkui_other">Sonstige</string>
+  <string name="msdkui_pedestrian">Zu Fuß</string>
+  <string name="msdkui_poison">Giftige Stoffe</string>
+  <string name="msdkui_poisonous">Giftige Gase</string>
+  <string name="msdkui_radioactive">Radioaktive Stoffe</string>
+  <string name="msdkui_remove">Entfernen</string>
+  <string name="msdkui_remove_waypoint">Wegpunkt entfernen</string>
+  <string name="msdkui_remove_waypoint_button">Schaltfläche Wegpunkt entfernen im Verzeichnis %1$d</string>
+  <string name="msdkui_route_results_title">Routen</string>
+  <string name="msdkui_route_type_title">Routentyp</string>
+  <string name="msdkui_routing_options_title">Routenoptionen</string>
+  <string name="msdkui_rp_from">Von: %1$s</string>
+  <string name="msdkui_rp_to">Nach: %1$s</string>
+  <string name="msdkui_rp_via">Über</string>
+  <string name="msdkui_scooter">Scooter</string>
+  <string name="msdkui_seconds">%1$d Sek.</string>
+  <string name="msdkui_selected">Ausgewählt</string>
+  <string name="msdkui_set">Festlegen</string>
+  <string name="msdkui_shortest">Kürzeste</string>
+  <string name="msdkui_speed">Speed</string>
+  <string name="msdkui_speed_limit">Speed Limit</string>
+  <string name="msdkui_tab_icon">Registerkartensymbol</string>
+  <string name="msdkui_traffic">Staus vermeiden</string>
+  <string name="msdkui_traffic_blocked">Gesperrt</string>
+  <string name="msdkui_transport_mode">Transportmittel: %1$s</string>
+  <string name="msdkui_truck">Lkw</string>
+  <string name="msdkui_truck_options_title">Optionen für Lkw</string>
+  <string name="msdkui_truck_type">Lkw-Typ</string>
+  <string name="msdkui_truck_type_tractor">Sattelschlepper</string>
+  <string name="msdkui_truck_type_truck">Lkw</string>
+  <string name="msdkui_tunnel_cat_b">Kategorie B</string>
+  <string name="msdkui_tunnel_cat_c">Kategorie C</string>
+  <string name="msdkui_tunnel_cat_d">Kategorie D</string>
+  <string name="msdkui_tunnel_cat_e">Kategorie E</string>
+  <string name="msdkui_tunnels_allowed_title">Zulässige Tunnel</string>
+  <string name="msdkui_undefined">Nicht festgelegt</string>
+  <string name="msdkui_unit_kilometer">km</string>
+  <string name="msdkui_unit_km_per_h">km/h</string>
+  <string name="msdkui_unit_meter">m</string>
+  <string name="msdkui_unknown">Nicht bekannt</string>
+  <string name="msdkui_userposition_search">Getting your location</string>
+  <string name="msdkui_value_not_available">--</string>
+  <string name="msdkui_violate_truck_options">Optionen für Lkw ignorieren</string>
+  <string name="msdkui_waypoint_current_location">Aktueller Standort</string>
+  <string name="msdkui_waypoint_select_location">Wegpunkt aussuchen</string>
+  <string name="msdkui_weight_per_axle">Gewicht pro Achse</string>
+  <string name="msdkui_width">Breite</string>
+</resources>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_allow_car_pool">Cho phép đường ưu tiên</string>
+  <string name="msdkui_allow_car_shuttle">Cho phép xe trung chuyển tàu điện</string>
+  <string name="msdkui_allow_dirt_roads">Chấp nhận đường bụi bẩn</string>
+  <string name="msdkui_allow_ferries">Chấp nhận phà</string>
+  <string name="msdkui_allow_highways">Chấp nhận đường cao tốc</string>
+  <string name="msdkui_allow_parks">Chấp nhận qua công viên</string>
+  <string name="msdkui_allow_toll_roads">Chấp nhận đường thu phí</string>
+  <string name="msdkui_allow_tunnels">Chấp nhận đường hầm</string>
+  <string name="msdkui_arrive">Đến</string>
+  <string name="msdkui_arrive_at">Đến</string>
+  <string name="msdkui_avoid_long_term_closures">Tránh những điểm tắc nghiêm trọng</string>
+  <string name="msdkui_balanced">Cân bằng</string>
+  <string name="msdkui_bike">Xe đạp</string>
+  <string name="msdkui_cancel">Hủy</string>
+  <string name="msdkui_car">Ô tô</string>
+  <string name="msdkui_close">Đóng</string>
+  <string name="msdkui_combustible">Dễ cháy</string>
+  <string name="msdkui_corrosive">Ăn mòn</string>
+  <string name="msdkui_days">%1$d ngày</string>
+  <string name="msdkui_days_hours">%1$d ngày %2$d giờ</string>
+  <string name="msdkui_depart">Khởi hành</string>
+  <string name="msdkui_depart_at">Khởi hành</string>
+  <string name="msdkui_disable">Tắt</string>
+  <string name="msdkui_disabled">Tắt</string>
+  <string name="msdkui_distance_value_not_available">--</string>
+  <string name="msdkui_distance_value_with_unit">%1$s %2$s</string>
+  <string name="msdkui_done">Xong</string>
+  <string name="msdkui_drag_waypoint">Kéo điểm dừng chân</string>
+  <string name="msdkui_drag_waypoint_button">Kéo nút điểm dừng chân tại %1$d</string>
+  <string name="msdkui_duration">Thời gian</string>
+  <string name="msdkui_enabled">Bật</string>
+  <string name="msdkui_estimated_arrival">Estimated Arrival</string>
+  <string name="msdkui_exception_attribute_invalid">Failed to resolve attribute at index %1$d</string>
+  <string name="msdkui_exception_custom_view_not_available">Custom view for mode %1$s is not available</string>
+  <string name="msdkui_exception_date_null">There is no date</string>
+  <string name="msdkui_exception_label_null">There is no label</string>
+  <string name="msdkui_exception_labels_null">There are no labels</string>
+  <string name="msdkui_exception_maneuver_pos_invalid">Manoeuvre position is not valid</string>
+  <string name="msdkui_exception_maneuvres_null">There are no manouevres</string>
+  <string name="msdkui_exception_out_of_index_range">Index is not within range %1$d to %2$d.</string>
+  <string name="msdkui_exception_route_null">There is no route</string>
+  <string name="msdkui_exception_route_options_null">There is no RouteOptions object</string>
+  <string name="msdkui_exception_routes_null">There are no routes</string>
+  <string name="msdkui_exception_sort_order_null">There is no sort order</string>
+  <string name="msdkui_exception_sort_type_null">There is no sort type</string>
+  <string name="msdkui_exception_time_type_null">There is no time type</string>
+  <string name="msdkui_exception_waypoint_entry_null">Need to add a waypoint</string>
+  <string name="msdkui_exception_waypoint_exceed_max">Adding waypoint exceeded list set max count.</string>
+  <string name="msdkui_exception_waypoint_fail_min">Removing waypoint failing list set min count.</string>
+  <string name="msdkui_exception_waypoint_failing_min">Adding waypoint failing list set min count.</string>
+  <string name="msdkui_explosive">Nổ</string>
+  <string name="msdkui_fastest">Nhanh nhất</string>
+  <string name="msdkui_flammable">Dễ cháy</string>
+  <string name="msdkui_gas">Chất khí</string>
+  <string name="msdkui_harmful_to_water">Chất ô nhiễm nước</string>
+  <string name="msdkui_hazardous_materials_title">Những vật liệu nguy hiểm</string>
+  <string name="msdkui_height">Chiều cao</string>
+  <string name="msdkui_hours">%1$d giờ</string>
+  <string name="msdkui_hours_minutes">%1$d giờ %2$d phút</string>
+  <string name="msdkui_incl">Bao gồm</string>
+  <string name="msdkui_incl_traffic_delay">Bao gồm chậm %1$s</string>
+  <string name="msdkui_including">Bao gồm</string>
+  <string name="msdkui_input_not_valid">Vui lòng kiểm tra lại</string>
+  <string name="msdkui_length">Chiều dài</string>
+  <string name="msdkui_limited_weight">Giới hạn trọng tải</string>
+  <string name="msdkui_maneuver_arrive_at_02y">Đến</string>
+  <string name="msdkui_maneuver_continue">Tiếp tục</string>
+  <string name="msdkui_maneuver_end">Bạn đã đến</string>
+  <string name="msdkui_maneuver_enter_car_shuttle_train">Tàu chở phương tiện cá nhân</string>
+  <string name="msdkui_maneuver_enter_ferry">Đi phà</string>
+  <string name="msdkui_maneuver_enter_highway">Vào đường cao tốc</string>
+  <string name="msdkui_maneuver_exit">Thoát %1$s</string>
+  <string name="msdkui_maneuver_exit_directions_towards">%1$s về phía %2$s</string>
+  <string name="msdkui_maneuver_head_to">Theo %1$s</string>
+  <string name="msdkui_maneuver_leave_highway">Đi ra</string>
+  <string name="msdkui_maneuver_orientation_east">hướng đông</string>
+  <string name="msdkui_maneuver_orientation_north">hướng bắc</string>
+  <string name="msdkui_maneuver_orientation_north_east">hướng đông bắc</string>
+  <string name="msdkui_maneuver_orientation_north_west">hướng tây bắc</string>
+  <string name="msdkui_maneuver_orientation_south">hướng nam</string>
+  <string name="msdkui_maneuver_orientation_south_east">hướng đông nam</string>
+  <string name="msdkui_maneuver_orientation_south_west">hướng tây nam</string>
+  <string name="msdkui_maneuver_orientation_west">hướng tây</string>
+  <string name="msdkui_maneuver_pt_change">Chuyển</string>
+  <string name="msdkui_maneuver_pt_change_at">Chuyển tại %1$s</string>
+  <string name="msdkui_maneuver_pt_get_on_here">Lên</string>
+  <string name="msdkui_maneuver_pt_stopover">Tọa độ điểm</string>
+  <string name="msdkui_maneuver_pt_travel_start">Đi %1$s</string>
+  <string name="msdkui_maneuver_pt_walk">Đi bộ</string>
+  <string name="msdkui_maneuver_road_name_divider">%1$s/%2$s</string>
+  <string name="msdkui_maneuver_turn_keep_left">Đi bên trái</string>
+  <string name="msdkui_maneuver_turn_keep_middle">Đi ở đường giữa</string>
+  <string name="msdkui_maneuver_turn_keep_right">Đi bên phải</string>
+  <string name="msdkui_maneuver_turn_left">Rẽ trái</string>
+  <string name="msdkui_maneuver_turn_right">Rẽ phải</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_1">Ra ở lối ra đầu tiên</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_10">Ra ở lối ra thứ 10</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_11">Ra ở lối ra thứ 11</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_12">Ra ở lối ra thứ 12</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_2">Ra ở lối ra thứ 2</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_3">Ra ở lối ra thứ 3</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_4">Ra ở lối ra thứ 4</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_5">Ra ở lối ra thứ 5</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_6">Ra ở lối ra thứ 6</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_7">Ra ở lối ra thứ 7</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_8">Ra ở lối ra thứ 8</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_9">Ra ở lối ra thứ 9</string>
+  <string name="msdkui_maneuver_turn_sharply_left">Rẽ sang trái</string>
+  <string name="msdkui_maneuver_turn_sharply_right">Rẽ sang phải</string>
+  <string name="msdkui_maneuver_turn_slightly_left">Rẽ sang trái một chút</string>
+  <string name="msdkui_maneuver_turn_slightly_right">Rẽ sang phải một chút</string>
+  <string name="msdkui_maneuver_uturn">Quay xe lại</string>
+  <string name="msdkui_maneuverpanel_nodata">Đi theo lộ trình trên bản đồ</string>
+  <string name="msdkui_maneuverpanel_updating">Đang cập nhật</string>
+  <string name="msdkui_minutes">%1$d phút</string>
+  <string name="msdkui_next_maneuver">Next maneuver</string>
+  <string name="msdkui_no_maneuver_found">Không tìm thấy dẫn đường nào</string>
+  <string name="msdkui_no_route_found">Không tìm thấy tuyến đường nào</string>
+  <string name="msdkui_no_traffic_delays">Không trễ</string>
+  <string name="msdkui_none">Không có</string>
+  <string name="msdkui_not_implemented">Không có sẵn</string>
+  <string name="msdkui_number_of_trailers">Rơ-moóc</string>
+  <string name="msdkui_ok">OK</string>
+  <string name="msdkui_optimal">Tốt nhất</string>
+  <string name="msdkui_options">Tùy chọn</string>
+  <string name="msdkui_organic">Hữu cơ</string>
+  <string name="msdkui_other">Khác</string>
+  <string name="msdkui_pedestrian">Đi bộ</string>
+  <string name="msdkui_poison">Độc hại</string>
+  <string name="msdkui_poisonous">Chất hít độc</string>
+  <string name="msdkui_radioactive">Phóng xạ</string>
+  <string name="msdkui_remove">Xóa</string>
+  <string name="msdkui_remove_waypoint">Bỏ điểm dừng chân</string>
+  <string name="msdkui_remove_waypoint_button">Bỏ nút điểm dừng chân tại %1$d</string>
+  <string name="msdkui_route_results_title">Lộ trình</string>
+  <string name="msdkui_route_type_title">Loại tuyến đường</string>
+  <string name="msdkui_routing_options_title">Tùy chọn tuyến đường</string>
+  <string name="msdkui_rp_from">Từ: %1$s</string>
+  <string name="msdkui_rp_to">Đến: %1$s</string>
+  <string name="msdkui_rp_via">Qua</string>
+  <string name="msdkui_scooter">Scooter</string>
+  <string name="msdkui_seconds">%1$d giây</string>
+  <string name="msdkui_selected">Đã chọn</string>
+  <string name="msdkui_set">Xong</string>
+  <string name="msdkui_shortest">Ngắn nhất</string>
+  <string name="msdkui_speed">Speed</string>
+  <string name="msdkui_speed_limit">Speed Limit</string>
+  <string name="msdkui_tab_icon">Biểu tượng thẻ</string>
+  <string name="msdkui_traffic">Tránh lưu thông</string>
+  <string name="msdkui_traffic_blocked">Đóng</string>
+  <string name="msdkui_transport_mode">Loại phương tiện: %1$s</string>
+  <string name="msdkui_truck">Xe tải</string>
+  <string name="msdkui_truck_options_title">Tùy chọn xe tải</string>
+  <string name="msdkui_truck_type">Loại xe tải</string>
+  <string name="msdkui_truck_type_tractor">Xe tải có khớp móc</string>
+  <string name="msdkui_truck_type_truck">Xe tải/xe chở hàng</string>
+  <string name="msdkui_tunnel_cat_b">Danh mục B</string>
+  <string name="msdkui_tunnel_cat_c">Danh mục C</string>
+  <string name="msdkui_tunnel_cat_d">Danh mục D</string>
+  <string name="msdkui_tunnel_cat_e">Danh mục E</string>
+  <string name="msdkui_tunnels_allowed_title">Đường hầm được chấp nhận</string>
+  <string name="msdkui_undefined">Không xác định</string>
+  <string name="msdkui_unit_kilometer">km</string>
+  <string name="msdkui_unit_km_per_h">km/h</string>
+  <string name="msdkui_unit_meter">mét</string>
+  <string name="msdkui_unknown">Chưa rõ</string>
+  <string name="msdkui_userposition_search">Getting your location</string>
+  <string name="msdkui_value_not_available">--</string>
+  <string name="msdkui_violate_truck_options">Bỏ qua lựa chọn xe tải</string>
+  <string name="msdkui_waypoint_current_location">Địa điểm hiện tại</string>
+  <string name="msdkui_waypoint_select_location">Chọn tọa độ điểm</string>
+  <string name="msdkui_weight_per_axle">Trọng lượng trên mỗi trục</string>
+  <string name="msdkui_width">Chiều rộng</string>
+</resources>

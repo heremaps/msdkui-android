@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_app_about">Про програму</string>
+  <string name="msdkui_app_about_info_part_four">Набір елементів інтерфейсу HERE Mobile SDK містить компоненти, за допомогою яких ви можете створити власний планувальник маршрутів та інтерфейс навігації. Докладні відомості про це див. в посібнику користувача.</string>
+  <string name="msdkui_app_about_info_part_one">Створюйте чудові інтерфейси користувача для рішень на платформах Android і iOS завдяки пакету HERE Mobile SDK</string>
+  <string name="msdkui_app_about_info_part_three">Завдяки пакету HERE Mobile SDK випуску \"Преміум\" ви можете створити повноцінний інтерфейс користувача за допомогою лише кількох рядків коду. Вам не потрібно витрачати кілька днів на створення списку маневрів за допомогою стандартних API-інтерфейсів. Усе це можна зробити за лічені години. Що менше часу триває розробка, то скоріше рішення потрапить на ринок.\n\nЗа потреби за допомогою цього набору ви можете змінити вигляд (колір, розміри) і поведінку (представлення даних, логіку, цикл, підкомпоненти) певних елементів керування інтерфейсу користувача. Вирішуйте самі.</string>
+  <string name="msdkui_app_about_info_part_two">Зацікавленість користувачів певним рішенням часто залежить від його інтерфейсу. Якщо він не дуже зручний і привабливий, люди можуть обрати продукти конкурентів. Щоб цього не сталося, ми додали в набір елементів інтерфейсу користувача HERE Mobile SDK для Android і iOS безліч повністю функціональних екранів, які ви можете застосовувати у власних програмах.</string>
+  <string name="msdkui_app_add">Додати</string>
+  <string name="msdkui_app_add_waypoint">Додати точку маршруту</string>
+  <string name="msdkui_app_app_version">Версія програми</string>
+  <string name="msdkui_app_back">Повернутися на один крок</string>
+  <string name="msdkui_app_cancel">Скасувати</string>
+  <string name="msdkui_app_collapse">Менше</string>
+  <string name="msdkui_app_cord">%s, %s</string>
+  <string name="msdkui_app_done">Готово</string>
+  <string name="msdkui_app_drag">Перетягти</string>
+  <string name="msdkui_app_expand">Більше</string>
+  <string name="msdkui_app_guidance_button_end">Завершити</string>
+  <string name="msdkui_app_guidance_button_showmaneuvers">Усі маневри</string>
+  <string name="msdkui_app_guidance_button_showmap">Показати карту</string>
+  <string name="msdkui_app_guidance_button_start">Почати навігацію</string>
+  <string name="msdkui_app_guidance_start_simulation">Розпочнеться моделювання вказівок</string>
+  <string name="msdkui_app_guidance_teaser_description">Допоможіть користувачам потрапити до потрібного місця завдяки покроковим указівкам.</string>
+  <string name="msdkui_app_guidance_teaser_title">Навігація</string>
+  <string name="msdkui_app_guidance_waypoint_subtitle">Торкніться карти, щоб вибрати місце призначення</string>
+  <string name="msdkui_app_guidance_waypoint_title">Навігація</string>
+  <string name="msdkui_app_here_sdk_version">Версія HERE SDK</string>
+  <string name="msdkui_app_hint_collapse">Показує менше точок маршруту.</string>
+  <string name="msdkui_app_hint_expand">Показує більше точок маршруту.</string>
+  <string name="msdkui_app_info">Відомості про програму</string>
+  <string name="msdkui_app_map_view">Подання карти</string>
+  <string name="msdkui_app_name_title">MSDK UI Demo</string>
+  <string name="msdkui_app_ok">ОК</string>
+  <string name="msdkui_app_options">Параметри</string>
+  <string name="msdkui_app_remove">Видалити</string>
+  <string name="msdkui_app_route_options">Параметри маршруту</string>
+  <string name="msdkui_app_route_preview_title">Огляд маршруту</string>
+  <string name="msdkui_app_route_results_title">Маршрути</string>
+  <string name="msdkui_app_routeoverview_to">Куди:</string>
+  <string name="msdkui_app_routeplanner_getdirections">Отримати вказівки</string>
+  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Start by choosing a \"from\" or a \"to\"</string>
+  <string name="msdkui_app_routeresults_error">Не вдалося знайти маршрути</string>
+  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
+  <string name="msdkui_app_rp_teaser_description">Дізнайтеся, як дістатися місця призначення легковим автомобілем, вантажівкою, велосипедом або пішки.</string>
+  <string name="msdkui_app_rp_teaser_title">Планувальник маршруту</string>
+  <string name="msdkui_app_rp_waypoint_subtitle">Торкніться карти або натисніть її та затримайте палець</string>
+  <string name="msdkui_app_settings">Параметри</string>
+  <string name="msdkui_app_stop_navigation">Зупинити навігацію</string>
+  <string name="msdkui_app_storage_permission_not_granted">Програмі потрібен дозвіл на доступ до сховища на пристрої, інакше  вона не працюватиме.</string>
+  <string name="msdkui_app_swap">Поміняти</string>
+  <string name="msdkui_app_swap_waypoints">Поміняти місцями точки маршруту</string>
+  <string name="msdkui_app_teaser_link">Переглянути</string>
+  <string name="msdkui_app_ui_kit_version">Версія MSDKUI</string>
+  <string name="msdkui_app_userposition_search">Отримання місцезнаходження</string>
+  <string name="msdkui_app_waypoint_not_valid">Некоректна точка маршруту</string>
+  <string name="msdkui_app_waypoint_select_location">Виберіть точку маршруту</string>
+</resources>

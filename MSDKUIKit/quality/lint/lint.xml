@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<lint>
+    <!-- We need a different string approach due to our L18N handling, strings.xml will be
+         generated and can't be mixed with the untranslated strings -->
+    <issue id="ExtraTranslation" severity="ignore" />
+    <!-- We will not changed these vector paths -->
+    <issue id="VectorPath" severity="ignore" />
+    <issue id="UnusedResources">
+        <!-- This following file is maintained by the LUI team, we fix no lint issues -->
+        <ignore path="res/values/colors_lui.xml" />
+        <!-- Some dimensions are used on app level -->
+        <ignore path="res/values/dimension.xml" />
+        <!-- Our string file is generated, it should not be manipulated manually -->
+        <ignore path="res/values/strings.xml" />
+        <ignore path="res/values-de/strings.xml" />
+        <ignore path="res/values-en-rGB/strings.xml" />
+        <ignore path="res/values-en-rUS/strings.xml" />
+        <ignore path="res/values-es/strings.xml" />
+        <ignore path="res/values-fr/strings.xml" />
+        <ignore path="res/values-hi/strings.xml" />
+        <ignore path="res/values-it/strings.xml" />
+        <ignore path="res/values-pl/strings.xml" />
+        <ignore path="res/values-pt-rBR/strings.xml" />
+        <ignore path="res/values-tl/strings.xml" />
+        <ignore path="res/values-tr/strings.xml" />
+        <ignore path="res/values-uk-rUA/strings.xml" />
+        <ignore path="res/values-vi-rVN/strings.xml" />
+        <ignore path="res/values-zh-rTW/strings.xml" />
+        <ignore path="res/values-zz-rZZ/strings.xml" />
+
+        <ignore path="res/drawable/" />
+        <!-- Expose our styles -->
+        <ignore path="res/values/style.xml" />
+        <!-- In the drawable folder we have our maneuver icons which we want to expose -->
+        <ignore path="res/drawable/" />
+    </issue>
+</lint>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_allow_car_pool">Дозволити транзитні смуги руху</string>
+  <string name="msdkui_allow_car_shuttle">Дозволити поїзди-автомобілевізи</string>
+  <string name="msdkui_allow_dirt_roads">Дозволити ґрунтові дороги</string>
+  <string name="msdkui_allow_ferries">Дозволити пороми</string>
+  <string name="msdkui_allow_highways">Дозволити автомагістралі</string>
+  <string name="msdkui_allow_parks">Дозволити парки</string>
+  <string name="msdkui_allow_toll_roads">Дозволити платні дороги</string>
+  <string name="msdkui_allow_tunnels">Дозволити тунелі</string>
+  <string name="msdkui_arrive">Прибуття</string>
+  <string name="msdkui_arrive_at">Прибуття</string>
+  <string name="msdkui_avoid_long_term_closures">Маршрути без ремонтних робіт</string>
+  <string name="msdkui_balanced">Збалансований</string>
+  <string name="msdkui_bike">Велосипед</string>
+  <string name="msdkui_cancel">Скасувати</string>
+  <string name="msdkui_car">Автомобіль</string>
+  <string name="msdkui_combustible">Пальне</string>
+  <string name="msdkui_corrosive">Речовини, що викликають корозію</string>
+  <string name="msdkui_days">%1$d дн.</string>
+  <string name="msdkui_days_hours">%1$d дн. %2$d год.</string>
+  <string name="msdkui_depart">Відправлення</string>
+  <string name="msdkui_depart_at">Відправл.</string>
+  <string name="msdkui_disable">Вимкнути</string>
+  <string name="msdkui_disabled">Вимкнуто</string>
+  <string name="msdkui_done">Готово</string>
+  <string name="msdkui_drag_waypoint">Перетягнути точку маршруту</string>
+  <string name="msdkui_drag_waypoint_button">Кнопка перенесення точки маршруту, індекс %1$d</string>
+  <string name="msdkui_duration">Тривалість</string>
+  <string name="msdkui_enabled">Увімкнути</string>
+  <string name="msdkui_estimated_arrival">Приблизний час прибуття</string>
+  <string name="msdkui_explosive">Вибухові речовини</string>
+  <string name="msdkui_fastest">Найшвидший</string>
+  <string name="msdkui_flammable">Займисті речовини</string>
+  <string name="msdkui_gas">Газ</string>
+  <string name="msdkui_harmful_to_water">Речовини, що забруднюють воду</string>
+  <string name="msdkui_hazardous_materials_title">Небезпечні матеріали</string>
+  <string name="msdkui_height">Висота</string>
+  <string name="msdkui_hours">%1$d год.</string>
+  <string name="msdkui_hours_minutes">%1$d год. %2$d хв.</string>
+  <string name="msdkui_incl">Включ. з</string>
+  <string name="msdkui_incl_traffic_delay">Затримка: %1$s</string>
+  <string name="msdkui_including">Включно з</string>
+  <string name="msdkui_length">Довжина</string>
+  <string name="msdkui_limited_weight">Обмеження ваги</string>
+  <string name="msdkui_maneuver_arrive_at_02y">На місці</string>
+  <string name="msdkui_maneuver_continue">Продовжити</string>
+  <string name="msdkui_maneuver_end">Ви прибули</string>
+  <string name="msdkui_maneuver_enter_car_shuttle_train">Заїжджайте в поїзд-автомобілевіз</string>
+  <string name="msdkui_maneuver_enter_ferry">Сядьте на пором</string>
+  <string name="msdkui_maneuver_enter_highway">В\'їдьте на автомагістраль</string>
+  <string name="msdkui_maneuver_exit">Виїзд %1$s</string>
+  <string name="msdkui_maneuver_exit_directions_towards">Рухайтеся по %1$s до %2$s</string>
+  <string name="msdkui_maneuver_head_to">Прямуйте на %1$s</string>
+  <string name="msdkui_maneuver_leave_highway">З\'їдьте</string>
+  <string name="msdkui_maneuver_orientation_east">схід</string>
+  <string name="msdkui_maneuver_orientation_north">північ</string>
+  <string name="msdkui_maneuver_orientation_north_east">північний схід</string>
+  <string name="msdkui_maneuver_orientation_north_west">північний захід</string>
+  <string name="msdkui_maneuver_orientation_south">південь</string>
+  <string name="msdkui_maneuver_orientation_south_east">південний схід</string>
+  <string name="msdkui_maneuver_orientation_south_west">південний захід</string>
+  <string name="msdkui_maneuver_orientation_west">захід</string>
+  <string name="msdkui_maneuver_pt_change">Пересядьте</string>
+  <string name="msdkui_maneuver_pt_change_at">Пересядьте на %1$s</string>
+  <string name="msdkui_maneuver_pt_get_on_here">Проїдьте </string>
+  <string name="msdkui_maneuver_pt_stopover">Точка маршруту</string>
+  <string name="msdkui_maneuver_pt_travel_start">Сядьте на %1$s</string>
+  <string name="msdkui_maneuver_pt_walk">Пішки</string>
+  <string name="msdkui_maneuver_road_name_divider">%1$s/%2$s</string>
+  <string name="msdkui_maneuver_turn_keep_left">Тримайтеся лівої сторони</string>
+  <string name="msdkui_maneuver_turn_keep_middle">Їдьте вулицею, що посередині</string>
+  <string name="msdkui_maneuver_turn_keep_right">Тримайтеся правої сторони</string>
+  <string name="msdkui_maneuver_turn_left">Поверніть ліворуч</string>
+  <string name="msdkui_maneuver_turn_right">Поверніть праворуч</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_1">З\'їдьте на виїзді №1</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_10">З\'їдьте на виїзді №10</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_11">З\'їдьте на виїзді №11</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_12">З\'їдьте на виїзді №12</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_2">З\'їдьте на виїзді №2</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_3">З\'їдьте на виїзді №3</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_4">З\'їдьте на виїзді №4</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_5">З\'їдьте на виїзді №5</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_6">З\'їдьте на виїзді №6</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_7">З\'їдьте на виїзді №7</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_8">З\'їдьте на виїзді №8</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_9">З\'їдьте на виїзді №9</string>
+  <string name="msdkui_maneuver_turn_sharply_left">Різко поверніть ліворуч</string>
+  <string name="msdkui_maneuver_turn_sharply_right">Різко поверніть праворуч</string>
+  <string name="msdkui_maneuver_turn_slightly_left">Поверніть трохи ліворуч</string>
+  <string name="msdkui_maneuver_turn_slightly_right">Поверніть трохи праворуч</string>
+  <string name="msdkui_maneuver_uturn">Розверніться на 180 градусів</string>
+  <string name="msdkui_maneuverpanel_nodata">Слідкуйте за своїм просуванням на карті</string>
+  <string name="msdkui_maneuverpanel_updating">Оновлення</string>
+  <string name="msdkui_minutes">%1$d хв.</string>
+  <string name="msdkui_next_maneuver">Наступний маневр</string>
+  <string name="msdkui_no_traffic_delays">Без затримок</string>
+  <string name="msdkui_none">Не вибрано</string>
+  <string name="msdkui_number_of_trailers">Причіпи</string>
+  <string name="msdkui_ok">ОК</string>
+  <string name="msdkui_optimal">Оптимальний</string>
+  <string name="msdkui_options">Параметри</string>
+  <string name="msdkui_organic">Органічні речовини</string>
+  <string name="msdkui_other">Інші речовини</string>
+  <string name="msdkui_pedestrian">Пішки</string>
+  <string name="msdkui_poison">Отрута</string>
+  <string name="msdkui_poisonous">Токсини</string>
+  <string name="msdkui_radioactive">Радіоактивні речовини</string>
+  <string name="msdkui_remove">Видалити</string>
+  <string name="msdkui_remove_waypoint">Видалити точку маршруту</string>
+  <string name="msdkui_remove_waypoint_button">Кнопка видалення точки маршруту, індекс %1$d</string>
+  <string name="msdkui_route_results_title">Маршрути</string>
+  <string name="msdkui_route_type_title">Тип маршруту</string>
+  <string name="msdkui_routing_options_title">Параметри маршруту</string>
+  <string name="msdkui_rp_from">З: %1$s</string>
+  <string name="msdkui_rp_to">До: %1$s</string>
+  <string name="msdkui_rp_via">Через</string>
+  <string name="msdkui_scooter">Скутер</string>
+  <string name="msdkui_seconds">%1$d сек</string>
+  <string name="msdkui_selected">Вибрано</string>
+  <string name="msdkui_set">Установити</string>
+  <string name="msdkui_shortest">Найкоротший</string>
+  <string name="msdkui_speed">Швидкість</string>
+  <string name="msdkui_speed_limit">Обмеження швидкості</string>
+  <string name="msdkui_tab_icon">Піктограма вкладки</string>
+  <string name="msdkui_traffic">Не показувати дорожній рух</string>
+  <string name="msdkui_traffic_blocked">Закрито</string>
+  <string name="msdkui_transport_mode">Тип транспорту: %1$s</string>
+  <string name="msdkui_truck">Вантажівка</string>
+  <string name="msdkui_truck_options_title">Характеристики вантажівки</string>
+  <string name="msdkui_truck_type">Тип вантажівки</string>
+  <string name="msdkui_truck_type_tractor">Вантажівка з причепом</string>
+  <string name="msdkui_truck_type_truck">Фура/вантажівка</string>
+  <string name="msdkui_tunnel_cat_b">Категорія B</string>
+  <string name="msdkui_tunnel_cat_c">Категорія C</string>
+  <string name="msdkui_tunnel_cat_d">Категорія D</string>
+  <string name="msdkui_tunnel_cat_e">Категорія E</string>
+  <string name="msdkui_tunnels_allowed_title">Тунелі дозволено</string>
+  <string name="msdkui_undefined">Не визначено</string>
+  <string name="msdkui_unit_kilometer">км</string>
+  <string name="msdkui_unit_km_per_h">км/год</string>
+  <string name="msdkui_unit_meter">м</string>
+  <string name="msdkui_userposition_search">Отримання місцезнаходження</string>
+  <string name="msdkui_violate_truck_options">Ігнорувати характеристики вантажівки</string>
+  <string name="msdkui_waypoint_current_location">Поточне розташування</string>
+  <string name="msdkui_waypoint_select_location">Виберіть точку маршруту</string>
+  <string name="msdkui_weight_per_axle">Навантаження на вісь</string>
+  <string name="msdkui_width">Ширина</string>
+</resources>

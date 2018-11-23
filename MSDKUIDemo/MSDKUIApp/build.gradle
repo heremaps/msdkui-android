@@ -1,0 +1,111 @@
+/*
+ * Copyright (C) 2017-2018 HERE Europe B.V.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: '../coverage.gradle'
+apply from: '../kt_quality.gradle'
+android {
+
+    compileSdkVersion compile_sdk_version
+    buildToolsVersion build_tools_version
+
+    defaultConfig {
+        applicationId 'com.here.msdkuiapp'
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
+        multiDexEnabled true
+        versionCode 1
+        versionName artifact_version
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        resValue 'string', 'HERE_SDK_APP_ID', System.getenv("MSDKUI_APP_ID_ANDROID") ?: "APP_ID"
+        resValue 'string', 'HERE_SDK_APP_TOKEN', System.getenv("MSDKUI_APP_TOKEN_ANDROID") ?: "APP_TOKEN"
+        resValue 'string', 'HERE_SDK_LICENSE_KEY', System.getenv("MSDKUI_APP_LICENSE_ANDROID") ?: "APP_LICENSE"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError true
+        ignoreWarnings false
+        warningsAsErrors true
+        xmlReport true
+        xmlOutput project.file('build/reports/lint/lint-report.xml')
+        htmlReport true
+        htmlOutput project.file('build/reports/lint/lint-report.html')
+        lintConfig file("${project.rootDir}/quality/lint/lint.xml")
+    }
+
+    testOptions.unitTests {
+        includeAndroidResources = true
+        returnDefaultValues = true
+    }
+
+    testOptions.unitTests.all {
+        testLogging {
+            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
+            outputs.upToDateWhen { false }
+            showStandardStreams = true
+        }
+        jvmArgs '-noverify'
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    dependencies {
+        implementation fileTree(include: ['*.jar'], dir: 'libs')
+        implementation(name: 'HERE-sdk', ext: 'aar')
+        implementation(name: 'MSDKUILib', ext: 'aar')
+
+        implementation "com.android.support:design:$support_library_version"
+        implementation "com.android.support:support-v13:$support_library_version"
+        implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
+        implementation "com.android.support:multidex:$multidex_version"
+
+        implementation "com.google.android.gms:play-services-location:$play_service_version"
+        implementation "com.google.code.gson:gson:$gson_version"
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+        testImplementation "junit:junit:$junit_version"
+        androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
+        androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espresso_version"
+        androidTestImplementation "com.android.support.test:runner:$test_version"
+        androidTestImplementation "com.android.support.test:rules:$test_version"
+
+        testImplementation "org.robolectric:robolectric:$robolectric_version"
+        testImplementation "org.robolectric:multidex:3.4.2"
+        testImplementation("org.powermock:powermock-api-mockito2:$mockito2_version") {
+            exclude module: 'hamcrest-core'
+            exclude module: 'objenesis'
+        }
+        testImplementation "org.powermock:powermock-module-junit4:$powermock_version"
+        testImplementation "org.mockito:mockito-inline:$mockito_inline"
+        androidTestImplementation "org.mockito:mockito-android:$mockito_inline"
+    }
+}

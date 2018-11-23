@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_allow_car_pool">कारपूल की अनुमति दें</string>
+  <string name="msdkui_allow_car_shuttle">कार शटल ट्रेन को अनुमति दें</string>
+  <string name="msdkui_allow_dirt_roads">कच्ची सड़कों की अनुमति दें</string>
+  <string name="msdkui_allow_ferries">नाव की अनुमति दें</string>
+  <string name="msdkui_allow_highways">मोटरवेज की अनुमति दें</string>
+  <string name="msdkui_allow_parks">पार्क करने की अनुमति दें</string>
+  <string name="msdkui_allow_toll_roads">टोल रोड की अनुमति दें</string>
+  <string name="msdkui_allow_tunnels">सुरंगों की अनुमति दें</string>
+  <string name="msdkui_arrive">पहुँचें</string>
+  <string name="msdkui_arrive_at">पहुँचें</string>
+  <string name="msdkui_avoid_long_term_closures">प्रमुख बंद सड़कों से बचें</string>
+  <string name="msdkui_balanced">संतुलित</string>
+  <string name="msdkui_bike">साइकिल</string>
+  <string name="msdkui_cancel">रद्द करें</string>
+  <string name="msdkui_car">कार</string>
+  <string name="msdkui_combustible">दहनशील</string>
+  <string name="msdkui_corrosive">संक्षारक</string>
+  <string name="msdkui_days">%1$d दिन</string>
+  <string name="msdkui_days_hours">%1$d दिन %2$d घंटे</string>
+  <string name="msdkui_depart">छोड़ें</string>
+  <string name="msdkui_depart_at">छोड़ें</string>
+  <string name="msdkui_disable">बंद करें</string>
+  <string name="msdkui_disabled">बंद</string>
+  <string name="msdkui_done">पूर्ण</string>
+  <string name="msdkui_drag_waypoint">वे-पॉइंट खीचें</string>
+  <string name="msdkui_drag_waypoint_button">इंडेक्स %1$d पर वे-प्वॉइंट बटन खीचें</string>
+  <string name="msdkui_duration">अवधि</string>
+  <string name="msdkui_enabled">चालू</string>
+  <string name="msdkui_estimated_arrival">अनुमानित आगमन</string>
+  <string name="msdkui_explosive">विस्फोटक</string>
+  <string name="msdkui_fastest">सबसे तेज़</string>
+  <string name="msdkui_flammable">ज्वलनशील</string>
+  <string name="msdkui_gas">गैस</string>
+  <string name="msdkui_harmful_to_water">जल प्रदूषक</string>
+  <string name="msdkui_hazardous_materials_title">हानिकारक सामग्री</string>
+  <string name="msdkui_height">ऊंचाई</string>
+  <string name="msdkui_hours">%1$d घंंटा</string>
+  <string name="msdkui_hours_minutes">%1$d घंटे %2$d मिनट</string>
+  <string name="msdkui_incl">समावेशन</string>
+  <string name="msdkui_incl_traffic_delay">%1$s विलंब शामिल</string>
+  <string name="msdkui_including">समावेशन</string>
+  <string name="msdkui_length">लंबाई</string>
+  <string name="msdkui_limited_weight">वज़न सीमा</string>
+  <string name="msdkui_maneuver_arrive_at_02y">पहुंचें</string>
+  <string name="msdkui_maneuver_continue">जारी रखें</string>
+  <string name="msdkui_maneuver_end">आप पहुंच गए हैं</string>
+  <string name="msdkui_maneuver_enter_car_shuttle_train">ट्रेन पर ड्राइव</string>
+  <string name="msdkui_maneuver_enter_ferry">फ़ेरी लें</string>
+  <string name="msdkui_maneuver_enter_highway">राजमार्ग पर चढ़ें</string>
+  <string name="msdkui_maneuver_exit">निकास %1$s</string>
+  <string name="msdkui_maneuver_exit_directions_towards">%1$s की ओर %2$s</string>
+  <string name="msdkui_maneuver_head_to">%1$s की ओर चलें</string>
+  <string name="msdkui_maneuver_leave_highway">बाहर निकलें</string>
+  <string name="msdkui_maneuver_orientation_east">पूर्व</string>
+  <string name="msdkui_maneuver_orientation_north">उत्तर</string>
+  <string name="msdkui_maneuver_orientation_north_east">उत्तर-पूर्व</string>
+  <string name="msdkui_maneuver_orientation_north_west">उत्तर-पश्चिम</string>
+  <string name="msdkui_maneuver_orientation_south">दक्षिण</string>
+  <string name="msdkui_maneuver_orientation_south_east">दक्षिण-पूर्व</string>
+  <string name="msdkui_maneuver_orientation_south_west">दक्षिण-पश्चिम</string>
+  <string name="msdkui_maneuver_orientation_west">पश्चिम</string>
+  <string name="msdkui_maneuver_pt_change">बदलें</string>
+  <string name="msdkui_maneuver_pt_change_at">%1$s पर बदलें</string>
+  <string name="msdkui_maneuver_pt_get_on_here">सवार हो जाएं</string>
+  <string name="msdkui_maneuver_pt_stopover">वे-पॉइंट</string>
+  <string name="msdkui_maneuver_pt_travel_start">%1$s लें</string>
+  <string name="msdkui_maneuver_pt_walk">पैदल चलें</string>
+  <string name="msdkui_maneuver_road_name_divider">%1$s/%2$s</string>
+  <string name="msdkui_maneuver_turn_keep_left">बाईं ओर चले</string>
+  <string name="msdkui_maneuver_turn_keep_middle">बीच वाली गली पर चलें</string>
+  <string name="msdkui_maneuver_turn_keep_right">दाईं ओर चलें</string>
+  <string name="msdkui_maneuver_turn_left">बाएं मुड़ें</string>
+  <string name="msdkui_maneuver_turn_right">दाएं मुड़ें</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_1">पहले निकास से निकलें</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_10">दसवें निकास से निकले</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_11">ग्यारहवें निकास से निकलें</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_12">बारहवें निकास से निकलें</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_2">दूसरे निकास से निकलें</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_3">तीसरे निकास से निकलें</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_4">चौथे निकास से निकलें</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_5">पांचवे निकास से निकले</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_6">छठे निकास से निकलें</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_7">सातवें निकास से निकलें</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_8">आठवें निकास से निकलें</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_9">नौवें निकास से निकलें</string>
+  <string name="msdkui_maneuver_turn_sharply_left">तेज़ी से बाएं मुड़ें</string>
+  <string name="msdkui_maneuver_turn_sharply_right">तेज़ी से दाएं मुड़ें</string>
+  <string name="msdkui_maneuver_turn_slightly_left">थोड़ा बाएं मुड़ें</string>
+  <string name="msdkui_maneuver_turn_slightly_right">थोड़ा दाएं मुड़ें</string>
+  <string name="msdkui_maneuver_uturn">यू-टर्न लें</string>
+  <string name="msdkui_maneuverpanel_nodata">मैप पर मार्ग का अनुसरण करें</string>
+  <string name="msdkui_maneuverpanel_updating">अपडेट कर रहे हैं</string>
+  <string name="msdkui_minutes">%1$d मिनट</string>
+  <string name="msdkui_next_maneuver">अगला मोड़</string>
+  <string name="msdkui_no_traffic_delays">कोई विलंब नहीं</string>
+  <string name="msdkui_none">कोई नहीं</string>
+  <string name="msdkui_number_of_trailers">ट्रेलर</string>
+  <string name="msdkui_ok">ठीक</string>
+  <string name="msdkui_optimal">सर्वोत्तम</string>
+  <string name="msdkui_options">विकल्प</string>
+  <string name="msdkui_organic">कार्बनिक</string>
+  <string name="msdkui_other">अन्य</string>
+  <string name="msdkui_pedestrian">पैदल चलें</string>
+  <string name="msdkui_poison">ज़हर</string>
+  <string name="msdkui_poisonous">विषाक्त पदार्थ का अन्तःश्वसन</string>
+  <string name="msdkui_radioactive">रेडियोधर्मी</string>
+  <string name="msdkui_remove">हटाएँ</string>
+  <string name="msdkui_remove_waypoint">वे- पॉइंट हटाएं</string>
+  <string name="msdkui_remove_waypoint_button">इंडेक्स %1$d पर वे-प्वॉइंट बटन हटाएं</string>
+  <string name="msdkui_route_results_title">मार्ग</string>
+  <string name="msdkui_route_type_title">मार्ग प्रकार</string>
+  <string name="msdkui_routing_options_title">मार्ग के विकल्प</string>
+  <string name="msdkui_rp_from">उद्गम: %1$s</string>
+  <string name="msdkui_rp_to">गंतव्य: %1$s</string>
+  <string name="msdkui_rp_via">वाया</string>
+  <string name="msdkui_scooter">स्कूटर</string>
+  <string name="msdkui_seconds">%1$d सेकेंड</string>
+  <string name="msdkui_selected">चयनित</string>
+  <string name="msdkui_set">सेट करें</string>
+  <string name="msdkui_shortest">सबसे छोटा</string>
+  <string name="msdkui_speed">गति</string>
+  <string name="msdkui_speed_limit">गति सीमा</string>
+  <string name="msdkui_tab_icon">टैब आइकन</string>
+  <string name="msdkui_traffic">ट्रैफ़िक से बचें</string>
+  <string name="msdkui_traffic_blocked">बंद</string>
+  <string name="msdkui_transport_mode">परिवहन प्रकार: %1$s</string>
+  <string name="msdkui_truck">लॉरी</string>
+  <string name="msdkui_truck_options_title">ट्रक के विकल्प</string>
+  <string name="msdkui_truck_type">लॉरी प्रकार</string>
+  <string name="msdkui_truck_type_tractor">ट्रेलर ट्रक</string>
+  <string name="msdkui_truck_type_truck">लॉरी/ट्रक</string>
+  <string name="msdkui_tunnel_cat_b">श्रेणी B</string>
+  <string name="msdkui_tunnel_cat_c">श्रेणी C</string>
+  <string name="msdkui_tunnel_cat_d">श्रेणी D</string>
+  <string name="msdkui_tunnel_cat_e">श्रेणी E</string>
+  <string name="msdkui_tunnels_allowed_title">सुरंग की अनुमति</string>
+  <string name="msdkui_undefined">निर्धारित नहीं</string>
+  <string name="msdkui_unit_kilometer">किमी.</string>
+  <string name="msdkui_unit_km_per_h">किमी/घंटा</string>
+  <string name="msdkui_unit_meter">मीटर</string>
+  <string name="msdkui_userposition_search">आपका स्थान पता कर रहे हैं</string>
+  <string name="msdkui_violate_truck_options">ट्रक विकल्पों को नज़रअंदाज करें</string>
+  <string name="msdkui_waypoint_current_location">वर्तमान स्थान</string>
+  <string name="msdkui_waypoint_select_location">पड़ाव चुनें</string>
+  <string name="msdkui_weight_per_axle">प्रति एक्सल वज़न</string>
+  <string name="msdkui_width">चौड़ाई</string>
+</resources>

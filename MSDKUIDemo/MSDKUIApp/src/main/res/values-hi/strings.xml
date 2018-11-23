@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_app_about">हमारे बारे में</string>
+  <string name="msdkui_app_about_info_part_four">इस समय आप HERE मोबाइल एसडीके यूआई किट में दिए गए घटकों का उपयोग करके मार्ग प्लानर और मार्गदर्शन अनुभव बना सकते हैं। इसके बारे में और जानकारी उपयोक्ता मार्गदर्शिका में है।</string>
+  <string name="msdkui_app_about_info_part_one">HERE मोबाइल एसडीके यूआई किट से एंड्रॉइड और आईओएस के लिए सुंदर इंटरफ़ेस बनाएँ</string>
+  <string name="msdkui_app_about_info_part_three">आप HERE मोबाइल एसडीके के प्रीमियम संस्करण के साथ मात्र कुछ पंक्तियों का कोड प्रयोग करके एक पूरा यूआई बना सकते हैं। इसलिए नेटिव एपीआई का उपयोग करके मोड़ों की सूची बनाने के लिए कई दिनों की बजाय आपको बस कुछ घंटे चाहिए होंगे। कम विकास समय का अर्थ है जल्द से जल्द बाजार में उतरना।\n\nबेशक, यदि आप चाहें तो, आप यूआई किट का उपयोग करके कुछ यूआई नियंत्रणों की दिखावट (रंग, माप) और व्यवहार (आँकड़ों का प्रस्तुतिकरण, तर्क, प्रवाह, उप-घटक) बदल सकते हैं। यह पूरी तरह आप पर निर्भर है।</string>
+  <string name="msdkui_app_about_info_part_two">एक अच्छा उपयोक्ता इंटरफ़ेस प्रायः उपयोक्ता खोजने और उन्हें अपने साथ बनाए रखने या उन्हें अपने प्रतिस्पर्धियों के हाथों खो बैठने के बीच का मुख्य अंतर होता है। यही कारण है कि HERE मोबाइल एसडीके यूआई किट फ़ॉर एंड्रॉइड एंड आईओएस में ऐसी विभिन्न प्रकार की स्क्रीन पहले से दी गईं हैं जो पूरी तरह कार्यक्षम हैं और आपके एप्लिकेशन में उपयोग के लिए तैयार हैं।</string>
+  <string name="msdkui_app_add">जोड़ें</string>
+  <string name="msdkui_app_add_waypoint">वे-पॉइंट जोड़ें</string>
+  <string name="msdkui_app_app_version">एप संस्करण</string>
+  <string name="msdkui_app_back">एक चरण पीछे जाएं</string>
+  <string name="msdkui_app_cancel">रद्द करें</string>
+  <string name="msdkui_app_collapse">कम दिखाएं</string>
+  <string name="msdkui_app_cord">%s, %s</string>
+  <string name="msdkui_app_done">पूर्ण</string>
+  <string name="msdkui_app_drag">खीचें</string>
+  <string name="msdkui_app_expand">अधिक दिखाएं</string>
+  <string name="msdkui_app_guidance_button_end">समाप्त करें</string>
+  <string name="msdkui_app_guidance_button_showmaneuvers">मोड़ देखें</string>
+  <string name="msdkui_app_guidance_button_showmap">मैप दिखाएँ</string>
+  <string name="msdkui_app_guidance_button_start">नेविगेशन आरंभ करें</string>
+  <string name="msdkui_app_guidance_start_simulation">एक मार्गदर्शन नकल आरंभ होगी</string>
+  <string name="msdkui_app_guidance_teaser_description">हर मोड़ पर मार्गदर्शन के साथ अपने उपयोक्ताओं को उनके गंतव्य तक पहुँचने में सहायता दें।</string>
+  <string name="msdkui_app_guidance_teaser_title">ड्राइव नेविगेशन</string>
+  <string name="msdkui_app_guidance_waypoint_subtitle">अपना गंतव्य तय करने के लिए मैप छुएँ</string>
+  <string name="msdkui_app_guidance_waypoint_title">ड्राइव नेविगेशन</string>
+  <string name="msdkui_app_here_sdk_version">HERE एसडीके संस्करण</string>
+  <string name="msdkui_app_hint_collapse">कम वे-पॉइंट दिखाता है।</string>
+  <string name="msdkui_app_hint_expand">अधिक पड़ाव दिखाता है।</string>
+  <string name="msdkui_app_info">ऐप की जानकारी</string>
+  <string name="msdkui_app_map_view">मैप व्यू</string>
+  <string name="msdkui_app_name_title">MSDK UI Demo</string>
+  <string name="msdkui_app_ok">ठीक</string>
+  <string name="msdkui_app_options">विकल्प</string>
+  <string name="msdkui_app_remove">हटाएं</string>
+  <string name="msdkui_app_route_options">मार्ग विकल्प</string>
+  <string name="msdkui_app_route_preview_title">मार्ग अवलोकन</string>
+  <string name="msdkui_app_route_results_title">मार्ग</string>
+  <string name="msdkui_app_routeoverview_to">गंतव्य:</string>
+  <string name="msdkui_app_routeplanner_getdirections">दिशाएँ प्राप्त करें</string>
+  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Start by choosing a \"from\" or a \"to\"</string>
+  <string name="msdkui_app_routeresults_error">कोई मार्ग नहीं मिला</string>
+  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
+  <string name="msdkui_app_rp_teaser_description">कार, लॉरियों, साइकिलों और पैदल चलने के निर्देश पाएँ।</string>
+  <string name="msdkui_app_rp_teaser_title">मार्ग योजनाकार</string>
+  <string name="msdkui_app_rp_waypoint_subtitle">मैप छुएँ या देर तक दबाएँ</string>
+  <string name="msdkui_app_settings">सेटिंग्स</string>
+  <string name="msdkui_app_stop_navigation">नेविगेशन बंद करें</string>
+  <string name="msdkui_app_storage_permission_not_granted">आपके डिवाइस के स्टोरेज तक पहुँचने के लिए एप को अनुमति चाहिए, अन्यथा यह कार्य नहीं करेगी।</string>
+  <string name="msdkui_app_swap">अदला-बदली करें</string>
+  <string name="msdkui_app_swap_waypoints">वे-पॉइंट की अदला-बदली करें</string>
+  <string name="msdkui_app_teaser_link">एक नज़र डालें</string>
+  <string name="msdkui_app_ui_kit_version">MSDKUI संस्करण</string>
+  <string name="msdkui_app_userposition_search">आपका स्थान पता कर रहे हैं</string>
+  <string name="msdkui_app_waypoint_not_valid">उचित पड़ाव नहीं</string>
+  <string name="msdkui_app_waypoint_select_location">वे-पॉइंट चुनें</string>
+</resources>

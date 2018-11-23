@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_app_about">À propos</string>
+  <string name="msdkui_app_about_info_part_four">À présent, vous pouvez utiliser les composants de HERE Mobile SDK UI Kit pour créer un outil de planification d\'itinéraires et une expérience de guidage. Découvrez-en davantage à ce sujet dans le manuel d\'utilisation.</string>
+  <string name="msdkui_app_about_info_part_one">Créez de belles interfaces pour Android et iOS grâce à HERE Mobile SDK UI Kit</string>
+  <string name="msdkui_app_about_info_part_three">Quelques lignes de code vous permettent de créer une interface utilisateur complète avec la version Premium de HERE Mobile SDK. Ainsi, vous n\'avez plus besoin de plusieurs jours pour créer une liste de manœuvres à l\'aide des API natives ; quelques heures suffisent. La réduction du temps de développement accélère la commercialisation. \n\nBien entendu, si vous le souhaitez, vous pouvez utiliser UI Kit pour modifier l\'apparence (couleurs, dimensions) et le comportement (présentation des données, logique, flux, sous-composants) de certaines commandes de l\'IU. Le choix vous appartient.</string>
+  <string name="msdkui_app_about_info_part_two">Souvent, une bonne interface utilisateur est la principale différence entre trouver et garder des utilisateurs, ou les perdre au profit de ses concurrents. C\'est pour cette raison que l\'application HERE Mobile SDK UI Kit pour Android et iOS est fournie avec divers écrans pré-installés. Ceux-ci sont parfaitement fonctionnels et prêts à l\'emploi dans votre application.</string>
+  <string name="msdkui_app_add">Ajouter</string>
+  <string name="msdkui_app_add_waypoint">Ajouter une étape</string>
+  <string name="msdkui_app_app_version">Version de l\'application</string>
+  <string name="msdkui_app_back">Étape précédente</string>
+  <string name="msdkui_app_cancel">Annuler</string>
+  <string name="msdkui_app_collapse">Afficher moins</string>
+  <string name="msdkui_app_cord">%s, %s</string>
+  <string name="msdkui_app_done">Terminé</string>
+  <string name="msdkui_app_drag">Faire glisser</string>
+  <string name="msdkui_app_expand">Afficher plus</string>
+  <string name="msdkui_app_guidance_button_end">Fin</string>
+  <string name="msdkui_app_guidance_button_showmaneuvers">Voir manœuvres</string>
+  <string name="msdkui_app_guidance_button_showmap">Afficher la carte</string>
+  <string name="msdkui_app_guidance_button_start">Démarrer la navigation</string>
+  <string name="msdkui_app_guidance_start_simulation">Une simulation de guidage démarre</string>
+  <string name="msdkui_app_guidance_teaser_description">Aidez vos utilisateurs à arriver à destination avec la navigation détaillée.</string>
+  <string name="msdkui_app_guidance_teaser_title">Navigation auto</string>
+  <string name="msdkui_app_guidance_waypoint_subtitle">Appuyez sur la carte pour définir une destination</string>
+  <string name="msdkui_app_guidance_waypoint_title">Navigation auto</string>
+  <string name="msdkui_app_here_sdk_version">Version de HERE SDK</string>
+  <string name="msdkui_app_hint_collapse">Afficher moins d\'étapes.</string>
+  <string name="msdkui_app_hint_expand">Afficher plus d\'étapes.</string>
+  <string name="msdkui_app_info">Informations sur l\'application</string>
+  <string name="msdkui_app_map_view">Vue Carte</string>
+  <string name="msdkui_app_name_title">MSDK UI Demo</string>
+  <string name="msdkui_app_ok">OK</string>
+  <string name="msdkui_app_options">Options</string>
+  <string name="msdkui_app_remove">Supprimer</string>
+  <string name="msdkui_app_route_options">Options du trajet</string>
+  <string name="msdkui_app_route_preview_title">Aperçu de l\'itinéraire</string>
+  <string name="msdkui_app_route_results_title">Itinéraires</string>
+  <string name="msdkui_app_routeoverview_to">Dest. :</string>
+  <string name="msdkui_app_routeplanner_getdirections">Calculer un itinéraire</string>
+  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Start by choosing a \"from\" or a \"to\"</string>
+  <string name="msdkui_app_routeresults_error">Aucun itinéraire trouvé</string>
+  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
+  <string name="msdkui_app_rp_teaser_description">Obtenez des itinéraires en voiture, en poids lourd, à vélo et à pieds.</string>
+  <string name="msdkui_app_rp_teaser_title">Planification d\'itinéraire</string>
+  <string name="msdkui_app_rp_waypoint_subtitle">Appuyez brièvement ou longuement sur la carte</string>
+  <string name="msdkui_app_settings">Paramètres</string>
+  <string name="msdkui_app_stop_navigation">Arrêter la navigation</string>
+  <string name="msdkui_app_storage_permission_not_granted">L\'application a besoin d\'une autorisation pour accéder au stockage de votre périphérique ; autrement, elle ne fonctionnera pas.</string>
+  <string name="msdkui_app_swap">Inverser</string>
+  <string name="msdkui_app_swap_waypoints">Inverser les étapes</string>
+  <string name="msdkui_app_teaser_link">En savoir plus</string>
+  <string name="msdkui_app_ui_kit_version">Version de MSDKUI</string>
+  <string name="msdkui_app_userposition_search">Détection de votre position</string>
+  <string name="msdkui_app_waypoint_not_valid">Étape invalide</string>
+  <string name="msdkui_app_waypoint_select_location">Choisir une étape</string>
+</resources>

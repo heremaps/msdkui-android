@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <!-- Opaque dark shades for backgrounds -->
+    <color name="lui_brand">#272C37</color>
+    <color name="lui_brand_dark">#1D232D</color>
+    <color name="lui_dark1">#0F1621</color>
+    <color name="lui_dark2">#3F454D</color>
+
+    <!-- Opaque light shades for backgrounds -->
+    <color name="lui_light">#F5F5F5</color>
+    <color name="lui_white">#FFFFFF</color>
+
+    <!-- Brand color for accents -->
+    <color name="lui_accent">#01B6B2</color>
+    <color name="lui_accent_light">#2ED5C9</color>
+    <color name="lui_accent_secondary">#2C48A1</color>
+    <color name="lui_accent_secondary_light">#2C48A1</color>
+
+    <!-- Transparent dark shades for foregrounds -->
+    <color name="lui_black90">#E60F1621</color>
+    <color name="lui_black85">#CC0F1621</color>
+    <color name="lui_black75">#B30F1621</color>
+    <color name="lui_black60">#990F1621</color>
+    <color name="lui_black50">#800F1621</color>
+    <color name="lui_black40">#660F1621</color>
+    <color name="lui_black30">#4C0F1621</color>
+    <color name="lui_black20">#330F1621</color>
+    <color name="lui_black15">#260F1621</color>
+    <color name="lui_black05">#0D0F1621</color>
+
+    <!-- Transparent white shades for foregrounds -->
+    <color name="lui_white90">#E6FFFFFF</color>
+    <color name="lui_white80">#CCFFFFFF</color>
+    <color name="lui_white70">#B3FFFFFF</color>
+    <color name="lui_white60">#99FFFFFF</color>
+    <color name="lui_white50">#80FFFFFF</color>
+    <color name="lui_white40">#66FFFFFF</color>
+    <color name="lui_white30">#4CFFFFFF</color>
+    <color name="lui_white20">#33FFFFFF</color>
+    <color name="lui_white15">#26FFFFFF</color>
+    <color name="lui_white05">#0DFFFFFF</color>
+
+    <!-- Opaque colors indicating state e.g. traffic / error (red), success (green) -->
+    <color name="lui_positive">#00BC7D</color>
+    <color name="lui_positive15">#2600BC7D</color>
+    <color name="lui_alert">#FFA200</color>
+    <color name="lui_alert15">#26FFA200</color>
+    <color name="lui_negative">#D5232F</color>
+    <color name="lui_negative15">#26D5232F</color>
+    <color name="lui_significant">#EC610E</color>
+    <color name="lui_significant15">#26EC610E</color>
+</resources>

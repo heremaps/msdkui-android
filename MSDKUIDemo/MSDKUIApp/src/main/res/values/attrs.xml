@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="IconButton">
+        <attr name="type" format="enum">
+            <enum name="add" value="0" />
+            <enum name="collapse" value="1" />
+            <enum name="expand" value="2" />
+            <enum name="options" value="3" />
+            <enum name="remove" value="4" />
+            <enum name="swap" value="5" />
+        </attr>
+    </declare-styleable>
+</resources>

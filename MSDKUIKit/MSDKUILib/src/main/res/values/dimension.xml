@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <dimen name="tab_height">72dp</dimen>
+    <dimen name="picker_tab_height">48dp</dimen>
+    <dimen name="textSizeExtraHuge">28sp</dimen>
+    <dimen name="textSizeHuge">24sp</dimen>
+    <dimen name="textSizeExtraLarge">20sp</dimen>
+    <dimen name="textSizeLarge">18sp</dimen>
+    <dimen name="textSizeMedium">16sp</dimen>
+    <dimen name="textSizeSmall">14sp</dimen>
+    <dimen name="textSizeExtraSmall">14sp</dimen>
+    <dimen name="textSizeTiny">12sp</dimen>
+    <dimen name="textSizeExtraTiny">11sp</dimen>
+
+    <dimen name="textLineSpacingSmall">1.5dp</dimen>
+    <dimen name="textLineSpacingExtraSmall">1dp</dimen>
+    <dimen name="textLineSpacingTiny">0.5dp</dimen>
+    <dimen name="textLineSpacingExtraTiny">0dp</dimen>
+
+    <dimen name="contentMarginZero">0dp</dimen>
+    <dimen name="contentMarginExtraSmall">2dp</dimen>
+    <dimen name="contentMarginSmall">4dp</dimen>
+    <dimen name="contentMarginMedium">8dp</dimen>
+    <dimen name="contentMarginNormal">10dp</dimen>
+    <dimen name="contentMarginLarge">12dp</dimen>
+    <dimen name="contentMarginXLarge">14dp</dimen>
+    <dimen name="contentMarginExtraLarge">16dp</dimen>
+    <dimen name="contentMarginHuge">20dp</dimen>
+    <dimen name="contentMarginExtraHuge">24dp</dimen>
+
+    <dimen name="min_value">56dp</dimen>
+    <dimen name="min_value_boolean">54dp</dimen>
+
+    <dimen name="street_name_corner_radius">20dp</dimen>
+
+    <dimen name="next_road_image_max_height">40dp</dimen>
+    <dimen name="next_road_image_max_width">40dp</dimen>
+
+    <dimen name="current_speed_bg_radius">32dp</dimen>
+    <dimen name="current_speed_landscape_size">64dp</dimen>
+
+    <dimen name="speed_limit_stroke_size">4dp</dimen>
+</resources>

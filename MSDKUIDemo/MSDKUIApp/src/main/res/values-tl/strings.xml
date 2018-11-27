@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_app_about">Tungkol sa</string>
+  <string name="msdkui_app_about_info_part_four">Sa ngayon, magagamit mo ang mga component sa HERE Mobile SDK UI Kit upang gumawa ng pamplano ng ruta at karansasan sa patnubay. Alamin pa ang higit tungkol dito sa gabay ng gumagamit.</string>
+  <string name="msdkui_app_about_info_part_one">Gumawa ng magagandang interface para sa Android at iOS gamit ang HERE Mobile SDK Kit.</string>
+  <string name="msdkui_app_about_info_part_three">Sa paggamit lamang ng iilang linya ng code, makakagawa ka na ng buong UI gamit ang Premium edition ng HERE Mobile SDK. Kaya, sa halip na kailangan pa ng ilang araw para makagawa ng listahan ng maneobra gamit ang native APIs, ang kailangan mo lamang ay ilang oras. Mas kaunting panahon sa pag-develop mas mabilis na panahon para i-market.\n\nSiyempre, kung gusto mo, maaari mong gamitin ang UI Kit upang baguhin ang hitsura (mga kulay, dimension) at behaviour (data presentation, logic, flow, mga subcomponent) ng ilang kontrol ng UI. Ikaw ang bahala.</string>
+  <string name="msdkui_app_about_info_part_two">Ang isang magandang user interface ay kadalasang ang pangunahing kaibahan ay sa pagitan ng paghahanap at pagpapanatili ng mga gumagamit, o ang maiwala sila at mapunta sa iyong mga kakompetensiya. Iyan ang dahilan kung bakit ang HERE Mobile SDK Kit para sa Android at iOS ay may naka-pack nang iba’t ibang screen na lubusang gumagana at handa nang gamitin sa iyong application.</string>
+  <string name="msdkui_app_add">Magdagdag</string>
+  <string name="msdkui_app_add_waypoint">Magdagdag ng waypoint</string>
+  <string name="msdkui_app_app_version">Bersyon ng App</string>
+  <string name="msdkui_app_back">Bumalik</string>
+  <string name="msdkui_app_cancel">Kanselahin</string>
+  <string name="msdkui_app_collapse">Magpakita ng kaunti</string>
+  <string name="msdkui_app_cord">%s, %s</string>
+  <string name="msdkui_app_done">Tapos na</string>
+  <string name="msdkui_app_drag">I-drag</string>
+  <string name="msdkui_app_expand">Magpakita ng marami</string>
+  <string name="msdkui_app_guidance_button_end">Tapusin</string>
+  <string name="msdkui_app_guidance_button_showmaneuvers">Tingnan hakbang</string>
+  <string name="msdkui_app_guidance_button_showmap">Ipakita ang mapa</string>
+  <string name="msdkui_app_guidance_button_start">Simulan ang nabigasyon</string>
+  <string name="msdkui_app_guidance_start_simulation">Isang gabay na simulation ang magsisimula na</string>
+  <string name="msdkui_app_guidance_teaser_description">Tulungan ang mga user mo na makapunta sa kanilang destinasyon na may gabay sa bawat pagliko.</string>
+  <string name="msdkui_app_guidance_teaser_title">Nabigasyon</string>
+  <string name="msdkui_app_guidance_waypoint_subtitle">Tapikin ang mapa para itakda ang destinasyon mo</string>
+  <string name="msdkui_app_guidance_waypoint_title">Nabigasyon</string>
+  <string name="msdkui_app_here_sdk_version">Bersyon ng HERE SDK</string>
+  <string name="msdkui_app_hint_collapse">Ipakita ang mas kaunting waypoint.</string>
+  <string name="msdkui_app_hint_expand">Ipakita ang higit pang waypoint.</string>
+  <string name="msdkui_app_info">Impormasyon ng app</string>
+  <string name="msdkui_app_map_view">Map view</string>
+  <string name="msdkui_app_name_title">MSDK UI Demo</string>
+  <string name="msdkui_app_ok">OK</string>
+  <string name="msdkui_app_options">Mga opsyon</string>
+  <string name="msdkui_app_remove">Alisin</string>
+  <string name="msdkui_app_route_options">Mga opsyon ng ruta</string>
+  <string name="msdkui_app_route_preview_title">Kabuoang tanaw ng ruta</string>
+  <string name="msdkui_app_route_results_title">Mga ruta</string>
+  <string name="msdkui_app_routeoverview_to">Tungo:</string>
+  <string name="msdkui_app_routeplanner_getdirections">Kumuha ng mga direksyon</string>
+  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Start by choosing a \"from\" or a \"to\"</string>
+  <string name="msdkui_app_routeresults_error">Hindi nakahanap ng anumang mga ruta</string>
+  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
+  <string name="msdkui_app_rp_teaser_description">Kunin ang mga direksiyon para sa mga kotse, lorry, bisikleta at paglalakad.</string>
+  <string name="msdkui_app_rp_teaser_title">Tagaplano ng ruta</string>
+  <string name="msdkui_app_rp_waypoint_subtitle">I-tap o pindutin nang matagal ang mapa</string>
+  <string name="msdkui_app_settings">Mga setting</string>
+  <string name="msdkui_app_stop_navigation">Itigil ang pagna-navigate</string>
+  <string name="msdkui_app_storage_permission_not_granted">Kailangan ng app ng pahintulot para ma-access ang storage ng iyong device, o hindi ito gagana.</string>
+  <string name="msdkui_app_swap">Magpalitan</string>
+  <string name="msdkui_app_swap_waypoints">Magpalitan ng mga waypoint</string>
+  <string name="msdkui_app_teaser_link">Tingnan</string>
+  <string name="msdkui_app_ui_kit_version">Bersyon ng MSDKUI</string>
+  <string name="msdkui_app_userposition_search">Kinukuha ang iyong lokasyon</string>
+  <string name="msdkui_app_waypoint_not_valid">Hindi tamang direksyon</string>
+  <string name="msdkui_app_waypoint_select_location">Piliin ang dadaanan</string>
+</resources>

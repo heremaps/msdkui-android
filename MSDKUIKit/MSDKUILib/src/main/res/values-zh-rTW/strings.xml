@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_allow_car_pool">允許高承載車道</string>
+  <string name="msdkui_allow_car_shuttle">允許汽車裝載列車</string>
+  <string name="msdkui_allow_dirt_roads">允許泥路</string>
+  <string name="msdkui_allow_ferries">允許渡輪</string>
+  <string name="msdkui_allow_highways">允許高速公路</string>
+  <string name="msdkui_allow_parks">允許公園</string>
+  <string name="msdkui_allow_toll_roads">允許收費道路</string>
+  <string name="msdkui_allow_tunnels">允許隧道</string>
+  <string name="msdkui_arrive">抵達</string>
+  <string name="msdkui_arrive_at">抵達</string>
+  <string name="msdkui_avoid_long_term_closures">避免主要封閉路線</string>
+  <string name="msdkui_balanced">均衡</string>
+  <string name="msdkui_bike">自行車</string>
+  <string name="msdkui_cancel">取消</string>
+  <string name="msdkui_car">汽車</string>
+  <string name="msdkui_combustible">可燃物</string>
+  <string name="msdkui_corrosive">腐蝕性</string>
+  <string name="msdkui_days">%1$d 天</string>
+  <string name="msdkui_days_hours">%1$d 天 %2$d 小時</string>
+  <string name="msdkui_depart">離開</string>
+  <string name="msdkui_depart_at">離開</string>
+  <string name="msdkui_disable">關閉</string>
+  <string name="msdkui_disabled">關</string>
+  <string name="msdkui_done">完成</string>
+  <string name="msdkui_drag_waypoint">拖曳航點</string>
+  <string name="msdkui_drag_waypoint_button">拖曳指標 %1$d 的航點按鈕</string>
+  <string name="msdkui_duration">持續時間</string>
+  <string name="msdkui_enabled">開啟</string>
+  <string name="msdkui_estimated_arrival">預計抵達時間</string>
+  <string name="msdkui_explosive">爆炸性</string>
+  <string name="msdkui_fastest">最快</string>
+  <string name="msdkui_flammable">易燃物</string>
+  <string name="msdkui_gas">氣體</string>
+  <string name="msdkui_harmful_to_water">水污染物</string>
+  <string name="msdkui_hazardous_materials_title">危險材料</string>
+  <string name="msdkui_height">高度</string>
+  <string name="msdkui_hours">%1$d 小時</string>
+  <string name="msdkui_hours_minutes">%1$d 小時 %2$d 分鐘</string>
+  <string name="msdkui_incl">包括</string>
+  <string name="msdkui_incl_traffic_delay">含 %1$s 延遲</string>
+  <string name="msdkui_including">包括</string>
+  <string name="msdkui_length">長度</string>
+  <string name="msdkui_limited_weight">重量限制</string>
+  <string name="msdkui_maneuver_arrive_at_02y">抵達</string>
+  <string name="msdkui_maneuver_continue">繼續</string>
+  <string name="msdkui_maneuver_end">您已抵達</string>
+  <string name="msdkui_maneuver_enter_car_shuttle_train">開上列車</string>
+  <string name="msdkui_maneuver_enter_ferry">搭乘渡輪</string>
+  <string name="msdkui_maneuver_enter_highway">進入高速公路</string>
+  <string name="msdkui_maneuver_exit">離開%1$s</string>
+  <string name="msdkui_maneuver_exit_directions_towards">%1$s 向 %2$s 方向</string>
+  <string name="msdkui_maneuver_head_to">前往%1$s</string>
+  <string name="msdkui_maneuver_leave_highway">前往出口</string>
+  <string name="msdkui_maneuver_orientation_east">東</string>
+  <string name="msdkui_maneuver_orientation_north">北</string>
+  <string name="msdkui_maneuver_orientation_north_east">東北</string>
+  <string name="msdkui_maneuver_orientation_north_west">西北</string>
+  <string name="msdkui_maneuver_orientation_south">南</string>
+  <string name="msdkui_maneuver_orientation_south_east">東南</string>
+  <string name="msdkui_maneuver_orientation_south_west">西南</string>
+  <string name="msdkui_maneuver_orientation_west">西</string>
+  <string name="msdkui_maneuver_pt_change">轉乘</string>
+  <string name="msdkui_maneuver_pt_change_at">在%1$s換車</string>
+  <string name="msdkui_maneuver_pt_get_on_here">登上</string>
+  <string name="msdkui_maneuver_pt_stopover">航點</string>
+  <string name="msdkui_maneuver_pt_travel_start">搭乘 %1$s</string>
+  <string name="msdkui_maneuver_pt_walk">步行</string>
+  <string name="msdkui_maneuver_road_name_divider">%1$s/%2$s</string>
+  <string name="msdkui_maneuver_turn_keep_left">保持左側車道</string>
+  <string name="msdkui_maneuver_turn_keep_middle">走中間的街道</string>
+  <string name="msdkui_maneuver_turn_keep_right">保持右側車道</string>
+  <string name="msdkui_maneuver_turn_left">左轉</string>
+  <string name="msdkui_maneuver_turn_right">右轉</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_1">走第1個出口</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_10">走第10個出口</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_11">走第11個出口</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_12">走第12個出口</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_2">走第2個出口</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_3">走第3個出口</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_4">走第4個出口</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_5">走第5個出口</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_6">走第6個出口</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_7">走第7個出口</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_8">走第8個出口</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_9">走第9個出口</string>
+  <string name="msdkui_maneuver_turn_sharply_left">向左急轉彎</string>
+  <string name="msdkui_maneuver_turn_sharply_right">向右急轉彎</string>
+  <string name="msdkui_maneuver_turn_slightly_left">稍向左轉</string>
+  <string name="msdkui_maneuver_turn_slightly_right">稍向右轉</string>
+  <string name="msdkui_maneuver_uturn">迴轉</string>
+  <string name="msdkui_maneuverpanel_nodata">按照地圖上的路線</string>
+  <string name="msdkui_maneuverpanel_updating">正在更新</string>
+  <string name="msdkui_minutes">%1$d 分鐘</string>
+  <string name="msdkui_next_maneuver">下一個動作</string>
+  <string name="msdkui_no_traffic_delays">無延遲</string>
+  <string name="msdkui_none">無</string>
+  <string name="msdkui_number_of_trailers">拖車</string>
+  <string name="msdkui_ok">確定</string>
+  <string name="msdkui_optimal">最佳</string>
+  <string name="msdkui_options">選項</string>
+  <string name="msdkui_organic">有機</string>
+  <string name="msdkui_other">其他</string>
+  <string name="msdkui_pedestrian">步行</string>
+  <string name="msdkui_poison">毒物</string>
+  <string name="msdkui_poisonous">吸入會中毒</string>
+  <string name="msdkui_radioactive">輻射性</string>
+  <string name="msdkui_remove">移除</string>
+  <string name="msdkui_remove_waypoint">移除航點</string>
+  <string name="msdkui_remove_waypoint_button">移除指標 %1$d 的航點按鈕</string>
+  <string name="msdkui_route_results_title">路線</string>
+  <string name="msdkui_route_type_title">路線類型</string>
+  <string name="msdkui_routing_options_title">路線選項</string>
+  <string name="msdkui_rp_from">起點: %1$s</string>
+  <string name="msdkui_rp_to">目的地: %1$s</string>
+  <string name="msdkui_rp_via">經由</string>
+  <string name="msdkui_scooter">小型摩托車</string>
+  <string name="msdkui_seconds">%1$d 秒</string>
+  <string name="msdkui_selected">已選</string>
+  <string name="msdkui_set">設定</string>
+  <string name="msdkui_shortest">最短</string>
+  <string name="msdkui_speed">速度</string>
+  <string name="msdkui_speed_limit">限速</string>
+  <string name="msdkui_tab_icon">索引標籤圖示</string>
+  <string name="msdkui_traffic">避開交通堵塞</string>
+  <string name="msdkui_traffic_blocked">已封閉</string>
+  <string name="msdkui_transport_mode">運輸類型：%1$s</string>
+  <string name="msdkui_truck">卡車</string>
+  <string name="msdkui_truck_options_title">貨車選項</string>
+  <string name="msdkui_truck_type">卡車類型</string>
+  <string name="msdkui_truck_type_tractor">鉸接式卡車</string>
+  <string name="msdkui_truck_type_truck">卡車/貨車</string>
+  <string name="msdkui_tunnel_cat_b">類別 B</string>
+  <string name="msdkui_tunnel_cat_c">類別 C</string>
+  <string name="msdkui_tunnel_cat_d">類別 D</string>
+  <string name="msdkui_tunnel_cat_e">類別 E</string>
+  <string name="msdkui_tunnels_allowed_title">允許的隧道</string>
+  <string name="msdkui_undefined">未定義</string>
+  <string name="msdkui_unit_kilometer">公里</string>
+  <string name="msdkui_unit_km_per_h">公里/小時</string>
+  <string name="msdkui_unit_meter">公尺</string>
+  <string name="msdkui_userposition_search">取得您的位置</string>
+  <string name="msdkui_violate_truck_options">忽略貨車選項</string>
+  <string name="msdkui_waypoint_current_location">目前位置</string>
+  <string name="msdkui_waypoint_select_location">選擇導航點</string>
+  <string name="msdkui_weight_per_axle">每軸重量</string>
+  <string name="msdkui_width">寬度</string>
+</resources>

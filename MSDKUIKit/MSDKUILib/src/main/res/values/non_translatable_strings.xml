@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="msdkui_bullet" translatable="false">\u2022</string>
+    <string name="msdkui_exception_attribute_invalid" translatable="false">Failed to resolve attribute at index %1$d</string>
+    <string name="msdkui_exception_custom_view_not_available" translatable="false">Custom view for mode %1$s is not available</string>
+    <string name="msdkui_exception_date_null" translatable="false">There is no date</string>
+    <string name="msdkui_exception_label_null" translatable="false">There is no label</string>
+    <string name="msdkui_exception_labels_null" translatable="false">There are no labels</string>
+    <string name="msdkui_exception_maneuver_pos_invalid" translatable="false">Manoeuvre position is not valid</string>
+    <string name="msdkui_exception_maneuvres_null" translatable="false">There are no manouevres</string>
+    <string name="msdkui_exception_out_of_index_range" translatable="false">Index is not within range %1$d to %2$d.</string>
+    <string name="msdkui_exception_route_null" translatable="false">There is no route</string>
+    <string name="msdkui_exception_route_options_null" translatable="false">There is no RouteOptions object</string>
+    <string name="msdkui_exception_routes_null" translatable="false">There are no routes</string>
+    <string name="msdkui_exception_sort_order_null" translatable="false">There is no sort order</string>
+    <string name="msdkui_exception_sort_type_null" translatable="false">There is no sort type</string>
+    <string name="msdkui_exception_time_type_null" translatable="false">There is no time type</string>
+    <string name="msdkui_exception_waypoint_entry_null" translatable="false">Need to add a waypoint</string>
+    <string name="msdkui_exception_waypoint_exceed_max" translatable="false">Adding waypoint exceeded list set max count.</string>
+    <string name="msdkui_exception_waypoint_fail_min" translatable="false">Removing waypoint failing list set min count.</string>
+    <string name="msdkui_exception_waypoint_failing_min" translatable="false">Adding waypoint failing list set min count.</string>
+    <string name="msdkui_no_maneuver_found" translatable="false">Didn\'t find any manoeuvres</string>
+    <string name="msdkui_value_not_available" translatable="false">--</string>
+    <string name="msdkui_distance_value_with_unit" translatable="false">%1$s %2$s</string>
+</resources>

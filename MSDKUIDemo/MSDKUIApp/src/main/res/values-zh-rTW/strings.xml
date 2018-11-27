@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_app_about">關於</string>
+  <string name="msdkui_app_about_info_part_four">目前，您可以使用HERE Mobile SDK UI Kit中的組件來創建路線規劃和指導體驗。在用戶指南中了解有關它的更多信息。</string>
+  <string name="msdkui_app_about_info_part_one">使用HERE Mobile SDK UI Kit為Android和iOS構建漂亮的界面</string>
+  <string name="msdkui_app_about_info_part_three">只需使用幾行代碼，您就可以使用HERE Mobile SDK的Premium版本創建完整的UI。因此，您只需要幾個小時就可以使用原生API創建一個動作列表，而不需要幾天時間。更少的開發時間意味著更快的上市時間。\n\n當然，如果您願意，可以使用UI工具包來更改某些UI控件的外觀（顏色、尺寸）和行為（數據表示、邏輯、流程、子組件）。您可以自己決定。</string>
+  <string name="msdkui_app_about_info_part_two">良好的用戶界面通常是尋找並留住用戶或被競爭對手搶走客戶之間的主要區別。這就是為什麼用於Android和iOS的HERE Mobile SDK UI工具包預裝了各種界面的原因，這些界面功能齊全，可以在您的應用程序中直接使用。</string>
+  <string name="msdkui_app_add">新增</string>
+  <string name="msdkui_app_add_waypoint">新增航點</string>
+  <string name="msdkui_app_app_version">應用版本</string>
+  <string name="msdkui_app_back">回到上一個步驟</string>
+  <string name="msdkui_app_cancel">取消</string>
+  <string name="msdkui_app_collapse">顯示更少</string>
+  <string name="msdkui_app_cord">%s，%s</string>
+  <string name="msdkui_app_done">完成</string>
+  <string name="msdkui_app_drag">拖曳</string>
+  <string name="msdkui_app_expand">顯示更多</string>
+  <string name="msdkui_app_guidance_button_end">結束</string>
+  <string name="msdkui_app_guidance_button_showmaneuvers">查看動作</string>
+  <string name="msdkui_app_guidance_button_showmap">顯示地圖</string>
+  <string name="msdkui_app_guidance_button_start">開始導航</string>
+  <string name="msdkui_app_guidance_start_simulation">指導模擬將啟動</string>
+  <string name="msdkui_app_guidance_teaser_description">透過轉彎指南幫助您的使用者抵達目的地。</string>
+  <string name="msdkui_app_guidance_teaser_title">駕駛導航</string>
+  <string name="msdkui_app_guidance_waypoint_subtitle">點選地圖以設定您的目的地</string>
+  <string name="msdkui_app_guidance_waypoint_title">駕駛導航</string>
+  <string name="msdkui_app_here_sdk_version">HERE SDK 版本</string>
+  <string name="msdkui_app_hint_collapse">顯示更少航點。</string>
+  <string name="msdkui_app_hint_expand">顯示更多航點。</string>
+  <string name="msdkui_app_info">應用程式資訊</string>
+  <string name="msdkui_app_map_view">地圖檢視</string>
+  <string name="msdkui_app_name_title">MSDK UI Demo</string>
+  <string name="msdkui_app_ok">確定</string>
+  <string name="msdkui_app_options">選項</string>
+  <string name="msdkui_app_remove">移除</string>
+  <string name="msdkui_app_route_options">路線選項</string>
+  <string name="msdkui_app_route_preview_title">路線概觀</string>
+  <string name="msdkui_app_route_results_title">路線</string>
+  <string name="msdkui_app_routeoverview_to">目的地</string>
+  <string name="msdkui_app_routeplanner_getdirections">取得方位</string>
+  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Start by choosing a \"from\" or a \"to\"</string>
+  <string name="msdkui_app_routeresults_error">沒有找到任何路線</string>
+  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
+  <string name="msdkui_app_rp_teaser_description">獲取汽車、卡車、自行車及步行的方向。</string>
+  <string name="msdkui_app_rp_teaser_title">路線規劃工具</string>
+  <string name="msdkui_app_rp_waypoint_subtitle">點擊或長按地圖</string>
+  <string name="msdkui_app_settings">設定</string>
+  <string name="msdkui_app_stop_navigation">停止導航</string>
+  <string name="msdkui_app_storage_permission_not_granted">該應用需要獲得訪問您設備存儲空間的權限，否則無法使用。</string>
+  <string name="msdkui_app_swap">交換</string>
+  <string name="msdkui_app_swap_waypoints">交換航點</string>
+  <string name="msdkui_app_teaser_link">看一看</string>
+  <string name="msdkui_app_ui_kit_version">MSDKUI 版本</string>
+  <string name="msdkui_app_userposition_search">取得您的位置</string>
+  <string name="msdkui_app_waypoint_not_valid">不是適當的導航點</string>
+  <string name="msdkui_app_waypoint_select_location">選擇路徑</string>
+</resources>

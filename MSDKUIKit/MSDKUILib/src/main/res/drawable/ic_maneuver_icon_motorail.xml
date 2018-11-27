@@ -1,0 +1,22 @@
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<vector android:autoMirrored="true" android:height="24dp"
+    android:viewportHeight="72" android:viewportWidth="72"
+    android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#000000" android:fillType="nonZero" android:pathData="M10.0354,51L6,51L6,47L66,47L66,51L61.9646,51C61.9879,51.1633 62,51.3302 62,51.5C62,53.433 60.433,55 58.5,55C56.567,55 55,53.433 55,51.5C55,51.3302 55.0121,51.1633 55.0354,51L52.9646,51C52.9879,51.1633 53,51.3302 53,51.5C53,53.433 51.433,55 49.5,55C47.567,55 46,53.433 46,51.5C46,51.3302 46.0121,51.1633 46.0354,51L25.9646,51C25.9879,51.1633 26,51.3302 26,51.5C26,53.433 24.433,55 22.5,55C20.567,55 19,53.433 19,51.5C19,51.3302 19.0121,51.1633 19.0354,51L16.9646,51C16.9879,51.1633 17,51.3302 17,51.5C17,53.433 15.433,55 13.5,55C11.567,55 10,53.433 10,51.5C10,51.3302 10.0121,51.1633 10.0354,51ZM44.0711,39L24.9289,39C24.9758,38.6731 25,38.339 25,37.9992C25,34.1345 21.8652,31 18,31C14.1348,31 11,34.1345 11,37.9992C11,38.339 11.0242,38.6731 11.0711,39L10,39L6,37L6,29.285L22.8658,24.677L30,18L47.7592,18C47.7592,18 58.942,25.956 59,26L66,26L66,37L59,39L57.9289,39C57.9758,38.6731 58,38.339 58,37.9992C58,34.1345 54.8652,31 51,31C47.1348,31 44,34.1345 44,37.9992C44,38.339 44.0242,38.6731 44.0711,39Z"/>
+    <path android:fillColor="#000000" android:fillType="evenOdd" android:pathData="M23,37.9994C23,40.76 20.7608,43 18,43 15.2392,43 13,40.76 13,37.9994 13,35.2389 15.2392,33 18,33 20.7608,33 23,35.2389 23,37.9994zM56,37.9994C56,40.76 53.7608,43 51,43 48.2392,43 46,40.76 46,37.9994 46,35.2389 48.2392,33 51,33 53.7608,33 56,35.2389 56,37.9994z"/>
+</vector>

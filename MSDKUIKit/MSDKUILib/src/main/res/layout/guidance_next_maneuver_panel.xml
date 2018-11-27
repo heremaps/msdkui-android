@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/afterNextManeuverContainer"
+    style="?attr/guidanceNextManeuverPanel">
+
+    <ImageView
+        android:id="@+id/nextManeuverIconView"
+        style="?attr/guidanceNextManeuverPanelLeftIcon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/nextManeuverDistance"
+        style="?attr/guidanceNextManeuverPanelDistanceText"
+        app:layout_constraintLeft_toRightOf="@id/nextManeuverIconView" />
+
+    <TextView
+        android:id="@+id/dot"
+        style="?attr/guidanceNextManeuverPanelDotText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/nextManeuverDistance"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/afterNextManeuverStreetName"
+        style="?attr/guidanceNextManeuverPanelText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/dot"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_app_about">Giới thiệu</string>
+  <string name="msdkui_app_about_info_part_four">Ngay bây giờ, bạn có thể sử dụng các thành phần trong Bộ công cụ Giao diện người dùng HERE SDK Mobile để xây dựng một trải nghiệm về lập lộ trình và hướng dẫn. Tìm hiểu thêm về nó trong hướng dẫn sử dụng.</string>
+  <string name="msdkui_app_about_info_part_one">Tạo dựng các giao diện tuyệt đẹp cho Android và iOS với Bộ công cụ Giao diện người dùng HERE Mobile SDK</string>
+  <string name="msdkui_app_about_info_part_three">Chỉ với một vài dòng mã, bạn có thể tạo một Giao diện người dùng đầy đủ với phiên bản Premium của HERE Mobile SDK. Do đó, thay vì cần đến vài ngày để xây dựng danh sách các bước dẫn đường bằng API gốc, bạn sẽ chỉ cần một vài giờ. Thời gian phát triển ít hơn nghĩa là đưa ra thị trường nhanh hơn. \n\nTất nhiên, nếu muốn, bạn có thể sử dụng Bộ công cụ Giao diện người dùng để thay đổi giao diện (màu sắc, kích thước) và hành vi (trình bày dữ liệu, logic, luồng, thành phần phụ) của một số điều khiển Giao diện người dùng. Điều đó tùy thuộc vào bạn.</string>
+  <string name="msdkui_app_about_info_part_two">Một giao diện người dùng tốt thường là sự khác biệt chủ yếu giữa việc tìm kiếm và giữ chân người dùng, hoặc để mất họ vào tay đối thủ cạnh tranh của bạn. Đó là lý do tại sao Bộ công cụ Giao diện người dùng HERE Mobile SDK dành cho Android và iOS được đóng gói sẵn với nhiều màn hình đầy đủ chức năng và sẵn sàng để dùng trong ứng dụng của bạn.</string>
+  <string name="msdkui_app_add">Thêm</string>
+  <string name="msdkui_app_add_waypoint">Thêm tọa độ</string>
+  <string name="msdkui_app_app_version">Phiên bản ứng dụng</string>
+  <string name="msdkui_app_back">Quay lại một bước</string>
+  <string name="msdkui_app_cancel">Hủy</string>
+  <string name="msdkui_app_collapse">Hiển thị ít đi</string>
+  <string name="msdkui_app_cord">%s, %s</string>
+  <string name="msdkui_app_done">Xong</string>
+  <string name="msdkui_app_drag">Kéo</string>
+  <string name="msdkui_app_expand">Hiển thị thêm</string>
+  <string name="msdkui_app_guidance_button_end">Kết thúc</string>
+  <string name="msdkui_app_guidance_button_showmaneuvers">Xem chỉ đường</string>
+  <string name="msdkui_app_guidance_button_showmap">Hiện bản đồ</string>
+  <string name="msdkui_app_guidance_button_start">Bắt đầu điều hướng</string>
+  <string name="msdkui_app_guidance_start_simulation">Mô phỏng hướng dẫn sẽ bắt đầu</string>
+  <string name="msdkui_app_guidance_teaser_description">Giúp người sử dụng của bạn tới đích với hướng dẫn từng chặn.</string>
+  <string name="msdkui_app_guidance_teaser_title">Điều hướng lái xe</string>
+  <string name="msdkui_app_guidance_waypoint_subtitle">Chạm vào bản đồ để chọn đích đến của bạn</string>
+  <string name="msdkui_app_guidance_waypoint_title">Điều hướng lái xe</string>
+  <string name="msdkui_app_here_sdk_version">Phiên bản HERE SDK</string>
+  <string name="msdkui_app_hint_collapse">Hiển thị ít điểm dừng chân.</string>
+  <string name="msdkui_app_hint_expand">Hiển thị thêm điểm dừng chân.</string>
+  <string name="msdkui_app_info">Thông tin ứng dụng</string>
+  <string name="msdkui_app_map_view">Xem bản đồ</string>
+  <string name="msdkui_app_name_title">MSDK UI Demo</string>
+  <string name="msdkui_app_ok">OK</string>
+  <string name="msdkui_app_options">Tùy chọn</string>
+  <string name="msdkui_app_remove">Xóa</string>
+  <string name="msdkui_app_route_options">Tùy chọn lộ trình</string>
+  <string name="msdkui_app_route_preview_title">Tổng quan về lộ trình</string>
+  <string name="msdkui_app_route_results_title">Lộ trình</string>
+  <string name="msdkui_app_routeoverview_to">Đến:</string>
+  <string name="msdkui_app_routeplanner_getdirections">Tìm chỉ đường</string>
+  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Start by choosing a \"from\" or a \"to\"</string>
+  <string name="msdkui_app_routeresults_error">Không tìm thấy bất kỳ tuyến đường nào</string>
+  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
+  <string name="msdkui_app_rp_teaser_description">Nhận chỉ đường xe ô-tô, xe tải, xe đạp và đi bộ.</string>
+  <string name="msdkui_app_rp_teaser_title">Bộ lập lộ trình</string>
+  <string name="msdkui_app_rp_waypoint_subtitle">Nhấn hoặc nhấn giữ lên bản đồ</string>
+  <string name="msdkui_app_settings">Cài đặt</string>
+  <string name="msdkui_app_stop_navigation">Dừng dẫn đường</string>
+  <string name="msdkui_app_storage_permission_not_granted">Ứng dụng cần quyền truy cập bộ nhớ lưu trữ của thiết bị, nếu không nó sẽ không hoạt động.</string>
+  <string name="msdkui_app_swap">Chuyển đổi</string>
+  <string name="msdkui_app_swap_waypoints">Chuyển điểm dừng chân</string>
+  <string name="msdkui_app_teaser_link">Hãy xem</string>
+  <string name="msdkui_app_ui_kit_version">Phiên bản MSDKUI</string>
+  <string name="msdkui_app_userposition_search">Đang lấy địa điểm của bạn</string>
+  <string name="msdkui_app_waypoint_not_valid">Không phải tọa độ điểm phù hợp</string>
+  <string name="msdkui_app_waypoint_select_location">Chọn tọa độ điểm</string>
+</resources>

@@ -1,0 +1,32 @@
+<!--
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="panel_height">48dp</dimen>
+    <dimen name="go_btn_height">48dp</dimen>
+    <dimen name="landing_screen_card_min_height">240dp</dimen>
+    <dimen name="guidance_dashboard_corner_radius">12dp</dimen>
+    <dimen name="guidance_dashboard_peek_height">86dp</dimen>
+    <dimen name="guidance_dashboard_pull_line_corner_radius">2dp</dimen>
+    <dimen name="stop_navigation_button_corner_radius">2dp</dimen>
+    <dimen name="stop_navigation_button_width_height">48dp</dimen>
+    <dimen name="button_corner_radius">2dp</dimen>
+    <dimen name="guidance_route_preview_bottom_margin">@dimen/contentMarginExtraLarge</dimen>
+    <dimen name="current_street_margin_bottom">98dp</dimen>
+    <dimen name="current_street_margin_side_portrait">80dp</dimen>
+    <dimen name="current_street_margin_side_landscape">88dp</dimen>
+</resources>

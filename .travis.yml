@@ -1,47 +1,26 @@
 language: android
 
-env:
-    global:
-    - MSDKUI_APP_ID_ANDROID=$MSDKUI_APP_ID_ANDROID
-    - MSDKUI_APP_TOKEN_ANDROID=$MSDKUI_APP_TOKEN_ANDROID
-    - MSDKUI_APP_LICENSE_ANDROID=$MSDKUI_APP_LICENSE_ANDROID
-    - AWS_ACCESS_KEY_ID = $AWS_ACCESS_KEY_ID
-    - AWS_SECRET_ACCESS_KEY = $AWS_SECRET_ACCESS_KEY
-    - SDK_VER=$SDK_VER
-    - SDK_URL=$SDK_URL
-
 android:
-    licenses:
-    - android-sdk-preview-license-.+
-    - android-sdk-license-.+
-    - google-gdk-license-.+
+  components:
+    - android-28
+    - build-tools-28.0.3
+  licenses:
+    - 'android-sdk-license-.+'
 
 before_install:
-    - pip install --user awscli
+  - pip install --user awscli
 
 jobs:
   include:
-    - stage: fetch HERE-SDK
-        script:
-            aws s3 cp s3://$SDK_URL/$SDK_VER $HOME
-            echo "Copy SDK"
-            cp $HOME/$SDK_VER $HOME/MSDKUIKit/libs/HERE-sdk.aar
-            cp $HOME/$SDK_VER $HOME/MSDKUIDemo/libs/HERE-sdk.aar
     - stage: Library unit tests
-        script:
-            echo "Library Run analysis tools,run Tests and assembleRelease"
-            ./gradlew clean \
-            :MSDKUILib:check -x test \
-            :MSDKUILib:testDebugUnitTest \
-            :MSDKUILib:assembleRelease -x test
-            cp $HOME/MSDKUIKit/MSDKUILib/build/outputs/aar/MSDKUILib-release.aar \
-            $HOME/MSDKUIDemo/libs/MSDKUILib.aar
+      script:
+        - aws s3 cp s3://$SDK_URL/$SDK_VER MSDKUIKit/libs/HERE-sdk.aar
+        - cd MSDKUIKit
+        - ./gradlew -x test :MSDKUILib:check :MSDKUILib:testDebugUnitTest
+        - aws s3 cp MSDKUILib/build/outputs/aar/MSDKUILib-release.aar s3://$SDK_URL/MSDKUI-Lib-$TRAVIS_BUILD_NUMBER.aar
     - stage: Demo app tests
-        script:
-            echo "DemoApp Run analysis tools,run Tests and assembleRelease"
-            cp $HOME/MSDKUIKit/MSDKUILib/build/outputs/aar/MSDKUILib-release.aar \
-            $HOME/MSDKUIDemo/libs/MSDKUILib.aar
-            cd $HOME/MSDKUIDemo
-            ./gradlew clean
-            :MSDKUIApp:check -x test
-            :MSDKUIApp:test
+      script:
+        - aws s3 cp s3://$SDK_URL/$SDK_VER MSDKUIDemo/libs/HERE-sdk.aar
+        - aws s3 cp s3://$SDK_URL/MSDKUI-Lib-$TRAVIS_BUILD_NUMBER.aar MSDKUIDemo/libs/MSDKUILib.aar
+        - cd MSDKUIDemo
+        - ./gradlew :MSDKUIApp:check

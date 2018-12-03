@@ -98,6 +98,14 @@ class CommonContracts {
     interface WaypointSelection : BaseContract<WaypointSelection> {
 
         /**
+         * Back icon is clicked.
+         *
+         * @param index index of [WaypointEntry].
+         * @param entry [WaypointEntry].
+         */
+        fun onBackClicked(index: Int?, entry: WaypointEntry?)
+
+        /**
          * Right icon is clicked.
          *
          * @param index index of [WaypointEntry].

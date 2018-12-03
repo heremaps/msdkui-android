@@ -194,6 +194,25 @@ class RoutePlannerFragment() : RetainFragment(), RoutingContracts.RoutePlanner {
     }
 
     /**
+     * Make action on waypoint selection cancelled - if this waypoint is invalid then remove it from list.
+     *
+     * @param index index within the list where selection been cancelled.
+     * @param current [WaypointEntry] that selection been cancelled.
+     */
+    fun waypointSelectionCancelled(index: Int?, current: WaypointEntry?) {
+        index ?: return
+        var removeWaypoint = true
+        current?.run {
+            if (isValid) removeWaypoint = false
+        }
+        waypointList?.run {
+            if (removeWaypoint && entriesCount > minWaypointItems) {
+                removeEntry(index)
+            }
+        }
+    }
+
+    /**
      * Listeners to be notified by route planner component.
      */
     interface Listener {

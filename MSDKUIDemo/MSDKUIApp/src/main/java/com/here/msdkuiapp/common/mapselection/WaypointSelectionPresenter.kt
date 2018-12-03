@@ -51,7 +51,11 @@ class WaypointSelectionPresenter() : BasePresenter<CommonContracts.WaypointSelec
      */
     fun setUpActionBar(appActionBar: AppActionBar?) {
         appActionBar?.run {
-            setBack(true, id = R.drawable.ic_clear_black_24dp)
+            setBack(true, id = R.drawable.ic_clear_black_24dp,
+                    clickListener = {
+                        contract?.onBackClicked(state.index, state.entry)
+                        activity.onBackPressed()
+                    })
             setTitle(value = context!!.getString(R.string.msdkui_waypoint_select_location))
             setRightIcon(id = R.drawable.ic_check_black_24dp,
                     accessibleValue = context!!.getString(R.string.msdkui_app_done),

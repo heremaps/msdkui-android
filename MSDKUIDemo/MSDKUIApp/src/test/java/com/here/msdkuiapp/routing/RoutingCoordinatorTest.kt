@@ -123,6 +123,13 @@ class RoutingCoordinatorTest : BaseTest() {
     }
 
     @Test
+    fun testOnWaypointSelectionCancelled() {
+        `when`(mockFragmentManager.findFragmentById(R.id.route_top_container)).thenReturn(mockRoutePlannerFragment)
+        coordinator.onWaypointSelectionCancelled(null, null)
+        verify(mockRoutePlannerFragment).waypointSelectionCancelled(null, null)
+    }
+
+    @Test
     fun testOnWaypointSelected() {
         `when`(mockFragmentManager.findFragmentById(R.id.route_top_container)).thenReturn(mockRoutePlannerFragment)
         val mockWaypointEntry = mock(WaypointEntry::class.java)

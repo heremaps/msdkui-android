@@ -111,6 +111,10 @@ class WaypointSelectionFragment() : RetainFragment(),
         presenter.updateCord(cord)
     }
 
+    override fun onBackClicked(index: Int?, entry: WaypointEntry?) {
+        (coordinator as? RoutingCoordinator)?.onWaypointSelectionCancelled(index, entry)
+    }
+
     override fun onRightIconClicked(index: Int?, entry: WaypointEntry?) {
         if (entry != null && entry.isValid) {
             (coordinator as? RoutingCoordinator)?.onWaypointSelected(index, entry)
@@ -149,9 +153,18 @@ class WaypointSelectionFragment() : RetainFragment(),
     interface Listener {
 
         /**
+         * Callback to be called when user cancel waypoint selection.
+         *
+         * @param index a integer if you want to track waypoint entry, useful like using in list, null otherwise.
+         * @param current WaypointEntry object.
+         */
+        fun onWaypointSelectionCancelled(index: Int?, current: WaypointEntry?)
+
+        /**
          * Callback to be called when user select a waypoint.
          *
          * @param index a integer if you want to track waypoint entry, useful like using in list, null otherwise.
+         * @param current WaypointEntry object.
          */
         fun onWaypointSelected(index: Int?, current: WaypointEntry)
     }

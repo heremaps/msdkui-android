@@ -22,6 +22,7 @@ import com.here.msdkuiapp.R
 import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.FunctionalUITest
 import com.here.msdkuiapp.espresso.impl.core.CoreActions
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getTextView
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIdAndText
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
@@ -29,6 +30,7 @@ import com.here.msdkuiapp.espresso.impl.testdata.Constants.MAP_POINT_7
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.MAP_POINT_8
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation.PORTRAIT
+import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers.checkCurrentStreetViewValueChanged
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers.checkManeuverPanelData
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers.checkManeuverPanelIsDestinationReached
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationBarView.onDriveNavigationBarTitleView
@@ -38,6 +40,7 @@ import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveN
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationBarActions
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.utils.DestinationData
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.utils.ManeuversActions
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceCurrentStreetInfoText
 import com.here.msdkuiapp.espresso.impl.views.guidance.useractions.GuidanceActions
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
@@ -234,6 +237,38 @@ class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
             // Stop navigation and enter navigation again to test maneuver panel on different screen orientation.
             GuidanceActions.tapOnStopNavigationBtn()
             CoreActions().enterDriveNavigation()
+        }
+    }
+
+    /**
+     * MSDKUI-1478: Current street label in Guidance
+     */
+    @Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
+    @Test
+    @FunctionalUITest
+    fun testCurrentStreetLabelInGuidanceSimulation() {
+        // Check drive navigation view opened
+        DriveNavigationBarActions.waitForDriveNavigationView()
+                .waitForDestinationDisplayed()
+        // Tap anywhere on map view
+        MapActions.waitForMapViewEnabled().tapByRelativeCoordinates(destination)
+        // Tap on tick to confirm the first waypoint selection
+        DriveNavigationBarActions.waitForDestinationNotDisplayed()
+                .provideMockLocation(mockLocationData)
+        RoutePlannerBarActions.tapOnTickButton()
+        // Check guidance route overview view opened
+        DriveNavigationBarActions.waitForRouteOverView()
+                .waitForGuidanceDescriptionDisplayed()
+        // Start navigation simulation
+        DriveNavigationActions.startNavigationSimulation()
+        enumValues<ScreenOrientation>().forEach {
+            // Set screen orientation: PORTRAIT / LANDSCAPE
+            CoreActions().changeOrientation(it)
+            // Check that current street view is displayed and store its current value
+            onGuidanceCurrentStreetInfoText.check(matches(isDisplayed()))
+            val currentStreetData = getTextView(onGuidanceCurrentStreetInfoText)
+            // Check that current street view value changed
+            checkCurrentStreetViewValueChanged(currentStreetData)
         }
     }
  }

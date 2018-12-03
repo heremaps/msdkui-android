@@ -1,7 +1,7 @@
 # Quick Start
 Thank you for using the HERE Mobile SDK UI Kit. In this Quick Start guide, we are going to introduce you to the HERE Mobile SDK UI Kit and show you how easy it is to get started. As a very first example, we'll also develop a "Hello HERE Mobile SDK UI Kit" Android application as part of this guide. For more examples and in-depth information on how to work with the HERE Mobile SDK UI Kit framework, please refer to the [User Guide](UserGuide.md).
 
-# Contents
+## Contents
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [How to Run the Example Apps](#how-to-run-the-example-apps)
@@ -76,7 +76,7 @@ The built HERE Mobile SDK UI Kit AAR is the located in your new _MSDKUIKit/MSDKU
 
 Now you should have two binaries: `HERE-sdk.aar` and `MSDKUILib-release.aar`. Copy both to the _libs_ folder of your Android project. Usually the path is inside the app folder, for example: `HelloMSDKUI/app/libs`.
 
-More details on integrating the HERE Mobile SDK can be found on [developer.here.com](https://developer.here.com/documentation/android-premium/topics/app-simple-android-studio.html). For this Quick Start guide, we will integrate the HERE SDK together with the HERE Mobile SDK UI Kit lib. The steps are the same as shown on developer.here.com, except that we integrate the HERE Mobile SDK UI Kit on top.
+More details on integrating the HERE Mobile SDK can be found on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/quick-start.html). For this Quick Start guide, we will integrate the HERE SDK together with the HERE Mobile SDK UI Kit lib. The steps are the same as shown on developer.here.com, except that we integrate the HERE Mobile SDK UI Kit on top.
 
 ### Gradle setup
 Within Android Studio, open the _app-level_ `build.gradle` file (to be found under the app folder) and configure the repositories for your project to use a flat hierarchy:
@@ -214,9 +214,9 @@ Our first HERE Mobile SDK UI Kit component for this example is `WaypointList` co
 Below the `WaypointList` we show the HERE `MapFragment`. Note that the map will occupy as much space as allowed by the `WaypointList`, since we are giving it a layout weight of 1.
 
 ## Loading the Map
-Before we can start using the `WaypointList` component, we have to prepare loading the `MapFragment`. As described on [developer.here.com](https://developer.here.com/documentation/android-premium/topics/app-simple-android-studio.html) we have to request the required [Android permissions](https://developer.here.com/documentation/android-premium/topics/request-android-permissions.html) first. Then we can initialize the `MapFragment`.
+Before we can start using the `WaypointList` component, we have to prepare loading the `MapFragment`. As described on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/app-create-simple.html), we have to request the required [Android permissions](https://developer.here.com/documentation/android-premium/topics/request-android-permissions.html) first. Then we can initialize the `MapFragment`.
 
-As our focus for this Quick Start guide is on using the HERE Mobile SDK UI Kit components, we have wrapped both steps in a helper class called `MapInitializer`. For implementation details, please check the example's code. You can use your own wrapper class or follow the steps on [developer.here.com](https://developer.here.com/documentation/android-premium/topics/app-simple-android-studio.html).
+As our focus for this Quick Start guide is on using the HERE Mobile SDK UI Kit components, we have wrapped both steps in a helper class called `MapInitializer`. For implementation details, please check the example's code. You can use your own wrapper class or follow the steps on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/app-create-simple.html).
 
 Once the HERE `MapFragment` is successfully loaded, we want to show a `Toast` message with the current version of the HERE Mobile SDK UI Kit library:
 ```java

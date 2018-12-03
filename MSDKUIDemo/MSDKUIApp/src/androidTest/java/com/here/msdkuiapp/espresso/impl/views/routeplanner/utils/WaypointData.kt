@@ -24,6 +24,6 @@ import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerV
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerWaypointLocationText
 
 data class WaypointData(
-        var point: MapData = GEO_POINT_0,
+        var location: MapData = GEO_POINT_0,
         var waypointItem: WaypointItem = WAYPOINT_1,
         var waypoint: String = String.format("%s %s", onPlannerFromText, onPlannerWaypointLocationText))

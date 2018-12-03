@@ -2,9 +2,9 @@
 <!-- This guide's version is 1.3 and it is based on the HERE Mobile SDK 3.9 and HERE Mobile SDK UI Kit 2.0.-->
 Are you looking for a framework that let's you build feature-rich and compelling user interfaces on top of the HERE Mobile SDK, _Premium_ edition? Then the HERE Mobile SDK UI Kit for iOS and Android is the perfect companion for you.
 
-This user guide describes the general workflow using the HERE Mobile SDK UI Kit and its components in detail. If you are looking for a quick overview, please look at our [README](../../README.md), our [Quick Start](QuickStart.md) guide or the latest [Release Notes](../../ReleaseNotes.md).
+This user guide describes the general workflow using the HERE Mobile SDK UI Kit and its components in detail. If you are looking for a quick overview, please look at our [README](../../README.md), our [Quick Start](QuickStart.md) guide or the latest _Release Notes_.
 
-# Contents
+## Contents
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Why use the HERE Mobile SDK UI Kit?](#why-use-the-here-mobile-sdk-ui-kit)
@@ -136,7 +136,7 @@ Before we can start using our HERE Mobile SDK UI Kit components, please make sur
 mapInitializer = new MapInitializer(this, this::onMapLoaded);
 ```
 
-Alternatively, you can use your own wrapper class or follow the steps on [developer.here.com](https://developer.here.com/documentation/android-premium/topics/app-simple-android-studio.html). Please find the implementation details of how to initialize a HERE `MapFragment` in the source code of the example - or look for other HERE SDK examples on [GitHub](https://github.com/heremaps/here-android-sdk-examples). This step does not involve any HERE Mobile SDK UI Kit specific actions.
+Alternatively, you can use your own wrapper class or follow the steps on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/app-create-simple.html). Please find the implementation details of how to initialize a HERE `MapFragment` in the source code of the example - or look for other HERE SDK examples on [GitHub](https://github.com/heremaps/here-android-sdk-examples). This step does not involve any HERE Mobile SDK UI Kit specific actions.
 
 Usually, loading the map can take place in your Activity's `onCreate()`-method. Once the map is successfully loaded, we can access our inflated HERE Mobile SDK UI Kit components:
 ```java
@@ -262,7 +262,7 @@ transportModePanel.setAdapter(
                 RouteOptions.TransportMode.CAR)));
 ```
 
-Since the `TransportModePanelAdapter` is abstract, you can use the convenience implementation `SimpleTransportModePanelAdapter`. Note that, you do not need to set an adapter if you are fine with the default transport modes.
+Since the `TransportModePanelAdapter` is abstract, you can use the convenience implementation `SimpleTransportModePanelAdapter`. Note that you do not need to set an adapter if you are fine with the default transport modes.
 
 You can also define which button should be highlighted. Below, we choose the transport mode `CAR` to be used by default for route calculation:
 ```java
@@ -460,7 +460,7 @@ guidanceManeuverPanelPresenter.addListener(new GuidanceManeuverPanelListener() {
 
 While the first callback simply sets the received `GuidanceManeuverData` to the `GuidanceManeuverPanel`, the latter informs us when the user has finally reached the destination. In this case, we choose to highlight the last maneuver.
 
-Note that, we must resume the `GuidanceManeuverPanelPresenter` to receive guidance events: As we already passed the `NavigationManager` singleton and the route object to the constructor of the `GuidanceManeuverPanelPresenter`, we only have to call `resume()` to start listening - and to call `pause()` to stop listening. Please, also make sure to declare the presenter as member variable - otherwise you will not receive any events once the scope of the calling method was executed.
+Note that we must resume the `GuidanceManeuverPanelPresenter` to receive guidance events: As we already passed the `NavigationManager` singleton and the route object to the constructor of the `GuidanceManeuverPanelPresenter`, we only have to call `resume()` to start listening - and to call `pause()` to stop listening. Please, also make sure to declare the presenter as member variable - otherwise you will not receive any events once the scope of the calling method was executed.
 ```java
 private void startGuidanceSimulation() {
     guidanceManeuverPanelPresenter.resume();

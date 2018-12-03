@@ -60,7 +60,10 @@ class RoutePlannerPresenter : BasePresenter<RoutingContracts.RoutePlanner>() {
             coordinatorListener?.onEntryClicked(index, current)
         }
 
-        override fun onEntryAdded(index: Int, entry: WaypointEntry) {}
+        override fun onEntryAdded(index: Int, entry: WaypointEntry) {
+            state.entryList.add(index, entry)
+        }
+
         override fun onEntryUpdated(index: Int, entry: WaypointEntry) {}
         override fun onEntryRemoved(index: Int, entry: WaypointEntry) {
             state.entryList.removeAt(index)

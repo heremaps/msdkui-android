@@ -32,7 +32,8 @@ public class GuidanceEstimatedArrivalViewData implements Parcelable {
     /**
      * Creator for parcelable.
      */
-    public static final Parcelable.Creator<GuidanceEstimatedArrivalViewData> CREATOR = new Parcelable.Creator<GuidanceEstimatedArrivalViewData>() {
+    public static final Parcelable.Creator<GuidanceEstimatedArrivalViewData> CREATOR =
+            new Parcelable.Creator<GuidanceEstimatedArrivalViewData>() {
         @Override
         public GuidanceEstimatedArrivalViewData createFromParcel(Parcel in) {
             return new GuidanceEstimatedArrivalViewData(in);

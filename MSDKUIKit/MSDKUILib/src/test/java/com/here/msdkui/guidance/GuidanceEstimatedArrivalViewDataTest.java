@@ -66,7 +66,8 @@ public class GuidanceEstimatedArrivalViewDataTest extends RobolectricTest {
     @Test
     public void testToString() {
         GuidanceEstimatedArrivalViewData data = new GuidanceEstimatedArrivalViewData(ETA_DATE, DISTANCE, DURATION);
-        String inputStr = "GuidanceEstimatedArrivalViewData(mEta=" + DateFormatterUtil.format(ETA_DATE) + ", mDistance=10000, mDuration=100)";
+        String inputStr = "GuidanceEstimatedArrivalViewData(mEta=" + DateFormatterUtil.format(ETA_DATE) +
+                ", mDistance=10000, mDuration=100)";
         assertThat(data.toString(), is(inputStr));
     }
 

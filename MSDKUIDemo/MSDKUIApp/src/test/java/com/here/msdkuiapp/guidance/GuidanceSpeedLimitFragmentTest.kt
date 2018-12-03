@@ -20,7 +20,7 @@ package com.here.msdkuiapp.guidance
 import com.here.android.mpa.common.PositioningManager
 import com.here.android.mpa.guidance.NavigationManager
 import com.here.msdkui.guidance.GuidanceSpeedData
-import com.here.msdkui.guidance.GuidanceSpeedLimitPanel
+import com.here.msdkui.guidance.GuidanceSpeedLimitView
 import com.here.msdkui.guidance.GuidanceSpeedPresenter
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
@@ -88,6 +88,6 @@ class GuidanceSpeedLimitFragmentTest : BaseTest() {
         val data = Mockito.mock(GuidanceSpeedData::class.java)
         `when`(data.currentSpeedLimit).thenReturn(speedLimit)
         fragment.onDataChanged(data)
-        assertEquals(speedLimit, (fragment.view as GuidanceSpeedLimitPanel).currentSpeedData.currentSpeedLimit)
+        assertEquals(speedLimit, (fragment.view as GuidanceSpeedLimitView).currentSpeedData.currentSpeedLimit)
     }
 }

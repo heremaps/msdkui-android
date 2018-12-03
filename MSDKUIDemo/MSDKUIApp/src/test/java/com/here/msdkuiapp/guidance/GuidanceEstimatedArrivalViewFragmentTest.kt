@@ -1,8 +1,8 @@
 package com.here.msdkuiapp.guidance
 
 import com.here.android.mpa.guidance.NavigationManager
-import com.here.msdkui.guidance.GuidanceEstimatedArrivalData
-import com.here.msdkui.guidance.GuidanceEstimatedArrivalPresenter
+import com.here.msdkui.guidance.GuidanceEstimatedArrivalViewData
+import com.here.msdkui.guidance.GuidanceEstimatedArrivalViewPresenter
 import com.here.msdkui.guidance.GuidanceEstimatedArrivalView
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.testutils.BaseTest
@@ -39,16 +39,16 @@ class GuidanceEstimatedArrivalViewFragmentTest :BaseTest() {
 
     @Test
     fun testOnPause() {
-        guidanceEstimatedArrivalViewFragment.viewPresenter = mock(GuidanceEstimatedArrivalPresenter::class.java)
+        guidanceEstimatedArrivalViewFragment.viewViewPresenter = mock(GuidanceEstimatedArrivalViewPresenter::class.java)
         guidanceEstimatedArrivalViewFragment.onPause()
-        verify(guidanceEstimatedArrivalViewFragment.viewPresenter!!).pause()
+        verify(guidanceEstimatedArrivalViewFragment.viewViewPresenter!!).pause()
     }
 
     @Test
     fun testOnDataChangedCallback() {
         // calling onManeuverData will update panel
-        addFrag(guidanceEstimatedArrivalViewFragment, GuidanceNextManeuverPanelFragment::class.java.name)
-        val data = mock(GuidanceEstimatedArrivalData::class.java)
+        addFrag(guidanceEstimatedArrivalViewFragment, GuidanceNextManeuverFragment::class.java.name)
+        val data = mock(GuidanceEstimatedArrivalViewData::class.java)
         val date = mock(Date::class.java)
         `when`(data.eta).thenReturn(date)
         guidanceEstimatedArrivalViewFragment.onDataChanged(data)

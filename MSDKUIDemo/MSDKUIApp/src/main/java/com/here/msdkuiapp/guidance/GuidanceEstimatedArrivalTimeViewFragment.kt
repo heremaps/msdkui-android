@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.here.msdkui.guidance.GuidanceEstimatedArrivalData
-import com.here.msdkui.guidance.GuidanceEstimatedArrivalPresenter
+import com.here.msdkui.guidance.GuidanceEstimatedArrivalViewData
+import com.here.msdkui.guidance.GuidanceEstimatedArrivalViewPresenter
 import com.here.msdkui.guidance.GuidanceEstimatedArrivalView
 import com.here.msdkui.guidance.GuidanceEstimatedArrivalViewListener
 import com.here.msdkuiapp.R
@@ -19,7 +19,7 @@ import kotlinx.android.extensions.ContainerOptions
 @ContainerOptions(CacheImplementation.NO_CACHE)
 class GuidanceEstimatedArrivalViewFragment : Fragment(), GuidanceEstimatedArrivalViewListener {
 
-    internal var viewPresenter : GuidanceEstimatedArrivalPresenter? = null;
+    internal var viewViewPresenter : GuidanceEstimatedArrivalViewPresenter? = null;
 
     init {
         retainInstance = true
@@ -42,8 +42,8 @@ class GuidanceEstimatedArrivalViewFragment : Fragment(), GuidanceEstimatedArriva
      * Creates Presenter for this [GuidanceEstimatedArrivalViewFragment].
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if (viewPresenter == null) {
-            viewPresenter = GuidanceEstimatedArrivalPresenter(SingletonHelper.navigationManager).apply {
+        if (viewViewPresenter == null) {
+            viewViewPresenter = GuidanceEstimatedArrivalViewPresenter(SingletonHelper.navigationManager).apply {
                 addListener(this@GuidanceEstimatedArrivalViewFragment)
                 resume()
             }
@@ -52,15 +52,15 @@ class GuidanceEstimatedArrivalViewFragment : Fragment(), GuidanceEstimatedArriva
 
     override fun onPause() {
         super.onPause()
-        viewPresenter?.pause()
+        viewViewPresenter?.pause()
     }
 
     override fun onResume() {
         super.onResume()
-        viewPresenter?.resume()
+        viewViewPresenter?.resume()
     }
 
-    override fun onDataChanged(data: GuidanceEstimatedArrivalData?) {
-        (view as? GuidanceEstimatedArrivalView)?.estimatedArrivalData = data
+    override fun onDataChanged(viewData: GuidanceEstimatedArrivalViewData?) {
+        (view as? GuidanceEstimatedArrivalView)?.estimatedArrivalData = viewData
     }
 }

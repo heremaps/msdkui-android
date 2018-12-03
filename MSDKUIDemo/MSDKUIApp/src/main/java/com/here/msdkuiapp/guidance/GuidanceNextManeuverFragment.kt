@@ -21,48 +21,48 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.here.msdkui.guidance.GuidanceSpeedData
-import com.here.msdkui.guidance.GuidanceSpeedLimitView
-import com.here.msdkui.guidance.GuidanceSpeedListener
-import com.here.msdkui.guidance.GuidanceSpeedPresenter
+import com.here.android.mpa.routing.Route
+import com.here.msdkui.guidance.GuidanceNextManeuverData
+import com.here.msdkui.guidance.GuidanceNextManeuverView
+import com.here.msdkui.guidance.GuidanceNextManeuverListener
+import com.here.msdkui.guidance.GuidanceNextManeuverPresenter
 import com.here.msdkuiapp.R
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
 
 /**
- * Fragment class for [GuidanceSpeedLimitView] view.
+ * Fragment class for NextManeuverPanel View.
  */
 @ContainerOptions(CacheImplementation.NO_CACHE)
-class GuidanceSpeedLimitFragment : Fragment(), GuidanceSpeedListener  {
+class GuidanceNextManeuverFragment : Fragment(), GuidanceNextManeuverListener {
 
-    internal var mPresenter: GuidanceSpeedPresenter? = null
+    internal var route: Route? = null
+    internal var presenter: GuidanceNextManeuverPresenter? = null
 
     init {
         retainInstance = true
     }
 
     companion object {
-        fun newInstance() = GuidanceSpeedLimitFragment()
+        fun newInstance() = GuidanceNextManeuverFragment()
     }
 
     /**
      * Creates Panel View.
      */
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        val panelFragment = GuidanceSpeedLimitView(activity)
-        panelFragment.id = R.id.guidanceSpeedLimitPanelId
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        val panelFragment = GuidanceNextManeuverView(activity)
+        panelFragment.id = R.id.guidanceNextManeuverPanelId;
         return panelFragment
     }
 
     /**
-     * Creates Presenter for this GuidanceStreetLabelFragment.
+     * Creates Presenter for this [GuidanceNextManeuverFragment].
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if (mPresenter == null) {
-            mPresenter = GuidanceSpeedPresenter(SingletonHelper.navigationManager ?: return,
-                    SingletonHelper.positioningManager ?: return).apply {
-                addListener(this@GuidanceSpeedLimitFragment)
+        if (presenter == null) {
+            presenter = GuidanceNextManeuverPresenter(view.context, SingletonHelper.navigationManager, route).apply {
+                addListener(this@GuidanceNextManeuverFragment)
                 resume()
             }
         }
@@ -70,15 +70,15 @@ class GuidanceSpeedLimitFragment : Fragment(), GuidanceSpeedListener  {
 
     override fun onPause() {
         super.onPause()
-        mPresenter?.pause()
+        presenter?.pause()
     }
 
     override fun onResume() {
         super.onResume()
-        mPresenter?.resume()
+        presenter?.resume()
     }
 
-    override fun onDataChanged(data: GuidanceSpeedData?) {
-        (view as GuidanceSpeedLimitView).setCurrentSpeedData(data)
+    override fun onDataChanged(data: GuidanceNextManeuverData?) {
+        (view as? GuidanceNextManeuverView)?.nextManeuverData = data
     }
 }

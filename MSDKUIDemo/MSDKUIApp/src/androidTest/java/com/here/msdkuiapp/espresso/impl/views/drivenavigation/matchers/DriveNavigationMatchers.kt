@@ -20,6 +20,7 @@ import android.support.test.espresso.ViewInteraction
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.view.View
 import com.here.msdkui.routing.RouteUtil
 import com.here.msdkui.routing.RouteDescriptionItem
@@ -40,6 +41,8 @@ import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDes
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDetails
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDuration
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerToText
+import org.hamcrest.CoreMatchers.allOf
+import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
@@ -167,6 +170,15 @@ object DriveNavigationMatchers {
                 timeout = MANEUVER_PANEL_TEST_SINGLE_MANEUVER_TIMEOUT
         ))
         return this
+    }
+
+    /**
+     * Check is Current Street view value different than currentValue param.
+     */
+    fun checkCurrentStreetViewValueChanged(currentValue: String) {
+        onRootView.perform(waitForCondition(
+                allOf(withId(R.id.guidance_current_street_text), not(withText(currentValue)))
+        ))
     }
 
 }

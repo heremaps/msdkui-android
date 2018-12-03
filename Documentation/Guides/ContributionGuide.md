@@ -8,7 +8,7 @@ This guide is for developers who want to contribute to the MSDKUI codebase, buil
 - [Getting the Code](#getting-the-code)
 - [See available Gradle tasks](#see-available-gradle-tasks)
 - [Building the HERE UI Kit library](#building-the-here-ui-kit-library)
-  - [Building the MSDKUI API Reference from Command Line](#building-the-msdkui-api-reference-from-command-line)
+	- [Building the MSDKUI API Reference from Command Line](#building-the-msdkui-api-reference-from-command-line)
 	- [Running Unit Tests for MSDKUILib](#running-unit-tests-for-msdkuilib)
 	- [Generating a Unit Test Coverage Report](#generating-a-unit-test-coverage-report)
 - [Building the Demo App](#building-the-demo-app)
@@ -19,9 +19,9 @@ This guide is for developers who want to contribute to the MSDKUI codebase, buil
 	- [Running UI Tests for MDKUIApp](#running-ui-tests-for-mdkuiapp)
 	- [Optional: Building HERE UI Kit Library and Demo as part of one project](#optional-building-here-ui-kit-library-and-demo-as-part-of-one-project)
 - [Commit / Pull Request Policy](#commit-pull-request-policy)
-  - [Writing Git Commit Messages](#writing-git-commit-messages)
-	  - [A normal ticket](#a-normal-ticket)
-	  - [Solving multiple tickets](#solving-multiple-tickets)
+	- [Writing Git Commit Messages](#writing-git-commit-messages)
+		- [A normal ticket](#a-normal-ticket)
+		- [Solving multiple tickets](#solving-multiple-tickets)
 
 <!-- /TOC -->
 
@@ -138,7 +138,7 @@ In _MSDKUIDemo/build.gradle_ add the following build script dependency:
 classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.4.15'
 ```
 
-# Commit / Pull Request Policy
+## Commit / Pull Request Policy
 
 Please follow our commit policy. Once you have pushed your changes, you should be able to see your work on GitHub. Each pull request will be reviewed and merged if there are no objections. Before sending a pull request, please make sure to:
 
@@ -148,11 +148,11 @@ Please follow our commit policy. Once you have pushed your changes, you should b
 - Keep the unit test [coverage](#generating-a-unit-test-coverage-report) above 80%.
 - If your change involves a new UI behavior, please consider to help us write a [UI test](#running-ui-tests-for-mdkuiapp) (not mandatory, but more than welcome).
 
-## Writing Git Commit Messages
+### Writing Git Commit Messages
 
 We follow the format described below to ensure all the commit messages are aligned and in a consistent format.
 
-### A normal ticket
+#### A normal ticket
 
 ```
 TICKET-XYZ: Capitalized short - 80 characters or less - title
@@ -173,7 +173,7 @@ Use blank lines for additional paragraphs.
 - Don't end the commit title with a period.
 - Use imperative mood (*Fix* instead of *Fixes*, *Add* instead of *Adds*, etc..).
 
-### Solving multiple tickets
+#### Solving multiple tickets
 
 ```
 TICKET-X, TICKET-Y, TICKET-Z: Capitalized short - 80 characters or less - title

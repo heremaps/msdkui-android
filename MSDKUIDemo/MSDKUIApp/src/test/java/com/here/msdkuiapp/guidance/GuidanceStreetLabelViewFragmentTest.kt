@@ -34,7 +34,7 @@ import org.mockito.Mockito.verify
  */
 class GuidanceStreetLabelViewFragmentTest : BaseTest() {
 
-    lateinit var guidanceCurrentStreetFragment: GuidanceStreetLabelFragment
+    private lateinit var guidanceCurrentStreetFragment: GuidanceStreetLabelFragment
 
     @Before
     override fun setUp() {
@@ -45,7 +45,7 @@ class GuidanceStreetLabelViewFragmentTest : BaseTest() {
     @Test
     fun testCurrentStreetFragmentCreation() {
         guidanceCurrentStreetFragment.route = mock(Route::class.java)
-        guidanceCurrentStreetFragment.mPanelLabelPresenter = mock(GuidanceStreetLabelPresenter::class.java)
+        guidanceCurrentStreetFragment.presenter = mock(GuidanceStreetLabelPresenter::class.java)
         addFrag(guidanceCurrentStreetFragment, GuidanceStreetLabelFragment::class.java.name)
         assertNotNull(guidanceCurrentStreetFragment)
         assertNotNull(guidanceCurrentStreetFragment.view)
@@ -61,7 +61,7 @@ class GuidanceStreetLabelViewFragmentTest : BaseTest() {
     fun testCallbacks() {
         val streetName : String = "StreetName"
         guidanceCurrentStreetFragment.route = mock(Route::class.java)
-        guidanceCurrentStreetFragment.mPanelLabelPresenter = mock(GuidanceStreetLabelPresenter::class.java)
+        guidanceCurrentStreetFragment.presenter = mock(GuidanceStreetLabelPresenter::class.java)
         addFrag(guidanceCurrentStreetFragment,
                 GuidanceStreetLabelFragment::class.java.name)
         val data = mock(GuidanceStreetLabelData::class.java)
@@ -73,7 +73,7 @@ class GuidanceStreetLabelViewFragmentTest : BaseTest() {
     @Test
     fun testPausingAndResuming() {
         val labelPresenter : GuidanceStreetLabelPresenter = mock(GuidanceStreetLabelPresenter::class.java)
-        guidanceCurrentStreetFragment.mPanelLabelPresenter = labelPresenter
+        guidanceCurrentStreetFragment.presenter = labelPresenter
         guidanceCurrentStreetFragment.onPause()
         verify(labelPresenter).pause()
 

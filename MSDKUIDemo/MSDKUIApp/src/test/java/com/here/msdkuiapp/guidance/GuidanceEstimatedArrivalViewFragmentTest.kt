@@ -39,9 +39,9 @@ class GuidanceEstimatedArrivalViewFragmentTest :BaseTest() {
 
     @Test
     fun testOnPause() {
-        guidanceEstimatedArrivalViewFragment.viewViewPresenter = mock(GuidanceEstimatedArrivalViewPresenter::class.java)
+        guidanceEstimatedArrivalViewFragment.viewPresenter = mock(GuidanceEstimatedArrivalViewPresenter::class.java)
         guidanceEstimatedArrivalViewFragment.onPause()
-        verify(guidanceEstimatedArrivalViewFragment.viewViewPresenter!!).pause()
+        verify(guidanceEstimatedArrivalViewFragment.viewPresenter!!).pause()
     }
 
     @Test

@@ -36,17 +36,8 @@ import kotlinx.android.extensions.ContainerOptions
 @ContainerOptions(CacheImplementation.NO_CACHE)
 class GuidanceStreetLabelFragment : Fragment(), GuidanceStreetLabelListener {
 
-    private var mRoute: Route? = null
-    internal var mPanelLabelPresenter: GuidanceStreetLabelPresenter? = null
-
-    /**
-     * Setter getter for [Route].
-     */
-    internal var route: Route?
-        get() = mRoute
-        set(value) {
-            mRoute = value
-        }
+    internal var route: Route? = null
+    internal var presenter: GuidanceStreetLabelPresenter? = null
 
     init {
         retainInstance = true
@@ -70,8 +61,8 @@ class GuidanceStreetLabelFragment : Fragment(), GuidanceStreetLabelListener {
      * Creates Presenter for this GuidanceStreetLabelFragment.
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if (mPanelLabelPresenter == null) {
-            mPanelLabelPresenter = GuidanceStreetLabelPresenter(view.context, SingletonHelper.navigationManager, route).apply {
+        if (presenter == null) {
+            presenter = GuidanceStreetLabelPresenter(view.context, SingletonHelper.navigationManager, route).apply {
                 addListener(this@GuidanceStreetLabelFragment)
                 resume()
             }
@@ -80,12 +71,12 @@ class GuidanceStreetLabelFragment : Fragment(), GuidanceStreetLabelListener {
 
     override fun onPause() {
         super.onPause()
-        mPanelLabelPresenter?.pause()
+        presenter?.pause()
     }
 
     override fun onResume() {
         super.onResume()
-        mPanelLabelPresenter?.resume()
+        presenter?.resume()
     }
 
     override fun onDataChanged(labelData: GuidanceStreetLabelData) {

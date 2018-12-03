@@ -109,4 +109,16 @@ object GuidanceView {
      */
     val onGuidanceDashBoardDistanceInfo: ViewInteraction
         get() = onView(withId(R.id.distance))
+
+    /**
+     * @return The [ViewInteraction] Current street name info view
+     */
+    val onGuidanceCurrentStreetInfo: ViewInteraction
+        get() = onView(withId(R.id.guidance_current_street_view))
+
+    /**
+     * @return The [ViewInteraction] Current street name info text view
+     */
+    val onGuidanceCurrentStreetInfoText: ViewInteraction
+        get() = onView(withId(R.id.guidance_current_street_text))
 }

@@ -22,11 +22,14 @@ import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.IntegrationUITest
 import com.here.msdkuiapp.espresso.impl.core.CoreActions
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onPlannerBarAppNameTitleView
+import com.here.msdkuiapp.espresso.impl.testdata.Constants
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.MAP_POINT_7
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationActions
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationBarActions
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.utils.DestinationData
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceCurrentStreetInfo
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedValue
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardEtaInfo
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
 import com.here.msdkuiapp.espresso.tests.TestBase
@@ -126,5 +129,65 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
         DriveNavigationActions.tapOnStartNavigationBtn()
         // Check that speed value element is displayed on guidance view
         onGuidanceDashBoardCurrentSpeedValue.check(matches(isDisplayed()))
+    }
+
+    /**
+     * MSDKUI-1288:  Integration test for Guidance/Street label component
+     */
+    @Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
+    @Test
+    @IntegrationUITest
+    fun testForGuidanceCurrentStreet_shouldDisplayCurrentStreet() {
+        // Check drive navigation view opened and default destination label displayed
+        DriveNavigationBarActions.waitForDestinationDisplayed()
+        // Check map view displayed and tap anywhere on map view
+        MapActions.waitForMapViewEnabled().tapByRelativeCoordinates(destination)
+        // Tap on tick an actionbar to confirm guidance
+        DriveNavigationBarActions.waitForDestinationNotDisplayed()
+                .waitForRightImageIconCheck()
+                .provideMockLocation(mockLocationData)
+        RoutePlannerBarActions.tapOnTickButton()
+        // Check that route overview exists
+        DriveNavigationBarActions.waitForRouteOverView()
+                .waitForGuidanceDescriptionDisplayed()
+        // Start navigation simulation
+        DriveNavigationActions.tapOnStartNavigationBtn()
+        // Check that current street element is displayed on guidance view for both orientations
+        enumValues<Constants.ScreenOrientation>().forEach {
+            // Set screen orientation: PORTRAIT / LANDSCAPE
+            CoreActions().changeOrientation(it)
+            // Check is view displayed
+            onGuidanceCurrentStreetInfo.check(matches(isDisplayed()))
+        }
+    }
+
+    /**
+     * MSDKUI-1474 Integration tests for ETA
+     */
+    @Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
+    @Test
+    @IntegrationUITest
+    fun testForGuidanceManeuverPanel_shouldDisplayETA() {
+        // Check drive navigation view opened and default destination label displayed
+        DriveNavigationBarActions.waitForDestinationDisplayed()
+        // Check map view displayed and tap anywhere on map view
+        MapActions.waitForMapViewEnabled().tapByRelativeCoordinates(destination)
+        // Tap on tick an actionbar to confirm guidance
+        DriveNavigationBarActions.waitForDestinationNotDisplayed()
+                .waitForRightImageIconCheck()
+                .provideMockLocation(mockLocationData)
+        RoutePlannerBarActions.tapOnTickButton()
+        // Check that route overview exists
+        DriveNavigationBarActions.waitForRouteOverView()
+                .waitForGuidanceDescriptionDisplayed()
+        // Start navigation simulation
+        DriveNavigationActions.tapOnStartNavigationBtn()
+        // Check that ETA view is displayed on both screen orientations
+        enumValues<Constants.ScreenOrientation>().forEach {
+            // Set screen orientation: PORTRAIT / LANDSCAPE
+            CoreActions().changeOrientation(it)
+            // Check is view displayed
+            onGuidanceDashBoardEtaInfo.check(matches(isDisplayed()))
+        }
     }
 }

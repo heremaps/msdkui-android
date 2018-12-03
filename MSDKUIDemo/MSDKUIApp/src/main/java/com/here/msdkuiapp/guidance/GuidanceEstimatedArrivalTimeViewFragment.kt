@@ -19,7 +19,7 @@ import kotlinx.android.extensions.ContainerOptions
 @ContainerOptions(CacheImplementation.NO_CACHE)
 class GuidanceEstimatedArrivalViewFragment : Fragment(), GuidanceEstimatedArrivalViewListener {
 
-    internal var viewViewPresenter : GuidanceEstimatedArrivalViewPresenter? = null;
+    internal var viewPresenter : GuidanceEstimatedArrivalViewPresenter? = null;
 
     init {
         retainInstance = true
@@ -42,8 +42,8 @@ class GuidanceEstimatedArrivalViewFragment : Fragment(), GuidanceEstimatedArriva
      * Creates Presenter for this [GuidanceEstimatedArrivalViewFragment].
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if (viewViewPresenter == null) {
-            viewViewPresenter = GuidanceEstimatedArrivalViewPresenter(SingletonHelper.navigationManager).apply {
+        if (viewPresenter == null) {
+            viewPresenter = GuidanceEstimatedArrivalViewPresenter(SingletonHelper.navigationManager).apply {
                 addListener(this@GuidanceEstimatedArrivalViewFragment)
                 resume()
             }
@@ -52,12 +52,12 @@ class GuidanceEstimatedArrivalViewFragment : Fragment(), GuidanceEstimatedArriva
 
     override fun onPause() {
         super.onPause()
-        viewViewPresenter?.pause()
+        viewPresenter?.pause()
     }
 
     override fun onResume() {
         super.onResume()
-        viewViewPresenter?.resume()
+        viewPresenter?.resume()
     }
 
     override fun onDataChanged(viewData: GuidanceEstimatedArrivalViewData?) {

@@ -33,7 +33,8 @@ class GuidanceContracts {
         /**
          * To be called when maneuver data is available.
          *
-         * @param data GuidanceManeuverData
+         * @param data
+         *         GuidanceManeuverData
          */
         fun onManeuverData(data: GuidanceManeuverData)
 
@@ -51,23 +52,28 @@ class GuidanceContracts {
         /**
          * To be called when ui needs to be populated with [WaypointEntry] & [Route].
          *
-         * @param entry [WaypointEntry]
-         * @param route [Route] to be rendered on map.
-         * @param trafficEnabled true if traffic should be enabled, false otherwise.
+         * @param entry
+         *         [WaypointEntry]
+         * @param route
+         *         [Route] to be rendered on map.
+         * @param trafficEnabled
+         *         true if traffic should be enabled, false otherwise.
          */
         fun populateUI(entry: WaypointEntry, route: Route, listVisible: Boolean, trafficEnabled: Boolean = true)
 
         /**
          * To be called when routing is failed.
          *
-         * @param reason reason for failure.
+         * @param reason
+         *         reason for failure.
          */
         fun routingFailed(reason: String)
 
         /**
          * To be called when showing/hiding route maneuvers list
          *
-         * @param listVisible true if route maneuvers list is visible, false otherwise.
+         * @param listVisible
+         *         true if route maneuvers list is visible, false otherwise.
          */
         fun toggleSteps(listVisible: Boolean)
     }
@@ -80,8 +86,10 @@ class GuidanceContracts {
         /**
          * Indicates to update UI.
          *
-         * @param textValue textValue needed to update UI
-         * @param withColor true if color of UI needs to be changed.
+         * @param textValue
+         *         textValue needed to update UI
+         * @param withColor
+         *         true if color of UI needs to be changed.
          */
         fun onUiUpdate(textValue: String, withColor: Boolean = false, rightIconVisible: Boolean = false)
     }
@@ -98,18 +106,32 @@ class CommonContracts {
     interface WaypointSelection : BaseContract<WaypointSelection> {
 
         /**
+         * Back icon is clicked.
+         *
+         * @param index
+         *         index of [WaypointEntry].
+         * @param entry
+         *         [WaypointEntry].
+         */
+        fun onBackClicked(index: Int?, entry: WaypointEntry?)
+
+        /**
          * Right icon is clicked.
          *
-         * @param index index of [WaypointEntry].
-         * @param entry [WaypointEntry].
+         * @param index
+         *         index of [WaypointEntry].
+         * @param entry
+         *         [WaypointEntry].
          */
         fun onRightIconClicked(index: Int?, entry: WaypointEntry?)
 
         /**
          * Ui update needed.
          *
-         * @param value value needed to update UI
-         * @param withColor true if color of UI needs to be changed.
+         * @param value
+         *         value needed to update UI.
+         * @param withColor
+         *         true if color of UI needs to be changed.
          */
         fun onUiUpdate(value: String, withColor: Boolean)
     }

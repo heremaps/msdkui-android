@@ -154,8 +154,10 @@ class RoutePlannerFragment() : RetainFragment(), RoutingContracts.RoutePlanner {
     /**
      * Updates waypoint to [WaypointList].
      *
-     * @param index index within the list where [WaypointEntry] needs to be updated.
-     * @param current [WaypointEntry] that needs to be updated.
+     * @param index
+     *         index within the list where [WaypointEntry] needs to be updated.
+     * @param current
+     *         [WaypointEntry] that needs to be updated.
      */
     fun updateWaypoint(index: Int, current: WaypointEntry) {
         presenter.updateWaypoint(index, current, waypointList?.entries)
@@ -185,12 +187,36 @@ class RoutePlannerFragment() : RetainFragment(), RoutingContracts.RoutePlanner {
     /**
      * Updates UI or visibility of the action bar title, back & right icon.
      *
-     * @param updateBack if back button needs to be updated.
-     * @param updateTitle if title needs to be updated.
-     * @param updateRightIcon if right icon needs to be update.
+     * @param updateBack
+     *         if back button needs to be updated.
+     * @param updateTitle
+     *         if title needs to be updated.
+     * @param updateRightIcon
+     *         if right icon needs to be update.
      */
     fun updateActionBar(updateBack: Boolean = true, updateTitle: Boolean = true, updateRightIcon: Boolean = true) {
         presenter.updateActionBar(updateBack = updateBack, updateTitle = updateTitle, updateRightIcon = updateRightIcon)
+    }
+
+    /**
+     * Make action on waypoint selection cancelled - if this waypoint is invalid then remove it from list.
+     *
+     * @param index
+     *         index within the list where selection been cancelled.
+     * @param current
+     *         [WaypointEntry] that selection been cancelled.
+     */
+    fun waypointSelectionCancelled(index: Int?, current: WaypointEntry?) {
+        index ?: return
+        var removeWaypoint = true
+        current?.run {
+            if (isValid) removeWaypoint = false
+        }
+        waypointList?.run {
+            if (removeWaypoint && entriesCount > minWaypointItems) {
+                removeEntry(index)
+            }
+        }
     }
 
     /**
@@ -201,37 +227,44 @@ class RoutePlannerFragment() : RetainFragment(), RoutingContracts.RoutePlanner {
         /**
          * To be called when a entry is clicked in [WaypointList].
          *
-         * @param index index of entry in list.
-         * @param current clicked [WaypointEntry].
+         * @param index
+         *         index of entry in list.
+         * @param current
+         *         clicked [WaypointEntry].
          */
         fun onEntryClicked(index: Int, current: WaypointEntry)
 
         /**
          * To be called when routes is calculated.
          *
-         * @param routes the calculated routes.
+         * @param routes
+         *         the calculated routes.
          */
         fun onRouteCalculated(routes: List<Route>)
 
         /**
          * To be called when option panel is clicked.
          *
-         * @param options updated [RouteOptions].
-         * @param dynamicPenalty updated [DynamicPenalty].
+         * @param options
+         *         updated [RouteOptions].
+         * @param dynamicPenalty
+         *         updated [DynamicPenalty].
          */
         fun onOptionPanelClicked(options: RouteOptions, dynamicPenalty: DynamicPenalty)
 
         /**
          * To be called when there is a title change.
          *
-         * @param isRouteTitle true if route is already calculated, false otherwise.
+         * @param isRouteTitle
+         *         true if route is already calculated, false otherwise.
          */
         fun onTitleChange(isRouteTitle: Boolean)
 
         /**
          * Notifies routing is failed.
          *
-         * @param reason reason for routing failed.
+         * @param reason
+         *         reason for routing failed.
          */
         fun onRoutingFailed(reason: String)
     }

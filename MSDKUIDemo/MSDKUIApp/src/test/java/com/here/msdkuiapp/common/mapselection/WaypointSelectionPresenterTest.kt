@@ -16,6 +16,7 @@
 
 package com.here.msdkuiapp.common.mapselection
 
+import android.app.Activity
 import com.here.android.mpa.common.GeoCoordinate
 import com.here.android.mpa.routing.RouteWaypoint
 import com.here.android.mpa.search.*
@@ -62,11 +63,23 @@ class WaypointSelectionPresenterTest : BaseTest() {
 
     @Test
     fun testActionBar() {
+        val captorBackClickListener = argumentCaptor<() -> Unit>()
+        val captorRightIconClickListener = argumentCaptor<() -> Unit>()
         val actionBar = mock(AppActionBar::class.java)
+        val mockActivity = mock(Activity::class.java)
+        `when`(actionBar.activity).thenReturn(mockActivity)
+
         presenter.setUpActionBar(actionBar)
-        verify(actionBar).setBack(anyBoolean(), anyInt(), anySafe())
+        verify(actionBar).setBack(anyBoolean(), anyInt(), captorBackClickListener.capture())
         verify(actionBar).setTitle(anyBoolean(), anyString(), anyBoolean())
-        verify(actionBar).setRightIcon(anyBoolean(), anyInt(), anyString(), anySafe())
+        verify(actionBar).setRightIcon(anyBoolean(), anyInt(), anyString(), captorRightIconClickListener.capture())
+
+        captorBackClickListener.value.invoke()
+        verify(mockContract).onBackClicked(anySafe(), anySafe())
+        verify(mockActivity).onBackPressed()
+
+        captorRightIconClickListener.value.invoke()
+        verify(mockContract).onRightIconClicked(anySafe(), anySafe())
     }
 
     @Test

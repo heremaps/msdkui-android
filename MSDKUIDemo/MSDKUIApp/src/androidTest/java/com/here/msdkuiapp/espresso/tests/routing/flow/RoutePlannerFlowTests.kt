@@ -34,7 +34,6 @@ import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.*
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem.*
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
-import com.here.msdkuiapp.espresso.impl.views.map.utils.MapData
 import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteMatchers
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescArrival
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDelayInformation
@@ -239,12 +238,11 @@ class RoutePlannerFlowTests : TestBase<SplashActivity>(SplashActivity::class.jav
                 // Skip two first waypoint items, because can't be add/remove
                 WAYPOINT_1, WAYPOINT_2 -> return@forEach
                 else -> {
-                    // Create waypoint to add on route planner
-                    val waypointData = MapData.run { WaypointData(randMapPoint, it) }
                     // Tap on Add/Plus additional waypoint image button
                     RoutePlannerBarActions.waitForAddWaypointImageButton().tapOnAddWaypointButton()
                     // Select a waypoint on map
-                    MapActions.waitForMapViewEnabled().tapByRelativeCoordinates(waypointData)
+                    val waypointData = WaypointData(it.mapData, it)
+                    MapActions.waitForMapViewEnabled().tap(waypointData)
                     // Tap on tick to confirm the first waypoint selection
                     val location = RoutePlannerBarActions.waitForLocationNotDisplayed()
                             .waitForRightImageIconCheck()
@@ -285,7 +283,7 @@ class RoutePlannerFlowTests : TestBase<SplashActivity>(SplashActivity::class.jav
                     // Tap on Add/Plus additional waypoint image button
                     RoutePlannerBarActions.waitForAddWaypointImageButton().tapOnAddWaypointButton()
                     // Select a waypoint on map
-                    MapActions.waitForMapViewEnabled().tapByGeoCoordinates(waypointData)
+                    MapActions.waitForMapViewEnabled().tap(waypointData)
                     // Tap on tick to confirm the first waypoint selection
                     waypointList.add(RoutePlannerBarActions
                             .waitForLocationNotDisplayed()
@@ -324,7 +322,7 @@ class RoutePlannerFlowTests : TestBase<SplashActivity>(SplashActivity::class.jav
                 .tapOnAddWaypointButton()
                 .checkWaypointDefaultLabel()
         // Select the first waypoint on map
-        MapActions.waitForMapViewEnabled().tapByGeoCoordinates(waypoint1)
+        MapActions.waitForMapViewEnabled().tap(waypoint1)
         // Tap on tick to confirm the first waypoint selection
         RoutePlannerBarActions.waitForLocationNotDisplayed()
                 .waitForRightImageIconCheck()

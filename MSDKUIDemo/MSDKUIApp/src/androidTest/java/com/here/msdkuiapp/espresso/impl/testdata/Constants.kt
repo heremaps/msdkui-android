@@ -54,10 +54,6 @@ object Constants {
     /**
      * Map related coordinates
      */
-    private const val MAP_COORDINATE_B = 0.5
-    private const val MAP_COORDINATE_D = 0.3
-    private const val MAP_COORDINATE_F = 0.55
-    private const val MAP_COORDINATE_G = 0.45
     private const val GEO_COORDINATE_HERE_BERLIN_LAT = 52.53093
     private const val GEO_COORDINATE_HERE_BERLIN_LNG = 13.38439
     private const val GEO_COORDINATE_BRAUHAUS_SUDSTERN_LAT = 52.48842
@@ -72,10 +68,6 @@ object Constants {
     /**
      * Map related points
      */
-    val MAP_POINT_6 = MapData(MAP_COORDINATE_B, MAP_COORDINATE_B)
-    val MAP_POINT_7 = MapData(MAP_COORDINATE_D, MAP_COORDINATE_D)
-    val MAP_POINT_8 = MapData(MAP_COORDINATE_F, MAP_COORDINATE_G)
-
     val GEO_POINT_0 = MapData(GEO_COORDINATE_HERE_BERLIN_LAT, GEO_COORDINATE_HERE_BERLIN_LNG)
     val GEO_POINT_1 = MapData(GEO_COORDINATE_TWO_FELLAS_LAT, GEO_COORDINATE_TWO_FELLAS_LNG)
     val GEO_POINT_2 = MapData(GEO_COORDINATE_BRAUHAUS_SUDSTERN_LAT, GEO_COORDINATE_BRAUHAUS_SUDSTERN_LNG)

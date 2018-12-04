@@ -50,6 +50,7 @@ object CoreMatchers {
     private const val TIMEOUT_WAIT_SEC: Long = 60
     private const val TIMEOUT_DELAY_MILLIS: Long = 1500
     private val TIMEOUT_WAIT_MILLIS: Long = SECONDS.toMillis(TIMEOUT_WAIT_SEC)
+    const val TIMEOUT_WAIT_EXTENDED_MILLIS: Long = 120000
 
     /**
      * Waits util given view is successfully matched OR timeout happens.

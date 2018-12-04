@@ -23,10 +23,9 @@ import com.here.msdkuiapp.espresso.impl.annotation.IntegrationUITest
 import com.here.msdkuiapp.espresso.impl.core.CoreActions
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onPlannerBarAppNameTitleView
 import com.here.msdkuiapp.espresso.impl.testdata.Constants
-import com.here.msdkuiapp.espresso.impl.testdata.Constants.MAP_POINT_7
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_1
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationActions
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationBarActions
-import com.here.msdkuiapp.espresso.impl.views.drivenavigation.utils.DestinationData
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceCurrentStreetInfo
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedValue
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardEtaInfo
@@ -43,10 +42,11 @@ import org.junit.runners.MethodSorters
 /**
  * Test for integration of RoutePlanner component with other components.
  */
+@Ignore // FIXME: MSDKUI-1350
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.java) {
 
-    private val destination: DestinationData = DestinationData(MAP_POINT_7)
+    private val destination = GEO_POINT_1
 
     @Before
     fun prepare() {
@@ -61,7 +61,6 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     /**
      * MSDKUI-570: Integration tests for Guidance start/stop
      */
-    @Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
     @Test
     @IntegrationUITest
     fun testForGuidanceStartStop_shouldOpenGuidanceView() {
@@ -69,12 +68,11 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
         DriveNavigationBarActions.waitForDriveNavigationView()
                 .waitForDestinationDisplayed()
         // Check map view displayed and tap anywhere on map view
-        MapActions.waitForMapViewEnabled().tapByRelativeCoordinates(destination)
+        MapActions.waitForMapViewEnabled().tap(destination)
         // Tap on tick an actionbar to confirm guidance
         DriveNavigationBarActions
                 .waitForDestinationNotDisplayed()
                 .waitForRightImageIconCheck()
-                .provideMockLocation(mockLocationData)
         RoutePlannerBarActions.tapOnTickButton()
         // Tap on Start navigation to open guidance view
         DriveNavigationBarActions.waitForRouteOverView()
@@ -87,18 +85,16 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     /**
      * MSDKUI-866: Integration tests for route calculation in Guidance
      */
-    @Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
     @Test
     @IntegrationUITest
     fun testForRouteCalculationInGuidance_shouldOpenRouteOverview() {
         // Check drive navigation view opened and default destination label displayed
         DriveNavigationBarActions.waitForDestinationDisplayed()
         // Check map view displayed and tap anywhere on map view
-        MapActions.waitForMapViewEnabled().tapByRelativeCoordinates(destination)
+        MapActions.waitForMapViewEnabled().tap(destination)
         // Tap on tick an actionbar to confirm guidance
         DriveNavigationBarActions.waitForDestinationNotDisplayed()
                 .waitForRightImageIconCheck()
-                .provideMockLocation(mockLocationData)
         RoutePlannerBarActions.tapOnTickButton()
         // Check that route overview exists
         DriveNavigationBarActions.waitForRouteOverView()
@@ -109,24 +105,22 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     /**
      * MSDKUI-1267: Integration tests for showing current speed on maneuver panel
      */
-    @Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
     @Test
     @IntegrationUITest
     fun testForGuidanceManeuverPanel_shouldDisplayCurrentSpeed() {
         // Check drive navigation view opened and default destination label displayed
         DriveNavigationBarActions.waitForDestinationDisplayed()
         // Check map view displayed and tap anywhere on map view
-        MapActions.waitForMapViewEnabled().tapByRelativeCoordinates(destination)
+        MapActions.waitForMapViewEnabled().tap(destination)
         // Tap on tick an actionbar to confirm guidance
         DriveNavigationBarActions.waitForDestinationNotDisplayed()
                 .waitForRightImageIconCheck()
-                .provideMockLocation(mockLocationData)
         RoutePlannerBarActions.tapOnTickButton()
         // Check that route overview exists
         DriveNavigationBarActions.waitForRouteOverView()
                 .waitForGuidanceDescriptionDisplayed()
         // Start navigation simulation
-        DriveNavigationActions.tapOnStartNavigationBtn()
+        DriveNavigationActions.startNavigationSimulation()
         // Check that speed value element is displayed on guidance view
         onGuidanceDashBoardCurrentSpeedValue.check(matches(isDisplayed()))
     }
@@ -134,14 +128,13 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     /**
      * MSDKUI-1288:  Integration test for Guidance/Street label component
      */
-    @Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
     @Test
     @IntegrationUITest
     fun testForGuidanceCurrentStreet_shouldDisplayCurrentStreet() {
         // Check drive navigation view opened and default destination label displayed
         DriveNavigationBarActions.waitForDestinationDisplayed()
         // Check map view displayed and tap anywhere on map view
-        MapActions.waitForMapViewEnabled().tapByRelativeCoordinates(destination)
+        MapActions.waitForMapViewEnabled().tap(destination)
         // Tap on tick an actionbar to confirm guidance
         DriveNavigationBarActions.waitForDestinationNotDisplayed()
                 .waitForRightImageIconCheck()
@@ -164,14 +157,13 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     /**
      * MSDKUI-1474 Integration tests for ETA
      */
-    @Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
     @Test
     @IntegrationUITest
     fun testForGuidanceManeuverPanel_shouldDisplayETA() {
         // Check drive navigation view opened and default destination label displayed
         DriveNavigationBarActions.waitForDestinationDisplayed()
         // Check map view displayed and tap anywhere on map view
-        MapActions.waitForMapViewEnabled().tapByRelativeCoordinates(destination)
+        MapActions.waitForMapViewEnabled().tap(destination)
         // Tap on tick an actionbar to confirm guidance
         DriveNavigationBarActions.waitForDestinationNotDisplayed()
                 .waitForRightImageIconCheck()

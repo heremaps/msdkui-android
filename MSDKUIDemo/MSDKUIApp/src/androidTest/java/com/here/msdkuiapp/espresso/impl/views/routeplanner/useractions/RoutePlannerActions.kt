@@ -57,7 +57,7 @@ object RoutePlannerActions {
             // Select and check that waypoint item on route planner selected and visible
             RoutePlannerActions.tapWaypointOnPlanner(waypointItem).checkWaypointLocationLabel(waypoint)
             // Select the first waypoint on map
-            MapActions.waitForMapViewEnabled().tapByGeoCoordinates(waypointData)
+            MapActions.waitForMapViewEnabled().tap(waypointData)
             // Tap on tick to confirm the first waypoint selection
             return waypointData.copy(
                     waypoint = RoutePlannerBarActions

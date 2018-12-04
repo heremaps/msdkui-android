@@ -70,7 +70,7 @@ class MockLocation(private val targetContext: Context, private var mockLocationP
     }
 
     private fun shutDownMockLocationProvider(mockLocationProvider: MockLocationManager?) {
-        Log.d(logTag, "Shout down mock location provider")
+        Log.d(logTag, "Shut down mock location provider")
         if (mockLocationProvider == null) {
             return
         }
@@ -91,7 +91,12 @@ class MockLocation(private val targetContext: Context, private var mockLocationP
     }
 
     private fun isLocationProviderActive(locationManager: LocationManager, providerName: String): Boolean {
-        return locationManager.allProviders.stream().anyMatch { p -> p.equals(providerName, ignoreCase = true) }
+        for (provider in locationManager.allProviders) {
+            if (provider.equals(providerName, true)) {
+                return true;
+            }
+        }
+        return false
     }
 
     private fun waitForPositionFix(testPlace: TestPlace) {

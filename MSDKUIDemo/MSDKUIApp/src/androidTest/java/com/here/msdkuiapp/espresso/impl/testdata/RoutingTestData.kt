@@ -17,6 +17,12 @@
 package com.here.msdkuiapp.espresso.impl.testdata
 
 import com.here.msdkui.R
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_0
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_1
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_2
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_3
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_4
+import com.here.msdkuiapp.espresso.impl.views.map.utils.MapData
 
 /**
  * Routing test data related values
@@ -24,17 +30,17 @@ import com.here.msdkui.R
 class RoutingTestData {
 
     /**
-     * Waypoint items on route planer
+     * Waypoint items on route planer with default geo points
      * Note: Waypoints list can not display more then 4 items, max item = 3
      */
-    enum class WaypointItem(val value: Int) {
+    enum class WaypointItem(val value: Int, val mapData: MapData) {
         // Waypoint items on Route Planner
-        WAYPOINT_1(0),
-        WAYPOINT_2(1),
-        WAYPOINT_3(2),
-        WAYPOINT_4(3),
-        WAYPOINT_5(3),
-        WAYPOINT_6(3)
+        WAYPOINT_1(0, GEO_POINT_1),
+        WAYPOINT_2(1, GEO_POINT_2),
+        WAYPOINT_3(2, GEO_POINT_3),
+        WAYPOINT_4(3, GEO_POINT_4),
+        WAYPOINT_5(3, GEO_POINT_0),
+        WAYPOINT_6(3, GEO_POINT_1)
     }
 
     /**

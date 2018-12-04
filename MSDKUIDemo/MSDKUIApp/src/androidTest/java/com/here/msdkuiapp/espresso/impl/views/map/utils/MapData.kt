@@ -16,21 +16,4 @@
 
 package com.here.msdkuiapp.espresso.impl.views.map.utils
 
-class MapData(val X: Double, val Y: Double) {
-
-    /**
-     * Generate random cooodinates for Map view
-     */
-    companion object {
-
-        /**
-         * @return [MapData] with X & Y coordinates
-         */
-        val randMapPoint: MapData get() = MapData(this.randMapCoord, this.randMapCoord)
-
-        /**
-         * @return [Double] map view coordinates in range 0.1 - 0.9
-         */
-        private val randMapCoord: Double get() = Math.random() * (0.9 - 0.1) + 0.1
-    }
-}
+class MapData(val lat: Double, val lng: Double)

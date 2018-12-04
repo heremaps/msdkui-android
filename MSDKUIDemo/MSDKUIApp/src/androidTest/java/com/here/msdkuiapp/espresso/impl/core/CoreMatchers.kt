@@ -31,14 +31,18 @@ import android.support.test.espresso.matcher.ViewMatchers.withText
 import android.support.test.espresso.util.HumanReadables
 import android.support.test.espresso.util.TreeIterables
 import android.support.v7.widget.RecyclerView
+import android.text.format.DateFormat
 import android.view.View
+import android.widget.DatePicker
 import android.widget.TextView
+import android.widget.TimePicker
 import com.here.msdkui.common.ThemeUtil
 import com.here.msdkuiapp.espresso.impl.utils.CurrentActivityUtils
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
+import java.util.*
 import java.util.concurrent.TimeUnit.SECONDS
 import java.util.concurrent.TimeoutException
 
@@ -135,9 +139,17 @@ object CoreMatchers {
     }
 
     /**
-     * Matches the text view with given [ViewInteraction]
+     * Matches [TextView] with [date] text in [dateFormat]
      */
-    fun getTextView(viewInteraction: ViewInteraction): String {
+    fun withDateText(date: Calendar, dateFormat: String = "MMM d, yyyy h:mm aaa"): Matcher<View>? {
+        return withText(DateFormat.format(dateFormat, date).toString())
+    }
+
+    /**
+     * Get text from [TextView]
+     * @return [String] text from [TextView], represented by [ViewInteraction]
+     */
+    fun getText(viewInteraction: ViewInteraction): String {
         var stringHolder = String()
         viewInteraction.perform(object : ViewAction {
             override fun getConstraints() = isAssignableFrom(TextView::class.java)
@@ -153,7 +165,49 @@ object CoreMatchers {
     }
 
     /**
-     * @return The [String] text by given resource id
+     * Get date from [DatePicker]
+     * @return [Calendar] date from [DatePicker], represented by [ViewInteraction]
+     */
+    fun getDate(viewInteraction: ViewInteraction): Calendar {
+        val date = Calendar.getInstance()
+        viewInteraction.perform(object : ViewAction {
+            override fun getConstraints() = isAssignableFrom(DatePicker::class.java)
+
+            override fun getDescription() = "Get date from DatePicker: "
+
+            override fun perform(uiController: UiController, view: View) {
+                with (view as DatePicker) {
+                    date.set(year, month, dayOfMonth)
+                }
+            }
+        })
+        return date
+    }
+
+    /**
+     * Get time from [TimePicker]
+     * @return [Calendar] time from [TimePicker], represented by [ViewInteraction]
+     */
+    fun getTime(viewInteraction: ViewInteraction): Calendar {
+        val time = Calendar.getInstance()
+        viewInteraction.perform(object : ViewAction {
+            override fun getConstraints() = isAssignableFrom(TimePicker::class.java)
+
+            override fun getDescription() = "Get time from TimePicker: "
+
+            override fun perform(uiController: UiController, view: View) {
+                with (view as TimePicker) {
+                    time.set(Calendar.HOUR_OF_DAY, hour)
+                    time.set(Calendar.MINUTE, minute)
+                }
+            }
+        })
+        return time
+    }
+
+    /**
+     * Get [String] by given resource id
+     * @return The [String] text
      */
     fun getTextById(resourceId: Int): String {
         return InstrumentationRegistry.getTargetContext().resources.getString(resourceId)
@@ -241,7 +295,8 @@ object CoreMatchers {
     }
 
     /**
-     * @return The [Int] color by given resource id
+     * Get [Int] color by resource id
+     * @return The [Int] color
      */
     fun getColorById(resourceId: Int): Int {
         return ThemeUtil.getColor(CurrentActivityUtils.currentActivity, resourceId)

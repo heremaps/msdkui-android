@@ -167,7 +167,7 @@ object RouteMatchers {
      * Check Maneuver item description information on route overview
      */
     private fun checkManeuverItemsDisplayed(index: Int = 1): RouteMatchers {
-        val instruction = CoreMatchers.getTextView(onManeuverInstruction(index))
+        val instruction = CoreMatchers.getText(onManeuverInstruction(index))
         // Check icon type in maneuver list item
         onManeuverIconType(index).check(matches(isDisplayed()))
         // Check instruction in maneuver list item

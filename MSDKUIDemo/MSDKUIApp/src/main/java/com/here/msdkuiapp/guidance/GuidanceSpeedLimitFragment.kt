@@ -66,6 +66,7 @@ class GuidanceSpeedLimitFragment : Fragment(), GuidanceSpeedListener  {
                 resume()
             }
         }
+        view.setBackgroundResource(R.drawable.speed_limit_bg)
     }
 
     override fun onPause() {

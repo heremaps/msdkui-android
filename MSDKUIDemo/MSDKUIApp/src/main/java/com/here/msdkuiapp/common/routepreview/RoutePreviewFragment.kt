@@ -92,12 +92,12 @@ class RoutePreviewFragment : Fragment(), GuidanceContracts.RoutePreview {
     override fun toggleSteps(listVisible: Boolean) {
         if (listVisible.not()) {
             see_steps.text = activity!!.getText(com.here.msdkuiapp.R.string.msdkui_app_guidance_button_showmaneuvers)
-            guidance_maneuver_description_list.visibility = View.GONE
+            guidance_maneuver_list.visibility = View.GONE
             list_end_divider.visibility = View.GONE
             place_holder.visibility = View.VISIBLE
         } else {
             see_steps.text = activity!!.getText(com.here.msdkuiapp.R.string.msdkui_app_guidance_button_showmap)
-            guidance_maneuver_description_list.visibility = View.VISIBLE
+            guidance_maneuver_list.visibility = View.VISIBLE
             list_end_divider.visibility = View.VISIBLE
             place_holder.visibility = View.GONE
         }
@@ -115,7 +115,7 @@ class RoutePreviewFragment : Fragment(), GuidanceContracts.RoutePreview {
             isTrafficEnabled = trafficEnabled
             this.route = route
         }
-        guidance_maneuver_description_list?.route = route
+        guidance_maneuver_list?.route = route
         listener?.renderRoute(route)
         toggleSteps(listVisible)
     }

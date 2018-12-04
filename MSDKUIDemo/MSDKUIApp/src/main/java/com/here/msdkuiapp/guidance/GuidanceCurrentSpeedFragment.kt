@@ -24,7 +24,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.here.msdkui.common.ThemeUtil
-import com.here.msdkui.guidance.GuidanceCurrentSpeedPanel
+import com.here.msdkui.guidance.GuidanceSpeedView
 import com.here.msdkui.guidance.GuidanceSpeedData
 import com.here.msdkui.guidance.GuidanceSpeedListener
 import com.here.msdkui.guidance.GuidanceSpeedPresenter
@@ -34,12 +34,12 @@ import kotlinx.android.extensions.ContainerOptions
 import kotlinx.android.synthetic.main.guidance_current_speed.*
 
 /**
- * Fragment class for [GuidanceCurrentSpeedPanel] view.
+ * Fragment class for [GuidanceSpeedView] view.
  */
 @ContainerOptions(CacheImplementation.NO_CACHE)
 class GuidanceCurrentSpeedFragment : Fragment(), GuidanceSpeedListener {
 
-    internal var panelPresenter: GuidanceSpeedPresenter? = null
+    internal var presenter: GuidanceSpeedPresenter? = null
 
     init {
         retainInstance = true
@@ -58,11 +58,11 @@ class GuidanceCurrentSpeedFragment : Fragment(), GuidanceSpeedListener {
     }
 
     /**
-     * Creates Presenter for this GuidanceCurrentStreetFragment.
+     * Creates Presenter for this GuidanceStreetLabelFragment.
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if (panelPresenter == null) {
-            panelPresenter = GuidanceSpeedPresenter(SingletonHelper.navigationManager ?: return,
+        if (presenter == null) {
+            presenter = GuidanceSpeedPresenter(SingletonHelper.navigationManager ?: return,
                     SingletonHelper.positioningManager ?: return).apply {
                 addListener(this@GuidanceCurrentSpeedFragment)
                 resume()
@@ -72,12 +72,12 @@ class GuidanceCurrentSpeedFragment : Fragment(), GuidanceSpeedListener {
 
     override fun onPause() {
         super.onPause()
-        panelPresenter?.pause()
+        presenter?.pause()
     }
 
     override fun onResume() {
         super.onResume()
-        panelPresenter?.resume()
+        presenter?.resume()
     }
 
     override fun onDataChanged(data: GuidanceSpeedData?) {

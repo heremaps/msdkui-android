@@ -47,7 +47,7 @@ object RouteView {
      * @return The [ViewInteraction] maneuver description list on route
      */
     val onManeuverDescriptionList: ViewInteraction
-        get() = onView(withId(R.id.guidance_maneuver_description_list))
+        get() = onView(withId(R.id.guidance_maneuver_list))
 
     /**
      * @return The [ViewInteraction] duration time on route overview

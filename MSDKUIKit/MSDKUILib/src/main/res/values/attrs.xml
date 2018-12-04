@@ -38,7 +38,7 @@
         </attr>
     </declare-styleable>
 
-    <declare-styleable name="ManeuverDescriptionItem">
+    <declare-styleable name="ManeuverItemView">
         <attr name="visible">
             <flag name="icon" value="0x01" />
             <flag name="instructions" value="0x02" />

@@ -30,9 +30,10 @@ import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
 import com.here.msdkuiapp.espresso.impl.testdata.Constants
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.Gestures.LONG_PRESS
-import com.here.msdkuiapp.espresso.impl.views.drivenavigation.utils.DestinationData
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.Gestures.SINGLE_TAP
 import com.here.msdkuiapp.espresso.impl.views.map.screens.MapView.onMapFragmentWrapper
 import com.here.msdkuiapp.espresso.impl.views.map.screens.MapView.onMapFragmentWrapperView
+import com.here.msdkuiapp.espresso.impl.views.map.utils.MapData
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.utils.WaypointData
 
 /**
@@ -41,63 +42,26 @@ import com.here.msdkuiapp.espresso.impl.views.routeplanner.utils.WaypointData
 object MapActions: CoreActions() {
 
     /**
-     * Select waypoint items on map view by given coordinates
+     * Tap MapView by [waypointData] location coordinates
      */
-    fun tapByRelativeCoordinates(waypointData: WaypointData): MapActions {
-        waypointData.run { onMapFragmentWrapper.perform(tapIn(point.X, point.Y)) }
+    fun tap(waypointData: WaypointData): MapActions {
+        tap(waypointData.location)
         return this
     }
 
     /**
-     * Select waypoint item on map view by given geo coordinates
+     * Tap MapView by [mapData] coordinates
      */
-    fun tapByGeoCoordinates(waypointData: WaypointData): MapActions {
-        waypointData.point.run { onMapFragmentWrapper.perform(tapByGeoCoordinates(X, Y)) }
+    fun tap(mapData: MapData): MapActions {
+        mapData.run { onMapFragmentWrapper.perform(tapByGeoCoordinates(lat, lng)) }
         return this
     }
 
     /**
-     * Single tap or Long Press on the view in given x & y.
-     * @return [ViewAction]
+     * LongTap MapView by [mapData] coordinates
      */
-    private fun tapByGeoCoordinates(lat: Double, lng: Double, gestures: Constants.Gestures = Constants.Gestures.SINGLE_TAP): ViewAction {
-        return GeneralClickAction(
-                gestures.value,
-                CoordinatesProvider { view ->
-                    val map = (view as MapView).map
-                    val pixelResult = map.projectToPixel(GeoCoordinate(lat, lng)).result
-                    val screenPos = IntArray(2)
-                    view.getLocationOnScreen(screenPos)
-                    val screenX: Float
-                    val screenY: Float
-                    if (pixelResult.x > view.width || pixelResult.y > view.height) {
-                        map.setCenter(GeoCoordinate(lat, lng), Map.Animation.NONE)
-                        screenX = screenPos[0] + view.width / 2f
-                        screenY = screenPos[1] + view.height / 2f
-                    } else {
-                        screenX = screenPos[0] + pixelResult.x
-                        screenY = screenPos[1] + pixelResult.y
-                    }
-                    floatArrayOf(screenX, screenY)
-                },
-                Press.FINGER,
-                InputDevice.SOURCE_TOUCHSCREEN,
-                MotionEvent.TOOL_TYPE_FINGER)
-    }
-
-    /**
-     * Single tap to select destination point on map view by given coordinates
-     */
-    fun tapByRelativeCoordinates(destinationData: DestinationData): MapActions {
-        destinationData.run { onMapFragmentWrapper.perform(tapIn(point.X, point.Y)) }
-        return this
-    }
-
-    /**
-     * Long press to select destination point on map view by given coordinates
-     */
-    fun longPressOnMap(destinationData: DestinationData): MapActions {
-        destinationData.run { onMapFragmentWrapper.perform(tapIn(point.X, point.Y, gestures = LONG_PRESS)) }
+    fun longTap(mapData: MapData): MapActions {
+        mapData.run { onMapFragmentWrapper.perform(tapByGeoCoordinates(lat, lng, LONG_PRESS)) }
         return this
     }
 
@@ -107,5 +71,28 @@ object MapActions: CoreActions() {
     fun waitForMapViewEnabled(): MapActions {
         onRootView.perform(waitForCondition(onMapFragmentWrapperView, isEnabled = true))
         return this
+    }
+
+    /**
+     * Single tap or Long Press on the view in given x & y.
+     * @return [ViewAction]
+     */
+    private fun tapByGeoCoordinates(lat: Double, lng: Double, gestures: Constants.Gestures = SINGLE_TAP): ViewAction {
+        return GeneralClickAction(
+                gestures.value,
+                CoordinatesProvider { view ->
+                    val map = (view as MapView).map
+                    val screenPos = IntArray(2)
+                    view.getLocationOnScreen(screenPos)
+                    val screenX: Float
+                    val screenY: Float
+                    map.setCenter(GeoCoordinate(lat, lng), Map.Animation.NONE)
+                    screenX = screenPos[0] + view.width / 2f
+                    screenY = screenPos[1] + view.height / 2f
+                    floatArrayOf(screenX, screenY)
+                },
+                Press.FINGER,
+                InputDevice.SOURCE_TOUCHSCREEN,
+                MotionEvent.TOOL_TYPE_FINGER)
     }
 }

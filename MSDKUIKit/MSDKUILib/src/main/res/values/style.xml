@@ -735,6 +735,7 @@
     </style>
 
     <style name="GuidanceManeuverPanelHeadingTextLand" parent="GuidanceManeuverPanelHeadingText">
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_marginRight">20dp</item>
         <item name="android:layout_marginTop">0dp</item>     <!-- we have padding in parent theme -->
         <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">20dp</item>

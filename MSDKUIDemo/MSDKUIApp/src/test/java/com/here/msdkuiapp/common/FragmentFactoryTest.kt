@@ -19,7 +19,7 @@ package com.here.msdkuiapp.common
 import android.support.v4.app.Fragment
 import com.here.msdkuiapp.common.mapselection.WaypointSelectionFragment
 import com.here.msdkuiapp.common.routepreview.RoutePreviewFragment
-import com.here.msdkuiapp.guidance.GuidanceManeuverPanelFragment
+import com.here.msdkuiapp.guidance.GuidanceManeuverFragment
 import com.here.msdkuiapp.routing.OptionPanelFragment
 import com.here.msdkuiapp.routing.RouteDescriptionListFragment
 import com.here.msdkuiapp.routing.RouteManeuverListFragment
@@ -39,7 +39,7 @@ class FragmentFactoryTest {
         assertNotNull(FragmentFactory.create(RouteManeuverListFragment::class.java))
         assertNotNull(FragmentFactory.create(OptionPanelFragment::class.java))
         assertNotNull(FragmentFactory.create(SubOptionPanelFragment::class.java))
-        assertNotNull(FragmentFactory.create(GuidanceManeuverPanelFragment::class.java))
+        assertNotNull(FragmentFactory.create(GuidanceManeuverFragment::class.java))
         assertNotNull(FragmentFactory.create(RoutePreviewFragment::class.java))
     }
 

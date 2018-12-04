@@ -53,27 +53,6 @@ import org.hamcrest.Matcher
 open class CoreActions() {
 
     /**
-     * Single tap or Long Press on the view in given x & y percent.
-     * @return [ViewAction]
-     */
-    fun tapIn(pctX: Double, pctY: Double, gestures: Gestures = SINGLE_TAP): ViewAction {
-        return GeneralClickAction(
-                gestures.value,
-                CoordinatesProvider { view ->
-                    val screenPos = IntArray(2)
-                    view?.getLocationOnScreen(screenPos)
-                    val x = view.width * pctX
-                    val y = view.height * pctY
-                    val screenX = (screenPos[0] + x).toFloat()
-                    val screenY = (screenPos[1] + y).toFloat()
-                    floatArrayOf(screenX, screenY)
-                },
-                Press.FINGER,
-                InputDevice.SOURCE_TOUCHSCREEN,
-                MotionEvent.TOOL_TYPE_FINGER)
-    }
-
-    /**
      * Clicks the view without checking any constraint like visibility & others.
      */
     fun clickWithNoConstraint(): ViewAction {

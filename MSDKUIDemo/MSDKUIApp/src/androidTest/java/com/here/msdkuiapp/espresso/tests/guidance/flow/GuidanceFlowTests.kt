@@ -26,8 +26,7 @@ import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getTextView
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIdAndText
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
-import com.here.msdkuiapp.espresso.impl.testdata.Constants.MAP_POINT_7
-import com.here.msdkuiapp.espresso.impl.testdata.Constants.MAP_POINT_8
+import com.here.msdkuiapp.espresso.impl.testdata.Constants
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation.PORTRAIT
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers.checkCurrentStreetViewValueChanged
@@ -38,7 +37,6 @@ import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavig
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewStartNaviBtn
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationActions
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationBarActions
-import com.here.msdkuiapp.espresso.impl.views.drivenavigation.utils.DestinationData
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.utils.ManeuversActions
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceCurrentStreetInfoText
 import com.here.msdkuiapp.espresso.impl.views.guidance.useractions.GuidanceActions
@@ -51,18 +49,12 @@ import org.junit.runners.MethodSorters
 /**
  * UI flow tests for guidance
  */
+@Ignore // FIXME: MSDKUI-1350
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
 
-    private val destination: DestinationData = DestinationData(MAP_POINT_7)
-    private val destinationForShortSimulation: DestinationData = DestinationData(MAP_POINT_8)
-
-    @Before
-    fun prepare() {
-        CoreActions().changeOrientation(PORTRAIT)
-                .enterDriveNavigation()
-                .provideMockLocation(mockLocationData)
-    }
+    private val destination = Constants.GEO_POINT_1
+    private val destinationForShortSimulation = Constants.GEO_POINT_3
 
     @After
     fun tearDown() {
@@ -72,13 +64,14 @@ class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
     /**
      * MSDKUI-573: Select Drive Navigation destination via tap
      */
-    @Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
     @Test
     @FunctionalUITest
     fun testSelectDriveNavigationDestinationViaTap() {
         enumValues<ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
             CoreActions().changeOrientation(it)
+            //Enter Drive Navigation
+            CoreActions().enterDriveNavigation()
                     .provideMockLocation(mockLocationData)
             // Check drive navigation view opened
             DriveNavigationBarActions.waitForDriveNavigationView()
@@ -88,25 +81,25 @@ class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
             DriveNavigationBarActions.waitForDestinationDisplayed().checkDestinationDefaultLabel()
             // Check map view displayed and tap anywhere on map view
             MapActions.waitForMapViewEnabled()
-                    .tapByRelativeCoordinates(destination)
-                    .provideMockLocation(mockLocationData)
+                    .tap(destination)
             // Wait until destination location selected
             DriveNavigationBarActions.waitForDestinationNotDisplayed()
-            // Returns back to Landing screen and selects Drive Navigation
-            CoreActions().pressBackButton().enterDriveNavigation()
+            // Returns back to Landing screen
+            CoreActions().pressBackButton()
         }
     }
 
     /**
      * MSDKUI-574: Select Drive Navigation destination via long press
      */
-    @Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
     @Test
     @FunctionalUITest
     fun testSelectDriveNavigationDestinationViaLongPress() {
         enumValues<ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
             CoreActions().changeOrientation(it)
+            //Enter Drive Navigation
+            CoreActions().enterDriveNavigation()
                     .provideMockLocation(mockLocationData)
             // Check drive navigation view opened
             DriveNavigationBarActions.waitForDriveNavigationView()
@@ -116,35 +109,34 @@ class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
             DriveNavigationBarActions.waitForDestinationDisplayed().checkDestinationDefaultLabel()
             // Tap anywhere on map view
             MapActions.waitForMapViewEnabled()
-                    .longPressOnMap(destination)
-                    .provideMockLocation(mockLocationData)
+                    .longTap(destination)
             // Wait until destination location selected
             DriveNavigationBarActions.waitForDestinationNotDisplayed()
-            // Returns back to Landing screen and selects Drive Navigation
-            CoreActions().pressBackButton().enterDriveNavigation()
+            // Returns back to Landing screen
+            CoreActions().pressBackButton()
         }
     }
 
     /**
      * MSDKUI-661: Guidance route overview
      */
-    @Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
     @Test
     @FunctionalUITest
     fun testGuidanceRouteOverview() {
         enumValues<ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
-            CoreActions().changeOrientation(it).provideMockLocation(mockLocationData)
+            CoreActions().changeOrientation(it)
+            //Enter Drive Navigation
+            CoreActions().enterDriveNavigation()
+                    .provideMockLocation(mockLocationData)
             // Check drive navigation view opened
             DriveNavigationBarActions.waitForDriveNavigationView()
                     .waitForDestinationDisplayed()
             // Tap anywhere on map view
             MapActions.waitForMapViewEnabled()
-                    .tapByRelativeCoordinates(destination)
-                    .provideMockLocation(mockLocationData)
+                    .tap(destination)
             // Tap on tick to confirm the first waypoint selection
             DriveNavigationBarActions.waitForDestinationNotDisplayed()
-                    .provideMockLocation(mockLocationData)
             val location = RoutePlannerBarActions.tapOnTickButton()
             // Check route description and destination items on guidance route overview
             DriveNavigationBarActions.waitForRouteOverView()
@@ -154,7 +146,13 @@ class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
             // Check 'See manoeuvres' & 'Start navigation' button displayed
             onRouteOverviewSeeManoeuvresNaviBtn.check(matches(isDisplayed()))
             onRouteOverviewStartNaviBtn.check(matches(isDisplayed()))
+            //Wait for position fix
+            CoreActions().provideMockLocation(mockLocationData)
             // Returns back to the Drive Navigation
+            CoreActions().pressBackButton()
+            // Check drive navigation view opened
+            DriveNavigationBarActions.waitForDriveNavigationView()
+            // Returns back to the Landing Screen
             CoreActions().pressBackButton()
         }
     }
@@ -162,18 +160,19 @@ class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
     /**
      * MSDKUI-576: Maneuver panel, switch orientation while navigation simulation is ongoing
      */
-    @Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
     @Test
     @FunctionalUITest
     fun testSwitchOrientationWhileNavigationSimulationIsOngoing() {
+        //Enter Drive Navigation
+        CoreActions().enterDriveNavigation()
+                .provideMockLocation(mockLocationData)
         // Check drive navigation view opened
         DriveNavigationBarActions.waitForDriveNavigationView()
                 .waitForDestinationDisplayed()
         // Tap anywhere on map view
-        MapActions.waitForMapViewEnabled().tapByRelativeCoordinates(destination)
+        MapActions.waitForMapViewEnabled().tap(destination)
         // Tap on tick to confirm the first waypoint selection
         DriveNavigationBarActions.waitForDestinationNotDisplayed()
-                .provideMockLocation(mockLocationData)
         RoutePlannerBarActions.tapOnTickButton()
         // Check guidance route overview view opened
         DriveNavigationBarActions.waitForRouteOverView()
@@ -192,19 +191,22 @@ class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
     /**
      * MSDKUI-575: Maneuver panel
      */
-    @Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
     @Test
     @FunctionalUITest
     fun testManeuverPanel() {
         enumValues<ScreenOrientation>().forEach {
+            // Set screen orientation: PORTRAIT / LANDSCAPE
+            CoreActions().changeOrientation(it)
+            //Enter Drive Navigation
+            CoreActions().enterDriveNavigation()
+                    .provideMockLocation(mockLocationData)
             // Check drive navigation view opened
             DriveNavigationBarActions.waitForDriveNavigationView()
                     .waitForDestinationDisplayed()
             // Tap anywhere on map view to define destination
-            MapActions.waitForMapViewEnabled().tapByRelativeCoordinates(destinationForShortSimulation)
+            MapActions.waitForMapViewEnabled().tap(destinationForShortSimulation)
             // Tap on tick to confirm the first waypoint selection
             DriveNavigationBarActions.waitForDestinationNotDisplayed()
-                    .provideMockLocation(mockLocationData)
             RoutePlannerBarActions.tapOnTickButton()
             // Check guidance route overview view opened
             DriveNavigationBarActions.waitForRouteOverView()
@@ -215,8 +217,6 @@ class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
             val maneuversDataList = ManeuversActions.getManeuversDataFromManeuversList()
             // Start simulation
             DriveNavigationActions.startNavigationSimulation()
-            // Orientation is changed only for simulation to test the same route for both orientations.
-            CoreActions().changeOrientation(it)
             // First check maneuver panel starting state.
             onRootView.perform(waitForCondition(
                     withIdAndText(R.id.infoView1, R.string.msdkui_maneuverpanel_nodata),
@@ -236,22 +236,23 @@ class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
             }
             // Stop navigation and enter navigation again to test maneuver panel on different screen orientation.
             GuidanceActions.tapOnStopNavigationBtn()
-            CoreActions().enterDriveNavigation()
         }
     }
 
     /**
      * MSDKUI-1478: Current street label in Guidance
      */
-    @Ignore("has to be configure for running on AWS") // FIXME: MSDKUI-1350
     @Test
     @FunctionalUITest
     fun testCurrentStreetLabelInGuidanceSimulation() {
+        //Enter Drive Navigation
+        CoreActions().enterDriveNavigation()
+                .provideMockLocation(mockLocationData)
         // Check drive navigation view opened
         DriveNavigationBarActions.waitForDriveNavigationView()
                 .waitForDestinationDisplayed()
         // Tap anywhere on map view
-        MapActions.waitForMapViewEnabled().tapByRelativeCoordinates(destination)
+        MapActions.waitForMapViewEnabled().tap(destinationForShortSimulation)
         // Tap on tick to confirm the first waypoint selection
         DriveNavigationBarActions.waitForDestinationNotDisplayed()
                 .provideMockLocation(mockLocationData)

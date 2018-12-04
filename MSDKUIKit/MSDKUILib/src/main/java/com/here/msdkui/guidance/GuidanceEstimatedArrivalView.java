@@ -39,7 +39,7 @@ import com.here.msdkui.common.TimeFormatterUtil;
  */
 public class GuidanceEstimatedArrivalView extends FrameLayout {
 
-    private GuidanceEstimatedArrivalData mData;
+    private GuidanceEstimatedArrivalViewData mData;
 
     /**
      * Constructs a new instance.
@@ -109,7 +109,7 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
         LayoutInflater.from(context).inflate(R.layout.guidance_arrival_info, this);
     }
 
-    private void populate(@Nullable GuidanceEstimatedArrivalData data) {
+    private void populate(@Nullable GuidanceEstimatedArrivalViewData data) {
         final TextView eta = (TextView) findViewById(R.id.eta);
         final TextView distance = (TextView) findViewById(R.id.distance);
         final TextView duration = (TextView) findViewById(R.id.duration);
@@ -131,11 +131,11 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
     }
 
     /**
-     * Gets current {@link GuidanceEstimatedArrivalData}.
+     * Gets current {@link GuidanceEstimatedArrivalViewData}.
      *
      * @return data used to populate this view.
      */
-    @Nullable public GuidanceEstimatedArrivalData getEstimatedArrivalData() {
+    @Nullable public GuidanceEstimatedArrivalViewData getEstimatedArrivalData() {
         return mData;
     }
 
@@ -145,7 +145,7 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
      * @param data
      *         the data to set.
      */
-    public void setEstimatedArrivalData(@Nullable GuidanceEstimatedArrivalData data) {
+    public void setEstimatedArrivalData(@Nullable GuidanceEstimatedArrivalViewData data) {
         mData = data;
         populate(data);
     }
@@ -189,7 +189,7 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
                         return new SavedState[size];
                     }
                 };
-        private GuidanceEstimatedArrivalData mStateToSave;
+        private GuidanceEstimatedArrivalViewData mStateToSave;
 
         SavedState(Parcelable superState) {
             super(superState);
@@ -198,7 +198,7 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
         SavedState(Parcel in) {
             super(in);
             if (in.readByte() != 0) {
-                mStateToSave = GuidanceEstimatedArrivalData.CREATOR.createFromParcel(in);
+                mStateToSave = GuidanceEstimatedArrivalViewData.CREATOR.createFromParcel(in);
             }
         }
 
@@ -216,9 +216,10 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
         /**
          * Gets the saved states.
          *
-         * @return saved instance of {@link GuidanceEstimatedArrivalData}.
+         * @return saved instance of {@link GuidanceEstimatedArrivalViewData}.
          */
-        @Nullable GuidanceEstimatedArrivalData getSavedState() {
+        @Nullable
+        GuidanceEstimatedArrivalViewData getSavedState() {
             return mStateToSave;
         }
 
@@ -226,9 +227,9 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
          * Sets the state to be saved.
          *
          * @param state
-         *         an instance of {@link GuidanceEstimatedArrivalData} to be saved.
+         *         an instance of {@link GuidanceEstimatedArrivalViewData} to be saved.
          */
-        void setStateToSave(@Nullable GuidanceEstimatedArrivalData state) {
+        void setStateToSave(@Nullable GuidanceEstimatedArrivalViewData state) {
             this.mStateToSave = state;
         }
     }

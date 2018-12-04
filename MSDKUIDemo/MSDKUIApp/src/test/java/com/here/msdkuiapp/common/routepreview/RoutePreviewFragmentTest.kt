@@ -133,11 +133,11 @@ class RoutePreviewFragmentTest : BaseTest() {
         val seeStepView = fragment.view!!.see_steps
         assertThat(seeStepView.text.toString(),
                 `is`(applicationContext.getString(R.string.msdkui_app_guidance_button_showmaneuvers)))
-        assertThat(fragment.view!!.guidance_maneuver_description_list.visibility, `is`(View.GONE))
+        assertThat(fragment.view!!.guidance_maneuver_list.visibility, `is`(View.GONE))
         fragment.toggleSteps(true)
         assertThat(seeStepView.text.toString(),
                 `is`(applicationContext.getString(R.string.msdkui_app_guidance_button_showmap)))
-        assertThat(fragment.view!!.guidance_maneuver_description_list.visibility, `is`(View.VISIBLE))
+        assertThat(fragment.view!!.guidance_maneuver_list.visibility, `is`(View.VISIBLE))
     }
 
     @Test

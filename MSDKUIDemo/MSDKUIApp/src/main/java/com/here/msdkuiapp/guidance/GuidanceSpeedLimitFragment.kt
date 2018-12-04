@@ -22,7 +22,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.here.msdkui.guidance.GuidanceSpeedData
-import com.here.msdkui.guidance.GuidanceSpeedLimitPanel
+import com.here.msdkui.guidance.GuidanceSpeedLimitView
 import com.here.msdkui.guidance.GuidanceSpeedListener
 import com.here.msdkui.guidance.GuidanceSpeedPresenter
 import com.here.msdkuiapp.R
@@ -30,7 +30,7 @@ import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
 
 /**
- * Fragment class for [GuidanceSpeedLimitPanel] view.
+ * Fragment class for [GuidanceSpeedLimitView] view.
  */
 @ContainerOptions(CacheImplementation.NO_CACHE)
 class GuidanceSpeedLimitFragment : Fragment(), GuidanceSpeedListener  {
@@ -50,13 +50,13 @@ class GuidanceSpeedLimitFragment : Fragment(), GuidanceSpeedListener  {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val panelFragment = GuidanceSpeedLimitPanel(activity)
-        panelFragment.id = R.id.guidanceSpeedLimitPanelId
-        return panelFragment
+        val speedLimitView = GuidanceSpeedLimitView(activity)
+        speedLimitView.id = R.id.guidanceSpeedLimitViewId
+        return speedLimitView
     }
 
     /**
-     * Creates Presenter for this GuidanceCurrentStreetFragment.
+     * Creates Presenter for this GuidanceStreetLabelFragment.
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         if (mPresenter == null) {
@@ -80,6 +80,6 @@ class GuidanceSpeedLimitFragment : Fragment(), GuidanceSpeedListener  {
     }
 
     override fun onDataChanged(data: GuidanceSpeedData?) {
-        (view as GuidanceSpeedLimitPanel).setCurrentSpeedData(data)
+        (view as GuidanceSpeedLimitView).setCurrentSpeedData(data)
     }
 }

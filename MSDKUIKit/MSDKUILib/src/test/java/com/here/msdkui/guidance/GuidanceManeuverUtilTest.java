@@ -86,7 +86,7 @@ public class GuidanceManeuverUtilTest extends RobolectricTest {
             return invocation.getArguments()[1] + " " + invocation.getArguments()[2];
         }).when(context).getString(anyInt(), Matchers.<String>anyVararg());
         String street = GuidanceManeuverUtil.determineNextManeuverStreet(context, maneuver,
-                mock(GuidanceManeuverPanelPresenter.class));
+                mock(GuidanceManeuverPresenter.class));
         assertThat(street, is(MockUtils.ROAD_NUMBER + " " + MockUtils.ROAD_NAME));
     }
 
@@ -105,7 +105,7 @@ public class GuidanceManeuverUtilTest extends RobolectricTest {
             return invocation.getArguments()[1] + " " + invocation.getArguments()[2];
         }).when(context).getString(anyInt(), Matchers.<String>anyVararg());
         String street = GuidanceManeuverUtil.determineNextManeuverStreet(context, maneuver,
-                mock(GuidanceManeuverPanelPresenter.class));
+                mock(GuidanceManeuverPresenter.class));
         assertThat(street, is(MockUtils.ROAD_NUMBER + " " + MockUtils.ROAD_NAME));
     }
 
@@ -125,7 +125,7 @@ public class GuidanceManeuverUtilTest extends RobolectricTest {
             return invocation.getArguments()[1] + " " + invocation.getArguments()[2];
         }).when(context).getString(anyInt(), Matchers.<String>anyVararg());
         String street = GuidanceManeuverUtil.determineNextManeuverStreet(context, maneuver,
-                mock(GuidanceManeuverPanelPresenter.class));
+                mock(GuidanceManeuverPresenter.class));
         assertThat(street, is(signPostExitText));
     }
 
@@ -139,7 +139,7 @@ public class GuidanceManeuverUtilTest extends RobolectricTest {
             return invocation.getArguments()[1] + " " + invocation.getArguments()[2];
         }).when(context).getString(anyInt(), Matchers.<String>anyVararg());
         String street = GuidanceManeuverUtil.determineNextManeuverStreet(context, maneuver,
-                mock(GuidanceManeuverPanelPresenter.class));
+                mock(GuidanceManeuverPresenter.class));
         assertThat(street, is(MockUtils.ROAD_NUMBER + " " + MockUtils.ROAD_NAME));
     }
 }

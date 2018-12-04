@@ -20,7 +20,7 @@ package com.here.msdkuiapp.guidance
 import com.here.android.mpa.common.PositioningManager
 import com.here.android.mpa.guidance.NavigationManager
 import com.here.msdkui.guidance.GuidanceSpeedData
-import com.here.msdkui.guidance.GuidanceSpeedLimitPanel
+import com.here.msdkui.guidance.GuidanceSpeedLimitView
 import com.here.msdkui.guidance.GuidanceSpeedPresenter
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
@@ -40,7 +40,7 @@ import org.mockito.MockitoAnnotations
  */
 class GuidanceSpeedLimitFragmentTest : BaseTest() {
 
-    lateinit var fragment: GuidanceSpeedLimitFragment
+    lateinit var guidanceSpeedLimitFragment: GuidanceSpeedLimitFragment
 
     @Mock
     private lateinit var mockPresenter: GuidanceSpeedPresenter
@@ -49,45 +49,45 @@ class GuidanceSpeedLimitFragmentTest : BaseTest() {
     override fun setUp() {
         super.setUp()
         MockitoAnnotations.initMocks(this)
-        fragment = GuidanceSpeedLimitFragment.newInstance()
-        fragment.mPresenter = mockPresenter
+        guidanceSpeedLimitFragment = GuidanceSpeedLimitFragment.newInstance()
+        guidanceSpeedLimitFragment.mPresenter = mockPresenter
     }
 
     @Test
     fun testFragmentCreation() {
-        addFrag(fragment, GuidanceSpeedLimitFragment::class.java.name)
-        assertNotNull(fragment)
-        assertNotNull(fragment.view)
+        addFrag(guidanceSpeedLimitFragment, GuidanceSpeedLimitFragment::class.java.name)
+        assertNotNull(guidanceSpeedLimitFragment)
+        assertNotNull(guidanceSpeedLimitFragment.view)
     }
 
     @Test
     fun testFragmentCreationWithNotInitializedPresenter() {
         navigationManager = mock(NavigationManager::class.java)
         positioningManager = mock(PositioningManager::class.java)
-        fragment = GuidanceSpeedLimitFragment.newInstance()
-        addFrag(fragment, GuidanceSpeedLimitFragment::class.java.name)
-        assertNotNull(fragment.mPresenter)
+        guidanceSpeedLimitFragment = GuidanceSpeedLimitFragment.newInstance()
+        addFrag(guidanceSpeedLimitFragment, GuidanceSpeedLimitFragment::class.java.name)
+        assertNotNull(guidanceSpeedLimitFragment.mPresenter)
     }
 
     @Test
     fun testOnPause() {
-        fragment.onPause()
+        guidanceSpeedLimitFragment.onPause()
         verify(mockPresenter).pause()
     }
 
     @Test
     fun testOnResume() {
-        fragment.onResume()
+        guidanceSpeedLimitFragment.onResume()
         verify(mockPresenter).resume()
     }
 
     @Test
     fun testCallback() {
         val speedLimit = 100
-        addFrag(fragment, GuidanceSpeedLimitFragment::class.java.name)
+        addFrag(guidanceSpeedLimitFragment, GuidanceSpeedLimitFragment::class.java.name)
         val data = Mockito.mock(GuidanceSpeedData::class.java)
         `when`(data.currentSpeedLimit).thenReturn(speedLimit)
-        fragment.onDataChanged(data)
-        assertEquals(speedLimit, (fragment.view as GuidanceSpeedLimitPanel).currentSpeedData.currentSpeedLimit)
+        guidanceSpeedLimitFragment.onDataChanged(data)
+        assertEquals(speedLimit, (guidanceSpeedLimitFragment.view as GuidanceSpeedLimitView).currentSpeedData.currentSpeedLimit)
     }
 }

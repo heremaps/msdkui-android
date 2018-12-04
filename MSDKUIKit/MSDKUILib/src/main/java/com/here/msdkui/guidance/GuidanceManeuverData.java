@@ -21,9 +21,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * A data class holding the current guidance instructions to be fed into the {@link GuidanceManeuverPanel}.
+ * A data class holding the current guidance instructions to be fed into the {@link GuidanceManeuverView}.
  * This class can be used to hold an icon along with some other details like street name, signpost or exit.
- * {@link GuidanceManeuverPanelPresenter} can be used to get notified on new instances of this class during guidance.
+ * {@link GuidanceManeuverPresenter} can be used to get notified on new instances of this class during guidance.
  */
 public class GuidanceManeuverData implements Parcelable {
 
@@ -72,10 +72,10 @@ public class GuidanceManeuverData implements Parcelable {
      * @param distance
      *         distance to next {@link com.here.android.mpa.routing.Maneuver}.
      * @param info1
-     *         information for the 1st line of {@link GuidanceManeuverPanel}. In most cases, it is used to display
+     *         information for the 1st line of {@link GuidanceManeuverView}. In most cases, it is used to display
      *         highway exit numbers. In case there is no relevant information, null can be set.
      * @param info2
-     *         information for the 2nd line of {@link GuidanceManeuverPanel}. In most cases, it is used to display
+     *         information for the 2nd line of {@link GuidanceManeuverView}. In most cases, it is used to display
      *         next maneuver street or the destination.
      */
     public GuidanceManeuverData(int iconId, long distance, String info1, String info2) {

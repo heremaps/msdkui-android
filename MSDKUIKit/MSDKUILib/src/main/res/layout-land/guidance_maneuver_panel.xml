@@ -41,6 +41,7 @@
     <TextView
         android:id="@+id/distanceView"
         style="?attr/guidanceManeuverPanelHeadingTextLand"
+        app:layout_constraintWidth_default="wrap"
         app:layout_constraintBottom_toBottomOf="@id/maneuverIconView"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@id/maneuverIconView"

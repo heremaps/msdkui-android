@@ -21,28 +21,30 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.here.msdkui.guidance.GuidanceSpeedData
-import com.here.msdkui.guidance.GuidanceSpeedLimitView
-import com.here.msdkui.guidance.GuidanceSpeedListener
-import com.here.msdkui.guidance.GuidanceSpeedPresenter
+import com.here.android.mpa.routing.Route
+import com.here.msdkui.guidance.GuidanceStreetLabelView
+import com.here.msdkui.guidance.GuidanceStreetLabelData
+import com.here.msdkui.guidance.GuidanceStreetLabelListener
+import com.here.msdkui.guidance.GuidanceStreetLabelPresenter
 import com.here.msdkuiapp.R
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
 
 /**
- * Fragment class for [GuidanceSpeedLimitView] view.
+ * Fragment class for [GuidanceStreetLabelView] view.
  */
 @ContainerOptions(CacheImplementation.NO_CACHE)
-class GuidanceSpeedLimitFragment : Fragment(), GuidanceSpeedListener  {
+class GuidanceStreetLabelFragment : Fragment(), GuidanceStreetLabelListener {
 
-    internal var mPresenter: GuidanceSpeedPresenter? = null
+    internal var route: Route? = null
+    internal var presenter: GuidanceStreetLabelPresenter? = null
 
     init {
         retainInstance = true
     }
 
     companion object {
-        fun newInstance() = GuidanceSpeedLimitFragment()
+        fun newInstance() = GuidanceStreetLabelFragment()
     }
 
     /**
@@ -50,36 +52,34 @@ class GuidanceSpeedLimitFragment : Fragment(), GuidanceSpeedListener  {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val speedLimitView = GuidanceSpeedLimitView(activity)
-        speedLimitView.id = R.id.guidanceSpeedLimitViewId
-        return speedLimitView
+        val streetLabelView = GuidanceStreetLabelView(activity)
+        streetLabelView.id = R.id.guidanceStreetLabelViewId
+        return streetLabelView
     }
 
     /**
      * Creates Presenter for this GuidanceStreetLabelFragment.
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if (mPresenter == null) {
-            mPresenter = GuidanceSpeedPresenter(SingletonHelper.navigationManager ?: return,
-                    SingletonHelper.positioningManager ?: return).apply {
-                addListener(this@GuidanceSpeedLimitFragment)
+        if (presenter == null) {
+            presenter = GuidanceStreetLabelPresenter(view.context, SingletonHelper.navigationManager, route).apply {
+                addListener(this@GuidanceStreetLabelFragment)
                 resume()
             }
         }
-        view.setBackgroundResource(R.drawable.speed_limit_bg)
     }
 
     override fun onPause() {
         super.onPause()
-        mPresenter?.pause()
+        presenter?.pause()
     }
 
     override fun onResume() {
         super.onResume()
-        mPresenter?.resume()
+        presenter?.resume()
     }
 
-    override fun onDataChanged(data: GuidanceSpeedData?) {
-        (view as GuidanceSpeedLimitView).setCurrentSpeedData(data)
+    override fun onDataChanged(labelData: GuidanceStreetLabelData) {
+        (view as GuidanceStreetLabelView).setCurrentStreetData(labelData)
     }
 }

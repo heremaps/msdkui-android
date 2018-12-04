@@ -17,15 +17,15 @@
 package com.here.msdkui.guidance;
 
 /**
- * A listener that notifies when there is a change in {@link GuidanceEstimatedArrivalViewData}.
+ * A listener that notifies when there is a change in {@link GuidanceStreetLabelData}.
  */
-public interface GuidanceEstimatedArrivalViewListener {
+public interface GuidanceStreetLabelListener {
 
     /**
-     * Called when there is a change in {@link GuidanceEstimatedArrivalViewData}.
+     * Called when there is change in {@link GuidanceStreetLabelData}.
      *
      * @param data
-     *         {@link GuidanceEstimatedArrivalViewData} instance containing change.
+     *         {@link GuidanceStreetLabelData}.
      */
-    void onDataChanged(GuidanceEstimatedArrivalViewData data);
+    void onDataChanged(GuidanceStreetLabelData data);
 }

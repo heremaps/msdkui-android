@@ -21,9 +21,9 @@ import android.os.Parcelable;
 
 /**
  * A data class holding guidance instructions for the maneuver after the currently shown maneuver.
- * To be fed into the {@link GuidanceNextManeuverPanel}.
+ * To be fed into the {@link GuidanceNextManeuverView}.
  * This class can be used to hold an icon along with street name and distance.
- * {@link GuidanceNextManeuverPanelPresenter} can be used to get notified on new instances of this class during guidance.
+ * {@link GuidanceNextManeuverPresenter} can be used to get notified on new instances of this class during guidance.
  */
 public class GuidanceNextManeuverData implements Parcelable {
     /**
@@ -60,9 +60,9 @@ public class GuidanceNextManeuverData implements Parcelable {
      * @param iconId
      *         resource id of the maneuver icon.
      * @param distance
-     *         distance to the maneuver displayed on {@link GuidanceNextManeuverPanel}
+     *         distance to the maneuver displayed on {@link GuidanceNextManeuverView}
      * @param streetName
-     *         street name after the maneuver displayed on {@link GuidanceNextManeuverPanel}
+     *         street name after the maneuver displayed on {@link GuidanceNextManeuverView}
      */
     public GuidanceNextManeuverData(int iconId, long distance, String streetName) {
         mIconId = iconId;

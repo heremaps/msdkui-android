@@ -16,16 +16,25 @@
 
 package com.here.msdkui.guidance;
 
+import android.support.annotation.Nullable;
+
 /**
- * A listener that notifies when there is a change in {@link GuidanceEstimatedArrivalViewData}.
+ * A listener that notifies when there is a change in {@link GuidanceManeuverData}.
  */
-public interface GuidanceEstimatedArrivalViewListener {
+public interface GuidanceManeuverListener {
 
     /**
-     * Called when there is a change in {@link GuidanceEstimatedArrivalViewData}.
+     * Called when there is a change in {@link GuidanceManeuverData}.
      *
      * @param data
-     *         {@link GuidanceEstimatedArrivalViewData} instance containing change.
+     *         The {@link GuidanceManeuverData} containing the latest maneuver data. This can be
+     *         null in case there is no data available - for example, when the GPS signal is lost
+     *         in a tunnel, or during rerouting.
      */
-    void onDataChanged(GuidanceEstimatedArrivalViewData data);
+    void onDataChanged(@Nullable GuidanceManeuverData data);
+
+    /**
+     * Called when the destination is reached.
+     */
+    void onDestinationReached();
 }

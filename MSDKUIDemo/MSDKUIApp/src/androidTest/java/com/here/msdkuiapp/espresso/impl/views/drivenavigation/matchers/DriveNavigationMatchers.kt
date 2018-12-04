@@ -50,34 +50,14 @@ import org.hamcrest.TypeSafeMatcher
 object DriveNavigationMatchers {
 
     /**
-     * Check transportation icons correspond to icons in description and maneuver lists' items
+     * Check interval is very short because we don't want to skip any quick maneuvers.
      */
-    fun withRouteDescription(viewMatcher: ViewInteraction): Matcher<View> {
+    private const val MANEUVER_PANEL_TEST_CHECK_INTERVAL = 30L
 
-        return object : TypeSafeMatcher<View>() {
-
-            var actualValues = arrayListOf<String>()
-            val expectedValue = CoreMatchers.getTextView(viewMatcher).trim()
-
-            override fun matchesSafely(view: View): Boolean {
-
-                val context = view.context.applicationContext
-                val route = (view as RouteDescriptionItem).route
-
-                with(actualValues) {
-                    add(RouteUtil.getArrivalTime(context, route,true).toString().trim())
-                    add(RouteUtil.getTimeToArrive(context, route,true).toString().trim())
-                    add(RouteUtil.getTrafficDelayed(context, route).toString().trim())
-                    add(RouteUtil.getDetails(context, route).toString().trim())
-                    return filter { s -> s == expectedValue }.single().isNotEmpty()
-                }
-            }
-
-            override fun describeTo(description: Description) {
-                description.appendText("With route description text: $expectedValue")
-            }
-        }
-    }
+    /**
+     * Timeout for one maneuver is so long, because its hard to predict possible longest maneuver.
+     */
+    private const val MANEUVER_PANEL_TEST_SINGLE_MANEUVER_TIMEOUT = 10 * 60 * 1000L // 10 minutes
 
     /**
      * Check Route Description items on guidance route overview
@@ -124,16 +104,6 @@ object DriveNavigationMatchers {
     }
 
     /**
-     * Check interval is very short because we don't want to skip any quick maneuvers.
-     */
-    private const val MANEUVER_PANEL_TEST_CHECK_INTERVAL = 30L
-
-    /**
-     * Timeout for one maneuver is so long, because its hard to predict possible longest maneuver.
-     */
-    private const val MANEUVER_PANEL_TEST_SINGLE_MANEUVER_TIMEOUT = 10 * 60 * 1000L // 10 minutes
-
-    /**
      * Check Maneuver Panel data: address and maneuver icon tag (icon resource id).
      */
     fun checkManeuverPanelData(address: String, iconTag: Int): DriveNavigationMatchers {
@@ -142,7 +112,7 @@ object DriveNavigationMatchers {
 
         // Two separate checks are made because waitForCondition() works only with one view.
         onRootView.perform(waitForCondition(
-                withIdAndText(R.id.infoView2, address),
+                withIdAndText(R.id.infoView2, address.split("towards", ignoreCase = false)[0].trim()),
                 isVisible = addressVisible,
                 checkInterval = MANEUVER_PANEL_TEST_CHECK_INTERVAL,
                 timeout = MANEUVER_PANEL_TEST_SINGLE_MANEUVER_TIMEOUT
@@ -153,7 +123,6 @@ object DriveNavigationMatchers {
                 checkInterval = MANEUVER_PANEL_TEST_CHECK_INTERVAL,
                 timeout = MANEUVER_PANEL_TEST_SINGLE_MANEUVER_TIMEOUT
         ))
-
         return this
     }
 
@@ -177,8 +146,38 @@ object DriveNavigationMatchers {
      */
     fun checkCurrentStreetViewValueChanged(currentValue: String) {
         onRootView.perform(waitForCondition(
-                allOf(withId(R.id.guidance_current_street_text), not(withText(currentValue)))
+                allOf(withId(R.id.guidance_current_street_text), not(withText(currentValue))),
+                CoreMatchers.TIMEOUT_WAIT_EXTENDED_MILLIS
         ))
     }
 
+    /**
+     * Check transportation icons correspond to icons in description and maneuver lists' items
+     */
+    private fun withRouteDescription(viewMatcher: ViewInteraction): Matcher<View> {
+
+        return object : TypeSafeMatcher<View>() {
+
+            var actualValues = arrayListOf<String>()
+            val expectedValue = CoreMatchers.getTextView(viewMatcher).trim()
+
+            override fun matchesSafely(view: View): Boolean {
+
+                val context = view.context.applicationContext
+                val route = (view as RouteDescriptionItem).route
+
+                with(actualValues) {
+                    add(RouteUtil.getArrivalTime(context, route,true).toString().trim())
+                    add(RouteUtil.getTimeToArrive(context, route,true).toString().trim())
+                    add(RouteUtil.getTrafficDelayed(context, route).toString().trim())
+                    add(RouteUtil.getDetails(context, route).toString().trim())
+                    return filter { s -> s == expectedValue }.single().isNotEmpty()
+                }
+            }
+
+            override fun describeTo(description: Description) {
+                description.appendText("With route description text: $expectedValue")
+            }
+        }
+    }
 }

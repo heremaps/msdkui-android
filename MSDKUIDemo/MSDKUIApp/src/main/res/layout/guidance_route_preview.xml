@@ -69,7 +69,7 @@
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <com.here.msdkui.routing.ManeuverList
-        android:id="@+id/guidance_maneuver_description_list"
+        android:id="@+id/guidance_maneuver_list"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:visibility="gone"

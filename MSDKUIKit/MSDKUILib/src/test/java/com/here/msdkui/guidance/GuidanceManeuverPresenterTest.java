@@ -46,13 +46,13 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 @PrepareForTest({ NavigationManager.class, Signpost.class, Image.class })
 public class GuidanceManeuverPresenterTest extends RobolectricTest {
 
-    private GuidanceManeuverPresenter mManeuverPanelPresenter;
+    private GuidanceManeuverPresenter mGuidanceManeuverPresenter;
     private NavigationManager mNavigationManager;
 
     @Before
     public void setUp() {
         mNavigationManager = mock(NavigationManager.class);
-        mManeuverPanelPresenter = new GuidanceManeuverPresenter(getApplicationContext(), mNavigationManager,
+        mGuidanceManeuverPresenter = new GuidanceManeuverPresenter(getApplicationContext(), mNavigationManager,
                 mock(Route.class));
     }
 
@@ -60,10 +60,10 @@ public class GuidanceManeuverPresenterTest extends RobolectricTest {
     public void testHandlePositionUpdate() {
         final Maneuver maneuver = MockUtils.mockManeuver();
         GuidanceManeuverListener listener = mock(GuidanceManeuverListener.class);
-        mManeuverPanelPresenter.addListener(listener);
+        mGuidanceManeuverPresenter.addListener(listener);
         when(mNavigationManager.getNextManeuver()).thenReturn(maneuver);
         when(mNavigationManager.getNextManeuverDistance()).thenReturn(200L);
-        mManeuverPanelPresenter.handlePositionUpdate();
+        mGuidanceManeuverPresenter.handlePositionUpdate();
         verify(listener).onDataChanged(any());
     }
 
@@ -71,10 +71,10 @@ public class GuidanceManeuverPresenterTest extends RobolectricTest {
     public void testHandleManeuverEvent() {
         final Maneuver maneuver = MockUtils.mockManeuver();
         GuidanceManeuverListener listener = mock(GuidanceManeuverListener.class);
-        mManeuverPanelPresenter.addListener(listener);
+        mGuidanceManeuverPresenter.addListener(listener);
         when(mNavigationManager.getNextManeuver()).thenReturn(maneuver);
         when(mNavigationManager.getNextManeuverDistance()).thenReturn(200L);
-        mManeuverPanelPresenter.handleManeuverEvent();
+        mGuidanceManeuverPresenter.handleManeuverEvent();
         verify(listener).onDataChanged(any());
     }
 
@@ -83,10 +83,10 @@ public class GuidanceManeuverPresenterTest extends RobolectricTest {
         final Maneuver maneuver = MockUtils.mockManeuver();
         when(maneuver.getAction()).thenReturn(Maneuver.Action.END);
         GuidanceManeuverListener listener = mock(GuidanceManeuverListener.class);
-        mManeuverPanelPresenter.addListener(listener);
+        mGuidanceManeuverPresenter.addListener(listener);
         when(mNavigationManager.getNextManeuver()).thenReturn(maneuver);
         when(mNavigationManager.getNextManeuverDistance()).thenReturn(200L);
-        mManeuverPanelPresenter.handleManeuverEvent();
+        mGuidanceManeuverPresenter.handleManeuverEvent();
         verify(listener).onDataChanged(any());
         verify(listener).onDestinationReached();
     }
@@ -99,10 +99,10 @@ public class GuidanceManeuverPresenterTest extends RobolectricTest {
         when(signpost.getExitNumber()).thenReturn("52");
         when(maneuver.getSignpost()).thenReturn(signpost);
         GuidanceManeuverListener listener = mock(GuidanceManeuverListener.class);
-        mManeuverPanelPresenter.addListener(listener);
+        mGuidanceManeuverPresenter.addListener(listener);
         when(mNavigationManager.getNextManeuver()).thenReturn(maneuver);
         when(mNavigationManager.getNextManeuverDistance()).thenReturn(200L);
-        mManeuverPanelPresenter.handleManeuverEvent();
+        mGuidanceManeuverPresenter.handleManeuverEvent();
         verify(listener).onDataChanged(any());
     }
 
@@ -116,10 +116,10 @@ public class GuidanceManeuverPresenterTest extends RobolectricTest {
         when(mockImage.getBitmap(anyInt(), anyInt())).thenReturn(mockBitmap);
         when(maneuver.getNextRoadImage()).thenReturn(mockImage);
         GuidanceManeuverListener listener = mock(GuidanceManeuverListener.class);
-        mManeuverPanelPresenter.addListener(listener);
+        mGuidanceManeuverPresenter.addListener(listener);
         when(mNavigationManager.getNextManeuver()).thenReturn(maneuver);
         when(mNavigationManager.getNextManeuverDistance()).thenReturn(200L);
-        mManeuverPanelPresenter.handleManeuverEvent();
+        mGuidanceManeuverPresenter.handleManeuverEvent();
         ArgumentCaptor<GuidanceManeuverData> dataArgumentCaptor = ArgumentCaptor.forClass(GuidanceManeuverData.class);
         verify(listener).onDataChanged(dataArgumentCaptor.capture());
         assertThat(dataArgumentCaptor.getValue().getNextRoadIcon(), is(mockBitmap));
@@ -128,9 +128,9 @@ public class GuidanceManeuverPresenterTest extends RobolectricTest {
     @Test
     public void testAddRemoveListener() {
         final GuidanceManeuverListener listener = mock(GuidanceManeuverListener.class);
-        mManeuverPanelPresenter.addListener(listener);
-        mManeuverPanelPresenter.removeListener(listener);
-        mManeuverPanelPresenter.handleManeuverEvent();
+        mGuidanceManeuverPresenter.addListener(listener);
+        mGuidanceManeuverPresenter.removeListener(listener);
+        mGuidanceManeuverPresenter.handleManeuverEvent();
         verify(listener, never()).onDataChanged(any());
     }
 }

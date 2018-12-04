@@ -40,45 +40,45 @@ public class GuidanceSpeedLimitViewTest extends RobolectricTest {
     private static final int VELOCITY = 60;
     private static final int SPEED_LIMIT = 50;
 
-    private GuidanceSpeedLimitView mSpeedLimitPanel = null;
+    private GuidanceSpeedLimitView mGuidanceSpeedLimitView = null;
 
     @Before
     public void setUp() {
         super.setUp();
-        mSpeedLimitPanel = new GuidanceSpeedLimitView(getApplicationContext());
+        mGuidanceSpeedLimitView = new GuidanceSpeedLimitView(getApplicationContext());
     }
 
     @Test
     public void testUiInit() {
-        final View container = mSpeedLimitPanel.findViewById(R.id.guidance_speed_limit_container);
+        final View container = mGuidanceSpeedLimitView.findViewById(R.id.guidance_speed_limit_container);
         assertThat(container.getVisibility(), is(View.GONE));
     }
 
     @Test
     public void testUi() {
-        final View container = mSpeedLimitPanel.findViewById(R.id.guidance_speed_limit_container);
-        final TextView speedLimitView = mSpeedLimitPanel.findViewById(R.id.speed_limit);
+        final View container = mGuidanceSpeedLimitView.findViewById(R.id.guidance_speed_limit_container);
+        final TextView speedLimitView = mGuidanceSpeedLimitView.findViewById(R.id.speed_limit);
         GuidanceSpeedData data;
 
-        mSpeedLimitPanel.setCurrentSpeedData(null);
+        mGuidanceSpeedLimitView.setCurrentSpeedData(null);
         assertThat(container.getVisibility(), is(View.GONE));
 
         data = new GuidanceSpeedData(45, 50);
-        mSpeedLimitPanel.setCurrentSpeedData(data);
+        mGuidanceSpeedLimitView.setCurrentSpeedData(data);
         assertThat(container.getVisibility(), is(View.VISIBLE));
         assertThat(speedLimitView.getText().toString(), is(String.valueOf(50)));
 
         data = new GuidanceSpeedData(60, 50);
-        mSpeedLimitPanel.setCurrentSpeedData(data);
+        mGuidanceSpeedLimitView.setCurrentSpeedData(data);
         assertThat(container.getVisibility(), is(View.VISIBLE));
         assertThat(speedLimitView.getText().toString(), is(String.valueOf(50)));
 
         data = new GuidanceSpeedData(150, 0);
-        mSpeedLimitPanel.setCurrentSpeedData(data);
+        mGuidanceSpeedLimitView.setCurrentSpeedData(data);
         assertThat(container.getVisibility(), is(View.GONE));
 
         data = new GuidanceSpeedData(45, 50);
-        mSpeedLimitPanel.setCurrentSpeedData(data);
+        mGuidanceSpeedLimitView.setCurrentSpeedData(data);
         assertThat(container.getVisibility(), is(View.VISIBLE));
         assertThat(speedLimitView.getText().toString(), is(String.valueOf(50)));
     }
@@ -86,14 +86,14 @@ public class GuidanceSpeedLimitViewTest extends RobolectricTest {
     @Test
     public void testSetterAndGetter() {
         GuidanceSpeedData data = new GuidanceSpeedData(10, 10);
-        mSpeedLimitPanel.setCurrentSpeedData(data);
-        assertThat(mSpeedLimitPanel.getCurrentSpeedData(), is(data));
+        mGuidanceSpeedLimitView.setCurrentSpeedData(data);
+        assertThat(mGuidanceSpeedLimitView.getCurrentSpeedData(), is(data));
     }
 
     @Test
     public void testSettingNullDataWontCrash() {
-        mSpeedLimitPanel.setCurrentSpeedData(null);
-        assertThat(mSpeedLimitPanel.getCurrentSpeedData().isValid(), is(false));
+        mGuidanceSpeedLimitView.setCurrentSpeedData(null);
+        assertThat(mGuidanceSpeedLimitView.getCurrentSpeedData().isValid(), is(false));
     }
 
     @Test
@@ -102,20 +102,20 @@ public class GuidanceSpeedLimitViewTest extends RobolectricTest {
         final FragmentActivity activity = getFragmentActivity();
 
         // when data is not null
-        mSpeedLimitPanel.setCurrentSpeedData(data);
-        assertNotNull(mSpeedLimitPanel.getCurrentSpeedData());
-        mSpeedLimitPanel.setId(R.id.vertical_guideline);
-        activity.setContentView(mSpeedLimitPanel);
+        mGuidanceSpeedLimitView.setCurrentSpeedData(data);
+        assertNotNull(mGuidanceSpeedLimitView.getCurrentSpeedData());
+        mGuidanceSpeedLimitView.setId(R.id.vertical_guideline);
+        activity.setContentView(mGuidanceSpeedLimitView);
         activity.recreate();
-        assertNotNull(mSpeedLimitPanel.getCurrentSpeedData());
+        assertNotNull(mGuidanceSpeedLimitView.getCurrentSpeedData());
 
         // when data is null
-        mSpeedLimitPanel.setCurrentSpeedData(null);
-        assertThat(mSpeedLimitPanel.getCurrentSpeedData().isValid(), is(false));
-        mSpeedLimitPanel.setId(R.id.vertical_guideline);
-        activity.setContentView(mSpeedLimitPanel);
+        mGuidanceSpeedLimitView.setCurrentSpeedData(null);
+        assertThat(mGuidanceSpeedLimitView.getCurrentSpeedData().isValid(), is(false));
+        mGuidanceSpeedLimitView.setId(R.id.vertical_guideline);
+        activity.setContentView(mGuidanceSpeedLimitView);
         activity.recreate();
-        assertThat(mSpeedLimitPanel.getCurrentSpeedData().isValid(), is(false));
+        assertThat(mGuidanceSpeedLimitView.getCurrentSpeedData().isValid(), is(false));
     }
 
     @Test

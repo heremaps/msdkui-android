@@ -37,7 +37,7 @@ import org.mockito.MockitoAnnotations
  */
 class GuidanceNextManeuverViewFragmentTest : BaseTest() {
 
-    private lateinit var guidanceNextManeuverPanelFragment: GuidanceNextManeuverFragment
+    private lateinit var guidanceNextManeuverFragment: GuidanceNextManeuverFragment
 
     @Mock
     private lateinit var mockPresenter: GuidanceNextManeuverPresenter
@@ -47,51 +47,51 @@ class GuidanceNextManeuverViewFragmentTest : BaseTest() {
         super.setUp()
         MockitoAnnotations.initMocks(this)
         navigationManager = mock(NavigationManager::class.java)
-        guidanceNextManeuverPanelFragment = GuidanceNextManeuverFragment.newInstance()
-        guidanceNextManeuverPanelFragment.presenter = mockPresenter
+        guidanceNextManeuverFragment = GuidanceNextManeuverFragment.newInstance()
+        guidanceNextManeuverFragment.presenter = mockPresenter
     }
 
     @Test
     fun testPanelCreation() {
-        guidanceNextManeuverPanelFragment.route = mock(Route::class.java)
-        addFrag(guidanceNextManeuverPanelFragment,
+        guidanceNextManeuverFragment.route = mock(Route::class.java)
+        addFrag(guidanceNextManeuverFragment,
                 GuidanceNextManeuverFragment::class.java.name)
-        assertNotNull(guidanceNextManeuverPanelFragment)
-        assertNotNull(guidanceNextManeuverPanelFragment.view)
+        assertNotNull(guidanceNextManeuverFragment)
+        assertNotNull(guidanceNextManeuverFragment.view)
     }
 
     @Test
     fun testSetterGetterRoute() {
-        guidanceNextManeuverPanelFragment.route = mock(Route::class.java)
-        assertNotNull(guidanceNextManeuverPanelFragment.route)
+        guidanceNextManeuverFragment.route = mock(Route::class.java)
+        assertNotNull(guidanceNextManeuverFragment.route)
     }
 
     @Test
     fun testSetterGetterPanelPresenter() {
-        guidanceNextManeuverPanelFragment.presenter = mockPresenter
-        assertNotNull(guidanceNextManeuverPanelFragment.presenter)
+        guidanceNextManeuverFragment.presenter = mockPresenter
+        assertNotNull(guidanceNextManeuverFragment.presenter)
     }
 
     @Test
     fun testOnPause() {
-        guidanceNextManeuverPanelFragment.onPause()
+        guidanceNextManeuverFragment.onPause()
         verify(mockPresenter).pause()
     }
 
     @Test
     fun testOnResume() {
-        guidanceNextManeuverPanelFragment.onResume()
+        guidanceNextManeuverFragment.onResume()
         verify(mockPresenter).resume()
     }
 
     @Test
     fun testCallbacks() {
         // calling onManeuverData will update panel
-        guidanceNextManeuverPanelFragment.route = mock(Route::class.java)
-        addFrag(guidanceNextManeuverPanelFragment,
+        guidanceNextManeuverFragment.route = mock(Route::class.java)
+        addFrag(guidanceNextManeuverFragment,
                 GuidanceNextManeuverFragment::class.java.name)
         val data = mock(GuidanceNextManeuverData::class.java)
-        guidanceNextManeuverPanelFragment.onDataChanged(data)
-        assertEquals((guidanceNextManeuverPanelFragment.view as GuidanceNextManeuverView).nextManeuverData, data)
+        guidanceNextManeuverFragment.onDataChanged(data)
+        assertEquals((guidanceNextManeuverFragment.view as GuidanceNextManeuverView).nextManeuverData, data)
     }
 }

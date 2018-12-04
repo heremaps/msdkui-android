@@ -76,7 +76,7 @@ class RouteDescriptionListFragmentTest : BaseTest() {
         fragment.userVisibleHint = false
         fragment.userVisibleHint = true
 
-        // test when fragment is not resumed
+        // test when guidanceSpeedLimitFragment is not resumed
         fragment = RouteDescriptionListFragment.newInstance().apply {
             presenter = presenterMock
             userVisibleHint = true

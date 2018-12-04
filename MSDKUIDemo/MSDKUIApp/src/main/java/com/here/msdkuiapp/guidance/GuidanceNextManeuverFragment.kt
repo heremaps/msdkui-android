@@ -51,9 +51,9 @@ class GuidanceNextManeuverFragment : Fragment(), GuidanceNextManeuverListener {
      * Creates Panel View.
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val panelFragment = GuidanceNextManeuverView(activity)
-        panelFragment.id = R.id.guidanceNextManeuverPanelId;
-        return panelFragment
+        val nextManeuverView = GuidanceNextManeuverView(activity)
+        nextManeuverView.id = R.id.guidanceNextManeuverViewId;
+        return nextManeuverView
     }
 
     /**

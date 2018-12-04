@@ -38,13 +38,13 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 @PrepareForTest({ NavigationManager.class })
 public class GuidanceNextManeuverPresenterTest extends RobolectricTest {
 
-    private GuidanceNextManeuverPresenter mNextManeuverPanelPresenter;
+    private GuidanceNextManeuverPresenter mNextManeuverPresenter;
     private NavigationManager mNavigationManager;
 
     @Before
     public void setUp() {
         mNavigationManager = mock(NavigationManager.class);
-        mNextManeuverPanelPresenter = new GuidanceNextManeuverPresenter(getApplicationContext(), mNavigationManager,
+        mNextManeuverPresenter = new GuidanceNextManeuverPresenter(getApplicationContext(), mNavigationManager,
                 mock(Route.class));
     }
 
@@ -52,18 +52,18 @@ public class GuidanceNextManeuverPresenterTest extends RobolectricTest {
     public void testHandleManeuverEvent() {
         final Maneuver maneuver = MockUtils.mockManeuver();
         GuidanceNextManeuverListener listener = mock(GuidanceNextManeuverListener.class);
-        mNextManeuverPanelPresenter.addListener(listener);
+        mNextManeuverPresenter.addListener(listener);
         when(mNavigationManager.getAfterNextManeuver()).thenReturn(maneuver);
-        mNextManeuverPanelPresenter.handleManeuverEvent();
+        mNextManeuverPresenter.handleManeuverEvent();
         verify(listener).onDataChanged(any());
     }
 
     @Test
     public void testAddRemoveListener() {
         GuidanceNextManeuverListener listener = mock(GuidanceNextManeuverListener.class);
-        mNextManeuverPanelPresenter.addListener(listener);
-        mNextManeuverPanelPresenter.removeListener(listener);
-        mNextManeuverPanelPresenter.handleManeuverEvent();
+        mNextManeuverPresenter.addListener(listener);
+        mNextManeuverPresenter.removeListener(listener);
+        mNextManeuverPresenter.handleManeuverEvent();
         verify(listener, never()).onDataChanged(any());
     }
 }

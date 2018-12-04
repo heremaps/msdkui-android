@@ -52,9 +52,9 @@ class GuidanceStreetLabelFragment : Fragment(), GuidanceStreetLabelListener {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val panelFragment = GuidanceStreetLabelView(activity)
-        panelFragment.id = R.id.guidanceCurrentStreetId
-        return panelFragment
+        val streetLabelView = GuidanceStreetLabelView(activity)
+        streetLabelView.id = R.id.guidanceStreetLabelViewId
+        return streetLabelView
     }
 
     /**

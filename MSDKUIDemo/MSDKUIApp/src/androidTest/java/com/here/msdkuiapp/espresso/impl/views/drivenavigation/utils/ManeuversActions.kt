@@ -40,7 +40,7 @@ object ManeuversActions {
         for (index in 0 until itemsCount) {
             var maneuverAddress = String()
             var maneuverIconTag = 0
-            Espresso.onView(ViewMatchers.withId(R.id.guidance_maneuver_description_list))
+            Espresso.onView(ViewMatchers.withId(R.id.guidance_maneuver_list))
                     .perform(RecyclerViewActions.actionOnItemAtPosition<ManeuverListAdapter.ViewHolder>(index,
                             object : ViewAction {
                                 override fun getConstraints() = ViewMatchers.isAssignableFrom(ManeuverItemView::class.java)

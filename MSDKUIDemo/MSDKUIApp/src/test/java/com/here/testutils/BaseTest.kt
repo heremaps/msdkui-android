@@ -73,7 +73,7 @@ abstract class BaseTest {
     }
 
     /**
-     * Add fragment to the activity with given tag.
+     * Add guidanceSpeedLimitFragment to the activity with given tag.
      */
     public fun addFrag(fragment: Fragment, tag: String = ""): Fragment {
         fragmentActivity!!.supportFragmentManager.run {
@@ -86,7 +86,7 @@ abstract class BaseTest {
     }
 
     /**
-     * Gets fragment with given id.
+     * Gets guidanceSpeedLimitFragment with given id.
      */
     fun getFragment(id: Int): Fragment? {
         supportFragmentManager?.run {

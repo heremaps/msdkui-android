@@ -50,9 +50,9 @@ class GuidanceSpeedLimitFragment : Fragment(), GuidanceSpeedListener  {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val panelFragment = GuidanceSpeedLimitView(activity)
-        panelFragment.id = R.id.guidanceSpeedLimitPanelId
-        return panelFragment
+        val speedLimitView = GuidanceSpeedLimitView(activity)
+        speedLimitView.id = R.id.guidanceSpeedLimitViewId
+        return speedLimitView
     }
 
     /**
@@ -66,6 +66,7 @@ class GuidanceSpeedLimitFragment : Fragment(), GuidanceSpeedListener  {
                 resume()
             }
         }
+        view.setBackgroundResource(R.drawable.speed_limit_bg)
     }
 
     override fun onPause() {

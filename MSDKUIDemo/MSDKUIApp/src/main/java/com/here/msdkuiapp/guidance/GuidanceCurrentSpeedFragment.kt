@@ -39,7 +39,7 @@ import kotlinx.android.synthetic.main.guidance_current_speed.*
 @ContainerOptions(CacheImplementation.NO_CACHE)
 class GuidanceCurrentSpeedFragment : Fragment(), GuidanceSpeedListener {
 
-    internal var panelPresenter: GuidanceSpeedPresenter? = null
+    internal var speedPresenter: GuidanceSpeedPresenter? = null
 
     init {
         retainInstance = true
@@ -61,8 +61,8 @@ class GuidanceCurrentSpeedFragment : Fragment(), GuidanceSpeedListener {
      * Creates Presenter for this GuidanceStreetLabelFragment.
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if (panelPresenter == null) {
-            panelPresenter = GuidanceSpeedPresenter(SingletonHelper.navigationManager ?: return,
+        if (speedPresenter == null) {
+            speedPresenter = GuidanceSpeedPresenter(SingletonHelper.navigationManager ?: return,
                     SingletonHelper.positioningManager ?: return).apply {
                 addListener(this@GuidanceCurrentSpeedFragment)
                 resume()
@@ -72,12 +72,12 @@ class GuidanceCurrentSpeedFragment : Fragment(), GuidanceSpeedListener {
 
     override fun onPause() {
         super.onPause()
-        panelPresenter?.pause()
+        speedPresenter?.pause()
     }
 
     override fun onResume() {
         super.onResume()
-        panelPresenter?.resume()
+        speedPresenter?.resume()
     }
 
     override fun onDataChanged(data: GuidanceSpeedData?) {

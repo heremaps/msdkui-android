@@ -42,66 +42,66 @@ public class GuidanceSpeedViewTest extends RobolectricTest {
     private static final int RED_COLOR = 16711680;
     private static final int BLUE_COLOR = 255;
 
-    private GuidanceSpeedView mCurrentSpeedPanel = null;
+    private GuidanceSpeedView mCurrentGuidanceSpeedView = null;
 
     @Before
     public void setUp() {
         super.setUp();
-        mCurrentSpeedPanel = new GuidanceSpeedView(getApplicationContext());
+        mCurrentGuidanceSpeedView = new GuidanceSpeedView(getApplicationContext());
     }
 
     @Test
     public void testUiInit() {
-        final View container = mCurrentSpeedPanel.findViewById(R.id.guidance_current_speed_container);
-        final TextView speedValueView = mCurrentSpeedPanel.findViewById(R.id.guidance_current_speed_value);
-        final TextView speedUnitView = mCurrentSpeedPanel.findViewById(R.id.guidance_current_speed_unit);
+        final View container = mCurrentGuidanceSpeedView.findViewById(R.id.guidance_current_speed_container);
+        final TextView speedValueView = mCurrentGuidanceSpeedView.findViewById(R.id.guidance_current_speed_value);
+        final TextView speedUnitView = mCurrentGuidanceSpeedView.findViewById(R.id.guidance_current_speed_unit);
 
         assertThat(container.getVisibility(), is(View.VISIBLE));
         assertThat(speedValueView.getText().toString(), is(getString(R.string.msdkui_value_not_available)));
         assertThat(speedUnitView.getText().toString(),
                 is(getApplicationContext().getResources().getString(R.string.msdkui_unit_km_per_h)));
         GuidanceSpeedData data = new GuidanceSpeedData(VELOCITY, SPEED_LIMIT);
-        mCurrentSpeedPanel.setCurrentSpeedData(data);
+        mCurrentGuidanceSpeedView.setCurrentSpeedData(data);
         assertThat(speedValueView.getText().toString(), is(String.valueOf(VELOCITY)));
     }
 
     @Test
     public void testColorSetting() {
         //set different colors
-        mCurrentSpeedPanel.setValueTextColor(0);
-        mCurrentSpeedPanel.setUnitTextColor(0);
-        mCurrentSpeedPanel.setValueTextColor(RED_COLOR);
-        mCurrentSpeedPanel.setUnitTextColor(BLUE_COLOR);
+        mCurrentGuidanceSpeedView.setValueTextColor(0);
+        mCurrentGuidanceSpeedView.setUnitTextColor(0);
+        mCurrentGuidanceSpeedView.setValueTextColor(RED_COLOR);
+        mCurrentGuidanceSpeedView.setUnitTextColor(BLUE_COLOR);
 
-        assertThat(mCurrentSpeedPanel.getValueTextColor(), is(RED_COLOR));
-        assertThat(mCurrentSpeedPanel.getUnitTextColor(), is(BLUE_COLOR));
+        assertThat(mCurrentGuidanceSpeedView.getValueTextColor(), is(RED_COLOR));
+        assertThat(mCurrentGuidanceSpeedView.getUnitTextColor(), is(BLUE_COLOR));
 
         //set same colors
-        mCurrentSpeedPanel.setValueTextColor(RED_COLOR);
-        mCurrentSpeedPanel.setUnitTextColor(BLUE_COLOR);
+        mCurrentGuidanceSpeedView.setValueTextColor(RED_COLOR);
+        mCurrentGuidanceSpeedView.setUnitTextColor(BLUE_COLOR);
 
-        assertThat(mCurrentSpeedPanel.getValueTextColor(), is(RED_COLOR));
-        assertThat(mCurrentSpeedPanel.getUnitTextColor(), is(BLUE_COLOR));
+        assertThat(mCurrentGuidanceSpeedView.getValueTextColor(), is(RED_COLOR));
+        assertThat(mCurrentGuidanceSpeedView.getUnitTextColor(), is(BLUE_COLOR));
     }
 
     @Test
     public void testUiWhenDataIsNull() {
-        mCurrentSpeedPanel.setCurrentSpeedData(null);
-        final View container = mCurrentSpeedPanel.findViewById(R.id.guidance_current_speed_container);
+        mCurrentGuidanceSpeedView.setCurrentSpeedData(null);
+        final View container = mCurrentGuidanceSpeedView.findViewById(R.id.guidance_current_speed_container);
         assertThat(container.getVisibility(), is(View.VISIBLE));
     }
 
     @Test
     public void testSetterAndGetter() {
         GuidanceSpeedData data = new GuidanceSpeedData(10, 10);
-        mCurrentSpeedPanel.setCurrentSpeedData(data);
-        assertThat(mCurrentSpeedPanel.getCurrentSpeedData(), is(data));
+        mCurrentGuidanceSpeedView.setCurrentSpeedData(data);
+        assertThat(mCurrentGuidanceSpeedView.getCurrentSpeedData(), is(data));
     }
 
     @Test
     public void testSettingNullDataWontCrash() {
-        mCurrentSpeedPanel.setCurrentSpeedData(null);
-        assertThat(mCurrentSpeedPanel.getCurrentSpeedData().isValid(), is(false));
+        mCurrentGuidanceSpeedView.setCurrentSpeedData(null);
+        assertThat(mCurrentGuidanceSpeedView.getCurrentSpeedData().isValid(), is(false));
     }
 
     @Test
@@ -110,20 +110,20 @@ public class GuidanceSpeedViewTest extends RobolectricTest {
         final FragmentActivity activity = getFragmentActivity();
 
         // when data is not null
-        mCurrentSpeedPanel.setCurrentSpeedData(data);
-        assertNotNull(mCurrentSpeedPanel.getCurrentSpeedData());
-        mCurrentSpeedPanel.setId(R.id.vertical_guideline);
-        activity.setContentView(mCurrentSpeedPanel);
+        mCurrentGuidanceSpeedView.setCurrentSpeedData(data);
+        assertNotNull(mCurrentGuidanceSpeedView.getCurrentSpeedData());
+        mCurrentGuidanceSpeedView.setId(R.id.vertical_guideline);
+        activity.setContentView(mCurrentGuidanceSpeedView);
         activity.recreate();
-        assertNotNull(mCurrentSpeedPanel.getCurrentSpeedData());
+        assertNotNull(mCurrentGuidanceSpeedView.getCurrentSpeedData());
 
         // when data is null
-        mCurrentSpeedPanel.setCurrentSpeedData(null);
-        assertThat(mCurrentSpeedPanel.getCurrentSpeedData().isValid(), is(false));
-        mCurrentSpeedPanel.setId(R.id.vertical_guideline);
-        activity.setContentView(mCurrentSpeedPanel);
+        mCurrentGuidanceSpeedView.setCurrentSpeedData(null);
+        assertThat(mCurrentGuidanceSpeedView.getCurrentSpeedData().isValid(), is(false));
+        mCurrentGuidanceSpeedView.setId(R.id.vertical_guideline);
+        activity.setContentView(mCurrentGuidanceSpeedView);
         activity.recreate();
-        assertThat(mCurrentSpeedPanel.getCurrentSpeedData().isValid(), is(false));
+        assertThat(mCurrentGuidanceSpeedView.getCurrentSpeedData().isValid(), is(false));
     }
 
     @Test

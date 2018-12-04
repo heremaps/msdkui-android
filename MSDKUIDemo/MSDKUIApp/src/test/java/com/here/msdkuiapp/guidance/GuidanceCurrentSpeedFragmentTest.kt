@@ -50,13 +50,13 @@ class GuidanceCurrentSpeedFragmentTest : BaseTest() {
         super.setUp()
         MockitoAnnotations.initMocks(this)
         guidanceCurrentSpeedFragment = GuidanceCurrentSpeedFragment.newInstance()
-        guidanceCurrentSpeedFragment.speedPresenter = mockGuidanceCurrentSpeedPresenter
+        guidanceCurrentSpeedFragment.presenter = mockGuidanceCurrentSpeedPresenter
     }
 
     @Test
     fun testPauseAndResume() {
-        guidanceCurrentSpeedFragment.speedPresenter = mockGuidanceCurrentSpeedPresenter
-        assertNotNull(guidanceCurrentSpeedFragment.speedPresenter)
+        guidanceCurrentSpeedFragment.presenter = mockGuidanceCurrentSpeedPresenter
+        assertNotNull(guidanceCurrentSpeedFragment.presenter)
         guidanceCurrentSpeedFragment.onPause()
         verify(mockGuidanceCurrentSpeedPresenter).pause()
         guidanceCurrentSpeedFragment.onResume()
@@ -76,13 +76,13 @@ class GuidanceCurrentSpeedFragmentTest : BaseTest() {
         positioningManager = mock(PositioningManager::class.java)
         guidanceCurrentSpeedFragment = GuidanceCurrentSpeedFragment.newInstance()
         addFrag(guidanceCurrentSpeedFragment, GuidanceSpeedLimitFragment::class.java.name)
-        assertNotNull(guidanceCurrentSpeedFragment.speedPresenter)
+        assertNotNull(guidanceCurrentSpeedFragment.presenter)
     }
 
     @Test
     fun testSetterGetterPanelPresenter() {
-        guidanceCurrentSpeedFragment.speedPresenter = mockGuidanceCurrentSpeedPresenter
-        assertNotNull(guidanceCurrentSpeedFragment.speedPresenter)
+        guidanceCurrentSpeedFragment.presenter = mockGuidanceCurrentSpeedPresenter
+        assertNotNull(guidanceCurrentSpeedFragment.presenter)
     }
 
     @Test

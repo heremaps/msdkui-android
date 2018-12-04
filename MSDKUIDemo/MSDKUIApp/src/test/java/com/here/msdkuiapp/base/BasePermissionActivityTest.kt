@@ -79,7 +79,7 @@ class BasePermissionActivityTest : BaseTest() {
         activity.setContentView(R.layout.activity_guidance_map_selection)
         activity.baseFragmentCoordinator = mockCoordinator
         activityController.start()
-        // permission guidanceSpeedLimitFragment should be added.
+        // permission fragment should be added.
         verify(mockCoordinator).addFragment(anyInt(), anySafe<Class<Fragment>>(), anyBoolean(), any())
     }
 

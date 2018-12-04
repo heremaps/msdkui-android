@@ -34,50 +34,50 @@ import org.mockito.Mockito.verify
  */
 class GuidanceStreetLabelViewFragmentTest : BaseTest() {
 
-    private lateinit var guidanceCurrentStreetFragment: GuidanceStreetLabelFragment
+    private lateinit var guidanceStreetLabelFragment: GuidanceStreetLabelFragment
 
     @Before
     override fun setUp() {
         super.setUp()
-        guidanceCurrentStreetFragment = GuidanceStreetLabelFragment.newInstance()
+        guidanceStreetLabelFragment = GuidanceStreetLabelFragment.newInstance()
     }
 
     @Test
     fun testCurrentStreetFragmentCreation() {
-        guidanceCurrentStreetFragment.route = mock(Route::class.java)
-        guidanceCurrentStreetFragment.presenter = mock(GuidanceStreetLabelPresenter::class.java)
-        addFrag(guidanceCurrentStreetFragment, GuidanceStreetLabelFragment::class.java.name)
-        assertNotNull(guidanceCurrentStreetFragment)
-        assertNotNull(guidanceCurrentStreetFragment.view)
+        guidanceStreetLabelFragment.route = mock(Route::class.java)
+        guidanceStreetLabelFragment.presenter = mock(GuidanceStreetLabelPresenter::class.java)
+        addFrag(guidanceStreetLabelFragment, GuidanceStreetLabelFragment::class.java.name)
+        assertNotNull(guidanceStreetLabelFragment)
+        assertNotNull(guidanceStreetLabelFragment.view)
     }
 
     @Test
     fun testRouteSetGet() {
-        guidanceCurrentStreetFragment.route = mock(Route::class.java)
-        assertNotNull(guidanceCurrentStreetFragment.route)
+        guidanceStreetLabelFragment.route = mock(Route::class.java)
+        assertNotNull(guidanceStreetLabelFragment.route)
     }
 
     @Test
     fun testCallbacks() {
         val streetName : String = "StreetName"
-        guidanceCurrentStreetFragment.route = mock(Route::class.java)
-        guidanceCurrentStreetFragment.presenter = mock(GuidanceStreetLabelPresenter::class.java)
-        addFrag(guidanceCurrentStreetFragment,
+        guidanceStreetLabelFragment.route = mock(Route::class.java)
+        guidanceStreetLabelFragment.presenter = mock(GuidanceStreetLabelPresenter::class.java)
+        addFrag(guidanceStreetLabelFragment,
                 GuidanceStreetLabelFragment::class.java.name)
         val data = mock(GuidanceStreetLabelData::class.java)
         `when`(data.currentStreetName).thenReturn(streetName)
-        guidanceCurrentStreetFragment.onDataChanged(data)
-        assertEquals(streetName, (guidanceCurrentStreetFragment.view as GuidanceStreetLabelView).guidanceCurrentStreetData.currentStreetName)
+        guidanceStreetLabelFragment.onDataChanged(data)
+        assertEquals(streetName, (guidanceStreetLabelFragment.view as GuidanceStreetLabelView).guidanceCurrentStreetData.currentStreetName)
     }
 
     @Test
     fun testPausingAndResuming() {
         val labelPresenter : GuidanceStreetLabelPresenter = mock(GuidanceStreetLabelPresenter::class.java)
-        guidanceCurrentStreetFragment.presenter = labelPresenter
-        guidanceCurrentStreetFragment.onPause()
+        guidanceStreetLabelFragment.presenter = labelPresenter
+        guidanceStreetLabelFragment.onPause()
         verify(labelPresenter).pause()
 
-        guidanceCurrentStreetFragment.onResume()
+        guidanceStreetLabelFragment.onResume()
         verify(labelPresenter).resume()
     }
 }

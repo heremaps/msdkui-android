@@ -77,7 +77,7 @@ class BaseFragmentCoordinatorTest : BaseTest() {
 
     @Test
     fun testAddFragmentClassShouldAddFragment() {
-        // lets say at same id, some other guidanceSpeedLimitFragment was there
+        // lets say at same id, some other fragment was there
         val routeSelectionFragment = mock(GuidanceWaypointSelectionFragment::class.java)
         `when`(mockFragmentManager.findFragmentById(anyInt())).thenReturn(routeSelectionFragment)
         baseFragmentCoordinator.addFragment(1, RoutePreviewFragment::class.java, true)

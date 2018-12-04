@@ -139,10 +139,14 @@ public class GuidanceNextManeuverPanel extends FrameLayout {
     }
 
     /**
-     * Sets {@link GuidanceNextManeuverData} which will be used to populate UI.
+     * Sets {@link GuidanceNextManeuverData} which will be used to populate UI. Please note
+     * setting null data will set the visibility of the layout to GONE. This can be useful to prevent
+     * showing outdated or irrelevant data. for example, when the next maneuver is too far away.
      *
      * @param data
      *         the {@link GuidanceNextManeuverData} to populate the UI.
+     *
+     * @see com.here.msdkui.guidance.GuidanceCurrentStreetPresenter
      */
     public void setNextManeuverData(@Nullable GuidanceNextManeuverData data) {
         mNextManeuverData = data;

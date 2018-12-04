@@ -117,7 +117,7 @@ class GuidanceCoordinatorTest : BaseTest() {
 
         val fragmentCapture = argumentCaptor<Fragment>()
         verify(mockFragmentTransaction, times(6)).replace(anyInt(), fragmentCapture.capture(), anyString())
-        val fragment = fragmentCapture.allValues[0] as? GuidanceManeuverPanelFragment
+        val fragment = fragmentCapture.allValues[0] as? GuidanceManeuverFragment
         assertNotNull(fragment)
 
         with(mockNavigationManager) {

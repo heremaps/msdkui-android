@@ -65,8 +65,8 @@ object FragmentFactory {
                     }
 
                 // guidance
-                    isAssignableFrom(GuidanceManeuverPanelFragment::class.java) -> {
-                        GuidanceManeuverPanelFragment.newInstance()
+                    isAssignableFrom(GuidanceManeuverFragment::class.java) -> {
+                        GuidanceManeuverFragment.newInstance()
                     }
                     isAssignableFrom(GuidanceWaypointSelectionFragment::class.java) -> {
                         GuidanceWaypointSelectionFragment.newInstance()
@@ -74,11 +74,11 @@ object FragmentFactory {
                     isAssignableFrom(LocationPermissionFragment::class.java) -> {
                         LocationPermissionFragment.newInstance()
                     }
-                    isAssignableFrom(GuidanceCurrentStreetFragment::class.java) -> {
-                        GuidanceCurrentStreetFragment.newInstance()
+                    isAssignableFrom(GuidanceStreetLabelFragment::class.java) -> {
+                        GuidanceStreetLabelFragment.newInstance()
                     }
-                    isAssignableFrom(GuidanceNextManeuverPanelFragment::class.java) -> {
-                        GuidanceNextManeuverPanelFragment.newInstance()
+                    isAssignableFrom(GuidanceNextManeuverFragment::class.java) -> {
+                        GuidanceNextManeuverFragment.newInstance()
                     }
                     isAssignableFrom(GuidanceEstimatedArrivalViewFragment::class.java) -> {
                         GuidanceEstimatedArrivalViewFragment.newInstance()

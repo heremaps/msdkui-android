@@ -24,22 +24,20 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.here.android.mpa.guidance.NavigationManager;
 import com.here.msdkui.R;
-import com.here.msdkui.common.DateFormatterUtil;
 import com.here.msdkui.common.DistanceFormatterUtil;
-import com.here.msdkui.common.TimeFormatterUtil;
 
 /**
- * A view that shows estimated arrival information, like estimated time of arrival (ETA), distance to
- * destination and remaining travel time.
+ * A view that shows maneuver after next maneuver.
  */
-public class GuidanceEstimatedArrivalView extends FrameLayout {
+public class GuidanceNextManeuverView extends FrameLayout {
 
-    private GuidanceEstimatedArrivalViewData mData;
+    private GuidanceNextManeuverData mNextManeuverData;
 
     /**
      * Constructs a new instance.
@@ -47,7 +45,7 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
      * @param context
      *         the required {@link Context}.
      */
-    public GuidanceEstimatedArrivalView(Context context) {
+    public GuidanceNextManeuverView(Context context) {
         this(context, null);
     }
 
@@ -60,7 +58,7 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
      * @param attrs
      *         a set of attributes.
      */
-    public GuidanceEstimatedArrivalView(Context context, @Nullable AttributeSet attrs) {
+    public GuidanceNextManeuverView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
@@ -76,7 +74,7 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
      * @param defStyleAttr
      *         a default style attribute.
      */
-    public GuidanceEstimatedArrivalView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public GuidanceNextManeuverView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context);
     }
@@ -99,65 +97,67 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
      * Requires Lollipop (API level 21).
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public GuidanceEstimatedArrivalView(Context context, @Nullable AttributeSet attrs, int defStyleAttr,
-            int defStyleRes) {
+    public GuidanceNextManeuverView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
     }
 
     private void init(Context context) {
-        LayoutInflater.from(context).inflate(R.layout.guidance_arrival_info, this);
-    }
-
-    private void populate(@Nullable GuidanceEstimatedArrivalViewData data) {
-        final TextView eta = (TextView) findViewById(R.id.eta);
-        final TextView distance = (TextView) findViewById(R.id.distance);
-        final TextView duration = (TextView) findViewById(R.id.duration);
-        final String etaText =
-                data == null || data.getEta().equals(NavigationManager.INVALID_ETA_DATE) ?
-                        getContext().getString(R.string.msdkui_value_not_available) :
-                        DateFormatterUtil.format(getContext(), data.getEta());
-        eta.setText(etaText);
-
-        final String distanceText = data == null || data.getDistance() < 0 ?
-                getContext().getString(R.string.msdkui_value_not_available) :
-                DistanceFormatterUtil.formatDistanceForUI(getContext(), data.getDistance());
-        distance.setText(distanceText);
-
-        final String durationText = data == null || data.getDuration() < 0 ?
-                getContext().getString(R.string.msdkui_value_not_available) :
-                TimeFormatterUtil.format(getContext(), data.getDuration());
-        duration.setText(durationText);
+        LayoutInflater.from(context).inflate(R.layout.guidance_next_maneuver_panel, this);
     }
 
     /**
-     * Gets current {@link GuidanceEstimatedArrivalViewData}.
+     * Populate the UI with {@link GuidanceNextManeuverData}.
      *
-     * @return data used to populate this view.
+     * @param nextManeuverData
+     *         {@link GuidanceNextManeuverData}
      */
-    @Nullable public GuidanceEstimatedArrivalViewData getEstimatedArrivalData() {
-        return mData;
+    private void populate(GuidanceNextManeuverData nextManeuverData) {
+
+        final View afterNextManeuverContainer = (View) findViewById(R.id.afterNextManeuverContainer);
+        final TextView maneuverDistance = (TextView) findViewById(R.id.nextManeuverDistance);
+        final TextView streetName = (TextView) findViewById(R.id.afterNextManeuverStreetName);
+        final ImageView iconView = (ImageView) findViewById(R.id.nextManeuverIconView);
+
+        if (nextManeuverData == null) {
+            afterNextManeuverContainer.setVisibility(View.GONE);
+        } else {
+            afterNextManeuverContainer.setVisibility(View.VISIBLE);
+            iconView.setImageResource(nextManeuverData.getIconId());
+            maneuverDistance.setText(DistanceFormatterUtil.format(getContext(), nextManeuverData.getDistance()));
+            streetName.setText(nextManeuverData.getStreetName());
+        }
     }
 
     /**
-     * Sets the @{link Date} of estimated arrival.
+     * Gets next maneuver data which is being used for UI population.
+     *
+     * @return {@link GuidanceNextManeuverData}
+     */
+    public @Nullable
+    GuidanceNextManeuverData getNextManeuverData() {
+        return mNextManeuverData;
+    }
+
+    /**
+     * Sets {@link GuidanceNextManeuverData} which will be used to populate UI.
      *
      * @param data
-     *         the data to set.
+     *         the {@link GuidanceNextManeuverData} to populate the UI.
      */
-    public void setEstimatedArrivalData(@Nullable GuidanceEstimatedArrivalViewData data) {
-        mData = data;
+    public void setNextManeuverData(@Nullable GuidanceNextManeuverData data) {
+        mNextManeuverData = data;
         populate(data);
     }
 
     @Override
     protected Parcelable onSaveInstanceState() {
         final Parcelable superState = super.onSaveInstanceState();
-        if (mData == null) {
+        if (mNextManeuverData == null) {
             return superState;
         }
         final SavedState savedState = new SavedState(superState);
-        savedState.setStateToSave(this.mData);
+        savedState.setStateToSave(this.mNextManeuverData);
         return savedState;
     }
 
@@ -169,7 +169,7 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
         }
         final SavedState savedState = (SavedState) state;
         super.onRestoreInstanceState(savedState.getSuperState());
-        setEstimatedArrivalData(savedState.getSavedState());
+        setNextManeuverData(savedState.getSavedState());
     }
 
     /**
@@ -189,7 +189,7 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
                         return new SavedState[size];
                     }
                 };
-        private GuidanceEstimatedArrivalViewData mStateToSave;
+        private GuidanceNextManeuverData mStateToSave;
 
         SavedState(Parcelable superState) {
             super(superState);
@@ -198,7 +198,7 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
         SavedState(Parcel in) {
             super(in);
             if (in.readByte() != 0) {
-                mStateToSave = GuidanceEstimatedArrivalViewData.CREATOR.createFromParcel(in);
+                mStateToSave = GuidanceNextManeuverData.CREATOR.createFromParcel(in);
             }
         }
 
@@ -215,22 +215,17 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
 
         /**
          * Gets the saved states.
-         *
-         * @return saved instance of {@link GuidanceEstimatedArrivalViewData}.
          */
         @Nullable
-        GuidanceEstimatedArrivalViewData getSavedState() {
+        GuidanceNextManeuverData getSavedState() {
             return mStateToSave;
         }
 
         /**
          * Sets the state to be saved.
-         *
-         * @param state
-         *         an instance of {@link GuidanceEstimatedArrivalViewData} to be saved.
          */
-        void setStateToSave(@Nullable GuidanceEstimatedArrivalViewData state) {
-            this.mStateToSave = state;
+        void setStateToSave(@Nullable GuidanceNextManeuverData mStateToSave) {
+            this.mStateToSave = mStateToSave;
         }
     }
 }

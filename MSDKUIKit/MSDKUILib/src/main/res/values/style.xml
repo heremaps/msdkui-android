@@ -691,7 +691,7 @@
         <item name="android:textColor">?attr/colorForegroundSecondary</item>
     </style>
 
-    <!-- GuidanceManeuverPanel -->
+    <!-- GuidanceManeuverView -->
 
     <style name="GuidanceManeuverPanel">
         <item name="android:layout_width">match_parent</item>

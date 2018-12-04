@@ -65,7 +65,7 @@ public class GuidanceEstimatedArrivalViewTest extends RobolectricTest {
         assertThat(durationView.getText().toString(), is(getString(R.string.msdkui_value_not_available)));
         assertThat(dotView.getText().toString(), is(getString(R.string.msdkui_bullet)));
 
-        GuidanceEstimatedArrivalData data = new GuidanceEstimatedArrivalData(ETA_DATE, DISTANCE, DURATION);
+        GuidanceEstimatedArrivalViewData data = new GuidanceEstimatedArrivalViewData(ETA_DATE, DISTANCE, DURATION);
         // create proper data to see if everything is fine.
         mEstimatedArrivalView.setEstimatedArrivalData(data);
 
@@ -87,7 +87,7 @@ public class GuidanceEstimatedArrivalViewTest extends RobolectricTest {
         final TextView distance = mEstimatedArrivalView.findViewById(R.id.distance);
         final TextView duration = mEstimatedArrivalView.findViewById(R.id.duration);
 
-        GuidanceEstimatedArrivalData data = new GuidanceEstimatedArrivalData(new Date(-1L), -1, -1);
+        GuidanceEstimatedArrivalViewData data = new GuidanceEstimatedArrivalViewData(new Date(-1L), -1, -1);
         mEstimatedArrivalView.setEstimatedArrivalData(data);
 
         assertEquals(eta.getVisibility(), View.VISIBLE);
@@ -101,14 +101,14 @@ public class GuidanceEstimatedArrivalViewTest extends RobolectricTest {
 
     @Test
     public void testSettingDataReturnsTheSame() {
-        final GuidanceEstimatedArrivalData data = new GuidanceEstimatedArrivalData(ETA_DATE, DISTANCE, DURATION);
+        final GuidanceEstimatedArrivalViewData data = new GuidanceEstimatedArrivalViewData(ETA_DATE, DISTANCE, DURATION);
         mEstimatedArrivalView.setEstimatedArrivalData(data);
         assertThat(mEstimatedArrivalView.getEstimatedArrivalData(), equalTo(data));
     }
 
     @Test
     public void testDataIsNotLostWhileRecreatingActivity() {
-        final GuidanceEstimatedArrivalData data = new GuidanceEstimatedArrivalData(ETA_DATE, DISTANCE, DURATION);
+        final GuidanceEstimatedArrivalViewData data = new GuidanceEstimatedArrivalViewData(ETA_DATE, DISTANCE, DURATION);
         final FragmentActivity activity = getFragmentActivity();
 
         // when data is not null
@@ -122,7 +122,7 @@ public class GuidanceEstimatedArrivalViewTest extends RobolectricTest {
 
     @Test
     public void testViewDataIsParcelable() {
-        final GuidanceEstimatedArrivalData data = new GuidanceEstimatedArrivalData(ETA_DATE, DISTANCE, DURATION);
+        final GuidanceEstimatedArrivalViewData data = new GuidanceEstimatedArrivalViewData(ETA_DATE, DISTANCE, DURATION);
         GuidanceEstimatedArrivalView.SavedState savedState = new GuidanceEstimatedArrivalView.SavedState(
                 AbsSavedState.EMPTY_STATE);
         savedState.setStateToSave(data);

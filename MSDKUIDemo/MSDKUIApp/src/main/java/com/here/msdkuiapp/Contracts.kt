@@ -27,7 +27,7 @@ import com.here.msdkuiapp.base.BaseContract
 class GuidanceContracts {
 
     /**
-     *  ManeuverPanel for GuidanceManeuverPanelFragmentPresenter communicate with GuidanceManeuverPanelFragment.
+     *  ManeuverPanel for GuidanceManeuverPanelFragmentPresenter communicate with GuidanceManeuverFragment.
      */
     interface ManeuverPanel : BaseContract<ManeuverPanel> {
         /**

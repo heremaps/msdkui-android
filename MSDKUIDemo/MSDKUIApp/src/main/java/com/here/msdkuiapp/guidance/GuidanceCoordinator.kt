@@ -177,12 +177,12 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
      * Adds Maneuver panel to guidance view screen.
      */
     private fun addManeuverPanel() {
-        val fragment = addFragment(R.id.maneuver_panel_container, GuidanceManeuverPanelFragment::class.java, false)
+        val fragment = addFragment(R.id.maneuver_panel_container, GuidanceManeuverFragment::class.java, false)
         fragment.route = route
     }
 
     private fun addNextManeuverPanel() {
-        val fragment = addFragment(R.id.next_maneuver_panel_container, GuidanceNextManeuverPanelFragment::class.java, false)
+        val fragment = addFragment(R.id.next_maneuver_panel_container, GuidanceNextManeuverFragment::class.java, false)
         fragment.route = route
     }
 
@@ -191,7 +191,7 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
     }
 
     private fun addStreetNameView() {
-        val fragment = addFragment(R.id.current_street_name_fragment, GuidanceCurrentStreetFragment::class.java, false)
+        val fragment = addFragment(R.id.current_street_name_fragment, GuidanceStreetLabelFragment::class.java, false)
         fragment.route = route
     }
 

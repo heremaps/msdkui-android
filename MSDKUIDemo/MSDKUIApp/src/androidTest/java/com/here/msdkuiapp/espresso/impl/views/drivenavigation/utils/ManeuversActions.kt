@@ -24,8 +24,8 @@ import android.support.test.espresso.matcher.ViewMatchers
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.here.msdkui.routing.ManeuverDescriptionItem
-import com.here.msdkui.routing.ManeuverDescriptionListAdapter
+import com.here.msdkui.routing.ManeuverItemView
+import com.here.msdkui.routing.ManeuverListAdapter
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteMatchers
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView
@@ -40,10 +40,10 @@ object ManeuversActions {
         for (index in 0 until itemsCount) {
             var maneuverAddress = String()
             var maneuverIconTag = 0
-            Espresso.onView(ViewMatchers.withId(R.id.guidance_maneuver_description_list))
-                    .perform(RecyclerViewActions.actionOnItemAtPosition<ManeuverDescriptionListAdapter.ViewHolder>(index,
+            Espresso.onView(ViewMatchers.withId(R.id.guidance_maneuver_list))
+                    .perform(RecyclerViewActions.actionOnItemAtPosition<ManeuverListAdapter.ViewHolder>(index,
                             object : ViewAction {
-                                override fun getConstraints() = ViewMatchers.isAssignableFrom(ManeuverDescriptionItem::class.java)
+                                override fun getConstraints() = ViewMatchers.isAssignableFrom(ManeuverItemView::class.java)
 
                                 override fun getDescription() = "Get maneuver address and icon: "
 

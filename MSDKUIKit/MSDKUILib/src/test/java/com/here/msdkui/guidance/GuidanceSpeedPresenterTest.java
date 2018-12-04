@@ -37,7 +37,7 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 @PrepareForTest({ NavigationManager.class, PositioningManager.class, GeoPosition.class })
 public class GuidanceSpeedPresenterTest extends RobolectricTest {
 
-    private GuidanceSpeedPresenter mCurrentSpeedPanelPresenter;
+    private GuidanceSpeedPresenter mCurrentSpeedPresenter;
     private NavigationManager mNavigationManager;
     private PositioningManager mPositioningManager;
 
@@ -45,17 +45,17 @@ public class GuidanceSpeedPresenterTest extends RobolectricTest {
     public void setUp() {
         mNavigationManager = mock(NavigationManager.class);
         mPositioningManager = mock(PositioningManager.class);
-        mCurrentSpeedPanelPresenter = new GuidanceSpeedPresenter(mNavigationManager, mPositioningManager);
+        mCurrentSpeedPresenter = new GuidanceSpeedPresenter(mNavigationManager, mPositioningManager);
     }
 
     @Test
     public void testHandlePositionUpdate() {
         GuidanceSpeedListener listener = mock(GuidanceSpeedListener.class);
-        mCurrentSpeedPanelPresenter.addListener(listener);
+        mCurrentSpeedPresenter.addListener(listener);
 
         //for incorrect data
         when(mPositioningManager.hasValidPosition()).thenReturn(false);
-        mCurrentSpeedPanelPresenter.handlePositionUpdate();
+        mCurrentSpeedPresenter.handlePositionUpdate();
         verify(listener).onDataChanged(any());
 
         when(mPositioningManager.hasValidPosition()).thenReturn(true);
@@ -63,47 +63,47 @@ public class GuidanceSpeedPresenterTest extends RobolectricTest {
         when(geoPos.isValid()).thenReturn(true);
         when(geoPos.getSpeed()).thenReturn(10.0);
         when(mPositioningManager.getPosition()).thenReturn(geoPos);
-        mCurrentSpeedPanelPresenter.handlePositionUpdate();
+        mCurrentSpeedPresenter.handlePositionUpdate();
         verify(listener, times(2)).onDataChanged(any());
     }
 
     @Test
     public void testAddRemoveListener() {
         GuidanceSpeedListener listener = mock(GuidanceSpeedListener.class);
-        mCurrentSpeedPanelPresenter.addListener(listener);
+        mCurrentSpeedPresenter.addListener(listener);
 
         when(mNavigationManager.getAverageSpeed()).thenReturn(10.0);
-        mCurrentSpeedPanelPresenter.handlePositionUpdate();
+        mCurrentSpeedPresenter.handlePositionUpdate();
         verify(listener).onDataChanged(any());
 
-        mCurrentSpeedPanelPresenter.removeListener(listener);
-        mCurrentSpeedPanelPresenter.handlePositionUpdate();
+        mCurrentSpeedPresenter.removeListener(listener);
+        mCurrentSpeedPresenter.handlePositionUpdate();
         verify(listener, times(1)).onDataChanged(any());
     }
 
     @Test
     public void testHandleSpeedExceeded() {
         GuidanceSpeedListener listener = mock(GuidanceSpeedListener.class);
-        mCurrentSpeedPanelPresenter.addListener(listener);
+        mCurrentSpeedPresenter.addListener(listener);
         when(mPositioningManager.hasValidPosition()).thenReturn(false);
-        mCurrentSpeedPanelPresenter.handleSpeedExceeded(10);
+        mCurrentSpeedPresenter.handleSpeedExceeded(10);
         verify(listener).onDataChanged(any());
     }
 
     @Test
     public void testHandleSpeedExceededEnd() {
         GuidanceSpeedListener listener = mock(GuidanceSpeedListener.class);
-        mCurrentSpeedPanelPresenter.addListener(listener);
+        mCurrentSpeedPresenter.addListener(listener);
         when(mPositioningManager.hasValidPosition()).thenReturn(false);
-        mCurrentSpeedPanelPresenter.handleSpeedExceededEnd(10);
+        mCurrentSpeedPresenter.handleSpeedExceededEnd(10);
         verify(listener).onDataChanged(any());
     }
 
     @Test
     public void testResumePauseBehaviour() {
-        mCurrentSpeedPanelPresenter.resume();
+        mCurrentSpeedPresenter.resume();
         verify(mNavigationManager).addSpeedWarningListener(any());
-        mCurrentSpeedPanelPresenter.pause();
+        mCurrentSpeedPresenter.pause();
         verify(mNavigationManager).removeSpeedWarningListener(any());
     }
 }

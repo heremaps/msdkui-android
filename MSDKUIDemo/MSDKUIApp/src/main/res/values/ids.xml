@@ -15,10 +15,10 @@
   -->
 
 <resources>
-    <item name="guidanceManeuverPanelId" type="id" />
-    <item name="guidanceCurrentStreetId" type="id" />
-    <item name="guidanceNextManeuverPanelId" type="id" />
+    <item name="guidanceManeuverViewId" type="id" />
+    <item name="guidanceStreetLabelViewId" type="id" />
+    <item name="guidanceNextManeuverViewId" type="id" />
     <item name="guidanceEstimatedArrivalViewId" type="id" />
-    <item name="guidanceCurrentSpeedPanelId" type="id" />
-    <item name="guidanceSpeedLimitPanelId" type="id" />
+    <item name="guidanceCurrentSpeedViewId" type="id" />
+    <item name="guidanceSpeedLimitViewId" type="id" />
 </resources>

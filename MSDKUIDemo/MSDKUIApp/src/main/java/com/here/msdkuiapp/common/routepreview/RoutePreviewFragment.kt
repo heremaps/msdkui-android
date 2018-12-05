@@ -23,6 +23,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.accessibility.AccessibilityEvent
 import com.here.android.mpa.routing.Route
 import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkuiapp.*
@@ -96,6 +97,7 @@ class RoutePreviewFragment : Fragment(), GuidanceContracts.RoutePreview {
             list_end_divider.visibility = View.GONE
             place_holder.visibility = View.VISIBLE
         } else {
+            activity?.appActionBar?.titleView?.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED)
             see_steps.text = activity!!.getText(com.here.msdkuiapp.R.string.msdkui_app_guidance_button_showmap)
             guidance_maneuver_list.visibility = View.VISIBLE
             list_end_divider.visibility = View.VISIBLE

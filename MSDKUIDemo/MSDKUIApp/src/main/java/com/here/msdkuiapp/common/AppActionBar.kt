@@ -22,6 +22,7 @@ import android.support.v7.widget.Toolbar
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.here.android.mpa.routing.RouteOptions
 import com.here.msdkuiapp.*
 import com.here.msdkuiapp.about.AboutActivity
 
@@ -71,6 +72,12 @@ class AppActionBar(val activity: Activity) {
             }
         }
     }
+
+    /**
+     * Gets title view reference of action bar.
+     */
+    val titleView: View?
+        get() = activity.supportActionBar?.customView?.findViewById(R.id.ac_title) as? TextView
 
     /**
      * Sets action bar title with given options.

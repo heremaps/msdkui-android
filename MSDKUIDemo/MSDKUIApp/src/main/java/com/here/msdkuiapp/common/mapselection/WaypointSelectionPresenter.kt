@@ -98,7 +98,7 @@ class WaypointSelectionPresenter() : BasePresenter<CommonContracts.WaypointSelec
      * Updates position with given [WaypointEntry].
      *
      * @param index
-     *         index of entry to keep track of entry.
+     *         the new position of the waypoint entry.
      * @param entry
      *         [WaypointEntry]
      */
@@ -111,14 +111,14 @@ class WaypointSelectionPresenter() : BasePresenter<CommonContracts.WaypointSelec
      * Update fragment with given [GeoCoordinate]. This will do reverse geo-coding to get name for
      * the given [GeoCoordinate].
      *
-     * @param cord
+     * @param coordinate
      *         [GeoCoordinate]
      */
-    fun updateCord(cord: GeoCoordinate) {
-        if (!cord.isValid) return
-        state.entry = WaypointEntry(provider.providesRouteWaypoint(cord))
+    fun setGeoCoordinateForWaypoint(coordinate: GeoCoordinate) {
+        if (!coordinate.isValid) return
+        state.entry = WaypointEntry(provider.providesRouteWaypoint(coordinate))
         contract?.onProgress(true)
-        provider.providesReverseGeocodeRequest(cord).execute { location: Location?, errorCode: ErrorCode? ->
+        provider.providesReverseGeocodeRequest(coordinate).execute { location: Location?, errorCode: ErrorCode? ->
             this.onGeoRequestComplete(location, errorCode)
         }
     }

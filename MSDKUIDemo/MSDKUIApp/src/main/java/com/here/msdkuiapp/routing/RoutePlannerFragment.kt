@@ -192,19 +192,20 @@ class RoutePlannerFragment() : RetainFragment(), RoutingContracts.RoutePlanner {
      * @param updateTitle
      *         if title needs to be updated.
      * @param updateRightIcon
-     *         if right icon needs to be update.
+     *         if right icon needs to be updated.
      */
     fun updateActionBar(updateBack: Boolean = true, updateTitle: Boolean = true, updateRightIcon: Boolean = true) {
         presenter.updateActionBar(updateBack = updateBack, updateTitle = updateTitle, updateRightIcon = updateRightIcon)
     }
 
     /**
-     * Make action on waypoint selection cancelled - if this waypoint is invalid then remove it from list.
+     * Handle an unselected waypoint. If the waypoint is invalid, then it will be removed from
+     * the waypoint list.
      *
      * @param index
-     *         index within the list where selection been cancelled.
+     *         the index of the unselected [WaypointEntry].
      * @param current
-     *         [WaypointEntry] that selection been cancelled.
+     *         the unselected [WaypointEntry].
      */
     fun waypointSelectionCancelled(index: Int?, current: WaypointEntry?) {
         index ?: return

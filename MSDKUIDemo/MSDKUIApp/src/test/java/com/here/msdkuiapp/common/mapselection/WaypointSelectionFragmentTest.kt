@@ -114,8 +114,8 @@ class WaypointSelectionFragmentTest {
 
     @Test
     fun testUpdatePositions() {
-        fragment.updateCord(mock(GeoCoordinate::class.java))
-        verify(mockPresenter).updateCord(anySafe())
+        fragment.setGeoCoordinateForWaypoint(mock(GeoCoordinate::class.java))
+        verify(mockPresenter).setGeoCoordinateForWaypoint(anySafe())
         fragment.updatePosition(entry = mock(WaypointEntry::class.java))
         verify(mockPresenter).updatePosition(anyInt(), anySafe())
     }
@@ -124,7 +124,7 @@ class WaypointSelectionFragmentTest {
     fun testOnPointSelectedOnMap() {
         val cords = mock(GeoCoordinate::class.java)
         fragment.onPointSelectedOnMap(cords)
-        verify(mockPresenter).updateCord(cords)
+        verify(mockPresenter).setGeoCoordinateForWaypoint(cords)
     }
 
     @Test

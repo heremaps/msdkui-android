@@ -128,7 +128,7 @@ class WaypointSelectionPresenterTest : BaseTest() {
 
         val cord = mock(GeoCoordinate::class.java)
         `when`(cord.isValid).thenReturn(true)
-        presenter.updateCord(cord)
+        presenter.setGeoCoordinateForWaypoint(cord)
         verify(mockContract).onProgress(eq(true))
         val captor = argumentCaptor<ResultListener<Location>>()
         verify(request).execute(captor.capture())

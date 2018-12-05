@@ -80,7 +80,7 @@ class WaypointSelectionFragment() : RetainFragment(),
     }
 
     override fun onPointSelectedOnMap(cord: GeoCoordinate) {
-        updateCord(cord)
+        setGeoCoordinateForWaypoint(cord)
     }
 
     private fun onMapEngineInit() {
@@ -107,11 +107,11 @@ class WaypointSelectionFragment() : RetainFragment(),
      * Update fragment with given [GeoCoordinate]. This will do reverse geo-coding to get name for
      * the given [GeoCoordinate].
      *
-     * @param cord
+     * @param coordinate
      *         [GeoCoordinate]
      */
-    fun updateCord(cord: GeoCoordinate) {
-        presenter.updateCord(cord)
+    fun setGeoCoordinateForWaypoint(coordinate: GeoCoordinate) {
+        presenter.setGeoCoordinateForWaypoint(coordinate)
     }
 
     override fun onBackClicked(index: Int?, entry: WaypointEntry?) {
@@ -159,7 +159,7 @@ class WaypointSelectionFragment() : RetainFragment(),
          * Callback to be called when a user cancelled waypoint selection.
          *
          * @param index
-         *         an integer if you want to track waypoint entry, useful like using in list, null otherwise.
+         *         the index of the waypoint entry on route planner waypoints list.
          * @param current
          *         WaypointEntry object.
          */
@@ -169,7 +169,7 @@ class WaypointSelectionFragment() : RetainFragment(),
          * Callback to be called when a user has selected a waypoint.
          *
          * @param index
-         *         an integer if you want to track waypoint entry, useful like using in list, null otherwise.
+         *         the index of the waypoint entry on route planner waypoints list.
          * @param current
          *         WaypointEntry object.
          */

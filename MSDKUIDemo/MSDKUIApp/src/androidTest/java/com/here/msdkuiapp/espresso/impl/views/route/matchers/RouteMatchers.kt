@@ -34,13 +34,17 @@ import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuver
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverIconType
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverInstruction
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverInstructionText
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescArrival
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDelayInformation
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDetails
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDuration
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescIconType
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemArrival
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDelayInformation
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDetails
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDuration
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemIconType
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescLineBar
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescriptionList
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteOverviewArrival
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteOverviewDelayInformation
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteOverviewDetails
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteOverviewDuration
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteOverviewItem
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onSeeManeuverSteps
 import com.here.msdkuiapp.espresso.impl.views.route.useractions.RouteActions
@@ -81,17 +85,17 @@ object RouteMatchers {
      */
     fun checkRouteResultsItemsDisplayed(transportType: TransportType, item: Int): RouteMatchers {
         // Check Duration
-        onRouteDescDuration(item).check(matches(isDisplayed()))
+        onRouteListItemDuration(item).check(matches(isDisplayed()))
         // Check Icon type
-        onRouteDescIconType(item).check(matches(isDisplayed()))
+        onRouteListItemIconType(item).check(matches(isDisplayed()))
         // Check Delay information for Car & Truck, except the Walk & Bicycle
         when (transportType) {
-            TYPE_CAR, TYPE_TRUCK -> onRouteDescDelayInformation(item).check(matches(isDisplayed()))
+            TYPE_CAR, TYPE_TRUCK -> onRouteListItemDelayInformation(item).check(matches(isDisplayed()))
         }
         // Check Distance | Street road names
-        onRouteDescDetails(item).check(matches(isDisplayed()))
+        onRouteListItemDetails(item).check(matches(isDisplayed()))
         // Check Arrival time
-        onRouteDescArrival(item).check(matches(isDisplayed()))
+        onRouteListItemArrival(item).check(matches(isDisplayed()))
         // Check Line progress bar
         onRouteDescLineBar(item).check(matches(isDisplayed()))
         return this
@@ -100,17 +104,21 @@ object RouteMatchers {
     /**
      * Check Route item description information on route overview
      */
-    fun checkRouteOverviewItemsDisplayed(): RouteMatchers {
-        //FIXME: MSDKUI-1457
+    fun checkRouteOverviewItemsDisplayed(isDelayInformationAvailable: Boolean): RouteMatchers {
+        // Check destination
         onDestinationText.check(matches(isDisplayed()))
         // Check Route item on route overview
         onRouteOverviewItem.check(matches(isDisplayed()))
         // Check Duration
-        //onRouteDescDuration.check(matches(isDisplayed()))
+        onRouteOverviewDuration.check(matches(isDisplayed()))
         // Check Distance | Street road names
-        // onRouteDescDetails.check(matches(isDisplayed()))
+        onRouteOverviewDetails.check(matches(isDisplayed()))
         // Check Arrival time
-        // onRouteDescArrival.check(matches(isDisplayed()))
+        onRouteOverviewArrival.check(matches(isDisplayed()))
+        // Check delay information
+        if (isDelayInformationAvailable) {
+            onRouteOverviewDelayInformation.check(matches(isDisplayed()))
+        }
         // Check Line progress bar DOES NOT displayed on route overview
         onRouteDescLineBar.check(matches(not(isDisplayed())))
         return this
@@ -121,9 +129,9 @@ object RouteMatchers {
      */
     fun withUpdatedRouteData(routeData: RouteData): RouteMatchers {
         routeData.run {
-            onRouteDescDuration(routeItem).check(matches(not(withText(duration))))
-            onRouteDescDetails(routeItem).check(matches(not(withText(details))))
-            onRouteDescArrival(routeItem).check(matches(not(withText(arrival))))
+            onRouteListItemDuration(routeItem).check(matches(not(withText(duration))))
+            onRouteListItemDetails(routeItem).check(matches(not(withText(details))))
+            onRouteListItemArrival(routeItem).check(matches(not(withText(arrival))))
         }
         return this
     }
@@ -133,11 +141,11 @@ object RouteMatchers {
      */
     fun withRouteOverviewData(routeData: RouteData): RouteBarActions {
         routeData.run {
-            onRouteDescDuration.check(matches(withText(duration)))
-            onRouteDescDetails.check(matches(withText(details)))
-            onRouteDescArrival.check(matches(withText(arrival)))
+            onRouteListItemDuration.check(matches(withText(duration)))
+            onRouteListItemDetails.check(matches(withText(details)))
+            onRouteListItemArrival.check(matches(withText(arrival)))
             when (transportType) {
-                TYPE_CAR, TYPE_TRUCK -> onRouteDescDelayInformation.check(matches(withText(traffic)))
+                TYPE_CAR, TYPE_TRUCK -> onRouteListItemDelayInformation.check(matches(withText(traffic)))
                 else -> print("WALK & BICYCLE transportation types does not contain Traffic information!")
             }
         }

@@ -80,7 +80,7 @@ class WaypointSelectionFragment() : RetainFragment(),
     }
 
     override fun onPointSelectedOnMap(cord: GeoCoordinate) {
-        updateCord(cord)
+        setGeoCoordinateForWaypoint(cord)
     }
 
     private fun onMapEngineInit() {
@@ -94,8 +94,10 @@ class WaypointSelectionFragment() : RetainFragment(),
     /**
      * Updates position with given [WaypointEntry].
      *
-     * @param index index of entry to keep track of entry.
-     * @param entry [WaypointEntry]
+     * @param index
+     *         index of entry to keep track of entry.
+     * @param entry
+     *         [WaypointEntry]
      */
     fun updatePosition(index: Int = -1, entry: WaypointEntry) {
         presenter.updatePosition(index, entry)
@@ -105,10 +107,15 @@ class WaypointSelectionFragment() : RetainFragment(),
      * Update fragment with given [GeoCoordinate]. This will do reverse geo-coding to get name for
      * the given [GeoCoordinate].
      *
-     * @param cord  [GeoCoordinate]
+     * @param coordinate
+     *         [GeoCoordinate]
      */
-    fun updateCord(cord: GeoCoordinate) {
-        presenter.updateCord(cord)
+    fun setGeoCoordinateForWaypoint(coordinate: GeoCoordinate) {
+        presenter.setGeoCoordinateForWaypoint(coordinate)
+    }
+
+    override fun onBackClicked(index: Int?, entry: WaypointEntry?) {
+        (coordinator as? RoutingCoordinator)?.onWaypointSelectionCancelled(index, entry)
     }
 
     override fun onRightIconClicked(index: Int?, entry: WaypointEntry?) {
@@ -149,9 +156,22 @@ class WaypointSelectionFragment() : RetainFragment(),
     interface Listener {
 
         /**
-         * Callback to be called when user select a waypoint.
+         * Callback to be called when a user cancelled waypoint selection.
          *
-         * @param index a integer if you want to track waypoint entry, useful like using in list, null otherwise.
+         * @param index
+         *         the index of the waypoint entry on route planner waypoints list.
+         * @param current
+         *         WaypointEntry object.
+         */
+        fun onWaypointSelectionCancelled(index: Int?, current: WaypointEntry?)
+
+        /**
+         * Callback to be called when a user has selected a waypoint.
+         *
+         * @param index
+         *         the index of the waypoint entry on route planner waypoints list.
+         * @param current
+         *         WaypointEntry object.
          */
         fun onWaypointSelected(index: Int?, current: WaypointEntry)
     }

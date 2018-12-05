@@ -34,6 +34,7 @@ class AppActionBar(val activity: Activity) {
      * Set up the default action bar.
      */
     fun setUpActionBar(): AppActionBar {
+        
         activity.supportActionBar?.run {
             elevation = 0f
             setDisplayShowHomeEnabled(false)

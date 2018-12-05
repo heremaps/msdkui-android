@@ -25,7 +25,7 @@ jobs:
       script:
         - aws s3 cp s3://$SDK_URL/$SDK_VER MSDKUIKit/libs/HERE-sdk.aar
         - cd MSDKUIKit
-        - ./gradlew -x test :MSDKUILib:check :MSDKUILib:testDebugUnitTest :MSDKUILib:jacocoTestDebugReport :MSDKUILib:assembleAndroidTest
+        - ./gradlew -x test :MSDKUILib:check :MSDKUILib:testDebugUnitTest
         - aws s3 cp MSDKUILib/build/outputs/aar/MSDKUILib-release.aar s3://$SDK_URL/MSDKUI-Lib-$TRAVIS_BUILD_NUMBER.aar
       after_success:
         - bash <(curl -s https://codecov.io/bash)
@@ -35,6 +35,6 @@ jobs:
         - aws s3 cp s3://$SDK_URL/$SDK_VER MSDKUIDemo/libs/HERE-sdk.aar
         - aws s3 cp s3://$SDK_URL/MSDKUI-Lib-$TRAVIS_BUILD_NUMBER.aar MSDKUIDemo/libs/MSDKUILib.aar
         - cd MSDKUIDemo
-        - ./gradlew :MSDKUIApp:check :MSDKUIApp:jacocoTestDebugReport :MSDKUIApp:assembleAndroidTest
+        - ./gradlew :MSDKUIApp:check
       after_success:
         - bash <(curl -s https://codecov.io/bash)

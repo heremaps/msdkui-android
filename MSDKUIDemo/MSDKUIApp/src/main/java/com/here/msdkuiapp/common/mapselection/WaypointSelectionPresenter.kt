@@ -47,11 +47,16 @@ class WaypointSelectionPresenter() : BasePresenter<CommonContracts.WaypointSelec
     /**
      * Displays the action bar needed for [WaypointSelectionFragment].
      *
-     * @param appActionBar [AppActionBar]
+     * @param appActionBar
+     *         [AppActionBar]
      */
     fun setUpActionBar(appActionBar: AppActionBar?) {
         appActionBar?.run {
-            setBack(true, id = R.drawable.ic_clear_black_24dp)
+            setBack(true, id = R.drawable.ic_clear_black_24dp,
+                    clickListener = {
+                        contract?.onBackClicked(state.index, state.entry)
+                        activity.onBackPressed()
+                    })
             setTitle(value = context!!.getString(R.string.msdkui_waypoint_select_location))
             setRightIcon(id = R.drawable.ic_check_black_24dp,
                     accessibleValue = context!!.getString(R.string.msdkui_app_done),
@@ -92,8 +97,10 @@ class WaypointSelectionPresenter() : BasePresenter<CommonContracts.WaypointSelec
     /**
      * Updates position with given [WaypointEntry].
      *
-     * @param index index of entry to keep track of entry.
-     * @param entry [WaypointEntry]
+     * @param index
+     *         the new position of the waypoint entry.
+     * @param entry
+     *         [WaypointEntry]
      */
     fun updatePosition(index: Int, entry: WaypointEntry) {
         state.index = index
@@ -104,13 +111,14 @@ class WaypointSelectionPresenter() : BasePresenter<CommonContracts.WaypointSelec
      * Update fragment with given [GeoCoordinate]. This will do reverse geo-coding to get name for
      * the given [GeoCoordinate].
      *
-     * @param cord [GeoCoordinate]
+     * @param coordinate
+     *         [GeoCoordinate]
      */
-    fun updateCord(cord: GeoCoordinate) {
-        if (!cord.isValid) return
-        state.entry = WaypointEntry(provider.providesRouteWaypoint(cord))
+    fun setGeoCoordinateForWaypoint(coordinate: GeoCoordinate) {
+        if (!coordinate.isValid) return
+        state.entry = WaypointEntry(provider.providesRouteWaypoint(coordinate))
         contract?.onProgress(true)
-        provider.providesReverseGeocodeRequest(cord).execute { location: Location?, errorCode: ErrorCode? ->
+        provider.providesReverseGeocodeRequest(coordinate).execute { location: Location?, errorCode: ErrorCode? ->
             this.onGeoRequestComplete(location, errorCode)
         }
     }

@@ -26,6 +26,7 @@ import android.widget.TextView
 import com.here.android.mpa.common.GeoCoordinate
 import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkuiapp.R
+import com.here.msdkuiapp.baseActivity
 import com.here.msdkuiapp.map.MapFragmentWrapper
 import com.here.msdkuiapp.routing.RoutingActivity
 import com.here.msdkuiapp.routing.RoutingCoordinator
@@ -74,6 +75,7 @@ class WaypointSelectionFragmentTest {
             presenter = mockPresenter
             mapFragment = mockMapFragment
             activityInstance = mockActivity
+            `when`(baseActivity).thenReturn(mockActivity)
             `when`(view).thenReturn(mockView)
         }
         with(fragment) {
@@ -112,8 +114,8 @@ class WaypointSelectionFragmentTest {
 
     @Test
     fun testUpdatePositions() {
-        fragment.updateCord(mock(GeoCoordinate::class.java))
-        verify(mockPresenter).updateCord(anySafe())
+        fragment.setGeoCoordinateForWaypoint(mock(GeoCoordinate::class.java))
+        verify(mockPresenter).setGeoCoordinateForWaypoint(anySafe())
         fragment.updatePosition(entry = mock(WaypointEntry::class.java))
         verify(mockPresenter).updatePosition(anyInt(), anySafe())
     }
@@ -122,7 +124,16 @@ class WaypointSelectionFragmentTest {
     fun testOnPointSelectedOnMap() {
         val cords = mock(GeoCoordinate::class.java)
         fragment.onPointSelectedOnMap(cords)
-        verify(mockPresenter).updateCord(cords)
+        verify(mockPresenter).setGeoCoordinateForWaypoint(cords)
+    }
+
+    @Test
+    fun testOnBackClicked() {
+        val entry = mock(WaypointEntry::class.java)
+        val mockRoutingCoordinator = mock(RoutingCoordinator::class.java)
+        `when`(mockActivity.coordinator).thenReturn(mockRoutingCoordinator)
+        fragment.onBackClicked(8, entry)
+        verify(mockRoutingCoordinator).onWaypointSelectionCancelled(8, entry)
     }
 
     @Test
@@ -132,7 +143,7 @@ class WaypointSelectionFragmentTest {
         val mockRoutingCoordinator = mock(RoutingCoordinator::class.java)
         `when`(mockActivity.coordinator).thenReturn(mockRoutingCoordinator)
         fragment.onRightIconClicked(null, entry)
-        verify(mockRoutingCoordinator, times(0)).onWaypointSelected(anySafe(), anySafe())
+        verify(mockRoutingCoordinator).onWaypointSelected(null, entry)
     }
 
     @Test

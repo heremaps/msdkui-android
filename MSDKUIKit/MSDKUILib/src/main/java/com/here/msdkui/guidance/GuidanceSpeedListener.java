@@ -27,7 +27,8 @@ public interface GuidanceSpeedListener {
      * Called when there is change in {@link GuidanceSpeedData}.
      *
      * @param data
-     *         {@link GuidanceSpeedData}.
+     *         an instance of {@link GuidanceSpeedData} or null if correct speed information cannot
+     *         be obtained for current position.
      */
     void onDataChanged(@Nullable GuidanceSpeedData data);
 }

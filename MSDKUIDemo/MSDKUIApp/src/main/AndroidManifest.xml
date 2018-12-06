@@ -33,13 +33,13 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.here.android.maps.appid"
-            android:value="@string/HERE_SDK_APP_ID" />
+            android:value="01yuDbhtCx8KOkKfB0mA" />
         <meta-data
             android:name="com.here.android.maps.apptoken"
-            android:value="@string/HERE_SDK_APP_TOKEN" />
+            android:value="bgME3IdNSCrk6BOGtk3PgA" />
         <meta-data
             android:name="com.here.android.maps.license.key"
-            android:value="@string/HERE_SDK_LICENSE_KEY" />
+            android:value="DcfF1VuK/+NoOXLtfuSHRzWfTfojzeZdPAUPCKmGfjJQ98L1eU9yxX/+YuA7Iwh3zsy6dTb1VDnn1ezhDZ58lg+LV7iEia6svu9MYkAsGrXp5EVd7dkchpMeYVm3OQVG3R9V6DREwjOpKGgYOTRLEK+qqMZnapFDVe22G8GIob+ZGT/GmJRN6BqL5fY5TQyU8f0P/xbMBJJ2ExqPmG9tGVhPz9fhXustlhmg0hN+P3wvx46AAH8YrS7F3KH8iCX9sjVDZVNFqqplZlwLw4nUOqHbr6PSQNni7v3jTNEYo5OC+3HOFEqZ6qP8BZWZsuvMoD60X312D/Cp+30jTeE7119XyMaYe4d/5rX5duiFOp7lcYuaqrwtCidMYTU2NqUkeWHrhJrCOEc311kCP12HtHLxN7hYcWBrEaLKvIMybtE5DCDZQJ/oJjAt/BmIudd2Q5PUbKbb5QQ46YbwHdwPk7kuCmnn5Szf23+bJAG7vZhRMp7OU0EG8uiBX/n5WG04v873o7K4s3iD4BGJ+4crmnyGZwa6MxiKYuS3bYNRMVH8+/U2KIXwa7+/pIsWkEwwGM53PonCOuH8EX3TMve/wXBdggiPEueHBrFC50DcA0UBm7UAQq7x1Fu5/uo9OjJHTmBWEVYBCLmcQezf+9e3Hfoz9/RwSmlFmucKqiuIoEc=" />
 
         <activity
             android:name="com.here.msdkuiapp.SplashActivity"

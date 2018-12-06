@@ -32,9 +32,9 @@ android {
         versionName artifact_version
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
-        resValue 'string', 'HERE_SDK_APP_ID', System.getenv("MSDKUI_APP_ID_ANDROID") ?: "APP_ID"
-        resValue 'string', 'HERE_SDK_APP_TOKEN', System.getenv("MSDKUI_APP_TOKEN_ANDROID") ?: "APP_TOKEN"
-        resValue 'string', 'HERE_SDK_LICENSE_KEY', System.getenv("MSDKUI_APP_LICENSE_ANDROID") ?: "APP_LICENSE"
+       // resValue 'string', 'HERE_SDK_APP_ID', System.getenv("MSDKUI_APP_ID_ANDROID") ?: "APP_ID"
+       // resValue 'string', 'HERE_SDK_APP_TOKEN', System.getenv("MSDKUI_APP_TOKEN_ANDROID") ?: "APP_TOKEN"
+       // resValue 'string', 'HERE_SDK_LICENSE_KEY', System.getenv("MSDKUI_APP_LICENSE_ANDROID") ?: "APP_LICENSE"
     }
 
     buildTypes {
@@ -81,7 +81,9 @@ android {
     dependencies {
         implementation fileTree(include: ['*.jar'], dir: 'libs')
         implementation(name: 'HERE-sdk', ext: 'aar')
-        implementation(name: 'MSDKUILib', ext: 'aar')
+        //implementation(name: 'MSDKUILib', ext: 'aar')
+
+        implementation(project(path: ':MSDKUILib'))
 
         implementation "com.android.support:design:$support_library_version"
         implementation "com.android.support:support-v13:$support_library_version"

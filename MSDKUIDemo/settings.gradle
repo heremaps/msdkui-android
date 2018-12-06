@@ -15,3 +15,5 @@
  */
 
 include ':MSDKUIApp'
+include ':MSDKUILib'
+project(':MSDKUILib').projectDir = new File('../MSDKUIKit/MSDKUILib')

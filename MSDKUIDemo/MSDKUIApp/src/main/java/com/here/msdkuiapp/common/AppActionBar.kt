@@ -73,6 +73,12 @@ class AppActionBar(val activity: Activity) {
     }
 
     /**
+     * Gets title view reference of action bar.
+     */
+    val titleView: View?
+        get() = activity.supportActionBar?.customView?.findViewById(R.id.ac_title) as? TextView
+
+    /**
      * Sets action bar title with given options.
      *
      * @param visible if back button should be visible.

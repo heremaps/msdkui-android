@@ -28,6 +28,7 @@ import com.here.msdkuiapp.about.AboutActivity
 import com.here.msdkuiapp.setResourceWithTag
 import com.here.testutils.BaseTest
 import com.here.testutils.argumentCaptor
+import junit.framework.Assert.assertNotNull
 import junit.framework.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -114,6 +115,7 @@ class AppActionBarTest : BaseTest() {
         appActionBar.setTitle()
         verify(mockTextView).visibility = eq(View.VISIBLE)
         verify(mockTextView).text = eq("")
+        assertNotNull(appActionBar.titleView)
     }
 
     @Test

@@ -107,7 +107,7 @@ public class GuidanceSpeedData implements Parcelable {
     /**
      * Checks if internal state is correct.
      *
-     * @return true if object holds correct data and false otherwise
+     * @return true if object holds correct data, false otherwise.
      */
     public boolean isValid() {
         return mCurrentSpeed > INVALID_VALUE && mCurrentSpeedLimit > INVALID_VALUE;

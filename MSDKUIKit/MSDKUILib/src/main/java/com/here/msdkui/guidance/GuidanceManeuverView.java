@@ -229,7 +229,7 @@ public class GuidanceManeuverView extends RelativeLayout {
      * Highlights maneuver section (info2) of panel using the provided color.
      *
      * @param color
-     *         color that need to be set to highlight's maneuver.
+     *         the color to highlight a maneuver.
      */
     public void highLightManeuver(int color) {
         ((TextView) findViewById(R.id.infoView2)).setTextColor(color);

@@ -204,7 +204,7 @@ public class BaseGuidancePresenter {
     }
 
     /**
-     * Notifies when route reroute begins.
+     * Notifies when rerouting begins.
      */
     protected void handleRerouteBegin() {
         // Let the sub class override it, if interested.

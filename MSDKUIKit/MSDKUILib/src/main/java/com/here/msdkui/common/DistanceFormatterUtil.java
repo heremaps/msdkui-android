@@ -22,6 +22,7 @@ import com.here.msdkui.R;
 import com.here.msdkui.common.measurements.LengthConverter;
 import com.here.msdkui.common.measurements.Measurement;
 import com.here.msdkui.common.measurements.MeasurementUnit;
+import com.here.msdkui.common.measurements.UnitSystems;
 
 import java.text.NumberFormat;
 
@@ -31,7 +32,7 @@ import java.text.NumberFormat;
 public final class DistanceFormatterUtil {
 
     public static final int THOUSAND = 1000;
-    public static final int TEN = 10;
+    private static final int TEN = 10;
     private static final int TWO_DIGITS = 2;
 
     private static final int METER_THRESHOLD_10 = 10;
@@ -57,6 +58,40 @@ public final class DistanceFormatterUtil {
     }
 
     /**
+     * Temporary function.
+     */
+    public static String format(final Context context, final long distance) {
+        return format(context, distance, UnitSystems.METRIC);
+    }
+
+    /**
+     * Converts given distance in meters to a string representation rounded to specified unit system.
+     * See also: {@link DistanceFormatterUtil#formatMeterKilometer(Context, long)},
+     * {@link DistanceFormatterUtil#formatYardMile(Context, long)},
+     * {@link DistanceFormatterUtil#formatFootMile(Context, long)}.
+     *
+     * @param context
+     *         the required context.
+     * @param distance
+     *         the distance in meters.
+     * @param system
+     *         the unit system {@link UnitSystems}.
+     *
+     * @return a string representation including unit or "-- [smaller unit]" if distance is smaller than 0.
+     */
+    public static String format(final Context context, final long distance, final UnitSystems system) {
+        switch (system) {
+            default:
+            case METRIC:
+                return formatMeterKilometer(context, distance);
+            case IMPERIAL_UK:
+                return formatFootMile(context, distance);
+            case IMPERIAL_US:
+                return formatYardMile(context, distance);
+        }
+    }
+
+    /**
      * Converts given distance in meters to a string representation rounded to meters or kilometers.
      *
      * @param context
@@ -66,7 +101,7 @@ public final class DistanceFormatterUtil {
      *
      * @return a string representation including unit or "-- m" if distance is smaller than 0.
      */
-    public static String format(final Context context, final long distance) {
+    public static String formatMeterKilometer(final Context context, final long distance) {
         final String value;
         final String unit;
         if (distance < 0) { // invalid
@@ -156,6 +191,41 @@ public final class DistanceFormatterUtil {
     }
 
     /**
+     * Temporary function.
+     */
+    public static String formatDistanceForUI(final Context context, final long distance) {
+        return formatDistanceForUI(context, distance, UnitSystems.METRIC);
+    }
+
+    /**
+     * Converts given distance in meters to a string representation rounded to specified unit system.
+     * For details of unit system specific see:
+     * {@link DistanceFormatterUtil#formatDistanceForUIMeterKilometer(Context, long)},
+     * {@link DistanceFormatterUtil#formatDistanceForUIFeetMile(Context, long)},
+     * {@link DistanceFormatterUtil#formatDistanceForUIYardMile(Context, long)}.
+     *
+     * @param context
+     *         the required context.
+     * @param distance
+     *         the distance in meters.
+     * @param system
+     *         the unit system {@link UnitSystems}.
+     *
+     * @return a string representation including unit or "-- [smaller unit]" if distance is smaller than 0.
+     */
+    public static String formatDistanceForUI(final Context context, final long distance, final UnitSystems system) {
+        switch (system) {
+            default:
+            case METRIC:
+                return formatDistanceForUIMeterKilometer(context, distance);
+            case IMPERIAL_UK:
+                return formatDistanceForUIFeetMile(context, distance);
+            case IMPERIAL_US:
+                return formatDistanceForUIYardMile(context, distance);
+        }
+    }
+
+    /**
      * Converts a given distance in meters to a string representation rounded to meters or kilometers.
      *
      * Some examples: --
@@ -180,7 +250,7 @@ public final class DistanceFormatterUtil {
      *
      * @return a string representation including unit or "-- m" if distance is smaller than 0.
      */
-    public static String formatDistanceForUI(final Context context, final long distance) {
+    public static String formatDistanceForUIMeterKilometer(final Context context, final long distance) {
         final String value;
         final String unit;
         if (distance < METER_THRESHOLD_975) {
@@ -250,9 +320,9 @@ public final class DistanceFormatterUtil {
         } else if (distanceYards < YARDS_THRESHOLD_10) {
             value = FORMATTER.format(Math.round(distanceYards));
         } else if (distanceYards < YARDS_THRESHOLD_350) {
-            value = FORMATTER.format(roundNear10((long)distanceYards));
+            value = FORMATTER.format(roundNear10((long) distanceYards));
         } else if (distanceYards < YARDS_THRESHOLD_1750) {
-            value = FORMATTER.format(roundNear50((long)distanceYards));
+            value = FORMATTER.format(roundNear50((long) distanceYards));
         } else if (distanceYards < YARDS_THRESHOLD) {
             value = FORMATTER.format(roundToSignificantDigits(distanceMiles, TWO_DIGITS));
         } else if (distanceMiles <= TEN) {
@@ -307,9 +377,9 @@ public final class DistanceFormatterUtil {
         } else if (distanceFeet < FEET_THRESHOLD_10) {
             value = FORMATTER.format(Math.round(distanceFeet));
         } else if (distanceFeet < FEET_THRESHOLD_1050) {
-            value = FORMATTER.format(roundNear10((long)distanceFeet));
+            value = FORMATTER.format(roundNear10((long) distanceFeet));
         } else if (distanceFeet < FEET_THRESHOLD_5275) {
-            value = FORMATTER.format(roundNear50((long)distanceFeet));
+            value = FORMATTER.format(roundNear50((long) distanceFeet));
         } else if (distanceFeet < FEET_THRESHOLD) {
             value = FORMATTER.format(roundToSignificantDigits(distanceMiles, TWO_DIGITS));
         } else if (distanceMiles <= TEN) {

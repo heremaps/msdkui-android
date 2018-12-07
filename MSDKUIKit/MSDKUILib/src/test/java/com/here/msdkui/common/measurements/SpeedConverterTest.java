@@ -52,7 +52,6 @@ public class SpeedConverterTest extends RobolectricTest {
 
         // cross-system conversions
         final double expectedMetersPerSecInMilerPerHour = 223.694;
-        final double expectedMetersInMiles = 0.621371;
         final MeasurementUnit imperialUnitMilesPerHour = MeasurementUnit.MILES_PER_HOUR;
         Measurement metricToImperialSource = new Measurement(sourceMetersPerSec, metricUnitMetersPerSec);
 

@@ -89,7 +89,7 @@ public abstract class Converter {
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
-        BigDecimal bd = new BigDecimal(value);
+        BigDecimal bd = new BigDecimal(String.valueOf(value));
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
     }
@@ -124,7 +124,7 @@ public abstract class Converter {
     }
 
     private static boolean areUnitsCompatible(MeasurementUnit u1, MeasurementUnit u2) {
-        if ((isSpeed(u1) == isSpeed(u2)) || (isLength(u1) && isLength(u2))) {
+        if (isSpeed(u1) == isSpeed(u2) || isLength(u1) == isLength(u2)) {
             return true;
         }
         return false;

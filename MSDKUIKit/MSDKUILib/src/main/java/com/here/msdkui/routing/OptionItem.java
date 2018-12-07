@@ -95,8 +95,8 @@ public abstract class OptionItem extends LinearLayout {
     }
 
     /**
-     * Gets the {@link ItemType} of this item.
-     * @return the type of this item.
+     * Gets the {@link ItemType} of the item.
+     * @return the type of the item.
      */
     public ItemType getItemType() {
         return mItemType;
@@ -112,7 +112,7 @@ public abstract class OptionItem extends LinearLayout {
 
     /**
      * Gets the item id.
-     * @return the id of this item.
+     * @return the id of the item.
      */
     public int getItemId() {
         return mId;

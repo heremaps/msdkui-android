@@ -53,7 +53,7 @@ class RouteDescriptionListAdapter extends RecyclerView.Adapter<RouteDescriptionL
     /**
      * Creates a new {@link RouteDescriptionItem} that can be used as view holder.
      *
-     * <p>Override this method to customize use a custom view holder.</p>
+     * <p>Override this method to customize the use of a custom view holder.</p>
      *
      * @param context the context to use.
      * @return a new instance of {@link RouteDescriptionItem}.

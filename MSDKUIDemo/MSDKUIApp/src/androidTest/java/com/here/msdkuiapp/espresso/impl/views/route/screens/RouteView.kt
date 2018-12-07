@@ -50,7 +50,7 @@ object RouteView {
     /**
      * @return The [ViewInteraction] maneuver description list on route
      */
-    val onManeuverDescriptionList: ViewInteraction
+    val onRouteManeuversList: ViewInteraction
         get() = onView(withId(R.id.guidance_maneuver_list))
 
     /**

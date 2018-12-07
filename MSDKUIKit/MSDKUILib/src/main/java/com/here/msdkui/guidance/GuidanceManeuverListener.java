@@ -27,8 +27,8 @@ public interface GuidanceManeuverListener {
      * Called when there is a change in {@link GuidanceManeuverData}.
      *
      * @param data
-     *         The {@link GuidanceManeuverData} containing the latest maneuver data. This can be
-     *         null in case there is no data available - for example, when the GPS signal is lost
+     *         The {@link GuidanceManeuverData} containing the latest maneuver data. In case there
+     *         is no data available, it can be set to null - for example, when the GPS signal is lost
      *         in a tunnel, or during rerouting.
      */
     void onDataChanged(@Nullable GuidanceManeuverData data);

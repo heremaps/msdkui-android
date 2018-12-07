@@ -81,13 +81,14 @@ public final class DistanceFormatterUtil {
      */
     public static String format(final Context context, final long distance, final UnitSystems system) {
         switch (system) {
-            default:
             case METRIC:
                 return formatMeterKilometer(context, distance);
             case IMPERIAL_UK:
                 return formatFootMile(context, distance);
             case IMPERIAL_US:
                 return formatYardMile(context, distance);
+            default: // metric
+                return formatMeterKilometer(context, distance);
         }
     }
 
@@ -215,13 +216,14 @@ public final class DistanceFormatterUtil {
      */
     public static String formatDistanceForUI(final Context context, final long distance, final UnitSystems system) {
         switch (system) {
-            default:
             case METRIC:
                 return formatDistanceForUIMeterKilometer(context, distance);
             case IMPERIAL_UK:
                 return formatDistanceForUIFeetMile(context, distance);
             case IMPERIAL_US:
                 return formatDistanceForUIYardMile(context, distance);
+            default: // metric
+                return formatDistanceForUIMeterKilometer(context, distance);
         }
     }
 

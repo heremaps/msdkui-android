@@ -50,7 +50,7 @@ public final class ThemeUtil {
      *         the required {@link Context}.
      *
      * @param array
-     *         an array of attributes values.
+     *         an array of attribute values.
      *
      * @param attr
      *         an identifier of the attribute.
@@ -76,7 +76,7 @@ public final class ThemeUtil {
     }
 
     /**
-     * Gets String from {@link TypedArray} and attr.
+     * Gets the String from {@link TypedArray} and attr.
      *
      * @param array
      *         an array of attributes values.

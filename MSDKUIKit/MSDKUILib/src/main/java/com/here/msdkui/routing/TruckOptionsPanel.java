@@ -208,7 +208,7 @@ public class TruckOptionsPanel extends OptionsPanel implements OptionItem.OnChan
         }
     }
 
-    // Here we catch generic exception to revert changes if anything goes wrong.
+    // Here, we catch generic exception to revert changes if anything goes wrong.
     // This function is not complicated and not too long.
     @SuppressWarnings({"PMD.AvoidCatchingGenericException", "PMD.NcssCount", "PMD.CyclomaticComplexity", "PMD.NPathComplexity"})
     @Override

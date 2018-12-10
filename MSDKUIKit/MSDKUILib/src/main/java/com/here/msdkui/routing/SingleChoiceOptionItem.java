@@ -122,7 +122,7 @@ public class SingleChoiceOptionItem extends OptionItem implements AdapterView.On
     /**
      * Sets the list of labels accompanying the checkboxes.
      *
-     * @param title the title to show. Can be null, if not title show be shown.
+     * @param title the title to show. Can be null, if not, title should be shown.
      * @param labels the list of labels.
      * @return an instance of this class.
      * @throws IllegalArgumentException if labels is null.

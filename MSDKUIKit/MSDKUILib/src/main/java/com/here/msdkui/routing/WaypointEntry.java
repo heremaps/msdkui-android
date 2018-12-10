@@ -51,7 +51,7 @@ public class WaypointEntry {
      *
      * <p>Note that this does not set a default {@link com.here.android.mpa.common.GeoCoordinate}.</p>
      *
-     * @param resourceIdLabel the resource id of string to show in the {@link WaypointList}.
+     * @param resourceIdLabel the resource id of a string to show in the {@link WaypointList}.
      */
     public WaypointEntry(@StringRes final int resourceIdLabel) {
         mResourceIdLabel = resourceIdLabel;
@@ -83,7 +83,7 @@ public class WaypointEntry {
      * For more information about resource id label see {@link #setResourceIdLabel (int)}
      *
      * @param waypoint {@link RouteWaypoint RouteWaypoint}.
-     * @param resourceIdLabel the resource id of string to show or 0 if the coordinates should be shown instead.
+     * @param resourceIdLabel the resource id of a string to show or 0 if the coordinates should be shown instead.
      */
     public WaypointEntry(final RouteWaypoint waypoint, @StringRes final int resourceIdLabel) {
         mRouteWaypoint = waypoint;
@@ -189,7 +189,7 @@ public class WaypointEntry {
     }
 
     /**
-     * Indicates whether this instance is draggable when used as element of a {@link WaypointList}.
+     * Indicates whether this instance is draggable when used as an element of a {@link WaypointList}.
      * Default is true.
      *
      * @return true if draggable, false otherwise.
@@ -199,7 +199,7 @@ public class WaypointEntry {
     }
 
     /**
-     * Sets this instance to be draggable when used as element of a {@link WaypointList}.
+     * Sets this instance to be draggable when used as an element of a {@link WaypointList}.
      *
      * @param draggable true if item should be draggable, false otherwise.
      * @return an instance of this class.
@@ -210,7 +210,7 @@ public class WaypointEntry {
     }
 
     /**
-     * Indicates whether this instance is removable when used as element of a {@link WaypointList}.
+     * Indicates whether this instance is removable when used as an element of a {@link WaypointList}.
      * Default is true.
      *
      * @return true if it is removable, false otherwise.
@@ -220,7 +220,7 @@ public class WaypointEntry {
     }
 
     /**
-     * Sets this instance to be removable when used as element of a {@link WaypointList}.
+     * Sets this instance to be removable when used as an element of a {@link WaypointList}.
      *
      * @param removable true if item should be removable, false otherwise.
      * @return an instance of this class.

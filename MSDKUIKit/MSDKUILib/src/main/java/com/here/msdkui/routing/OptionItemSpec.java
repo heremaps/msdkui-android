@@ -43,7 +43,7 @@ public final class OptionItemSpec {
         }
 
         /**
-         * Set a label for this item.
+         * Sets a label for this item.
          * @param label the label to set.
          * @return an instance of this class.
          */
@@ -88,7 +88,7 @@ public final class OptionItemSpec {
         }
 
         /**
-         * Set the labels for this item.
+         * Sets the labels for this item.
          * @param title the title for this item.
          * @param labels the labels to set.
          * @return an instance of this class.
@@ -99,7 +99,7 @@ public final class OptionItemSpec {
         }
 
         /**
-         * Set an id for this item.
+         * Sets an id for this item.
          * @param id the id to set.
          * @return an instance of this class.
          */
@@ -109,7 +109,7 @@ public final class OptionItemSpec {
         }
 
         /**
-         * Build the item.
+         * Builds the item.
          * @return the item that was built.
          */
         public SingleChoiceOptionItem build() {
@@ -134,7 +134,7 @@ public final class OptionItemSpec {
         }
 
         /**
-         * Set the labels for this item.
+         * Sets the labels for this item.
          * @param labels the labels to set.
          * @return an instance of this class.
          */
@@ -144,7 +144,7 @@ public final class OptionItemSpec {
         }
 
         /**
-         * Set an id for this item.
+         * Sets an id for this item.
          * @param id the id to set.
          * @return an instance of this class.
          */
@@ -154,7 +154,7 @@ public final class OptionItemSpec {
         }
 
         /**
-         * Build the item.
+         * Builds the item.
          * @return the item that was built.
          */
         public MultipleChoiceOptionItem build() {
@@ -180,7 +180,7 @@ public final class OptionItemSpec {
         }
 
         /**
-         * Set a label for this item.
+         * Sets a label for this item.
          * @param label the label to set.
          * @return an instance of this class.
          */
@@ -190,7 +190,7 @@ public final class OptionItemSpec {
         }
 
         /**
-         * Set an id for this item.
+         * Sets an id for this item.
          * @param id the id to set.
          * @return an instance of this class.
          */
@@ -200,7 +200,7 @@ public final class OptionItemSpec {
         }
 
         /**
-         * Set input type for this item.
+         * Sets input type for this item.
          * @param inputType the input type to use.
          * @return an instance of this class.
          */
@@ -210,7 +210,7 @@ public final class OptionItemSpec {
         }
 
         /**
-         * Build the item.
+         * Builds the item.
          * @return the item that was built.
          */
         public NumericOptionItem build() {

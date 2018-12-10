@@ -33,7 +33,7 @@ import com.here.msdkui.R;
  * with or without content fragment using a {@link TabLayout}. Each tab shows a transport mode.
  * Only one transport mode can be selected at a time.
  * This view can be customized by calling {@link TransportModePanel#setAdapter(TransportModePanelAdapter)}
- * to set a custom adapter. By default this component uses the {@link SimpleTransportModePanelAdapter}.
+ * to set a custom adapter. By default, this component uses the {@link SimpleTransportModePanelAdapter}.
  */
 public class TransportModePanel extends LinearLayout implements TabLayout.OnTabSelectedListener {
 
@@ -84,8 +84,8 @@ public class TransportModePanel extends LinearLayout implements TabLayout.OnTabS
     }
 
     /**
-     * Set an adapter to use for this panel. This can be a custom adapter extending
-     * {@link TransportModePanelAdapter}. By setting a new adapter you will overwrite the default
+     * Sets an adapter to use for this panel. This can be a custom adapter extending
+     * {@link TransportModePanelAdapter}. By setting a new adapter, you will overwrite the default
      * {@link SimpleTransportModePanelAdapter}.
      *
      * @param panelAdapter the adapter to use for this panel.
@@ -109,7 +109,7 @@ public class TransportModePanel extends LinearLayout implements TabLayout.OnTabS
     }
 
     /**
-     * Populate view from adapter.
+     * Populates view from adapter.
      */
     private void populateView() {
         if (mPanelAdapter == null) {
@@ -119,7 +119,7 @@ public class TransportModePanel extends LinearLayout implements TabLayout.OnTabS
     }
 
     /**
-     * Update {@link TabView} views.
+     * Updates the {@link TabView} views.
      */
     void updateTabs() {
         for (int i = 0; i < mTabLayout.getTabCount(); i++) {
@@ -161,7 +161,7 @@ public class TransportModePanel extends LinearLayout implements TabLayout.OnTabS
     }
 
     /**
-     * Select the tab at given position.
+     * Selects the tab at a given position.
      * @param position the position of the tab that should be selected.
      */
     public void setSelected(final int position) {

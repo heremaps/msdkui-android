@@ -163,7 +163,7 @@ public final class TravelTimePanel extends RelativeLayout implements TravelTimeP
     /**
      * Sets the time to display.
      *
-     * <p>By default it is showing the current date using
+     * <p>By default, it is showing the current date using
      * {@link com.here.android.mpa.routing.RouteOptions.TimeType#DEPARTURE}.</p>
      *
      * @param time the time to set.

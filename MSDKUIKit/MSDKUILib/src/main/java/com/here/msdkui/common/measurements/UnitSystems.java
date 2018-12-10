@@ -20,7 +20,16 @@ package com.here.msdkui.common.measurements;
  * All available unit systems
  */
 public enum UnitSystems {
+    /**
+     * Meters and kilometers.
+     */
     METRIC,
+    /**
+     * Feet and miles.
+     */
     IMPERIAL_UK,
+    /**
+     * Yards and miles.
+     */
     IMPERIAL_US
 }

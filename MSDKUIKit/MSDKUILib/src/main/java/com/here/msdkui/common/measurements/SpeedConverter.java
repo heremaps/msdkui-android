@@ -51,8 +51,8 @@ public class SpeedConverter extends Converter {
                 return (in * SECONDS_IN_HOUR) / KILOMETER_IN_METERS;
 
             case MILES_PER_HOUR:
-                return (new LengthConverter().convert(in, MeasurementUnit.METER,
-                        MeasurementUnit.MILE).getValue() * SECONDS_IN_HOUR);
+                return new LengthConverter().convert(in, MeasurementUnit.METER,
+                        MeasurementUnit.MILE).getValue() * SECONDS_IN_HOUR;
 
             default:
                 return in;

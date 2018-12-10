@@ -51,6 +51,7 @@ public final class DateFormatterUtil {
         if (dateString == null || dateString.length() == 0) {
             return null;
         }
+        
         try {
             final DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
             final Date retDate = dateFormat.parse(dateString);

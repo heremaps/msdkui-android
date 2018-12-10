@@ -211,7 +211,7 @@ public class BaseGuidancePresenter {
     }
 
     /**
-     * Notifies when route reroute ends with success.
+     * Notifies when rerouting ends with success.
      *
      * @param routeResult {@link RouteResult} object containing {@link Route} as result of route
      *                                       calculation.
@@ -221,7 +221,7 @@ public class BaseGuidancePresenter {
     }
 
     /**
-     * Notifies when route reroute ends with failure.
+     * Notifies when rerouting ends with failure.
      */
     protected void handleRerouteFailed() {
         // Let the sub class override it, if interested.

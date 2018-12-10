@@ -70,7 +70,7 @@ The HERE Mobile SDK UI Kit components are available for Android and [iOS](https:
 Please have a look at our [Quick Start](Documentation/Guides/QuickStart.md) tutorial to see how easy it is to integrate the HERE Mobile SDK UI Kit into your own apps. More information on how to use the HERE Mobile SDK UI Kit can be found in our [User Guide](Documentation/Guides/UserGuide.md). Information on how to contribute to this project can be found in our [Contribution Guide](Documentation/Guides/ContributionGuide.md).
 
 ## Documentation
-- The _API Reference_ can be built locally using the command line, see [Contribution Guide](Documentation/Guides/ContributionGuide.md).
+- The latest API Reference can be found [here](https://heremaps.github.io/msdkui-android/).
 - _Release Notes_: All recent additions, more details about the current release and the differences to previous versions can be found in the _Release Notes_.
 - You can find various _examples_ and _code snippets_ accompanying the Developer's Guide.
 - A more complex and fully functional _demo app_ can be found in this repository.

@@ -34,7 +34,7 @@ import com.here.msdkui.R;
 import com.here.msdkui.common.DistanceFormatterUtil;
 
 /**
- * A view that shows the next maneuver panel for guidance. This view consumes the data contained in
+ * A view that shows the next maneuver panel for guidance. The view consumes the data contained in
  * {@link GuidanceManeuverData}.
  */
 public class GuidanceManeuverView extends RelativeLayout {
@@ -214,10 +214,10 @@ public class GuidanceManeuverView extends RelativeLayout {
     }
 
     /**
-     * Sets {@link GuidanceManeuverData} which will be used for UI population.
+     * Sets the {@link GuidanceManeuverData} which will be used for UI population.
      *
      * @param maneuverData
-     *         the {@link GuidanceManeuverData} to populate the UI. In case of null, the loading state
+     *         the {@link GuidanceManeuverData} to populate the UI. Please note that in case of null, the loading state
      *         of the panel will be shown.
      */
     public void setManeuverData(@Nullable GuidanceManeuverData maneuverData) {
@@ -229,7 +229,7 @@ public class GuidanceManeuverView extends RelativeLayout {
      * Highlights maneuver section (info2) of panel using the provided color.
      *
      * @param color
-     *         color that need to be set to highlights maneuver.
+     *         the color to highlight a maneuver.
      */
     public void highLightManeuver(int color) {
         ((TextView) findViewById(R.id.infoView2)).setTextColor(color);

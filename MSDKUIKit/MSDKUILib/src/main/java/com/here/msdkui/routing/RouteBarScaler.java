@@ -29,7 +29,7 @@ import static com.here.android.mpa.routing.Route.WHOLE_ROUTE;
 
 /**
  * A class to calculate scale factors to scale the width of a {@link SectionBar} of a {@link RouteDescriptionItem}.
- * The scale factor has a range from 0 to 1 and is proportional compared to the longest route which has a factor of 1.
+ * The scale factor is in the range [0, 1] and is proportional compared to the longest route which has a factor of 1.
  */
 public final class RouteBarScaler {
 

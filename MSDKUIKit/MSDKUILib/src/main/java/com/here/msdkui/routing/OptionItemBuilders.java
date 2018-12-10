@@ -158,7 +158,7 @@ public final class OptionItemBuilders {
         }
     }
 
-    /**
+
      /**
      * Builder for {@link NumericOptionItem}.
      */

@@ -107,7 +107,7 @@ public final class SectionBar extends LinearLayout {
      * Binds a list of {@link SectionModel} elements to this view.
      * @param models the list of models to use.
      * @param scale the scale factor to use in order to adapt the width of this view.
-     *              By default, the scale factor has a range from 0 to 1, if not specified differently
+     *              By default, the scale factor has a range from [0, 1], if not specified differently
      *              in the {@link SectionModel}. The default width of this view is calculated using a scale
      *              factor of 0, whereas 1 results in an unscaled width representing the longest route.
      */

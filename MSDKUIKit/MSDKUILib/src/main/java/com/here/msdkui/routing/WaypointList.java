@@ -162,7 +162,7 @@ public class WaypointList extends RecyclerView {
     /**
      * Adds a new {@link WaypointEntry} to the end of this list.
      *
-     * @param entry the {@link WaypointEntry} to be be added to this list.
+     * @param entry the {@link WaypointEntry} to be added to this list.
      * @return true if entry was added successfully, false otherwise.
      * @throws IllegalArgumentException
      *         if one of the following criteria is met:

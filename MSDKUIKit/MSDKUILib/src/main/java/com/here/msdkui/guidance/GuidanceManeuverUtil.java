@@ -39,7 +39,7 @@ public final class GuidanceManeuverUtil {
     }
 
     /**
-     * Get index of a maneuver with a list of maneuvers. Maneuvers are compared based on location and the action.
+     * Gets the index of a maneuver with a list of maneuvers. Maneuvers are compared based on location and the action.
      * @param maneuver the maneuver to find.
      * @param maneuvers the list of maneuvers.
      * @return the index of the given maneuver in the given maneuver list or -1 if the maneuver is not part of the list.

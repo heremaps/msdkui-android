@@ -410,7 +410,7 @@ public final class DistanceFormatterUtil {
     }
 
     /**
-     * Rounds the given number to it's nearest division of 10.
+     * Rounds the given number to its nearest division of 10.
      *
      * Some examples: --
      * <ul>

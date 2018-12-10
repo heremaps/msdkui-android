@@ -114,7 +114,7 @@ public final class RouteUtil {
     public static Spannable getTrafficDelayed(final Context context, final Route route) {
         final SpannableStringBuilder builder = new SpannableStringBuilder(" ");
 
-        // get arrival or departure date.
+        // gets arrival or departure date.
         final Date departureDate = new Date();
         final RouteOptions.TimeType type = route.getRoutePlan().getRouteOptions().getTime(departureDate);
 

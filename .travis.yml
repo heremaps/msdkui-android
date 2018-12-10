@@ -30,7 +30,7 @@ jobs:
       after_success:
         - bash <(curl -s https://codecov.io/bash)
    
-   - stage: Demo app tests
+    - stage: Demo app tests
       script:
         - aws s3 cp s3://$SDK_URL/$SDK_VER MSDKUIDemo/libs/HERE-sdk.aar
         - aws s3 cp s3://$SDK_URL/MSDKUI-Lib-$TRAVIS_BUILD_NUMBER.aar MSDKUIDemo/libs/MSDKUILib.aar

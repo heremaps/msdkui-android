@@ -25,7 +25,7 @@ public class Measurement {
     private MeasurementUnit mUnit;
 
     /**
-     * Constructs a new instance using give value and unit.
+     * Constructs a new instance using given value and unit.
      *
      * @param value
      *          a measured value.
@@ -39,7 +39,7 @@ public class Measurement {
     }
 
     /**
-     * Returns current value.
+     * Returns a current value.
      *
      * @return measurement value.
      */
@@ -48,7 +48,7 @@ public class Measurement {
     }
 
     /**
-     * Returns current unit.
+     * Returns a current unit.
      *
      * @return a {@link MeasurementUnit}
      */
@@ -57,7 +57,7 @@ public class Measurement {
     }
 
     /**
-     * Converts current value to given unit.
+     * Converts a current value to the given unit.
      *
      * @param to
      *          a {@link MeasurementUnit} current value should be converted to.
@@ -75,7 +75,7 @@ public class Measurement {
     }
 
     /**
-     * Returns new instance of {@link Measurement} holding converted value.
+     * Returns a new instance of {@link Measurement} holding the converted value.
      *
      * @param to
      *          a {@link MeasurementUnit} current value should be converted to.

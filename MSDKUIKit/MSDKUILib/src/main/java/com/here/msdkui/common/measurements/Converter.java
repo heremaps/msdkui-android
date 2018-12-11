@@ -27,7 +27,7 @@ public abstract class Converter {
     protected static final double KILOMETER_IN_METERS = 1000;
 
     /**
-     * Converts value in given {@link MeasurementUnit} to another unit.
+     * Converts a value in given {@link MeasurementUnit} to another unit.
      *
      * @param in
      *          a value to be converted.
@@ -50,7 +50,7 @@ public abstract class Converter {
     }
 
     /**
-     * Converts value of given unit to the base unit.
+     * Converts a value of given unit to the base unit.
      *
      * @param in
      *          a value to be converted.
@@ -63,7 +63,7 @@ public abstract class Converter {
     protected abstract double toBaseUnit(double in, MeasurementUnit unit);
 
     /**
-     * Converts value from base unit to unit of given type.
+     * Converts a value from base unit to unit of the given type.
      *
      * @param in
      *          a value to be converted.
@@ -76,7 +76,7 @@ public abstract class Converter {
     protected abstract double fromBaseTo(double in, MeasurementUnit unit);
 
     /**
-     * Round given value to number of decimal places.
+     * Round a given value to the number of decimal places.
      *
      * @param value
      *          value to round.

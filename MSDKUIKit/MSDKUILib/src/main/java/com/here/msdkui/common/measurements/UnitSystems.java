@@ -17,7 +17,7 @@
 package com.here.msdkui.common.measurements;
 
 /**
- * All available unit systems
+ * All available unit systems.
  */
 public enum UnitSystems {
     /**

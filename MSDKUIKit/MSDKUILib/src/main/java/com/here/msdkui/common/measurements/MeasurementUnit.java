@@ -30,7 +30,7 @@ public enum MeasurementUnit {
     MILES_PER_HOUR;
 
     /**
-     * Returns converter for this unit.
+     * Returns a converter for this unit.
      *
      * @return an instance of {@link Converter}.
      */

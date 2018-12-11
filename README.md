@@ -30,8 +30,8 @@ The HERE Mobile SDK UI Kit comes with various high- and low-level components sup
 
 ##### Route Maneuver
 - Localized maneuver instructions and icons assembled out of the raw route data
-- Maneuver description item (shows actions and turns)
-- Maneuver description list (shows maneuver details of a route in an overview)
+- Maneuver item view (shows actions and turns)
+- Maneuver list (shows maneuver details of a route in an overview)
 
 ##### Guidance
 - Localized guidance instructions and icons assembled out of the raw route data

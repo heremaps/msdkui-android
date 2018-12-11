@@ -194,5 +194,5 @@ Extended description (as for a normal ticket, see above).
  - Pull requests should not include "Merge" commits.
      - Rebase your work to keep the pull request commits on top.
  - Give the pull request a short title which explains what the pull request is about.
- - Give the pull request a description which details what the pull request is about.
- - Once the pull request is merged into master, delete the feature branch.
+ - Give the pull request a description with details on what the pull request is about.
+ - Once the pull request is merged into master, delete the remote feature branch.

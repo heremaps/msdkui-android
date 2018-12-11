@@ -25,8 +25,8 @@ import android.view.View;
 
 import com.here.android.mpa.routing.Route;
 import com.here.msdkui.routing.CustomRecyclerView;
-import com.here.msdkui.routing.ManeuverDescriptionItem;
-import com.here.msdkui.routing.ManeuverDescriptionList;
+import com.here.msdkui.routing.ManeuverItemView;
+import com.here.msdkui.routing.ManeuverList;
 import com.here.msdkui.routing.RouteDescriptionItem;
 import com.here.msdkui.routing.RouteDescriptionList;
 
@@ -36,14 +36,14 @@ import helper.RouteCalculator;
 
 /**
  * Shows a RouteDescriptionList where a user can select a route and sees the belonging
- * maneuvers in a ManeuverDescriptionList.
+ * maneuvers in a ManeuverList.
  */
 public class RouteDetailsActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = RouteDetailsActivity.class.getName();
 
     private RouteDescriptionList routeDescriptionList;
-    private ManeuverDescriptionList maneuverDescriptionList;
+    private ManeuverList maneuverList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class RouteDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_route_details);
 
         routeDescriptionList = findViewById(R.id.routeDescriptionList);
-        maneuverDescriptionList = findViewById(R.id.maneuverDescriptionList);
+        maneuverList = findViewById(R.id.maneuverList);
 
         if (RouteCalculator.getInstance().lastCalculatedRouteResults.size() == 0) {
             Log.d(LOG_TAG, "No valid routes yet.");
@@ -66,7 +66,7 @@ public class RouteDetailsActivity extends AppCompatActivity {
             public void onItemClicked(int index, View view) {
                 RouteDescriptionItem routeDescriptionItem = (RouteDescriptionItem) view;
                 Route selectedRoute = routeDescriptionItem.getRoute();
-                maneuverDescriptionList.setRoute(selectedRoute);
+                maneuverList.setRoute(selectedRoute);
 
                 RouteCalculator.getInstance().selectedRoute = selectedRoute;
                 Log.d(LOG_TAG, "Selected route: " + selectedRoute.toString());
@@ -77,12 +77,12 @@ public class RouteDetailsActivity extends AppCompatActivity {
             }
         });
 
-        maneuverDescriptionList.setRoute(RouteCalculator.getInstance().selectedRoute);
-        maneuverDescriptionList.setOnItemClickedListener(new CustomRecyclerView.OnItemClickedListener() {
+        maneuverList.setRoute(RouteCalculator.getInstance().selectedRoute);
+        maneuverList.setOnItemClickedListener(new CustomRecyclerView.OnItemClickedListener() {
             @Override
             public void onItemClicked(int index, View view) {
-                ManeuverDescriptionItem maneuverDescriptionItem = (ManeuverDescriptionItem) view;
-                Log.d(LOG_TAG, "Selected maneuver: " + maneuverDescriptionItem.getManeuver().toString());
+                ManeuverItemView maneuverItemView = (ManeuverItemView) view;
+                Log.d(LOG_TAG, "Selected maneuver: " + maneuverItemView.getManeuver().toString());
             }
 
             @Override

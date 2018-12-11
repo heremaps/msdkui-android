@@ -36,19 +36,19 @@ public final class DistanceFormatterUtil {
     private static final int TWO_DIGITS = 2;
 
     private static final int METER_THRESHOLD_10 = 10;
-    private static final int METER_THRESHOLD_200 = 200;
-    private static final int METER_THRESHOLD_975 = 975; // special case where roundNear50 will result unit change.
+    private static final int METER_THRESHOLD_200 = 200; // This is 1/5 of one kilometer.
+    private static final int METER_THRESHOLD_975 = 975; // Special case where roundNear50 will result in a unit change.
     private static final int METER_THRESHOLD = 999;
     private static final int KM_THRESHOLD = 9950;
 
     private static final int YARDS_THRESHOLD_10 = 10;
-    private static final int YARDS_THRESHOLD_350 = 350; // this is around 1/5 of mile (like 200m is 1/5 of km)
-    private static final int YARDS_THRESHOLD_1750 = 1750; // special case where roundNear50 will result unit change.
+    private static final int YARDS_THRESHOLD_350 = 350; // This is around 1/5 of one mile.
+    private static final int YARDS_THRESHOLD_1750 = 1750; // Special case where roundNear50 will result in a unit change.
     private static final int YARDS_THRESHOLD = 1759;
 
     private static final int FEET_THRESHOLD_10 = 10;
-    private static final int FEET_THRESHOLD_1050 = 1050; // this is around 1/5 of mile (like 200m is 1/5 of km)
-    private static final int FEET_THRESHOLD_5275 = 5275; // special case where roundNear50 will result unit change.
+    private static final int FEET_THRESHOLD_1050 = 1050; // This is around 1/5 of one mile.
+    private static final int FEET_THRESHOLD_5275 = 5275; // Special case where roundNear50 will result in a unit change.
     private static final int FEET_THRESHOLD = 5279;
 
 
@@ -58,17 +58,18 @@ public final class DistanceFormatterUtil {
     }
 
     /**
-     * Temporary function.
+     * Temporary function. This function will be removed when new formatters are used in lib.
      */
     public static String format(final Context context, final long distance) {
         return format(context, distance, UnitSystems.METRIC);
     }
 
     /**
-     * Converts given distance in meters to a string representation rounded to specified unit system.
-     * See also: {@link DistanceFormatterUtil#formatMeterKilometer(Context, long)},
-     * {@link DistanceFormatterUtil#formatYardMile(Context, long)},
-     * {@link DistanceFormatterUtil#formatFootMile(Context, long)}.
+     * Converts a given distance in meters to a string representation. The distance will be rounded
+     * based on the provided unit system. See:
+     * {@link DistanceFormatterUtil#formatInMetricSystem(Context, long)},
+     * {@link DistanceFormatterUtil#formatInImperialUsSystem(Context, long)},
+     * {@link DistanceFormatterUtil#formatInImperialUkSystem(Context, long)}.
      *
      * @param context
      *         the required context.
@@ -82,13 +83,13 @@ public final class DistanceFormatterUtil {
     public static String format(final Context context, final long distance, final UnitSystems system) {
         switch (system) {
             case METRIC:
-                return formatMeterKilometer(context, distance);
+                return formatInMetricSystem(context, distance);
             case IMPERIAL_UK:
-                return formatFootMile(context, distance);
+                return formatInImperialUkSystem(context, distance);
             case IMPERIAL_US:
-                return formatYardMile(context, distance);
+                return formatInImperialUsSystem(context, distance);
             default: // metric
-                return formatMeterKilometer(context, distance);
+                return formatInMetricSystem(context, distance);
         }
     }
 
@@ -102,7 +103,7 @@ public final class DistanceFormatterUtil {
      *
      * @return a string representation including unit or "-- m" if distance is smaller than 0.
      */
-    public static String formatMeterKilometer(final Context context, final long distance) {
+    public static String formatInMetricSystem(final Context context, final long distance) {
         final String value;
         final String unit;
         if (distance < 0) { // invalid
@@ -131,7 +132,7 @@ public final class DistanceFormatterUtil {
      *
      * @return a string representation including unit or "-- yd" if distance is smaller than 0.
      */
-    public static String formatYardMile(final Context context, final long distance) {
+    public static String formatInImperialUsSystem(final Context context, final long distance) {
         final String value;
         final String unit;
         LengthConverter lengthConverter = new LengthConverter();
@@ -166,7 +167,7 @@ public final class DistanceFormatterUtil {
      *
      * @return a string representation including unit or "-- ft" if distance is smaller than 0.
      */
-    public static String formatFootMile(final Context context, final long distance) {
+    public static String formatInImperialUkSystem(final Context context, final long distance) {
         final String value;
         final String unit;
         LengthConverter lengthConverter = new LengthConverter();
@@ -192,7 +193,7 @@ public final class DistanceFormatterUtil {
     }
 
     /**
-     * Temporary function.
+     * Temporary function. This function will be removed when new formatters are used in lib..
      */
     public static String formatDistanceForUI(final Context context, final long distance) {
         return formatDistanceForUI(context, distance, UnitSystems.METRIC);
@@ -201,9 +202,9 @@ public final class DistanceFormatterUtil {
     /**
      * Converts given distance in meters to a string representation rounded to specified unit system.
      * For details of unit system specific see:
-     * {@link DistanceFormatterUtil#formatDistanceForUIMeterKilometer(Context, long)},
-     * {@link DistanceFormatterUtil#formatDistanceForUIFeetMile(Context, long)},
-     * {@link DistanceFormatterUtil#formatDistanceForUIYardMile(Context, long)}.
+     * {@link DistanceFormatterUtil#formatDistanceInMetricSystem(Context, long)},
+     * {@link DistanceFormatterUtil#formatDistanceInImperialUkSystem(Context, long)},
+     * {@link DistanceFormatterUtil#formatDistanceInImperialUsSystem(Context, long)}.
      *
      * @param context
      *         the required context.
@@ -217,20 +218,20 @@ public final class DistanceFormatterUtil {
     public static String formatDistanceForUI(final Context context, final long distance, final UnitSystems system) {
         switch (system) {
             case METRIC:
-                return formatDistanceForUIMeterKilometer(context, distance);
+                return formatDistanceInMetricSystem(context, distance);
             case IMPERIAL_UK:
-                return formatDistanceForUIFeetMile(context, distance);
+                return formatDistanceInImperialUkSystem(context, distance);
             case IMPERIAL_US:
-                return formatDistanceForUIYardMile(context, distance);
+                return formatDistanceInImperialUsSystem(context, distance);
             default: // metric
-                return formatDistanceForUIMeterKilometer(context, distance);
+                return formatDistanceInMetricSystem(context, distance);
         }
     }
 
     /**
      * Converts a given distance in meters to a string representation rounded to meters or kilometers.
      *
-     * Some examples: --
+     * Some examples:
      *
      * <ul>
      * <li> If the given distance is greater than 10 km, then the returned value will be rounded to its nearest division
@@ -252,7 +253,7 @@ public final class DistanceFormatterUtil {
      *
      * @return a string representation including unit or "-- m" if distance is smaller than 0.
      */
-    public static String formatDistanceForUIMeterKilometer(final Context context, final long distance) {
+    public static String formatDistanceInMetricSystem(final Context context, final long distance) {
         final String value;
         final String unit;
         if (distance < METER_THRESHOLD_975) {
@@ -281,7 +282,7 @@ public final class DistanceFormatterUtil {
     /**
      * Converts a given distance in meters to a string representation rounded to yards or miles.
      *
-     * Some examples: --
+     * Some examples:
      *
      * <ul>
      * <li> If the given distance is greater than 10 miles, then the returned value will be rounded to its nearest division
@@ -303,7 +304,7 @@ public final class DistanceFormatterUtil {
      *
      * @return a string representation including unit or "-- yd" if distance is smaller than 0.
      */
-    public static String formatDistanceForUIYardMile(final Context context, final long distance) {
+    public static String formatDistanceInImperialUsSystem(final Context context, final long distance) {
         final String value;
         final String unit;
         LengthConverter lengthConverter = new LengthConverter();
@@ -338,7 +339,7 @@ public final class DistanceFormatterUtil {
     /**
      * Converts a given distance in meters to a string representation rounded to feet or miles.
      *
-     * Some examples: --
+     * Some examples:
      *
      * <ul>
      * <li> If the given distance is greater than 10 miles, then the returned value will be rounded to its nearest division
@@ -360,7 +361,7 @@ public final class DistanceFormatterUtil {
      *
      * @return a string representation including unit or "-- ft" if distance is smaller than 0.
      */
-    public static String formatDistanceForUIFeetMile(final Context context, final long distance) {
+    public static String formatDistanceInImperialUkSystem(final Context context, final long distance) {
         final String value;
         final String unit;
         LengthConverter lengthConverter = new LengthConverter();
@@ -395,7 +396,7 @@ public final class DistanceFormatterUtil {
     /**
      * Rounds the given number to it's nearest division of 50.
      *
-     * Some examples: --
+     * Some examples:
      * <ul>
      * <li> 162 will be rounded to 150. same way 180 will be rounded to 200. </li>
      * </ul>
@@ -412,7 +413,7 @@ public final class DistanceFormatterUtil {
     /**
      * Rounds the given number to its nearest division of 10.
      *
-     * Some examples: --
+     * Some examples:
      * <ul>
      * <li> 162 will be rounded to 160. same way 157 will be rounded to 160 </li>
      * </ul>

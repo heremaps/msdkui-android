@@ -193,4 +193,30 @@ class RoutePlannerIntegrationTests: TestBase<SplashActivity>(SplashActivity::cla
                 .waitRouteOverviewDisplayed()
                 .checkRouteOverviewItemsDisplayed(viewIsDisplayed(onRouteListItemDelayInformation))
     }
+
+    /**
+     * MSDKUI-1194 Show maneuver list
+     */
+    @Test
+    @IntegrationUITest
+    fun showManeuverList() {
+        enumValues<Constants.ScreenOrientation>().forEach {
+            // Set screen orientation: PORTRAIT / LANDSCAPE
+            CoreActions().changeOrientation(it)
+            // Select first waypoint item
+            RoutePlannerActions.selectWaypoint(waypoint1)
+            // Select second waypoint item
+            RoutePlannerActions.selectWaypoint(waypoint2)
+            // Wait for panel collapsed and routes description list is visible
+            RoutePlannerBarActions.waitForRoutePlannerCollapsed()
+                    .waitRouteDescriptionEnabled()
+            // Tap on the first route item from route list to open route overview
+            RouteActions.tapRouteItemOnDescList(ROUTE_RESULT_1)
+                    .waitRouteOverviewDisplayed()
+            // Open maneuvers list
+            RouteActions.tapOnSeeManeuverButton()
+            // Go back to Route planner
+            CoreActions().pressBackButton().pressBackButton()
+        }
+    }
 }

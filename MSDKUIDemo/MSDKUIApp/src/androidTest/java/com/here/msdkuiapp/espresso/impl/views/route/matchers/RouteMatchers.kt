@@ -164,7 +164,7 @@ object RouteMatchers {
      * Check Route result list description information
      */
     fun checkManeuverResultList(): RouteBarActions {
-        val itemsCount = getItemsListCount(RouteView.onManeuverDescriptionList)
+        val itemsCount = getItemsListCount(RouteView.onRouteManeuversList)
         for (item in 0 until itemsCount) {
             RouteActions.scrollToManeuverItem(item).checkManeuverItemsDisplayed()
         }

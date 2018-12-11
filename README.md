@@ -35,10 +35,10 @@ The HERE Mobile SDK UI Kit comes with various high- and low-level components sup
 
 ##### Guidance
 - Localized guidance instructions and icons assembled out of the raw route data
-- Guidance maneuver panel to show upcoming actions and turns during navigation - an additional component is available to show the maneuver actions after the next maneuver
-- Guidance current street info (shows information about the street a driver is currently on)
-- Guidance estimated arrival (displays estimated arrival information, such as estimated arrival time (ETA), estimated time to destination, and remaining travel distance)
-- Guidance Speed / Guidance Speed Limit (shows current speed and speed limit information)
+- Guidance maneuver view to show upcoming actions and turns during navigation - an additional component is available to show the maneuver actions after the next maneuver
+- Guidance street label (shows information about the street a driver is currently on)
+- Guidance estimated arrival view (displays estimated arrival information, such as estimated arrival time (ETA), estimated time to destination, and remaining travel distance)
+- Guidance speed / guidance speed limit views (current speed and speed limit information)
 
 ## Localization
 The HERE Mobile SDK UI Kit is already fully localized for the following languages:

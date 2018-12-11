@@ -174,7 +174,8 @@ class RoutePlannerFlowTests : TestBase<SplashActivity>(SplashActivity::class.jav
             RouteActions.tapRouteItemOnDescList(ROUTE_RESULT_1)
                     .waitRouteOverviewDisplayed()
                     .checkRouteOverviewItemsDisplayed(viewIsDisplayed(onRouteListItemDelayInformation))
-            RouteActions.tapOnSeeManeuverButton().checkManeuverResultList()
+            RouteActions.tapOnSeeManeuverButton()
+            RouteMatchers.checkManeuverResultList()
                     .tapOnBackArrowButton()
         }
     }
@@ -448,6 +449,26 @@ class RoutePlannerFlowTests : TestBase<SplashActivity>(SplashActivity::class.jav
         onTravelDepartureDateTime.check(matches(withDateText(date)))
         // Check arrival time
         onRouteListItemArrival(ROUTE_RESULT_1).check(matches(not(withText(arrivalTime))))
+    }
+
+    /**
+     * MSDKUI-153 Browse maneuver list
+     */
+    @Test
+    fun testBrowseManeuverList() {
+        // Select first waypoint item
+        RoutePlannerActions.selectWaypoint(waypoint1)
+        // Select second waypoint item
+        RoutePlannerActions.selectWaypoint(waypoint2)
+        // Wait for panel collapsed and routes description list is visible
+        RoutePlannerBarActions.waitForRoutePlannerCollapsed()
+                .waitRouteDescriptionEnabled()
+        // Tap on the first route item from route list to open route overview
+        RouteActions.tapRouteItemOnDescList(ROUTE_RESULT_1)
+                .waitRouteOverviewDisplayed()
+        // Open maneuvers list and scroll it
+        RouteActions.tapOnSeeManeuverButton()
+                .scrollUpAndDownRouteManeuversList()
     }
 
     /**

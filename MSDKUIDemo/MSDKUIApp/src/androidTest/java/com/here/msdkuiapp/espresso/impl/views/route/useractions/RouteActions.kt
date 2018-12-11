@@ -16,13 +16,20 @@
 
 package com.here.msdkuiapp.espresso.impl.views.route.useractions
 
+import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.swipeUp
 import android.support.test.espresso.action.ViewActions.swipeDown
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions
+import android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+import android.support.test.espresso.matcher.ViewMatchers.withText
 import android.support.v7.widget.RecyclerView
+import com.here.msdkui.routing.ManeuverListAdapter
+import com.here.msdkuiapp.R
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getTextById
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getText
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.viewIsDisplayed
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
@@ -30,7 +37,8 @@ import com.here.msdkuiapp.espresso.impl.testdata.Constants.ROUTE_RESULT_1
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
 import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteBarMatchers
 import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteMatchers
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverDescriptionList
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverInstruction
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteManeuversList
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemArrival
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDuration
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescriptionList
@@ -56,9 +64,9 @@ object RouteActions {
     /**
      * Tap on see maneuver button.
      */
-    fun tapOnSeeManeuverButton(): RouteMatchers {
+    fun tapOnSeeManeuverButton(): RouteActions {
         onSeeManeuverSteps.check(matches((isDisplayed()))).perform(click())
-        return RouteMatchers
+        return this
     }
 
     /**
@@ -122,8 +130,24 @@ object RouteActions {
      * Scroll to the item by given position in maneuver list
      */
     fun scrollToManeuverItem(position: Int): RouteMatchers {
-        onManeuverDescriptionList
-                .perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(position))
+        onRouteManeuversList
+                .perform(scrollToPosition<RecyclerView.ViewHolder>(position))
         return RouteMatchers
     }
+
+    /**
+     * Check Scroll Up & Down Route maneuvers list
+     */
+    fun scrollUpAndDownRouteManeuversList(): RouteActions {
+        val lastIndex = RouteMatchers.getItemsListCount(onRouteManeuversList) - 1
+        val firstManeuverInstruction = getText(onManeuverInstruction(0))
+        // Scroll to the last item in the list and check, that it became visible
+        onRouteManeuversList.perform(scrollToPosition<ManeuverListAdapter.ViewHolder>(lastIndex))
+        onView(withText(getTextById(R.string.msdkui_arrive))).check(matches(isDisplayed()))
+        // Scroll to the first item in the list and check, that it became visible
+        onRouteManeuversList.perform(scrollToPosition<ManeuverListAdapter.ViewHolder>(0))
+        onView(withText(firstManeuverInstruction)).check(matches(isDisplayed()))
+        return this
+    }
+
 }

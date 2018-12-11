@@ -33,7 +33,6 @@ public class DistanceFormatterTest extends RobolectricTest {
 
     @Test
     public void testDistanceFormattingWhenDistanceNotValid() {
-
         String formattedDistance = DistanceFormatterUtil.format(getApplicationContext(),
                 -1, UnitSystems.METRIC);
         assertThat(formattedDistance, is("-- m"));
@@ -120,176 +119,176 @@ public class DistanceFormatterTest extends RobolectricTest {
         assertThat(formattedDistance, is("14 mi"));
     }
 
-    // Tests of formatDistanceForUI(Context, long, UnitSystems.METRIC)
+    // Tests of formatDistance(Context, long, UnitSystems.METRIC)
 
     @Test
     public void testUIDistanceFormattingWhenDistanceNotValid() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 -1, UnitSystems.METRIC);
         assertThat(formattedDistance, is("-- m"));
     }
 
     @Test
     public void testDistanceFormattingWhenDistanceIsLessThan10() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 5, UnitSystems.METRIC);
         assertThat(formattedDistance, is("5 m"));
     }
 
     @Test
     public void testUIDistanceFormattingWhenDistanceIsLessThan200() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 180, UnitSystems.METRIC);
         assertThat(formattedDistance, is("180 m"));
     }
 
     @Test
     public void testUIDistanceFormattingWhenDistanceIsLessThan975() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 970, UnitSystems.METRIC);
         assertThat(formattedDistance, is("950 m"));
     }
 
     @Test
     public void testUIMeterChangeToKm() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 990, UnitSystems.METRIC);
         assertThat(formattedDistance, is("1 km"));
     }
 
     @Test
     public void testUIDistanceFormattingWhenDistanceIsLessThan10Km() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 9910, UnitSystems.METRIC);
         assertThat(formattedDistance, is("9.9 km"));
     }
 
     @Test
     public void testUIDistanceFormattingWhenDistanceIsMoreThan10Km() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 10400, UnitSystems.METRIC);
         assertThat(formattedDistance, is("10 km"));
     }
 
     @Test
     public void testUIDistanceFormattingWhenDistanceIsMoreThan1000Km() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 1000800, UnitSystems.METRIC);
         assertThat(formattedDistance, is("1,001 km"));
     }
 
-    // Tests of formatDistanceForUI(Context, long, UnitSystems.IMPERIAL_US)
+    // Tests of formatDistance(Context, long, UnitSystems.IMPERIAL_US)
 
     @Test
     public void testUIYardMileDistanceFormattingWhenDistanceNotValid() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 -1, UnitSystems.IMPERIAL_US);
         assertThat(formattedDistance, is("-- yd"));
     }
 
     @Test
     public void testUIYardMileDistanceFormattingWhenDistanceIsLessThan10Yd() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 7, UnitSystems.IMPERIAL_US);
         assertThat(formattedDistance, is("8 yd"));
     }
 
     @Test
     public void testUIYardMileDistanceFormattingWhenDistanceIsLessThan350Yd() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 280, UnitSystems.IMPERIAL_US);
         assertThat(formattedDistance, is("310 yd"));
     }
 
     @Test
     public void testUIYardMileDistanceFormattingWhenDistanceIsLessThan1750Yd() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 1140, UnitSystems.IMPERIAL_US);
         assertThat(formattedDistance, is("1,250 yd"));
     }
 
     @Test
     public void testUIYardMileYardChangeToMile() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 1605, UnitSystems.IMPERIAL_US);
         assertThat(formattedDistance, is("1 mi"));
     }
 
     @Test
     public void testUIYardMileDistanceFormattingWhenDistanceIsLessThan10Mi() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 15932, UnitSystems.IMPERIAL_US);
         assertThat(formattedDistance, is("9.9 mi"));
     }
 
     @Test
     public void testUIYardMileDistanceFormattingWhenDistanceIsMoreThan10Mi() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 25334, UnitSystems.IMPERIAL_US);
         assertThat(formattedDistance, is("16 mi"));
     }
 
     @Test
     public void testUIYardMileDistanceFormattingWhenDistanceIsMoreThan1000Mi() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 1622607, UnitSystems.IMPERIAL_US);
         assertThat(formattedDistance, is("1,008 mi"));
     }
 
-    // Tests of formatDistanceForUI(Context, long, UnitSystems.IMPERIAL_UK)
+    // Tests of formatDistance(Context, long, UnitSystems.IMPERIAL_UK)
 
     @Test
     public void testUIFeetMileDistanceFormattingWhenDistanceNotValid() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 -1, UnitSystems.IMPERIAL_UK);
         assertThat(formattedDistance, is("-- ft"));
     }
 
     @Test
     public void testUIFeetMileDistanceFormattingWhenDistanceIsLessThan10Ft() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 2, UnitSystems.IMPERIAL_UK);
         assertThat(formattedDistance, is("7 ft"));
     }
 
     @Test
     public void testUIFeetMileDistanceFormattingWhenDistanceIsLessThan1050Ft() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 242, UnitSystems.IMPERIAL_UK);
         assertThat(formattedDistance, is("790 ft"));
     }
 
     @Test
     public void testUIFeetMileDistanceFormattingWhenDistanceIsLessThan5275FT() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 1324, UnitSystems.IMPERIAL_UK);
         assertThat(formattedDistance, is("4,350 ft"));
     }
 
     @Test
     public void testUIFeetMileFeetChangeToMile() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 1608, UnitSystems.IMPERIAL_UK);
         assertThat(formattedDistance, is("1 mi"));
     }
 
     @Test
     public void testUIFeetMileDistanceFormattingWhenDistanceIsLessThan10Mi() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 12517, UnitSystems.IMPERIAL_UK);
         assertThat(formattedDistance, is("7.8 mi"));
     }
 
     @Test
     public void testUIFeetMileDistanceFormattingWhenDistanceIsMoreThan10Mi() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 29145, UnitSystems.IMPERIAL_UK);
         assertThat(formattedDistance, is("18 mi"));
     }
 
     @Test
     public void testUIFeetMileDistanceFormattingWhenDistanceIsMoreThan1000Mi() {
-        String formattedDistance = DistanceFormatterUtil.formatDistanceForUI(getApplicationContext(),
+        String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 1933248, UnitSystems.IMPERIAL_UK);
         assertThat(formattedDistance, is("1,201 mi"));
     }

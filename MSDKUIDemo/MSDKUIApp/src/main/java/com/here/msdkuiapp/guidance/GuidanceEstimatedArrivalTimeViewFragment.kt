@@ -10,6 +10,7 @@ import com.here.msdkui.guidance.GuidanceEstimatedArrivalViewPresenter
 import com.here.msdkui.guidance.GuidanceEstimatedArrivalView
 import com.here.msdkui.guidance.GuidanceEstimatedArrivalViewListener
 import com.here.msdkuiapp.R
+import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
 
@@ -35,6 +36,7 @@ class GuidanceEstimatedArrivalViewFragment : Fragment(), GuidanceEstimatedArriva
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val panelFragment = GuidanceEstimatedArrivalView(activity)
         panelFragment.id = R.id.guidanceEstimatedArrivalViewId
+        panelFragment.unitSystem = UnitSystemFromLocaleUtil.get()
         return panelFragment
     }
 

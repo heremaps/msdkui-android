@@ -32,6 +32,7 @@ import com.here.msdkui.R;
 import com.here.msdkui.common.DateFormatterUtil;
 import com.here.msdkui.common.DistanceFormatterUtil;
 import com.here.msdkui.common.TimeFormatterUtil;
+import com.here.msdkui.common.measurements.UnitSystems;
 
 /**
  * A view that shows estimated arrival information, like estimated time of arrival (ETA), distance to
@@ -40,6 +41,7 @@ import com.here.msdkui.common.TimeFormatterUtil;
 public class GuidanceEstimatedArrivalView extends FrameLayout {
 
     private GuidanceEstimatedArrivalViewData mData;
+    private UnitSystems unitSystem = UnitSystems.METRIC;
 
     /**
      * Constructs a new instance.
@@ -105,6 +107,25 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
         init(context);
     }
 
+    /**
+     * Sets unit system of this view.
+     *
+     * @param unitSystem
+     *         unit system {@link UnitSystems}.
+     */
+    public void setUnitSystem(UnitSystems unitSystem) {
+        this.unitSystem = unitSystem;
+    }
+
+    /**
+     * Returns current unit system of this list view.
+     *
+     * @return unit system {@link UnitSystems}.
+     */
+    public UnitSystems getUnitSystem() {
+        return unitSystem;
+    }
+
     private void init(Context context) {
         LayoutInflater.from(context).inflate(R.layout.guidance_arrival_info, this);
     }
@@ -121,7 +142,7 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
 
         final String distanceText = data == null || data.getDistance() < 0 ?
                 getContext().getString(R.string.msdkui_value_not_available) :
-                DistanceFormatterUtil.formatDistanceForUI(getContext(), data.getDistance());
+                DistanceFormatterUtil.formatDistance(getContext(), data.getDistance(), unitSystem);
         distance.setText(distanceText);
 
         final String durationText = data == null || data.getDuration() < 0 ?

@@ -41,8 +41,8 @@ public class GuidanceSpeedData implements Parcelable {
 
     private static final int INVALID_VALUE = -1;
 
-    private int mCurrentSpeed;
-    private int mCurrentSpeedLimit;
+    private double mCurrentSpeed;
+    private double mCurrentSpeedLimit;
 
     /**
      * Constructs a new instance.
@@ -55,35 +55,35 @@ public class GuidanceSpeedData implements Parcelable {
      * Constructs a new instance using current speed and color values.
      *
      * @param speed
-     *          a current speed value in km per hour.
+     *          a current speed value in meter per second.
      * @param speedLimit
-     *          a current speed limit value in km per hour.
+     *          a current speed limit value in meter per second.
      */
-    public GuidanceSpeedData(int speed, int speedLimit) {
+    public GuidanceSpeedData(double speed, double speedLimit) {
         mCurrentSpeed = speed;
         mCurrentSpeedLimit = speedLimit;
     }
 
     GuidanceSpeedData(Parcel in) {
-        mCurrentSpeed = in.readInt();
-        mCurrentSpeedLimit = in.readInt();
+        mCurrentSpeed = in.readDouble();
+        mCurrentSpeedLimit = in.readDouble();
     }
 
     /**
      * Gets current speed.
      *
-     * @return a speed value in km per hour.
+     * @return a speed value in meter per second.
      */
-    public int getCurrentSpeed() {
+    public double getCurrentSpeed() {
         return mCurrentSpeed;
     }
 
     /**
      * Gets current speed limit.
      *
-     * @return a speed limit value in km per hour.
+     * @return a speed limit value in meter per second.
      */
-    public int getCurrentSpeedLimit() {
+    public double getCurrentSpeedLimit() {
         return mCurrentSpeedLimit;
     }
 
@@ -122,7 +122,7 @@ public class GuidanceSpeedData implements Parcelable {
 
     @Override
     public int hashCode() {
-        return this.mCurrentSpeed * 31 + this.mCurrentSpeedLimit * 31;
+        return (int)(this.mCurrentSpeed * 31) + (int)(this.mCurrentSpeedLimit * 31);
     }
 
     @Override
@@ -142,7 +142,7 @@ public class GuidanceSpeedData implements Parcelable {
     }
 
     @Override public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(mCurrentSpeed);
-        dest.writeInt(mCurrentSpeedLimit);
+        dest.writeDouble(mCurrentSpeed);
+        dest.writeDouble(mCurrentSpeedLimit);
     }
 }

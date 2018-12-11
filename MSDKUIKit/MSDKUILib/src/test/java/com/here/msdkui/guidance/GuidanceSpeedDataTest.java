@@ -32,8 +32,8 @@ import static org.hamcrest.core.Is.is;
  */
 public class GuidanceSpeedDataTest extends RobolectricTest {
 
-    private static final int VELOCITY = 60;
-    private static final int SPEED_LIMIT = 70;
+    private static final double VELOCITY = 60;
+    private static final double SPEED_LIMIT = 70;
 
     private GuidanceSpeedData mCurrentSpeedData = null;
 
@@ -70,7 +70,7 @@ public class GuidanceSpeedDataTest extends RobolectricTest {
     @Test
     public void testToString() {
         GuidanceSpeedData data = new GuidanceSpeedData(VELOCITY, SPEED_LIMIT);
-        String expectedResult = "GuidanceSpeedData(mCurrentSpeed=60, mCurrentSpeedLimit=70)";
+        String expectedResult = "GuidanceSpeedData(mCurrentSpeed=60.0, mCurrentSpeedLimit=70.0)";
         assertThat(data.toString(), is(expectedResult));
     }
 

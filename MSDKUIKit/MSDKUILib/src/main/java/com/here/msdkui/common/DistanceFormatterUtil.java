@@ -58,13 +58,6 @@ public final class DistanceFormatterUtil {
     }
 
     /**
-     * Temporary function. This function will be removed when new formatters are used in lib.
-     */
-    public static String format(final Context context, final long distance) {
-        return format(context, distance, UnitSystems.METRIC);
-    }
-
-    /**
      * Converts a given distance in meters to a string representation. The distance will be rounded
      * based on the provided unit system. See:
      * {@link DistanceFormatterUtil#formatInMetricSystem(Context, long)},
@@ -193,13 +186,6 @@ public final class DistanceFormatterUtil {
     }
 
     /**
-     * Temporary function. This function will be removed when new formatters are used in lib..
-     */
-    public static String formatDistanceForUI(final Context context, final long distance) {
-        return formatDistanceForUI(context, distance, UnitSystems.METRIC);
-    }
-
-    /**
      * Converts given distance in meters to a string representation rounded to specified unit system.
      * For details of unit system specific see:
      * {@link DistanceFormatterUtil#formatDistanceInMetricSystem(Context, long)},
@@ -215,7 +201,7 @@ public final class DistanceFormatterUtil {
      *
      * @return a string representation including unit or "-- [smaller unit]" if distance is smaller than 0.
      */
-    public static String formatDistanceForUI(final Context context, final long distance, final UnitSystems system) {
+    public static String formatDistance(final Context context, final long distance, final UnitSystems system) {
         switch (system) {
             case METRIC:
                 return formatDistanceInMetricSystem(context, distance);

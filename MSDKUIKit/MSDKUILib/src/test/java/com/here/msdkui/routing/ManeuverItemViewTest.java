@@ -25,6 +25,7 @@ import com.here.MockUtils;
 import com.here.RobolectricTest;
 import com.here.android.mpa.routing.Maneuver;
 import com.here.msdkui.R;
+import com.here.msdkui.common.measurements.UnitSystems;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -39,6 +40,7 @@ import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertSame;
 import static junit.framework.Assert.assertTrue;
+import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -174,6 +176,13 @@ public class ManeuverItemViewTest extends RobolectricTest {
 
         assertNotNull(item);
         assertTrue(item.isSectionVisible(ManeuverItemView.Section.DISTANCE));
+    }
+
+    @Test
+    public void testSetGetUnitSystem() {
+        assertEquals(mManeuverItemView.getUnitSystem(), UnitSystems.METRIC);
+        mManeuverItemView.setUnitSystem(UnitSystems.IMPERIAL_UK);
+        assertEquals(mManeuverItemView.getUnitSystem(), UnitSystems.IMPERIAL_UK);
     }
 
     public List<Maneuver> getManeuvers() {

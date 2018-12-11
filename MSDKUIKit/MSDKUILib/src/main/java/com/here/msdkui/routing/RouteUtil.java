@@ -41,6 +41,7 @@ import com.here.msdkui.common.DateFormatterUtil;
 import com.here.msdkui.common.DistanceFormatterUtil;
 import com.here.msdkui.common.ThemeUtil;
 import com.here.msdkui.common.TimeFormatterUtil;
+import com.here.msdkui.common.measurements.UnitSystems;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -186,11 +187,15 @@ public final class RouteUtil {
      *         the required {@link Context}.
      * @param route
      *         a {@link Route} instance.
+     * @param unitSystem
+     *         unit system {@link UnitSystems}.
+     *
      * @return the formatted route length including units.
      */
-    public static String getRouteLength(final Context context, final Route route) {
+    public static String getRouteLength(final Context context, final Route route,
+                                        final UnitSystems unitSystem) {
         final int length = route.getLength();
-        return DistanceFormatterUtil.format(context, length);
+        return DistanceFormatterUtil.format(context, length, unitSystem);
     }
 
     /**
@@ -200,13 +205,18 @@ public final class RouteUtil {
      *         the required {@link Context}.
      * @param route
      *         a {@link Route} instance.
+     * @param unitSystem
+     *         unit system {@link UnitSystems}.
+     *
      * @return a {@link Spannable} containing the details.
      */
-    public static Spannable getDetails(final Context context, final Route route) {
+    public static Spannable getDetails(final Context context, final Route route,
+                                       final UnitSystems unitSystem) {
         final RouteOptions.TransportMode transportMode = route.getRoutePlan()
                 .getRouteOptions()
                 .getTransportMode();
-        final SpannableStringBuilder builder = new SpannableStringBuilder(getRouteLength(context, route));
+        final SpannableStringBuilder builder =
+                new SpannableStringBuilder(getRouteLength(context, route, unitSystem));
         if (transportMode == RouteOptions.TransportMode.PUBLIC_TRANSPORT) {
             return new SpannableStringBuilder(); // empty
         } else {

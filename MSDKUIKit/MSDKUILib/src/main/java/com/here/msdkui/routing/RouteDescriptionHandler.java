@@ -41,6 +41,7 @@ import com.here.msdkui.common.DateFormatterUtil;
 import com.here.msdkui.common.DistanceFormatterUtil;
 import com.here.msdkui.common.ThemeUtil;
 import com.here.msdkui.common.TimeFormatterUtil;
+import com.here.msdkui.common.measurements.UnitSystems;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -57,6 +58,7 @@ public final class RouteDescriptionHandler {
 
     private final Route mRoute;
     private final Context mContext;
+    private UnitSystems unitSystem = UnitSystems.METRIC;
 
     /**
      * Constructs a new instance using context and the route of interest.
@@ -66,6 +68,25 @@ public final class RouteDescriptionHandler {
     public RouteDescriptionHandler(final Context context, final Route route) {
         mRoute = route;
         mContext = context;
+    }
+
+    /**
+     * Sets unit system of this handler.
+     *
+     * @param unitSystem
+     *         unit system {@link UnitSystems}.
+     */
+    public void setUnitSystem(UnitSystems unitSystem) {
+        this.unitSystem = unitSystem;
+    }
+
+    /**
+     * Returns current unit system of this handler.
+     *
+     * @return unit system {@link UnitSystems}.
+     */
+    public UnitSystems getUnitSystem() {
+        return unitSystem;
     }
 
     /**
@@ -185,7 +206,7 @@ public final class RouteDescriptionHandler {
      */
     public String getRouteLength() {
         final int length = mRoute.getLength();
-        return DistanceFormatterUtil.format(mContext, length);
+        return DistanceFormatterUtil.format(mContext, length, unitSystem);
     }
 
     /**

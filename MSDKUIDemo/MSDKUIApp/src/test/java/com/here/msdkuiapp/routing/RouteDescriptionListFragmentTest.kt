@@ -21,6 +21,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.here.android.mpa.routing.Route
 import com.here.msdkuiapp.R
+import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
 import com.here.testutils.BaseTest
 import com.here.testutils.anySafe
 import junit.framework.Assert.assertEquals
@@ -102,6 +103,8 @@ class RouteDescriptionListFragmentTest : BaseTest() {
             makeUiDataReady()
         }
         assertNotNull(fragment.listener)
+        assertEquals(fragment.view!!.route_description_list.unitSystem,
+                UnitSystemFromLocaleUtil.get())
     }
 
     @Test

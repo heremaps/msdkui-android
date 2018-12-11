@@ -28,6 +28,7 @@ import com.here.msdkui.guidance.GuidanceManeuverView
 import com.here.msdkui.guidance.GuidanceManeuverListener
 import com.here.msdkui.guidance.GuidanceManeuverPresenter
 import com.here.msdkuiapp.R
+import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
 
@@ -64,6 +65,7 @@ class GuidanceManeuverFragment : Fragment(), GuidanceManeuverListener {
                               savedInstanceState: Bundle?): View? {
         val maneuverView = GuidanceManeuverView(activity)
         maneuverView.id = R.id.guidanceManeuverViewId
+        maneuverView.unitSystem = UnitSystemFromLocaleUtil.get()
         return maneuverView
     }
 

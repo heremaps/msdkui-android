@@ -31,6 +31,7 @@ import com.here.android.mpa.routing.RouteOptions;
 import com.here.android.mpa.routing.RoutePlan;
 import com.here.android.mpa.routing.RouteTta;
 import com.here.msdkui.R;
+import com.here.msdkui.common.measurements.UnitSystems;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -45,6 +46,7 @@ import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertSame;
 import static junit.framework.Assert.assertTrue;
+import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -225,5 +227,12 @@ public class RouteDescriptionItemTest extends RobolectricTest {
 
         assertNotNull(item);
         assertTrue(item.isSectionVisible(RouteDescriptionItem.Section.SECTION_BAR));
+    }
+
+    @Test
+    public void testSetGetUnitSystem() {
+        assertEquals(mRouteDescriptionItem.getUnitSystem(), UnitSystems.METRIC);
+        mRouteDescriptionItem.setUnitSystem(UnitSystems.IMPERIAL_UK);
+        assertEquals(mRouteDescriptionItem.getUnitSystem(), UnitSystems.IMPERIAL_UK);
     }
 }

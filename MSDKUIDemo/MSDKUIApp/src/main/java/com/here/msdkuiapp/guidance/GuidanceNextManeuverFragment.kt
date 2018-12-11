@@ -27,6 +27,7 @@ import com.here.msdkui.guidance.GuidanceNextManeuverView
 import com.here.msdkui.guidance.GuidanceNextManeuverListener
 import com.here.msdkui.guidance.GuidanceNextManeuverPresenter
 import com.here.msdkuiapp.R
+import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
 
@@ -52,7 +53,8 @@ class GuidanceNextManeuverFragment : Fragment(), GuidanceNextManeuverListener {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val nextManeuverView = GuidanceNextManeuverView(activity)
-        nextManeuverView.id = R.id.guidanceNextManeuverViewId;
+        nextManeuverView.id = R.id.guidanceNextManeuverViewId
+        nextManeuverView.unitSystem = UnitSystemFromLocaleUtil.get()
         return nextManeuverView
     }
 

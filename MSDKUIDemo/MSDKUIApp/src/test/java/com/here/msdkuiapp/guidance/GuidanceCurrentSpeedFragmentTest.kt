@@ -21,13 +21,15 @@ import com.here.android.mpa.common.PositioningManager
 import com.here.android.mpa.guidance.NavigationManager
 import com.here.msdkui.guidance.GuidanceSpeedData
 import com.here.msdkui.guidance.GuidanceSpeedPresenter
+import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
 
 import com.here.testutils.BaseTest
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotNull
-import kotlinx.android.synthetic.main.guidance_current_speed.*
+import kotlinx.android.synthetic.main.guidance_current_speed.guidance_current_speed
+import kotlinx.android.synthetic.main.guidance_current_speed.view.guidance_current_speed
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -68,6 +70,8 @@ class GuidanceCurrentSpeedFragmentTest : BaseTest() {
         addFrag(guidanceCurrentSpeedFragment, GuidanceCurrentSpeedFragment::class.java.name)
         assertNotNull(guidanceCurrentSpeedFragment)
         assertNotNull(guidanceCurrentSpeedFragment.view)
+        assertEquals(guidanceCurrentSpeedFragment.view!!.guidance_current_speed.unitSystem,
+                UnitSystemFromLocaleUtil.get())
     }
 
     @Test
@@ -99,7 +103,7 @@ class GuidanceCurrentSpeedFragmentTest : BaseTest() {
 
     @Test
     fun testCallback() {
-        val speed = 60
+        val speed = 60.0
         addFrag(guidanceCurrentSpeedFragment, GuidanceCurrentSpeedFragment::class.java.name)
         val data = Mockito.mock(GuidanceSpeedData::class.java)
         `when`(data.currentSpeed).thenReturn(speed)

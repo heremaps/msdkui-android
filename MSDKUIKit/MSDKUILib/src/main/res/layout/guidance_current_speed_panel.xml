@@ -27,5 +27,5 @@
         android:id="@+id/guidance_current_speed_unit"
         style="?attr/guidanceCurrentSpeedPanelSecondaryText"
         android:layout_below="@+id/guidance_current_speed_value"
-        android:text="@string/msdkui_unit_km_per_h" />
+        android:text="@null" />
 </RelativeLayout>

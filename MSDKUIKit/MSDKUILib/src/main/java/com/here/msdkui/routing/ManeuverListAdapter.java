@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.here.android.mpa.routing.Maneuver;
+import com.here.msdkui.common.measurements.UnitSystems;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ import java.util.List;
 public class ManeuverListAdapter extends RecyclerView.Adapter<ManeuverListAdapter.ViewHolder> {
 
     private final List<Maneuver> mManeuverList;
+    private UnitSystems unitSystem = UnitSystems.METRIC;
 
     /**
      * Constructs a new instance using a list of maneuvers.
@@ -42,6 +44,25 @@ public class ManeuverListAdapter extends RecyclerView.Adapter<ManeuverListAdapte
     public ManeuverListAdapter(final List<Maneuver> maneuverList) {
         super();
         mManeuverList = maneuverList;
+    }
+
+    /**
+     * Sets unit system of this adapter.
+     *
+     * @param unitSystem
+     *         unit system {@link UnitSystems}.
+     */
+    public void setUnitSystem(UnitSystems unitSystem) {
+        this.unitSystem = unitSystem;
+    }
+
+    /**
+     * Returns current unit system of this adapter.
+     *
+     * @return unit system {@link UnitSystems}.
+     */
+    public UnitSystems getUnitSystem() {
+        return unitSystem;
     }
 
     @Override
@@ -66,6 +87,7 @@ public class ManeuverListAdapter extends RecyclerView.Adapter<ManeuverListAdapte
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final Maneuver maneuver = mManeuverList.get(position);
         if (maneuver != null && holder.itemView instanceof ManeuverItemView) {
+            ((ManeuverItemView) holder.itemView).setUnitSystem(unitSystem);
             ((ManeuverItemView) holder.itemView).setManeuver(mManeuverList, position);
         }
     }

@@ -33,6 +33,7 @@ import com.here.android.mpa.routing.Route;
 import com.here.android.mpa.routing.RouteOptions;
 import com.here.msdkui.R;
 import com.here.msdkui.common.ThemeUtil;
+import com.here.msdkui.common.measurements.UnitSystems;
 
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -49,6 +50,7 @@ public class RouteDescriptionItem extends RelativeLayout {
     private Route mRoute;
     private boolean mTrafficEnabled;
     private float mSectionBarScaling = 1.0f;
+    private UnitSystems unitSystem = UnitSystems.METRIC;
 
     /**
      * Constructs a new instance.
@@ -112,6 +114,25 @@ public class RouteDescriptionItem extends RelativeLayout {
             final int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context, attrs, defStyleAttr, defStyleRes);
+    }
+
+    /**
+     * Sets unit system of this item.
+     *
+     * @param unitSystem
+     *         unit system {@link UnitSystems}.
+     */
+    public void setUnitSystem(UnitSystems unitSystem) {
+        this.unitSystem = unitSystem;
+    }
+
+    /**
+     * Returns current unit system of this item.
+     *
+     * @return unit system {@link UnitSystems}.
+     */
+    public UnitSystems getUnitSystem() {
+        return unitSystem;
     }
 
     private void init(final Context context, final AttributeSet attrs, final int defStyleAttr, final int defStyleRes) {
@@ -307,7 +328,8 @@ public class RouteDescriptionItem extends RelativeLayout {
             ((TextView) mSections.get(Section.TRAFFIC_WARNING)).setVisibility(GONE);
         }
 
-        ((TextView) mSections.get(Section.DETAILS)).setText(RouteUtil.getDetails(getContext(), mRoute));
+        ((TextView) mSections.get(Section.DETAILS)).setText(
+                RouteUtil.getDetails(getContext(), mRoute, unitSystem));
         ((SectionBar) mSections.get(Section.SECTION_BAR))
                 .bind(RouteUtil.getSectionBar(getContext(), mRoute), mSectionBarScaling);
 

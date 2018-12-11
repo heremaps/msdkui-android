@@ -26,6 +26,7 @@ import com.here.android.mpa.routing.RouteElements;
 import com.here.android.mpa.routing.RoutePlan;
 import com.here.android.mpa.routing.RouteTta;
 import com.here.msdkui.R;
+import com.here.msdkui.common.measurements.UnitSystems;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -39,6 +40,7 @@ import java.util.List;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
+import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Mockito.spy;
@@ -80,6 +82,15 @@ public class RouteDescriptionsListAdapterTest extends RobolectricTest {
         mRoutesDescriptionsListAdapter = new RouteDescriptionListAdapter(Arrays.asList(route, route));
         mRoutesDescriptionsListAdapter.setTrafficEnabled(true);
         assertTrue(mRoutesDescriptionsListAdapter.isTrafficEnabled());
+    }
+
+    @Test
+    public void testSetGetUnitSystem() {
+        final Route route = new MockUtils.MockRouteBuilder().getRoute();
+        mRoutesDescriptionsListAdapter = new RouteDescriptionListAdapter(Arrays.asList(route, route));
+        assertEquals(mRoutesDescriptionsListAdapter.getUnitSystem(), UnitSystems.METRIC);
+        mRoutesDescriptionsListAdapter.setUnitSystem(UnitSystems.IMPERIAL_UK);
+        assertEquals(mRoutesDescriptionsListAdapter.getUnitSystem(), UnitSystems.IMPERIAL_UK);
     }
 
     private void getFirstViewHolder(final List<Route> routes) {

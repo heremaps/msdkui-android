@@ -29,6 +29,7 @@ import com.here.msdkui.guidance.GuidanceSpeedData
 import com.here.msdkui.guidance.GuidanceSpeedListener
 import com.here.msdkui.guidance.GuidanceSpeedPresenter
 import com.here.msdkuiapp.R
+import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
 import kotlinx.android.synthetic.main.guidance_current_speed.*
@@ -61,6 +62,7 @@ class GuidanceCurrentSpeedFragment : Fragment(), GuidanceSpeedListener {
      * Creates Presenter for this GuidanceStreetLabelFragment.
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        guidance_current_speed.unitSystem = UnitSystemFromLocaleUtil.get()
         if (presenter == null) {
             presenter = GuidanceSpeedPresenter(SingletonHelper.navigationManager ?: return,
                     SingletonHelper.positioningManager ?: return).apply {

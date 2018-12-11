@@ -121,7 +121,7 @@ public class NumericOptionItem extends OptionItem {
     }
 
     /**
-     * Gets the value associated with this item.
+     * Gets the value associated with the item.
      * @return a {@link Number} or null if no value was set.
      */
     public Number getValue() {
@@ -129,7 +129,7 @@ public class NumericOptionItem extends OptionItem {
     }
 
     /**
-     * Sets the {@link Number} value for this item.
+     * Sets the {@link Number} value for the item.
      * @param value the value to set.
      * @return an instance of this class.
      */
@@ -145,7 +145,7 @@ public class NumericOptionItem extends OptionItem {
     }
 
     /**
-     * Gets the label of this item.
+     * Gets the label of the item.
      * @return the label as string.
      */
     public String getLabel() {
@@ -153,9 +153,9 @@ public class NumericOptionItem extends OptionItem {
     }
 
     /**
-     * Sets the label id for this item.
+     * Sets the label id for the item.
      * @param labelId the id to set.
-     * @return an instance of this class.
+     * @return an instance of the class.
      * @throws IllegalArgumentException if labelId is null.
      */
     public NumericOptionItem setLabel(final String labelId) {
@@ -182,9 +182,9 @@ public class NumericOptionItem extends OptionItem {
     }
 
     /**
-     * Sets input type for this item.
+     * Sets input type for the item.
      * @param inputType the type to set, possible values: {@link android.text.InputType}.
-     * @return an instance of this class.
+     * @return an instance of the class.
      */
     public NumericOptionItem setInputType(int inputType) {
         mInputType = inputType;
@@ -199,7 +199,7 @@ public class NumericOptionItem extends OptionItem {
 
         /**
          * Constructs a new instance.
-         * @param editText an {@link EditText} containing the numeric value for this item.
+         * @param editText an {@link EditText} containing the numeric value for the item.
          */
         PositiveDialogOnClickListener(@NonNull EditText editText) {
             mInputText = editText;
@@ -227,4 +227,3 @@ public class NumericOptionItem extends OptionItem {
         }
     }
 }
-

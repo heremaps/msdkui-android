@@ -14,18 +14,22 @@
  * limitations under the License.
  */
 
-package com.here.msdkuiapp.espresso.impl.annotation;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+package com.here.msdkui.common.measurements;
 
 /**
- * FunctionalUITest annotation for tests to be executed for CI jobs.
- * The annotation for functional tests to be executed as a separate job!!!
+ * All available unit systems.
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.TYPE})
-public @interface FunctionalUITest { }
-
+public enum UnitSystems {
+    /**
+     * Meters and kilometers.
+     */
+    METRIC,
+    /**
+     * Feet and miles.
+     */
+    IMPERIAL_UK,
+    /**
+     * Yards and miles.
+     */
+    IMPERIAL_US
+}

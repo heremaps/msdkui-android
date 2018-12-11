@@ -18,25 +18,21 @@ package com.here.msdkuiapp.espresso.impl.core
 
 import android.support.test.espresso.UiController
 import android.support.test.espresso.ViewAction
-import android.support.test.espresso.action.CoordinatesProvider
-import android.support.test.espresso.action.GeneralClickAction
-import android.support.test.espresso.action.Press
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.matcher.ViewMatchers
+import android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.v7.widget.RecyclerView
-import android.view.InputDevice
-import android.view.MotionEvent
 import android.view.View
+import android.widget.DatePicker
+import android.widget.TimePicker
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onLandingScreenList
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
 import com.here.msdkuiapp.espresso.impl.mock.MockLocationData
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.DRIVE_NAVIGATION_ITEM
-import com.here.msdkuiapp.espresso.impl.testdata.Constants.Gestures
-import com.here.msdkuiapp.espresso.impl.testdata.Constants.Gestures.SINGLE_TAP
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ROUTE_PLANNER_ITEM
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation
 import com.here.msdkuiapp.espresso.impl.utils.ScreenOrientationUtils.Companion.getOrientation
@@ -46,11 +42,12 @@ import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveN
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRoutePlannerTitleView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
 import org.hamcrest.Matcher
+import org.hamcrest.Matchers.allOf
 
 /**
  * Core framework actions
  */
-open class CoreActions() {
+open class CoreActions {
 
     /**
      * Clicks the view without checking any constraint like visibility & others.
@@ -67,6 +64,48 @@ open class CoreActions() {
 
             override fun perform(uiController: UiController, view: View) {
                 view.performClick()
+            }
+        }
+    }
+
+    /**
+     * Set date of [DatePicker] to tomorrow
+     */
+    fun setTomorrowDate(): ViewAction {
+        return object : ViewAction {
+            override fun getDescription(): String {
+                return "Set Date to tomorrow"
+            }
+
+            override fun getConstraints(): Matcher<View> {
+                return allOf<View>(isAssignableFrom(DatePicker::class.java), isDisplayed())
+            }
+
+            override fun perform(uiController: UiController, view: View) {
+                with(view as DatePicker) {
+                    updateDate(year, month, dayOfMonth + 1)
+                }
+            }
+        }
+    }
+
+    /**
+     * Set time of [TimePicker] to one hour later
+     */
+    fun setTime1HourLater(): ViewAction {
+        return object : ViewAction {
+            override fun getDescription(): String {
+                return "Set Time to 1 hour later"
+            }
+
+            override fun getConstraints(): Matcher<View> {
+                return allOf<View>(isAssignableFrom(TimePicker::class.java), isDisplayed())
+            }
+
+            override fun perform(uiController: UiController, view: View) {
+                with(view as TimePicker) {
+                    hour += 1
+                }
             }
         }
     }
@@ -109,7 +148,7 @@ open class CoreActions() {
 
     /**
      * Change the value of the current activity
-     * @param [ScreenOrientation] new value of the screen orientation
+     * @param [orientation] new value of the screen orientation
      */
     fun changeOrientation(orientation: ScreenOrientation): CoreActions {
         if (getOrientation() != orientation.value) onRootView.perform(setOrientation(orientation))

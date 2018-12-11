@@ -166,7 +166,7 @@ public class RouteDescriptionList extends CustomRecyclerView {
     }
 
     /**
-     * Sets a list of {@link Route} elements to the this list. The given list will be used to create the rows of
+     * Sets a list of {@link Route} elements to the list. The given list will be used to create the rows of
      * this list.
      *
      * @param routes the list of {@link Route} elements to set.

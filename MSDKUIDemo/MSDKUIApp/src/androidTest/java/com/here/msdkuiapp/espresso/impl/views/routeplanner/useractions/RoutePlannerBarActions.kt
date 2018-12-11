@@ -53,7 +53,7 @@ object RoutePlannerBarActions: CoreActions() {
      * @return [String] location label
      */
     fun tapOnTickButton(): String {
-        val location = CoreMatchers.getTextView(onPlannerBarWaypointLabel)
+        val location = CoreMatchers.getText(onPlannerBarWaypointLabel)
         onPlannerBarRightImageIconView.check(matches(isDisplayed())).perform(click())
         return location
     }

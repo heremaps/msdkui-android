@@ -153,9 +153,13 @@
   <string name="msdkui_tunnel_cat_e">Categoria E</string>
   <string name="msdkui_tunnels_allowed_title">Túneis permitidos</string>
   <string name="msdkui_undefined">Não definido</string>
+  <string name="msdkui_unit_foot">ft</string>
   <string name="msdkui_unit_kilometer">km</string>
   <string name="msdkui_unit_km_per_h">km/h</string>
   <string name="msdkui_unit_meter">m</string>
+  <string name="msdkui_unit_mile">mi</string>
+  <string name="msdkui_unit_miles_per_hour">mi/h</string>
+  <string name="msdkui_unit_yard">yd</string>
   <string name="msdkui_userposition_search">Obtendo a sua localização</string>
   <string name="msdkui_violate_truck_options">Ignorar opções para caminhões</string>
   <string name="msdkui_waypoint_current_location">Local atual</string>

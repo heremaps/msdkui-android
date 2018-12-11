@@ -20,13 +20,12 @@ import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.isSelected
 import android.support.test.espresso.matcher.ViewMatchers.withText
-import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getTextView
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getText
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onDatePicker
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerTransportPanel
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerWaypointLocationLabel
-import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.utils.WaypointData
 import android.view.View
 import com.here.msdkui.routing.WaypointEntry
@@ -34,8 +33,11 @@ import com.here.msdkui.routing.WaypointList
 import com.here.msdkui.routing.RouteUtil
 import com.here.msdkui.routing.RouteDescriptionList
 import com.here.msdkui.routing.RouteDescriptionItem
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onCancelButton
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onOkButton
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerFromTextView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerToTextView
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onTimePicker
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.CoreMatchers.anyOf
 import org.hamcrest.Description
@@ -66,9 +68,33 @@ object RoutePlannerMatchers {
     /**
      * Check date picker opened
      */
-    fun checkDatePickerDisplayed(): RoutePlannerActions {
+    fun checkDatePickerDisplayed(): RoutePlannerMatchers {
         onDatePicker.check(matches(isDisplayed()))
-        return RoutePlannerActions
+        return this
+    }
+
+    /**
+     * Check time picker opened
+     */
+    fun checkTimePickerDisplayed(): RoutePlannerMatchers {
+        onTimePicker.check(matches(isDisplayed()))
+        return this
+    }
+
+    /**
+     * Check 'OK' button visible
+     */
+    fun checkOkButtonDisplayed(): RoutePlannerMatchers {
+        onOkButton.check(matches(isDisplayed()))
+        return this
+    }
+
+    /**
+     * Check 'Cancel' button visible
+     */
+    fun checkCancelButtonDisplayed(): RoutePlannerMatchers {
+        onCancelButton.check(matches(isDisplayed()))
+        return this
     }
 
     /**
@@ -94,7 +120,7 @@ object RoutePlannerMatchers {
      */
     fun isVisibleWaypoint(waypointData: WaypointData): Boolean {
         return waypointData.run {
-            getTextView(onPlannerWaypointLocationLabel(waypointItem)).contentEquals(waypoint)
+            getText(onPlannerWaypointLocationLabel(waypointItem)).contentEquals(waypoint)
         }
     }
 

@@ -18,11 +18,16 @@ package com.here.msdkuiapp.espresso.tests.routing.flow
 
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+import android.support.test.espresso.matcher.ViewMatchers.withText
 import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.FunctionalUITest
 import com.here.msdkuiapp.espresso.impl.core.CoreActions
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
-import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getTextView
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getDate
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getText
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getTime
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withDateText
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.viewIsDisplayed
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_1
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_2
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_3
@@ -35,26 +40,32 @@ import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem.*
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteMatchers
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescArrival
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDelayInformation
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDetails
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDuration
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemArrival
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDelayInformation
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDetails
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDuration
 import com.here.msdkuiapp.espresso.impl.views.route.useractions.RouteActions
 import com.here.msdkuiapp.espresso.impl.views.route.useractions.RouteBarActions
 import com.here.msdkuiapp.espresso.impl.views.route.utils.RouteData
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerMatchers
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerMatchers.isWaypointsReversed
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onDatePicker
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerWaypointList
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onRoutePlannerInstructions
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onTimePicker
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onTravelDepartureDateTime
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerActions.updateRouteInformation
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.utils.WaypointData
 import com.here.msdkuiapp.espresso.tests.TestBase
+import org.hamcrest.Matchers.not
 import org.junit.Before
 import org.junit.FixMethodOrder
 import org.junit.Test
 import org.junit.runners.MethodSorters
+import java.util.Calendar.HOUR_OF_DAY
+import java.util.Calendar.MINUTE
 
 /**
  * UI flow tests for routing
@@ -162,8 +173,9 @@ class RoutePlannerFlowTests : TestBase<SplashActivity>(SplashActivity::class.jav
             // Tap on the first route item from route list to open route overview
             RouteActions.tapRouteItemOnDescList(ROUTE_RESULT_1)
                     .waitRouteOverviewDisplayed()
-                    .checkRouteOverviewItemsDisplayed()
-            RouteActions.tapOnSeeManeuverButton().checkManeuverResultList()
+                    .checkRouteOverviewItemsDisplayed(viewIsDisplayed(onRouteListItemDelayInformation))
+            RouteActions.tapOnSeeManeuverButton()
+            RouteMatchers.checkManeuverResultList()
                     .tapOnBackArrowButton()
         }
     }
@@ -193,7 +205,7 @@ class RoutePlannerFlowTests : TestBase<SplashActivity>(SplashActivity::class.jav
             // Tap on the first route item from route list to open route overview
             RouteActions.tapRouteItemOnDescList(ROUTE_RESULT_1)
                     .waitRouteOverviewDisplayed()
-                    .checkRouteOverviewItemsDisplayed()
+                    .checkRouteOverviewItemsDisplayed(viewIsDisplayed(onRouteListItemDelayInformation))
 //                   .withRouteOverviewData(routeData) // FIXME: MSDKUI-919
             RouteBarActions.tapOnBackArrowButton()
         }
@@ -399,16 +411,77 @@ class RoutePlannerFlowTests : TestBase<SplashActivity>(SplashActivity::class.jav
     }
 
     /**
+     * MSDKUI-149: Set departure time
+     */
+    @Test
+    @FunctionalUITest
+    fun testSetDepartureTime() {
+        // Select first waypoint item
+        RoutePlannerActions.selectWaypoint(waypoint1)
+        // Select second waypoint item
+        RoutePlannerActions.selectWaypoint(waypoint2)
+        // Wait for panel collapsed and routes description list is visible
+        RoutePlannerBarActions.waitForRoutePlannerCollapsed().waitRouteDescriptionEnabled()
+        // Save arrival time
+        val arrivalTime = getRouteInformation().arrival
+        // Open date picker
+        RoutePlannerActions.tapOnTravelTimePanel()
+        // Check DatePicker & buttons displayed
+        RoutePlannerMatchers.checkDatePickerDisplayed().checkOkButtonDisplayed().checkCancelButtonDisplayed()
+        // Change date
+        RoutePlannerActions.setTravelDateTomorrow()
+        // Save date
+        val date = getDate(onDatePicker)
+        // Tap 'OK'
+        RoutePlannerActions.tapOKButton()
+        // Check TimePicker & buttons displayed
+        RoutePlannerMatchers.checkTimePickerDisplayed().checkOkButtonDisplayed().checkCancelButtonDisplayed()
+        // Change time
+        RoutePlannerActions.setTravelTime1HourLater()
+        // Save time
+        val time = getTime(onTimePicker)
+        // Copy time to date
+        date.set(HOUR_OF_DAY, time.get(HOUR_OF_DAY))
+        date.set(MINUTE, time.get(MINUTE))
+        // Tap 'OK'
+        RoutePlannerActions.tapOKButton()
+        // Check departure time
+        onTravelDepartureDateTime.check(matches(withDateText(date)))
+        // Check arrival time
+        onRouteListItemArrival(ROUTE_RESULT_1).check(matches(not(withText(arrivalTime))))
+    }
+
+    /**
+     * MSDKUI-153 Browse maneuver list
+     */
+    @Test
+    fun testBrowseManeuverList() {
+        // Select first waypoint item
+        RoutePlannerActions.selectWaypoint(waypoint1)
+        // Select second waypoint item
+        RoutePlannerActions.selectWaypoint(waypoint2)
+        // Wait for panel collapsed and routes description list is visible
+        RoutePlannerBarActions.waitForRoutePlannerCollapsed()
+                .waitRouteDescriptionEnabled()
+        // Tap on the first route item from route list to open route overview
+        RouteActions.tapRouteItemOnDescList(ROUTE_RESULT_1)
+                .waitRouteOverviewDisplayed()
+        // Open maneuvers list and scroll it
+        RouteActions.tapOnSeeManeuverButton()
+                .scrollUpAndDownRouteManeuversList()
+    }
+
+    /**
      * Get route information from routing list
      */
     private fun getRouteInformation(routeItem: Int = ROUTE_RESULT_1, transportType: TransportType = TYPE_CAR): RouteData {
-        val duration = getTextView(onRouteDescDuration(routeItem))
-        val details = getTextView(onRouteDescDetails(routeItem))
-        val arrival = getTextView(onRouteDescArrival(routeItem))
+        val duration = getText(onRouteListItemDuration(routeItem))
+        val details = getText(onRouteListItemDetails(routeItem))
+        val arrival = getText(onRouteListItemArrival(routeItem))
         return when (transportType) {
             TYPE_CAR, TYPE_TRUCK, TYPE_SCOOTER -> RouteData(
                     transportType, duration, details, arrival,
-                    CoreMatchers.getTextView(onRouteDescDelayInformation(routeItem)))
+                    CoreMatchers.getText(onRouteListItemDelayInformation(routeItem)))
             else -> RouteData(transportType, duration, details, arrival)
         }
     }

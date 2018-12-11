@@ -85,7 +85,7 @@ public class TravelTimePicker extends DialogFragment {
      * {@link com.here.android.mpa.routing.RouteOptions.TimeType#DEPARTURE} when a time and date is picked.
      *
      * <p>
-     *     Please note, only when setting {@link Variety#BOTH} the dialog will contain two buttons to select the
+     *     Please note, only when setting {@link Variety#BOTH}, the dialog will contain two buttons to select the
      *     {@link com.here.android.mpa.routing.RouteOptions.TimeType}, otherwise no additional button will be shown.
      * </p>
      */

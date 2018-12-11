@@ -104,7 +104,7 @@ object RouteMatchers {
     /**
      * Check Route item description information on route overview
      */
-    fun checkRouteOverviewItemsDisplayed(isDelayInformationAvailable: Boolean): RouteMatchers {
+    fun checkRouteOverviewItemsDisplayed(isDelayInformationAvailable: Boolean = false): RouteMatchers {
         // Check destination
         onDestinationText.check(matches(isDisplayed()))
         // Check Route item on route overview

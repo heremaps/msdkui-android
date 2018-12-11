@@ -20,6 +20,7 @@ import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.ViewInteraction
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.withId
+import android.support.test.espresso.matcher.ViewMatchers.withParent
 import android.view.View
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
@@ -27,6 +28,7 @@ import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIndex
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ROUTE_RESULT_1
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
+import org.hamcrest.Matchers.allOf
 
 /**
  * Route ViewInteractions selectors
@@ -85,13 +87,13 @@ object RouteView {
      * @return The [ViewInteraction] duration time on route overview
      */
     val onRouteOverviewDuration: ViewInteraction
-        get() = onView(Matchers.allOf(ViewMatchers.withId(R.id.desc_time), ViewMatchers.withParent(ViewMatchers.withParent(ViewMatchers.withId(R.id.description)))))
+        get() = onView(allOf(ViewMatchers.withId(R.id.desc_time), withParent(withParent(withId(R.id.description)))))
 
     /**
      * @return The [ViewInteraction] delay information time on route overview
      */
     val onRouteOverviewDelayInformation: ViewInteraction
-        get() = onView(Matchers.allOf(ViewMatchers.withId(R.id.desc_traffic_warning), ViewMatchers.withParent(ViewMatchers.withParent(ViewMatchers.withId(R.id.description)))))
+        get() = onView(allOf(withId(R.id.desc_traffic_warning), withParent(withParent(withId(R.id.description)))))
 
     /**
      * @return The [ViewInteraction] address & distance details on route overview

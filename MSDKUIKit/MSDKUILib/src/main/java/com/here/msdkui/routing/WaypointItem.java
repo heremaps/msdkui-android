@@ -117,7 +117,7 @@ public class WaypointItem extends RelativeLayout {
     }
 
     /**
-     * Initialization of UI component.
+     * Initialization of the UI component.
      */
     private void uiInit() {
         mRemoveIcon = findViewById(R.id.remove_icon);
@@ -267,7 +267,7 @@ public class WaypointItem extends RelativeLayout {
     }
 
     /**
-     * Sets this instance to be removable when used as element of a {@link WaypointList}.
+     * Sets this instance to be removable when used as an element of a {@link WaypointList}.
      * The "remove"-icon will only be visible when this is set to true.
      *
      * @param removeEnabled true if item should be removable, false otherwise.

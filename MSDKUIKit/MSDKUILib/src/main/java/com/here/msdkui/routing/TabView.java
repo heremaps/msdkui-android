@@ -137,7 +137,7 @@ public class TabView extends RelativeLayout {
     }
 
     /**
-     * Sets label from {@link TypedArray}.
+     * Sets the label from {@link TypedArray}.
      */
     private void setLabel(final TypedArray typedArray, final int attr) {
         final String labelText = ThemeUtil.getString(typedArray, attr);
@@ -148,7 +148,7 @@ public class TabView extends RelativeLayout {
     }
 
     /**
-     * Sets Icon from {@link TypedArray}.
+     * Sets the Icon from {@link TypedArray}.
      */
     private void setIcon(final TypedArray typedArray, final int attr) {
         final Drawable drawable = ThemeUtil.getDrawable(this.getContext(), typedArray, attr);

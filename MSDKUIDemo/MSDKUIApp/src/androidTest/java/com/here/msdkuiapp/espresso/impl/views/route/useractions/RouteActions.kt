@@ -31,8 +31,8 @@ import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
 import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteBarMatchers
 import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteMatchers
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverDescriptionList
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescArrival
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDuration
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemArrival
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDuration
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescriptionList
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescriptionView
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onSeeManeuverSteps
@@ -109,12 +109,12 @@ object RouteActions {
      */
     fun scrollUpAndDownRouteList(): RouteActions {
         val itemsCount = RouteMatchers.getItemsListCount(onRouteDescriptionList) - 1
-        if (!viewIsDisplayed(onRouteDescArrival(itemsCount))) swipeUpRouteList()
+        if (!viewIsDisplayed(onRouteListItemArrival(itemsCount))) swipeUpRouteList()
         // Check the first route item became visible
-        onRouteDescArrival(itemsCount)
-        if (!viewIsDisplayed(onRouteDescDuration(ROUTE_RESULT_1))) swipeDownRouteList()
+        onRouteListItemArrival(itemsCount)
+        if (!viewIsDisplayed(onRouteListItemDuration(ROUTE_RESULT_1))) swipeDownRouteList()
         // Check the last route item became visible
-        onRouteDescArrival(ROUTE_RESULT_1)
+        onRouteListItemArrival(ROUTE_RESULT_1)
         return this
     }
 

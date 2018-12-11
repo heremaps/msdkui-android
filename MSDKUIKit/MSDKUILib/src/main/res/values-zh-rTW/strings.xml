@@ -153,9 +153,13 @@
   <string name="msdkui_tunnel_cat_e">類別 E</string>
   <string name="msdkui_tunnels_allowed_title">允許的隧道</string>
   <string name="msdkui_undefined">未定義</string>
+  <string name="msdkui_unit_foot">ft</string>
   <string name="msdkui_unit_kilometer">公里</string>
   <string name="msdkui_unit_km_per_h">公里/小時</string>
   <string name="msdkui_unit_meter">公尺</string>
+  <string name="msdkui_unit_mile">mi</string>
+  <string name="msdkui_unit_miles_per_hour">mi/h</string>
+  <string name="msdkui_unit_yard">yd</string>
   <string name="msdkui_userposition_search">取得您的位置</string>
   <string name="msdkui_violate_truck_options">忽略貨車選項</string>
   <string name="msdkui_waypoint_current_location">目前位置</string>

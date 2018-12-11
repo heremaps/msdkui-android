@@ -159,7 +159,7 @@ object DriveNavigationMatchers {
         return object : TypeSafeMatcher<View>() {
 
             var actualValues = arrayListOf<String>()
-            val expectedValue = CoreMatchers.getTextView(viewMatcher).trim()
+            val expectedValue = CoreMatchers.getText(viewMatcher).trim()
 
             override fun matchesSafely(view: View): Boolean {
 

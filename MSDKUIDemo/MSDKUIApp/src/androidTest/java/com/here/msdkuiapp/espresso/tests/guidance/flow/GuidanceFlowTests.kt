@@ -22,7 +22,7 @@ import com.here.msdkuiapp.R
 import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.FunctionalUITest
 import com.here.msdkuiapp.espresso.impl.core.CoreActions
-import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getTextView
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getText
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIdAndText
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
@@ -267,7 +267,7 @@ class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
             CoreActions().changeOrientation(it)
             // Check that current street view is displayed and store its current value
             onGuidanceCurrentStreetInfoText.check(matches(isDisplayed()))
-            val currentStreetData = getTextView(onGuidanceCurrentStreetInfoText)
+            val currentStreetData = getText(onGuidanceCurrentStreetInfoText)
             // Check that current street view value changed
             checkCurrentStreetViewValueChanged(currentStreetData)
         }

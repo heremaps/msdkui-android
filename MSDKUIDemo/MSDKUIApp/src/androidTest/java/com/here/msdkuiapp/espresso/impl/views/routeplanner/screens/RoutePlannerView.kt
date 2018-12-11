@@ -40,85 +40,103 @@ import org.hamcrest.Matcher
 object RoutePlannerView {
 
     /**
-     * @return The [ViewInteraction] for the route planner list view.
+     * The [ViewInteraction] for the route planner list view.
      */
     val onPlannerWaypointList: ViewInteraction
         get() = onView(withId(R.id.waypoint_list))
 
     /**
-     * @return The [ViewInteraction] Choose waypoint location view on route planner
+     * The [ViewInteraction] Choose waypoint location view on route planner
      */
     val onPlannerWaypointLocationView: ViewInteraction
         get() = onView(withText(R.string.msdkui_waypoint_select_location))
 
     /**
-     * @return The [String] Choose waypoint location text on route planner
+     * The [String] Choose waypoint location text on route planner
      */
     val onPlannerWaypointLocationText: String
         get() = getTextById(R.string.msdkui_waypoint_select_location)
 
     /**
-     * @return The [Matcher]<[View]> "From:" text view on route planner
+     * The [Matcher]<[View]> "From:" text view on route planner
      */
     val onPlannerFromTextView: Matcher<View>
         get() = withText(startsWith(onPlannerFromText))
 
-    /*
-     * @return The [String] "From:" text on route planner
+    /**
+     * The [String] "From:" text on route planner
      */
     val onPlannerFromText: String
         get() = getTextById(R.string.msdkui_rp_from).replace(FROM_TO_PATTERN, "").trim()
 
     /**
-     * @return The [Matcher]<[View]> "To:" text view on route planner
+     * The [Matcher]<[View]> "To:" text view on route planner
      */
     val onPlannerToTextView: Matcher<View>
         get() = withText(startsWith(onPlannerToText))
 
     /**
-     * @return The [String] "From:" text on route planner
+     * The [String] "From:" text on route planner
      */
     val onPlannerToText: String
         get() = getTextById(R.string.msdkui_rp_to).replace(FROM_TO_PATTERN, "").trim()
 
     /**
-     * @return The [ViewInteraction] transport mode types on transportation panel
+     * The [ViewInteraction] transport mode types on transportation panel
      */
     val onTransportationPanel: ViewInteraction
         get() = onView(withId(R.id.transport_panel))
 
     /**
-     * @return The [ViewInteraction] option image on option panel
+     * The [ViewInteraction] option image on option panel
      */
     val onOptionPanel: ViewInteraction
         get() = onView(withId(R.id.option_panel))
 
     /**
-     * @return The [ViewInteraction] travel time panel
+     * The [ViewInteraction] travel time panel
      */
     val onTravelTimePanel: ViewInteraction
         get() = onView(withId(R.id.travel_time_panel))
 
     /**
-     * @return The [ViewInteraction] 'OK' button on date picker
+     * The [ViewInteraction] travel departure date/time
      */
-    val onDatePickerOkButton: ViewInteraction
+    val onTravelDepartureDateTime: ViewInteraction
+        get() = onView(withId(R.id.travel_time_details))
+
+    /**
+     * The [ViewInteraction] 'OK' button
+     */
+    val onOkButton: ViewInteraction
         get() = onView(withText(R.string.msdkui_ok))
 
     /**
-     * @return The [ViewInteraction] date picker id
+     * The [ViewInteraction] 'Cancel' button
+     */
+    val onCancelButton: ViewInteraction
+        get() = onView(withText(R.string.msdkui_cancel))
+
+    /**
+     * The [ViewInteraction] date picker by id
      */
     val onDatePicker: ViewInteraction
         get() = onView(withId(R.id.travel_date))
 
     /**
-     * @return The [ViewInteraction] route planner instructions panel
+     * The [ViewInteraction] time picker by id
+     */
+    val onTimePicker: ViewInteraction
+        get() = onView(withId(R.id.travel_time))
+
+    /**
+     * The [ViewInteraction] route planner instructions panel
      */
     val onRoutePlannerInstructions: ViewInteraction
         get() = onView(withId(R.id.route_planner_instructions))
 
     /**
-     * @return The [ViewInteraction] for transportation type Lorry
+     * The [ViewInteraction] for transportation type Lorry
      */
     private val onTransportPanelLorry: ViewInteraction
         get() = onView(withContentDescription(TYPE_LORRY))

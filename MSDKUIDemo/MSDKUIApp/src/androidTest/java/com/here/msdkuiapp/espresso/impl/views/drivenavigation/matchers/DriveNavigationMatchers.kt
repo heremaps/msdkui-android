@@ -36,10 +36,10 @@ import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavig
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewDestination
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewSeeManoeuvresNaviBtn
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewStartNaviBtn
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescArrival
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDelayInformation
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDetails
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescDuration
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemArrival
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDelayInformation
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDetails
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDuration
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerToText
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.not
@@ -64,13 +64,13 @@ object DriveNavigationMatchers {
      */
     fun checkRouteOverviewDescription(): DriveNavigationMatchers {
         // Check route arrival time on route description
-        onRouteOverviewDescriptionView.check(matches(withRouteDescription(onRouteDescArrival)))
+        onRouteOverviewDescriptionView.check(matches(withRouteDescription(onRouteListItemArrival)))
         // Check route duration time on route description
-        onRouteOverviewDescriptionView.check(matches(withRouteDescription(onRouteDescDuration)))
+        onRouteOverviewDescriptionView.check(matches(withRouteDescription(onRouteListItemDuration)))
         // Check route details on route description
-        onRouteOverviewDescriptionView.check(matches(withRouteDescription(onRouteDescDetails)))
+        onRouteOverviewDescriptionView.check(matches(withRouteDescription(onRouteListItemDetails)))
         // Check route traffic delay information on route description
-        onRouteOverviewDescriptionView.check(matches(withRouteDescription(onRouteDescDelayInformation)))
+        onRouteOverviewDescriptionView.check(matches(withRouteDescription(onRouteListItemDelayInformation)))
         return this
     }
 
@@ -79,13 +79,13 @@ object DriveNavigationMatchers {
      */
     fun checkRouteOverviewInfoDisplayed(): DriveNavigationMatchers {
         // Check destination (as address)
-        onRouteDescDetails.check(matches(isDisplayed()))
+        onRouteListItemDetails.check(matches(isDisplayed()))
         // Check Estimation Time Arrival
-        onRouteDescArrival.check(matches(isDisplayed()))
+        onRouteListItemArrival.check(matches(isDisplayed()))
         // Check Traffic warnings
-        onRouteDescDelayInformation.check(matches(isDisplayed()))
+        onRouteListItemDelayInformation.check(matches(isDisplayed()))
         // Check Route Duration
-        onRouteDescDuration.check(matches(isDisplayed()))
+        onRouteListItemDuration.check(matches(isDisplayed()))
         // Check Route Short description
         onRouteOverviewSeeManoeuvresNaviBtn.check(matches(isDisplayed()))
         // Check Start Navigation Button
@@ -159,7 +159,7 @@ object DriveNavigationMatchers {
         return object : TypeSafeMatcher<View>() {
 
             var actualValues = arrayListOf<String>()
-            val expectedValue = CoreMatchers.getTextView(viewMatcher).trim()
+            val expectedValue = CoreMatchers.getText(viewMatcher).trim()
 
             override fun matchesSafely(view: View): Boolean {
 

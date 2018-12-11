@@ -16,11 +16,14 @@
 
 package com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions
 
-import android.support.test.espresso.action.ViewActions.*
+import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.action.ViewActions.swipeDown
+import android.support.test.espresso.action.ViewActions.swipeUp
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.v7.widget.RecyclerView
+import com.here.msdkuiapp.espresso.impl.core.CoreActions
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
@@ -33,12 +36,14 @@ import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlanner
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerMatchers
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerOptionsMatchers
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarChooseWaypointTitle
-import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onDatePickerOkButton
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onDatePicker
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onOkButton
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onOptionPanel
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerTransportPanel
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerTransportPanelView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerWaypointList
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerWaypointLocationLabel
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onTimePicker
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onTravelTimePanel
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.utils.WaypointData
 
@@ -53,7 +58,7 @@ object RoutePlannerActions {
     fun selectWaypoint(waypointData: WaypointData): WaypointData {
         waypointData.run {
             // Get current waypoint location information
-            val waypoint = CoreMatchers.getTextView(onPlannerWaypointLocationLabel(waypointItem))
+            val waypoint = CoreMatchers.getText(onPlannerWaypointLocationLabel(waypointItem))
             // Select and check that waypoint item on route planner selected and visible
             RoutePlannerActions.tapWaypointOnPlanner(waypointItem).checkWaypointLocationLabel(waypoint)
             // Select the first waypoint on map
@@ -103,16 +108,16 @@ object RoutePlannerActions {
     /**
      * Tap on travel time pane to open date picker
      */
-    fun tapOnTravelTimePanel(): RoutePlannerMatchers {
+    fun tapOnTravelTimePanel(): RoutePlannerActions {
         onTravelTimePanel.check(matches(isDisplayed())).perform(click())
-        return RoutePlannerMatchers
+        return this
     }
 
     /**
      * Tap on date picker 'OK' button
      */
-    fun tapOnDatePickerOKButton(): RoutePlannerActions {
-        onDatePickerOkButton.check(matches(isDisplayed())).perform(click())
+    fun tapOKButton(): RoutePlannerActions {
+        onOkButton.check(matches(isDisplayed())).perform(click())
         return this
     }
 
@@ -148,6 +153,22 @@ object RoutePlannerActions {
         if (!RoutePlannerMatchers.isVisibleWaypoint(WaypointData())) swipeDownWaypointsList()
         // Check that waypoint item became visible after swiping
         RoutePlannerMatchers.checkWaypointLocationLabel(WaypointData())
+        return this
+    }
+
+    /**
+     * Set travel date to tomorrow
+     */
+    fun setTravelDateTomorrow(): RoutePlannerActions {
+        onDatePicker.perform(CoreActions().setTomorrowDate())
+        return this
+    }
+
+    /**
+     * Set travel time to one hour later
+     */
+    fun setTravelTime1HourLater(): RoutePlannerActions {
+        onTimePicker.perform(CoreActions().setTime1HourLater())
         return this
     }
 

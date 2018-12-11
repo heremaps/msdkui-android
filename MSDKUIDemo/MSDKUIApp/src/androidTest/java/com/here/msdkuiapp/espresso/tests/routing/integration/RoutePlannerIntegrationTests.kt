@@ -21,13 +21,17 @@ import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.IntegrationUITest
 import com.here.msdkuiapp.espresso.impl.core.CoreActions
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.viewIsDisplayed
 import com.here.msdkuiapp.espresso.impl.testdata.Constants
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.ROUTE_RESULT_1
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem.WAYPOINT_1
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem.WAYPOINT_2
 import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteMatchers
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescriptionList
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDelayInformation
 import com.here.msdkuiapp.espresso.impl.views.route.useractions.RouteActions
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerMatchers
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.utils.WaypointData
@@ -74,12 +78,14 @@ class RoutePlannerIntegrationTests: TestBase<SplashActivity>(SplashActivity::cla
     }
 
     /**
-     * Tap on Travel time panel to open Date picker
+     * MSDKUI-566: Integration tests for Route Planner/Travel time panel
      */
     @Test
     @IntegrationUITest
-    fun testTapOnTravelTime_shouldOpenPicker() {
-        RoutePlannerActions.tapOnTravelTimePanel().checkDatePickerDisplayed().tapOnDatePickerOKButton()
+    fun testRoutePlannerTimePanel_shouldOpenTimePicker() {
+        RoutePlannerActions.tapOnTravelTimePanel()
+        RoutePlannerMatchers.checkDatePickerDisplayed()
+        RoutePlannerActions.tapOKButton()
     }
 
     /**
@@ -168,5 +174,23 @@ class RoutePlannerIntegrationTests: TestBase<SplashActivity>(SplashActivity::cla
         RoutePlannerBarActions.waitForRoutePlannerCollapsed().waitRouteDescriptionEnabled()
         // Check that Route Description list exists
         onRouteDescriptionList.check(matches(isDisplayed()))
+    }
+
+    /**
+     * MSDKUI-568 Integration tests for Route Planner/Route preview
+     */
+    @Test
+    @IntegrationUITest
+    fun testRoutePlannerRoutePreview() {
+        // Select first waypoint item
+        RoutePlannerActions.selectWaypoint(waypoint1)
+        // Select second waypoint item
+        RoutePlannerActions.selectWaypoint(waypoint2)
+        // Wait for panel collapsed and routes description list is visible
+        RoutePlannerBarActions.waitForRoutePlannerCollapsed().waitRouteDescriptionEnabled()
+        // Tap on the first route item from route list to open route overview
+        RouteActions.tapRouteItemOnDescList(ROUTE_RESULT_1)
+                .waitRouteOverviewDisplayed()
+                .checkRouteOverviewItemsDisplayed(viewIsDisplayed(onRouteListItemDelayInformation))
     }
 }

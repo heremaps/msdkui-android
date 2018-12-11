@@ -36,7 +36,7 @@ object ManeuversActions {
      */
     fun getManeuversDataFromManeuversList(): ArrayList<ManeuverData> {
         val retList = ArrayList<ManeuverData>()
-        val itemsCount = RouteMatchers.getItemsListCount(RouteView.onManeuverDescriptionList)
+        val itemsCount = RouteMatchers.getItemsListCount(RouteView.onRouteManeuversList)
         for (index in 0 until itemsCount) {
             var maneuverAddress = String()
             var maneuverIconTag = 0

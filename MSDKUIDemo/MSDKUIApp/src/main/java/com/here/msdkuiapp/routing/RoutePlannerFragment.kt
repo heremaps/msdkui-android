@@ -209,13 +209,11 @@ class RoutePlannerFragment() : RetainFragment(), RoutingContracts.RoutePlanner {
      */
     fun waypointSelectionCancelled(index: Int?, current: WaypointEntry?) {
         index ?: return
-        var removeWaypoint = true
-        current?.run {
-            if (isValid) removeWaypoint = false
-        }
         waypointList?.run {
-            if (removeWaypoint && entriesCount > minWaypointItems) {
-                removeEntry(index)
+            entries[index].run {
+                if (!isValid && entriesCount > minWaypointItems) {
+                    removeEntry(index)
+                }
             }
         }
     }

@@ -26,8 +26,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <com.here.msdkui.routing.ManeuverDescriptionList
-        android:id="@+id/maneuverDescriptionList"
+    <com.here.msdkui.routing.ManeuverList
+        android:id="@+id/maneuverList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"/>

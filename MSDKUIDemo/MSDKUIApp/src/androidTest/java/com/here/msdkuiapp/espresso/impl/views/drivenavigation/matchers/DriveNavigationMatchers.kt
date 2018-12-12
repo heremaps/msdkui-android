@@ -37,6 +37,8 @@ import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavig
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewDestination
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewSeeManoeuvresNaviBtn
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewStartNaviBtn
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardAbout
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardSettings
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemArrival
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDelayInformation
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDetails
@@ -150,6 +152,19 @@ object DriveNavigationMatchers {
                 allOf(withId(R.id.guidance_current_street_text), not(withText(currentValue))),
                 CoreMatchers.TIMEOUT_WAIT_EXTENDED_MILLIS
         ))
+    }
+
+    /**
+     * Check if guidance dashboard is expanded or collapsed
+     */
+    fun checkGuidanceDashBoardExpanded(isExpanded: Boolean = true) {
+        if (isExpanded) {
+            onGuidanceDashBoardSettings.check(matches(isDisplayed()))
+            onGuidanceDashBoardAbout.check(matches(isDisplayed()))
+        } else {
+            onGuidanceDashBoardSettings.check(matches(not(isDisplayed())))
+            onGuidanceDashBoardAbout.check(matches(not(isDisplayed())))
+        }
     }
 
     /**

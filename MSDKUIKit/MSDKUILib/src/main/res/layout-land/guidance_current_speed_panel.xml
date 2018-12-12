@@ -48,7 +48,6 @@
     <TextView
         android:id="@+id/guidance_current_speed_unit"
         style="?attr/guidanceCurrentSpeedPanelSecondaryText"
-        android:text="@string/msdkui_unit_km_per_h"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guideline1" />

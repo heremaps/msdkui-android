@@ -14,22 +14,25 @@
  * limitations under the License.
  */
 
-package com.here.msdkui.common.measurements;
+package com.here.msdkuiapp.common
+
+import com.here.msdkui.common.measurements.UnitSystem
+import junit.framework.TestCase.assertEquals
+import org.junit.Test
+import java.util.Locale
 
 /**
- * All available unit systems.
+ * Tests for [Util]
  */
-public enum UnitSystems {
-    /**
-     * Meters and kilometers.
-     */
-    METRIC,
-    /**
-     * Feet and miles.
-     */
-    IMPERIAL_UK,
-    /**
-     * Yards and miles.
-     */
-    IMPERIAL_US
+class UtilTest {
+
+    @Test
+    fun testGetLocaleUnit() {
+        Locale.setDefault(Locale("en", "US"))
+        assertEquals(Util.getLocaleUnit(), UnitSystem.IMPERIAL_US)
+        Locale.setDefault(Locale("en", "GB"))
+        assertEquals(Util.getLocaleUnit(), UnitSystem.IMPERIAL_UK)
+        Locale.setDefault(Locale("pl", "PL"))
+        assertEquals(Util.getLocaleUnit(), UnitSystem.METRIC)
+    }
 }

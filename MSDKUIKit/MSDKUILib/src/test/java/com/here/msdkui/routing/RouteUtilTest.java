@@ -35,6 +35,7 @@ import com.here.msdkui.R;
 import com.here.msdkui.common.DateFormatterUtil;
 import com.here.msdkui.common.DistanceFormatterUtil;
 import com.here.msdkui.common.TimeFormatterUtil;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Test;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -117,13 +118,13 @@ public final class RouteUtilTest extends RobolectricTest {
     public void testDetails() {
         Context context = getApplicationContext();
         Route route = new MockUtils.MockRouteBuilder().getRoute();
-        Spannable spannable = RouteUtil.getDetails(context, route);
+        Spannable spannable = RouteUtil.getDetails(context, route, UnitSystem.METRIC);
         SpannableStringBuilder expectedDetails = new SpannableStringBuilder(
-                DistanceFormatterUtil.format(getApplicationContext(), 1000));
+                DistanceFormatterUtil.format(getApplicationContext(), 1000, UnitSystem.METRIC));
         assertThat(spannable.toString(), equalTo(expectedDetails + "   RouteName"));
 
         route = new MockUtils.MockRouteBuilder().setTransportMode(RouteOptions.TransportMode.PUBLIC_TRANSPORT).getRoute();
-        Spannable spannable2 = RouteUtil.getDetails(context, route);
+        Spannable spannable2 = RouteUtil.getDetails(context, route, UnitSystem.METRIC);
         assertTrue(spannable2.toString().isEmpty());
     }
 

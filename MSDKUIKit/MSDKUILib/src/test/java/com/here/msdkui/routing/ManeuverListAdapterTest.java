@@ -22,6 +22,7 @@ import com.here.MockUtils;
 import com.here.RobolectricTest;
 import com.here.android.mpa.routing.Maneuver;
 import com.here.msdkui.R;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -32,6 +33,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.mockito.Mockito.spy;
@@ -79,6 +81,15 @@ public class ManeuverListAdapterTest extends RobolectricTest {
         ManeuverListAdapter.ViewHolder viewHolder =
                 mManeuverListAdapter.onCreateViewHolder(viewGroup, 0);
         assertNotNull(viewHolder);
+    }
+
+    @Test
+    public void testSetGetUnitSystem() {
+        final Maneuver maneuver = MockUtils.mockManeuver();
+        mManeuverListAdapter = new ManeuverListAdapter(Arrays.asList(maneuver, maneuver));
+        assertEquals(mManeuverListAdapter.getUnitSystem(), UnitSystem.METRIC);
+        mManeuverListAdapter.setUnitSystem(UnitSystem.IMPERIAL_UK);
+        assertEquals(mManeuverListAdapter.getUnitSystem(), UnitSystem.IMPERIAL_UK);
     }
 
     private void getFirstViewHolder(final List<Maneuver> maneuvers) {

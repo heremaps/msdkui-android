@@ -22,6 +22,7 @@ import com.here.android.mpa.guidance.NavigationManager
 import com.here.msdkui.guidance.GuidanceSpeedData
 import com.here.msdkui.guidance.GuidanceSpeedLimitView
 import com.here.msdkui.guidance.GuidanceSpeedPresenter
+import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
 
@@ -58,6 +59,9 @@ class GuidanceSpeedLimitFragmentTest : BaseTest() {
         addFrag(guidanceSpeedLimitFragment, GuidanceSpeedLimitFragment::class.java.name)
         assertNotNull(guidanceSpeedLimitFragment)
         assertNotNull(guidanceSpeedLimitFragment.view)
+        assertEquals(
+                (guidanceSpeedLimitFragment.view as GuidanceSpeedLimitView).unitSystem,
+                Util.getLocaleUnit())
     }
 
     @Test
@@ -83,7 +87,7 @@ class GuidanceSpeedLimitFragmentTest : BaseTest() {
 
     @Test
     fun testCallback() {
-        val speedLimit = 100
+        val speedLimit = 100.0
         addFrag(guidanceSpeedLimitFragment, GuidanceSpeedLimitFragment::class.java.name)
         val data = Mockito.mock(GuidanceSpeedData::class.java)
         `when`(data.currentSpeedLimit).thenReturn(speedLimit)

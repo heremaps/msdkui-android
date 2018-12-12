@@ -24,6 +24,8 @@ import android.widget.TextView;
 
 import com.here.RobolectricTest;
 import com.here.msdkui.R;
+import com.here.msdkui.common.SpeedFormatterUtil;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -58,11 +60,11 @@ public class GuidanceSpeedViewTest extends RobolectricTest {
 
         assertThat(container.getVisibility(), is(View.VISIBLE));
         assertThat(speedValueView.getText().toString(), is(getString(R.string.msdkui_value_not_available)));
-        assertThat(speedUnitView.getText().toString(),
-                is(getApplicationContext().getResources().getString(R.string.msdkui_unit_km_per_h)));
+        assertThat(speedUnitView.getText().toString(), is(""));
         GuidanceSpeedData data = new GuidanceSpeedData(VELOCITY, SPEED_LIMIT);
         mCurrentGuidanceSpeedView.setCurrentSpeedData(data);
-        assertThat(speedValueView.getText().toString(), is(String.valueOf(VELOCITY)));
+        assertThat(speedValueView.getText().toString(),
+                is(String.valueOf(SpeedFormatterUtil.format(VELOCITY, UnitSystem.METRIC))));
     }
 
     @Test

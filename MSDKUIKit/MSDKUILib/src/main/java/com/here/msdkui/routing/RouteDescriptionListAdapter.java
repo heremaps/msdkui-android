@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.here.android.mpa.routing.Route;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import java.util.List;
 
@@ -29,11 +30,12 @@ import java.util.List;
  * An adapter class that acts as a bridge between a list of {@link Route} elements and the corresponding
  * view holder items constructed as an instance of {@link RouteDescriptionItem}.
  */
-class RouteDescriptionListAdapter extends RecyclerView.Adapter<RouteDescriptionListAdapter.ViewHolder> {
+public class RouteDescriptionListAdapter extends RecyclerView.Adapter<RouteDescriptionListAdapter.ViewHolder> {
 
     private final List<Route> mRouteList;
     private final RouteBarScaler mRouteBarScaler;
     private boolean mTrafficEnabled;
+    private UnitSystem mUnitSystem = UnitSystem.METRIC;
 
     /**
      * Constructs a new instance using a list of {@link Route} elements.
@@ -43,6 +45,26 @@ class RouteDescriptionListAdapter extends RecyclerView.Adapter<RouteDescriptionL
         mRouteList = routeList;
         mRouteBarScaler = new RouteBarScaler();
         registerAdapterDataObserver(new DataObserver());
+    }
+
+    /**
+     * Sets unit system of this adapter.
+     *
+     * @param unitSystem
+     *         unit system {@link UnitSystem}.
+     */
+    public void setUnitSystem(UnitSystem unitSystem) {
+        mUnitSystem = unitSystem;
+        notifyDataSetChanged();
+    }
+
+    /**
+     * Returns current unit system of this adapter.
+     *
+     * @return unit system {@link UnitSystem}.
+     */
+    public UnitSystem getUnitSystem() {
+        return mUnitSystem;
     }
 
     @Override
@@ -66,6 +88,7 @@ class RouteDescriptionListAdapter extends RecyclerView.Adapter<RouteDescriptionL
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         final Route route = mRouteList.get(position);
         if (route != null && holder.itemView instanceof RouteDescriptionItem) {
+            ((RouteDescriptionItem) holder.itemView).setUnitSystem(mUnitSystem);
             ((RouteDescriptionItem) holder.itemView).setTrafficEnabled(mTrafficEnabled);
             ((RouteDescriptionItem) holder.itemView).setSectionBarScaling(mRouteBarScaler.getScaling(route));
             ((RouteDescriptionItem) holder.itemView).setRoute(route);

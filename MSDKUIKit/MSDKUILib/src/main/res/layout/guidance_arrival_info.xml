@@ -18,10 +18,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="?attr/guidanceArrival"
-    android:id="@+id/guidance_arrival_info_container"
-    android:layout_gravity="center_horizontal"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent">
+    android:id="@+id/guidance_arrival_info_container">
 
     <TextView
         android:id="@+id/eta"

@@ -23,6 +23,7 @@ import com.here.android.mpa.routing.Maneuver;
 import com.here.android.mpa.routing.Route;
 import com.here.msdkui.R;
 import com.here.msdkui.common.ThemeUtil;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +75,25 @@ public class ManeuverList extends CustomRecyclerView {
     public ManeuverList(final Context context, final AttributeSet attrs, final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
+    }
+
+    /**
+     * Sets the unit system to be used by the list adapter.
+     *
+     * @param unitSystem
+     *         unit system {@link UnitSystem}.
+     */
+    public void setUnitSystem(UnitSystem unitSystem) {
+        mAdapter.setUnitSystem(unitSystem);
+    }
+
+    /**
+     * Returns the current unit system used by the list adapter.
+     *
+     * @return unit system {@link UnitSystem}.
+     */
+    public UnitSystem getUnitSystem() {
+        return mAdapter.getUnitSystem();
     }
 
     private void init() {

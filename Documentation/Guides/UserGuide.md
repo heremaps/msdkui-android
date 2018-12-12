@@ -20,7 +20,7 @@ This user guide describes the general workflow using the HERE Mobile SDK UI Kit 
 - [Implementing Route Details screen](#implementing-route-details-screen)
 - [Using RouteDescriptionList](#using-routedescriptionlist)
 - [Implementing Guidance screen](#implementing-guidance-screen)
-- [Using GuidanceManeuverPanel](#using-guidancemaneuverpanel)
+- [Using GuidanceManeuverView](#using-guidancemaneuverview)
 - [Where to go from here?](#where-to-go-from-here)
 
 <!-- /TOC -->
@@ -42,7 +42,7 @@ Version 1.x of the HERE Mobile SDK UI Kit mainly focuses on enabling user experi
 
 ## Where to start?
 - If you haven't done so, please read our [Quick Start](QuickStart.md) guide to see how you can integrate the HERE Mobile SDK UI Kit into your own apps.
-- Check the _API Reference_ that can be built locally using the command line, see [Contribution Guide](ContributionGuide.md).
+- Check the [API Reference](https://heremaps.github.io/msdkui-android/) that can also be built locally using the command line, see [Contribution Guide](ContributionGuide.md).
 - You can also find:
   - Numerous [examples](../Guides_Examples/) accompanying this user guide
   - A HERE MSDK UI [demo app](../../MSDKUIDemo/) showcasing most features of the HERE Mobile SDK UI Kit in production-ready quality
@@ -73,11 +73,11 @@ The HERE Mobile SDK UI Kit Primer example app consists of three screens illustra
 
 **Route Details Screen** (`RouteDetailsActivity.java`)
 - Contains a `RouteDescriptionList` to select a route (if more than one route was found)
-- A `ManeuverDescriptionList` to show the maneuvers of the selected route
+- A `ManeuverList` to show the maneuvers of the selected route
 - An Android `Button` to navigate to the next screen
 
 **Guidance Screen** (`GuidanceActivity.java`)
-- Shows a `GuidanceManeuverPanel` to indicate the next maneuvers
+- Shows a `GuidanceManeuverView` to indicate the next maneuvers
 - A `MapFragment` to show the current position and orientation on the map
 - An Android `Button` to stop guidance
 
@@ -301,7 +301,7 @@ The screenshot shows how the updated `MainActivity` could look like:
 ## Implementing Route Details screen
 In the previous screen the user was able to calculate a route based on her or his waypoint selection and a suitable route mode. Now we want to show a summary for the found routes and their maneuvers on a new screen. As described above, we will show this in the `RouteDetailsActivity` of our HERE Mobile SDK UI Kit Primer example app. The `RouteDetailsActivity` controller holds two HERE Mobile SDK UI Kit components:
 - `RouteDescriptionList`: Shows all found routes as a summary in a scrollable list
-- `ManeuverDescriptionList`: Shows all maneuvers belonging to a route
+- `ManeuverList`: Shows all maneuvers belonging to a route
 
 First, we need to set up our layout:
 ```xml
@@ -317,8 +317,8 @@ First, we need to set up our layout:
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <com.here.msdkui.routing.ManeuverDescriptionList
-        android:id="@+id/maneuverDescriptionList"
+    <com.here.msdkui.routing.ManeuverList
+        android:id="@+id/maneuverList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"/>
@@ -331,14 +331,14 @@ First, we need to set up our layout:
 </LinearLayout>
 ```
 
-For this example we show both components on one screen, giving the `ManeuverDescriptionList` 2/3 of the available space, since the `RouteDecriptionList` is expected to show only up to five routes.
+For this example we show both components on one screen, giving the `ManeuverList` 2/3 of the available space, since the `RouteDecriptionList` is expected to show only up to five routes.
 
 You may look at our demo app for an alternative user interface approach. Note that the HERE Mobile SDK UI Kit does not promote any specific flow how it's component must be arranged - it all depends on your specific needs and taste.
 
 Again, we retrieve our components from layout in the Activity's `onCreate()`-method:
 ```java
 routeDescriptionList = findViewById(R.id.routeDescriptionList);
-maneuverDescriptionList = findViewById(R.id.maneuverDescriptionList);
+maneuverList = findViewById(R.id.maneuverList);
 ```
 
 ## Using RouteDescriptionList
@@ -363,7 +363,7 @@ routeDescriptionList.setOnItemClickedListener(new CustomRecyclerView.OnItemClick
     public void onItemClicked(int index, View view) {
         RouteDescriptionItem routeDescriptionItem = (RouteDescriptionItem) view;
         Route selectedRoute = routeDescriptionItem.getRoute();
-        maneuverDescriptionList.setRoute(selectedRoute);
+        maneuverList.setRoute(selectedRoute);
 
         RouteCalculator.getInstance().selectedRoute = selectedRoute;
         Log.d(LOG_TAG, "Selected route: " + selectedRoute.toString());
@@ -375,10 +375,10 @@ routeDescriptionList.setOnItemClickedListener(new CustomRecyclerView.OnItemClick
 });
 ```
 
-As our goal is to select a route and to see all the maneuvers of that route, we have to set the selected route to the `maneuverDescriptionList`. Since we receive the selected `Route` from the callback (as shown above) we can set it as new `route` to `ManeuverDescriptionList`:
+As our goal is to select a route and to see all the maneuvers of that route, we have to set the selected route to the `maneuverList`. Since we receive the selected `Route` from the callback (as shown above) we can set it as new `route` to `ManeuverList`:
 ```java
 Route selectedRoute = routeDescriptionItem.getRoute();
-maneuverDescriptionList.setRoute(selectedRoute);
+maneuverList.setRoute(selectedRoute);
 ```
 
 <center><p>
@@ -388,11 +388,11 @@ maneuverDescriptionList.setRoute(selectedRoute);
 
 Like for all HERE Mobile SDK UI Kit's list components, we can get notified once a user selects a specific maneuver by tapping on it. In order to react on this event we set the `CustomRecyclerView.OnItemClickedListener()` to know when an item of the list was clicked:
 ```java
-maneuverDescriptionList.setOnItemClickedListener(new CustomRecyclerView.OnItemClickedListener() {
+maneuverList.setOnItemClickedListener(new CustomRecyclerView.OnItemClickedListener() {
     @Override
     public void onItemClicked(int index, View view) {
-        ManeuverDescriptionItem maneuverDescriptionItem = (ManeuverDescriptionItem) view;
-        Log.d(LOG_TAG, "Selected maneuver: " + maneuverDescriptionItem.getManeuver().toString());
+        ManeuverItemView maneuverItemView = (ManeuverItemView) view;
+        Log.d(LOG_TAG, "Selected maneuver: " + maneuverItemView.getManeuver().toString());
     }
 
     @Override
@@ -403,9 +403,9 @@ maneuverDescriptionList.setOnItemClickedListener(new CustomRecyclerView.OnItemCl
 
 ## Implementing Guidance screen
 To finish our quick overview, we want to use the selected route from the previous step to start guidance along that route. For this, we only need one new HERE Mobile SDK UI Kit component:
-- `GuidanceManeuverPanel`
+- `GuidanceManeuverView`
 
-In addition, we also want to show a map during guidance to let the user orientate where we currently are. This results in the following vertical `LinearLayout`, where the `GuidanceManeuverPanel` is placed above the `MapFragment`:
+In addition, we also want to show a map during guidance to let the user orientate where we currently are. This results in the following vertical `LinearLayout`, where the `GuidanceManeuverView` is placed above the `MapFragment`:
 ```xml
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -413,8 +413,8 @@ In addition, we also want to show a map during guidance to let the user orientat
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.here.msdkui.guidance.GuidanceManeuverPanel
-        android:id="@+id/guidanceManeuverPanel"
+    <com.here.msdkui.guidance.GuidanceManeuverView
+        android:id="@+id/guidanceManeuverView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -433,51 +433,51 @@ In addition, we also want to show a map during guidance to let the user orientat
 </LinearLayout>
 ```
 
-## Using GuidanceManeuverPanel
-The `GuidanceManeuverPanel` is a panel where information about the next maneuvers will appear. As with all HERE Mobile SDK UI Kit components, it is already configured, so you only need to pass in the current `GuidanceManeuverData`.
+## Using GuidanceManeuverView
+The `GuidanceManeuverView` is a panel where information about the next maneuvers will appear. As with all HERE Mobile SDK UI Kit components, it is already configured, so you only need to pass in the current `GuidanceManeuverData`.
 
-This data is provided by the `GuidanceManeuverPanelPresenter` helper class, that accepts a `GuidanceManeuverPanelListener` to notify the listener once new `GuidanceManeuverData` is available:
+This data is provided by the `GuidanceManeuverPresenter` helper class, that accepts a `GuidanceManeuverListener` to notify the listener once new `GuidanceManeuverData` is available:
 ```java
-guidanceManeuverPanel = findViewById(R.id.guidanceManeuverPanel);
-guidanceManeuverPanelPresenter = new GuidanceManeuverPanelPresenter(this, NavigationManager.getInstance(), route);
-guidanceManeuverPanelPresenter.addListener(new GuidanceManeuverPanelListener() {
+GuidanceManeuverView = findViewById(R.id.guidanceManeuverView);
+guidanceManeuverPresenter = new GuidanceManeuverPresenter(this, NavigationManager.getInstance(), route);
+guidanceManeuverPresenter.addListener(new GuidanceManeuverListener() {
     @Override
     public void onDataChanged(@Nullable GuidanceManeuverData guidanceManeuverData) {
         if (guidanceManeuverData != null) {
             Log.d(LOG_TAG, "onDataChanged: 1st line: " + guidanceManeuverData.getInfo1());
             Log.d(LOG_TAG, "onDataChanged: 2nd line: " + guidanceManeuverData.getInfo2());
         }
-        guidanceManeuverPanel.setManeuverData(guidanceManeuverData);
+        guidanceManeuverView.setManeuverData(guidanceManeuverData);
     }
 
     @Override
     public void onDestinationReached() {
         Log.d(LOG_TAG, "onDestinationReached");
-        guidanceManeuverPanel.highLightManeuver(Color.BLUE);
+        guidanceManeuverView.highLightManeuver(Color.BLUE);
     }
 });
 ```
 
-While the first callback simply sets the received `GuidanceManeuverData` to the `GuidanceManeuverPanel`, the latter informs us when the user has finally reached the destination. In this case, we choose to highlight the last maneuver.
+While the first callback simply sets the received `GuidanceManeuverData` to the `GuidanceManeuverView`, the latter informs us when the user has finally reached the destination. In this case, we choose to highlight the last maneuver.
 
-Note that we must resume the `GuidanceManeuverPanelPresenter` to receive guidance events: As we already passed the `NavigationManager` singleton and the route object to the constructor of the `GuidanceManeuverPanelPresenter`, we only have to call `resume()` to start listening - and to call `pause()` to stop listening. Please, also make sure to declare the presenter as member variable - otherwise you will not receive any events once the scope of the calling method was executed.
+Note that we must resume the `GuidanceManeuverPresenter` to receive guidance events: As we already passed the `NavigationManager` singleton and the route object to the constructor of the `GuidanceManeuverPresenter`, we only have to call `resume()` to start listening - and to call `pause()` to stop listening. Please, also make sure to declare the presenter as member variable - otherwise you will not receive any events once the scope of the calling method was executed.
 ```java
 private void startGuidanceSimulation() {
-    guidanceManeuverPanelPresenter.resume();
+    guidanceManeuverPresenter.resume();
     GuidanceSimulator.getInstance().startGuidanceSimulation(route, map);
 }
 
 private void stopGuidanceSimulation() {
-    guidanceManeuverPanelPresenter.pause();
+    guidanceManeuverPresenter.pause();
     GuidanceSimulator.getInstance().stopGuidance();
 }
 ```
 
-Since we passed the `route` that should be used for guidance to the `GuidanceManeuverPanelPresenter`, the presenter is then taking care of forwarding any navigation events - allowing us to intercept the current `GuidanceManeuverData` if desired. In our implementation we simply set the current `guidanceManeuverData` to the `GuidanceManeuverPanel`, so the user can see which turn to take next.
+Since we passed the `route` that should be used for guidance to the `GuidanceManeuverPresenter`, the presenter is then taking care of forwarding any navigation events - allowing us to intercept the current `GuidanceManeuverData` if desired. In our implementation we simply set the current `guidanceManeuverData` to the `GuidanceManeuverView`, so the user can see which turn to take next.
 
->**Note:** The current `guidanceManeuverData` can be `null`. If `null` is passed to `guidanceManeuverPanel.setManeuverData()`, then the panel will show a loading state - indicating that there is currently no data to show. In case you want to stick with the default behavior, you can simply pass `guidanceManeuverData` - regardless if it is `null` or not. If you want to change the default behavior, you can set a customized `GuidanceManeuverData` instance. Please note, before starting the trip, no initial maneuver data may be present. In such a case, the panel shows a suitable default instruction, like "Follow the route on the map", until the first maneuver data - whether `null` or not - is provided.
+>**Note:** The current `guidanceManeuverData` can be `null`. If `null` is passed to `guidanceManeuverView.setManeuverData()`, then the panel will show a loading state - indicating that there is currently no data to show. In case you want to stick with the default behavior, you can simply pass `guidanceManeuverData` - regardless if it is `null` or not. If you want to change the default behavior, you can set a customized `GuidanceManeuverData` instance. Please note, before starting the trip, no initial maneuver data may be present. In such a case, the panel shows a suitable default instruction, like "Follow the route on the map", until the first maneuver data - whether `null` or not - is provided.
 
-Once we resume the `GuidanceManeuverPanelPresenter`, we may also want to start guidance. For this example we are calling the helper method `GuidanceSimulator.getInstance().startGuidanceSimulation(route, map);`. Notice that you can use the HERE Mobile SDK to start _simulated_ guidance. For implementation details, please check the example's code. During the development phase, it is usually more convenient to simulate the navigation experience along the provided route - so that we can quickly see how the `GuidanceManeuverPanel` changes it's content in real-time.
+Once we resume the `GuidanceManeuverPresenter`, we may also want to start guidance. For this example we are calling the helper method `GuidanceSimulator.getInstance().startGuidanceSimulation(route, map);`. Notice that you can use the HERE Mobile SDK to start _simulated_ guidance. For implementation details, please check the example's code. During the development phase, it is usually more convenient to simulate the navigation experience along the provided route - so that we can quickly see how the `GuidanceManeuverView` changes it's content in real-time.
 
 <center><p>
   <img src="Images/primer_guidance.png" width="250"/>
@@ -486,7 +486,7 @@ Once we resume the `GuidanceManeuverPanelPresenter`, we may also want to start g
 More information on how to start guidance using the HERE Mobile SDK is described on [developer.here.com](https://developer.here.com/documentation/android-premium/topics/map-guidance.html).
 
 ## Where to go from here?
-Congratulations, by following this HERE Mobile SDK UI Kit Primer tutorial, you have discovered the basic HERE Mobile SDK UI Kit components and how they can work together to build extremely powerful apps. Please take a look at the _API Reference_ to learn more about the various HERE Mobile SDK UI Kit components.
+Congratulations, by following this HERE Mobile SDK UI Kit Primer tutorial, you have discovered the basic HERE Mobile SDK UI Kit components and how they can work together to build extremely powerful apps. Please take a look at the [API Reference](https://heremaps.github.io/msdkui-android/) to learn more about the various HERE Mobile SDK UI Kit components.
 
 There you can also find more example code, and our demo application that shows most of the available HERE Mobile SDK UI Kit components and capabilities.
 

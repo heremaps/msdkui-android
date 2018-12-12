@@ -16,23 +16,27 @@
 
 package com.here.msdkuiapp.common
 
-import com.here.msdkui.common.measurements.UnitSystems
-import junit.framework.TestCase.assertEquals
-import org.junit.Test
+import com.here.msdkui.common.measurements.UnitSystem
 import java.util.Locale
 
 /**
- * Tests for [UnitSystemFromLocaleUtil]
+ * Common util class.
  */
-class UnitSystemFromLocaleUtilTest {
+object Util {
 
-    @Test
-    fun testGet() {
-        Locale.setDefault(Locale("en", "US"))
-        assertEquals(UnitSystemFromLocaleUtil.get(), UnitSystems.IMPERIAL_US)
-        Locale.setDefault(Locale("en", "GB"))
-        assertEquals(UnitSystemFromLocaleUtil.get(), UnitSystems.IMPERIAL_UK)
-        Locale.setDefault(Locale("pl", "PL"))
-        assertEquals(UnitSystemFromLocaleUtil.get(), UnitSystems.METRIC)
+    private const val UNITED_STATES_COUNTRY_CODE = "US"
+    private const val UNITED_KINGDOM_COUNTRY_CODE = "GB"
+
+    /**
+     * Returns unit system for current locale.
+     *
+     * @return unit system [UnitSystem] for current locale.
+     */
+    fun getLocaleUnit(): UnitSystem {
+          when (Locale.getDefault().country) {
+              UNITED_STATES_COUNTRY_CODE -> return UnitSystem.IMPERIAL_US
+              UNITED_KINGDOM_COUNTRY_CODE -> return UnitSystem.IMPERIAL_UK
+              else -> return UnitSystem.METRIC
+        }
     }
 }

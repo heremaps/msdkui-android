@@ -26,14 +26,13 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.here.android.mpa.routing.Route;
 import com.here.android.mpa.routing.RouteOptions;
 import com.here.msdkui.R;
+import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.ThemeUtil;
-import com.here.msdkui.common.measurements.UnitSystems;
 
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -43,14 +42,13 @@ import java.util.Map;
  * A view that shows a row containing details about a {@link Route}. This view can be used as a list item for
  * a {@link RouteDescriptionList}.
  */
-public class RouteDescriptionItem extends RelativeLayout {
+public class RouteDescriptionItem extends BaseView {
 
     private final EnumMap<RouteDescriptionItem.Section, View> mSections = new EnumMap<>(
             RouteDescriptionItem.Section.class);
     private Route mRoute;
     private boolean mTrafficEnabled;
     private float mSectionBarScaling = 1.0f;
-    private UnitSystems unitSystem = UnitSystems.METRIC;
 
     /**
      * Constructs a new instance.
@@ -114,25 +112,6 @@ public class RouteDescriptionItem extends RelativeLayout {
             final int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context, attrs, defStyleAttr, defStyleRes);
-    }
-
-    /**
-     * Sets unit system of this item.
-     *
-     * @param unitSystem
-     *         unit system {@link UnitSystems}.
-     */
-    public void setUnitSystem(UnitSystems unitSystem) {
-        this.unitSystem = unitSystem;
-    }
-
-    /**
-     * Returns current unit system of this item.
-     *
-     * @return unit system {@link UnitSystems}.
-     */
-    public UnitSystems getUnitSystem() {
-        return unitSystem;
     }
 
     private void init(final Context context, final AttributeSet attrs, final int defStyleAttr, final int defStyleRes) {
@@ -329,7 +308,7 @@ public class RouteDescriptionItem extends RelativeLayout {
         }
 
         ((TextView) mSections.get(Section.DETAILS)).setText(
-                RouteUtil.getDetails(getContext(), mRoute, unitSystem));
+                RouteUtil.getDetails(getContext(), mRoute, mUnitSystem));
         ((SectionBar) mSections.get(Section.SECTION_BAR))
                 .bind(RouteUtil.getSectionBar(getContext(), mRoute), mSectionBarScaling);
 

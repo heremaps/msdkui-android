@@ -22,7 +22,7 @@ import com.here.MockUtils;
 import com.here.RobolectricTest;
 import com.here.android.mpa.routing.Maneuver;
 import com.here.msdkui.R;
-import com.here.msdkui.common.measurements.UnitSystems;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -87,9 +87,9 @@ public class ManeuverListAdapterTest extends RobolectricTest {
     public void testSetGetUnitSystem() {
         final Maneuver maneuver = MockUtils.mockManeuver();
         mManeuverListAdapter = new ManeuverListAdapter(Arrays.asList(maneuver, maneuver));
-        assertEquals(mManeuverListAdapter.getUnitSystem(), UnitSystems.METRIC);
-        mManeuverListAdapter.setUnitSystem(UnitSystems.IMPERIAL_UK);
-        assertEquals(mManeuverListAdapter.getUnitSystem(), UnitSystems.IMPERIAL_UK);
+        assertEquals(mManeuverListAdapter.getUnitSystem(), UnitSystem.METRIC);
+        mManeuverListAdapter.setUnitSystem(UnitSystem.IMPERIAL_UK);
+        assertEquals(mManeuverListAdapter.getUnitSystem(), UnitSystem.IMPERIAL_UK);
     }
 
     private void getFirstViewHolder(final List<Maneuver> maneuvers) {

@@ -4,7 +4,7 @@ import com.here.android.mpa.guidance.NavigationManager
 import com.here.msdkui.guidance.GuidanceEstimatedArrivalViewData
 import com.here.msdkui.guidance.GuidanceEstimatedArrivalViewPresenter
 import com.here.msdkui.guidance.GuidanceEstimatedArrivalView
-import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
+import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.testutils.BaseTest
 import junit.framework.Assert
@@ -39,7 +39,7 @@ class GuidanceEstimatedArrivalViewFragmentTest :BaseTest() {
         assertNotNull(guidanceEstimatedArrivalViewFragment.view)
         assertEquals(
                 (guidanceEstimatedArrivalViewFragment.view as GuidanceEstimatedArrivalView).unitSystem,
-                UnitSystemFromLocaleUtil.get())
+                Util.getLocaleUnit())
     }
 
     @Test

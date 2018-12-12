@@ -26,7 +26,7 @@ import com.here.msdkui.guidance.GuidanceSpeedLimitView
 import com.here.msdkui.guidance.GuidanceSpeedListener
 import com.here.msdkui.guidance.GuidanceSpeedPresenter
 import com.here.msdkuiapp.R
-import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
+import com.here.msdkuiapp.common.Util
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
 
@@ -51,10 +51,10 @@ class GuidanceSpeedLimitFragment : Fragment(), GuidanceSpeedListener  {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val speedLimitView = GuidanceSpeedLimitView(activity)
-        speedLimitView.id = R.id.guidanceSpeedLimitViewId
-        speedLimitView.unitSystem = UnitSystemFromLocaleUtil.get()
-        return speedLimitView
+        return GuidanceSpeedLimitView(activity).apply {
+            id = R.id.guidanceSpeedLimitViewId
+            unitSystem = Util.getLocaleUnit()
+        }
     }
 
     /**

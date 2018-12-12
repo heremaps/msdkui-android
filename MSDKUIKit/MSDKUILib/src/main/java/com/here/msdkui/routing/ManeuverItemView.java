@@ -24,13 +24,12 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.here.android.mpa.routing.Maneuver;
 import com.here.msdkui.R;
+import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.DistanceFormatterUtil;
-import com.here.msdkui.common.measurements.UnitSystems;
 
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -42,12 +41,11 @@ import java.util.Set;
  * A view that displays a maneuver based on its visible sections. To make this item visible, please set {@link Maneuver} in
  * {@link ManeuverItemView#setManeuver(List, int)}.
  */
-public class ManeuverItemView extends RelativeLayout {
+public class ManeuverItemView extends BaseView {
 
     private final EnumMap<ManeuverItemView.Section, View> mSections = new EnumMap<>(
             ManeuverItemView.Section.class);
     private Maneuver mManeuver;
-    private UnitSystems unitSystem = UnitSystems.METRIC;
 
     /**
      * Constructs a new instance.
@@ -111,25 +109,6 @@ public class ManeuverItemView extends RelativeLayout {
                             final int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context, attrs, defStyleAttr, defStyleRes);
-    }
-
-    /**
-     * Sets unit system of this item.
-     *
-     * @param unitSystem
-     *         unit system {@link UnitSystems}.
-     */
-    public void setUnitSystem(UnitSystems unitSystem) {
-        this.unitSystem = unitSystem;
-    }
-
-    /**
-     * Returns current unit system of this item.
-     *
-     * @return unit system {@link UnitSystems}.
-     */
-    public UnitSystems getUnitSystem() {
-        return unitSystem;
     }
 
     private void init(final Context context, final AttributeSet attrs, final int defStyleAttr, final int defStyleRes) {
@@ -306,7 +285,7 @@ public class ManeuverItemView extends RelativeLayout {
             distanceView.setVisibility(GONE);
         } else {
             distanceView.setVisibility(VISIBLE);
-            distanceView.setText(DistanceFormatterUtil.format(getContext(), distance, unitSystem));
+            distanceView.setText(DistanceFormatterUtil.format(getContext(), distance, mUnitSystem));
         }
 
         if (getVisibility() == INVISIBLE) {

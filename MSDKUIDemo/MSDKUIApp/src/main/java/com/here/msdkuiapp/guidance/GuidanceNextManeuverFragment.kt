@@ -27,7 +27,7 @@ import com.here.msdkui.guidance.GuidanceNextManeuverView
 import com.here.msdkui.guidance.GuidanceNextManeuverListener
 import com.here.msdkui.guidance.GuidanceNextManeuverPresenter
 import com.here.msdkuiapp.R
-import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
+import com.here.msdkuiapp.common.Util
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
 
@@ -52,10 +52,10 @@ class GuidanceNextManeuverFragment : Fragment(), GuidanceNextManeuverListener {
      * Creates Panel View.
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val nextManeuverView = GuidanceNextManeuverView(activity)
-        nextManeuverView.id = R.id.guidanceNextManeuverViewId
-        nextManeuverView.unitSystem = UnitSystemFromLocaleUtil.get()
-        return nextManeuverView
+        return GuidanceNextManeuverView(activity).apply {
+            id = R.id.guidanceNextManeuverViewId
+            unitSystem = Util.getLocaleUnit()
+        }
     }
 
     /**

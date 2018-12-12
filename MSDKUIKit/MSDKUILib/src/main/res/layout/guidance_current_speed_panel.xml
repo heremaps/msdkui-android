@@ -26,6 +26,5 @@
     <TextView
         android:id="@+id/guidance_current_speed_unit"
         style="?attr/guidanceCurrentSpeedPanelSecondaryText"
-        android:layout_below="@+id/guidance_current_speed_value"
-        android:text="@null" />
+        android:layout_below="@+id/guidance_current_speed_value" />
 </RelativeLayout>

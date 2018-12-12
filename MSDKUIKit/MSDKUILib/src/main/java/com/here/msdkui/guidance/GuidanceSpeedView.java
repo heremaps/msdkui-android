@@ -25,12 +25,11 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.here.msdkui.R;
-import com.here.msdkui.common.VelocityFormatterUtil;
-import com.here.msdkui.common.measurements.UnitSystems;
+import com.here.msdkui.common.BaseView;
+import com.here.msdkui.common.SpeedFormatterUtil;
 
 /**
  * A view that shows the current speed the user is driving with. This view consumes data contained in
@@ -60,7 +59,7 @@ import com.here.msdkui.common.measurements.UnitSystems;
  * The view will switch the background item depending on the data set in
  * {@link GuidanceSpeedView#setCurrentSpeedData(GuidanceSpeedData)}.
  */
-public class GuidanceSpeedView extends RelativeLayout {
+public class GuidanceSpeedView extends BaseView {
 
     private static final int[] STATE_SPEEDING = {
             R.attr.guidanceSpeedLimitExceeded
@@ -69,7 +68,6 @@ public class GuidanceSpeedView extends RelativeLayout {
     private GuidanceSpeedData mGuidanceSpeedData;
     private int mValueTextColor;
     private int mUnitTextColor;
-    private UnitSystems unitSystem = UnitSystems.METRIC;
 
     /**
      * Constructs a new instance.
@@ -134,25 +132,6 @@ public class GuidanceSpeedView extends RelativeLayout {
         init(context);
     }
 
-    /**
-     * Sets unit system of this view.
-     *
-     * @param unitSystem
-     *         unit system {@link UnitSystems}.
-     */
-    public void setUnitSystem(UnitSystems unitSystem) {
-        this.unitSystem = unitSystem;
-    }
-
-    /**
-     * Returns current unit system of this view.
-     *
-     * @return unit system {@link UnitSystems}.
-     */
-    public UnitSystems getUnitSystem() {
-        return unitSystem;
-    }
-
     @Override
     protected int[] onCreateDrawableState(int extraSpace) {
         if (mGuidanceSpeedData != null && mGuidanceSpeedData.isSpeeding()) {
@@ -171,12 +150,12 @@ public class GuidanceSpeedView extends RelativeLayout {
     private void populateUi(@Nullable GuidanceSpeedData data) {
         final String speedText = data == null || !data.isValid() ?
                 getContext().getString(R.string.msdkui_value_not_available) :
-                String.valueOf(VelocityFormatterUtil.format(data.getCurrentSpeed(), unitSystem));
+                String.valueOf(SpeedFormatterUtil.format(data.getCurrentSpeed(), mUnitSystem));
         final TextView speed = findViewById(R.id.guidance_current_speed_value);
         speed.setText(speedText);
         final TextView speedUnit = findViewById(R.id.guidance_current_speed_unit);
-        String speedUnitString = VelocityFormatterUtil.getVelocityString(
-                speedUnit.getContext(), unitSystem);
+        String speedUnitString = SpeedFormatterUtil.getUnitString(
+                speedUnit.getContext(), mUnitSystem);
         if (!speedUnitString.contentEquals(speedUnit.getText())) {
             speedUnit.setText(speedUnitString);
         }

@@ -24,7 +24,7 @@ import com.here.android.mpa.routing.RouteElement;
 import com.here.android.mpa.routing.RouteElements;
 import com.here.android.mpa.routing.RoutePlan;
 import com.here.android.mpa.routing.RouteTta;
-import com.here.msdkui.common.measurements.UnitSystems;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -82,13 +82,13 @@ public class ManeuverListTest extends RobolectricTest {
 
     @Test
     public void testSetGetUnitSystem() {
-        assertEquals(mManeuverList.getUnitSystem(), UnitSystems.METRIC);
+        assertEquals(mManeuverList.getUnitSystem(), UnitSystem.METRIC);
         assertEquals(((ManeuverListAdapter) mManeuverList.getAdapter()).getUnitSystem(),
-                UnitSystems.METRIC);
+                UnitSystem.METRIC);
 
-        mManeuverList.setUnitSystem(UnitSystems.IMPERIAL_UK);
-        assertEquals(mManeuverList.getUnitSystem(), UnitSystems.IMPERIAL_UK);
+        mManeuverList.setUnitSystem(UnitSystem.IMPERIAL_UK);
+        assertEquals(mManeuverList.getUnitSystem(), UnitSystem.IMPERIAL_UK);
         assertEquals(((ManeuverListAdapter) mManeuverList.getAdapter()).getUnitSystem(),
-                UnitSystems.IMPERIAL_UK);
+                UnitSystem.IMPERIAL_UK);
     }
 }

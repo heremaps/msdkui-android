@@ -25,7 +25,7 @@ import com.here.android.mpa.routing.Route
 import com.here.msdkui.routing.CustomRecyclerView
 import com.here.msdkui.routing.RouteDescriptionItem
 import com.here.msdkuiapp.R
-import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
+import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.coordinator
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
@@ -72,7 +72,7 @@ class RouteDescriptionListFragment() : Fragment(), RoutingContracts.RouteDescrip
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        route_description_list.unitSystem = UnitSystemFromLocaleUtil.get()
+        route_description_list.unitSystem = Util.getLocaleUnit()
         presenter.run {
             onAttach(activity!!, this@RouteDescriptionListFragment)
             makeUiDataReady()

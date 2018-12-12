@@ -21,7 +21,7 @@ import com.here.android.mpa.routing.Route
 import com.here.msdkui.guidance.GuidanceManeuverData
 import com.here.msdkui.guidance.GuidanceManeuverView
 import com.here.msdkui.guidance.GuidanceManeuverPresenter
-import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
+import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.testutils.BaseTest
 import junit.framework.Assert.assertNotNull
@@ -59,7 +59,7 @@ class GuidanceManeuverViewFragmentTest : BaseTest() {
         assertNotNull(guidanceManeuverFragment.view)
         assertEquals(
                 (guidanceManeuverFragment.view as GuidanceManeuverView).unitSystem,
-                UnitSystemFromLocaleUtil.get())
+                Util.getLocaleUnit())
     }
 
     @Test

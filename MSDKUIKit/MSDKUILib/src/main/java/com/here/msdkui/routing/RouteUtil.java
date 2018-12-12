@@ -41,7 +41,7 @@ import com.here.msdkui.common.DateFormatterUtil;
 import com.here.msdkui.common.DistanceFormatterUtil;
 import com.here.msdkui.common.ThemeUtil;
 import com.here.msdkui.common.TimeFormatterUtil;
-import com.here.msdkui.common.measurements.UnitSystems;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -188,12 +188,12 @@ public final class RouteUtil {
      * @param route
      *         a {@link Route} instance.
      * @param unitSystem
-     *         unit system {@link UnitSystems}.
+     *         unit system {@link UnitSystem}.
      *
      * @return the formatted route length including units.
      */
     public static String getRouteLength(final Context context, final Route route,
-                                        final UnitSystems unitSystem) {
+                                        final UnitSystem unitSystem) {
         final int length = route.getLength();
         return DistanceFormatterUtil.format(context, length, unitSystem);
     }
@@ -206,12 +206,12 @@ public final class RouteUtil {
      * @param route
      *         a {@link Route} instance.
      * @param unitSystem
-     *         unit system {@link UnitSystems}.
+     *         unit system {@link UnitSystem}.
      *
      * @return a {@link Spannable} containing the details.
      */
     public static Spannable getDetails(final Context context, final Route route,
-                                       final UnitSystems unitSystem) {
+                                       final UnitSystem unitSystem) {
         final RouteOptions.TransportMode transportMode = route.getRoutePlan()
                 .getRouteOptions()
                 .getTransportMode();

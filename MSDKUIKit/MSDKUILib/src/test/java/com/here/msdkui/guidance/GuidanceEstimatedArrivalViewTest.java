@@ -25,7 +25,6 @@ import android.widget.TextView;
 import com.here.RobolectricTest;
 import com.here.msdkui.R;
 import com.here.msdkui.common.DateFormatterUtil;
-import com.here.msdkui.common.measurements.UnitSystems;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -134,12 +133,5 @@ public class GuidanceEstimatedArrivalViewTest extends RobolectricTest {
         GuidanceEstimatedArrivalView.SavedState createdFromParcel = GuidanceEstimatedArrivalView.SavedState.CREATOR.createFromParcel(
                 parcel);
         assertNotNull(createdFromParcel.getSavedState());
-    }
-
-    @Test
-    public void testSetGetUnitSystem() {
-        assertEquals(mEstimatedArrivalView.getUnitSystem(), UnitSystems.METRIC);
-        mEstimatedArrivalView.setUnitSystem(UnitSystems.IMPERIAL_UK);
-        assertEquals(mEstimatedArrivalView.getUnitSystem(), UnitSystems.IMPERIAL_UK);
     }
 }

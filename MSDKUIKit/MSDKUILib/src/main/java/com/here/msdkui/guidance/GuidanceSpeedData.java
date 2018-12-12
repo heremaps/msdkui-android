@@ -40,6 +40,7 @@ public class GuidanceSpeedData implements Parcelable {
     };
 
     private static final int INVALID_VALUE = -1;
+    private static final double COMPARISION_PRECISION = .0000001;
 
     private double mCurrentSpeed;
     private double mCurrentSpeedLimit;
@@ -122,17 +123,15 @@ public class GuidanceSpeedData implements Parcelable {
 
     @Override
     public int hashCode() {
-        return (int)(this.mCurrentSpeed * 31) + (int)(this.mCurrentSpeedLimit * 31);
+        return (int) (this.mCurrentSpeed * 31) + (int) (this.mCurrentSpeedLimit * 31);
     }
 
     @Override
     public boolean equals(Object obj1) {
         if (obj1 instanceof GuidanceSpeedData) {
             final GuidanceSpeedData obj2 = (GuidanceSpeedData) obj1;
-            if (this.mCurrentSpeed == obj2.mCurrentSpeed &&
-                    this.mCurrentSpeedLimit == obj2.mCurrentSpeedLimit) {
-                return true;
-            }
+            return Math.abs(this.mCurrentSpeed - obj2.mCurrentSpeed) < COMPARISION_PRECISION &&
+                    Math.abs(this.mCurrentSpeedLimit - obj2.mCurrentSpeedLimit) < COMPARISION_PRECISION;
         }
         return false;
     }

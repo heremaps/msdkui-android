@@ -28,7 +28,6 @@ import android.widget.TextView;
 
 import com.here.RobolectricTest;
 import com.here.msdkui.R;
-import com.here.msdkui.common.measurements.UnitSystems;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -201,13 +200,6 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
         GuidanceManeuverView.SavedState createdFromParcel = GuidanceManeuverView.SavedState.CREATOR.createFromParcel(
                 parcel);
         assertNotNull(createdFromParcel.getManeuverData());
-    }
-
-    @Test
-    public void testSetGetUnitSystem() {
-        assertEquals(mGuidanceManeuverView.getUnitSystem(), UnitSystems.METRIC);
-        mGuidanceManeuverView.setUnitSystem(UnitSystems.IMPERIAL_UK);
-        assertEquals(mGuidanceManeuverView.getUnitSystem(), UnitSystems.IMPERIAL_UK);
     }
 
     private GuidanceManeuverData createData(int iconId, long distance, String info1, String info2) {

@@ -26,21 +26,19 @@ import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.here.msdkui.R;
-import com.here.msdkui.common.VelocityFormatterUtil;
-import com.here.msdkui.common.measurements.UnitSystems;
+import com.here.msdkui.common.BaseView;
+import com.here.msdkui.common.SpeedFormatterUtil;
 
 /**
  * A view that shows the current speed limit. When user does not exceed speed limit, then
  * this view is hidden. This view consumes data contained in {@link GuidanceSpeedData}.
  */
-public class GuidanceSpeedLimitView extends RelativeLayout {
+public class GuidanceSpeedLimitView extends BaseView {
 
     private GuidanceSpeedData mGuidanceSpeedData;
-    private UnitSystems unitSystem = UnitSystems.METRIC;
 
     /**
      * Constructs a new instance.
@@ -105,25 +103,6 @@ public class GuidanceSpeedLimitView extends RelativeLayout {
         init(context);
     }
 
-    /**
-     * Sets unit system of this view.
-     *
-     * @param unitSystem
-     *         unit system {@link UnitSystems}.
-     */
-    public void setUnitSystem(UnitSystems unitSystem) {
-        this.unitSystem = unitSystem;
-    }
-
-    /**
-     * Returns current unit system of this view.
-     *
-     * @return unit system {@link UnitSystems}.
-     */
-    public UnitSystems getUnitSystem() {
-        return unitSystem;
-    }
-
     private void init(final Context context) {
         mGuidanceSpeedData = new GuidanceSpeedData();
         LayoutInflater.from(context).inflate(R.layout.guidance_speed_limit_panel, this);
@@ -139,8 +118,8 @@ public class GuidanceSpeedLimitView extends RelativeLayout {
         if (!data.equals(mGuidanceSpeedData)) {
             if (data.getCurrentSpeedLimit() > 0) {
                 final TextView speedLimit = (TextView) findViewById(R.id.speed_limit);
-                speedLimit.setText(String.valueOf(VelocityFormatterUtil.format(
-                        data.getCurrentSpeedLimit(), unitSystem)));
+                speedLimit.setText(String.valueOf(SpeedFormatterUtil.format(
+                        data.getCurrentSpeedLimit(), mUnitSystem)));
                 container.setVisibility(VISIBLE);
             } else {
                 container.setVisibility(GONE);

@@ -24,14 +24,13 @@ import android.widget.TextView;
 
 import com.here.RobolectricTest;
 import com.here.msdkui.R;
-import com.here.msdkui.common.VelocityFormatterUtil;
-import com.here.msdkui.common.measurements.UnitSystems;
+import com.here.msdkui.common.SpeedFormatterUtil;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertNotNull;
-import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -61,12 +60,11 @@ public class GuidanceSpeedViewTest extends RobolectricTest {
 
         assertThat(container.getVisibility(), is(View.VISIBLE));
         assertThat(speedValueView.getText().toString(), is(getString(R.string.msdkui_value_not_available)));
-        assertThat(speedUnitView.getText().toString(),
-                is(getApplicationContext().getResources().getString(R.string.msdkui_unit_km_per_h)));
+        assertThat(speedUnitView.getText().toString(), is(""));
         GuidanceSpeedData data = new GuidanceSpeedData(VELOCITY, SPEED_LIMIT);
         mCurrentGuidanceSpeedView.setCurrentSpeedData(data);
         assertThat(speedValueView.getText().toString(),
-                is(String.valueOf(VelocityFormatterUtil.format(VELOCITY, UnitSystems.METRIC))));
+                is(String.valueOf(SpeedFormatterUtil.format(VELOCITY, UnitSystem.METRIC))));
     }
 
     @Test
@@ -145,12 +143,5 @@ public class GuidanceSpeedViewTest extends RobolectricTest {
         assertNotNull(createdFromParcel.getSavedSpeedData());
         assertThat(createdFromParcel.getSavedValueTextColor(), is(RED_COLOR));
         assertThat(createdFromParcel.getSavedUnitTextColor(), is(BLUE_COLOR));
-    }
-
-    @Test
-    public void testSetGetUnitSystem() {
-        assertEquals(mCurrentGuidanceSpeedView.getUnitSystem(), UnitSystems.METRIC);
-        mCurrentGuidanceSpeedView.setUnitSystem(UnitSystems.IMPERIAL_UK);
-        assertEquals(mCurrentGuidanceSpeedView.getUnitSystem(), UnitSystems.IMPERIAL_UK);
     }
 }

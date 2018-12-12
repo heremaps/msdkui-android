@@ -24,14 +24,13 @@ import android.widget.TextView;
 
 import com.here.RobolectricTest;
 import com.here.msdkui.R;
-import com.here.msdkui.common.VelocityFormatterUtil;
-import com.here.msdkui.common.measurements.UnitSystems;
+import com.here.msdkui.common.SpeedFormatterUtil;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertNotNull;
-import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -70,13 +69,13 @@ public class GuidanceSpeedLimitViewTest extends RobolectricTest {
         mGuidanceSpeedLimitView.setCurrentSpeedData(data);
         assertThat(container.getVisibility(), is(View.VISIBLE));
         assertThat(speedLimitView.getText().toString(),
-                is(String.valueOf(VelocityFormatterUtil.format(50, UnitSystems.METRIC))));
+                is(String.valueOf(SpeedFormatterUtil.format(50, UnitSystem.METRIC))));
 
         data = new GuidanceSpeedData(60, 50);
         mGuidanceSpeedLimitView.setCurrentSpeedData(data);
         assertThat(container.getVisibility(), is(View.VISIBLE));
         assertThat(speedLimitView.getText().toString(),
-                is(String.valueOf(VelocityFormatterUtil.format(50, UnitSystems.METRIC))));
+                is(String.valueOf(SpeedFormatterUtil.format(50, UnitSystem.METRIC))));
 
         data = new GuidanceSpeedData(150, 0);
         mGuidanceSpeedLimitView.setCurrentSpeedData(data);
@@ -86,7 +85,7 @@ public class GuidanceSpeedLimitViewTest extends RobolectricTest {
         mGuidanceSpeedLimitView.setCurrentSpeedData(data);
         assertThat(container.getVisibility(), is(View.VISIBLE));
         assertThat(speedLimitView.getText().toString(),
-                is(String.valueOf(VelocityFormatterUtil.format(50, UnitSystems.METRIC))));
+                is(String.valueOf(SpeedFormatterUtil.format(50, UnitSystem.METRIC))));
     }
 
     @Test
@@ -136,12 +135,5 @@ public class GuidanceSpeedLimitViewTest extends RobolectricTest {
         GuidanceSpeedLimitView.SavedState createdFromParcel = GuidanceSpeedLimitView.SavedState.CREATOR.createFromParcel(
                 parcel);
         assertNotNull(createdFromParcel.getSavedState());
-    }
-
-    @Test
-    public void testSetGetUnitSystem() {
-        assertEquals(mGuidanceSpeedLimitView.getUnitSystem(), UnitSystems.METRIC);
-        mGuidanceSpeedLimitView.setUnitSystem(UnitSystems.IMPERIAL_UK);
-        assertEquals(mGuidanceSpeedLimitView.getUnitSystem(), UnitSystems.IMPERIAL_UK);
     }
 }

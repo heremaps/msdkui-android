@@ -24,7 +24,7 @@ import com.here.android.mpa.routing.Route
 import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.common.Constant
-import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
+import com.here.msdkuiapp.common.Util
 import com.here.testutils.BaseTest
 import com.here.testutils.anySafe
 import junit.framework.TestCase.assertEquals
@@ -115,8 +115,8 @@ class RoutePreviewFragmentTest : BaseTest() {
         val entry = WaypointEntry("name")
         fragment.populateUI(entry, mockRoute(), false)
         assertThat(fragment.view!!.destination.text.toString(), containsString("name"))
-        assertEquals(fragment.view!!.description.unitSystem, UnitSystemFromLocaleUtil.get())
-        assertEquals(fragment.view!!.guidance_maneuver_list.unitSystem, UnitSystemFromLocaleUtil.get())
+        assertEquals(fragment.view!!.description.unitSystem, Util.getLocaleUnit())
+        assertEquals(fragment.view!!.guidance_maneuver_list.unitSystem, Util.getLocaleUnit())
     }
 
     @Test

@@ -18,7 +18,7 @@ package com.here.msdkui.common;
 
 import com.here.RobolectricTest;
 import com.here.msdkui.R;
-import com.here.msdkui.common.measurements.UnitSystems;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Test;
 
@@ -27,7 +27,7 @@ import static junit.framework.TestCase.assertEquals;
 /**
  * Tests for {@link TimeFormatterUtil}.
  */
-public class VelocityFormatterUtilTest extends RobolectricTest {
+public class SpeedFormatterUtilTest extends RobolectricTest {
 
     private static final double METERS_PER_SECOND_SPEED = 15;
     private static final double KILOMETERS_PER_HOUR_SPEED = 54;
@@ -36,26 +36,26 @@ public class VelocityFormatterUtilTest extends RobolectricTest {
     @Test
     public void testFormat() {
         assertEquals(
-                VelocityFormatterUtil.format(METERS_PER_SECOND_SPEED, UnitSystems.METRIC),
+                SpeedFormatterUtil.format(METERS_PER_SECOND_SPEED, UnitSystem.METRIC),
                 (int) KILOMETERS_PER_HOUR_SPEED);
         assertEquals(
-                VelocityFormatterUtil.format(METERS_PER_SECOND_SPEED, UnitSystems.IMPERIAL_UK),
+                SpeedFormatterUtil.format(METERS_PER_SECOND_SPEED, UnitSystem.IMPERIAL_UK),
                 (int) MILES_PER_HOUR_SPEED);
         assertEquals(
-                VelocityFormatterUtil.format(METERS_PER_SECOND_SPEED, UnitSystems.IMPERIAL_US),
+                SpeedFormatterUtil.format(METERS_PER_SECOND_SPEED, UnitSystem.IMPERIAL_US),
                 (int) MILES_PER_HOUR_SPEED);
     }
 
     @Test
     public void testGetVelocityString() {
         assertEquals(
-                VelocityFormatterUtil.getVelocityString(getApplicationContext(), UnitSystems.METRIC),
+                SpeedFormatterUtil.getUnitString(getApplicationContext(), UnitSystem.METRIC),
                 getApplicationContext().getString(R.string.msdkui_unit_km_per_h));
         assertEquals(
-                VelocityFormatterUtil.getVelocityString(getApplicationContext(), UnitSystems.IMPERIAL_UK),
+                SpeedFormatterUtil.getUnitString(getApplicationContext(), UnitSystem.IMPERIAL_UK),
                 getApplicationContext().getString(R.string.msdkui_unit_miles_per_hour));
         assertEquals(
-                VelocityFormatterUtil.getVelocityString(getApplicationContext(), UnitSystems.IMPERIAL_US),
+                SpeedFormatterUtil.getUnitString(getApplicationContext(), UnitSystem.IMPERIAL_US),
                 getApplicationContext().getString(R.string.msdkui_unit_miles_per_hour));
     }
 }

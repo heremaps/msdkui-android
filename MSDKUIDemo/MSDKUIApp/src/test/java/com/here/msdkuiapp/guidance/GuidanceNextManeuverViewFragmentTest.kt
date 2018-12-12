@@ -21,7 +21,7 @@ import com.here.android.mpa.routing.Route
 import com.here.msdkui.guidance.GuidanceNextManeuverData
 import com.here.msdkui.guidance.GuidanceNextManeuverView
 import com.here.msdkui.guidance.GuidanceNextManeuverPresenter
-import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
+import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.testutils.BaseTest
 import junit.framework.Assert.assertEquals
@@ -61,7 +61,7 @@ class GuidanceNextManeuverViewFragmentTest : BaseTest() {
         assertNotNull(guidanceNextManeuverFragment.view)
         assertEquals(
                 (guidanceNextManeuverFragment.view as GuidanceNextManeuverView).unitSystem,
-                UnitSystemFromLocaleUtil.get())
+                Util.getLocaleUnit())
     }
 
     @Test

@@ -27,23 +27,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.here.msdkui.R;
+import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.DistanceFormatterUtil;
-import com.here.msdkui.common.measurements.UnitSystems;
 
 /**
  * A view that shows the next maneuver panel for guidance. The view consumes the data contained in
  * {@link GuidanceManeuverData}.
  */
-public class GuidanceManeuverView extends RelativeLayout {
+public class GuidanceManeuverView extends BaseView {
 
     private static final String EMPTY_STRING = "";
 
     private GuidanceManeuverData mManeuverData;
-    private UnitSystems unitSystem = UnitSystems.METRIC;
 
     /**
      * Constructs a new instance.
@@ -109,25 +107,6 @@ public class GuidanceManeuverView extends RelativeLayout {
     }
 
     /**
-     * Sets unit system of this view.
-     *
-     * @param unitSystem
-     *         unit system {@link UnitSystems}.
-     */
-    public void setUnitSystem(UnitSystems unitSystem) {
-        this.unitSystem = unitSystem;
-    }
-
-    /**
-     * Returns current unit system of this view.
-     *
-     * @return unit system {@link UnitSystems}.
-     */
-    public UnitSystems getUnitSystem() {
-        return unitSystem;
-    }
-
-    /**
      * Init the Panel UI.
      *
      * @param context
@@ -157,7 +136,7 @@ public class GuidanceManeuverView extends RelativeLayout {
             distanceView.setVisibility(View.VISIBLE);
             distanceView.setText(
                     DistanceFormatterUtil.formatDistance(
-                            getContext(), maneuverData.getDistance(), unitSystem));
+                            getContext(), maneuverData.getDistance(), mUnitSystem));
         }
     }
 

@@ -21,7 +21,7 @@ import com.here.android.mpa.common.PositioningManager
 import com.here.android.mpa.guidance.NavigationManager
 import com.here.msdkui.guidance.GuidanceSpeedData
 import com.here.msdkui.guidance.GuidanceSpeedPresenter
-import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
+import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
 
@@ -71,7 +71,7 @@ class GuidanceCurrentSpeedFragmentTest : BaseTest() {
         assertNotNull(guidanceCurrentSpeedFragment)
         assertNotNull(guidanceCurrentSpeedFragment.view)
         assertEquals(guidanceCurrentSpeedFragment.view!!.guidance_current_speed.unitSystem,
-                UnitSystemFromLocaleUtil.get())
+                Util.getLocaleUnit())
     }
 
     @Test

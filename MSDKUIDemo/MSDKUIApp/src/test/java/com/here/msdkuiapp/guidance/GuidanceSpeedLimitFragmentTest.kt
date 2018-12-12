@@ -22,7 +22,7 @@ import com.here.android.mpa.guidance.NavigationManager
 import com.here.msdkui.guidance.GuidanceSpeedData
 import com.here.msdkui.guidance.GuidanceSpeedLimitView
 import com.here.msdkui.guidance.GuidanceSpeedPresenter
-import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
+import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
 
@@ -61,7 +61,7 @@ class GuidanceSpeedLimitFragmentTest : BaseTest() {
         assertNotNull(guidanceSpeedLimitFragment.view)
         assertEquals(
                 (guidanceSpeedLimitFragment.view as GuidanceSpeedLimitView).unitSystem,
-                UnitSystemFromLocaleUtil.get())
+                Util.getLocaleUnit())
     }
 
     @Test

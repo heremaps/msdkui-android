@@ -21,25 +21,22 @@ import android.view.View
 import android.view.ViewGroup
 import com.here.android.mpa.routing.Route
 import com.here.msdkuiapp.R
-import com.here.msdkuiapp.common.UnitSystemFromLocaleUtil
+import com.here.msdkuiapp.common.Util
 import com.here.testutils.BaseTest
 import com.here.testutils.anySafe
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertFalse
 import junit.framework.Assert.assertNotNull
-import junit.framework.Assert.assertNull
 import kotlinx.android.synthetic.main.route_description_list.view.route_description_list
 import kotlinx.android.synthetic.main.route_description_list.view.route_description_list_heading
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Answers
 import org.mockito.Mock
-import org.mockito.Mockito.atLeast
 import org.mockito.Mockito.atLeastOnce
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
-import org.robolectric.Robolectric
 
 /**
  * Tests for [RouteDescriptionListFragment].
@@ -104,7 +101,7 @@ class RouteDescriptionListFragmentTest : BaseTest() {
         }
         assertNotNull(fragment.listener)
         assertEquals(fragment.view!!.route_description_list.unitSystem,
-                UnitSystemFromLocaleUtil.get())
+                Util.getLocaleUnit())
     }
 
     @Test

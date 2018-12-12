@@ -22,13 +22,13 @@ import com.here.msdkui.R;
 import com.here.msdkui.common.measurements.Measurement;
 import com.here.msdkui.common.measurements.MeasurementUnit;
 import com.here.msdkui.common.measurements.SpeedConverter;
-import com.here.msdkui.common.measurements.UnitSystems;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 /**
- * A convenience class to convert velocity in meter per second to velocity in a different unit.
+ * A convenience class to convert velocity in meters per second to velocity in a different unit.
  */
-public final class VelocityFormatterUtil {
-    private VelocityFormatterUtil() {}
+public final class SpeedFormatterUtil {
+    private SpeedFormatterUtil() {}
 
     /**
      * Converts velocity expressed in meters per second to specified unit system.
@@ -36,28 +36,22 @@ public final class VelocityFormatterUtil {
      * @param metersPerSecond
      *         velocity in meters per second.
      * @param system
-     *         the unit system {@link UnitSystems}.
+     *         the unit system {@link UnitSystem}.
      *
      * @return velocity in specified unit system.
      */
-    public static int format(final double metersPerSecond, final UnitSystems system) {
+    public static int format(final double metersPerSecond, final UnitSystem system) {
         SpeedConverter speedConverter = new SpeedConverter();
         Measurement speedMeterPerSecond = new Measurement(metersPerSecond,
                 MeasurementUnit.METERS_PER_SECOND);
         double ret;
         switch (system) {
-            case METRIC:
-                ret = speedConverter.convert(speedMeterPerSecond.getValue(),
-                        speedMeterPerSecond.getUnit(), MeasurementUnit.KILOMETERS_PER_HOUR).getValue();
-                break;
             case IMPERIAL_UK:
-                ret = speedConverter.convert(speedMeterPerSecond.getValue(),
-                        speedMeterPerSecond.getUnit(), MeasurementUnit.MILES_PER_HOUR).getValue();
-                break;
             case IMPERIAL_US:
                 ret = speedConverter.convert(speedMeterPerSecond.getValue(),
                         speedMeterPerSecond.getUnit(), MeasurementUnit.MILES_PER_HOUR).getValue();
                 break;
+            case METRIC:
             default: // metric
                 ret = speedConverter.convert(speedMeterPerSecond.getValue(),
                         speedMeterPerSecond.getUnit(), MeasurementUnit.KILOMETERS_PER_HOUR).getValue();
@@ -72,18 +66,16 @@ public final class VelocityFormatterUtil {
      * @param context
      *         the required context.
      * @param system
-     *         the unit system {@link UnitSystems}.
+     *         the unit system {@link UnitSystem}.
      *
      * @return abbreviation of velocity string in specified unit system.
      */
-    public static String getVelocityString(final Context context, final UnitSystems system) {
+    public static String getUnitString(final Context context, final UnitSystem system) {
         switch (system) {
-            case METRIC:
-                return context.getString(R.string.msdkui_unit_km_per_h);
             case IMPERIAL_UK:
-                return context.getString(R.string.msdkui_unit_miles_per_hour);
             case IMPERIAL_US:
                 return context.getString(R.string.msdkui_unit_miles_per_hour);
+            case METRIC:
             default: // metric
                 return context.getString(R.string.msdkui_unit_km_per_h);
         }

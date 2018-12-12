@@ -25,21 +25,19 @@ import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.here.msdkui.R;
+import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.DistanceFormatterUtil;
-import com.here.msdkui.common.measurements.UnitSystems;
 
 /**
  * A view that shows maneuver after next maneuver.
  */
-public class GuidanceNextManeuverView extends FrameLayout {
+public class GuidanceNextManeuverView extends BaseView {
 
     private GuidanceNextManeuverData mNextManeuverData;
-    private UnitSystems unitSystem = UnitSystems.METRIC;
 
     /**
      * Constructs a new instance.
@@ -104,25 +102,6 @@ public class GuidanceNextManeuverView extends FrameLayout {
         init(context);
     }
 
-    /**
-     * Sets unit system of this view.
-     *
-     * @param unitSystem
-     *         unit system {@link UnitSystems}.
-     */
-    public void setUnitSystem(UnitSystems unitSystem) {
-        this.unitSystem = unitSystem;
-    }
-
-    /**
-     * Returns current unit system of this list view.
-     *
-     * @return unit system {@link UnitSystems}.
-     */
-    public UnitSystems getUnitSystem() {
-        return unitSystem;
-    }
-
     private void init(Context context) {
         LayoutInflater.from(context).inflate(R.layout.guidance_next_maneuver_panel, this);
     }
@@ -146,7 +125,7 @@ public class GuidanceNextManeuverView extends FrameLayout {
             afterNextManeuverContainer.setVisibility(View.VISIBLE);
             iconView.setImageResource(nextManeuverData.getIconId());
             maneuverDistance.setText(DistanceFormatterUtil.format(
-                    getContext(), nextManeuverData.getDistance(), unitSystem));
+                    getContext(), nextManeuverData.getDistance(), mUnitSystem));
             streetName.setText(nextManeuverData.getStreetName());
         }
     }

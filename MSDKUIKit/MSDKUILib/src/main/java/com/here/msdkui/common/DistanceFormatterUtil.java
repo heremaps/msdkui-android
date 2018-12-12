@@ -22,7 +22,7 @@ import com.here.msdkui.R;
 import com.here.msdkui.common.measurements.LengthConverter;
 import com.here.msdkui.common.measurements.Measurement;
 import com.here.msdkui.common.measurements.MeasurementUnit;
-import com.here.msdkui.common.measurements.UnitSystems;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import java.text.NumberFormat;
 
@@ -69,11 +69,11 @@ public final class DistanceFormatterUtil {
      * @param distance
      *         the distance in meters.
      * @param system
-     *         the unit system {@link UnitSystems}.
+     *         the unit system {@link UnitSystem}.
      *
      * @return a string representation including unit or "-- [smaller unit]" if distance is smaller than 0.
      */
-    public static String format(final Context context, final long distance, final UnitSystems system) {
+    public static String format(final Context context, final long distance, final UnitSystem system) {
         switch (system) {
             case METRIC:
                 return formatInMetricSystem(context, distance);
@@ -197,11 +197,11 @@ public final class DistanceFormatterUtil {
      * @param distance
      *         the distance in meters.
      * @param system
-     *         the unit system {@link UnitSystems}.
+     *         the unit system {@link UnitSystem}.
      *
      * @return a string representation including unit or "-- [smaller unit]" if distance is smaller than 0.
      */
-    public static String formatDistance(final Context context, final long distance, final UnitSystems system) {
+    public static String formatDistance(final Context context, final long distance, final UnitSystem system) {
         switch (system) {
             case METRIC:
                 return formatDistanceInMetricSystem(context, distance);

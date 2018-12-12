@@ -23,7 +23,7 @@ import android.util.AttributeSet;
 import com.here.android.mpa.routing.Route;
 import com.here.android.mpa.routing.RouteResult;
 import com.here.msdkui.R;
-import com.here.msdkui.common.measurements.UnitSystems;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,7 +38,7 @@ public class RouteDescriptionList extends CustomRecyclerView {
     private RouteDescriptionListAdapter mAdapter;
     private SortType mSortType = SortType.TOTAL_TIME;
     private SortOrder mSortOrder = SortOrder.ASCENDING;
-    private UnitSystems unitSystem = UnitSystems.METRIC;
+    private UnitSystem mUnitSystem = UnitSystem.METRIC;
 
     /**
      * Constructs a new instance.
@@ -84,22 +84,22 @@ public class RouteDescriptionList extends CustomRecyclerView {
      * Sets unit system of this list items.
      *
      * @param unitSystem
-     *         unit system {@link UnitSystems}.
+     *         unit system {@link UnitSystem}.
      */
-    public void setUnitSystem(UnitSystems unitSystem) {
-        this.unitSystem = unitSystem;
+    public void setUnitSystem(UnitSystem unitSystem) {
+        mUnitSystem = unitSystem;
         if (mAdapter != null) {
-            mAdapter.setUnitSystem(unitSystem);
+            mAdapter.setUnitSystem(mUnitSystem);
         }
     }
 
     /**
      * Returns current unit system of this list items.
      *
-     * @return unit system {@link UnitSystems}.
+     * @return unit system {@link UnitSystem}.
      */
-    public UnitSystems getUnitSystem() {
-        return unitSystem;
+    public UnitSystem getUnitSystem() {
+        return mUnitSystem;
     }
 
     private void init(final AttributeSet attrs) {

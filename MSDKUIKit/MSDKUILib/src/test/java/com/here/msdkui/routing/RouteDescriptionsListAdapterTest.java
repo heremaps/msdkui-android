@@ -26,7 +26,7 @@ import com.here.android.mpa.routing.RouteElements;
 import com.here.android.mpa.routing.RoutePlan;
 import com.here.android.mpa.routing.RouteTta;
 import com.here.msdkui.R;
-import com.here.msdkui.common.measurements.UnitSystems;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -88,9 +88,9 @@ public class RouteDescriptionsListAdapterTest extends RobolectricTest {
     public void testSetGetUnitSystem() {
         final Route route = new MockUtils.MockRouteBuilder().getRoute();
         mRoutesDescriptionsListAdapter = new RouteDescriptionListAdapter(Arrays.asList(route, route));
-        assertEquals(mRoutesDescriptionsListAdapter.getUnitSystem(), UnitSystems.METRIC);
-        mRoutesDescriptionsListAdapter.setUnitSystem(UnitSystems.IMPERIAL_UK);
-        assertEquals(mRoutesDescriptionsListAdapter.getUnitSystem(), UnitSystems.IMPERIAL_UK);
+        assertEquals(mRoutesDescriptionsListAdapter.getUnitSystem(), UnitSystem.METRIC);
+        mRoutesDescriptionsListAdapter.setUnitSystem(UnitSystem.IMPERIAL_UK);
+        assertEquals(mRoutesDescriptionsListAdapter.getUnitSystem(), UnitSystem.IMPERIAL_UK);
     }
 
     private void getFirstViewHolder(final List<Route> routes) {

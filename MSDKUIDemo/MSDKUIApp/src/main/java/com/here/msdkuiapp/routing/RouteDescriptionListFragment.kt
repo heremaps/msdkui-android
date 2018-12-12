@@ -24,7 +24,6 @@ import android.view.ViewGroup
 import com.here.android.mpa.routing.Route
 import com.here.msdkui.routing.CustomRecyclerView
 import com.here.msdkui.routing.RouteDescriptionItem
-import com.here.msdkui.routing.RouteDescriptionListAdapter
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.coordinator
@@ -73,7 +72,7 @@ class RouteDescriptionListFragment() : Fragment(), RoutingContracts.RouteDescrip
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        (route_description_list.adapter as? RouteDescriptionListAdapter)?.unitSystem = Util.getLocaleUnit()
+        route_description_list.unitSystem = Util.getLocaleUnit()
         presenter.run {
             onAttach(activity!!, this@RouteDescriptionListFragment)
             makeUiDataReady()

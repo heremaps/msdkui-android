@@ -21,7 +21,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.here.android.mpa.routing.Route
-import com.here.msdkui.routing.ManeuverListAdapter
 import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.common.Constant
@@ -117,9 +116,7 @@ class RoutePreviewFragmentTest : BaseTest() {
         fragment.populateUI(entry, mockRoute(), false)
         assertThat(fragment.view!!.destination.text.toString(), containsString("name"))
         assertEquals(fragment.view!!.description.unitSystem, Util.getLocaleUnit())
-        assertEquals(
-                (fragment.view!!.guidance_maneuver_list.adapter as? ManeuverListAdapter)?.unitSystem,
-                Util.getLocaleUnit())
+        assertEquals(fragment.view!!.guidance_maneuver_list.unitSystem, Util.getLocaleUnit())
     }
 
     @Test

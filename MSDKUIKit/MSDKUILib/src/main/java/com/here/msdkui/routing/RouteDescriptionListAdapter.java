@@ -55,6 +55,7 @@ public class RouteDescriptionListAdapter extends RecyclerView.Adapter<RouteDescr
      */
     public void setUnitSystem(UnitSystem unitSystem) {
         mUnitSystem = unitSystem;
+        notifyDataSetChanged();
     }
 
     /**

@@ -54,6 +54,7 @@ public class ManeuverListAdapter extends RecyclerView.Adapter<ManeuverListAdapte
      */
     public void setUnitSystem(UnitSystem unitSystem) {
         mUnitSystem = unitSystem;
+        notifyDataSetChanged();
     }
 
     /**

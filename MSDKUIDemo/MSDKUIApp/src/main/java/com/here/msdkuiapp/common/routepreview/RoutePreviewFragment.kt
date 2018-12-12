@@ -25,7 +25,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.accessibility.AccessibilityEvent
 import com.here.android.mpa.routing.Route
-import com.here.msdkui.routing.ManeuverListAdapter
 import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkuiapp.*
 import com.here.msdkuiapp.common.Constant.GO_VISIBILITY
@@ -121,7 +120,7 @@ class RoutePreviewFragment : Fragment(), GuidanceContracts.RoutePreview {
             this.route = route
         }
         with(guidance_maneuver_list) {
-            (adapter as? ManeuverListAdapter)?.unitSystem = Util.getLocaleUnit()
+            unitSystem = Util.getLocaleUnit()
             this.route = route
         }
 

@@ -24,7 +24,6 @@ import com.here.android.mpa.routing.RouteElement;
 import com.here.android.mpa.routing.RouteElements;
 import com.here.android.mpa.routing.RoutePlan;
 import com.here.android.mpa.routing.RouteTta;
-import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +31,6 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
-import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.powermock.api.mockito.PowerMockito.mock;
@@ -78,17 +76,5 @@ public class ManeuverListTest extends RobolectricTest {
         Route route = mock(Route.class);
         when(route.getManeuvers()).thenReturn(null);
         mManeuverList.setRoute(route);
-    }
-
-    @Test
-    public void testSetGetUnitSystem() {
-        assertEquals(mManeuverList.getUnitSystem(), UnitSystem.METRIC);
-        assertEquals(((ManeuverListAdapter) mManeuverList.getAdapter()).getUnitSystem(),
-                UnitSystem.METRIC);
-
-        mManeuverList.setUnitSystem(UnitSystem.IMPERIAL_UK);
-        assertEquals(mManeuverList.getUnitSystem(), UnitSystem.IMPERIAL_UK);
-        assertEquals(((ManeuverListAdapter) mManeuverList.getAdapter()).getUnitSystem(),
-                UnitSystem.IMPERIAL_UK);
     }
 }

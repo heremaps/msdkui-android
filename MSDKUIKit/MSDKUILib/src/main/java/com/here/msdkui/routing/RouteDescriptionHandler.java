@@ -58,7 +58,6 @@ public final class RouteDescriptionHandler {
 
     private final Route mRoute;
     private final Context mContext;
-    private UnitSystem mUnitSystem = UnitSystem.METRIC;
 
     /**
      * Constructs a new instance using context and the route of interest.
@@ -68,25 +67,6 @@ public final class RouteDescriptionHandler {
     public RouteDescriptionHandler(final Context context, final Route route) {
         mRoute = route;
         mContext = context;
-    }
-
-    /**
-     * Sets unit system of this handler.
-     *
-     * @param unitSystem
-     *         unit system {@link UnitSystem}.
-     */
-    public void setUnitSystem(UnitSystem unitSystem) {
-        mUnitSystem = unitSystem;
-    }
-
-    /**
-     * Returns current unit system of this handler.
-     *
-     * @return unit system {@link UnitSystem}.
-     */
-    public UnitSystem getUnitSystem() {
-        return mUnitSystem;
     }
 
     /**
@@ -202,22 +182,30 @@ public final class RouteDescriptionHandler {
 
     /**
      * Gets the total length of the associated {@link Route} as formatted string.
+     *
+     * @param unitSystem
+     *         unit system {@link UnitSystem}.
+     *
      * @return the formatted route length including units.
      */
-    public String getRouteLength() {
+    public String getRouteLength(UnitSystem unitSystem) {
         final int length = mRoute.getLength();
-        return DistanceFormatterUtil.format(mContext, length, mUnitSystem);
+        return DistanceFormatterUtil.format(mContext, length, unitSystem);
     }
 
     /**
      * Gets different details of the associated {@link Route} like via and others.
+     *
+     * @param unitSystem
+     *         unit system {@link UnitSystem}.
+     *
      * @return a {@link Spannable} containing the details.
      */
-    public Spannable getDetails() {
+    public Spannable getDetails(UnitSystem unitSystem) {
         final RouteOptions.TransportMode transportMode = mRoute.getRoutePlan()
                 .getRouteOptions()
                 .getTransportMode();
-        final SpannableStringBuilder builder = new SpannableStringBuilder(getRouteLength());
+        final SpannableStringBuilder builder = new SpannableStringBuilder(getRouteLength(unitSystem));
         if (transportMode == RouteOptions.TransportMode.PUBLIC_TRANSPORT) {
             return new SpannableStringBuilder(); // empty
         } else {

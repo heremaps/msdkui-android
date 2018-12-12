@@ -30,7 +30,7 @@ import java.util.List;
  * An adapter class that acts as a bridge between a list of {@link Route} elements and the corresponding
  * view holder items constructed as an instance of {@link RouteDescriptionItem}.
  */
-class RouteDescriptionListAdapter extends RecyclerView.Adapter<RouteDescriptionListAdapter.ViewHolder> {
+public class RouteDescriptionListAdapter extends RecyclerView.Adapter<RouteDescriptionListAdapter.ViewHolder> {
 
     private final List<Route> mRouteList;
     private final RouteBarScaler mRouteBarScaler;

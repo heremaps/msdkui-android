@@ -29,7 +29,6 @@ import com.here.android.mpa.routing.RoutePlan;
 import com.here.android.mpa.routing.RouteResult;
 import com.here.android.mpa.routing.RouteTta;
 import com.here.msdkui.R;
-import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -177,19 +176,5 @@ public class RouteDescriptionsListTest extends RobolectricTest {
     public void testSetGetTrafficEnabled() {
         mRoutesDescriptionList.setTrafficEnabled(true);
         assertTrue(mRoutesDescriptionList.isTrafficEnabled());
-    }
-
-    @Test
-    public void testSetGetUnitSystem() {
-        assertEquals(mRoutesDescriptionList.getUnitSystem(), UnitSystem.METRIC);
-        assertEquals(
-                ((RouteDescriptionListAdapter) mRoutesDescriptionList.getAdapter()).getUnitSystem(),
-                UnitSystem.METRIC);
-
-        mRoutesDescriptionList.setUnitSystem(UnitSystem.IMPERIAL_UK);
-        assertEquals(mRoutesDescriptionList.getUnitSystem(), UnitSystem.IMPERIAL_UK);
-        assertEquals(
-                ((RouteDescriptionListAdapter) mRoutesDescriptionList.getAdapter()).getUnitSystem(),
-                UnitSystem.IMPERIAL_UK);
     }
 }

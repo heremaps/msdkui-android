@@ -20,6 +20,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.here.android.mpa.routing.Route
+import com.here.msdkui.routing.RouteDescriptionListAdapter
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.common.Util
 import com.here.testutils.BaseTest
@@ -100,7 +101,8 @@ class RouteDescriptionListFragmentTest : BaseTest() {
             makeUiDataReady()
         }
         assertNotNull(fragment.listener)
-        assertEquals(fragment.view!!.route_description_list.unitSystem,
+        assertEquals(
+                (fragment.view!!.route_description_list.adapter as? RouteDescriptionListAdapter)?.unitSystem,
                 Util.getLocaleUnit())
     }
 

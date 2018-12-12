@@ -20,8 +20,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.here.msdkui.guidance.GuidanceManeuverPanel
-        android:id="@+id/guidanceManeuverPanel"
+    <com.here.msdkui.guidance.GuidanceManeuverView
+        android:id="@+id/guidanceManeuverView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

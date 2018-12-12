@@ -28,16 +28,16 @@ import com.here.android.mpa.guidance.NavigationManager;
 import com.here.android.mpa.mapping.Map;
 import com.here.android.mpa.routing.Route;
 import com.here.msdkui.guidance.GuidanceManeuverData;
-import com.here.msdkui.guidance.GuidanceManeuverPanel;
-import com.here.msdkui.guidance.GuidanceManeuverPanelListener;
-import com.here.msdkui.guidance.GuidanceManeuverPanelPresenter;
+import com.here.msdkui.guidance.GuidanceManeuverListener;
+import com.here.msdkui.guidance.GuidanceManeuverPresenter;
+import com.here.msdkui.guidance.GuidanceManeuverView;
 
 import helper.GuidanceSimulator;
 import helper.MapInitializer;
 import helper.RouteCalculator;
 
 /**
- * Shows usage of GuidanceManeuverPanel and how to fed maneuver data into it while
+ * Shows usage of GuidanceManeuverView and how to fed maneuver data into it while
  * running guidance simulation.
  */
 public class GuidanceActivity extends AppCompatActivity {
@@ -46,8 +46,8 @@ public class GuidanceActivity extends AppCompatActivity {
 
     private MapInitializer mapInitializer;
     private Map map;
-    private GuidanceManeuverPanel guidanceManeuverPanel;
-    private GuidanceManeuverPanelPresenter guidanceManeuverPanelPresenter;
+    private GuidanceManeuverView guidanceManeuverView;
+    private GuidanceManeuverPresenter guidanceManeuverPresenter;
     private Route route;
 
     @Override
@@ -62,22 +62,22 @@ public class GuidanceActivity extends AppCompatActivity {
         map = hereMap;
         route = RouteCalculator.getInstance().selectedRoute;
 
-        guidanceManeuverPanel = findViewById(R.id.guidanceManeuverPanel);
-        guidanceManeuverPanelPresenter = new GuidanceManeuverPanelPresenter(this, NavigationManager.getInstance(), route);
-        guidanceManeuverPanelPresenter.addListener(new GuidanceManeuverPanelListener() {
+        guidanceManeuverView = findViewById(R.id.guidanceManeuverView);
+        guidanceManeuverPresenter = new GuidanceManeuverPresenter(this, NavigationManager.getInstance(), route);
+        guidanceManeuverPresenter.addListener(new GuidanceManeuverListener() {
             @Override
             public void onDataChanged(@Nullable GuidanceManeuverData guidanceManeuverData) {
                 if (guidanceManeuverData != null) {
                     Log.d(LOG_TAG, "onDataChanged: 1st line: " + guidanceManeuverData.getInfo1());
                     Log.d(LOG_TAG, "onDataChanged: 2nd line: " + guidanceManeuverData.getInfo2());
                 }
-                guidanceManeuverPanel.setManeuverData(guidanceManeuverData);
+                guidanceManeuverView.setManeuverData(guidanceManeuverData);
             }
 
             @Override
             public void onDestinationReached() {
                 Log.d(LOG_TAG, "onDestinationReached");
-                guidanceManeuverPanel.highLightManeuver(Color.BLUE);
+                guidanceManeuverView.highLightManeuver(Color.BLUE);
             }
         });
 
@@ -101,20 +101,20 @@ public class GuidanceActivity extends AppCompatActivity {
     }
 
     private void startGuidanceSimulation() {
-        if (route == null || guidanceManeuverPanelPresenter == null) {
+        if (route == null || guidanceManeuverPresenter == null) {
             return;
         }
 
-        guidanceManeuverPanelPresenter.resume();
+        guidanceManeuverPresenter.resume();
         GuidanceSimulator.getInstance().startGuidanceSimulation(route, map);
     }
 
     private void stopGuidanceSimulation() {
-        if (guidanceManeuverPanelPresenter == null) {
+        if (guidanceManeuverPresenter == null) {
             return;
         }
 
-        guidanceManeuverPanelPresenter.pause();
+        guidanceManeuverPresenter.pause();
         GuidanceSimulator.getInstance().stopGuidance();
     }
 

@@ -20,6 +20,10 @@ import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.longClick
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.support.test.espresso.matcher.ViewMatchers.withParent
+import android.support.test.espresso.matcher.ViewMatchers.withId
+import com.here.msdkuiapp.R
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers
@@ -28,6 +32,8 @@ import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavig
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewStartNaviBtn
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewStartSimulationOkBtn
 import com.here.msdkuiapp.espresso.impl.views.guidance.useractions.GuidanceActions
+import org.hamcrest.Matchers.allOf
+import org.hamcrest.Matchers.not
 
 /**
  * Drive Navigation & Overview related actions
@@ -57,6 +63,22 @@ object DriveNavigationActions {
     fun waitForGuidanceDescriptionDisplayed(): DriveNavigationMatchers {
         onRootView.perform(waitForCondition(onRouteOverviewDescription))
         return DriveNavigationMatchers
+    }
+
+    /**
+     * Wait for guidance dashboard to expand
+     */
+    fun waitGuidanceDashBoardExpand(): DriveNavigationActions {
+        onRootView.perform(waitForCondition(allOf(withText(R.string.msdkui_app_about), withParent(withParent(withId(R.id.items_list))))))
+        return this
+    }
+
+    /**
+     * Wait for guidance dashboard to collapse
+     */
+    fun waitGuidanceDashBoardCollapse(): DriveNavigationActions {
+        onRootView.perform(waitForCondition(allOf(withText(R.string.msdkui_app_settings), withParent(withParent(withId(R.id.items_list))), not(isDisplayed()))))
+        return this
     }
 
     /**

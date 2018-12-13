@@ -18,7 +18,13 @@ package com.here.msdkuiapp.espresso.impl.core
 
 import android.support.test.espresso.UiController
 import android.support.test.espresso.ViewAction
-import android.support.test.espresso.action.ViewActions
+import android.support.test.espresso.action.GeneralLocation
+import android.support.test.espresso.action.GeneralSwipeAction
+import android.support.test.espresso.action.Press
+import android.support.test.espresso.action.Swipe
+import android.support.test.espresso.action.CoordinatesProvider
+import android.support.test.espresso.action.ViewActions.actionWithAssertions
+import android.support.test.espresso.action.ViewActions.pressBack
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions
@@ -69,6 +75,26 @@ open class CoreActions {
     }
 
     /**
+     * An action that performs a swipe from bottom to one view height
+     * above the view across the horizontal center of the view.
+     */
+    fun swipeTwiceUp(): ViewAction {
+        val oneHeightAboveTopCenter = CoordinatesProvider { view ->
+            val locationOnScreen = IntArray(2)
+            view.getLocationOnScreen(locationOnScreen)
+            val x: Float = locationOnScreen[0] + view.width / 2.0f
+            val y: Float = locationOnScreen[1] - view.height.toFloat()
+            floatArrayOf(x, y)
+        }
+        return actionWithAssertions(GeneralSwipeAction(
+                Swipe.FAST,
+                GeneralLocation.BOTTOM_CENTER,
+                oneHeightAboveTopCenter,
+                Press.FINGER
+        ))
+    }
+
+    /**
      * Set date of [DatePicker] to tomorrow
      */
     fun setTomorrowDate(): ViewAction {
@@ -114,7 +140,7 @@ open class CoreActions {
      * Press on the back button.
      */
     fun pressBackButton(): CoreActions {
-        onRootView.perform(ViewActions.pressBack())
+        onRootView.perform(pressBack())
         return this
     }
 

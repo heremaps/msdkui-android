@@ -16,8 +16,12 @@
 
 package com.here.msdkuiapp.espresso.tests.guidance.flow
 
+import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.action.ViewActions.swipeDown
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+import android.support.test.espresso.matcher.ViewMatchers.withId
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.FunctionalUITest
@@ -29,6 +33,7 @@ import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
 import com.here.msdkuiapp.espresso.impl.testdata.Constants
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation.PORTRAIT
+import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers.checkCurrentStreetViewValueChanged
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers.checkManeuverPanelData
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers.checkManeuverPanelIsDestinationReached
@@ -39,11 +44,15 @@ import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveN
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationBarActions
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.utils.ManeuversActions
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceCurrentStreetInfoText
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardPullLine
 import com.here.msdkuiapp.espresso.impl.views.guidance.useractions.GuidanceActions
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
 import com.here.msdkuiapp.espresso.tests.TestBase
-import org.junit.*
+import org.junit.FixMethodOrder
+import org.junit.After
+import org.junit.Ignore
+import org.junit.Test
 import org.junit.runners.MethodSorters
 
 /**
@@ -270,6 +279,55 @@ class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
             val currentStreetData = getText(onGuidanceCurrentStreetInfoText)
             // Check that current street view value changed
             checkCurrentStreetViewValueChanged(currentStreetData)
+        }
+    }
+
+    /**
+     * MSDKUI-1276: Dashboard overview in Guidance
+     */
+    @Test
+    @FunctionalUITest
+    fun testDashboardOverviewInGuidanceSimulation() {
+        enumValues<ScreenOrientation>().forEach {
+            // Set screen orientation: PORTRAIT / LANDSCAPE
+            CoreActions().changeOrientation(it)
+            //Enter Drive Navigation
+            CoreActions().enterDriveNavigation()
+                    .provideMockLocation(mockLocationData)
+            // Check drive navigation view opened
+            DriveNavigationBarActions.waitForDriveNavigationView()
+                    .waitForDestinationDisplayed()
+            // Tap anywhere on map view
+            MapActions.waitForMapViewEnabled().tap(destinationForShortSimulation)
+            // Tap on tick to confirm the first waypoint selection
+            DriveNavigationBarActions.waitForDestinationNotDisplayed()
+                    .provideMockLocation(mockLocationData)
+            RoutePlannerBarActions.tapOnTickButton()
+            // Check guidance route overview view opened
+            DriveNavigationBarActions.waitForRouteOverView()
+                    .waitForGuidanceDescriptionDisplayed()
+            // Start navigation simulation
+            DriveNavigationActions.startNavigationSimulation()
+            // Check that dashboard components are visible
+            GuidanceActions.checkGuidanceDashBoardInfo()
+            // Expand dashboard by tap and check
+            onGuidanceDashBoardPullLine.perform(click())
+            DriveNavigationActions.waitGuidanceDashBoardExpand()
+            DriveNavigationMatchers.checkGuidanceDashBoardExpanded()
+            // Collapse dashboard by tap and check
+            onGuidanceDashBoardPullLine.perform(click())
+            DriveNavigationActions.waitGuidanceDashBoardCollapse()
+            DriveNavigationMatchers.checkGuidanceDashBoardExpanded(false)
+            // Expand dashboard by swipe and check
+            onView(withId(R.id.collapsed_view)).perform(CoreActions().swipeTwiceUp())
+            DriveNavigationActions.waitGuidanceDashBoardExpand()
+            DriveNavigationMatchers.checkGuidanceDashBoardExpanded()
+            // Collapse dashboard by swipe and check
+            onView(withId(R.id.guidance_dashboard_view)).perform(swipeDown())
+            DriveNavigationActions.waitGuidanceDashBoardCollapse()
+            DriveNavigationMatchers.checkGuidanceDashBoardExpanded(false)
+            // Stop the guidance with "X" button
+            GuidanceActions.tapOnStopNavigationBtn()
         }
     }
  }

@@ -24,11 +24,11 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.here.android.mpa.guidance.NavigationManager;
 import com.here.msdkui.R;
+import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.DateFormatterUtil;
 import com.here.msdkui.common.DistanceFormatterUtil;
 import com.here.msdkui.common.TimeFormatterUtil;
@@ -37,7 +37,7 @@ import com.here.msdkui.common.TimeFormatterUtil;
  * A view that shows estimated arrival information, like estimated time of arrival (ETA), distance to
  * destination and remaining travel time.
  */
-public class GuidanceEstimatedArrivalView extends FrameLayout {
+public class GuidanceEstimatedArrivalView extends BaseView {
 
     private GuidanceEstimatedArrivalViewData mData;
 
@@ -121,7 +121,7 @@ public class GuidanceEstimatedArrivalView extends FrameLayout {
 
         final String distanceText = data == null || data.getDistance() < 0 ?
                 getContext().getString(R.string.msdkui_value_not_available) :
-                DistanceFormatterUtil.formatDistanceForUI(getContext(), data.getDistance());
+                DistanceFormatterUtil.formatDistance(getContext(), data.getDistance(), mUnitSystem);
         distance.setText(distanceText);
 
         final String durationText = data == null || data.getDuration() < 0 ?

@@ -28,6 +28,7 @@ import com.here.android.mpa.routing.Route
 import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkuiapp.*
 import com.here.msdkuiapp.common.Constant.GO_VISIBILITY
+import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.landing.LandingActivity
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
@@ -97,11 +98,13 @@ class RoutePreviewFragment : Fragment(), GuidanceContracts.RoutePreview {
             list_end_divider.visibility = View.GONE
             place_holder.visibility = View.VISIBLE
         } else {
-            activity?.appActionBar?.titleView?.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED)
             see_steps.text = activity!!.getText(com.here.msdkuiapp.R.string.msdkui_app_guidance_button_showmap)
             guidance_maneuver_list.visibility = View.VISIBLE
             list_end_divider.visibility = View.VISIBLE
             place_holder.visibility = View.GONE
+            activity?.appActionBar?.titleView?.run {
+                sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED)
+            }
         }
     }
 
@@ -115,9 +118,14 @@ class RoutePreviewFragment : Fragment(), GuidanceContracts.RoutePreview {
         destination.text = text
         with(description) {
             isTrafficEnabled = trafficEnabled
+            unitSystem = Util.getLocaleUnit()
             this.route = route
         }
-        guidance_maneuver_list?.route = route
+        with(guidance_maneuver_list) {
+            unitSystem = Util.getLocaleUnit()
+            this.route = route
+        }
+
         listener?.renderRoute(route)
         toggleSteps(listVisible)
     }

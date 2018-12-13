@@ -22,6 +22,7 @@ import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.withText
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.view.View
+import com.here.msdkui.common.measurements.UnitSystem
 import com.here.msdkui.routing.RouteUtil
 import com.here.msdkui.routing.RouteDescriptionItem
 import com.here.msdkuiapp.R
@@ -170,7 +171,7 @@ object DriveNavigationMatchers {
                     add(RouteUtil.getArrivalTime(context, route,true).toString().trim())
                     add(RouteUtil.getTimeToArrive(context, route,true).toString().trim())
                     add(RouteUtil.getTrafficDelayed(context, route).toString().trim())
-                    add(RouteUtil.getDetails(context, route).toString().trim())
+                    add(RouteUtil.getDetails(context, route, UnitSystem.METRIC).toString().trim())
                     return filter { s -> s == expectedValue }.single().isNotEmpty()
                 }
             }

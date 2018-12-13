@@ -24,11 +24,11 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.here.android.mpa.routing.Maneuver;
 import com.here.msdkui.R;
+import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.DistanceFormatterUtil;
 
 import java.util.EnumMap;
@@ -41,7 +41,7 @@ import java.util.Set;
  * A view that displays a maneuver based on its visible sections. To make this item visible, please set {@link Maneuver} in
  * {@link ManeuverItemView#setManeuver(List, int)}.
  */
-public class ManeuverItemView extends RelativeLayout {
+public class ManeuverItemView extends BaseView {
 
     private final EnumMap<ManeuverItemView.Section, View> mSections = new EnumMap<>(
             ManeuverItemView.Section.class);
@@ -285,7 +285,7 @@ public class ManeuverItemView extends RelativeLayout {
             distanceView.setVisibility(GONE);
         } else {
             distanceView.setVisibility(VISIBLE);
-            distanceView.setText(DistanceFormatterUtil.format(getContext(), distance));
+            distanceView.setText(DistanceFormatterUtil.format(getContext(), distance, mUnitSystem));
         }
 
         if (getVisibility() == INVISIBLE) {

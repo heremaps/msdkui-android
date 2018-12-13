@@ -26,16 +26,17 @@ import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.here.msdkui.R;
+import com.here.msdkui.common.BaseView;
+import com.here.msdkui.common.SpeedFormatterUtil;
 
 /**
  * A view that shows the current speed limit. When user does not exceed speed limit, then
  * this view is hidden. This view consumes data contained in {@link GuidanceSpeedData}.
  */
-public class GuidanceSpeedLimitView extends RelativeLayout {
+public class GuidanceSpeedLimitView extends BaseView {
 
     private GuidanceSpeedData mGuidanceSpeedData;
 
@@ -117,7 +118,8 @@ public class GuidanceSpeedLimitView extends RelativeLayout {
         if (!data.equals(mGuidanceSpeedData)) {
             if (data.getCurrentSpeedLimit() > 0) {
                 final TextView speedLimit = (TextView) findViewById(R.id.speed_limit);
-                speedLimit.setText(String.valueOf(data.getCurrentSpeedLimit()));
+                speedLimit.setText(String.valueOf(SpeedFormatterUtil.format(
+                        data.getCurrentSpeedLimit(), mUnitSystem)));
                 container.setVisibility(VISIBLE);
             } else {
                 container.setVisibility(GONE);

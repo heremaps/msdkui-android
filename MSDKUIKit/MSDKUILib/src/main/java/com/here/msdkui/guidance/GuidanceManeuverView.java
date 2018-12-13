@@ -27,17 +27,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.here.msdkui.R;
+import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.DistanceFormatterUtil;
 
 /**
  * A view that shows the next maneuver panel for guidance. The view consumes the data contained in
  * {@link GuidanceManeuverData}.
  */
-public class GuidanceManeuverView extends RelativeLayout {
+public class GuidanceManeuverView extends BaseView {
 
     private static final String EMPTY_STRING = "";
 
@@ -135,7 +135,8 @@ public class GuidanceManeuverView extends RelativeLayout {
         } else {
             distanceView.setVisibility(View.VISIBLE);
             distanceView.setText(
-                    DistanceFormatterUtil.formatDistanceForUI(getContext(), maneuverData.getDistance()));
+                    DistanceFormatterUtil.formatDistance(
+                            getContext(), maneuverData.getDistance(), mUnitSystem));
         }
     }
 

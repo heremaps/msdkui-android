@@ -18,10 +18,11 @@ This guide is for developers who want to contribute to the MSDKUI codebase, buil
 	- [Generating a Unit Test Coverage Report](#generating-a-unit-test-coverage-report)
 	- [Running UI Tests for MDKUIApp](#running-ui-tests-for-mdkuiapp)
 	- [Optional: Building HERE UI Kit Library and Demo as part of one project](#optional-building-here-ui-kit-library-and-demo-as-part-of-one-project)
-- [Commit / Pull Request Policy](#commit-pull-request-policy)
+- [Commit Policy](#commit-policy)
 	- [Writing Git Commit Messages](#writing-git-commit-messages)
 		- [A normal ticket](#a-normal-ticket)
 		- [Solving multiple tickets](#solving-multiple-tickets)
+- [Submitting a Pull Request](#submitting-a-pull-request)
 
 <!-- /TOC -->
 
@@ -138,7 +139,7 @@ In _MSDKUIDemo/build.gradle_ add the following build script dependency:
 classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.4.15'
 ```
 
-## Commit / Pull Request Policy
+## Commit Policy
 
 Please follow our commit policy. Once you have pushed your changes, you should be able to see your work on GitHub. Each pull request will be reviewed and merged if there are no objections. Before sending a pull request, please make sure to:
 
@@ -186,3 +187,12 @@ TICKET-Z: Ticket Z Title
 
 Extended description (as for a normal ticket, see above).
 ```
+
+## Submitting a Pull Request
+
+ - Pull requests may contain multiple commits.
+ - Pull requests should not include "Merge" commits.
+     - Rebase your work to keep the pull request commits on top.
+ - Give the pull request a short title which explains what the pull request is about.
+ - Give the pull request a description with details on what the pull request is about.
+ - Once the pull request is merged into master, delete the remote feature branch.

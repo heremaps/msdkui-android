@@ -26,12 +26,12 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.here.android.mpa.routing.Route;
 import com.here.android.mpa.routing.RouteOptions;
 import com.here.msdkui.R;
+import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.ThemeUtil;
 
 import java.util.EnumMap;
@@ -42,7 +42,7 @@ import java.util.Map;
  * A view that shows a row containing details about a {@link Route}. This view can be used as a list item for
  * a {@link RouteDescriptionList}.
  */
-public class RouteDescriptionItem extends RelativeLayout {
+public class RouteDescriptionItem extends BaseView {
 
     private final EnumMap<RouteDescriptionItem.Section, View> mSections = new EnumMap<>(
             RouteDescriptionItem.Section.class);
@@ -307,7 +307,8 @@ public class RouteDescriptionItem extends RelativeLayout {
             ((TextView) mSections.get(Section.TRAFFIC_WARNING)).setVisibility(GONE);
         }
 
-        ((TextView) mSections.get(Section.DETAILS)).setText(RouteUtil.getDetails(getContext(), mRoute));
+        ((TextView) mSections.get(Section.DETAILS)).setText(
+                RouteUtil.getDetails(getContext(), mRoute, mUnitSystem));
         ((SectionBar) mSections.get(Section.SECTION_BAR))
                 .bind(RouteUtil.getSectionBar(getContext(), mRoute), mSectionBarScaling);
 

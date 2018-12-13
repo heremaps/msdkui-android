@@ -25,17 +25,17 @@ import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.here.msdkui.R;
+import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.DistanceFormatterUtil;
 
 /**
  * A view that shows maneuver after next maneuver.
  */
-public class GuidanceNextManeuverView extends FrameLayout {
+public class GuidanceNextManeuverView extends BaseView {
 
     private GuidanceNextManeuverData mNextManeuverData;
 
@@ -124,7 +124,8 @@ public class GuidanceNextManeuverView extends FrameLayout {
         } else {
             afterNextManeuverContainer.setVisibility(View.VISIBLE);
             iconView.setImageResource(nextManeuverData.getIconId());
-            maneuverDistance.setText(DistanceFormatterUtil.format(getContext(), nextManeuverData.getDistance()));
+            maneuverDistance.setText(DistanceFormatterUtil.format(
+                    getContext(), nextManeuverData.getDistance(), mUnitSystem));
             streetName.setText(nextManeuverData.getStreetName());
         }
     }

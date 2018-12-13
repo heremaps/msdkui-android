@@ -187,7 +187,7 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
     }
 
     private fun addEstimatedArrivalTimeView() {
-        addFragment(R.id.eta_view_container, GuidanceEstimatedArrivalViewFragment::class.java, false)
+        addFragment(R.id.eta_view_container, GuidanceEstimatedArrivalFragment::class.java, false)
     }
 
     private fun addStreetNameView() {

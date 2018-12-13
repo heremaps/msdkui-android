@@ -34,45 +34,45 @@ import org.mockito.Mockito.`when`
 import java.util.*
 
 /**
- * Tests for [GuidanceEstimatedArrivalViewFragment].
+ * Tests for [GuidanceEstimatedArrivalFragment].
  */
-class GuidanceEstimatedArrivalViewFragmentTest :BaseTest() {
+class GuidanceEstimatedArrivalFragmentTest :BaseTest() {
 
-    lateinit var guidanceEstimatedArrivalViewFragment: GuidanceEstimatedArrivalViewFragment
+    lateinit var guidanceEstimatedArrivalFragment: GuidanceEstimatedArrivalFragment
 
     @Before
     fun setup() {
         super.setUp()
         navigationManager = mock(NavigationManager::class.java)
-        guidanceEstimatedArrivalViewFragment = GuidanceEstimatedArrivalViewFragment.newInstance()
+        guidanceEstimatedArrivalFragment = GuidanceEstimatedArrivalFragment.newInstance()
     }
 
     @Test
     fun testPanelCreation() {
-        addFrag(guidanceEstimatedArrivalViewFragment,
-                GuidanceEstimatedArrivalViewFragment::class.java.name)
-        assertNotNull(guidanceEstimatedArrivalViewFragment)
-        assertNotNull(guidanceEstimatedArrivalViewFragment.view)
+        addFrag(guidanceEstimatedArrivalFragment,
+                GuidanceEstimatedArrivalFragment::class.java.name)
+        assertNotNull(guidanceEstimatedArrivalFragment)
+        assertNotNull(guidanceEstimatedArrivalFragment.view)
         assertEquals(
-                (guidanceEstimatedArrivalViewFragment.view as GuidanceEstimatedArrivalView).unitSystem,
+                (guidanceEstimatedArrivalFragment.view as GuidanceEstimatedArrivalView).unitSystem,
                 Util.getLocaleUnit())
     }
 
     @Test
     fun testOnPause() {
-        guidanceEstimatedArrivalViewFragment.viewPresenter = mock(GuidanceEstimatedArrivalViewPresenter::class.java)
-        guidanceEstimatedArrivalViewFragment.onPause()
-        verify(guidanceEstimatedArrivalViewFragment.viewPresenter!!).pause()
+        guidanceEstimatedArrivalFragment.viewPresenter = mock(GuidanceEstimatedArrivalViewPresenter::class.java)
+        guidanceEstimatedArrivalFragment.onPause()
+        verify(guidanceEstimatedArrivalFragment.viewPresenter!!).pause()
     }
 
     @Test
     fun testOnDataChangedCallback() {
         // calling onManeuverData will update panel
-        addFrag(guidanceEstimatedArrivalViewFragment, GuidanceNextManeuverFragment::class.java.name)
+        addFrag(guidanceEstimatedArrivalFragment, GuidanceNextManeuverFragment::class.java.name)
         val data = mock(GuidanceEstimatedArrivalViewData::class.java)
         val date = mock(Date::class.java)
         `when`(data.eta).thenReturn(date)
-        guidanceEstimatedArrivalViewFragment.onDataChanged(data)
-        Assert.assertNotNull((guidanceEstimatedArrivalViewFragment.view as GuidanceEstimatedArrivalView).estimatedArrivalData)
+        guidanceEstimatedArrivalFragment.onDataChanged(data)
+        Assert.assertNotNull((guidanceEstimatedArrivalFragment.view as GuidanceEstimatedArrivalView).estimatedArrivalData)
     }
 }

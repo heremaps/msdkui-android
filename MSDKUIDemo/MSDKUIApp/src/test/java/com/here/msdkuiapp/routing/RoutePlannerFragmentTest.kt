@@ -215,12 +215,9 @@ class RoutePlannerFragmentTest : BaseTest() {
 
         fragment.waypointSelectionCancelled(null, null)
         fragment.waypointSelectionCancelled(0, null)
-        `when`(entry.isValid).thenReturn(false)
-        fragment.waypointSelectionCancelled(0, entry)
-        `when`(entry.isValid).thenReturn(true)
-        fragment.waypointSelectionCancelled(0, entry)
+        fragment.waypointSelectionCancelled(1, null)
         // All above calls should not remove any entry from waypointList because of incorrect
-        // data and min waypoint items requirement.
+        // index and min waypoint items requirement.
         assertEquals(waypointList.entriesCount, 2)
 
         waypointList.addEntry(entry)

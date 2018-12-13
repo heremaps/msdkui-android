@@ -41,6 +41,7 @@ import com.here.msdkui.common.DateFormatterUtil;
 import com.here.msdkui.common.DistanceFormatterUtil;
 import com.here.msdkui.common.ThemeUtil;
 import com.here.msdkui.common.TimeFormatterUtil;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -181,22 +182,30 @@ public final class RouteDescriptionHandler {
 
     /**
      * Gets the total length of the associated {@link Route} as formatted string.
+     *
+     * @param unitSystem
+     *         unit system {@link UnitSystem}.
+     *
      * @return the formatted route length including units.
      */
-    public String getRouteLength() {
+    public String getRouteLength(UnitSystem unitSystem) {
         final int length = mRoute.getLength();
-        return DistanceFormatterUtil.format(mContext, length);
+        return DistanceFormatterUtil.format(mContext, length, unitSystem);
     }
 
     /**
      * Gets different details of the associated {@link Route} like via and others.
+     *
+     * @param unitSystem
+     *         unit system {@link UnitSystem}.
+     *
      * @return a {@link Spannable} containing the details.
      */
-    public Spannable getDetails() {
+    public Spannable getDetails(UnitSystem unitSystem) {
         final RouteOptions.TransportMode transportMode = mRoute.getRoutePlan()
                 .getRouteOptions()
                 .getTransportMode();
-        final SpannableStringBuilder builder = new SpannableStringBuilder(getRouteLength());
+        final SpannableStringBuilder builder = new SpannableStringBuilder(getRouteLength(unitSystem));
         if (transportMode == RouteOptions.TransportMode.PUBLIC_TRANSPORT) {
             return new SpannableStringBuilder(); // empty
         } else {

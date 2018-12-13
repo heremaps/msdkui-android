@@ -24,6 +24,8 @@ import android.widget.TextView;
 
 import com.here.RobolectricTest;
 import com.here.msdkui.R;
+import com.here.msdkui.common.SpeedFormatterUtil;
+import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -66,12 +68,14 @@ public class GuidanceSpeedLimitViewTest extends RobolectricTest {
         data = new GuidanceSpeedData(45, 50);
         mGuidanceSpeedLimitView.setCurrentSpeedData(data);
         assertThat(container.getVisibility(), is(View.VISIBLE));
-        assertThat(speedLimitView.getText().toString(), is(String.valueOf(50)));
+        assertThat(speedLimitView.getText().toString(),
+                is(String.valueOf(SpeedFormatterUtil.format(50, UnitSystem.METRIC))));
 
         data = new GuidanceSpeedData(60, 50);
         mGuidanceSpeedLimitView.setCurrentSpeedData(data);
         assertThat(container.getVisibility(), is(View.VISIBLE));
-        assertThat(speedLimitView.getText().toString(), is(String.valueOf(50)));
+        assertThat(speedLimitView.getText().toString(),
+                is(String.valueOf(SpeedFormatterUtil.format(50, UnitSystem.METRIC))));
 
         data = new GuidanceSpeedData(150, 0);
         mGuidanceSpeedLimitView.setCurrentSpeedData(data);
@@ -80,7 +84,8 @@ public class GuidanceSpeedLimitViewTest extends RobolectricTest {
         data = new GuidanceSpeedData(45, 50);
         mGuidanceSpeedLimitView.setCurrentSpeedData(data);
         assertThat(container.getVisibility(), is(View.VISIBLE));
-        assertThat(speedLimitView.getText().toString(), is(String.valueOf(50)));
+        assertThat(speedLimitView.getText().toString(),
+                is(String.valueOf(SpeedFormatterUtil.format(50, UnitSystem.METRIC))));
     }
 
     @Test

@@ -23,7 +23,6 @@ import com.here.android.mpa.common.GeoPosition;
 import com.here.android.mpa.common.PositioningManager;
 import com.here.android.mpa.common.RoadElement;
 import com.here.android.mpa.guidance.NavigationManager;
-import com.here.msdkui.common.VelocityConverterUtil;
 import com.here.msdkui.guidance.base.BaseGuidancePresenter;
 
 import java.util.ArrayList;
@@ -90,8 +89,7 @@ public class GuidanceSpeedPresenter extends BaseGuidancePresenter {
         final double speed = geoPosition != null && geoPosition.isValid() && geoPosition.getSpeed() != GeoPosition.UNKNOWN ?
                 geoPosition.getSpeed() : -1;
         if (speed >= 0) {
-            final GuidanceSpeedData data = new GuidanceSpeedData(VelocityConverterUtil.toKmPerHour(speed),
-                    VelocityConverterUtil.toKmPerHour((double) speedLimit));
+            final GuidanceSpeedData data = new GuidanceSpeedData(speed, speedLimit);
             notifyDataChanged(data);
         } else {
             notifyDataChanged(null);

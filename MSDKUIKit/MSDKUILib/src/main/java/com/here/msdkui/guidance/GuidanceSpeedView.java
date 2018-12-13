@@ -25,10 +25,11 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.here.msdkui.R;
+import com.here.msdkui.common.BaseView;
+import com.here.msdkui.common.SpeedFormatterUtil;
 
 /**
  * A view that shows the current speed the user is driving with. This view consumes data contained in
@@ -58,7 +59,7 @@ import com.here.msdkui.R;
  * The view will switch the background item depending on the data set in
  * {@link GuidanceSpeedView#setCurrentSpeedData(GuidanceSpeedData)}.
  */
-public class GuidanceSpeedView extends RelativeLayout {
+public class GuidanceSpeedView extends BaseView {
 
     private static final int[] STATE_SPEEDING = {
             R.attr.guidanceSpeedLimitExceeded
@@ -149,9 +150,15 @@ public class GuidanceSpeedView extends RelativeLayout {
     private void populateUi(@Nullable GuidanceSpeedData data) {
         final String speedText = data == null || !data.isValid() ?
                 getContext().getString(R.string.msdkui_value_not_available) :
-                String.valueOf(data.getCurrentSpeed());
+                String.valueOf(SpeedFormatterUtil.format(data.getCurrentSpeed(), mUnitSystem));
         final TextView speed = findViewById(R.id.guidance_current_speed_value);
         speed.setText(speedText);
+        final TextView speedUnit = findViewById(R.id.guidance_current_speed_unit);
+        String speedUnitString = SpeedFormatterUtil.getUnitString(
+                speedUnit.getContext(), mUnitSystem);
+        if (!speedUnitString.contentEquals(speedUnit.getText())) {
+            speedUnit.setText(speedUnitString);
+        }
     }
 
     /**

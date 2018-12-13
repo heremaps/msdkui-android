@@ -28,6 +28,7 @@ import com.here.android.mpa.routing.Route
 import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkuiapp.*
 import com.here.msdkuiapp.common.Constant.GO_VISIBILITY
+import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.landing.LandingActivity
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
@@ -117,9 +118,14 @@ class RoutePreviewFragment : Fragment(), GuidanceContracts.RoutePreview {
         destination.text = text
         with(description) {
             isTrafficEnabled = trafficEnabled
+            unitSystem = Util.getLocaleUnit()
             this.route = route
         }
-        guidance_maneuver_list?.route = route
+        with(guidance_maneuver_list) {
+            unitSystem = Util.getLocaleUnit()
+            this.route = route
+        }
+
         listener?.renderRoute(route)
         toggleSteps(listVisible)
     }

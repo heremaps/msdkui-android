@@ -65,7 +65,6 @@ class IconButton(context: Context, attrs: AttributeSet? = null, defStyleAttr: In
      * Updates the foreground image based on the button type.
      */
     private fun updateImage() {
-        contentDescription = type.name
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             setImageResource(type.value)
         } else {

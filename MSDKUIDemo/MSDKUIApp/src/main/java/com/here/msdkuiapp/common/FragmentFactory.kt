@@ -80,8 +80,8 @@ object FragmentFactory {
                     isAssignableFrom(GuidanceNextManeuverFragment::class.java) -> {
                         GuidanceNextManeuverFragment.newInstance()
                     }
-                    isAssignableFrom(GuidanceEstimatedArrivalViewFragment::class.java) -> {
-                        GuidanceEstimatedArrivalViewFragment.newInstance()
+                    isAssignableFrom(GuidanceEstimatedArrivalFragment::class.java) -> {
+                        GuidanceEstimatedArrivalFragment.newInstance()
                     }
                     isAssignableFrom(GuidanceCurrentSpeedFragment::class.java) -> {
                         GuidanceCurrentSpeedFragment.newInstance()

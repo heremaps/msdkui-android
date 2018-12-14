@@ -34,16 +34,16 @@ import kotlinx.android.extensions.ContainerOptions
  * Fragment class for GuidanceEstimatedArrivalView.
  */
 @ContainerOptions(CacheImplementation.NO_CACHE)
-class GuidanceEstimatedArrivalViewFragment : Fragment(), GuidanceEstimatedArrivalViewListener {
+class GuidanceEstimatedArrivalFragment : Fragment(), GuidanceEstimatedArrivalViewListener {
 
-    internal var viewPresenter : GuidanceEstimatedArrivalViewPresenter? = null;
+    internal var viewPresenter : GuidanceEstimatedArrivalViewPresenter? = null
 
     init {
         retainInstance = true
     }
 
     companion object {
-        fun newInstance() = GuidanceEstimatedArrivalViewFragment()
+        fun newInstance() = GuidanceEstimatedArrivalFragment()
     }
 
     /**
@@ -57,12 +57,12 @@ class GuidanceEstimatedArrivalViewFragment : Fragment(), GuidanceEstimatedArriva
     }
 
     /**
-     * Creates Presenter for this [GuidanceEstimatedArrivalViewFragment].
+     * Creates Presenter for this [GuidanceEstimatedArrivalFragment].
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         if (viewPresenter == null) {
             viewPresenter = GuidanceEstimatedArrivalViewPresenter(SingletonHelper.navigationManager).apply {
-                addListener(this@GuidanceEstimatedArrivalViewFragment)
+                addListener(this@GuidanceEstimatedArrivalFragment)
                 resume()
             }
         }

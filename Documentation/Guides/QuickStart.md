@@ -115,7 +115,7 @@ Since the HERE Mobile SDK UI Kit uses Lambda expressions, _Java 8_ is required. 
 ```
 
 ### Theme setup
-The HERE Mobile SDK UI Kit library offers various options to customize the default look and feel of its containing components. Make sure to derive your own themes from the `MSDKUIDarkTheme`. Other parent themes may be provided in the future.
+The HERE Mobile SDK UI Kit library offers various options to customize the default look and feel of its containing components. Make sure to derive your own themes from the `MSDKUIDarkTheme`. Other parent themes may be provided in the future. `MSDKUIDarkTheme` itself is derived from `Theme.AppCompat.Light.DarkActionBar`.
 
 Overwrite the default `styles.xml` (to be found in `res/values`) to set a new base application theme:
 ```xml

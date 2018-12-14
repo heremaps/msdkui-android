@@ -98,6 +98,6 @@ class RoutingTestData {
      * Test places for mocking location service
      */
     enum class TestPlace(val latitude: Double, val longitude: Double, val altitude: Float, val distanceAccuracy: Float) {
-        TEST_PLACE_GERMANY_BERLIN(52.469717, 13.385392, 0f, 10f)
+        TEST_PLACE_GERMANY_BERLIN(GEO_POINT_2.lat, GEO_POINT_2.lng, 0f, 10f)
     }
 }

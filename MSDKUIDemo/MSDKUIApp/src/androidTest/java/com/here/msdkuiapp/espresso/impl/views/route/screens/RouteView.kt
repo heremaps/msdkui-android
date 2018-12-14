@@ -36,153 +36,153 @@ import org.hamcrest.Matchers.allOf
 object RouteView {
 
     /**
-     * @return The [Matcher]<[View]> on route description view
+     * The [Matcher]<[View]> on route description view
      */
     val onRouteDescriptionView: Matcher<View>
         get() = withId(R.id.route_description_list)
 
     /**
-     * @return The [ViewInteraction] route description list on route
+     * The [ViewInteraction] route description list on route
      */
     val onRouteDescriptionList: ViewInteraction
         get() = onView(withId(R.id.route_description_list))
 
     /**
-     * @return The [ViewInteraction] maneuver description list on route
+     * The [ViewInteraction] maneuver description list on route
      */
     val onRouteManeuversList: ViewInteraction
         get() = onView(withId(R.id.guidance_maneuver_list))
 
     /**
-     * @return The [ViewInteraction] duration time of the first item in routes list
+     * The [ViewInteraction] duration time of the first item in routes list
      */
     val onRouteListItemDuration: ViewInteraction
         get() = onRouteListItemDuration(ROUTE_RESULT_1)
 
     /**
-     * @return The [ViewInteraction] icon type of the first item in routes list
+     * The [ViewInteraction] icon type of the first item in routes list
      */
     val onRouteListItemIconType: ViewInteraction
         get() = onRouteListItemIconType(ROUTE_RESULT_1)
 
     /**
-     * @return The [ViewInteraction] delay information of the first item in routes list
+     * The [ViewInteraction] delay information of the first item in routes list
      */
     val onRouteListItemDelayInformation: ViewInteraction
         get() = onRouteListItemDelayInformation(ROUTE_RESULT_1)
 
     /**
-     * @return The [ViewInteraction] address & distance details of the first item in routes list
+     * The [ViewInteraction] address & distance details of the first item in routes list
      */
     val onRouteListItemDetails: ViewInteraction
         get() = onRouteListItemDetails(ROUTE_RESULT_1)
 
     /**
-     * @return The [ViewInteraction] arrival time of the first item in routes list
+     * The [ViewInteraction] arrival time of the first item in routes list
      */
     val onRouteListItemArrival: ViewInteraction
         get() = onRouteListItemArrival(ROUTE_RESULT_1)
 
     /**
-     * @return The [ViewInteraction] duration time on route overview
+     * The [ViewInteraction] duration time on route overview
      */
     val onRouteOverviewDuration: ViewInteraction
         get() = onView(allOf(ViewMatchers.withId(R.id.desc_time), withParent(withParent(withId(R.id.description)))))
 
     /**
-     * @return The [ViewInteraction] delay information time on route overview
+     * The [ViewInteraction] delay information time on route overview
      */
     val onRouteOverviewDelayInformation: ViewInteraction
         get() = onView(allOf(withId(R.id.desc_traffic_warning), withParent(withParent(withId(R.id.description)))))
 
     /**
-     * @return The [ViewInteraction] address & distance details on route overview
+     * The [ViewInteraction] address & distance details on route overview
      */
     val onRouteOverviewDetails: ViewInteraction
         get() = onView(Matchers.allOf(ViewMatchers.withId(R.id.desc_details), ViewMatchers.withParent(ViewMatchers.withParent(ViewMatchers.withId(R.id.description)))))
 
     /**
-     * @return The [ViewInteraction] arrival time on route overview
+     * The [ViewInteraction] arrival time on route overview
      */
     val onRouteOverviewArrival: ViewInteraction
         get() = onView(Matchers.allOf(ViewMatchers.withId(R.id.desc_arrival), ViewMatchers.withParent(ViewMatchers.withParent(ViewMatchers.withId(R.id.description)))))
 
     /**
-     * @return The [String] instruction text on maneuver description list
+     * The [String] instruction text on maneuver description list
      */
     val onManeuverInstructionText: String
         get() = CoreMatchers.getTextById(R.string.msdkui_arrive)
 
     /**
-     * @return The [ViewInteraction] line progress bar information on route overview
+     * The [ViewInteraction] line progress bar information on route overview
      */
     val onRouteDescLineBar: ViewInteraction
         get() = onRouteDescLineBar(ROUTE_RESULT_1)
 
     /**
-     * @return The [ViewInteraction] route item displayed on route overview
+     * The [ViewInteraction] route item displayed on route overview
      */
     val onRouteOverviewItem: ViewInteraction
         get() = onView(withId(R.id.description))
 
     /**
-     * @return The [ViewInteraction] destination on route overview
+     * The [ViewInteraction] destination on route overview
      */
     val onDestinationText: ViewInteraction
         get() = onView(withId(R.id.destination))
 
     /**
-     * @return The [ViewInteraction] distance on maneuver description list
+     * The [ViewInteraction] distance on maneuver description list
      */
     fun onManeuverDistance(item: Int): ViewInteraction = onView(withIndex(withId(R.id.maneuver_distance_view), item))
 
     /**
-     * @return The [ViewInteraction] icon type on maneuver description list
+     * The [ViewInteraction] icon type on maneuver description list
      */
     fun onManeuverIconType(item: Int): ViewInteraction = onView(withIndex(withId(R.id.maneuver_icon_view), item))
 
     /**
-     * @return The [ViewInteraction] instruction on maneuver description list
+     * The [ViewInteraction] instruction on maneuver description list
      */
     fun onManeuverInstruction(item: Int): ViewInteraction = onView(withIndex(withId(R.id.maneuver_instruction_view), item))
 
     /**
-     * @return The [ViewInteraction] location address on maneuver description list
+     * The [ViewInteraction] location address on maneuver description list
      */
     fun onManeuverAddress(item: Int): ViewInteraction = onView(withIndex(withId(R.id.maneuver_address_view), item))
 
     /**
-     * @return The [ViewInteraction] duration time on route description list
+     * The [ViewInteraction] duration time on route description list
      */
     fun onRouteListItemDuration(item: Int): ViewInteraction = onView(withIndex(withId(R.id.desc_time), item))
 
     /**
-     * @return The [ViewInteraction] icon type on route description list
+     * The [ViewInteraction] icon type on route description list
      */
     fun onRouteListItemIconType(item: Int): ViewInteraction = onView(withIndex(withId(R.id.desc_type_icon), item))
 
     /**
-     * @return The [ViewInteraction] delay information on route description list
+     * The [ViewInteraction] delay information on route description list
      */
     fun onRouteListItemDelayInformation(item: Int): ViewInteraction = onView(withIndex(withId(R.id.desc_traffic_warning), item))
 
     /**
-     * @return The [ViewInteraction] address & distance details on route description list
+     * The [ViewInteraction] address & distance details on route description list
      */
     fun onRouteListItemDetails(item: Int): ViewInteraction = onView(withIndex(withId(R.id.desc_details), item))
 
     /**
-     * @return The [ViewInteraction] arrival on route description list
+     * The [ViewInteraction] arrival on route description list
      */
     fun onRouteListItemArrival(item: Int): ViewInteraction = onView(withIndex(withId(R.id.desc_arrival), item))
 
     /**
-     * @return The [ViewInteraction] line progress bar information on route description list
+     * The [ViewInteraction] line progress bar information on route description list
      */
     fun onRouteDescLineBar(item: Int): ViewInteraction = onView(withIndex(withId(R.id.desc_bar), item))
 
     /**
-     * @return The [ViewInteraction] for see steps button on route maneuver list.
+     * The [ViewInteraction] for see steps button on route maneuver list.
      */
     val onSeeManeuverSteps: ViewInteraction get() = onView(withId(R.id.see_steps))
 }

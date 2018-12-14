@@ -3,7 +3,7 @@ The HERE Mobile SDK UI Kit is a framework that provides modular and highly custo
 
 ![](Documentation/Guides/Images/UIKit_Intro.png)
 
-Rapidly build beautiful UIs for common use cases and scenarios within minutes. Version 1.x of the HERE Mobile SDK UI Kit will mainly focus on route planning and maneuver details. More components will follow subsequently with the next releases.
+Rapidly build beautiful UIs for common use cases and scenarios within minutes. Version 2.x of the HERE Mobile SDK UI Kit will mainly focus on route planning, maneuver details and guidance. More components will follow subsequently with the next releases.
 
 ## Feature List
 - Modular UI building blocks

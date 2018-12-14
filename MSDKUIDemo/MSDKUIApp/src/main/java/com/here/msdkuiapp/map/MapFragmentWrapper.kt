@@ -100,8 +100,7 @@ class MapFragmentWrapper : RetainFragment() {
 
         override fun onSizeChanged(width: Int, height: Int) {
             if (state.zoomToRouteAfterMapViewOnSizeChangedPending) {
-                state.zoomToRouteAfterMapViewOnSizeChangedPending = false
-                zoomToBoundingBoxWithMargins(state.routeBoundingBox)
+                state.zoomToRouteAfterMapViewOnSizeChangedPending = !zoomToBoundingBoxWithMargins(state.routeBoundingBox)
             }
         }
 
@@ -215,17 +214,22 @@ class MapFragmentWrapper : RetainFragment() {
      * Zooms the map to given bounding box (additionally it adds margins, to be sure that markers
      * are fully visible).
      * @param box [GeoBoundingBox]
+     * @return true if zoomTo function has been executed, otherwise false
      */
-    private fun zoomToBoundingBoxWithMargins(box: GeoBoundingBox?) {
+    private fun zoomToBoundingBoxWithMargins(box: GeoBoundingBox?): Boolean {
         box != null ?: map?.run {
-            val leftRightMargin = maxOf(state.zoomLeftMargin, state.zoomRightMargin)
-            val topBottomMargin = maxOf(state.zoomTopMargin, state.zoomBottomMargin)
-            zoomTo(box,
-                    width - 2 * leftRightMargin,
-                    height - 2 * topBottomMargin,
-                    Map.Animation.LINEAR,
-                    Map.MOVE_PRESERVE_ORIENTATION)
+            val newWidth = width - 2 * maxOf(state.zoomLeftMargin, state.zoomRightMargin)
+            val newHeight = height - 2 * maxOf(state.zoomTopMargin, state.zoomBottomMargin)
+            if (newWidth > 0 && newHeight > 0) {
+                zoomTo(box,
+                        newWidth,
+                        newHeight,
+                        Map.Animation.LINEAR,
+                        Map.MOVE_PRESERVE_ORIENTATION)
+                return true
+            }
         }
+        return false
     }
 
     /**

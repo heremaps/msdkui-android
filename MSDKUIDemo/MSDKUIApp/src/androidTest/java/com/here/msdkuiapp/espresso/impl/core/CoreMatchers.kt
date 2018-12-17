@@ -16,6 +16,7 @@
 
 package com.here.msdkuiapp.espresso.impl.core
 
+import android.content.Context
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.PerformException
 import android.support.test.espresso.ViewAction
@@ -23,6 +24,7 @@ import android.support.test.espresso.UiController
 import android.support.test.espresso.FailureHandler
 import android.support.test.espresso.ViewInteraction
 import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.matcher.BoundedMatcher
 import android.support.test.espresso.matcher.ViewMatchers.isRoot
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom
@@ -42,6 +44,8 @@ import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
+import java.lang.Double.parseDouble
+import java.lang.NumberFormatException
 import java.util.*
 import java.util.concurrent.TimeUnit.SECONDS
 import java.util.concurrent.TimeoutException
@@ -143,6 +147,50 @@ object CoreMatchers {
      */
     fun withDateText(date: Date): Matcher<View>? {
         return withText(DateFormatterUtil.format(date))
+    }
+
+    /**
+     * [Matcher] that matches [TextView] with numeric text
+     */
+    fun isNumeric():Matcher<View> {
+        return object: TypeSafeMatcher<View>() {
+            override fun describeTo(description: Description) {
+                description.appendText("is numeric ")
+            }
+
+            override fun matchesSafely(item: View): Boolean {
+                with(item as TextView) {
+                    try {
+                        parseDouble(text.toString())
+                    } catch (e: NumberFormatException) {
+                        return false
+                    }
+                }
+                return true
+            }
+        }
+    }
+
+    /**
+     * Matches [TextView] based on it's attribute color.
+     * @param colorAttrId Attribute color id (from R.attr)
+     */
+    fun hasTextColor(colorAttrId: Int): Matcher<View> {
+        return object : BoundedMatcher<View, TextView>(TextView::class.java) {
+            private var context: Context? = null
+
+            override fun matchesSafely(textView: TextView): Boolean {
+                context = textView.context
+                val expectedColor = ThemeUtil.getColor(context, colorAttrId)
+                val textViewColor = textView.currentTextColor
+
+                return textViewColor == expectedColor
+            }
+
+            override fun describeTo(description: Description) {
+                description.appendText("has color with attr id $colorAttrId ")
+            }
+        }
     }
 
     /**

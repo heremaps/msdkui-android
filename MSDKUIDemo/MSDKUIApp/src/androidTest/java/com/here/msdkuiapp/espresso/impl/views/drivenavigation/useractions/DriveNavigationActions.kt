@@ -16,14 +16,19 @@
 
 package com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions
 
+import android.support.test.espresso.UiController
+import android.support.test.espresso.ViewAction
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.longClick
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+import android.support.test.espresso.matcher.ViewMatchers.isRoot
 import android.support.test.espresso.matcher.ViewMatchers.withText
 import android.support.test.espresso.matcher.ViewMatchers.withParent
 import android.support.test.espresso.matcher.ViewMatchers.withId
+import android.view.View
 import com.here.msdkuiapp.R
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.isNumeric
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers
@@ -32,6 +37,9 @@ import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavig
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewStartNaviBtn
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewStartSimulationOkBtn
 import com.here.msdkuiapp.espresso.impl.views.guidance.useractions.GuidanceActions
+import com.here.msdkuiapp.guidance.GuidanceRouteSelectionActivity
+import com.here.msdkuiapp.guidance.GuidanceRouteSelectionCoordinator
+import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.not
 
@@ -49,9 +57,29 @@ object DriveNavigationActions {
     }
 
     /**
-     * Start navigation simulation
+     * Start navigation simulation with defined [simulationSpeed]
+     *
+     * @param simulationSpeed simulation speed in m/s. 0 - fallback to default simulation speed
      */
-    fun startNavigationSimulation(): GuidanceActions {
+    fun startNavigationSimulation(simulationSpeed: Long = 0): GuidanceActions {
+        if (simulationSpeed > 0) {
+            onRootView.perform(object: ViewAction {
+                override fun getDescription(): String {
+                    return "Set simulation speed to $simulationSpeed m/s. "
+                }
+
+                override fun getConstraints(): Matcher<View> {
+                    return isRoot()
+                }
+
+                override fun perform(uiController: UiController?, view: View) {
+                    ((view.context as GuidanceRouteSelectionActivity)
+                            .coordinator as GuidanceRouteSelectionCoordinator)
+                            .routePreviewFragment!!.presenter.simulationSpeed = simulationSpeed
+                }
+
+            })
+        }
         onRouteOverviewStartNaviBtn.check(matches(isDisplayed())).perform(longClick())
         onRouteOverviewStartSimulationOkBtn.check(matches(isDisplayed())).perform(click())
         return GuidanceActions
@@ -78,6 +106,14 @@ object DriveNavigationActions {
      */
     fun waitGuidanceDashBoardCollapse(): DriveNavigationActions {
         onRootView.perform(waitForCondition(allOf(withText(R.string.msdkui_app_settings), withParent(withParent(withId(R.id.items_list))), not(isDisplayed()))))
+        return this
+    }
+
+    /**
+     * Wait for current speed to get value
+     */
+    fun waitCurrentSpeedValue(): DriveNavigationActions {
+        onRootView.perform(waitForCondition(allOf(withId(R.id.guidance_current_speed_value), isNumeric())))
         return this
     }
 

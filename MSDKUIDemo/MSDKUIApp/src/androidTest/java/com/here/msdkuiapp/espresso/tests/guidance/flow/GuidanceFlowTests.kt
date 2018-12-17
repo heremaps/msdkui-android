@@ -330,4 +330,48 @@ class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
             GuidanceActions.tapOnStopNavigationBtn()
         }
     }
- }
+
+    /**
+     * MSDKUI-1274: Display the current speed and speed limit warning
+     */
+    @Test
+    @FunctionalUITest
+    fun testDisplayCurrentSpeedAndSpeedLimitWarning() {
+        val overSpeedOptions = arrayOf(false, true)
+        enumValues<ScreenOrientation>().forEach {
+            for (isOverSpeedEnabled in overSpeedOptions) {
+                // Set screen orientation: PORTRAIT / LANDSCAPE
+                CoreActions().changeOrientation(it)
+                //Enter Drive Navigation
+                CoreActions().enterDriveNavigation()
+                        .provideMockLocation(mockLocationData)
+                // Check drive navigation view opened
+                DriveNavigationBarActions.waitForDriveNavigationView()
+                        .waitForDestinationDisplayed()
+                // Tap destination point
+                MapActions.waitForMapViewEnabled().tap(destinationForShortSimulation)
+                // Tap on tick to confirm the first waypoint selection
+                DriveNavigationBarActions.waitForDestinationNotDisplayed()
+                        .provideMockLocation(mockLocationData)
+                RoutePlannerBarActions.tapOnTickButton()
+                // Check guidance route overview view opened
+                DriveNavigationBarActions.waitForRouteOverView()
+                        .waitForGuidanceDescriptionDisplayed()
+                // Start navigation simulation
+                if (isOverSpeedEnabled) {
+                    DriveNavigationActions.startNavigationSimulation(30)
+                } else {
+                    DriveNavigationActions.startNavigationSimulation()
+                }
+                // Wait for speed value to appear
+                DriveNavigationActions.waitCurrentSpeedValue()
+                // Check speed and units
+                DriveNavigationMatchers.checkCurrentSpeed(isOverSpeedEnabled)
+                        .checkSpeedUnitsDisplayed(isOverSpeedEnabled)
+                // Stop guidance
+                GuidanceActions.tapOnStopNavigationBtn()
+            }
+        }
+    }
+
+}

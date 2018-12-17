@@ -27,7 +27,12 @@ object Constant {
     const val GUIDANCE_IS_SIMULATION_KEY: String = "guidanceIsSimulation"
 
     /**
-     * Key value of intext extra boolean that determines whether guidance reached its destination.
+     * Key value of intent extra long that determines simulation speed
+     */
+    const val GUIDANCE_SIMULATION_SPEED: String = "guidanceSimulationSpeed"
+
+    /**
+     * Key value of intent extra boolean that determines whether guidance reached its destination.
      */
     const val GUIDANCE_DID_FINISHED: String = "guidanceDidFinished"
 

@@ -115,19 +115,7 @@ public final class RouteUtil {
     public static Spannable getTrafficDelayed(final Context context, final Route route) {
         final SpannableStringBuilder builder = new SpannableStringBuilder(" ");
 
-        // gets arrival or departure date.
-        final Date departureDate = new Date();
-        final RouteOptions.TimeType type = route.getRoutePlan().getRouteOptions().getTime(departureDate);
-
-        if (type == RouteOptions.TimeType.ARRIVAL) {
-            return builder; // traffic is not supported for arrival.
-        }
-
-        // So, we need thresholds beyond which we consider the traffic data is not available in case of departure
-        final long pastThresholdSeconds = -5 * 60 * 1000; // -5 minutes
-        final long futureThresholdSeconds = 30 * 60 * 1000; // +30 minutes
-        final long timeInterval = departureDate.getTime() - new Date().getTime();
-        if (timeInterval < pastThresholdSeconds || timeInterval > futureThresholdSeconds) {
+        if (!isTrafficAvailable(route)) {
             return builder;
         }
 
@@ -332,11 +320,39 @@ public final class RouteUtil {
     }
 
     private static long getTta(final Route route, final boolean isTraffic) {
-        if (isTraffic) {
+        if (isTraffic && isTrafficAvailable(route)) {
             return route.getTta(Route.TrafficPenaltyMode.OPTIMAL, WHOLE_ROUTE)
                     .getDuration() * DateUtils.SECOND_IN_MILLIS;
         }
         return route.getTta(Route.TrafficPenaltyMode.DISABLED, WHOLE_ROUTE)
                 .getDuration() * DateUtils.SECOND_IN_MILLIS;
+    }
+
+    /**
+     * Traffic information is not available when departure time is more than 5 minutes in the past or more
+     * than 30 minutes in the future - or when RouteOptions.TimeType.ARRIVAL is set as time.
+     *
+     * @param route
+     *         a {@link Route} instance.
+     *
+     * @return true if traffic information is available for this route.
+     */
+    private static boolean isTrafficAvailable(final Route route) {
+        // gets arrival or departure date.
+        final Date departureDate = new Date();
+        final RouteOptions.TimeType type = route.getRoutePlan().getRouteOptions().getTime(departureDate);
+
+        if (type == RouteOptions.TimeType.ARRIVAL) {
+            return false; // traffic is not supported for arrival.
+        }
+
+        final long pastThresholdSeconds = -5 * 60 * 1000; // -5 minutes
+        final long futureThresholdSeconds = 30 * 60 * 1000; // +30 minutes
+        final long timeInterval = departureDate.getTime() - new Date().getTime();
+        if (timeInterval < pastThresholdSeconds || timeInterval > futureThresholdSeconds) {
+            return false;
+        }
+
+        return true;
     }
 }

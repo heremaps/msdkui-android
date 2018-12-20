@@ -31,11 +31,11 @@ import android.support.test.espresso.matcher.ViewMatchers.withText
 import android.support.test.espresso.util.HumanReadables
 import android.support.test.espresso.util.TreeIterables
 import android.support.v7.widget.RecyclerView
-import android.text.format.DateFormat
 import android.view.View
 import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.TimePicker
+import com.here.msdkui.common.DateFormatterUtil
 import com.here.msdkui.common.ThemeUtil
 import com.here.msdkuiapp.espresso.impl.utils.CurrentActivityUtils
 import org.hamcrest.CoreMatchers.allOf
@@ -139,10 +139,10 @@ object CoreMatchers {
     }
 
     /**
-     * Matches [TextView] with [date] text in [dateFormat]
+     * Matches [TextView] with [date] text
      */
-    fun withDateText(date: Calendar, dateFormat: String = "MMM d, yyyy h:mm aaa"): Matcher<View>? {
-        return withText(DateFormat.format(dateFormat, date).toString())
+    fun withDateText(date: Date): Matcher<View>? {
+        return withText(DateFormatterUtil.format(date))
     }
 
     /**

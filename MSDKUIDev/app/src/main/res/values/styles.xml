@@ -8,4 +8,26 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="GuidanceEstimatedArrivalTimeTheme" parent="AppTheme">
+        <!-- change all param which you want to change in this theme -->
+        <item name="guidanceArrivalTime">@style/CustomGuidanceArrivalTime</item>
+    </style>
+
+    <style name="CustomGuidanceArrivalTime" parent="GuidanceArrivalTime">
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+        <item name="android:textSize">@dimen/contentMarginExtraHuge</item>
+    </style>
+
+    <style name="GuidanceEstimatedArrivalDurationTheme" parent="AppTheme">
+        <!-- change all param which you want to change in this theme -->
+        <item name="guidanceArrivalDuration">@style/CustomGuidanceArrivalDuration</item>
+    </style>
+
+    <style name="CustomGuidanceArrivalDuration" parent="GuidanceArrivalDuration">
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+        <item name="android:textSize">@dimen/contentMarginHuge</item>
+    </style>
+
+
+
 </resources>

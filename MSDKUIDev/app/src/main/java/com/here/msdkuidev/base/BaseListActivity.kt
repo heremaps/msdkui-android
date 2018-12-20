@@ -20,7 +20,7 @@ open class BaseListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    protected fun setUpList(list : List<String>, secondLine: Boolean = false,  listener: LandingScreenAdapter.Listener) {
+    protected fun setUpList(list : List<Pair<String, String>>, listener: LandingScreenAdapter.Listener) {
         with(landing_list) {
             layoutManager = android.support.v7.widget.LinearLayoutManager(
                 this@BaseListActivity,
@@ -29,12 +29,12 @@ open class BaseListActivity : AppCompatActivity() {
             )
             setHasFixedSize(true)
         }
-        val adapter = LandingScreenAdapter(list,secondLine, this@BaseListActivity)
+        val adapter = LandingScreenAdapter(list, this@BaseListActivity)
         adapter.itemListener = listener
         landing_list.adapter = adapter
     }
 
-    class LandingScreenAdapter(private val items: List<String>, private val secondLine: Boolean = false,
+    class LandingScreenAdapter(private val items: List<Pair<String, String>>,
                                private val context: Context) : RecyclerView.Adapter<ViewHolder>() {
 
         var itemListener: Listener? = null
@@ -52,13 +52,13 @@ open class BaseListActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             with(holder) {
-                text1.text = items[position]
+                text1.text = items[position].first
                 with(text2) {
-                    if(secondLine) {
-                       visibility = View.VISIBLE
-                        text = if(position % 2 == 0) context.getString(R.string.default_value) else context.getString(R.string.fix_size)
-                    } else {
+                    if(items[position].second.isEmpty()) {
                         visibility = View.GONE
+                    } else {
+                        visibility = View.VISIBLE
+                        text = items[position].second
                     }
                 }
             }

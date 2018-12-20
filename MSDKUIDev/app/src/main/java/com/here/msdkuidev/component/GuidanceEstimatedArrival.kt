@@ -3,42 +3,28 @@ package com.here.msdkuidev.component
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.here.msdkuidev.ComponentSettingList
-import com.here.msdkuidev.R
-import com.here.msdkuidev.Setting
-import com.here.msdkuidev.SettingItem
+import com.here.msdkuidev.*
+import com.here.msdkuidev.Constant.ITEM
+import kotlinx.android.synthetic.main.guidance_estimated_arrival.*
 import java.util.*
 import kotlin.collections.LinkedHashMap
 
-class GuidanceEstimatedArrival : AppCompatActivity(),
-    Setting<GuidanceEstimatedArrival> {
-
-    override fun getClassName(): Class<GuidanceEstimatedArrival> {
-        return GuidanceEstimatedArrival::class.java
-    }
-
-    override fun getItems(): LinkedHashMap<String, SettingItem> {
-        return linkedMapOf(
-            "Default" to GuidanceEstimatedArrivalSettingItem().apply {
-            },
-            "With all properties set" to GuidanceEstimatedArrivalSettingItem(),
-            "Without time of arrival" to GuidanceEstimatedArrivalSettingItem()
-        // and more
-        )
-    }
-
-    class GuidanceEstimatedArrivalSettingItem : SettingItem() {
-        var estimatedTimeOfArrival: Date? = null
-        var primaryInfoTextColor: Int? = null
-        var secondaryInfoTextColor: Int? = null
-        // more settings
-    }
+class GuidanceEstimatedArrival : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.guidance_estimated_arrival)
-        val setting = intent.getSerializableExtra(ComponentSettingList.ITEM)
-        //apply setting to view.
-
+        val setting = intent.getParcelableExtra(ITEM) as GuidanceEstimatedArrivalSetting.GuidanceEstimatedArrivalSettingItem
+        setting.durationTheme?.run { // for separate changes set multiple theme,
+            // in case of multiple changes, it should b created one theme having all changes
+            setTheme(this)
+        }
+        setting.arrivalTheme?.run {
+            setTheme(this)
+        }
+        val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.guidance_estimated_arrival else
+            R.layout.guidance_estimated_arrival_fix
+        setContentView(resourceId)
+        // to set theme also, guidanceEstimatedArrivalView.findViewById<TextView>(R.id.eta).setColor(...)
+        guidanceEstimatedArrivalView.estimatedArrivalData = setting.guidanceEstimatedArrivalViewData
     }
 }

@@ -16,7 +16,7 @@ class ComponentSettingList : BaseListActivity() {
     override fun onStart() {
         super.onStart()
         settingMap = intent.getSerializableExtra(ComponentList.COMPONENT) as Setting<*>
-        setUpList(settingMap.getItems().keys.toList(), itemClickListener)
+        setUpList(settingMap.getItems().keys.toList(), false, itemClickListener)
     }
 
     private val itemClickListener = object : LandingScreenAdapter.Listener {

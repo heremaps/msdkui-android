@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MSDKUIDev</string>
+    <string name="default_value">Default</string>
+    <string name="fix_size">Fix size</string>
 </resources>

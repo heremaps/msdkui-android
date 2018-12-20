@@ -1,5 +1,6 @@
 package com.here.msdkuidev.component
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.here.msdkuidev.ComponentSettingList
@@ -18,7 +19,8 @@ class GuidanceEstimatedArrival : AppCompatActivity(),
 
     override fun getItems(): LinkedHashMap<String, SettingItem> {
         return linkedMapOf(
-            "Default" to GuidanceEstimatedArrivalSettingItem(),
+            "Default" to GuidanceEstimatedArrivalSettingItem().apply {
+            },
             "With all properties set" to GuidanceEstimatedArrivalSettingItem(),
             "Without time of arrival" to GuidanceEstimatedArrivalSettingItem()
         // and more

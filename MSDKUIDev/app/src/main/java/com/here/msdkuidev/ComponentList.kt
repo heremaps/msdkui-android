@@ -29,7 +29,7 @@ class ComponentList : BaseListActivity() {
 
     override fun onStart() {
         super.onStart()
-        setUpList(list.map { setting -> setting.getClassName().simpleName }, itemClickListener)
+        setUpList(list.map { setting -> setting.getClassName().simpleName },true, itemClickListener)
     }
 
     private val itemClickListener = object : LandingScreenAdapter.Listener {

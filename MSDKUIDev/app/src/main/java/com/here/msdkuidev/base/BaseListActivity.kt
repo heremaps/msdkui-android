@@ -1,5 +1,6 @@
 package com.here.msdkuidev.base
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -11,6 +12,7 @@ import android.widget.TextView
 import com.here.msdkuidev.R
 import kotlinx.android.synthetic.main.activity_main.*
 
+@SuppressLint("Registered")
 open class BaseListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +20,7 @@ open class BaseListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    protected fun setUpList(list : List<String>,  listener: LandingScreenAdapter.Listener) {
+    protected fun setUpList(list : List<String>, secondLine: Boolean = false,  listener: LandingScreenAdapter.Listener) {
         with(landing_list) {
             layoutManager = android.support.v7.widget.LinearLayoutManager(
                 this@BaseListActivity,
@@ -27,12 +29,13 @@ open class BaseListActivity : AppCompatActivity() {
             )
             setHasFixedSize(true)
         }
-        val adapter = LandingScreenAdapter(list, this@BaseListActivity)
+        val adapter = LandingScreenAdapter(list,secondLine, this@BaseListActivity)
         adapter.itemListener = listener
         landing_list.adapter = adapter
     }
 
-    class LandingScreenAdapter(private val items: List<String>, val context: Context) : RecyclerView.Adapter<ViewHolder>() {
+    class LandingScreenAdapter(private val items: List<String>, private val secondLine: Boolean = false,
+                               private val context: Context) : RecyclerView.Adapter<ViewHolder>() {
 
         var itemListener: Listener? = null
 
@@ -50,7 +53,14 @@ open class BaseListActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             with(holder) {
                 text1.text = items[position]
-                text2.text = "Instrisic" // need to make it fix or default
+                with(text2) {
+                    if(secondLine) {
+                       visibility = View.VISIBLE
+                        text = if(position % 2 == 0) context.getString(R.string.default_value) else context.getString(R.string.fix_size)
+                    } else {
+                        visibility = View.GONE
+                    }
+                }
             }
         }
 

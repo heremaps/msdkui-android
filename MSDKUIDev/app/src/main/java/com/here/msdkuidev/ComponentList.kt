@@ -3,15 +3,13 @@ package com.here.msdkuidev
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.here.msdkuidev.Constant.COMPONENT
+import com.here.msdkuidev.Constant.FIX_VALUE
 import com.here.msdkuidev.base.BaseListActivity
-import com.here.msdkuidev.component.GuidanceEstimatedArrival
+import com.here.msdkuidev.component.GuidanceEstimatedArrivalSetting
 import kotlinx.android.synthetic.main.activity_main.*
 
 class ComponentList : BaseListActivity() {
-
-    companion object {
-        const val COMPONENT = "Component"
-    }
 
     val list = arrayListOf<Setting<*>>()
 
@@ -19,7 +17,8 @@ class ComponentList : BaseListActivity() {
      * please add your new component here.
      */
     private fun addListContent() {
-        list.add(GuidanceEstimatedArrival() as Setting<*>)
+        list.add(GuidanceEstimatedArrivalSetting() as Setting<*>) // default size
+        list.add(GuidanceEstimatedArrivalSetting().apply { subTitle = FIX_VALUE }  as Setting<*>) // fix size
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +28,7 @@ class ComponentList : BaseListActivity() {
 
     override fun onStart() {
         super.onStart()
-        setUpList(list.map { setting -> setting.getClassName().simpleName },true, itemClickListener)
+        setUpList(list.map { setting -> Pair(setting.getClassName().simpleName, setting.subTitle) }, itemClickListener)
     }
 
     private val itemClickListener = object : LandingScreenAdapter.Listener {

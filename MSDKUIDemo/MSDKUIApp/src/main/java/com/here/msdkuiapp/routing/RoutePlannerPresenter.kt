@@ -130,7 +130,9 @@ class RoutePlannerPresenter : BasePresenter<RoutingContracts.RoutePlanner>() {
      * @param entries List of [WaypointEntry] to calculate routes.
      */
     fun calculateRoute(entries: List<WaypointEntry>) {
+        RoutingIdlingResourceWrapper.increment()
         if (entries.isEmpty() || !entries.all { it.isValid }) {
+            RoutingIdlingResourceWrapper.decrement()
             return
         }
         val waypoints = entries.map { it.routeWaypoint }
@@ -162,10 +164,12 @@ class RoutePlannerPresenter : BasePresenter<RoutingContracts.RoutePlanner>() {
                     val errorMessage = "Routing failed  ${routingError.name}"
                     Log.e(RoutePlannerPresenter::class.java.name, errorMessage)
                     coordinatorListener?.onRoutingFailed(errorMessage)
+                    RoutingIdlingResourceWrapper.decrement()
                     return
                 }
                 notifyListTitleChanges(listVisible = false, isTitleChange = true)
                 coordinatorListener?.onRouteCalculated(inputList.map { it.route })
+                RoutingIdlingResourceWrapper.decrement()
             }
 
             override fun onProgress(i: Int) {}

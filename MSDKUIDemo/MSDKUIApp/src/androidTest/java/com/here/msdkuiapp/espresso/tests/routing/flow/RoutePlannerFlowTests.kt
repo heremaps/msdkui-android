@@ -59,6 +59,7 @@ import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlan
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.utils.WaypointData
 import com.here.msdkuiapp.espresso.tests.TestBase
+import com.here.msdkuiapp.routing.RoutingIdlingResourceWrapper
 import org.hamcrest.Matchers.not
 import org.junit.Before
 import org.junit.FixMethodOrder
@@ -416,39 +417,42 @@ class RoutePlannerFlowTests : TestBase<SplashActivity>(SplashActivity::class.jav
     @Test
     @FunctionalUITest
     fun testSetDepartureTime() {
-        // Select first waypoint item
-        RoutePlannerActions.selectWaypoint(waypoint1)
-        // Select second waypoint item
-        RoutePlannerActions.selectWaypoint(waypoint2)
-        // Wait for panel collapsed and routes description list is visible
-        RoutePlannerBarActions.waitForRoutePlannerCollapsed().waitRouteDescriptionEnabled()
-        // Save arrival time
-        val arrivalTime = getRouteInformation().arrival
-        // Open date picker
-        RoutePlannerActions.tapOnTravelTimePanel()
-        // Check DatePicker & buttons displayed
-        RoutePlannerMatchers.checkDatePickerDisplayed().checkOkButtonDisplayed().checkCancelButtonDisplayed()
-        // Change date
-        RoutePlannerActions.setTravelDateTomorrow()
-        // Save date
-        val date = getDate(onDatePicker)
-        // Tap 'OK'
-        RoutePlannerActions.tapOKButton()
-        // Check TimePicker & buttons displayed
-        RoutePlannerMatchers.checkTimePickerDisplayed().checkOkButtonDisplayed().checkCancelButtonDisplayed()
-        // Change time
-        RoutePlannerActions.setTravelTime1HourLater()
-        // Save time
-        val time = getTime(onTimePicker)
-        // Copy time to date
-        date.set(HOUR_OF_DAY, time.get(HOUR_OF_DAY))
-        date.set(MINUTE, time.get(MINUTE))
-        // Tap 'OK'
-        RoutePlannerActions.tapOKButton()
-        // Check departure time
-        onTravelDepartureDateTime.check(matches(withDateText(date)))
-        // Check arrival time
-        onRouteListItemArrival(ROUTE_RESULT_1).check(matches(not(withText(arrivalTime))))
+        RoutingIdlingResourceWrapper.use {
+            RoutingIdlingResourceWrapper.register()
+            // Select first waypoint item
+            RoutePlannerActions.selectWaypoint(waypoint1)
+            // Select second waypoint item
+            RoutePlannerActions.selectWaypoint(waypoint2)
+            // Wait for panel collapsed and routes description list is visible
+            RoutePlannerBarActions.waitForRoutePlannerCollapsed().waitRouteDescriptionEnabled()
+            // Save arrival time
+            val arrivalTime = getRouteInformation().arrival
+            // Open date picker
+            RoutePlannerActions.tapOnTravelTimePanel()
+            // Check DatePicker & buttons displayed
+            RoutePlannerMatchers.checkDatePickerDisplayed().checkOkButtonDisplayed().checkCancelButtonDisplayed()
+            // Change date
+            RoutePlannerActions.setTravelDateTomorrow()
+            // Save date
+            val date = getDate(onDatePicker)
+            // Tap 'OK'
+            RoutePlannerActions.tapOKButton()
+            // Check TimePicker & buttons displayed
+            RoutePlannerMatchers.checkTimePickerDisplayed().checkOkButtonDisplayed().checkCancelButtonDisplayed()
+            // Change time
+            RoutePlannerActions.setTravelTime1HourLater()
+            // Save time
+            val time = getTime(onTimePicker)
+            // Copy time to date
+            date.set(HOUR_OF_DAY, time.get(HOUR_OF_DAY))
+            date.set(MINUTE, time.get(MINUTE))
+            // Tap 'OK'
+            RoutePlannerActions.tapOKButton()
+            // Check departure time
+            onTravelDepartureDateTime.check(matches(withDateText(date.time)))
+            // Check arrival time
+            onRouteListItemArrival(ROUTE_RESULT_1).check(matches(not(withText(arrivalTime))))
+        }
     }
 
     /**

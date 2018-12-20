@@ -377,12 +377,13 @@
     <style name="ManeuverDescriptionItemDistanceText">
         <item name="android:textSize">@dimen/textSizeMedium</item>
         <item name="android:textColor">?attr/colorForegroundSecondary</item>
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">@dimen/contentMarginMedium</item>
         <item name="android:layout_marginStart" tools:targetApi="17">@dimen/contentMarginMedium</item>
         <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
         <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/contentMarginLarge</item>
+        <item name="android:textAlignment">viewEnd</item>
     </style>
 
     <!-- Numeric option item -->

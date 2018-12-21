@@ -3,6 +3,7 @@ package com.here.msdkuidev.component
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.TextView
 import com.here.msdkuidev.*
 import com.here.msdkuidev.Constant.ITEM
 import kotlinx.android.synthetic.main.guidance_estimated_arrival.*
@@ -24,7 +25,8 @@ class GuidanceEstimatedArrival : AppCompatActivity() {
         val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.guidance_estimated_arrival else
             R.layout.guidance_estimated_arrival_fix
         setContentView(resourceId)
-        // to set theme also, guidanceEstimatedArrivalView.findViewById<TextView>(R.id.eta).setColor(...)
         guidanceEstimatedArrivalView.estimatedArrivalData = setting.guidanceEstimatedArrivalViewData
+        // setting things from code use the following
+        // guidanceEstimatedArrivalView.findViewById<TextView>(R.id.eta).text = "--"
     }
 }

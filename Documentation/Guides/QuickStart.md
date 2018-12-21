@@ -4,15 +4,16 @@ Thank you for using the HERE Mobile SDK UI Kit. In this Quick Start guide, we ar
 ## Contents
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
+- [Contents](#contents)
 - [How to Run the Example Apps](#how-to-run-the-example-apps)
 - [How to Run the Demo App](#how-to-run-the-demo-app)
 - [Creating a new Android Project](#creating-a-new-android-project)
-- [Integrating the HERE Mobile SDK and the HERE Mobile SDK UI Kit](#integrating-the-here-mobile-sdk-and-the-here-mobile-sdk-ui-kit)
+	- [Integrating the HERE Mobile SDK and the HERE Mobile SDK UI Kit](#integrating-the-here-mobile-sdk-and-the-here-mobile-sdk-ui-kit)
 	- [Gradle setup](#gradle-setup)
 	- [Theme setup](#theme-setup)
 	- [Setting your HERE Mobile SDK credentials](#setting-your-here-mobile-sdk-credentials)
-- [Add your first HERE Mobile SDK UI Kit component](#add-your-first-here-mobile-sdk-ui-kit-component)
-- [Loading the Map](#loading-the-map)
+	- [Add your first HERE Mobile SDK UI Kit component](#add-your-first-here-mobile-sdk-ui-kit-component)
+	- [Loading the Map](#loading-the-map)
 
 <!-- /TOC -->
 
@@ -63,7 +64,7 @@ Now let the Gradle sync finish and _run_ the project. Select an emulator or a re
 
 >**Note:** While all of the functionality of the HERE Mobile SDK UI Kit is accessible from the emulator, usage of a real device is strongly recommended. The overall performance will be better, and some features like gestures are just easier to use on multi-touch-enabled hardware.
 
-## Integrating the HERE Mobile SDK and the HERE Mobile SDK UI Kit
+### Integrating the HERE Mobile SDK and the HERE Mobile SDK UI Kit
 Now that we have a working Android app, we can start integrating the HERE SDK and the HERE Mobile SDK UI Kit library. Make sure you have downloaded the latest HERE Mobile SDK release package including the library AAR artefact usually called `HERE-sdk.aar`.
 
 As a next step, we will build the HERE Mobile SDK UI Kit library (MSDKUILib):
@@ -186,7 +187,7 @@ Finally make sure to click the _"Sync Project with Gradle Files"_-button. If all
 
 To enable quick Javadoc reference within your Android Studio environment, scroll down to the _External Libraries_ section, right-click on `MSDKUILib:@aar`, and then select _Library Properties_. Click the `+`-button and locate `MSDKUILib-javadoc.jar` (if not done already, [build the MSDKUI API Reference](ContributionGuide.md#building-the-msdkui-api-reference-from-command-line) via Gradle: `./gradlew clean :MSDKUILib:javadocJar`).
 
-## Add your first HERE Mobile SDK UI Kit component
+### Add your first HERE Mobile SDK UI Kit component
 If you succeed with the above steps, we have the HERE Mobile SDK UI Kit library and the HERE Mobile SDK ready for use. Our app consists only of a single activity, accompanied by a layout file usually called `activity_main.xml` - if you kept the default `MainActivity` class name.
 
 If you started with an empty Android project, the default layout was hosting a "Hello World"-`TextView`. Replace the entire content of the existing `activity_main` layout file with the following vertical `LinearLayout`:
@@ -213,7 +214,7 @@ If you started with an empty Android project, the default layout was hosting a "
 Our first HERE Mobile SDK UI Kit component for this example is `WaypointList` component. A `WaypointList` contains items describing waypoints for which a route can be calculated.  Since `WaypointList` is a direct child of `RecyclerView`, it behaves like you would expect from any other `RecyclerView`.
 Below the `WaypointList` we show the HERE `MapFragment`. Note that the map will occupy as much space as allowed by the `WaypointList`, since we are giving it a layout weight of 1.
 
-## Loading the Map
+### Loading the Map
 Before we can start using the `WaypointList` component, we have to prepare loading the `MapFragment`. As described on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/app-create-simple.html), we have to request the required [Android permissions](https://developer.here.com/documentation/android-premium/topics/request-android-permissions.html) first. Then we can initialize the `MapFragment`.
 
 As our focus for this Quick Start guide is on using the HERE Mobile SDK UI Kit components, we have wrapped both steps in a helper class called `MapInitializer`. For implementation details, please check the example's code. You can use your own wrapper class or follow the steps on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/app-create-simple.html).

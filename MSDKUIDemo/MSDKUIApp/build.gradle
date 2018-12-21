@@ -93,6 +93,7 @@ android {
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
         testImplementation "junit:junit:$junit_version"
+        implementation "com.android.support.test.espresso:espresso-idling-resource:$espresso_version"
         androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
         androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espresso_version"
         androidTestImplementation "com.android.support.test:runner:$test_version"

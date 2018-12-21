@@ -44,14 +44,17 @@
             android:name="com.here.android.maps.license.key"
             android:value="YOUR_LICENSE_KEY" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RouteDetailsActivity" />
-        <activity android:name=".GuidanceActivity" />
+        <activity android:name=".RouteDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".GuidanceActivity"
+            android:screenOrientation="portrait" />
 
         <service
             android:name="com.here.android.mpa.service.MapService"

@@ -255,6 +255,11 @@ public final class MockUtils {
             return this;
         }
 
+        public MockRouteBuilder setArrivalTimeOption() {
+            when(mOptions.getTime(any(Date.class))).thenReturn(RouteOptions.TimeType.ARRIVAL);
+            return this;
+        }
+
         public MockRouteBuilder setTrafficPenaltyMinutes(int minutes) {
             int delayInSeconds = minutes * 60;
             when(mRouteTta1.getDuration()).thenReturn(delayInSeconds);

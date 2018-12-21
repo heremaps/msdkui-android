@@ -25,6 +25,7 @@ class GuidanceEstimatedArrivalSetting : Setting<GuidanceEstimatedArrival>() {
         constructor(parcel: Parcel) : super(parcel) {
             guidanceEstimatedArrivalViewData =
                     parcel.readParcelable(GuidanceEstimatedArrivalViewData::class.java.classLoader)
+
             durationTheme = parcel.readValue(Int::class.java.classLoader) as? Int
             arrivalTheme = parcel.readValue(Int::class.java.classLoader) as? Int
         }

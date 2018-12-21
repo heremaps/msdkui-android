@@ -112,6 +112,11 @@ public final class RouteUtilTest extends RobolectricTest {
         assertThat(spannable.toString().trim(),
                 equalTo(getContextWithTheme().getString(R.string.msdkui_incl_traffic_delay,
                         TimeFormatterUtil.format(getContextWithTheme(), TimeUnit.MINUTES.toMillis(delayInMinutes)))));
+
+        //arrival time is defined
+        route = new MockUtils.MockRouteBuilder().setArrivalTimeOption().getRoute();
+        spannable = RouteUtil.getTrafficDelayed(context, route);
+        assertTrue(spannable.toString().trim().isEmpty());
     }
 
     @Test

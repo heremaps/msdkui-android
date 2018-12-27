@@ -1,5 +1,6 @@
 package com.here.msdkuidev
 
+import android.content.Context
 import android.os.Parcel
 import android.os.Parcelable
 import com.here.msdkuidev.Constant.DEFAULT
@@ -19,5 +20,5 @@ abstract class SettingItem(var subTitle: String = DEFAULT) : Parcelable {
 abstract class Setting<T> : Serializable {
      var subTitle: String = DEFAULT
     abstract fun getClassName() : Class<T>
-    abstract fun getItems() : LinkedHashMap<String, SettingItem>
+    abstract fun getItems(context: Context) : LinkedHashMap<String, SettingItem>
 }

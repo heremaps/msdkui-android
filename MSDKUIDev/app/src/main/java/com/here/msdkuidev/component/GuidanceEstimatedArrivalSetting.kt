@@ -1,5 +1,6 @@
 package com.here.msdkuidev.component
 
+import android.content.Context
 import android.os.Parcel
 import android.os.Parcelable
 import com.here.msdkui.guidance.GuidanceEstimatedArrivalViewData
@@ -8,6 +9,7 @@ import com.here.msdkuidev.R
 import com.here.msdkuidev.Setting
 import com.here.msdkuidev.SettingItem
 import java.util.*
+import kotlin.collections.LinkedHashMap
 
 class GuidanceEstimatedArrivalSetting : Setting<GuidanceEstimatedArrival>() {
 
@@ -57,7 +59,7 @@ class GuidanceEstimatedArrivalSetting : Setting<GuidanceEstimatedArrival>() {
         return GuidanceEstimatedArrival::class.java
     }
 
-    override fun getItems(): LinkedHashMap<String, SettingItem> {
+    override fun getItems(context: Context): LinkedHashMap<String, SettingItem> {
         return linkedMapOf(
             "Default" to GuidanceEstimatedArrivalSettingItem(),
             "With all properties set" to GuidanceEstimatedArrivalSettingItem().apply {

@@ -14,13 +14,13 @@ class ComponentSettingList : BaseListActivity() {
     override fun onStart() {
         super.onStart()
         settingMap = intent.getSerializableExtra(COMPONENT) as Setting<*>
-        setUpList(settingMap.getItems().keys.map { key-> Pair(key, "") }, itemClickListener)
+        setUpList(settingMap.getItems(this@ComponentSettingList).keys.map { key-> Pair(key, "") }, itemClickListener)
     }
 
     private val itemClickListener = object : LandingScreenAdapter.Listener {
         override fun onItemClicked(view: View) {
             val position = landing_list.getChildLayoutPosition(view)
-            val item = settingMap.getItems().values.toList()[position]
+            val item = settingMap.getItems(this@ComponentSettingList).values.toList()[position]
             item.subTitle = settingMap.subTitle
            startActivity(Intent(this@ComponentSettingList, settingMap.getClassName()).apply {
                putExtra(ITEM, item)

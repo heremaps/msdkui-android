@@ -30,6 +30,7 @@ import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGu
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedValue
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardEtaInfo
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverPanel
+import com.here.msdkuiapp.espresso.impl.views.guidance.useractions.GuidanceActions
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
 import com.here.msdkuiapp.espresso.tests.TestBase
@@ -203,12 +204,13 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
         DriveNavigationBarActions.waitForRouteOverView()
                 .waitForGuidanceDescriptionDisplayed()
         // Start navigation simulation
-        DriveNavigationActions.tapOnStartNavigationBtn()
+        DriveNavigationActions.startNavigationSimulation()
         // Check that next-next maneuver view is displayed on both screen orientations
         enumValues<Constants.ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
             CoreActions().changeOrientation(it)
             // Check is view displayed
+            GuidanceActions.waitForGuidanceNextManeuverPanelDisplayed()
             onGuidanceNextManeuverPanel.check(matches(isDisplayed()))
         }
     }

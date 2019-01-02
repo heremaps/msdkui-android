@@ -19,6 +19,8 @@ package com.here.msdkuiapp.espresso.impl.views.guidance.useractions
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+import android.support.test.espresso.matcher.ViewMatchers.withId
+import com.here.msdkuiapp.R
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.viewIsDisplayed
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
@@ -52,6 +54,14 @@ object GuidanceActions {
      */
     fun waitForGuidanceViewDisplayed(): GuidanceActions {
         onRootView.perform(waitForCondition(onGuidanceTitle))
+        return this
+    }
+
+    /**
+     * Wait for next maneuver panel displayed
+     */
+    fun waitForGuidanceNextManeuverPanelDisplayed(): GuidanceActions {
+        onRootView.perform(waitForCondition(withId(R.id.next_maneuver_panel_container)))
         return this
     }
 

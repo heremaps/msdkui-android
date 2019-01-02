@@ -18,6 +18,7 @@
         <activity android:name=".ComponentSettingList"/>
         <activity android:name=".component.GuidanceEstimatedArrival"/>
         <activity android:name=".component.GuidanceManeuverView"/>
+        <activity android:name=".component.GuidanceNextManeuverView"/>
     </application>
 
 </manifest>

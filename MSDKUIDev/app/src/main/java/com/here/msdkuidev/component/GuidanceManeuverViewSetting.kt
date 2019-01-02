@@ -14,10 +14,9 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.support.v4.content.ContextCompat
 
+class GuidanceManeuverViewSetting() : Setting<GuidanceManeuverView>() {
 
-class GuidanceManueverViewSetting() : Setting<GuidanceManeuverView>() {
-
-    class GuidanceManueverViewSettingItem : SettingItem {
+    class GuidanceManeuverViewSettingItem : SettingItem {
 
         // data customization
         var guidanceManeuverData: GuidanceManeuverData? = null
@@ -41,12 +40,12 @@ class GuidanceManueverViewSetting() : Setting<GuidanceManeuverView>() {
             return 0
         }
 
-        companion object CREATOR : Parcelable.Creator<GuidanceManueverViewSettingItem> {
-            override fun createFromParcel(parcel: Parcel): GuidanceManueverViewSettingItem {
-                return GuidanceManueverViewSettingItem(parcel)
+        companion object CREATOR : Parcelable.Creator<GuidanceManeuverViewSettingItem> {
+            override fun createFromParcel(parcel: Parcel): GuidanceManeuverViewSettingItem {
+                return GuidanceManeuverViewSettingItem(parcel)
             }
 
-            override fun newArray(size: Int): Array<GuidanceManueverViewSettingItem?> {
+            override fun newArray(size: Int): Array<GuidanceManeuverViewSettingItem?> {
                 return arrayOfNulls(size)
             }
         }
@@ -59,22 +58,22 @@ class GuidanceManueverViewSetting() : Setting<GuidanceManeuverView>() {
 
     override fun getItems(context: Context): LinkedHashMap<String, SettingItem> {
         return linkedMapOf(
-            "Default" to GuidanceManueverViewSettingItem().apply {
+            "Default" to GuidanceManeuverViewSettingItem().apply {
                 onlyView = true
             },
-            "null" to GuidanceManueverViewSettingItem().apply {
+            "null" to GuidanceManeuverViewSettingItem().apply {
                 onlyView = null
                 guidanceManeuverData = null
             },
-            "With all properties set" to GuidanceManueverViewSettingItem().apply {
+            "With all properties set" to GuidanceManeuverViewSettingItem().apply {
                     guidanceManeuverData = GuidanceManeuverData(R.drawable.ic_maneuver_icon_2, 2000, "Info1", "Info2",
                         context.getImage(R.drawable.ic_launcher).toBitmap())
             },
-            "Without maneuver icon" to GuidanceManueverViewSettingItem().apply {
+            "Without maneuver icon" to GuidanceManeuverViewSettingItem().apply {
                 guidanceManeuverData = GuidanceManeuverData(0, 2000, "Info1", "Info2",
                     context.getImage(R.drawable.ic_launcher).toBitmap())
             },
-            "Without distance" to GuidanceManueverViewSettingItem().apply {
+            "Without distance" to GuidanceManeuverViewSettingItem().apply {
                 guidanceManeuverData = GuidanceManeuverData(0, -1, "Info1", "Info2",
                     context.getImage(R.drawable.ic_launcher).toBitmap())
             }

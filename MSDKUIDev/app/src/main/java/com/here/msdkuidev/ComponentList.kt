@@ -7,8 +7,8 @@ import com.here.msdkuidev.Constant.COMPONENT
 import com.here.msdkuidev.Constant.FIX_VALUE
 import com.here.msdkuidev.base.BaseListActivity
 import com.here.msdkuidev.component.GuidanceEstimatedArrivalSetting
-import com.here.msdkuidev.component.GuidanceManeuverView
-import com.here.msdkuidev.component.GuidanceManueverViewSetting
+import com.here.msdkuidev.component.GuidanceManeuverViewSetting
+import com.here.msdkuidev.component.GuidanceNextManeuverViewSetting
 import kotlinx.android.synthetic.main.activity_main.*
 
 class ComponentList : BaseListActivity() {
@@ -21,8 +21,10 @@ class ComponentList : BaseListActivity() {
     private fun addListContent() {
         list.add(GuidanceEstimatedArrivalSetting()) // default size
         list.add(GuidanceEstimatedArrivalSetting().apply { subTitle = FIX_VALUE }) // fix size
-        list.add(GuidanceManueverViewSetting())
-        list.add(GuidanceManueverViewSetting().apply { subTitle = FIX_VALUE })
+        list.add(GuidanceManeuverViewSetting())
+        list.add(GuidanceManeuverViewSetting().apply { subTitle = FIX_VALUE })
+        list.add(GuidanceNextManeuverViewSetting())
+        list.add(GuidanceNextManeuverViewSetting().apply { subTitle = FIX_VALUE })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

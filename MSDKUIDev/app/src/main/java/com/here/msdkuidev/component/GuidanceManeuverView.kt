@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.guidance_maneuver_view.*
 class GuidanceManeuverView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val setting = intent.getParcelableExtra(Constant.ITEM) as GuidanceManueverViewSetting.GuidanceManueverViewSettingItem
+        val setting = intent.getParcelableExtra(Constant.ITEM) as GuidanceManeuverViewSetting.GuidanceManeuverViewSettingItem
         val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.guidance_maneuver_view else
             R.layout.guidance_maneuver_view_fix
         setContentView(resourceId)

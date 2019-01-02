@@ -4,7 +4,6 @@ Thank you for using the HERE Mobile SDK UI Kit. In this Quick Start guide, we ar
 ## Contents
 <!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-- [Contents](#contents)
 - [How to Run the Example Apps](#how-to-run-the-example-apps)
 - [How to Run the Demo App](#how-to-run-the-demo-app)
 - [Creating a new Android Project](#creating-a-new-android-project)

@@ -28,21 +28,21 @@ class GuidanceStreetLabelSetting : Setting<GuidanceStreetLabel>() {
 
     class GuidanceStreetLabelSettingItem : SettingItem {
 
-        var guidanceStreetLabelData: GuidanceStreetLabelData? = null
-        var onlyView : Boolean? = null
+        var guidanceStreetLabelData: GuidanceStreetLabelData = GuidanceStreetLabelData("", 0)
+        var defaultView = false
 
         constructor() : super()
 
         constructor(parcel: Parcel) : super(parcel) {
             guidanceStreetLabelData =
                     parcel.readParcelable(GuidanceStreetLabelData::class.java.classLoader)
-            onlyView = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
+            defaultView = parcel.readValue(Boolean::class.java.classLoader) as Boolean
         }
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
             super.writeToParcel(parcel, flags)
             parcel.writeParcelable(guidanceStreetLabelData, flags)
-            parcel.writeValue(onlyView)
+            parcel.writeValue(defaultView)
         }
 
         override fun describeContents(): Int {
@@ -68,7 +68,7 @@ class GuidanceStreetLabelSetting : Setting<GuidanceStreetLabel>() {
     override fun getItems(context: Context): LinkedHashMap<String, SettingItem> {
         return linkedMapOf(
             "Default" to GuidanceStreetLabelSettingItem().apply {
-                onlyView = true
+                defaultView = true
             },
             "With all properties set" to GuidanceStreetLabelSettingItem().apply {
                 guidanceStreetLabelData = GuidanceStreetLabelData("Street Label Text", Color.BLACK)

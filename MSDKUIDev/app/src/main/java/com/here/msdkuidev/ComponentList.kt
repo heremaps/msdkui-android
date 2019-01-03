@@ -26,6 +26,7 @@ import com.here.msdkuidev.component.GuidanceEstimatedArrivalSetting
 import com.here.msdkuidev.component.GuidanceManeuverViewSetting
 import com.here.msdkuidev.component.GuidanceNextManeuverViewSetting
 import com.here.msdkuidev.component.GuidanceStreetLabelSetting
+import com.here.msdkuidev.component.GuidanceSpeedLimitSetting
 import kotlinx.android.synthetic.main.activity_main.*
 
 class ComponentList : BaseListActivity() {
@@ -44,6 +45,8 @@ class ComponentList : BaseListActivity() {
         list.add(GuidanceNextManeuverViewSetting().apply { subTitle = FIX_VALUE })
         list.add(GuidanceStreetLabelSetting())
         list.add(GuidanceStreetLabelSetting().apply { subTitle = FIX_VALUE })
+        list.add(GuidanceSpeedLimitSetting())
+        list.add(GuidanceSpeedLimitSetting().apply { subTitle = FIX_VALUE })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

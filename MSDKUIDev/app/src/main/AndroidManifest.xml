@@ -35,6 +35,8 @@
         <activity android:name=".component.GuidanceEstimatedArrival"/>
         <activity android:name=".component.GuidanceManeuverView"/>
         <activity android:name=".component.GuidanceNextManeuverView"/>
+        <activity android:name=".component.GuidanceStreetLabel" />
+        <activity android:name=".component.GuidanceSpeedLimit" />
     </application>
 
 </manifest>

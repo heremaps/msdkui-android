@@ -34,7 +34,7 @@ class GuidanceSpeedViewSetting : Setting<GuidanceSpeedView>() {
         var customBackground: Int? = null
         var defaultView = false
         var color: Int? = null
-        var unit : UnitSystem ? = null
+        var unit : UnitSystem = UnitSystem.METRIC
 
         constructor() : super()
 

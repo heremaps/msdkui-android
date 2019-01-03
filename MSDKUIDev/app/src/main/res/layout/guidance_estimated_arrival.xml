@@ -23,9 +23,9 @@
         android:layout_height="match_parent">
 
     <com.here.msdkui.guidance.GuidanceEstimatedArrivalView
+            android:background="@drawable/rectangle"
             android:id="@+id/guidanceEstimatedArrivalView"
             android:gravity="center"
-            android:background="@drawable/rectangle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"

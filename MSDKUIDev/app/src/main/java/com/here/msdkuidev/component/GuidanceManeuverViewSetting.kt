@@ -79,83 +79,87 @@ class GuidanceManeuverViewSetting() : Setting<GuidanceManeuverView>() {
 
     override fun getItems(context: Context): LinkedHashMap<String, SettingItem> {
         val bitmap = context.getImage(R.drawable.ic_launcher).toBitmap()
+        val info1 = "Exit from highway"
+        val info2 = "Invalidenstr 110"
         return linkedMapOf(
             "Default view" to GuidanceManeuverViewSettingItem().apply {
                 defaultView = true
             },
+
             "Set null data" to GuidanceManeuverViewSettingItem().apply {
                 defaultView = null
                 guidanceManeuverData = null
             },
+
+            "Loading state" to GuidanceManeuverViewSettingItem().apply {
+                guidanceManeuverData = GuidanceManeuverData(
+                    -1, -1, "Updating", "", null)
+            },
+
             "With all properties" to GuidanceManeuverViewSettingItem().apply {
                 guidanceManeuverData = GuidanceManeuverData(
-                    R.drawable.ic_maneuver_icon_2, 2000, "Info1", "Info2", bitmap
-                )
-            },
-            "Without maneuver icon invisible" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    -1, 2000, "Info1", "Info2", bitmap
-                )
-            },
-            "Without maneuver icon gone" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    0, 2000, "Info1", "Info2", bitmap
-                )
-            },
-            // bug, -2 should not allow
-            "Without distance invisible" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    0, -1, "Info1", "Info2", bitmap
+                    R.drawable.ic_maneuver_icon_2, 2000, info1, info2, bitmap
                 )
             },
 
-            "Without distance gone" to GuidanceManeuverViewSettingItem().apply {
+            "Maneuver icon invisible" to GuidanceManeuverViewSettingItem().apply {
                 guidanceManeuverData = GuidanceManeuverData(
-                    0, -2, "Info1", "Info2", bitmap
+                    -1, 2000, info1, info2, bitmap
+                )
+            },
+
+            "Maneuver icon gone" to GuidanceManeuverViewSettingItem().apply {
+                guidanceManeuverData = GuidanceManeuverData(
+                    0, 2000, info1, info2, bitmap
+                )
+            },
+
+            "Distance invisible" to GuidanceManeuverViewSettingItem().apply {
+                guidanceManeuverData = GuidanceManeuverData(
+                    R.drawable.ic_maneuver_icon_2, -1, info1, info2, bitmap
+                )
+            },
+
+            "Distance gone" to GuidanceManeuverViewSettingItem().apply {
+                guidanceManeuverData = GuidanceManeuverData(
+                    R.drawable.ic_maneuver_icon_2, -2, info1, info2, bitmap
                 )
                 noDistance = true
             },
 
-            // bug, -2 should not allow
-            "Without distance invisible" to GuidanceManeuverViewSettingItem().apply {
+            "Info1 invisible" to GuidanceManeuverViewSettingItem().apply {
                 guidanceManeuverData = GuidanceManeuverData(
-                    0, -1, "Info1", "Info2", bitmap
+                    R.drawable.ic_maneuver_icon_2, 2000, "", info2, bitmap
                 )
             },
 
-            "Without info1 invisible" to GuidanceManeuverViewSettingItem().apply {
+            "Info1 gone" to GuidanceManeuverViewSettingItem().apply {
                 guidanceManeuverData = GuidanceManeuverData(
-                    0, -1, "", "Info2", bitmap
+                    R.drawable.ic_maneuver_icon_2, 2000, null, info2, bitmap
                 )
             },
 
-            "Without info1 gone" to GuidanceManeuverViewSettingItem().apply {
+            "Info2 invisible" to GuidanceManeuverViewSettingItem().apply {
                 guidanceManeuverData = GuidanceManeuverData(
-                    0, -2, null, "Info2", bitmap
+                    R.drawable.ic_maneuver_icon_2, 2000, info1, "", bitmap
                 )
             },
 
-            "Without info2 invisible" to GuidanceManeuverViewSettingItem().apply {
+            "Info2 gone" to GuidanceManeuverViewSettingItem().apply {
                 guidanceManeuverData = GuidanceManeuverData(
-                    0, -1, "Info1", "", bitmap
-                )
-            },
-
-            "Without info2 gone" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    0, -2, "Info1", null, bitmap
+                    R.drawable.ic_maneuver_icon_2, 2000, info1, null, bitmap
                 )
             },
 
             "Without road icon" to GuidanceManeuverViewSettingItem().apply {
                 guidanceManeuverData = GuidanceManeuverData(
-                    0, -1, "Info1", "info2", null
+                    R.drawable.ic_maneuver_icon_2, 2000, info1, info2, null
                 )
             },
 
             "With all red" to GuidanceManeuverViewSettingItem().apply {
                 guidanceManeuverData = GuidanceManeuverData(
-                    0, 100, "Info1", "info2", bitmap
+                    R.drawable.ic_maneuver_icon_2, 2000, info1, info2, bitmap
                 )
                 customTheme = R.style.GuidanceManeuverViewRed
             }

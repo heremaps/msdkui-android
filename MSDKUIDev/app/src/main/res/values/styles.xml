@@ -71,7 +71,7 @@
 
     <style name="CustomGuidanceArrivalTime" parent="GuidanceArrivalTime">
         <item name="android:textColor">@android:color/holo_red_dark</item>
-        <item name="android:textSize">@dimen/contentMarginExtraHuge</item>
+        <item name="android:textSize">48sp</item>
     </style>
 
     <style name="CustomGuidanceArrivalDuration" parent="GuidanceArrivalDuration">

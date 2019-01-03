@@ -16,5 +16,5 @@
   -->
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <stroke android:width="3dp" android:color="#ffff8080"/>
+    <stroke android:width="2dp" android:color="@color/lui_black15"/>
 </shape>

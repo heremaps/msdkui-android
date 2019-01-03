@@ -26,6 +26,7 @@ import com.here.msdkuiapp.R
 import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.FunctionalUITest
 import com.here.msdkuiapp.espresso.impl.core.CoreActions
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getText
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIdAndText
@@ -45,6 +46,7 @@ import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveN
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.utils.ManeuversActions
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceCurrentStreetInfoText
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardPullLine
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverStreetNameInfo
 import com.here.msdkuiapp.espresso.impl.views.guidance.useractions.GuidanceActions
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
@@ -279,6 +281,47 @@ class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
             val currentStreetData = getText(onGuidanceCurrentStreetInfoText)
             // Check that current street view value changed
             checkCurrentStreetViewValueChanged(currentStreetData)
+        }
+    }
+
+    /**
+     * MSDKUI-1251: Next-next maneuver panel
+     */
+    @Test
+    @FunctionalUITest
+    fun testNextNextManeuverPanel() {
+        enumValues<ScreenOrientation>().forEach {
+            // Set screen orientation: PORTRAIT / LANDSCAPE
+            CoreActions().changeOrientation(it)
+            //Enter Drive Navigation
+            CoreActions().enterDriveNavigation()
+                    .provideMockLocation(mockLocationData)
+            // Check drive navigation view opened
+            DriveNavigationBarActions.waitForDriveNavigationView()
+                    .waitForDestinationDisplayed()
+            // Tap destination on map
+            MapActions.waitForMapViewEnabled().tap(destinationForShortSimulation)
+            // Tap on tick to confirm destination selection
+            DriveNavigationBarActions.waitForDestinationNotDisplayed()
+                    .provideMockLocation(mockLocationData)
+            RoutePlannerBarActions.tapOnTickButton()
+            // Check guidance route overview view opened
+            DriveNavigationBarActions.waitForRouteOverView()
+                    .waitForGuidanceDescriptionDisplayed()
+            // Start navigation simulation
+            DriveNavigationActions.startNavigationSimulation()
+
+            // Check next-next maneuver panel elements
+            GuidanceActions.waitForGuidanceNextManeuverPanelDisplayed()
+            DriveNavigationMatchers.checkNextManeuverPanelElementsDisplayed()
+            // Wait for maneuver info to change
+            val streetName = CoreMatchers.getText(onGuidanceNextManeuverStreetNameInfo)
+            GuidanceActions.waitForGuidanceNextManeuverChanged(streetName)
+            // Recheck next-next maneuver panel elements
+            DriveNavigationMatchers.checkNextManeuverPanelElementsDisplayed()
+
+            // Stop the guidance with "X" button
+            GuidanceActions.tapOnStopNavigationBtn()
         }
     }
 

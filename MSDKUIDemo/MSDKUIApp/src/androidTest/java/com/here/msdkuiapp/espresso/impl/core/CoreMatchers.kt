@@ -54,7 +54,8 @@ object CoreMatchers {
     private const val TIMEOUT_WAIT_SEC: Long = 60
     private const val TIMEOUT_DELAY_MILLIS: Long = 1500
     private val TIMEOUT_WAIT_MILLIS: Long = SECONDS.toMillis(TIMEOUT_WAIT_SEC)
-    const val TIMEOUT_WAIT_EXTENDED_MILLIS: Long = 120000
+    const val TIMEOUT_WAIT_DOUBLE_MILLIS: Long = 120000
+    const val TIMEOUT_WAIT_TRIPLE_MILLIS: Long = 180000
 
     /**
      * Waits util given view is successfully matched OR timeout happens.
@@ -90,6 +91,45 @@ object CoreMatchers {
                         if (isSelected && viewMatcher.matches(child) && child.isSelected) return
                         if (isVisible && viewMatcher.matches(child)) return
                         if (!isVisible && !viewMatcher.matches(isDisplayed())) return
+                    }
+                } while (System.currentTimeMillis() < endTime)
+
+                // timeout happens
+                throw PerformException.Builder()
+                        .withActionDescription(this.description)
+                        .withViewDescription(HumanReadables.describe(view))
+                        .withCause(TimeoutException())
+                        .build()
+            }
+        }
+    }
+
+    /**
+     * Waits util text of the view under [viewMatcher] changes OR timeout happens.
+     */
+    fun waitForTextChange(viewMatcher: Matcher<View>,
+                          notWithText: String,
+                          timeout: Long = TIMEOUT_WAIT_MILLIS,
+                          checkInterval: Long = TIMEOUT_DELAY_MILLIS): ViewAction {
+        return object : ViewAction {
+            override fun getConstraints(): Matcher<View> {
+                return isRoot()
+            }
+
+            override fun getDescription(): String {
+                return "wait for text in a specific view to change during $timeout timeout."
+            }
+
+            override fun perform(uiController: UiController, view: View) {
+                uiController.loopMainThreadUntilIdle()
+                val startTime = System.currentTimeMillis()
+                val endTime = startTime + timeout
+                do {
+                    uiController.loopMainThreadForAtLeast(checkInterval)
+                    for (child in TreeIterables.breadthFirstViewTraversal(view)) {
+                        if (viewMatcher.matches(child) && (child as TextView).text != notWithText) {
+                            return
+                        }
                     }
                 } while (System.currentTimeMillis() < endTime)
 

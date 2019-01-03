@@ -101,4 +101,19 @@
         <item name="android:visibility">gone</item>
     </style>
 
+    <!-- Speed limit styling -->
+    <style name="GuidanceSpeedLimitRedText" parent="AppTheme">
+        <item name="guidanceSpeedLimitText">@style/CustomGuidanceSpeedLimitRedText</item>
+    </style>
+    <style name="GuidanceSpeedLimitBrownText" parent="AppTheme">
+        <item name="guidanceSpeedLimitText">@style/CustomGuidanceSpeedLimitBrownText</item>
+    </style>
+
+    <style name="CustomGuidanceSpeedLimitRedText" parent="GuidanceSpeedLimitText">
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+    </style>
+    <style name="CustomGuidanceSpeedLimitBrownText" parent="GuidanceSpeedLimitText">
+        <item name="android:textColor">@color/brown</item>
+    </style>
+
 </resources>

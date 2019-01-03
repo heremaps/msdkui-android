@@ -27,6 +27,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.here.msdkuidev.R
 import kotlinx.android.synthetic.main.activity_main.*
+import android.support.v7.widget.DividerItemDecoration
+import android.widget.LinearLayout.VERTICAL
+
 
 @SuppressLint("Registered")
 open class BaseListActivity : AppCompatActivity() {
@@ -40,10 +43,12 @@ open class BaseListActivity : AppCompatActivity() {
         with(landing_list) {
             layoutManager = android.support.v7.widget.LinearLayoutManager(
                 this@BaseListActivity,
-                android.support.v7.widget.LinearLayoutManager.VERTICAL,
+                VERTICAL,
                 false
             )
             setHasFixedSize(true)
+            val dividerItemDecoration = DividerItemDecoration(this@BaseListActivity, VERTICAL)
+            addItemDecoration(dividerItemDecoration)
         }
         val adapter = LandingScreenAdapter(list, this@BaseListActivity)
         adapter.itemListener = listener

@@ -33,8 +33,10 @@ class GuidanceEstimatedArrivalSetting : Setting<GuidanceEstimatedArrival>() {
         var guidanceEstimatedArrivalViewData: GuidanceEstimatedArrivalViewData? = null
 
         // ui customization
-        var durationTheme : Int ? = null
-        var arrivalTheme: Int ? = null
+        var customTheme : Int ? = null
+        var withoutTimeOfArrival: Boolean ? = null
+        var withoutDuration: Boolean ? = null
+        var withoutDistance: Boolean ? = null
 
         constructor() : super()
 
@@ -42,15 +44,19 @@ class GuidanceEstimatedArrivalSetting : Setting<GuidanceEstimatedArrival>() {
             guidanceEstimatedArrivalViewData =
                     parcel.readParcelable(GuidanceEstimatedArrivalViewData::class.java.classLoader)
 
-            durationTheme = parcel.readValue(Int::class.java.classLoader) as? Int
-            arrivalTheme = parcel.readValue(Int::class.java.classLoader) as? Int
+            customTheme = parcel.readValue(Int::class.java.classLoader) as? Int
+            withoutTimeOfArrival =  parcel.readValue(Boolean::class.java.classLoader) as? Boolean
+            withoutDuration =  parcel.readValue(Boolean::class.java.classLoader) as? Boolean
+            withoutDistance =  parcel.readValue(Boolean::class.java.classLoader) as? Boolean
         }
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
             super.writeToParcel(parcel, flags)
             parcel.writeParcelable(guidanceEstimatedArrivalViewData, flags)
-            parcel.writeValue(durationTheme)
-            parcel.writeValue(arrivalTheme)
+            parcel.writeValue(customTheme)
+            parcel.writeValue(withoutTimeOfArrival)
+            parcel.writeValue(withoutDuration)
+            parcel.writeValue(withoutDistance)
         }
 
         override fun describeContents(): Int {
@@ -75,21 +81,46 @@ class GuidanceEstimatedArrivalSetting : Setting<GuidanceEstimatedArrival>() {
 
     override fun getItems(context: Context): LinkedHashMap<String, SettingItem> {
         return linkedMapOf(
-            "Default" to GuidanceEstimatedArrivalSettingItem(),
-            "With all properties set" to GuidanceEstimatedArrivalSettingItem().apply {
+
+            "Without properties" to GuidanceEstimatedArrivalSettingItem(),
+
+            "With all properties" to GuidanceEstimatedArrivalSettingItem().apply {
                 guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(Date(), 2000, 2000)
             },
-            "Without distance of arrival" to GuidanceEstimatedArrivalSettingItem().apply {
-                guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(Date(), 0, 2000)
+
+            "Without time of arrival" to GuidanceEstimatedArrivalSettingItem().apply { //bug
+                guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(Date(), 2000, 2000)
+                withoutTimeOfArrival = true
             },
+
+            "Without duration" to GuidanceEstimatedArrivalSettingItem().apply { //bug
+                guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(Date(), 2000, 2000)
+                withoutDuration = true
+            },
+
+            "Without distance" to GuidanceEstimatedArrivalSettingItem().apply { //bug
+                guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(Date(), 2000, 2000)
+                withoutDistance = true
+            },
+
+            "Left aligned, red, green" to GuidanceEstimatedArrivalSettingItem().apply { //bug
+                guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(Date(), 2000, 2000)
+                customTheme = R.style.GuidanceEstimatedArrivalLeftAlignedRedGreen
+            },
+
+            "Right aligned, red, green" to GuidanceEstimatedArrivalSettingItem().apply { //bug
+                guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(Date(), 2000, 2000)
+                customTheme = R.style.GuidanceEstimatedArrivalRightAlignedRedGreen
+            },
+
             "With red & big arrival time" to GuidanceEstimatedArrivalSettingItem().apply {
                 guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(Date(), 0, 2000)
-                arrivalTheme = R.style.GuidanceEstimatedArrivalTimeTheme
+                customTheme = R.style.GuidanceEstimatedArrivalTimeTheme
 
             },
-            "With duration red and bigger" to GuidanceEstimatedArrivalSettingItem().apply {
+            "With red and big duration" to GuidanceEstimatedArrivalSettingItem().apply {
                 guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(Date(), 2000, 2000)
-                durationTheme = R.style.GuidanceEstimatedArrivalDurationTheme
+                customTheme = R.style.GuidanceEstimatedArrivalDurationTheme
             }
         )
     }

@@ -20,19 +20,58 @@
     <style name="AppTheme" parent="MSDKUIDarkTheme">
     </style>
 
-    <style name="GuidanceEstimatedArrivalTimeTheme" parent="AppTheme">
+    <style name="GuidanceEstimatedArrivalLeftAlignedRedGreen" parent="AppTheme">
         <!-- change all param which you want to change in this theme -->
-        <item name="guidanceArrivalTime">@style/CustomGuidanceArrivalTime</item>
+        <item name="guidanceArrivalTime">@style/CustomGuidanceArrivalTimeLeftRed</item>
+        <item name="guidanceArrivalDistance">@style/CustomGuidanceArrivalDistanceGreen</item>
+        <item name="guidanceArrivalDuration">@style/CustomGuidanceArrivalDurationGreen</item>
     </style>
 
-    <style name="CustomGuidanceArrivalTime" parent="GuidanceArrivalTime">
-        <item name="android:textColor">@android:color/holo_red_dark</item>
-        <item name="android:textSize">@dimen/contentMarginExtraHuge</item>
+    <style name="GuidanceEstimatedArrivalRightAlignedRedGreen" parent="AppTheme">
+        <!-- change all param which you want to change in this theme -->
+        <item name="guidanceArrivalTime">@style/CustomGuidanceArrivalTimeRightRed</item>
+        <item name="guidanceArrivalDistance">@style/CustomGuidanceArrivalDistanceGreen</item>
+        <item name="guidanceArrivalDuration">@style/CustomGuidanceArrivalDurationGreen</item>
+    </style>
+
+    <style name="GuidanceEstimatedArrivalWithRedBigDuration" parent="AppTheme">
+        <!-- change all param which you want to change in this theme -->
+        <item name="guidanceArrivalDuration">@style/CustomGuidanceArrivalDuration</item>
     </style>
 
     <style name="GuidanceEstimatedArrivalDurationTheme" parent="AppTheme">
         <!-- change all param which you want to change in this theme -->
         <item name="guidanceArrivalDuration">@style/CustomGuidanceArrivalDuration</item>
+    </style>
+
+    <style name="GuidanceEstimatedArrivalTimeTheme" parent="AppTheme">
+        <!-- change all param which you want to change in this theme -->
+        <item name="guidanceArrivalTime">@style/CustomGuidanceArrivalTime</item>
+    </style>
+
+    <style name="CustomGuidanceArrivalTimeLeftRed" parent="GuidanceArrivalTime">
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+        <item name="android:textSize">@dimen/contentMarginExtraHuge</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="CustomGuidanceArrivalTimeRightRed" parent="GuidanceArrivalTime">
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+        <item name="android:textSize">@dimen/contentMarginExtraHuge</item>
+        <item name="android:textAlignment">viewEnd</item>
+    </style>
+
+    <style name="CustomGuidanceArrivalDistanceGreen" parent="GuidanceArrivalDistance">
+        <item name="android:textColor">@android:color/holo_green_dark</item>
+    </style>
+
+    <style name="CustomGuidanceArrivalDurationGreen" parent="GuidanceArrivalDuration">
+        <item name="android:textColor">@android:color/holo_green_dark</item>
+    </style>
+
+    <style name="CustomGuidanceArrivalTime" parent="GuidanceArrivalTime">
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+        <item name="android:textSize">@dimen/contentMarginExtraHuge</item>
     </style>
 
     <style name="CustomGuidanceArrivalDuration" parent="GuidanceArrivalDuration">
@@ -41,5 +80,25 @@
     </style>
 
 
+    <style name="GuidanceManeuverViewRed" parent="AppTheme">
+        <item name="guidanceManeuverPanelHeadingText">@style/CustomGuidanceManeuverPanelHeadingText</item>
+        <item name="guidanceManeuverPanelSecondaryText">@style/CustomGuidanceManeuverPanelSecondaryText</item>
+    </style>
+
+    <style name="CustomGuidanceManeuverPanelHeadingText" parent="GuidanceManeuverPanelHeadingText">
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+    </style>
+
+    <style name="CustomGuidanceManeuverPanelSecondaryText" parent="GuidanceManeuverPanelSecondaryText">
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+    </style>
+
+    <style name="GuidanceNextManeuverViewWithoutIcon" parent="AppTheme">
+        <item name="guidanceNextManeuverPanelLeftIcon">@style/CustomGuidanceNextManeuverPanelLeftIcon</item>
+    </style>
+
+    <style name="CustomGuidanceNextManeuverPanelLeftIcon" parent="GuidanceNextManeuverPanelLeftIcon">
+        <item name="android:visibility">gone</item>
+    </style>
 
 </resources>

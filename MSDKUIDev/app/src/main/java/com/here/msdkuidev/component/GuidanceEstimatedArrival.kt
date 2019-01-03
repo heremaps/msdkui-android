@@ -18,6 +18,7 @@ package com.here.msdkuidev.component
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.TextView
 import com.here.msdkuidev.Constant
 import com.here.msdkuidev.Constant.ITEM
 import com.here.msdkuidev.R
@@ -28,18 +29,22 @@ class GuidanceEstimatedArrival : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val setting = intent.getParcelableExtra(ITEM) as GuidanceEstimatedArrivalSetting.GuidanceEstimatedArrivalSettingItem
-        setting.durationTheme?.run { // for separate changes set multiple theme,
+        setting.customTheme?.run { // for separate changes set multiple theme,
             // in case of multiple changes, it should b created one theme having all changes
-            setTheme(this)
-        }
-        setting.arrivalTheme?.run {
             setTheme(this)
         }
         val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.guidance_estimated_arrival else
             R.layout.guidance_estimated_arrival_fix
         setContentView(resourceId)
         guidanceEstimatedArrivalView.estimatedArrivalData = setting.guidanceEstimatedArrivalViewData
-        // setting things from code use the following
-        // guidanceEstimatedArrivalView.findViewById<TextView>(R.id.eta).text = "--"
+        if(setting.withoutTimeOfArrival == true) {
+            guidanceEstimatedArrivalView.findViewById<TextView>(R.id.eta).text = "--"
+        }
+        if(setting.withoutDistance == true) {
+            guidanceEstimatedArrivalView.findViewById<TextView>(R.id.distance).text = "--"
+        }
+        if(setting.withoutDuration == true) {
+            guidanceEstimatedArrivalView.findViewById<TextView>(R.id.duration).text = "--"
+        }
     }
 }

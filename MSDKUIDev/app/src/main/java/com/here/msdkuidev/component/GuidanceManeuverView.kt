@@ -18,6 +18,8 @@ package com.here.msdkuidev.component
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.widget.TextView
 import com.here.msdkuidev.Constant
 import com.here.msdkuidev.R
 import kotlinx.android.synthetic.main.guidance_maneuver_view.*
@@ -29,8 +31,11 @@ class GuidanceManeuverView : AppCompatActivity() {
         val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.guidance_maneuver_view else
             R.layout.guidance_maneuver_view_fix
         setContentView(resourceId)
-        setting.onlyView ?: run {
+        setting.defaultView ?: run {
             guidanceManeuverView.maneuverData = setting.guidanceManeuverData
+        }
+        if(setting.noDistance == true) {
+           guidanceManeuverView.findViewById<TextView>(R.id.distanceView).visibility = View.GONE
         }
     }
 }

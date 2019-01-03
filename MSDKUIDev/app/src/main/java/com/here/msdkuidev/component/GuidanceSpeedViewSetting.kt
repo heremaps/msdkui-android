@@ -100,6 +100,7 @@ class GuidanceSpeedViewSetting : Setting<GuidanceSpeedView>() {
             },
             "With custom background" to GuidanceSpeedViewSettingItem().apply {
                 guidanceSpeedData = GuidanceSpeedData(13.0, 8.0)
+                customBackground = R.drawable.current_speed_view_bg
             }
         )
     }

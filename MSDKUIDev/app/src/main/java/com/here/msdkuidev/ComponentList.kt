@@ -22,11 +22,7 @@ import android.view.View
 import com.here.msdkuidev.Constant.COMPONENT
 import com.here.msdkuidev.Constant.FIX_VALUE
 import com.here.msdkuidev.base.BaseListActivity
-import com.here.msdkuidev.component.GuidanceEstimatedArrivalSetting
-import com.here.msdkuidev.component.GuidanceManeuverViewSetting
-import com.here.msdkuidev.component.GuidanceNextManeuverViewSetting
-import com.here.msdkuidev.component.GuidanceStreetLabelSetting
-import com.here.msdkuidev.component.GuidanceSpeedLimitSetting
+import com.here.msdkuidev.component.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class ComponentList : BaseListActivity() {
@@ -47,6 +43,8 @@ class ComponentList : BaseListActivity() {
         list.add(GuidanceStreetLabelSetting().apply { subTitle = FIX_VALUE })
         list.add(GuidanceSpeedLimitSetting())
         list.add(GuidanceSpeedLimitSetting().apply { subTitle = FIX_VALUE })
+        list.add(GuidanceSpeedViewSetting())
+        list.add(GuidanceSpeedViewSetting().apply { subTitle = FIX_VALUE })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

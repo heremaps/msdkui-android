@@ -29,6 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"
             android:layout_margin="50dp"/>
 
 </android.support.constraint.ConstraintLayout>

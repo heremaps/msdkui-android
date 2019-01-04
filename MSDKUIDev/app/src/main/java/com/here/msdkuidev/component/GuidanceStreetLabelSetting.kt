@@ -35,7 +35,7 @@ class GuidanceStreetLabelSetting : Setting<GuidanceStreetLabel>() {
 
         constructor(parcel: Parcel) : super(parcel) {
             guidanceStreetLabelData =
-                    parcel.readParcelable(GuidanceStreetLabelData::class.java.classLoader)
+                    parcel.readParcelable(GuidanceStreetLabelData::class.java.classLoader)!!
             defaultView = parcel.readValue(Boolean::class.java.classLoader) as Boolean
         }
 

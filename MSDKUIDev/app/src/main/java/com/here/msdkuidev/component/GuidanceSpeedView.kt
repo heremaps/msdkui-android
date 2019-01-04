@@ -30,7 +30,7 @@ class GuidanceSpeedView : AppCompatActivity() {
             R.layout.guidance_current_speed_fix
         setContentView(resourceId)
         if (!setting.defaultView) {
-            setting.unit?.run {
+            setting.unit.run {
                 print(this)
                 guidanceSpeedView.unitSystem = this
             }

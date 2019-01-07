@@ -45,6 +45,8 @@ class ComponentList : BaseListActivity() {
         list.add(GuidanceSpeedLimitSetting().apply { subTitle = FIX_VALUE })
         list.add(GuidanceSpeedViewSetting())
         list.add(GuidanceSpeedViewSetting().apply { subTitle = FIX_VALUE })
+        list.add(ManeuverItemViewSetting())
+        list.add(ManeuverItemViewSetting().apply { subTitle = FIX_VALUE })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

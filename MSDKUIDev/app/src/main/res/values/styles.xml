@@ -116,4 +116,39 @@
         <item name="android:textColor">@color/brown</item>
     </style>
 
+
+    <style name="ManeuverItemRedGreenYellow" parent="AppTheme">
+        <item name="maneuverDescriptionItemInstructionText">@style/ManeuverDescriptionItemInstructionTextRed</item>
+        <item name="maneuverDescriptionItemAddressText">@style/ManeuverDescriptionItemAddressTextGreen</item>
+        <item name="maneuverDescriptionItemDistanceText">@style/ManeuverDescriptionItemDistanceTextYellow</item>
+    </style>
+
+    <style name="ManeuverDescriptionItemInstructionTextRed" parent="ManeuverDescriptionItemInstructionText">
+        <item name="android:textColor">@android:color/holo_red_dark</item>
+    </style>
+
+    <style name="ManeuverDescriptionItemAddressTextGreen" parent="ManeuverDescriptionItemAddressText">
+        <item name="android:textColor">@android:color/holo_green_dark</item>
+    </style>
+
+    <style name="ManeuverDescriptionItemDistanceTextYellow" parent="ManeuverDescriptionItemDistanceText">
+        <item name="android:textColor">@color/yellow</item>
+    </style>
+
+    <style name="ManeuverItemVisibleSectionIcon" parent="AppTheme">
+        <item name="visible">icon</item>
+    </style>
+
+    <style name="ManeuverItemVisibleSectionInstructions" parent="AppTheme">
+        <item name="visible">instructions</item>
+    </style>
+
+    <style name="ManeuverItemVisibleSectionAddress" parent="AppTheme">
+        <item name="visible">address</item>
+    </style>
+
+    <style name="ManeuverItemVisibleSectionDistance" parent="AppTheme">
+        <item name="visible">distance</item>
+    </style>
+
 </resources>

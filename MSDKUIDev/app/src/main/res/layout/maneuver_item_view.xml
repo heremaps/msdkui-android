@@ -15,10 +15,10 @@
   ~ limitations under the License.
   -->
 
-<resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="brown">#905522</color>
-    <color name="yellow">#E8E800</color>
-</resources>
+<com.here.msdkui.routing.ManeuverItemView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/rectangle"
+    android:id="@+id/maneuverItemView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+/>

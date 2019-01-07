@@ -223,9 +223,9 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">@dimen/contentMarginMedium</item>
         <item name="android:layout_marginRight">@dimen/contentMarginMedium</item>
-        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/contentMarginMedium
+        <item name="android:layout_marginStart">@dimen/contentMarginMedium
         </item>
-        <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/contentMarginMedium</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginMedium</item>
         <item name="android:textColor">?attr/colorAccentLight</item>
         <item name="android:background">@android:color/transparent</item>
 
@@ -241,9 +241,9 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:paddingLeft">@dimen/contentMarginMedium</item>
-        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginMedium</item>
+        <item name="android:paddingStart">@dimen/contentMarginMedium</item>
         <item name="android:paddingRight">@dimen/contentMarginMedium</item>
-        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginMedium</item>
+        <item name="android:paddingEnd">@dimen/contentMarginMedium</item>
     </style>
 
     <style name="MultipleChoiceOptionItemText">
@@ -251,16 +251,16 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">@dimen/contentMarginExtraLarge</item>
-        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginExtraLarge</item>
         <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
-        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginLarge</item>
     </style>
 
     <style name="MultipleChoiceOptionItemCheckbox">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginRight">@dimen/contentMarginExtraLarge</item>
-        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginExtraLarge</item>
         <item name="android:gravity">center|center_horizontal</item>
         <item name="android:minHeight">@dimen/min_value</item>
         <item name="android:minWidth">@dimen/min_value</item>
@@ -273,9 +273,9 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:orientation">vertical</item>
         <item name="android:paddingLeft">@dimen/contentMarginMedium</item>
-        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginMedium</item>
+        <item name="android:paddingStart">@dimen/contentMarginMedium</item>
         <item name="android:paddingRight">@dimen/contentMarginMedium</item>
-        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginMedium</item>
+        <item name="android:paddingEnd">@dimen/contentMarginMedium</item>
         <item name="android:paddingTop">@dimen/contentMarginMedium</item>
     </style>
 
@@ -284,15 +284,15 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">@dimen/contentMarginExtraLarge</item>
-        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginExtraLarge</item>
         <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
-        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginLarge</item>
     </style>
 
     <style name="BooleanOptionItemSwitch">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginLarge</item>
         <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
         <item name="android:minHeight">@dimen/min_value_boolean</item>
         <item name="android:minWidth">@dimen/min_value_boolean</item>
@@ -303,14 +303,14 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginLeft">@dimen/contentMarginExtraLarge</item>
-        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginExtraLarge</item>
         <item name="android:layout_marginRight">@dimen/contentMarginMedium</item>
-        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginMedium</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginMedium</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:paddingLeft">@dimen/contentMarginMedium</item>
-        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginMedium</item>
+        <item name="android:paddingStart">@dimen/contentMarginMedium</item>
         <item name="android:paddingRight">@dimen/contentMarginMedium</item>
-        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginMedium</item>
+        <item name="android:paddingEnd">@dimen/contentMarginMedium</item>
         <item name="android:paddingTop">@dimen/contentMarginMedium</item>
     </style>
 
@@ -346,7 +346,7 @@
         <item name="android:minHeight">@dimen/min_value</item>
         <item name="android:scaleType">centerInside</item>
         <item name="android:layout_marginLeft">@dimen/contentMarginExtraLarge</item>
-        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginExtraLarge</item>
         <item name="android:contentDescription">@null</item>
         <item name="android:tint">?attr/colorForeground</item>
     </style>
@@ -358,9 +358,9 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">@dimen/contentMarginSmall</item>
         <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_marginStart" tools:targetApi="17">10dp</item>
+        <item name="android:layout_marginStart">10dp</item>
         <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
-        <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginLarge</item>
         <item name="android:layout_marginTop">@dimen/contentMarginHuge</item>
     </style>
 
@@ -370,7 +370,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">@dimen/contentMarginLarge</item>
-        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginLarge</item>
         <item name="android:paddingBottom">@dimen/contentMarginHuge</item>
     </style>
 
@@ -380,9 +380,9 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">@dimen/contentMarginMedium</item>
-        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/contentMarginMedium</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginMedium</item>
         <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
-        <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginLarge</item>
         <item name="android:textAlignment">viewEnd</item>
     </style>
 
@@ -392,9 +392,9 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">vertical</item>
         <item name="android:paddingLeft">@dimen/contentMarginLarge</item>
-        <item name="android:paddingStart" tools:targetApi="17">@dimen/contentMarginLarge</item>
+        <item name="android:paddingStart">@dimen/contentMarginLarge</item>
         <item name="android:paddingRight">@dimen/contentMarginLarge</item>
-        <item name="android:paddingEnd" tools:targetApi="17">@dimen/contentMarginLarge</item>
+        <item name="android:paddingEnd">@dimen/contentMarginLarge</item>
     </style>
 
     <style name="NumericOptionItemLabelText">
@@ -403,16 +403,16 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">@dimen/contentMarginExtraLarge</item>
-        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginExtraLarge</item>
         <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
-        <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginLarge</item>
     </style>
 
     <style name="NumericOptionItemValueText">
         <item name="android:textSize">@dimen/textSizeMedium</item>
         <item name="android:textColor">?attr/colorForegroundSecondary</item>
         <item name="android:layout_marginRight">@dimen/contentMarginExtraLarge</item>
-        <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/contentMarginExtraLarge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginExtraLarge</item>
         <item name="android:gravity">center</item>
         <item name="android:minHeight">@dimen/min_value</item>
         <item name="android:minWidth">@dimen/min_value</item>
@@ -432,9 +432,9 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
-        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginHuge</item>
         <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
-        <item name="android:layout_marginEnd" tools:targetApi="17">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginHuge</item>
         <item name="android:inputType">numberDecimal</item>
         <item name="android:minHeight">@dimen/min_value</item>
         <item name="android:minWidth">@dimen/min_value</item>
@@ -462,7 +462,7 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingTop">5dp</item>
-        <item name="android:textAlignment" tools:targetApi="17">center</item>
+        <item name="android:textAlignment">center</item>
         <item name="android:textColor">?attr/colorForegroundLight</item>
         <item name="android:textSize">14sp</item>
     </style>
@@ -500,11 +500,11 @@
         <item name="android:minHeight">@dimen/min_value</item>
         <item name="android:scaleType">centerInside</item>
         <item name="android:layout_alignParentLeft">true</item>
-        <item name="android:layout_alignParentStart" tools:targetApi="17">true</item>
+        <item name="android:layout_alignParentStart">true</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:contentDescription">@null</item>
         <item name="android:tint">?attr/colorForeground</item>
-        <item name="android:tintMode" tools:targetApi="21">src_in</item>
+        <item name="android:tintMode" tools:targetApi="lollipop">src_in</item>
         <item name="srcCompat">@drawable/ic_settings_time_24</item>
     </style>
 
@@ -526,9 +526,9 @@
         <item name="android:maxLines">1</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_marginLeft">@dimen/contentMarginMedium</item>
-        <item name="android:layout_marginStart" tools:targetApi="17">@dimen/contentMarginMedium</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginMedium</item>
         <item name="android:layout_marginRight">48dp</item>
-        <item name="android:layout_marginEnd" tools:targetApi="17">48dp</item>
+        <item name="android:layout_marginEnd">48dp</item>
     </style>
 
     <!-- Travel time picker -->
@@ -583,7 +583,7 @@
         <item name="android:minWidth">@dimen/min_value</item>
         <item name="android:minHeight">@dimen/min_value</item>
         <item name="android:scaleType">centerInside</item>
-        <item name="android:layout_alignParentStart" tools:targetApi="17">true</item>
+        <item name="android:layout_alignParentStart">true</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:contentDescription">@string/msdkui_remove_waypoint</item>
         <item name="android:padding">@dimen/contentMarginSmall</item>
@@ -615,7 +615,7 @@
         <item name="android:minWidth">@dimen/min_value</item>
         <item name="android:minHeight">@dimen/min_value</item>
         <item name="android:scaleType">centerInside</item>
-        <item name="android:layout_alignParentEnd" tools:targetApi="17">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:contentDescription">@string/msdkui_drag_waypoint</item>
         <item name="android:focusable">true</item>
@@ -627,12 +627,12 @@
     <style name="SpinnerRowItem">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_marginEnd" tools:targetApi="17">2dp</item>
+        <item name="android:layout_marginEnd">2dp</item>
         <item name="android:ellipsize">marquee</item>
         <item name="android:paddingLeft">@dimen/contentMarginExtraSmall</item>
-        <item name="android:paddingStart" tools:targetApi="17">@dimen/contentMarginExtraSmall</item>
+        <item name="android:paddingStart">@dimen/contentMarginExtraSmall</item>
         <item name="android:paddingRight">@dimen/contentMarginExtraSmall</item>
-        <item name="android:paddingEnd" tools:targetApi="17">@dimen/contentMarginExtraSmall</item>
+        <item name="android:paddingEnd">@dimen/contentMarginExtraSmall</item>
         <item name="android:paddingBottom">@dimen/contentMarginLarge</item>
         <item name="android:paddingTop">@dimen/contentMarginLarge</item>
         <item name="android:textColor">?attr/colorForeground</item>
@@ -674,7 +674,7 @@
         <item name="android:contentDescription">@null</item>
         <item name="android:background">?attr/colorHint</item>
         <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
-        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginLarge</item>
         <item name="android:orientation">horizontal</item>
     </style>
 
@@ -707,7 +707,7 @@
         <item name="android:layout_height">40dp</item>
         <item name="android:contentDescription">@null</item>
         <item name="android:layout_marginLeft">28dp</item>
-        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">28dp</item>
+        <item name="android:layout_marginStart">28dp</item>
         <item name="android:tint">?attr/colorForegroundLight</item>
     </style>
 
@@ -717,7 +717,7 @@
         <item name="android:scaleType">centerInside</item>
         <item name="android:contentDescription">@null</item>
         <item name="android:layout_marginRight">20dp</item>
-        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
         <item name="android:layout_marginTop">12dp</item>
     </style>
 
@@ -725,11 +725,11 @@
     <style name="GuidanceManeuverPanelHeadingText" parent="Headline2">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
         <item name="android:layout_marginTop">12dp</item>
         <item name="android:layout_marginLeft">16dp</item>
         <item name="android:layout_marginRight">20dp</item>
-        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
         <item name="android:textColor">?attr/colorForegroundLight</item>
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
@@ -739,26 +739,26 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_marginRight">20dp</item>
         <item name="android:layout_marginTop">0dp</item>     <!-- we have padding in parent theme -->
-        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
         <item name="android:layout_marginLeft">28dp</item>
-        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">28dp</item>
+        <item name="android:layout_marginStart">28dp</item>
     </style>
 
     <style name="GuidanceManeuverPanelSecondaryText" parent="Base.TextAppearance.AppCompat.Title">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">16dp</item>
+        <item name="android:layout_marginStart">16dp</item>
         <item name="android:textColor">?attr/colorForegroundLight</item>
         <item name="android:layout_marginRight">20dp</item>
-        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
     </style>
 
     <style name="GuidanceManeuverPanelSecondaryTextLand" parent="GuidanceManeuverPanelSecondaryText">
         <item name="android:layout_marginLeft">28dp</item>
-        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">28dp</item>
+        <item name="android:layout_marginStart">28dp</item>
         <item name="android:layout_marginBottom">@dimen/contentMarginLarge</item>
         <item name="android:singleLine">false</item>
         <item name="android:maxLines">2</item>
@@ -772,13 +772,13 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
-        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginStart">@dimen/contentMarginHuge</item>
         <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
-        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginHuge</item>
         <item name="android:paddingLeft">@dimen/contentMarginHuge</item>
-        <item name="android:paddingStart" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginHuge</item>
+        <item name="android:paddingStart">@dimen/contentMarginHuge</item>
         <item name="android:paddingRight">@dimen/contentMarginHuge</item>
-        <item name="android:paddingEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginHuge</item>
+        <item name="android:paddingEnd">@dimen/contentMarginHuge</item>
     </style>
 
     <style name="GuidanceCurrentStreetText" parent="@style/TextAppearance.AppCompat.Subhead">
@@ -837,7 +837,7 @@
         <item name="android:layout_height">32dp</item>
         <item name="android:contentDescription">@null</item>
         <item name="android:layout_marginLeft">32dp</item>
-        <item name="android:layout_marginStart" tools:targetApi="jelly_bean_mr1">32dp</item>
+        <item name="android:layout_marginStart">32dp</item>
         <item name="android:tint">?attr/colorForegroundSecondaryLight</item>
     </style>
 
@@ -850,7 +850,7 @@
         <item name="android:ellipsize">end</item>
         <item name="android:paddingRight">8dp</item>
         <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
-        <item name="android:layout_marginEnd" tools:targetApi="jelly_bean_mr1">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginEnd">@dimen/contentMarginHuge</item>
     </style>
 
     <style name="GuidanceNextManeuverPanelDistanceText" parent="@style/TextAppearance.AppCompat.Subhead">

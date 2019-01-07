@@ -153,13 +153,13 @@
   <string name="msdkui_tunnel_cat_e">Danh mục E</string>
   <string name="msdkui_tunnels_allowed_title">Đường hầm được chấp nhận</string>
   <string name="msdkui_undefined">Không xác định</string>
-  <string name="msdkui_unit_foot">ft</string>
+  <string name="msdkui_unit_foot">foot</string>
   <string name="msdkui_unit_kilometer">km</string>
   <string name="msdkui_unit_km_per_h">km/giờ</string>
   <string name="msdkui_unit_meter">mét</string>
-  <string name="msdkui_unit_mile">mi</string>
-  <string name="msdkui_unit_miles_per_hour">mi/h</string>
-  <string name="msdkui_unit_yard">yd</string>
+  <string name="msdkui_unit_mile">dặm</string>
+  <string name="msdkui_unit_miles_per_hour">dặm/giờ</string>
+  <string name="msdkui_unit_yard">thước</string>
   <string name="msdkui_userposition_search">Đang lấy địa điểm của bạn</string>
   <string name="msdkui_violate_truck_options">Bỏ qua lựa chọn xe tải</string>
   <string name="msdkui_waypoint_current_location">Địa điểm hiện tại</string>

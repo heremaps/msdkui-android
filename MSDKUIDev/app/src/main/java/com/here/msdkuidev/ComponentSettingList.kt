@@ -38,9 +38,9 @@ class ComponentSettingList : BaseListActivity() {
             val position = landing_list.getChildLayoutPosition(view)
             val item = settingMap.getItems(this@ComponentSettingList).values.toList()[position]
             item.subTitle = settingMap.subTitle
-           startActivity(Intent(this@ComponentSettingList, settingMap.getClassName()).apply {
-               putExtra(ITEM, item)
-           })
+            startActivity(Intent(this@ComponentSettingList, settingMap.getClassName()).apply {
+                putExtra(ITEM, item)
+            })
         }
     }
 }

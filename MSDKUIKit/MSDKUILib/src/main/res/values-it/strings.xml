@@ -158,7 +158,7 @@
   <string name="msdkui_unit_km_per_h">km/h</string>
   <string name="msdkui_unit_meter">m</string>
   <string name="msdkui_unit_mile">mi</string>
-  <string name="msdkui_unit_miles_per_hour">mi/h</string>
+  <string name="msdkui_unit_miles_per_hour">mph</string>
   <string name="msdkui_unit_yard">yd</string>
   <string name="msdkui_userposition_search">Recupero della posizione</string>
   <string name="msdkui_violate_truck_options">Ignora opzioni camion</string>

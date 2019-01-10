@@ -31,9 +31,9 @@ class RoutingTestData {
 
     /**
      * Waypoint items on route planer with default geo points
-     * Note: Waypoints list can not display more then 4 items, max item = 3
+     * Note: Waypoints list can not display more then 4 items, max index = 3
      */
-    enum class WaypointItem(val value: Int, val mapData: MapData) {
+    enum class WaypointItem(val index: Int, val mapData: MapData) {
         // Waypoint items on Route Planner
         WAYPOINT_1(0, GEO_POINT_1),
         WAYPOINT_2(1, GEO_POINT_2),

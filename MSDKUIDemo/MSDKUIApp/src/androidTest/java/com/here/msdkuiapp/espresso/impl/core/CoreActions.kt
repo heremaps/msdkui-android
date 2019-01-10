@@ -95,6 +95,26 @@ open class CoreActions {
     }
 
     /**
+     * An action that performs a swipe from center to [n] view heights
+     * above or below the view center. n > 0 - swipe down, n < 0 - swipe up
+     */
+    fun swipeViewsUpDownFromCenter (n: Int): ViewAction {
+        val nHeightsAboveBelowCenter = CoordinatesProvider { view ->
+            val locationOnScreen = IntArray(2)
+            view.getLocationOnScreen(locationOnScreen)
+            val x: Float = locationOnScreen[0] + view.width / 2.0f
+            val y: Float = locationOnScreen[1] + view.height / 2.0f + n * view.height.toFloat()
+            floatArrayOf(x, y)
+        }
+        return actionWithAssertions(GeneralSwipeAction(
+                Swipe.FAST,
+                GeneralLocation.CENTER,
+                nHeightsAboveBelowCenter,
+                Press.FINGER
+        ))
+    }
+
+    /**
      * Set date of [DatePicker] to tomorrow
      */
     fun setTomorrowDate(): ViewAction {

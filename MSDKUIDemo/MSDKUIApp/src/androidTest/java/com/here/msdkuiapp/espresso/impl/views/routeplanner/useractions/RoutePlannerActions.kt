@@ -31,11 +31,13 @@ import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteMatchers
+import com.here.msdkuiapp.espresso.impl.views.route.useractions.RouteActions
 import com.here.msdkuiapp.espresso.impl.views.route.utils.RouteData
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerBarMatchers
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerMatchers
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerOptionsMatchers
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarChooseWaypointTitle
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onDatePicker
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onOkButton
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onOptionPanel
@@ -81,7 +83,7 @@ object RoutePlannerActions {
         val waypoint = selectWaypoint(waypointData)
         // Expand route planner panel to update waypoints
         RoutePlannerBarActions.waitForRoutePlannerCollapsed()
-                .waitRouteDescriptionEnabled()
+        RouteActions.waitRouteDescriptionEnabled()
                 .waitForRightImageIconExpand()
                 .tapOnRightArrowButton()
                 .waitForRoutePlannerExpanded()
@@ -98,7 +100,7 @@ object RoutePlannerActions {
         waypointItem.run {
             // Tap on waypoint item on Route planner if displayed
             onPlannerWaypointList.check(matches(isDisplayed()))
-                    .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(value, click()))
+                    .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(index, click()))
             // Check that choose waypoint text is displayed
             onPlannerBarChooseWaypointTitle.check(matches(isDisplayed()))
         }
@@ -154,6 +156,15 @@ object RoutePlannerActions {
         // Check that waypoint item became visible after swiping
         RoutePlannerMatchers.checkWaypointLocationLabel(WaypointData())
         return this
+    }
+
+    /**
+     * Drag one waypoint to another in waypoints list
+     */
+    fun dragWaypoint(from: WaypointItem, to: WaypointItem) {
+        var n = to.index - from.index
+        if (n < 0) n-- else n++
+        RoutePlannerView.onPlannerWaypointReorder(from).perform(CoreActions().swipeViewsUpDownFromCenter(n))
     }
 
     /**

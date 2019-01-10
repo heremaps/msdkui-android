@@ -24,7 +24,6 @@ import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.RemoveWaypointBtn
-import com.here.msdkuiapp.espresso.impl.views.route.useractions.RouteActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerBarMatchers
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerMatchers
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerOptionsMatchers
@@ -109,9 +108,9 @@ object RoutePlannerBarActions: CoreActions() {
     /**
      * Wait and check route planner panel collapsed on actionbar
      */
-    fun waitForRoutePlannerCollapsed(): RouteActions {
+    fun waitForRoutePlannerCollapsed(): RoutePlannerBarActions {
         onRootView.perform(waitForCondition(onPlannerBarRouteResultTitle))
-        return RouteActions
+        return this
     }
 
     /**

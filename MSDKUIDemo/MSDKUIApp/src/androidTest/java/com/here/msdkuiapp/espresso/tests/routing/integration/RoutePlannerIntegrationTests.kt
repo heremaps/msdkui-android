@@ -102,14 +102,14 @@ class RoutePlannerIntegrationTests: TestBase<SplashActivity>(SplashActivity::cla
         RouteActions.waitRouteDescriptionList()
         // Expand route planner panel to update waypoints
         RoutePlannerBarActions.waitForRoutePlannerCollapsed()
-                .waitRouteDescriptionList()
+        RouteActions.waitRouteDescriptionList()
                 .waitForRightImageIconExpand()
                 .tapOnRightArrowButton()
                 .waitForRoutePlannerExpanded()
                 .waitForSwapWaypointsImageButton()
                 .tapOnSwapWaypointButton()
                 .waitForRoutePlannerCollapsed()
-                .waitRouteDescriptionList()
+        RouteActions.waitRouteDescriptionList()
     }
 
     /**
@@ -148,13 +148,14 @@ class RoutePlannerIntegrationTests: TestBase<SplashActivity>(SplashActivity::cla
         // Select second waypoint item
         RoutePlannerActions.selectWaypoint(waypoint2)
         // Wait for panel collapsed and routes description list is visible
-        RoutePlannerBarActions.waitForRoutePlannerCollapsed().waitRouteDescriptionList()
+        RoutePlannerBarActions.waitForRoutePlannerCollapsed()
+        RouteActions.waitRouteDescriptionList()
         // Check all existing transportation types
         enumValues<TransportType>().forEach {
             // Select next transportation type and check the type is selected
             RoutePlannerActions.selectTransportMode(it)
                     .waitForRoutePlannerCollapsed()
-                    .waitRouteDescriptionEnabled()
+            RouteActions.waitRouteDescriptionEnabled()
             // Check first transportation image icon for the selected transportation type
             RouteMatchers.checkTransportIconDisplayed(it)
         }
@@ -171,7 +172,8 @@ class RoutePlannerIntegrationTests: TestBase<SplashActivity>(SplashActivity::cla
         // Select second waypoint item
         RoutePlannerActions.selectWaypoint(waypoint2)
         // Wait for panel collapsed and routes description list is visible
-        RoutePlannerBarActions.waitForRoutePlannerCollapsed().waitRouteDescriptionEnabled()
+        RoutePlannerBarActions.waitForRoutePlannerCollapsed()
+        RouteActions.waitRouteDescriptionEnabled()
         // Check that Route Description list exists
         onRouteDescriptionList.check(matches(isDisplayed()))
     }
@@ -187,7 +189,8 @@ class RoutePlannerIntegrationTests: TestBase<SplashActivity>(SplashActivity::cla
         // Select second waypoint item
         RoutePlannerActions.selectWaypoint(waypoint2)
         // Wait for panel collapsed and routes description list is visible
-        RoutePlannerBarActions.waitForRoutePlannerCollapsed().waitRouteDescriptionEnabled()
+        RoutePlannerBarActions.waitForRoutePlannerCollapsed()
+        RouteActions.waitRouteDescriptionEnabled()
         // Tap on the first route item from route list to open route overview
         RouteActions.tapRouteItemOnDescList(ROUTE_RESULT_1)
                 .waitRouteOverviewDisplayed()
@@ -209,7 +212,7 @@ class RoutePlannerIntegrationTests: TestBase<SplashActivity>(SplashActivity::cla
             RoutePlannerActions.selectWaypoint(waypoint2)
             // Wait for panel collapsed and routes description list is visible
             RoutePlannerBarActions.waitForRoutePlannerCollapsed()
-                    .waitRouteDescriptionEnabled()
+            RouteActions.waitRouteDescriptionEnabled()
             // Tap on the first route item from route list to open route overview
             RouteActions.tapRouteItemOnDescList(ROUTE_RESULT_1)
                     .waitRouteOverviewDisplayed()

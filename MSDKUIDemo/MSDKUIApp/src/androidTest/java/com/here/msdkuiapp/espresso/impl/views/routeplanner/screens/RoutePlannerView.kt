@@ -142,18 +142,24 @@ object RoutePlannerView {
         get() = onView(withContentDescription(TYPE_LORRY))
 
     /**
-     * @return The [ViewInteraction] Given waypoint location view on route planner
+     * The [ViewInteraction] Given waypoint location view on route planner
      */
     fun onPlannerWaypointLocationView(textView: String?): ViewInteraction = onView(withText(textView))
 
     /**
-     * @return The [ViewInteraction] Choose waypoint label on route planner
+     * The [ViewInteraction] Choose waypoint label on route planner
      */
     fun onPlannerWaypointLocationLabel(waypointItem: WaypointItem): ViewInteraction
-            = onView(withIndex(withId(R.id.waypoint_label), waypointItem.value))
+            = onView(withIndex(withId(R.id.waypoint_label), waypointItem.index))
 
     /**
-     * @return The [ViewInteraction] for transportation panel
+     * The [ViewInteraction] waypoint reorder DraggableImageView
+     */
+    fun onPlannerWaypointReorder(waypointItem: WaypointItem): ViewInteraction
+            = onView(withIndex(withId(R.id.drag_icon), waypointItem.index))
+
+    /**
+     * The [ViewInteraction] for transportation panel
      */
     fun onPlannerTransportPanel(transportType: TransportType): ViewInteraction {
         when (transportType) {
@@ -163,7 +169,7 @@ object RoutePlannerView {
     }
 
     /**
-     * @return The [Matcher]<[View]> for transportation panel view
+     * The [Matcher]<[View]> for transportation panel view
      */
     fun onPlannerTransportPanelView(transportType: TransportType): Matcher<View> {
         when (transportType) {

@@ -21,8 +21,10 @@ import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import com.here.msdkuiapp.R
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.TIMEOUT_WAIT_TRIPLE_MILLIS
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.viewIsDisplayed
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForTextChange
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedUnit
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedValue
@@ -58,10 +60,19 @@ object GuidanceActions {
     }
 
     /**
-     * Wait for next maneuver panel displayed
+     * Wait for next maneuver panel to be displayed
      */
     fun waitForGuidanceNextManeuverPanelDisplayed(): GuidanceActions {
         onRootView.perform(waitForCondition(withId(R.id.next_maneuver_panel_container)))
+        return this
+    }
+
+    /**
+     * Wait for next maneuver street name to change
+     * Triple timeout is used, as it can take up to 3 minutes for maneuver to change
+     */
+    fun waitForGuidanceNextManeuverChanged(currentStreetName: String): GuidanceActions {
+        onRootView.perform(waitForTextChange(withId(R.id.afterNextManeuverStreetName), currentStreetName, TIMEOUT_WAIT_TRIPLE_MILLIS))
         return this
     }
 

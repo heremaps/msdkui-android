@@ -27,6 +27,7 @@ import com.here.msdkuiapp.R
 import com.here.msdkuiapp.base.BasePresenter
 import com.here.msdkuiapp.common.AppActionBar
 import com.here.msdkuiapp.common.Constant.GUIDANCE_IS_SIMULATION_KEY
+import com.here.msdkuiapp.common.Constant.GUIDANCE_SIMULATION_SPEED
 import com.here.msdkuiapp.common.Provider
 import com.here.msdkuiapp.guidance.GuidanceActivity
 import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
@@ -39,6 +40,7 @@ class RoutePreviewFragmentPresenter() : BasePresenter<GuidanceContracts.RoutePre
 
     private var state = State()
     var provider = Provider()
+    var simulationSpeed: Long = 0
 
     /**
      * Sets already calculated route to render all route information on this fragment.
@@ -155,8 +157,12 @@ class RoutePreviewFragmentPresenter() : BasePresenter<GuidanceContracts.RoutePre
         state.route?.run {
             val intent = Intent(context, GuidanceActivity::class.java)
             intent.putExtra(GUIDANCE_IS_SIMULATION_KEY, isSimulation)
+            if (isSimulation && simulationSpeed > 0) {
+                intent.putExtra(GUIDANCE_SIMULATION_SPEED, simulationSpeed)
+            }
             context?.msdkuiApplication?.route = this
             context?.startActivity(intent)
+            simulationSpeed = 0
         }
     }
 

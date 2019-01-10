@@ -40,6 +40,9 @@ class GuidanceRouteSelectionCoordinator(private val context: Context, fragmentMa
     internal var mapFragment: MapFragmentWrapper? = null
         get() = field ?: fragmentManager.findFragmentById(R.id.mapfragment_wrapper) as? MapFragmentWrapper
 
+    internal val routePreviewFragment: RoutePreviewFragment? = null
+        get() = field ?: getFragment(R.id.guidance_selection_bottom_container) as? RoutePreviewFragment
+
     private val guidanceWaypointSelectionFragment: GuidanceWaypointSelectionFragment? = null
         get() = field ?: getFragment(R.id.guidance_selection_top_container) as? GuidanceWaypointSelectionFragment
 

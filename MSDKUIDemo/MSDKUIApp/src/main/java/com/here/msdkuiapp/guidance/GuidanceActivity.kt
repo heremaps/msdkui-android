@@ -28,6 +28,8 @@ import com.here.msdkuiapp.base.BaseFragmentCoordinator
 import com.here.msdkuiapp.base.BasePermissionActivity
 import com.here.msdkuiapp.common.Constant.GUIDANCE_IS_SIMULATION_KEY
 import com.here.msdkuiapp.common.Constant.GUIDANCE_DID_FINISHED
+import com.here.msdkuiapp.common.Constant.GUIDANCE_SIMULATION_SPEED
+import com.here.msdkuiapp.guidance.GuidanceCoordinator.Companion.DEFAULT_SIMULATION_SPEED
 import com.here.msdkuiapp.landing.LandingActivity
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
@@ -58,6 +60,7 @@ class GuidanceActivity : BasePermissionActivity() {
         }
         guidanceCoordinator!!.apply {
             isSimulation = intent.getBooleanExtra(GUIDANCE_IS_SIMULATION_KEY, false)
+            simulationSpeed = intent.getLongExtra(GUIDANCE_SIMULATION_SPEED, DEFAULT_SIMULATION_SPEED)
             savedInstanceState?.run {
                 didGuidanceFinished = getBoolean(GUIDANCE_DID_FINISHED, false)
             }

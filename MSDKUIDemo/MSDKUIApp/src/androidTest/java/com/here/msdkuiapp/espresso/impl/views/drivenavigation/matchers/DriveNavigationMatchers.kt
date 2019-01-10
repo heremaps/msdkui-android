@@ -28,6 +28,8 @@ import com.here.msdkui.routing.RouteDescriptionItem
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getColorById
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.hasTextColor
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.isNumeric
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIdAndTag
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIdAndText
@@ -38,6 +40,8 @@ import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavig
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewSeeManoeuvresNaviBtn
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewStartNaviBtn
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardAbout
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedUnit
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedValue
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardSettings
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverDistanceInfo
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverDot
@@ -170,6 +174,25 @@ object DriveNavigationMatchers {
             onGuidanceDashBoardAbout.check(matches(not(isDisplayed())))
         }
     }
+
+    /**
+     * Check Current speed being displayed, having numeric value and proper text color
+     */
+    fun checkCurrentSpeed(isOverSpeeding: Boolean): DriveNavigationMatchers {
+        val expectedTextColorAttrId = if (isOverSpeeding) R.attr.colorNegative else R.attr.colorForeground
+        onGuidanceDashBoardCurrentSpeedValue.check(matches(allOf(isDisplayed(), isNumeric(), hasTextColor(expectedTextColorAttrId))))
+        return this
+    }
+
+    /**
+     * Check Speed units being displayed and having proper text color
+     */
+    fun checkSpeedUnitsDisplayed(isOverSpeeding: Boolean): DriveNavigationMatchers {
+        val expectedTextColorAttrId = if (isOverSpeeding) R.attr.colorNegative else R.attr.colorForegroundSecondary
+        onGuidanceDashBoardCurrentSpeedUnit.check(matches(allOf(isDisplayed(), hasTextColor(expectedTextColorAttrId))))
+        return this
+    }
+
 
     /**
      * Check if guidance next maneuver panel elements are displayed

@@ -43,6 +43,10 @@ import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGu
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedUnit
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedValue
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardSettings
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverDistanceInfo
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverDot
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverIcon
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverStreetNameInfo
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemArrival
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDelayInformation
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDetails
@@ -154,7 +158,7 @@ object DriveNavigationMatchers {
     fun checkCurrentStreetViewValueChanged(currentValue: String) {
         onRootView.perform(waitForCondition(
                 allOf(withId(R.id.guidance_current_street_text), not(withText(currentValue))),
-                CoreMatchers.TIMEOUT_WAIT_EXTENDED_MILLIS
+                CoreMatchers.TIMEOUT_WAIT_DOUBLE_MILLIS
         ))
     }
 
@@ -189,6 +193,16 @@ object DriveNavigationMatchers {
         return this
     }
 
+
+    /**
+     * Check if guidance next maneuver panel elements are displayed
+     */
+    fun checkNextManeuverPanelElementsDisplayed() {
+        onGuidanceNextManeuverIcon.check(matches(isDisplayed()))
+        onGuidanceNextManeuverDistanceInfo.check(matches(isDisplayed()))
+        onGuidanceNextManeuverDot.check(matches(isDisplayed()))
+        onGuidanceNextManeuverStreetNameInfo.check(matches(isDisplayed()))
+    }
 
     /**
      * Check transportation icons correspond to icons in description and maneuver lists' items

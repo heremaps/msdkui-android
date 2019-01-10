@@ -70,6 +70,7 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
         get() = field ?: fragmentManager.findFragmentById(R.id.mapfragment_wrapper) as? MapFragmentWrapper
 
     internal var isSimulation: Boolean = false
+    internal var simulationSpeed: Long = DEFAULT_SIMULATION_SPEED
     internal var didGuidanceFinished: Boolean = false
 
     var provider: Provider? = null
@@ -79,7 +80,7 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
         /**
          * Speed of simulation - meters per second.
          */
-        const val SIMULATION_SPEED: Long = 12
+        const val DEFAULT_SIMULATION_SPEED: Long = 12
 
         /**
          * Zoom level of map
@@ -152,7 +153,7 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
             if (runningState != NavigationManager.NavigationState.RUNNING && !didGuidanceFinished) {
                 mapUpdateMode = NavigationManager.MapUpdateMode.POSITION
                 if (isSimulation) {
-                    simulate(route, SIMULATION_SPEED)
+                    simulate(route, simulationSpeed)
                 } else {
                     startNavigation(route)
                 }

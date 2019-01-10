@@ -75,6 +75,12 @@ object GuidanceView {
         get() = onView(withId(R.id.nextManeuverDistance))
 
     /**
+     * The [ViewInteraction] Next maneuver panel text separation dot
+     */
+    val onGuidanceNextManeuverDot: ViewInteraction
+        get() = onView(allOf(withId(R.id.dot), withParent(withId(R.id.afterNextManeuverContainer))))
+
+    /**
      * The [ViewInteraction] Next maneuver street name info on guidance next maneuver panel container
      */
     val onGuidanceNextManeuverStreetNameInfo: ViewInteraction

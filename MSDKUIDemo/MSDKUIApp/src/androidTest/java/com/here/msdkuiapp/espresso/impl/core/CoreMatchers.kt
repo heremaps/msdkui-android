@@ -106,9 +106,14 @@ object CoreMatchers {
 
     /**
      * Waits util text of the view under [viewMatcher] changes OR timeout happens.
+     *
+     * @param viewMatcher view will be tested by this matcher.
+     * @param currentText wait till view display other text than given current text.
+     * @param timeout timeout of wait in milliseconds.
+     * @param checkInterval delay between consecutive checks in milliseconds.
      */
     fun waitForTextChange(viewMatcher: Matcher<View>,
-                          notWithText: String,
+                          currentText: String,
                           timeout: Long = TIMEOUT_WAIT_MILLIS,
                           checkInterval: Long = TIMEOUT_DELAY_MILLIS): ViewAction {
         return object : ViewAction {
@@ -127,7 +132,7 @@ object CoreMatchers {
                 do {
                     uiController.loopMainThreadForAtLeast(checkInterval)
                     for (child in TreeIterables.breadthFirstViewTraversal(view)) {
-                        if (viewMatcher.matches(child) && (child as TextView).text != notWithText) {
+                        if (viewMatcher.matches(child) && (child as TextView).text != currentText) {
                             return
                         }
                     }

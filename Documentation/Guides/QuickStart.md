@@ -8,8 +8,8 @@ Thank you for using the HERE Mobile SDK UI Kit. In this Quick Start guide, we ar
 - [How to Run the Demo App](#how-to-run-the-demo-app)
 - [Creating a new Android Project](#creating-a-new-android-project)
 	- [Integrating the HERE Mobile SDK and the HERE Mobile SDK UI Kit](#integrating-the-here-mobile-sdk-and-the-here-mobile-sdk-ui-kit)
-	- [Gradle setup](#gradle-setup)
-	- [Theme setup](#theme-setup)
+	- [Gradle Setup](#gradle-setup)
+	- [Theme Setup](#theme-setup)
 	- [Setting your HERE Mobile SDK credentials](#setting-your-here-mobile-sdk-credentials)
 	- [Add your first HERE Mobile SDK UI Kit component](#add-your-first-here-mobile-sdk-ui-kit-component)
 	- [Loading the Map](#loading-the-map)
@@ -78,7 +78,7 @@ Now you should have two binaries: `HERE-sdk.aar` and `MSDKUILib-release.aar`. Co
 
 More details on integrating the HERE Mobile SDK can be found on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/quick-start.html). For this Quick Start guide, we will integrate the HERE SDK together with the HERE Mobile SDK UI Kit lib. The steps are the same as shown on developer.here.com, except that we integrate the HERE Mobile SDK UI Kit on top.
 
-### Gradle setup
+### Gradle Setup
 Within Android Studio, open the _app-level_ `build.gradle` file (to be found under the app folder) and configure the repositories for your project to use a flat hierarchy:
 
 ```java
@@ -114,7 +114,7 @@ Since the HERE Mobile SDK UI Kit uses Lambda expressions, _Java 8_ is required. 
     }
 ```
 
-### Theme setup
+### Theme Setup
 The HERE Mobile SDK UI Kit library offers various options to customize the default look and feel of its containing components. Make sure to derive your own themes from the `MSDKUIDarkTheme`. Other parent themes may be provided in the future. `MSDKUIDarkTheme` itself is derived from `Theme.AppCompat.Light.DarkActionBar`.
 
 Overwrite the default `styles.xml` (to be found in `res/values`) to set a new base application theme:

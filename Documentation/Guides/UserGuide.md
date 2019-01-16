@@ -1,5 +1,5 @@
 # HERE Mobile SDK UI Kit - User Guide
-Are you looking for a framework that let's you build feature-rich and compelling user interfaces on top of the HERE Mobile SDK, _Premium_ edition? Then the HERE Mobile SDK UI Kit for iOS and Android is the perfect companion for you.
+Are you looking for a framework that lets you build feature-rich and compelling user interfaces on top of the HERE Mobile SDK, _Premium_ edition? Then the HERE Mobile SDK UI Kit for iOS and Android is the perfect companion for you.
 
 This user guide describes the general workflow using the HERE Mobile SDK UI Kit and its components in detail. If you are looking for a quick overview, please look at our [README](../../README.md), our [Quick Start](QuickStart.md) guide or the latest _Release Notes_.
 

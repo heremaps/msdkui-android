@@ -20,6 +20,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Parcel;
 import android.support.v4.app.FragmentActivity;
+import android.util.AttributeSet;
 import android.view.AbsSavedState;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,6 +33,7 @@ import com.here.msdkui.R;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.robolectric.Robolectric;
 
 import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -87,6 +89,25 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
         assertThat(distanceView.getText(), is(equalTo(mDistance + " m")));
         assertThat(infoView1.getText(), is(equalTo(mInfo1)));
         assertThat(infoView2.getText(), is(equalTo(mInfo2)));
+    }
+
+    @Test
+    public void testUiWithAttributeSet() {
+        AttributeSet attributeSet = Robolectric.buildAttributeSet()
+                .addAttribute(R.attr.viewMode, "0")
+                .build();
+        mGuidanceManeuverView = new GuidanceManeuverView(getApplicationContext(), attributeSet);
+        testUIInit();
+        attributeSet = Robolectric.buildAttributeSet()
+                .addAttribute(R.attr.viewMode, "1")
+                .build();
+        mGuidanceManeuverView = new GuidanceManeuverView(getApplicationContext(), attributeSet);
+        testUIInit();
+        attributeSet = Robolectric.buildAttributeSet()
+                .addAttribute(R.attr.viewMode, "2")
+                .build();
+        mGuidanceManeuverView = new GuidanceManeuverView(getApplicationContext(), attributeSet);
+        testUIInit();
     }
 
     @Test

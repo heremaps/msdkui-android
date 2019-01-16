@@ -17,6 +17,8 @@
 package com.here.msdkui.guidance;
 
 import android.content.Context;
+import android.content.res.Configuration;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -80,7 +82,7 @@ public class GuidanceManeuverView extends BaseView {
      */
     public GuidanceManeuverView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
+        init(context, attrs);
     }
 
     /**
@@ -103,7 +105,7 @@ public class GuidanceManeuverView extends BaseView {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public GuidanceManeuverView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        init(context);
+        init(context, attrs);
     }
 
     /**
@@ -112,8 +114,25 @@ public class GuidanceManeuverView extends BaseView {
      * @param context
      *         activity or application context.
      */
-    private void init(final Context context) {
-        LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_panel, this);
+    private void init(final Context context, AttributeSet attributeSet) {
+        int orientation = getResources().getConfiguration().orientation;
+        if (attributeSet != null) {
+            final TypedArray typedArray = this.getContext().obtainStyledAttributes(attributeSet, R.styleable.GuidanceManeuverView);
+            if (typedArray.hasValue(R.styleable.GuidanceManeuverView_viewMode)) {
+                final int value = typedArray.getInt(R.styleable.GuidanceManeuverView_viewMode, 2);
+                if (value == 0) {
+                    orientation = Configuration.ORIENTATION_PORTRAIT;
+                } else if (value == 1) {
+                    orientation = Configuration.ORIENTATION_LANDSCAPE;
+                }
+            }
+            typedArray.recycle();
+        }
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_panel_land, this);
+        } else {
+            LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_panel, this);
+        }
     }
 
     private void populateBusyProgressBarView(@Nullable GuidanceManeuverData maneuverData) {

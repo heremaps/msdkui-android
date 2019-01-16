@@ -18,6 +18,7 @@ package com.here.msdkuiapp.guidance
 
 import android.support.v4.app.Fragment
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,7 @@ import com.here.msdkuiapp.R
 import com.here.msdkuiapp.common.Util
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
+import java.util.*
 
 /**
  * Fragment class for ManeuverPanel View.
@@ -63,10 +65,9 @@ class GuidanceManeuverFragment : Fragment(), GuidanceManeuverListener {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return GuidanceManeuverView(activity).apply {
-            id = R.id.guidanceManeuverViewId
-            unitSystem = Util.getLocaleUnit()
-        }
+        val view =  inflater.inflate(R.layout.guidance_maneuver_fragment, container, false) as GuidanceManeuverView
+        view.unitSystem =  Util.getLocaleUnit()
+        return view
     }
 
     /**

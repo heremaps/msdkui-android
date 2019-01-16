@@ -26,6 +26,7 @@ import com.here.msdkui.common.measurements.UnitSystem
 import com.here.msdkui.routing.RouteUtil
 import com.here.msdkui.routing.RouteDescriptionItem
 import com.here.msdkuiapp.R
+import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getColorById
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.hasTextColor
@@ -223,7 +224,7 @@ object DriveNavigationMatchers {
                     add(RouteUtil.getArrivalTime(context, route,true).toString().trim())
                     add(RouteUtil.getTimeToArrive(context, route,true).toString().trim())
                     add(RouteUtil.getTrafficDelayed(context, route).toString().trim())
-                    add(RouteUtil.getDetails(context, route, UnitSystem.METRIC).toString().trim())
+                    add(RouteUtil.getDetails(context, route, Util.getLocaleUnit()).toString().trim())
                     return filter { s -> s == expectedValue }.single().isNotEmpty()
                 }
             }

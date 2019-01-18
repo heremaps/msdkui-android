@@ -22,19 +22,18 @@ import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.here.msdkui.R;
 import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.DistanceFormatterUtil;
-import com.here.msdkui.routing.RouteDescriptionList;
 
 /**
  * A view that shows the next maneuver panel for guidance. The view consumes the data contained in
@@ -42,15 +41,51 @@ import com.here.msdkui.routing.RouteDescriptionList;
  */
 public class GuidanceManeuverView extends BaseView {
 
-    private static final String EMPTY_STRING = "";
+    /**
+     * Represents all the supported guidance maneuver view states.
+     */
+    public static class State {
 
-    private GuidanceManeuverData mManeuverData;
+        private GuidanceManeuverData mGuidanceManeuverData;
+
+        /**
+         * Represent the state where the view doesn't have data.
+         */
+        public static final State NO_DATA = new State();
+
+        /**
+         * Represent loading state where the view is awaiting for maneuver data.
+         */
+        public static final State UPDATING = new State();
+
+        protected State() {
+        }
+
+        /**
+         * Represent state where the view contains maneuver data.
+         *
+         * @param data {@link com.here.msdkui.guidance.GuidanceManeuverData} to populate the view.
+         */
+        public State(@NonNull GuidanceManeuverData data) {
+            mGuidanceManeuverData = data;
+        }
+
+        /**
+         * Gets the {@link com.here.msdkui.guidance.GuidanceManeuverData} state used to populate the view.
+         *
+         * @return data {@link com.here.msdkui.guidance.GuidanceManeuverData}.
+         */
+        public GuidanceManeuverData getData() {
+            return mGuidanceManeuverData;
+        }
+    }
+
+    private State mState;
 
     /**
      * Constructs a new instance.
      *
-     * @param context
-     *         the required {@link Context}.
+     * @param context the required {@link Context}.
      */
     public GuidanceManeuverView(Context context) {
         this(context, null);
@@ -59,11 +94,8 @@ public class GuidanceManeuverView extends BaseView {
     /**
      * Constructs a new instance.
      *
-     * @param context
-     *         the required {@link Context}.
-     *
-     * @param attrs
-     *         a set of attributes.
+     * @param context the required {@link Context}.
+     * @param attrs   a set of attributes.
      */
     public GuidanceManeuverView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
@@ -72,14 +104,9 @@ public class GuidanceManeuverView extends BaseView {
     /**
      * Constructs a new instance.
      *
-     * @param context
-     *         the required {@link Context}.
-     *
-     * @param attrs
-     *         a set of attributes.
-     *
-     * @param defStyleAttr
-     *         a default style attribute.
+     * @param context      the required {@link Context}.
+     * @param attrs        a set of attributes.
+     * @param defStyleAttr a default style attribute.
      */
     public GuidanceManeuverView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -89,19 +116,12 @@ public class GuidanceManeuverView extends BaseView {
     /**
      * Constructs a new instance.
      *
-     * @param context
-     *         the required {@link Context}.
-     *
-     * @param attrs
-     *         a set of attributes.
-     *
-     * @param defStyleAttr
-     *         a default style attribute.
-     *
-     * @param defStyleRes
-     *         a default style resource.
-     *
-     * Requires Lollipop (API level 21).
+     * @param context      the required {@link Context}.
+     * @param attrs        a set of attributes.
+     * @param defStyleAttr a default style attribute.
+     * @param defStyleRes  a default style resource.
+     *                     <p>
+     *                     Requires Lollipop (API level 21).
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public GuidanceManeuverView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -112,8 +132,7 @@ public class GuidanceManeuverView extends BaseView {
     /**
      * Init the Panel UI.
      *
-     * @param context
-     *         activity or application context.
+     * @param context activity or application context.
      */
     private void init(final Context context, AttributeSet attributeSet) {
         int orientation = getResources().getConfiguration().orientation;
@@ -135,59 +154,60 @@ public class GuidanceManeuverView extends BaseView {
         } else {
             LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_panel, this);
         }
+        setViewState(State.NO_DATA);
     }
 
-    private void populateBusyProgressBarView(@Nullable GuidanceManeuverData maneuverData) {
-        final ProgressBar busyProgressBar = findViewById(R.id.busyStateProgressBar);
-        if (maneuverData != null &&
-                maneuverData.getIconId() == -1 && maneuverData.getDistance() == -1 &&
-                getContext().getString(R.string.msdkui_maneuverpanel_updating).equals(maneuverData.getInfo1()) &&
-                EMPTY_STRING.equals(maneuverData.getInfo2())) {
-            busyProgressBar.setVisibility(View.VISIBLE);
-        } else {
-            busyProgressBar.setVisibility(View.GONE);
-        }
-    }
-
-    private void populateDistanceView(@Nullable GuidanceManeuverData maneuverData) {
-        final TextView distanceView = findViewById(R.id.distanceView);
-        if (maneuverData == null || maneuverData.getDistance() == -1) {
-            distanceView.setVisibility(View.INVISIBLE);
-        } else {
-            distanceView.setVisibility(View.VISIBLE);
-            distanceView.setText(
-                    DistanceFormatterUtil.formatDistance(
-                            getContext(), maneuverData.getDistance(), mUnitSystem));
-        }
-    }
-
-    private void populateInfoView1(@Nullable GuidanceManeuverData maneuverData) {
+    private void populateDefaultState() {
+        ImageView iconView = findViewById(R.id.maneuverIconView);
+        iconView.setImageResource(R.drawable.ic_car_position_marker);
+        findViewById(R.id.busyStateProgressBar).setVisibility(View.GONE);
+        findViewById(R.id.distanceView).setVisibility(View.INVISIBLE);
+        findViewById(R.id.extraIconView).setVisibility(View.GONE);
         final TextView infoView1 = findViewById(R.id.infoView1);
-        if (maneuverData == null || maneuverData.getInfo1() == null) {
+        infoView1.setText(getContext().getString(R.string.msdkui_maneuverpanel_nodata));
+        findViewById(R.id.infoView2).setVisibility(View.INVISIBLE);
+    }
+
+    private void populateBusyProgressBarView() {
+        findViewById(R.id.maneuverIconView).setVisibility(INVISIBLE);
+        findViewById(R.id.busyStateProgressBar).setVisibility(View.VISIBLE);
+        findViewById(R.id.distanceView).setVisibility(View.INVISIBLE);
+        findViewById(R.id.extraIconView).setVisibility(View.GONE);
+        final TextView infoView1 = findViewById(R.id.infoView1);
+        infoView1.setText(getContext().getString(R.string.msdkui_maneuverpanel_updating));
+        findViewById(R.id.infoView2).setVisibility(View.INVISIBLE);
+    }
+
+    private void populateDistanceView(@NonNull GuidanceManeuverData maneuverData) {
+        final TextView distanceView = findViewById(R.id.distanceView);
+        distanceView.setVisibility(View.VISIBLE);
+        distanceView.setText(DistanceFormatterUtil.formatDistance(
+                getContext(), maneuverData.getDistance(), mUnitSystem));
+    }
+
+    private void populateInfoView1(@NonNull GuidanceManeuverData maneuverData) {
+        final TextView infoView1 = findViewById(R.id.infoView1);
+        if (maneuverData.getInfo1() == null) {
             infoView1.setVisibility(View.GONE);
-        } else if (maneuverData.getInfo1().equals("")) {
-            infoView1.setVisibility(View.INVISIBLE);
         } else {
             infoView1.setVisibility(View.VISIBLE);
             infoView1.setText(maneuverData.getInfo1());
         }
     }
 
-    private void populateInfoView2(@Nullable GuidanceManeuverData maneuverData) {
+    private void populateInfoView2(@NonNull GuidanceManeuverData maneuverData) {
         final TextView infoView2 = findViewById(R.id.infoView2);
-        if (maneuverData == null || maneuverData.getInfo2() == null) {
+        if (maneuverData.getInfo2() == null) {
             infoView2.setVisibility(View.GONE);
-        } else if (maneuverData.getInfo2().equals("")) {
-            infoView2.setVisibility(View.INVISIBLE);
         } else {
             infoView2.setVisibility(View.VISIBLE);
             infoView2.setText(maneuverData.getInfo2());
         }
     }
 
-    private void populateIconView(@Nullable GuidanceManeuverData maneuverData) {
+    private void populateIconView(@NonNull GuidanceManeuverData maneuverData) {
         final ImageView iconView = findViewById(R.id.maneuverIconView);
-        if (maneuverData == null || maneuverData.getIconId() == -1) {
+        if (maneuverData.getIconId() == -1) {
             iconView.setVisibility(View.INVISIBLE);
             iconView.setTag(0);
         } else if (maneuverData.getIconId() == 0) {
@@ -200,10 +220,10 @@ public class GuidanceManeuverView extends BaseView {
         }
     }
 
-    private void populateExtraIconView(@Nullable GuidanceManeuverData maneuverData) {
+    private void populateExtraIconView(@NonNull GuidanceManeuverData maneuverData) {
         final ImageView extraIconView = findViewById(R.id.extraIconView);
-        if (maneuverData == null || maneuverData.getNextRoadIcon() == null) {
-            extraIconView.setVisibility(View.INVISIBLE);
+        if (maneuverData.getNextRoadIcon() == null) {
+            extraIconView.setVisibility(View.GONE);
         } else {
             extraIconView.setVisibility(View.VISIBLE);
             extraIconView.setImageBitmap(maneuverData.getNextRoadIcon());
@@ -213,11 +233,15 @@ public class GuidanceManeuverView extends BaseView {
     /**
      * Populate the UI with {@link GuidanceManeuverData}. Setting null data will put the panel in waiting state.
      *
-     * @param maneuverData
-     *         The {@link GuidanceManeuverData} to use. In case of null, the loading state of the panel will be shown.
+     * @param maneuverData The {@link GuidanceManeuverData} to use. In case of null, the loading state of the panel will be shown.
      */
     private void populate(@Nullable GuidanceManeuverData maneuverData) {
-        populateBusyProgressBarView(maneuverData);
+        if (maneuverData == null) {
+            setVisibility(GONE);
+            return;
+        }
+        setVisibility(VISIBLE);
+        findViewById(R.id.busyStateProgressBar).setVisibility(View.GONE);
         populateIconView(maneuverData);
         populateExtraIconView(maneuverData);
         populateDistanceView(maneuverData);
@@ -229,29 +253,60 @@ public class GuidanceManeuverView extends BaseView {
      * Gets maneuver data which is being used for UI population.
      *
      * @return a {@link GuidanceManeuverData} instance.
+     * @deprecated This method will be removed in release 2.1.0. Please see {@link #getViewState()}.
      */
     public @Nullable
     GuidanceManeuverData getManeuverData() {
-        return mManeuverData;
+        return mState.mGuidanceManeuverData;
     }
 
     /**
      * Sets the {@link GuidanceManeuverData} which will be used for UI population.
      *
-     * @param maneuverData
-     *         the {@link GuidanceManeuverData} to populate the UI. Please note that in case of null, the loading state
-     *         of the panel will be shown.
+     * @param maneuverData the {@link GuidanceManeuverData} to populate the UI.
+     * @see #setViewState(com.here.msdkui.guidance.GuidanceManeuverView.State)
+     * @deprecated This method will be removed in release 2.1.0. Please see {@link #getViewState()}.
      */
-    public void setManeuverData(@Nullable GuidanceManeuverData maneuverData) {
-        mManeuverData = maneuverData;
+    public void setManeuverData(@NonNull GuidanceManeuverData maneuverData) {
+        mState = new State(maneuverData);
         populate(maneuverData);
+    }
+
+    /**
+     * Sets the {@link com.here.msdkui.guidance.GuidanceManeuverView.State GuidanceManeuverView.State} which will be used for UI population.
+     *
+     * @param state the {@link com.here.msdkui.guidance.GuidanceManeuverView.State GuidanceManeuverView.State} to populate the UI.
+     *              Please note that in case of null, GuidanceManeuverView will be gone.
+     */
+    public void setViewState(@Nullable final State state) {
+        mState = state;
+        if (state == null) {
+            setVisibility(GONE);
+            return;
+        }
+        if (state == State.NO_DATA) {
+            populateDefaultState();
+        } else if (state == State.UPDATING) {
+            populateBusyProgressBarView();
+        } else {
+            populate(state.mGuidanceManeuverData);
+        }
+    }
+
+    /**
+     * Gets the {@link com.here.msdkui.guidance.GuidanceManeuverView.State GuidanceManeuverView.State} of this view which was used for
+     * UI population.
+     *
+     * @return GuidanceManeuverView.State
+     */
+    public State getViewState() {
+        return mState;
     }
 
     /**
      * Highlights maneuver section (info2) of panel using the provided color.
      *
-     * @param color
-     *         the color to highlight a maneuver.
+     * @param color the color to highlight a maneuver.
      */
     public void highLightManeuver(int color) {
         ((TextView) findViewById(R.id.infoView2)).setTextColor(color);
@@ -261,7 +316,7 @@ public class GuidanceManeuverView extends BaseView {
     protected Parcelable onSaveInstanceState() {
         final Parcelable superState = super.onSaveInstanceState();
         final SavedState savedState = new SavedState(superState);
-        savedState.setManeuverData(this.mManeuverData);
+        savedState.setViewState(this.mState);
         return savedState;
     }
 
@@ -273,8 +328,8 @@ public class GuidanceManeuverView extends BaseView {
         }
         final SavedState savedState = (SavedState) state;
         super.onRestoreInstanceState(savedState.getSuperState());
-        if (savedState.getManeuverData() != null) {
-            setManeuverData(savedState.getManeuverData());
+        if (savedState.getViewState() != null) {
+            setViewState(savedState.getViewState());
         }
     }
 
@@ -295,7 +350,8 @@ public class GuidanceManeuverView extends BaseView {
                         return new SavedState[size];
                     }
                 };
-        private GuidanceManeuverData mManeuverData;
+
+        private State mState;
 
         SavedState(Parcelable superState) {
             super(superState);
@@ -303,36 +359,52 @@ public class GuidanceManeuverView extends BaseView {
 
         SavedState(Parcel in) {
             super(in);
-            final boolean isGuidanceManeuverDataNotNull = in.readByte() != 0;
-            if (isGuidanceManeuverDataNotNull) {
-                mManeuverData = GuidanceManeuverData.CREATOR.createFromParcel(in);
+            int value = in.readByte();
+            switch (value) {
+                case 0:
+                    mState = null;
+                    break;
+                case 1:
+                    mState = new State(GuidanceManeuverData.CREATOR.createFromParcel(in));
+                    break;
+                case 2:
+                    mState = State.UPDATING;
+                    break;
+                default:
+                    mState = State.NO_DATA;
             }
         }
 
         @Override
         public void writeToParcel(Parcel out, int flags) {
             super.writeToParcel(out, flags);
-            if (mManeuverData == null) {
-                out.writeByte((byte) (0));
+            if (mState == null) {
+                out.writeByte((byte) 0);
+                return;
+            }
+            if (mState != State.UPDATING && mState != State.NO_DATA) {
+                out.writeByte((byte) 1);
+                mState.mGuidanceManeuverData.writeToParcel(out, flags);
+            } else if (mState == State.UPDATING) {
+                out.writeByte((byte) 2);
             } else {
-                out.writeByte((byte) (1));
-                mManeuverData.writeToParcel(out, flags);
+                out.writeByte((byte) 3);
             }
         }
 
         /**
-         * Gets the saved maneuver data.
+         * Gets the saved state.
          */
         @Nullable
-        GuidanceManeuverData getManeuverData() {
-            return mManeuverData;
+        State getViewState() {
+            return mState;
         }
 
         /**
          * Sets the maneuver data to be saved.
          */
-        void setManeuverData(@Nullable GuidanceManeuverData data) {
-            this.mManeuverData = data;
+        void setViewState(@Nullable State state) {
+            this.mState = state;
         }
     }
 }

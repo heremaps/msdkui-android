@@ -18,7 +18,6 @@ package com.here.msdkuiapp.guidance
 
 import android.support.v4.app.Fragment
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +31,6 @@ import com.here.msdkuiapp.R
 import com.here.msdkuiapp.common.Util
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
-import java.util.*
 
 /**
  * Fragment class for ManeuverPanel View.
@@ -93,7 +91,11 @@ class GuidanceManeuverFragment : Fragment(), GuidanceManeuverListener {
     }
 
     override fun onDataChanged(data: GuidanceManeuverData?) {
-        (view as? GuidanceManeuverView)?.maneuverData = data
+        val notifiedView = view as? GuidanceManeuverView
+        data?.run {
+            notifiedView?.setViewState(GuidanceManeuverView.State(data))
+        } ?: notifiedView?.setViewState(GuidanceManeuverView.State.UPDATING)
+
     }
 
     override fun onDestinationReached() {

@@ -41,45 +41,6 @@ import com.here.msdkui.common.DistanceFormatterUtil;
  */
 public class GuidanceManeuverView extends BaseView {
 
-    /**
-     * Represents all the supported guidance maneuver view states.
-     */
-    public static class State {
-
-        private GuidanceManeuverData mGuidanceManeuverData;
-
-        /**
-         * Represent the state where the view doesn't have data.
-         */
-        public static final State NO_DATA = new State();
-
-        /**
-         * Represent loading state where the view is awaiting for maneuver data.
-         */
-        public static final State UPDATING = new State();
-
-        protected State() {
-        }
-
-        /**
-         * Represent state where the view contains maneuver data.
-         *
-         * @param data {@link com.here.msdkui.guidance.GuidanceManeuverData} to populate the view.
-         */
-        public State(@NonNull GuidanceManeuverData data) {
-            mGuidanceManeuverData = data;
-        }
-
-        /**
-         * Gets the {@link com.here.msdkui.guidance.GuidanceManeuverData} state used to populate the view.
-         *
-         * @return data {@link com.here.msdkui.guidance.GuidanceManeuverData}.
-         */
-        public GuidanceManeuverData getData() {
-            return mGuidanceManeuverData;
-        }
-    }
-
     private State mState;
 
     /**
@@ -405,6 +366,45 @@ public class GuidanceManeuverView extends BaseView {
          */
         void setViewState(@Nullable State state) {
             this.mState = state;
+        }
+    }
+
+    /**
+     * Represents all the supported guidance maneuver view states.
+     */
+    public static class State {
+
+        /**
+         * Represent the state where the view doesn't have data.
+         */
+        public static final State NO_DATA = new State();
+
+        /**
+         * Represent loading state where the view is awaiting for maneuver data.
+         */
+        public static final State UPDATING = new State();
+
+        private GuidanceManeuverData mGuidanceManeuverData;
+
+        protected State() {
+        }
+
+        /**
+         * Represent state where the view contains maneuver data.
+         *
+         * @param data {@link com.here.msdkui.guidance.GuidanceManeuverData} to populate the view.
+         */
+        public State(@NonNull GuidanceManeuverData data) {
+            mGuidanceManeuverData = data;
+        }
+
+        /**
+         * Gets the {@link com.here.msdkui.guidance.GuidanceManeuverData} state used to populate the view.
+         *
+         * @return data {@link com.here.msdkui.guidance.GuidanceManeuverData}.
+         */
+        public GuidanceManeuverData getData() {
+            return mGuidanceManeuverData;
         }
     }
 }

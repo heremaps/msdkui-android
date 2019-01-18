@@ -24,12 +24,14 @@ import com.here.msdkuiapp.espresso.impl.core.CoreActions
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onPlannerBarAppNameTitleView
 import com.here.msdkuiapp.espresso.impl.testdata.Constants
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_1
+import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationActions
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationBarActions
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceCurrentStreetInfo
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedValue
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardEtaInfo
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverPanel
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceSpeedLimiter
 import com.here.msdkuiapp.espresso.impl.views.guidance.useractions.GuidanceActions
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
@@ -53,6 +55,17 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     @Before
     fun prepare() {
         CoreActions().enterDriveNavigation().provideMockLocation(mockLocationData)
+        // Check drive navigation view opened and default destination label displayed
+        DriveNavigationBarActions.waitForDestinationDisplayed()
+        // Check map view displayed and tap anywhere on map view
+        MapActions.waitForMapViewEnabled().tap(destination)
+        // Tap on tick an actionbar to confirm guidance
+        DriveNavigationBarActions.waitForDestinationNotDisplayed()
+                .waitForRightImageIconCheck()
+        RoutePlannerBarActions.tapOnTickButton()
+        // Check that route overview exists
+        DriveNavigationBarActions.waitForRouteOverView()
+                .waitForGuidanceDescriptionDisplayed()
     }
 
     @After
@@ -66,18 +79,8 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     @Test
     @IntegrationUITest
     fun testForGuidanceStartStop_shouldOpenGuidanceView() {
-        // Check drive navigation view opened and default label displayed
-        DriveNavigationBarActions.waitForDriveNavigationView()
-                .waitForDestinationDisplayed()
-        // Check map view displayed and tap anywhere on map view
-        MapActions.waitForMapViewEnabled().tap(destination)
-        // Tap on tick an actionbar to confirm guidance
-        DriveNavigationBarActions
-                .waitForDestinationNotDisplayed()
-                .waitForRightImageIconCheck()
-        RoutePlannerBarActions.tapOnTickButton()
         // Tap on Start navigation to open guidance view
-        DriveNavigationBarActions.waitForRouteOverView()
+        DriveNavigationActions
                 .tapOnStartNavigationBtn()
                 .tapOnStopNavigationBtn()
         // Check that returns from guidance to Landing screen
@@ -90,18 +93,8 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     @Test
     @IntegrationUITest
     fun testForRouteCalculationInGuidance_shouldOpenRouteOverview() {
-        // Check drive navigation view opened and default destination label displayed
-        DriveNavigationBarActions.waitForDestinationDisplayed()
-        // Check map view displayed and tap anywhere on map view
-        MapActions.waitForMapViewEnabled().tap(destination)
-        // Tap on tick an actionbar to confirm guidance
-        DriveNavigationBarActions.waitForDestinationNotDisplayed()
-                .waitForRightImageIconCheck()
-        RoutePlannerBarActions.tapOnTickButton()
-        // Check that route overview exists
-        DriveNavigationBarActions.waitForRouteOverView()
-                .waitForGuidanceDescriptionDisplayed()
-                .checkRouteOverviewInfoDisplayed()
+        // Check that route overview information is displayed
+        DriveNavigationMatchers.checkRouteOverviewInfoDisplayed()
     }
 
     /**
@@ -110,17 +103,6 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     @Test
     @IntegrationUITest
     fun testForGuidanceManeuverPanel_shouldDisplayCurrentSpeed() {
-        // Check drive navigation view opened and default destination label displayed
-        DriveNavigationBarActions.waitForDestinationDisplayed()
-        // Check map view displayed and tap anywhere on map view
-        MapActions.waitForMapViewEnabled().tap(destination)
-        // Tap on tick an actionbar to confirm guidance
-        DriveNavigationBarActions.waitForDestinationNotDisplayed()
-                .waitForRightImageIconCheck()
-        RoutePlannerBarActions.tapOnTickButton()
-        // Check that route overview exists
-        DriveNavigationBarActions.waitForRouteOverView()
-                .waitForGuidanceDescriptionDisplayed()
         // Start navigation simulation
         DriveNavigationActions.startNavigationSimulation()
         // Check that speed value element is displayed on guidance view
@@ -133,19 +115,7 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     @Test
     @IntegrationUITest
     fun testForGuidanceCurrentStreet_shouldDisplayCurrentStreet() {
-        // Check drive navigation view opened and default destination label displayed
-        DriveNavigationBarActions.waitForDestinationDisplayed()
-        // Check map view displayed and tap anywhere on map view
-        MapActions.waitForMapViewEnabled().tap(destination)
-        // Tap on tick an actionbar to confirm guidance
-        DriveNavigationBarActions.waitForDestinationNotDisplayed()
-                .waitForRightImageIconCheck()
-                .provideMockLocation(mockLocationData)
-        RoutePlannerBarActions.tapOnTickButton()
-        // Check that route overview exists
-        DriveNavigationBarActions.waitForRouteOverView()
-                .waitForGuidanceDescriptionDisplayed()
-        // Start navigation simulation
+        // Start navigation
         DriveNavigationActions.tapOnStartNavigationBtn()
         // Check that current street element is displayed on guidance view for both orientations
         enumValues<Constants.ScreenOrientation>().forEach {
@@ -162,19 +132,7 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     @Test
     @IntegrationUITest
     fun testForGuidanceManeuverPanel_shouldDisplayETA() {
-        // Check drive navigation view opened and default destination label displayed
-        DriveNavigationBarActions.waitForDestinationDisplayed()
-        // Check map view displayed and tap anywhere on map view
-        MapActions.waitForMapViewEnabled().tap(destination)
-        // Tap on tick an actionbar to confirm guidance
-        DriveNavigationBarActions.waitForDestinationNotDisplayed()
-                .waitForRightImageIconCheck()
-                .provideMockLocation(mockLocationData)
-        RoutePlannerBarActions.tapOnTickButton()
-        // Check that route overview exists
-        DriveNavigationBarActions.waitForRouteOverView()
-                .waitForGuidanceDescriptionDisplayed()
-        // Start navigation simulation
+        // Start navigation
         DriveNavigationActions.tapOnStartNavigationBtn()
         // Check that ETA view is displayed on both screen orientations
         enumValues<Constants.ScreenOrientation>().forEach {
@@ -191,18 +149,6 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     @Test
     @IntegrationUITest
     fun testForNextNextManeuverView_shouldDisplayNextNextManeuver() {
-        // Check drive navigation view opened and default destination label displayed
-        DriveNavigationBarActions.waitForDestinationDisplayed()
-        // Check map view displayed and tap anywhere on map view
-        MapActions.waitForMapViewEnabled().tap(destination)
-        // Tap on tick an actionbar to confirm guidance
-        DriveNavigationBarActions.waitForDestinationNotDisplayed()
-                .waitForRightImageIconCheck()
-                .provideMockLocation(mockLocationData)
-        RoutePlannerBarActions.tapOnTickButton()
-        // Check that route overview exists
-        DriveNavigationBarActions.waitForRouteOverView()
-                .waitForGuidanceDescriptionDisplayed()
         // Start navigation simulation
         DriveNavigationActions.startNavigationSimulation()
         // Check that next-next maneuver view is displayed on both screen orientations
@@ -213,5 +159,19 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
             GuidanceActions.waitForGuidanceNextManeuverPanelDisplayed()
             onGuidanceNextManeuverPanel.check(matches(isDisplayed()))
         }
+    }
+
+    /**
+     * MSDKUI-1271 Integration tests for guidance speed limit.
+     */
+    @Test
+    @IntegrationUITest
+    fun testForGuidanceSpeedLimit_shouldDisplaySpeedLimit() {
+        // Start navigation simulation
+        DriveNavigationActions.startNavigationSimulation()
+        // Check that guidance speed limit is dispalyed
+        GuidanceActions.waitForSpeedLimitDisplayed()
+            CoreActions().changeOrientation(Constants.ScreenOrientation.LANDSCAPE)
+        GuidanceActions.waitForSpeedLimitDisplayed()
     }
 }

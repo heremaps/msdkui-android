@@ -19,4 +19,4 @@
     android:layout_height="wrap_content"
     android:id="@+id/guidanceManeuverViewId"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:viewMode="screen1" />
+    app:viewMode="auto" />

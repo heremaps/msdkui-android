@@ -150,9 +150,9 @@ public class GuidanceManeuverView extends BaseView {
         }
 
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_panel_land, this);
+            LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_panel_mode2, this);
         } else {
-            LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_panel, this);
+            LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_panel_mode1, this);
         }
         setViewState(State.NO_DATA);
     }

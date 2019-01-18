@@ -34,7 +34,6 @@ import android.widget.TextView;
 import com.here.msdkui.R;
 import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.DistanceFormatterUtil;
-import com.here.msdkui.routing.RouteDescriptionList;
 
 /**
  * A view that shows the next maneuver panel for guidance. The view consumes the data contained in

@@ -14,10 +14,9 @@
   ~ limitations under the License.
   -->
 
-<resources>
-    <item name="guidanceStreetLabelViewId" type="id" />
-    <item name="guidanceNextManeuverViewId" type="id" />
-    <item name="guidanceEstimatedArrivalViewId" type="id" />
-    <item name="guidanceCurrentSpeedViewId" type="id" />
-    <item name="guidanceSpeedLimitViewId" type="id" />
-</resources>
+<com.here.msdkui.guidance.GuidanceManeuverView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/guidanceManeuverViewId"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:viewMode="auto" />

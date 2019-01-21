@@ -75,7 +75,7 @@ class GuidanceManeuverViewFragmentTest : BaseTest() {
         addFrag(guidanceManeuverFragment, GuidanceManeuverFragment::class.java.name)
         val data = mock(GuidanceManeuverData::class.java)
         guidanceManeuverFragment.onDataChanged(data)
-        assertNotNull((guidanceManeuverFragment.view as GuidanceManeuverView).maneuverData)
+        assertNotNull((guidanceManeuverFragment.view as GuidanceManeuverView).viewState)
         guidanceManeuverFragment.onDestinationReached()
     }
 

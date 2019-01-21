@@ -34,7 +34,7 @@ class GuidanceManeuverViewSetting() : Setting<GuidanceManeuverView>() {
     class GuidanceManeuverViewSettingItem : SettingItem {
 
         // data customization
-        var guidanceManeuverData: GuidanceManeuverData? = null
+        var state: com.here.msdkui.guidance.GuidanceManeuverView.State? = null
         var defaultView: Boolean? = null
         var noDistance: Boolean? = null
         var customTheme : Int ? = null
@@ -42,8 +42,7 @@ class GuidanceManeuverViewSetting() : Setting<GuidanceManeuverView>() {
         constructor() : super()
 
         constructor(parcel: Parcel) : super(parcel) {
-            guidanceManeuverData =
-                    parcel.readParcelable(GuidanceManeuverData::class.java.classLoader)
+            state = parcel.readParcelable(com.here.msdkui.guidance.GuidanceManeuverView.State::class.java.classLoader)
             defaultView = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
             noDistance = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
             customTheme = parcel.readValue(Int::class.java.classLoader) as? Int
@@ -51,7 +50,7 @@ class GuidanceManeuverViewSetting() : Setting<GuidanceManeuverView>() {
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
             super.writeToParcel(parcel, flags)
-            parcel.writeParcelable(guidanceManeuverData, flags)
+            parcel.writeParcelable(state, flags)
             parcel.writeValue(defaultView)
             parcel.writeValue(noDistance)
             parcel.writeValue(customTheme)
@@ -89,78 +88,53 @@ class GuidanceManeuverViewSetting() : Setting<GuidanceManeuverView>() {
 
             "Set null data" to GuidanceManeuverViewSettingItem().apply {
                 defaultView = null
-                guidanceManeuverData = null
+                state = null
             },
 
             "Loading state" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    -1, -1, "Updating", "", null)
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State.UPDATING
             },
 
             "With all properties" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    R.drawable.ic_maneuver_icon_2, distance, info1, info2, bitmap
-                )
-            },
-
-            "Maneuver icon invisible" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    -1, distance, info1, info2, bitmap
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
+                    R.drawable.ic_maneuver_icon_2, distance, info1, info2, bitmap)
                 )
             },
 
             "Maneuver icon gone" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    0, distance, info1, info2, bitmap
-                )
-            },
-
-            "Distance invisible" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    R.drawable.ic_maneuver_icon_2, -1, info1, info2, bitmap
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
+                    0, distance, info1, info2, bitmap)
                 )
             },
 
             "Distance gone" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    R.drawable.ic_maneuver_icon_2, -2, info1, info2, bitmap
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
+                    R.drawable.ic_maneuver_icon_2, -2, info1, info2, bitmap)
                 )
                 noDistance = true
             },
 
-            "Info1 invisible" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    R.drawable.ic_maneuver_icon_2, distance, "", info2, bitmap
-                )
-            },
-
             "Info1 gone" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    R.drawable.ic_maneuver_icon_2, distance, null, info2, bitmap
-                )
-            },
-
-            "Info2 invisible" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    R.drawable.ic_maneuver_icon_2, distance, info1, "", bitmap
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
+                    R.drawable.ic_maneuver_icon_2, distance, null, info2, bitmap)
                 )
             },
 
             "Info2 gone" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    R.drawable.ic_maneuver_icon_2, distance, info1, null, bitmap
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
+                    R.drawable.ic_maneuver_icon_2, distance, info1, null, bitmap)
                 )
             },
 
             "Without road icon" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    R.drawable.ic_maneuver_icon_2, distance, info1, info2, null
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
+                    R.drawable.ic_maneuver_icon_2, distance, info1, info2, null)
                 )
             },
 
             "With all red" to GuidanceManeuverViewSettingItem().apply {
-                guidanceManeuverData = GuidanceManeuverData(
-                    R.drawable.ic_maneuver_icon_2, distance, info1, info2, bitmap
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
+                    R.drawable.ic_maneuver_icon_2, distance, info1, info2, bitmap)
                 )
                 customTheme = R.style.GuidanceManeuverViewRed
             }

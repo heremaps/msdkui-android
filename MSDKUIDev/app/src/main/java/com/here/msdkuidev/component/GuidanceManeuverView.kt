@@ -35,7 +35,7 @@ class GuidanceManeuverView : AppCompatActivity() {
             R.layout.guidance_maneuver_view_fix
         setContentView(resourceId)
         setting.defaultView ?: run {
-            guidanceManeuverView.maneuverData = setting.guidanceManeuverData
+            guidanceManeuverView.viewState = setting.state
         }
         if(setting.noDistance == true) {
            guidanceManeuverView.findViewById<TextView>(R.id.distanceView).visibility = View.GONE

@@ -62,8 +62,8 @@
 
     <declare-styleable name="GuidanceManeuverView">
         <attr name="viewMode" format="enum">
-            <enum name="mode1" value="0" />
-            <enum name="mode2" value="1" />
+            <enum name="screen1" value="0" />
+            <enum name="screen2" value="1" />
             <enum name="auto" value="2" />
         </attr>
     </declare-styleable>

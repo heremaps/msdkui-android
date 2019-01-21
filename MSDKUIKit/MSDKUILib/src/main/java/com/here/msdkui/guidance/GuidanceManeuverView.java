@@ -111,6 +111,7 @@ public class GuidanceManeuverView extends BaseView {
         }
 
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+
             LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_view_screen2, this);
         } else {
             LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_view_screen1, this);
@@ -361,7 +362,7 @@ public class GuidanceManeuverView extends BaseView {
     public static class State implements Parcelable {
 
         /**
-         * Represent the state where the view doesn't have data.
+         * Represent the default state of view where the view doesn't have data.
          */
         public static final State NO_DATA = new State(0);
 
@@ -425,7 +426,7 @@ public class GuidanceManeuverView extends BaseView {
 
         @NonNull
         public String toString() {
-            return "tes(guidanceManeuverData=" + this.mGuidanceManeuverData + ", statusCode=" + this.mStatusCode + ")";
+            return "GuidanceManeuverView.State(guidanceManeuverData=" + this.mGuidanceManeuverData + ", statusCode=" + this.mStatusCode + ")";
         }
 
         public int hashCode() {

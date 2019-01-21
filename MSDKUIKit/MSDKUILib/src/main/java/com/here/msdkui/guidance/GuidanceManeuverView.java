@@ -235,6 +235,16 @@ public class GuidanceManeuverView extends BaseView {
     }
 
     /**
+     * Gets the {@link com.here.msdkui.guidance.GuidanceManeuverView.State GuidanceManeuverView.State} of this view which was used for
+     * UI population.
+     *
+     * @return GuidanceManeuverView.State
+     */
+    public State getViewState() {
+        return mState;
+    }
+
+    /**
      * Sets the {@link com.here.msdkui.guidance.GuidanceManeuverView.State GuidanceManeuverView.State} which will be used for UI population.
      *
      * @param state the {@link com.here.msdkui.guidance.GuidanceManeuverView.State GuidanceManeuverView.State} to populate the UI.
@@ -253,16 +263,6 @@ public class GuidanceManeuverView extends BaseView {
         } else {
             populate(state.mGuidanceManeuverData);
         }
-    }
-
-    /**
-     * Gets the {@link com.here.msdkui.guidance.GuidanceManeuverView.State GuidanceManeuverView.State} of this view which was used for
-     * UI population.
-     *
-     * @return GuidanceManeuverView.State
-     */
-    public State getViewState() {
-        return mState;
     }
 
     /**
@@ -322,7 +322,7 @@ public class GuidanceManeuverView extends BaseView {
         SavedState(Parcel in) {
             super(in);
             int value = in.readByte();
-            if(value == 1) {
+            if (value == 1) {
                 mState = State.CREATOR.createFromParcel(in);
             }
         }
@@ -356,7 +356,7 @@ public class GuidanceManeuverView extends BaseView {
 
     /**
      * Represents all the supported guidance maneuver view states.
-     *
+     * <p>
      * Note - to compare the different states, please use {@link #equals(Object)} method.
      */
     public static class State implements Parcelable {
@@ -370,6 +370,18 @@ public class GuidanceManeuverView extends BaseView {
          * Represent loading state where the view is awaiting for maneuver data.
          */
         public static final State UPDATING = new State(1);
+
+        public static final Creator<State> CREATOR = new Creator<State>() {
+            @Override
+            public State createFromParcel(Parcel in) {
+                return new State(in);
+            }
+
+            @Override
+            public State[] newArray(int size) {
+                return new State[size];
+            }
+        };
 
         private GuidanceManeuverData mGuidanceManeuverData;
         private int mStatusCode;
@@ -392,18 +404,6 @@ public class GuidanceManeuverView extends BaseView {
             mStatusCode = in.readInt();
         }
 
-        public static final Creator<State> CREATOR = new Creator<State>() {
-            @Override
-            public State createFromParcel(Parcel in) {
-                return new State(in);
-            }
-
-            @Override
-            public State[] newArray(int size) {
-                return new State[size];
-            }
-        };
-
         /**
          * Gets the {@link com.here.msdkui.guidance.GuidanceManeuverData} state used to populate the view.
          *
@@ -425,18 +425,22 @@ public class GuidanceManeuverView extends BaseView {
         }
 
         @NonNull
+        @Override
         public String toString() {
-            return "GuidanceManeuverView.State(guidanceManeuverData=" + this.mGuidanceManeuverData + ", statusCode=" + this.mStatusCode + ")";
+            return "GuidanceManeuverView.State(guidanceManeuverData=" + this.mGuidanceManeuverData +
+                    ", statusCode=" + this.mStatusCode + ")";
         }
 
+        @Override
         public int hashCode() {
             return (this.mGuidanceManeuverData != null ? this.mGuidanceManeuverData.hashCode() : 0) * 31 + this.mStatusCode;
         }
 
-        public boolean equals(@Nullable Object var1) {
+        @Override
+        public boolean equals(Object var1) {
             if (this != var1) {
                 if (var1 instanceof State) {
-                    State var2 = (State)var1;
+                    State var2 = (State) var1;
                     if (areEqual(this.mGuidanceManeuverData, var2.mGuidanceManeuverData) && this.mStatusCode == var2.mStatusCode) {
                         return true;
                     }

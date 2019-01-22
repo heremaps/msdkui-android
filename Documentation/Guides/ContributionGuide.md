@@ -3,30 +3,30 @@
 This guide is for developers who want to contribute to the MSDKUI codebase, build the MSDKUI library, or run the demo application on their local machines. For using the `MSDKUILib.aar` on your own project, or running the accompanying example apps, please check the [QuickStart](QuickStart.md) guide.
 
 ## Contents
-<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-- [Getting the Code](#getting-the-code)
+
+- [Getting the code](#getting-the-code)
 - [See available Gradle tasks](#see-available-gradle-tasks)
 - [Building the HERE UI Kit library](#building-the-here-ui-kit-library)
-	- [Building the MSDKUI API Reference from Command Line](#building-the-msdkui-api-reference-from-command-line)
-	- [Running Unit Tests for MSDKUILib](#running-unit-tests-for-msdkuilib)
+	- [Building the MSDKUI API Reference from the Command Line](#building-the-msdkui-api-reference-from-the-command-line)
+	- [Running Unit Tests for the MSDKUILib](#running-unit-tests-for-the-msdkuilib)
 	- [Generating a Unit Test Coverage Report](#generating-a-unit-test-coverage-report)
 - [Building the Demo App](#building-the-demo-app)
 	- [Setting the HERE Mobile SDK license](#setting-the-here-mobile-sdk-license)
-	- [Building and Running the Demo](#building-and-running-the-demo)
-	- [Running Unit Tests for MDKUIApp](#running-unit-tests-for-mdkuiapp)
+	- [Building and Running the Demo app](#building-and-running-the-demo-app)
+	- [Running Unit Tests for the MDKUIApp](#running-unit-tests-for-the-mdkuiapp)
 	- [Generating a Unit Test Coverage Report](#generating-a-unit-test-coverage-report)
-	- [Running UI Tests for MDKUIApp](#running-ui-tests-for-mdkuiapp)
-	- [Optional: Building HERE UI Kit Library and Demo as part of one project](#optional-building-here-ui-kit-library-and-demo-as-part-of-one-project)
+	- [Running UI Tests for the MDKUIApp](#running-ui-tests-for-the-mdkuiapp)
+	- [Optional: Building the HERE UI Kit Library and the Demo as part of one project](#optional-building-the-here-ui-kit-library-and-the-demo-as-part-of-one-project)
 - [Commit Policy](#commit-policy)
 	- [Writing Git Commit Messages](#writing-git-commit-messages)
 		- [A normal ticket](#a-normal-ticket)
 		- [Solving multiple tickets](#solving-multiple-tickets)
-- [Submitting a Pull Request](#submitting-a-pull-request)
+- [Submitting a pull request](#submitting-a-pull-request)
 
-<!-- /TOC -->
 
-## Getting the Code
+
+## Getting the code
 
 ```
 $ git clone https://github.com/heremaps/msdkui-android
@@ -51,7 +51,7 @@ The built `MSDKUILib-release.aar` is then located in your new _MSDKUIKit/MSDKUIL
 
 >**Note:** You can also build the lib from within Android Studio. Open the MSDKUIKit Android project and open the Gradle "Tool Windows" to see all available Gradle tasks. Select and execute the `:MSDKUILib:assemble` task.
 
-### Building the MSDKUI API Reference from Command Line
+### Building the MSDKUI API Reference from the Command Line
 
 To generate the MSDKUI API Reference, navigate to the _MSDKUIKit_ folder and run:
 
@@ -61,7 +61,7 @@ To generate the MSDKUI API Reference, navigate to the _MSDKUIKit_ folder and run
 
 It will place the API Reference at `build/docs/javadoc/`. Run `open build/docs/javadoc/index.html` to open the documentation on the default browser. The Javadoc Jar can be found at `build/libs/`.
 
-### Running Unit Tests for MSDKUILib
+### Running Unit Tests for the MSDKUILib
 
 Switch to command line and navigate to the _MSDKUIKit_ folder. Execute: `./gradlew :MSDKUILib:testDebugUnitTest`.
 
@@ -90,7 +90,7 @@ resValue 'string', 'HERE_SDK_LICENSE_KEY', System.getenv("MSDKUI_APP_LICENSE_AND
 
 When you register on [developer.here.com](https://developer.here.com), the registered bundle identifier must match the [applicationId](https://developer.android.com/studio/build/application-id) in the app's build.gradle. For the demo app this is by default `com.here.msdkui.demo` - you may need to adapt the `applicationId` to the one you have registered.
 
-### Building and Running the Demo
+### Building and Running the Demo app
 
 In order to build and to run the demo app with Android Studio, you need to integrate the HERE Mobile SDK (Premium) version 3.9. Additionally, you need to integrate the HERE Mobile SDK UI Kit library.
 
@@ -100,7 +100,7 @@ In order to build and to run the demo app with Android Studio, you need to integ
 
 >**Note:** Alternatively, you can build the Demo from command line. Navigate to the MSDKUIDemo folder and execute: `./gradlew clean :MSDKUIApp:assembleRelease`. The built Demo APK is then located in your new _MSDKUIDemo/MSDUIApp/output_ subfolder. Copy the APK to your device and run it.
 
-### Running Unit Tests for MDKUIApp
+### Running Unit Tests for the MDKUIApp
 
 Switch to command line and navigate to the _MSDKUIDemo_ folder. Execute: `./gradlew :MSDKUIApp:testDebugUnitTest`.
 
@@ -112,13 +112,13 @@ Execute `/gradlew :MSDKUIApp:testDebugUnitTest :MSDKUIApp:jacocoTestDebugReport`
 
 >**Note:** To generate the coverage report from within Android Studio, execute the Gradle Task from the "Tools Window": `MSDKUIApp -> Tasks -> reporting -> jacocoTestDebugReport` (right-click and run).
 
-### Running UI Tests for MDKUIApp
+### Running UI Tests for the MDKUIApp
 
 Switch to command line and navigate to the _MSDKUIDemo_ folder. Execute: `./gradlew MSDKUIApp:connectedAndroidTest`.
 
 >**Note:** Alternatively, you can also run the UI tests from within Android Studio by right clicking on a specific test or the _androidTest_ subfolder and clicking "Run Tests". You can also directly select the Gradle Task: `MSDKUIApp -> Tasks -> build -> assembleAndroidTest` (right-click and run).
 
-### Optional: Building HERE UI Kit Library and Demo as part of one project
+### Optional: Building the HERE UI Kit Library and the Demo as part of one project
 
 Usually, it should be sufficient to keep library and Demo project separated. If you are planning to contribute to the Demo app - or to test your new components as part of the Demo app - it may be convenient to build both as part of one Android Studio project.
 
@@ -188,7 +188,7 @@ TICKET-Z: Ticket Z Title
 Extended description (as for a normal ticket, see above).
 ```
 
-## Submitting a Pull Request
+## Submitting a pull request
 
  - Pull requests may contain multiple commits.
  - Pull requests should not include "Merge" commits.

@@ -1,6 +1,6 @@
 # Contributing to the HERE Mobile SDK UI Kit
 
-First off, thank you for taking the time to contribute to this open source project.
+First of all, thank you for taking the time to contribute to this open source project.
 
 Whether you find an issue or you want to add new UI components - we are happy to see your pull requests.
 

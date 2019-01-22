@@ -2,22 +2,31 @@
 Thank you for using the HERE Mobile SDK UI Kit. In this Quick Start guide, we are going to introduce you to the HERE Mobile SDK UI Kit and show you how easy it is to get started. As a very first example, we'll also develop a "Hello HERE Mobile SDK UI Kit" Android application as part of this guide. For more examples and in-depth information on how to work with the HERE Mobile SDK UI Kit framework, please refer to the [User Guide](UserGuide.md).
 
 ## Contents
-<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-- [How to Run the Example Apps](#how-to-run-the-example-apps)
-- [How to Run the Demo App](#how-to-run-the-demo-app)
+
+<<<<<<< Updated upstream
+- [How to run the Example apps](#how-to-run-the-example-apps)
+- [How to run the Demo app](#how-to-run-the-demo-app)
+=======
+- [How to run the example apps](#how-to-run-the-example-apps)
+- [How to run the Demo App](#how-to-run-the-demo-app)
+>>>>>>> Stashed changes
 - [Creating a new Android Project](#creating-a-new-android-project)
 	- [Integrating the HERE Mobile SDK and the HERE Mobile SDK UI Kit](#integrating-the-here-mobile-sdk-and-the-here-mobile-sdk-ui-kit)
 	- [Gradle Setup](#gradle-setup)
 	- [Theme Setup](#theme-setup)
 	- [Setting your HERE Mobile SDK credentials](#setting-your-here-mobile-sdk-credentials)
-	- [Add your first HERE Mobile SDK UI Kit component](#add-your-first-here-mobile-sdk-ui-kit-component)
+	- [Adding your first HERE Mobile SDK UI Kit component](#adding-your-first-here-mobile-sdk-ui-kit-component)
 	- [Loading the Map](#loading-the-map)
 
-<!-- /TOC -->
 
 
-## How to Run the Example Apps
+
+<<<<<<< Updated upstream
+## How to run the Example apps
+=======
+## How to run the example apps
+>>>>>>> Stashed changes
 If you just want to try out the accompanying examples, please perform the following steps:
 
 - Include the HERE Mobile SDK 3.9, Premium, and the HERE Mobile SDK UI Kit: Copy the `HERE-sdk.aar` and the `MSDKUILib.aar` to _app/libs_ (if not done already, [build the MSDKUILib](ContributionGuide.md#building-the-here-ui-kit-library) via Gradle: `./gradlew clean :MSDKUILib:assembleRelease`).
@@ -39,12 +48,12 @@ When you register on [developer.here.com](https://developer.here.com), the regis
 
 For more information on how to set up a new project, please, refer to our guide below which contains much more useful information on how to use the example apps.
 
-## How to Run the Demo App
+## How to run the Demo app
 Along with the accompanying example apps and code snippets, we also provide a more complex demo app showing a complete and fully functional flow. If you want to try out the Demo application, please take a look at the [Contribution Guide](ContributionGuide.md).
 
 If you want to build your own app, it may be useful to follow the guide below where we will develop step by step a first Hello HERE Mobile SDK UI Kit app in greater detail.
 
-## Creating a new Android Project
+## Creating a new Android project
 Let's start by creating a new Android app. If you want to integrate the HERE Mobile SDK UI Kit into an existing app, you can skip this step. No HERE Mobile SDK or HERE Mobile SDK UI Kit specific code is involved here.
 If you are new to Android development, please follow the guides on [developer.android.com](https://developer.android.com/guide/) to help you get started with the first steps.
 
@@ -186,7 +195,7 @@ Finally make sure to click the _"Sync Project with Gradle Files"_-button. If all
 
 To enable quick Javadoc reference within your Android Studio environment, scroll down to the _External Libraries_ section, right-click on `MSDKUILib:@aar`, and then select _Library Properties_. Click the `+`-button and locate `MSDKUILib-javadoc.jar` (if not done already, [build the MSDKUI API Reference](ContributionGuide.md#building-the-msdkui-api-reference-from-command-line) via Gradle: `./gradlew clean :MSDKUILib:javadocJar`).
 
-### Add your first HERE Mobile SDK UI Kit component
+### Adding your first HERE Mobile SDK UI Kit component
 If you succeed with the above steps, we have the HERE Mobile SDK UI Kit library and the HERE Mobile SDK ready for use. Our app consists only of a single activity, accompanied by a layout file usually called `activity_main.xml` - if you kept the default `MainActivity` class name.
 
 If you started with an empty Android project, the default layout was hosting a "Hello World"-`TextView`. Replace the entire content of the existing `activity_main` layout file with the following vertical `LinearLayout`:

@@ -20,6 +20,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Parcel;
 import android.support.v4.app.FragmentActivity;
+import android.util.AttributeSet;
 import android.view.AbsSavedState;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,6 +33,7 @@ import com.here.msdkui.R;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.robolectric.Robolectric;
 
 import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -61,11 +63,11 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
     public void testUIInit() {
 
         // since there is no data, only info 1 shows string
-        final TextView infoView1 = (TextView) mGuidanceManeuverView.findViewById(R.id.infoView1);
-        final TextView distanceView = (TextView) mGuidanceManeuverView.findViewById(R.id.distanceView);
-        final TextView infoView2 = (TextView) mGuidanceManeuverView.findViewById(R.id.infoView2);
-        final ImageView iconView = (ImageView) mGuidanceManeuverView.findViewById(R.id.maneuverIconView);
-        final ProgressBar busyProgressBar = (ProgressBar) mGuidanceManeuverView.findViewById(
+        final TextView infoView1 =  mGuidanceManeuverView.findViewById(R.id.infoView1);
+        final TextView distanceView =  mGuidanceManeuverView.findViewById(R.id.distanceView);
+        final TextView infoView2 =  mGuidanceManeuverView.findViewById(R.id.infoView2);
+        final ImageView iconView =  mGuidanceManeuverView.findViewById(R.id.maneuverIconView);
+        final ProgressBar busyProgressBar =  mGuidanceManeuverView.findViewById(
                 R.id.busyStateProgressBar);
 
         assertEquals(infoView1.getVisibility(), View.VISIBLE);
@@ -73,7 +75,8 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
 
         GuidanceManeuverData data = createData(mIconId, mDistance, mInfo1, mInfo2);
         // create proper data to see if everything is fine.
-        mGuidanceManeuverView.setManeuverData(data);
+        mGuidanceManeuverView.setViewState(new GuidanceManeuverView.State(data));
+        assertNotNull(mGuidanceManeuverView.getViewState().getData());
 
         // since no data is null, all view should be visible.
         assertEquals(distanceView.getVisibility(), View.VISIBLE);
@@ -90,27 +93,34 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
     }
 
     @Test
-    public void testWhenManeuverIsNull() {
-        mGuidanceManeuverView.setManeuverData(null);
-        final TextView distanceView = (TextView) mGuidanceManeuverView.findViewById(R.id.distanceView);
-        final TextView infoView1 = (TextView) mGuidanceManeuverView.findViewById(R.id.infoView1);
-        final TextView infoView2 = (TextView) mGuidanceManeuverView.findViewById(R.id.infoView2);
-        final ImageView iconView = (ImageView) mGuidanceManeuverView.findViewById(R.id.maneuverIconView);
-        final ProgressBar busyProgressBar = (ProgressBar) mGuidanceManeuverView.findViewById(
-                R.id.busyStateProgressBar);
+    public void testUiWithAttributeSet() {
+        AttributeSet attributeSet = Robolectric.buildAttributeSet()
+                .addAttribute(R.attr.viewMode, "0")
+                .build();
+        mGuidanceManeuverView = new GuidanceManeuverView(getApplicationContext(), attributeSet);
+        testUIInit();
+        attributeSet = Robolectric.buildAttributeSet()
+                .addAttribute(R.attr.viewMode, "1")
+                .build();
+        mGuidanceManeuverView = new GuidanceManeuverView(getApplicationContext(), attributeSet);
+        testUIInit();
+        attributeSet = Robolectric.buildAttributeSet()
+                .addAttribute(R.attr.viewMode, "2")
+                .build();
+        mGuidanceManeuverView = new GuidanceManeuverView(getApplicationContext(), attributeSet);
+        testUIInit();
+    }
 
-        // null data should be hidden.
-        assertEquals(distanceView.getVisibility(), View.INVISIBLE);
-        assertEquals(infoView1.getVisibility(), View.GONE);
-        assertEquals(infoView2.getVisibility(), View.GONE);
-        assertEquals(iconView.getVisibility(), View.INVISIBLE);
-        assertEquals(busyProgressBar.getVisibility(), View.GONE);
+    @Test
+    public void testWhenStateIsNull() {
+        mGuidanceManeuverView.setViewState(null);
+        assertEquals(mGuidanceManeuverView.getVisibility(), View.GONE);
+        assertNull(mGuidanceManeuverView.getViewState());
     }
 
     @Test
     public void testWhenManeuverForRouteRecalculation() {
-        mGuidanceManeuverView.setManeuverData(new GuidanceManeuverData(-1, -1,
-                getString(R.string.msdkui_maneuverpanel_updating), ""));
+        mGuidanceManeuverView.setViewState(GuidanceManeuverView.State.UPDATING);
         final TextView distanceView = (TextView) mGuidanceManeuverView.findViewById(R.id.distanceView);
         final TextView infoView1 = (TextView) mGuidanceManeuverView.findViewById(R.id.infoView1);
         final TextView infoView2 = (TextView) mGuidanceManeuverView.findViewById(R.id.infoView2);
@@ -130,18 +140,17 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
     @Test
     public void testExtraIconView() {
         final ImageView extraIconView = (ImageView) mGuidanceManeuverView.findViewById(R.id.extraIconView);
-        assertEquals(extraIconView.getVisibility(), View.INVISIBLE);
+        assertEquals(extraIconView.getVisibility(), View.GONE);
         GuidanceManeuverData data = new GuidanceManeuverData(-1, -1, "", "", Mockito.mock(Bitmap.class));
-        mGuidanceManeuverView.setManeuverData(data);
+        mGuidanceManeuverView.setViewState(new GuidanceManeuverView.State(data));
         assertEquals(extraIconView.getVisibility(), View.VISIBLE);
     }
 
     @Test
     public void testUIWhenSomeDataIsNull() {
-
         GuidanceManeuverData data = createData(0, -1, null, null);
         // create proper data to see if everything is fine.
-        mGuidanceManeuverView.setManeuverData(data);
+        mGuidanceManeuverView.setViewState(new GuidanceManeuverView.State(data));
 
         final TextView distanceView = (TextView) mGuidanceManeuverView.findViewById(R.id.distanceView);
         final TextView infoView1 = (TextView) mGuidanceManeuverView.findViewById(R.id.infoView1);
@@ -149,7 +158,7 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
         final ImageView iconView = (ImageView) mGuidanceManeuverView.findViewById(R.id.maneuverIconView);
 
         // null data should be hidden.
-        assertEquals(distanceView.getVisibility(), View.INVISIBLE);
+        assertEquals(distanceView.getVisibility(), View.VISIBLE);
         assertEquals(infoView1.getVisibility(), View.GONE);
         assertEquals(infoView2.getVisibility(), View.GONE);
         assertEquals(iconView.getVisibility(), View.GONE);
@@ -158,14 +167,8 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
     @Test
     public void testSettingDataReturnsTheSame() {
         GuidanceManeuverData data = createData(mIconId, mDistance, mInfo1, mInfo2);
-        mGuidanceManeuverView.setManeuverData(data);
+        mGuidanceManeuverView.setViewState(new GuidanceManeuverView.State(data));
         assertThat(mGuidanceManeuverView.getManeuverData(), equalTo(data));
-    }
-
-    @Test
-    public void settingDataNullShouldNotThrowException() {
-        mGuidanceManeuverView.setManeuverData(null);
-        assertNull(mGuidanceManeuverView.getManeuverData());
     }
 
     @Test
@@ -173,12 +176,11 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
         mGuidanceManeuverView.highLightManeuver(Color.RED);
         assertThat(((TextView) mGuidanceManeuverView.findViewById(R.id.infoView2)).getCurrentTextColor(),
                 is(Color.RED));
-
     }
 
     @Test
     public void testDataIsNotLostWhileRecreatingActivity() {
-        mGuidanceManeuverView.setManeuverData(createData(mIconId, mDistance, mInfo1, mInfo2));
+        mGuidanceManeuverView.setViewState(new GuidanceManeuverView.State(createData(mIconId, mDistance, mInfo1, mInfo2)));
         assertNotNull(mGuidanceManeuverView.getManeuverData());
         final FragmentActivity activity = getFragmentActivity();
         mGuidanceManeuverView.setId(R.id.vertical_guideline);
@@ -189,17 +191,44 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
 
     @Test
     public void testPanelDataIsParcelable() {
-
         final GuidanceManeuverData data = createData(mIconId, mDistance, mInfo1, mInfo2);
         GuidanceManeuverView.SavedState savedState = new GuidanceManeuverView.SavedState(AbsSavedState.EMPTY_STATE);
-        savedState.setManeuverData(data);
+        savedState.setViewState(new GuidanceManeuverView.State(data));
         Parcel parcel = Parcel.obtain();
         savedState.writeToParcel(parcel, savedState.describeContents());
         parcel.setDataPosition(0);
 
         GuidanceManeuverView.SavedState createdFromParcel = GuidanceManeuverView.SavedState.CREATOR.createFromParcel(
                 parcel);
-        assertNotNull(createdFromParcel.getManeuverData());
+        assertNotNull(createdFromParcel.getViewState());
+    }
+
+    @Test
+    public void testPanelNoDataIsParcelable() {
+        GuidanceManeuverView.SavedState savedState = new GuidanceManeuverView.SavedState(AbsSavedState.EMPTY_STATE);
+        savedState.setViewState(GuidanceManeuverView.State.NO_DATA);
+        Parcel parcel = Parcel.obtain();
+        savedState.writeToParcel(parcel, savedState.describeContents());
+        parcel.setDataPosition(0);
+
+        GuidanceManeuverView.SavedState createdFromParcel = GuidanceManeuverView.SavedState.CREATOR.createFromParcel(
+                parcel);
+        assertNotNull(createdFromParcel.getViewState());
+        assertThat(createdFromParcel.getViewState(), equalTo(GuidanceManeuverView.State.NO_DATA));
+    }
+
+    @Test
+    public void testPanelUpdatingStateIsParcelable() {
+        GuidanceManeuverView.SavedState savedState = new GuidanceManeuverView.SavedState(AbsSavedState.EMPTY_STATE);
+        savedState.setViewState(GuidanceManeuverView.State.UPDATING);
+        Parcel parcel = Parcel.obtain();
+        savedState.writeToParcel(parcel, savedState.describeContents());
+        parcel.setDataPosition(0);
+
+        GuidanceManeuverView.SavedState createdFromParcel = GuidanceManeuverView.SavedState.CREATOR.createFromParcel(
+                parcel);
+        assertNotNull(createdFromParcel.getViewState());
+        assertThat(createdFromParcel.getViewState(), equalTo(GuidanceManeuverView.State.UPDATING));
     }
 
     private GuidanceManeuverData createData(int iconId, long distance, String info1, String info2) {

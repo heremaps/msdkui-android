@@ -63,10 +63,9 @@ class GuidanceManeuverFragment : Fragment(), GuidanceManeuverListener {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return GuidanceManeuverView(activity).apply {
-            id = R.id.guidanceManeuverViewId
-            unitSystem = Util.getLocaleUnit()
-        }
+        val view =  inflater.inflate(R.layout.guidance_maneuver_fragment, container, false) as GuidanceManeuverView
+        view.unitSystem =  Util.getLocaleUnit()
+        return view
     }
 
     /**
@@ -92,7 +91,11 @@ class GuidanceManeuverFragment : Fragment(), GuidanceManeuverListener {
     }
 
     override fun onDataChanged(data: GuidanceManeuverData?) {
-        (view as? GuidanceManeuverView)?.maneuverData = data
+        val notifiedView = view as? GuidanceManeuverView
+        data?.run {
+            notifiedView?.setViewState(GuidanceManeuverView.State(data))
+        } ?: notifiedView?.setViewState(GuidanceManeuverView.State.UPDATING)
+
     }
 
     override fun onDestinationReached() {

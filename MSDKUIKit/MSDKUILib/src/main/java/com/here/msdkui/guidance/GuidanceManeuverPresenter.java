@@ -108,8 +108,7 @@ public class GuidanceManeuverPresenter extends BaseGuidancePresenter {
      */
     private void updateManeuverData(Maneuver maneuver) {
         if (maneuver == null) {
-            notifyDataChanged(new GuidanceManeuverData(-1, -1,
-                    mContext.getString(R.string.msdkui_maneuverpanel_updating), ""));
+            notifyDataChanged(null);
         } else {
             notifyDataChanged(new GuidanceManeuverData(getIcon(maneuver),
                     getNextManeuverDistance(), getManeuverSignpost(maneuver), getStreet(maneuver),

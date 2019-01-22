@@ -36,7 +36,7 @@ import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.DistanceFormatterUtil;
 
 /**
- * A view that shows the next maneuver panel for guidance. The view consumes the data contained in
+ * A view that shows the next maneuver view for guidance. The view consumes the data contained in
  * {@link GuidanceManeuverData}.
  */
 public class GuidanceManeuverView extends BaseView {
@@ -48,7 +48,7 @@ public class GuidanceManeuverView extends BaseView {
      *
      * @param context the required {@link Context}.
      */
-    public GuidanceManeuverView(Context context) {
+    public GuidanceManeuverView(@NonNull Context context) {
         this(context, null);
     }
 
@@ -58,7 +58,7 @@ public class GuidanceManeuverView extends BaseView {
      * @param context the required {@link Context}.
      * @param attrs   a set of attributes.
      */
-    public GuidanceManeuverView(Context context, @Nullable AttributeSet attrs) {
+    public GuidanceManeuverView(@NonNull Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
@@ -69,7 +69,7 @@ public class GuidanceManeuverView extends BaseView {
      * @param attrs        a set of attributes.
      * @param defStyleAttr a default style attribute.
      */
-    public GuidanceManeuverView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public GuidanceManeuverView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
@@ -85,17 +85,17 @@ public class GuidanceManeuverView extends BaseView {
      *                     Requires Lollipop (API level 21).
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public GuidanceManeuverView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public GuidanceManeuverView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context, attrs);
     }
 
     /**
-     * Init the Panel UI.
+     * Initializes the view based on GuidanceManeuverView_viewMode and orientation.
      *
      * @param context activity or application context.
      */
-    private void init(final Context context, AttributeSet attributeSet) {
+    private void init(@NonNull final Context context, @Nullable AttributeSet attributeSet) {
         int orientation = getResources().getConfiguration().orientation;
         if (attributeSet != null) {
             final TypedArray typedArray = this.getContext().obtainStyledAttributes(attributeSet, R.styleable.GuidanceManeuverView);
@@ -111,9 +111,10 @@ public class GuidanceManeuverView extends BaseView {
         }
 
         if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_panel_mode2, this);
+
+            LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_view_screen2, this);
         } else {
-            LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_panel_mode1, this);
+            LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_view_screen1, this);
         }
         setViewState(State.NO_DATA);
     }
@@ -192,9 +193,9 @@ public class GuidanceManeuverView extends BaseView {
     }
 
     /**
-     * Populate the UI with {@link GuidanceManeuverData}. Setting null data will put the panel in waiting state.
+     * Populate the UI with {@link GuidanceManeuverData}. Setting null data will put the view in waiting state.
      *
-     * @param maneuverData The {@link GuidanceManeuverData} to use. In case of null, the loading state of the panel will be shown.
+     * @param maneuverData The {@link GuidanceManeuverData} to use. In case of null, the loading state of the view will be shown.
      */
     private void populate(@Nullable GuidanceManeuverData maneuverData) {
         if (maneuverData == null) {
@@ -234,6 +235,16 @@ public class GuidanceManeuverView extends BaseView {
     }
 
     /**
+     * Gets the {@link com.here.msdkui.guidance.GuidanceManeuverView.State GuidanceManeuverView.State} of this view which was used for
+     * UI population.
+     *
+     * @return GuidanceManeuverView.State
+     */
+    public State getViewState() {
+        return mState;
+    }
+
+    /**
      * Sets the {@link com.here.msdkui.guidance.GuidanceManeuverView.State GuidanceManeuverView.State} which will be used for UI population.
      *
      * @param state the {@link com.here.msdkui.guidance.GuidanceManeuverView.State GuidanceManeuverView.State} to populate the UI.
@@ -245,9 +256,9 @@ public class GuidanceManeuverView extends BaseView {
             setVisibility(GONE);
             return;
         }
-        if (state == State.NO_DATA) {
+        if (State.NO_DATA.equals(mState)) {
             populateDefaultState();
-        } else if (state == State.UPDATING) {
+        } else if (State.UPDATING.equals(mState)) {
             populateBusyProgressBarView();
         } else {
             populate(state.mGuidanceManeuverData);
@@ -255,17 +266,7 @@ public class GuidanceManeuverView extends BaseView {
     }
 
     /**
-     * Gets the {@link com.here.msdkui.guidance.GuidanceManeuverView.State GuidanceManeuverView.State} of this view which was used for
-     * UI population.
-     *
-     * @return GuidanceManeuverView.State
-     */
-    public State getViewState() {
-        return mState;
-    }
-
-    /**
-     * Highlights maneuver section (info2) of panel using the provided color.
+     * Highlights maneuver section (info2) of view using the provided color.
      *
      * @param color the color to highlight a maneuver.
      */
@@ -321,18 +322,8 @@ public class GuidanceManeuverView extends BaseView {
         SavedState(Parcel in) {
             super(in);
             int value = in.readByte();
-            switch (value) {
-                case 0:
-                    mState = null;
-                    break;
-                case 1:
-                    mState = new State(GuidanceManeuverData.CREATOR.createFromParcel(in));
-                    break;
-                case 2:
-                    mState = State.UPDATING;
-                    break;
-                default:
-                    mState = State.NO_DATA;
+            if (value == 1) {
+                mState = State.CREATOR.createFromParcel(in);
             }
         }
 
@@ -343,14 +334,8 @@ public class GuidanceManeuverView extends BaseView {
                 out.writeByte((byte) 0);
                 return;
             }
-            if (mState != State.UPDATING && mState != State.NO_DATA) {
-                out.writeByte((byte) 1);
-                mState.mGuidanceManeuverData.writeToParcel(out, flags);
-            } else if (mState == State.UPDATING) {
-                out.writeByte((byte) 2);
-            } else {
-                out.writeByte((byte) 3);
-            }
+            out.writeByte((byte) 1);
+            mState.writeToParcel(out, flags);
         }
 
         /**
@@ -371,22 +356,38 @@ public class GuidanceManeuverView extends BaseView {
 
     /**
      * Represents all the supported guidance maneuver view states.
+     * <p>
+     * Note - to compare the different states, please use {@link #equals(Object)} method.
      */
-    public static class State {
+    public static class State implements Parcelable {
 
         /**
-         * Represent the state where the view doesn't have data.
+         * Represent the default state of view where the view doesn't have data.
          */
-        public static final State NO_DATA = new State();
+        public static final State NO_DATA = new State(0);
 
         /**
          * Represent loading state where the view is awaiting for maneuver data.
          */
-        public static final State UPDATING = new State();
+        public static final State UPDATING = new State(1);
+
+        public static final Creator<State> CREATOR = new Creator<State>() {
+            @Override
+            public State createFromParcel(Parcel in) {
+                return new State(in);
+            }
+
+            @Override
+            public State[] newArray(int size) {
+                return new State[size];
+            }
+        };
 
         private GuidanceManeuverData mGuidanceManeuverData;
+        private int mStatusCode;
 
-        protected State() {
+        private State(int code) {
+            this.mStatusCode = code;
         }
 
         /**
@@ -398,6 +399,11 @@ public class GuidanceManeuverView extends BaseView {
             mGuidanceManeuverData = data;
         }
 
+        protected State(Parcel in) {
+            mGuidanceManeuverData = in.readParcelable(GuidanceManeuverData.class.getClassLoader());
+            mStatusCode = in.readInt();
+        }
+
         /**
          * Gets the {@link com.here.msdkui.guidance.GuidanceManeuverData} state used to populate the view.
          *
@@ -405,6 +411,48 @@ public class GuidanceManeuverView extends BaseView {
          */
         public GuidanceManeuverData getData() {
             return mGuidanceManeuverData;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeParcelable(mGuidanceManeuverData, flags);
+            dest.writeInt(mStatusCode);
+        }
+
+        @NonNull
+        @Override
+        public String toString() {
+            return "GuidanceManeuverView.State(guidanceManeuverData=" + this.mGuidanceManeuverData +
+                    ", statusCode=" + this.mStatusCode + ")";
+        }
+
+        @Override
+        public int hashCode() {
+            return (this.mGuidanceManeuverData != null ? this.mGuidanceManeuverData.hashCode() : 0) * 31 + this.mStatusCode;
+        }
+
+        @Override
+        public boolean equals(Object var1) {
+            if (this != var1) {
+                if (var1 instanceof State) {
+                    State var2 = (State) var1;
+                    if (areEqual(this.mGuidanceManeuverData, var2.mGuidanceManeuverData) && this.mStatusCode == var2.mStatusCode) {
+                        return true;
+                    }
+                }
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        private boolean areEqual(Object first, Object second) {
+            return first == null ? second == null : first.equals(second);
         }
     }
 }

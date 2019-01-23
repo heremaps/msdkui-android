@@ -99,6 +99,12 @@ object GuidanceView {
         get() = onView(withId(R.id.guidance_current_speed_unit))
 
     /**
+     * The [Matcher]<[View]> current speed limit
+     */
+    val onGuidanceSpeedLimiter: Matcher<View>
+        get() = withId(R.id.speed_limit)
+
+    /**
      * The [ViewInteraction] ETA info on guidance dashboard
      */
     val onGuidanceDashBoardEtaInfo: ViewInteraction

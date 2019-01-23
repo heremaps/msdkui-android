@@ -39,6 +39,7 @@ import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGu
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverIcon
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverPanel
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverStreetNameInfo
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceSpeedLimiter
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceTitle
 
 object GuidanceActions {
@@ -64,6 +65,14 @@ object GuidanceActions {
      */
     fun waitForGuidanceNextManeuverPanelDisplayed(): GuidanceActions {
         onRootView.perform(waitForCondition(withId(R.id.next_maneuver_panel_container)))
+        return this
+    }
+
+    /**
+     * Wait for guidance speed limit to be displayed
+     */
+    fun waitForSpeedLimitDisplayed(): GuidanceActions {
+        waitForCondition(onGuidanceSpeedLimiter)
         return this
     }
 

@@ -16,12 +16,16 @@
 
 package com.here.msdkuiapp.common
 
+import android.content.Context
 import com.here.android.mpa.common.GeoBoundingBox
 import com.here.android.mpa.common.GeoCoordinate
 import com.here.android.mpa.common.Image
+import com.here.android.mpa.common.MapEngine
+import com.here.android.mpa.mapping.Map
 import com.here.android.mpa.mapping.MapContainer
 import com.here.android.mpa.mapping.MapMarker
 import com.here.android.mpa.mapping.MapRoute
+import com.here.android.mpa.mapping.MapView
 import com.here.android.mpa.routing.CoreRouter
 import com.here.android.mpa.routing.DynamicPenalty
 import com.here.android.mpa.routing.Route
@@ -29,7 +33,6 @@ import com.here.android.mpa.routing.RouteOptions
 import com.here.android.mpa.routing.RoutePlan
 import com.here.android.mpa.routing.RouteWaypoint
 import com.here.android.mpa.search.ReverseGeocodeRequest2
-import java.util.Locale
 
 /**
  * Provides HERE SDK objects by creating them.
@@ -76,7 +79,7 @@ class Provider {
      */
     fun providesReverseGeocodeRequest(cord: GeoCoordinate): ReverseGeocodeRequest2 {
         val ret = ReverseGeocodeRequest2(cord)
-        ret.locale = Locale.getDefault()
+       // ret.locale = Locale.getDefault()
         return ret
     }
 
@@ -133,4 +136,28 @@ class Provider {
      * @return created [DynamicPenalty].
      */
     fun providesDynamicPenalty(): DynamicPenalty = DynamicPenalty()
+
+    /**
+     * Provides [MapView].
+     * @return created [MapView].
+     */
+    fun provideMapView(context: Context): MapView {
+        return MapView(context)
+    }
+
+    /**
+     * Provides [MapEngine].
+     * @return created [MapEngine].
+     */
+    fun provideMapEngine(): MapEngine {
+        return MapEngine.getInstance()
+    }
+
+    /**
+     * Provides [Map].
+     * @return created [Map].
+     */
+    fun provideMap(): Map {
+        return Map()
+    }
 }

@@ -30,6 +30,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:viewMode="screen2"
             android:layout_margin="50dp"/>
 
 </android.support.constraint.ConstraintLayout>

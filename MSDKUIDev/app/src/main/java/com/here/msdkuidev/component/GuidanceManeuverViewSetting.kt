@@ -38,6 +38,7 @@ class GuidanceManeuverViewSetting() : Setting<GuidanceManeuverView>() {
         var defaultView: Boolean? = null
         var noDistance: Boolean? = null
         var customTheme : Int ? = null
+        var direction : Int ? = 0
 
         constructor() : super()
 
@@ -46,6 +47,8 @@ class GuidanceManeuverViewSetting() : Setting<GuidanceManeuverView>() {
             defaultView = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
             noDistance = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
             customTheme = parcel.readValue(Int::class.java.classLoader) as? Int
+            direction = parcel.readValue(Int::class.java.classLoader) as? Int
+            print(direction)
         }
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -54,6 +57,7 @@ class GuidanceManeuverViewSetting() : Setting<GuidanceManeuverView>() {
             parcel.writeValue(defaultView)
             parcel.writeValue(noDistance)
             parcel.writeValue(customTheme)
+            parcel.writeValue(direction)
         }
 
         override fun describeContents(): Int {
@@ -69,7 +73,6 @@ class GuidanceManeuverViewSetting() : Setting<GuidanceManeuverView>() {
                 return arrayOfNulls(size)
             }
         }
-
     }
 
     override fun getClassName(): Class<GuidanceManeuverView> {
@@ -82,60 +85,127 @@ class GuidanceManeuverViewSetting() : Setting<GuidanceManeuverView>() {
         val info2 = "Invalidenstr 110"
         val distance:Long = 2000
         return linkedMapOf(
-            "Default view" to GuidanceManeuverViewSettingItem().apply {
+            "Default view horizontal" to GuidanceManeuverViewSettingItem().apply {
                 defaultView = true
             },
 
-            "Set null data" to GuidanceManeuverViewSettingItem().apply {
+            "Set null data horizontal" to GuidanceManeuverViewSettingItem().apply {
                 defaultView = null
                 state = null
             },
 
-            "Loading state" to GuidanceManeuverViewSettingItem().apply {
+            "Updating horizontal" to GuidanceManeuverViewSettingItem().apply {
                 state = com.here.msdkui.guidance.GuidanceManeuverView.State.UPDATING
             },
 
-            "With all properties" to GuidanceManeuverViewSettingItem().apply {
+            "With all properties horizontal" to GuidanceManeuverViewSettingItem().apply {
                 state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
                     R.drawable.ic_maneuver_icon_2, distance, info1, info2, bitmap)
                 )
             },
 
-            "Maneuver icon gone" to GuidanceManeuverViewSettingItem().apply {
+            "Maneuver icon gone horizontal" to GuidanceManeuverViewSettingItem().apply {
                 state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
                     0, distance, info1, info2, bitmap)
                 )
             },
 
-            "Distance gone" to GuidanceManeuverViewSettingItem().apply {
+            "Distance gone horizontal" to GuidanceManeuverViewSettingItem().apply {
                 state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
                     R.drawable.ic_maneuver_icon_2, -2, info1, info2, bitmap)
                 )
                 noDistance = true
             },
 
-            "Info1 gone" to GuidanceManeuverViewSettingItem().apply {
+            "Info1 gone horizontal" to GuidanceManeuverViewSettingItem().apply {
                 state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
                     R.drawable.ic_maneuver_icon_2, distance, null, info2, bitmap)
                 )
             },
 
-            "Info2 gone" to GuidanceManeuverViewSettingItem().apply {
+            "Info2 gone horizontal" to GuidanceManeuverViewSettingItem().apply {
                 state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
                     R.drawable.ic_maneuver_icon_2, distance, info1, null, bitmap)
                 )
             },
 
-            "Without road icon" to GuidanceManeuverViewSettingItem().apply {
+            "Without road icon horizontal" to GuidanceManeuverViewSettingItem().apply {
                 state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
                     R.drawable.ic_maneuver_icon_2, distance, info1, info2, null)
                 )
             },
 
-            "With all red" to GuidanceManeuverViewSettingItem().apply {
+            "With all red horizontal" to GuidanceManeuverViewSettingItem().apply {
                 state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
                     R.drawable.ic_maneuver_icon_2, distance, info1, info2, bitmap)
                 )
+                customTheme = R.style.GuidanceManeuverViewRed
+            },
+
+            "Default view vertical" to GuidanceManeuverViewSettingItem().apply {
+                defaultView = true
+                direction = 1
+            },
+
+            "Set null data vertical" to GuidanceManeuverViewSettingItem().apply {
+                defaultView = null
+                state = null
+                direction = 1
+            },
+
+            "Updating vertical" to GuidanceManeuverViewSettingItem().apply {
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State.UPDATING
+                direction = 1
+            },
+
+            "With all properties vertical" to GuidanceManeuverViewSettingItem().apply {
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
+                    R.drawable.ic_maneuver_icon_2, distance, info1, info2, bitmap)
+                )
+                direction = 1
+            },
+
+            "Maneuver icon gone vertical" to GuidanceManeuverViewSettingItem().apply {
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
+                    0, distance, info1, info2, bitmap)
+                )
+                direction = 1
+            },
+
+            "Distance gone vertical" to GuidanceManeuverViewSettingItem().apply {
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
+                    R.drawable.ic_maneuver_icon_2, -2, info1, info2, bitmap)
+                )
+                noDistance = true
+                direction = 1
+            },
+
+            "Info1 gone vertical" to GuidanceManeuverViewSettingItem().apply {
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
+                    R.drawable.ic_maneuver_icon_2, distance, null, info2, bitmap)
+                )
+                direction = 1
+            },
+
+            "Info2 gone vertical" to GuidanceManeuverViewSettingItem().apply {
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
+                    R.drawable.ic_maneuver_icon_2, distance, info1, null, bitmap)
+                )
+                direction = 1
+            },
+
+            "Without road icon vertical" to GuidanceManeuverViewSettingItem().apply {
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
+                    R.drawable.ic_maneuver_icon_2, distance, info1, info2, null)
+                )
+                direction = 1
+            },
+
+            "With all red vertical" to GuidanceManeuverViewSettingItem().apply {
+                state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
+                    R.drawable.ic_maneuver_icon_2, distance, info1, info2, bitmap)
+                )
+                direction = 1
                 customTheme = R.style.GuidanceManeuverViewRed
             }
         )

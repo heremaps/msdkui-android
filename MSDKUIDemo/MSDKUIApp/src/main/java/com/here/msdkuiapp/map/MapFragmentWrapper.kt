@@ -47,9 +47,16 @@ import kotlinx.android.extensions.ContainerOptions
 class MapFragmentWrapper : RetainFragment() {
 
     private val state = State()
-    private val provider = Provider()
+
+    internal var injectedProvider : Provider? = null
+
+    // private field to be used without null check in this file.
+    private val provider : Provider
+        get() = injectedProvider ?: Provider()
+
     private val mapView
             get() = (view as? MapView)
+
     internal var map: Map? = null
 
     companion object {
@@ -83,10 +90,14 @@ class MapFragmentWrapper : RetainFragment() {
         }
 
         private fun handleEvent(point: PointF?) {
-            val geo = map!!.pixelToGeo(point)
+            val geo = map?.pixelToGeo(point)
             state.mapMarker?.coordinate = geo
             state.mapContainer?.addMapObject(state.mapMarker)
-            fragmentHandler?.post { listener?.onPointSelectedOnMap(geo) }
+            fragmentHandler?.post {
+                geo?.run {
+                    listener?.onPointSelectedOnMap(geo)
+                }
+            }
         }
 
         val fragmentHandler: Handler?
@@ -110,7 +121,7 @@ class MapFragmentWrapper : RetainFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return MapView(activity!!).apply {
+        return provider.provideMapView(inflater.context).apply {
             layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         }
     }
@@ -146,19 +157,19 @@ class MapFragmentWrapper : RetainFragment() {
             populateUI(listener)
             return
         }
-        MapEngine.getInstance().init(ApplicationContext(activity!!.applicationContext)) { err ->
+        provider.provideMapEngine().init(ApplicationContext(activity!!.applicationContext)) { err ->
             if (err == OnEngineInitListener.Error.NONE) {
                 populateUI(listener)
             } else {
                 Log.e(TAG, err.name + ": " + err.details)
-                Toast.makeText(activity, err.details, Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, err.details, Toast.LENGTH_LONG)?.show()
             }
         }
     }
 
     private fun populateUI(listener: (() -> Unit)?) {
         map ?: run {
-            map = Map()
+            map = provider.provideMap()
         }
         mapView?.map ?: run {
             mapView?.map = map
@@ -216,7 +227,7 @@ class MapFragmentWrapper : RetainFragment() {
      * @param box [GeoBoundingBox]
      * @return true if zoomTo function has been executed, otherwise false
      */
-    private fun zoomToBoundingBoxWithMargins(box: GeoBoundingBox?): Boolean {
+    internal fun zoomToBoundingBoxWithMargins(box: GeoBoundingBox?): Boolean {
         box != null ?: map?.run {
             val newWidth = width - 2 * maxOf(state.zoomLeftMargin, state.zoomRightMargin)
             val newHeight = height - 2 * maxOf(state.zoomTopMargin, state.zoomBottomMargin)
@@ -329,7 +340,6 @@ class MapFragmentWrapper : RetainFragment() {
     private fun changeGesture() {
         if (state.gestureEnable) {
             mapView?.mapGesture?.addOnGestureListener(gestureListener, Int.MAX_VALUE, true)
-            // clearMap()
         } else {
             state.mapContainer?.removeMapObject(state.mapMarker)
             mapView?.mapGesture?.removeOnGestureListener(gestureListener)

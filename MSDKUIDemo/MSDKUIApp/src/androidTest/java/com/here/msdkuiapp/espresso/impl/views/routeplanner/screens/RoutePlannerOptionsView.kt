@@ -20,10 +20,10 @@ import android.support.test.espresso.DataInteraction
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.Espresso.onData
 import android.support.test.espresso.ViewInteraction
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.support.test.espresso.matcher.ViewMatchers.*
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIndex
+import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.CoreMatchers.anything
 
 /**
@@ -68,7 +68,7 @@ object RoutePlannerOptionsView {
         get() = onView(withText(R.string.msdkui_tunnels_allowed_title))
 
     /**
-     * return The [DataInteraction] Spinner item from list view on options panel
+     * @return The [DataInteraction] Spinner item from list view on options panel
      */
     fun onOptionsPanelContextMenuListView(item: Int): DataInteraction = onData(anything()).atPosition(item)
 
@@ -76,4 +76,10 @@ object RoutePlannerOptionsView {
      * @return The [ViewInteraction] Avoid traffic default spinner value on options panel
      */
     fun onOptionsPanelSpinnerView(item: Int): ViewInteraction = onView(withIndex(withId(R.id.spinner_text), item))
+
+    /**
+     * @return The [ViewInteraction] Tap desired route options checkbox
+     */
+    fun onOptionPanelCheckRouteOptionBox(optionItem: Int): ViewInteraction = onView(allOf(withId(R.id.multiple_item_value),
+            hasSibling(withText(optionItem))))
 }

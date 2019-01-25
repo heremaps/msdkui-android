@@ -78,14 +78,6 @@ object RouteActions {
     }
 
     /**
-     * Wait for route description list becomes enabled on route panel
-     */
-    fun waitRouteDescriptionEnabled(): RoutePlannerBarActions {
-        onRootView.perform(waitForCondition(onRouteDescriptionView, isEnabled = true))
-        return RoutePlannerBarActions
-    }
-
-    /**
      * Swipe Up route description result list on route panel
      */
     fun swipeUpRouteList(): RouteActions {

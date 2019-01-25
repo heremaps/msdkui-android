@@ -82,9 +82,7 @@ object RoutePlannerActions {
         // Update waypoint route planner item
         val waypoint = selectWaypoint(waypointData)
         // Expand route planner panel to update waypoints
-        RoutePlannerBarActions.waitForRoutePlannerCollapsed()
-        RouteActions.waitRouteDescriptionEnabled()
-                .waitForRightImageIconExpand()
+        RoutePlannerBarActions.waitForRightImageIconExpand()
                 .tapOnRightArrowButton()
                 .waitForRoutePlannerExpanded()
         // Check route data updated in route list

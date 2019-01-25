@@ -36,7 +36,6 @@ import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerB
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRightImageIconExpand
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRightImageIconView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRoutePlannerTitle
-import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRouteResultTitle
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarWaypointLabel
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerRemoveWaypointButtonView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerSwapImageButton
@@ -102,14 +101,6 @@ object RoutePlannerBarActions: CoreActions() {
      */
     fun waitForLocationNotDisplayed(): RoutePlannerBarActions {
         onRootView.perform(waitForCondition(onPlannerBarLocationTitle, isVisible = false))
-        return this
-    }
-
-    /**
-     * Wait and check route planner panel collapsed on actionbar
-     */
-    fun waitForRoutePlannerCollapsed(): RoutePlannerBarActions {
-        onRootView.perform(waitForCondition(onPlannerBarRouteResultTitle))
         return this
     }
 

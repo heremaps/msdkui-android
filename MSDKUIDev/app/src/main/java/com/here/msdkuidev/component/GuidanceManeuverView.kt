@@ -22,7 +22,7 @@ import android.view.View
 import android.widget.TextView
 import com.here.msdkuidev.Constant
 import com.here.msdkuidev.R
-import kotlinx.android.synthetic.main.guidance_maneuver_view.*
+import kotlinx.android.synthetic.main.guidance_maneuver_view_hori.*
 
 class GuidanceManeuverView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +31,16 @@ class GuidanceManeuverView : AppCompatActivity() {
         setting.customTheme?.run {
             setTheme(this)
         }
-        val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.guidance_maneuver_view else
-            R.layout.guidance_maneuver_view_fix
+        val resourceId = if (setting.subTitle == Constant.DEFAULT && setting.direction == 0) {
+            R.layout.guidance_maneuver_view_hori
+        } else if(setting.subTitle == Constant.DEFAULT && setting.direction == 1) {
+            R.layout.guidance_maneuver_view_ver
+        }  else if (setting.subTitle == Constant.FIX_VALUE && setting.direction == 0) {
+            R.layout.guidance_maneuver_view_fix_hori
+        } else  {
+            R.layout.guidance_maneuver_view_fix_ver
+        }
+
         setContentView(resourceId)
         setting.defaultView ?: run {
             guidanceManeuverView.viewState = setting.state

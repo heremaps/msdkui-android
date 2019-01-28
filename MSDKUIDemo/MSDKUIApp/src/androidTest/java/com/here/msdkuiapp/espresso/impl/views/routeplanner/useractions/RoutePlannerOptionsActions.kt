@@ -19,9 +19,11 @@ package com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+import com.here.msdkui.R
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.RouteType
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.AvoidTrafficType
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TunnelsAllowedType
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionPanelCheckRouteOptionBox
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionsPanelAvoidTrafficLabelView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionsPanelSpinnerView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionsPanelRouteOptionsSettingView
@@ -100,6 +102,16 @@ object RoutePlannerOptionsActions {
     fun tapOnTunnelsAllowedItem(item: Int = 1): RoutePlannerOptionsActions {
         onOptionsPanelTunnelsAllowedLabelView.check(matches(isDisplayed()))
         onOptionsPanelSpinnerView(item).perform(click())
+        return this
+    }
+
+    /**
+     * Tap on 'Tunnels Allowed' setting checkbox on options panel
+     */
+    fun tapSwitchTunnelOption(): RoutePlannerOptionsActions {
+        RoutePlannerActions.openOptionsPanel()
+        onOptionsPanelRouteOptionsSettingView.perform(click())
+        onOptionPanelCheckRouteOptionBox(R.string.msdkui_allow_tunnels).check(matches(isDisplayed())).perform(click())
         return this
     }
 

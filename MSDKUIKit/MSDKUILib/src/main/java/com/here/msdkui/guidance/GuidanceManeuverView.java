@@ -17,7 +17,6 @@
 package com.here.msdkui.guidance;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Parcel;

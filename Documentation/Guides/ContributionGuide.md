@@ -18,6 +18,7 @@ This guide is for developers who want to contribute to the MSDKUI codebase, buil
 	- [Generating a Unit Test Coverage Report](#generating-a-unit-test-coverage-report)
 	- [Running UI Tests for MDKUIApp](#running-ui-tests-for-mdkuiapp)
 	- [Optional: Building HERE UI Kit Library and Demo as part of one project](#optional-building-here-ui-kit-library-and-demo-as-part-of-one-project)
+- [Building the Dev App](#building-the-dev-app)
 - [Commit Policy](#commit-policy)
 	- [Writing Git Commit Messages](#writing-git-commit-messages)
 		- [A normal ticket](#a-normal-ticket)
@@ -139,6 +140,16 @@ In _MSDKUIDemo/build.gradle_ add the following build script dependency:
 classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.4.15'
 ```
 
+## Building the Dev App
+
+This project includes a Dev application, which is designed to display MSDKUI views in their raw form. While the Demo app offers a polished experience of the MSDKUI components, it doesn't show all possible states of a view.
+
+1. Put the HERE-sdk.aar file from your HERE Mobile SDK package _and_ the HERE MSDKUI library to `MSDKUIDev/libs/`. Make sure the library is named "MSDKUILib.aar" to match the dependencies in the app's `build.gradle` file.
+2. Open and build the project located at `MSDKUIDev/` in Android Studio.
+3. Run it on a device or an emulator of your choice.
+
+Note that the Dev app does not require HERE credentials.
+
 ## Commit Policy
 
 Please follow our commit policy. Once you have pushed your changes, you should be able to see your work on GitHub. Each pull request will be reviewed and merged if there are no objections. Before sending a pull request, please make sure to:
@@ -147,6 +158,7 @@ Please follow our commit policy. Once you have pushed your changes, you should b
 - Explain what the pull request addresses (especially if your pull request bundles several commits).
 - Add [unit tests](#running-unit-tests-for-msdkuilib) for newly added features or - if suitable - for bug fixes.
 - Keep the unit test [coverage](#generating-a-unit-test-coverage-report) above 80%.
+- Add new UI components to the [Dev app](#building-the-dev-app).
 - If your change involves a new UI behavior, please consider to help us write a [UI test](#running-ui-tests-for-mdkuiapp) (not mandatory, but more than welcome).
 
 ### Writing Git Commit Messages

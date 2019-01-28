@@ -40,7 +40,7 @@ import com.here.msdkui.common.DistanceFormatterUtil;
  */
 public class GuidanceManeuverView extends BaseView {
 
-    public static final int GONE = 0;
+    public static final int ICON_GONE = 0;
     private State mState;
 
     /**
@@ -183,7 +183,7 @@ public class GuidanceManeuverView extends BaseView {
         if (maneuverData.getIconId() == -1) {
             iconView.setVisibility(View.INVISIBLE);
             iconView.setTag(0);
-        } else if (maneuverData.getIconId() == GONE) {
+        } else if (maneuverData.getIconId() == ICON_GONE) {
             iconView.setVisibility(View.GONE);
             iconView.setTag(maneuverData.getIconId());
         } else {

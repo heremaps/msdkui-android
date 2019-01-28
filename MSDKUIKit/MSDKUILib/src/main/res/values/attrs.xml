@@ -64,7 +64,6 @@
         <attr name="viewMode" format="enum">
             <enum name="screen1" value="0" />
             <enum name="screen2" value="1" />
-            <enum name="auto" value="2" />
         </attr>
     </declare-styleable>
 

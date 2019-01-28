@@ -14,21 +14,6 @@
  * limitations under the License.
  */
 
-package com.here.msdkuiapp.espresso.impl.views.route.useractions
+package com.here.msdkuiapp.about
 
-import android.support.test.espresso.action.ViewActions.click
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteBarView.onRouteBarBackImageIcon
-
-/**
- * Route overview specific actionbar related actions
- */
-object RouteBarActions {
-
-    /**
-     * Tap on back arrow image button to exit from route overview
-     */
-    fun tapOnBackArrowButton(): RouteBarActions {
-        onRouteBarBackImageIcon.perform(click())
-        return this
-    }
-}
+data class tets(val value1: Double, val value2: Double)

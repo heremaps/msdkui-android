@@ -144,9 +144,9 @@ classpath 'org.jfrog.buildinfo:build-info-extractor-gradle:4.4.15'
 
 This project includes a Dev application, which is designed to display MSDKUI views in their raw form. While the Demo app offers a polished experience of the MSDKUI components, it doesn't show all possible states of a view.
 
-1. Put the HERE-sdk.aar file from your HERE Mobile SDK package and the HERE MSDKUI library to `MSDKUIDev/libs/`. Make sure the library is renamed to "MSDKUILib.aar".
+1. Put the HERE-sdk.aar file from your HERE Mobile SDK package _and_ the HERE MSDKUI library to `MSDKUIDev/libs/`. Make sure the library is named "MSDKUILib.aar" to match the dependencies in the app's `build.gradle` file.
 2. Open and build the project located at `MSDKUIDev/` in Android Studio.
-4. Run it on a device or an emulator of your choice.
+3. Run it on a device or an emulator of your choice.
 
 Note that the Dev app does not require HERE credentials.
 

@@ -17,7 +17,6 @@
 package com.here.msdkui.guidance;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Parcel;
@@ -41,7 +40,23 @@ import com.here.msdkui.common.DistanceFormatterUtil;
  */
 public class GuidanceManeuverView extends BaseView {
 
+    public static final int ICON_GONE = 0;
     private State mState;
+
+    /**
+     * Represent different ui supported by this view.
+     */
+    private enum ViewMode {
+        /**
+         * Represent ui view one.
+         */
+        SCREEN1,
+
+        /**
+         * Represent another ui view.
+         */
+        SCREEN2
+    }
 
     /**
      * Constructs a new instance.
@@ -96,22 +111,18 @@ public class GuidanceManeuverView extends BaseView {
      * @param context activity or application context.
      */
     private void init(@NonNull final Context context, @Nullable AttributeSet attributeSet) {
-        int orientation = getResources().getConfiguration().orientation;
+        ViewMode screen = ViewMode.SCREEN1;
         if (attributeSet != null) {
             final TypedArray typedArray = this.getContext().obtainStyledAttributes(attributeSet, R.styleable.GuidanceManeuverView);
             if (typedArray.hasValue(R.styleable.GuidanceManeuverView_viewMode)) {
                 final int value = typedArray.getInt(R.styleable.GuidanceManeuverView_viewMode, 2);
-                if (value == 0) {
-                    orientation = Configuration.ORIENTATION_PORTRAIT;
-                } else if (value == 1) {
-                    orientation = Configuration.ORIENTATION_LANDSCAPE;
+                if (value == 1) {
+                    screen = ViewMode.SCREEN2;
                 }
             }
             typedArray.recycle();
         }
-
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-
+        if (screen == ViewMode.SCREEN2) {
             LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_view_screen2, this);
         } else {
             LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_view_screen1, this);
@@ -172,7 +183,7 @@ public class GuidanceManeuverView extends BaseView {
         if (maneuverData.getIconId() == -1) {
             iconView.setVisibility(View.INVISIBLE);
             iconView.setTag(0);
-        } else if (maneuverData.getIconId() == 0) {
+        } else if (maneuverData.getIconId() == ICON_GONE) {
             iconView.setVisibility(View.GONE);
             iconView.setTag(maneuverData.getIconId());
         } else {

@@ -143,8 +143,13 @@
         <item name="guidanceManeuverPanelDestinationText">@style/GuidanceManeuverPanelDestinationText</item>
         <item name="guidanceManeuverPanelLeftIcon">@style/GuidanceManeuverPanelLeftIcon</item>
         <item name="guidanceManeuverPanelRightIcon">@style/GuidanceManeuverPanelRightIcon</item>
-        <item name="guidanceManeuverPanelHeadingTextLand">@style/GuidanceManeuverPanelHeadingTextLand</item>
-        <item name="guidanceManeuverPanelSecondaryTextLand">@style/GuidanceManeuverPanelSecondaryTextLand</item>
+
+        <item name="guidanceManeuverPanelScreen2">@style/GuidanceManeuverPanel</item>
+        <item name="guidanceManeuverPanelHeadingTextScreen2">@style/GuidanceManeuverPanelHeadingText</item>
+        <item name="guidanceManeuverPanelSecondaryTextScreen2">@style/GuidanceManeuverPanelSecondaryText</item>
+        <item name="guidanceManeuverPanelDestinationTextScreen2">@style/GuidanceManeuverPanelDestinationText</item>
+        <item name="guidanceManeuverPanelLeftIconScreen2">@style/GuidanceManeuverPanelLeftIcon</item>
+        <item name="guidanceManeuverPanelRightIconScreen2">@style/GuidanceManeuverPanelRightIcon</item>
 
         <item name="guidanceNextManeuverPanel">@style/GuidanceNextManeuverPanel</item>
         <item name="guidanceNextManeuverPanelLeftIcon">@style/GuidanceNextManeuverPanelLeftIcon</item>
@@ -332,7 +337,8 @@
 
     <!-- Maneuver description item -->
     <style name="ManeuverDescriptionItem">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">?attr/colorBackgroundViewLight</item>
         <item name="android:focusable">true</item>
@@ -640,7 +646,8 @@
 
     <!-- Route description item -->
     <style name="RouteDescriptionItem">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">?attr/colorBackgroundViewLight</item>
         <item name="android:paddingLeft">@dimen/contentMarginHuge</item>
@@ -692,12 +699,13 @@
         <item name="android:textColor">?attr/colorForegroundSecondary</item>
     </style>
 
-    <!-- GuidanceManeuverView -->
+
+    <!-- GuidanceManeuverView screen1 -->
 
     <style name="GuidanceManeuverPanel">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">?attr/colorBackgroundDark</item>
         <item name="android:focusable">true</item>
         <item name="android:focusableInTouchMode">false</item>
     </style>
@@ -706,9 +714,8 @@
         <item name="android:layout_width">40dp</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:contentDescription">@null</item>
-        <item name="android:layout_marginLeft">28dp</item>
-        <item name="android:layout_marginStart">28dp</item>
         <item name="android:tint">?attr/colorForegroundLight</item>
+        <item name="android:layout_marginEnd">16dp</item>
     </style>
 
     <style name="GuidanceManeuverPanelRightIcon">
@@ -716,58 +723,52 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:scaleType">centerInside</item>
         <item name="android:contentDescription">@null</item>
-        <item name="android:layout_marginRight">20dp</item>
-        <item name="android:layout_marginEnd">20dp</item>
-        <item name="android:layout_marginTop">12dp</item>
     </style>
-
 
     <style name="GuidanceManeuverPanelHeadingText" parent="Headline2">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginTop">12dp</item>
-        <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:layout_marginRight">20dp</item>
         <item name="android:layout_marginEnd">20dp</item>
         <item name="android:textColor">?attr/colorForegroundLight</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:ellipsize">end</item>
-    </style>
-
-    <style name="GuidanceManeuverPanelHeadingTextLand" parent="GuidanceManeuverPanelHeadingText">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_marginRight">20dp</item>
-        <item name="android:layout_marginTop">0dp</item>     <!-- we have padding in parent theme -->
-        <item name="android:layout_marginEnd">20dp</item>
-        <item name="android:layout_marginLeft">28dp</item>
-        <item name="android:layout_marginStart">28dp</item>
+        <item name="android:singleLine">false</item>
     </style>
 
     <style name="GuidanceManeuverPanelSecondaryText" parent="Base.TextAppearance.AppCompat.Title">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">16dp</item>
-        <item name="android:layout_marginStart">16dp</item>
         <item name="android:textColor">?attr/colorForegroundLight</item>
-        <item name="android:layout_marginRight">20dp</item>
         <item name="android:layout_marginEnd">20dp</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:ellipsize">end</item>
-    </style>
-
-    <style name="GuidanceManeuverPanelSecondaryTextLand" parent="GuidanceManeuverPanelSecondaryText">
-        <item name="android:layout_marginLeft">28dp</item>
-        <item name="android:layout_marginStart">28dp</item>
-        <item name="android:layout_marginBottom">@dimen/contentMarginLarge</item>
         <item name="android:singleLine">false</item>
-        <item name="android:maxLines">2</item>
     </style>
 
     <style name="GuidanceManeuverPanelDestinationText" parent="GuidanceManeuverPanelSecondaryText">
         <item name="android:textColor">?attr/colorAccentLight</item>
     </style>
 
+    <!-- GuidanceManeuverView screen2 -->
+    <style name="GuidanceManeuverPanelScreen2" parent="GuidanceManeuverPanel" />
+
+    <style name="GuidanceManeuverPanelLeftIconScreen2" parent="GuidanceManeuverPanelLeftIcon" >
+        <item name="android:layout_marginEnd">@dimen/contentMarginHuge</item>
+    </style>
+
+    <style name="GuidanceManeuverPanelRightIconScreen2" parent="GuidanceManeuverPanelRightIcon" >
+        <item name="android:scaleType">fitStart</item>
+    </style>
+
+    <style name="GuidanceManeuverPanelHeadingTextScreen2" parent="GuidanceManeuverPanelHeadingText">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginTop">0dp</item>     <!-- we have padding in parent theme -->
+    </style>
+
+    <style name="GuidanceManeuverPanelSecondaryTextScreen2" parent="GuidanceManeuverPanelSecondaryText">
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:singleLine">false</item>
+    </style>
+
+    <style name="GuidanceManeuverPanelDestinationTextScreen2" parent="GuidanceManeuverPanelDestinationText" />
+
+    <!-- GuidanceCurrentStreet -->
     <style name="GuidanceCurrentStreet">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">40dp</item>

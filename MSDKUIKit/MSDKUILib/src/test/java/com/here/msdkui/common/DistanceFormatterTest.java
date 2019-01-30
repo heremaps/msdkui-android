@@ -35,7 +35,7 @@ public class DistanceFormatterTest extends RobolectricTest {
     public void testDistanceFormattingWhenDistanceNotValid() {
         String formattedDistance = DistanceFormatterUtil.format(getApplicationContext(),
                 -1, UnitSystem.METRIC);
-        assertThat(formattedDistance, is("-- m"));
+        assertThat(formattedDistance, is("-1 m"));
     }
 
     @Test
@@ -65,7 +65,7 @@ public class DistanceFormatterTest extends RobolectricTest {
     public void testYardMileDistanceFormattingWhenDistanceNotValid() {
         String formattedDistance = DistanceFormatterUtil.format(getApplicationContext(),
                 -1, UnitSystem.IMPERIAL_US);
-        assertThat(formattedDistance, is("-- yd"));
+        assertThat(formattedDistance, is("-1 yd"));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class DistanceFormatterTest extends RobolectricTest {
     public void testFootMileDistanceFormattingWhenDistanceNotValid() {
         String formattedDistance = DistanceFormatterUtil.format(getApplicationContext(),
                 -1, UnitSystem.IMPERIAL_UK);
-        assertThat(formattedDistance, is("-- ft"));
+        assertThat(formattedDistance, is("-3 ft"));
     }
 
     @Test
@@ -125,7 +125,7 @@ public class DistanceFormatterTest extends RobolectricTest {
     public void testUIDistanceFormattingWhenDistanceNotValid() {
         String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 -1, UnitSystem.METRIC);
-        assertThat(formattedDistance, is("-- m"));
+        assertThat(formattedDistance, is("-1 m"));
     }
 
     @Test
@@ -183,7 +183,7 @@ public class DistanceFormatterTest extends RobolectricTest {
     public void testUIYardMileDistanceFormattingWhenDistanceNotValid() {
         String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 -1, UnitSystem.IMPERIAL_US);
-        assertThat(formattedDistance, is("-- yd"));
+        assertThat(formattedDistance, is("-1 yd"));
     }
 
     @Test
@@ -241,7 +241,7 @@ public class DistanceFormatterTest extends RobolectricTest {
     public void testUIFeetMileDistanceFormattingWhenDistanceNotValid() {
         String formattedDistance = DistanceFormatterUtil.formatDistance(getApplicationContext(),
                 -1, UnitSystem.IMPERIAL_UK);
-        assertThat(formattedDistance, is("-- ft"));
+        assertThat(formattedDistance, is("-3 ft"));
     }
 
     @Test

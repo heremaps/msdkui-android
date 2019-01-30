@@ -21,16 +21,17 @@ import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 import com.here.msdkui.common.measurements.UnitSystem;
 
 /**
  * An abstract base view class with unit system {@link UnitSystem}.
  */
-public abstract class BaseView extends RelativeLayout {
+public abstract class BaseView extends LinearLayout {
 
     protected UnitSystem mUnitSystem = UnitSystem.METRIC;
+    protected boolean mSaveStateEnabled = true;
 
     /**
      * Constructs a new instance.
@@ -110,5 +111,25 @@ public abstract class BaseView extends RelativeLayout {
      */
     public UnitSystem getUnitSystem() {
         return mUnitSystem;
+    }
+
+    /**
+     * Controls whether the saving of this view's data is enabled. View's data will be saved in {@link #onSaveInstanceState}
+     * and restored in {@link  #onRestoreInstanceState(android.os.Parcelable)}.
+     *
+     * @param saveStateEnabled Set to false to <em>disable</em> view's data saving, or true
+     * (the default) to allow it.
+     */
+    protected void setSaveStateEnabled(boolean saveStateEnabled) {
+        mSaveStateEnabled = saveStateEnabled;
+    }
+
+    /**
+     * Indicates whether this view will save its data.
+     *
+     * @return Returns true if the view data saving is enabled, else false.
+     */
+    public boolean isSaveStateEnabled() {
+        return mSaveStateEnabled;
     }
 }

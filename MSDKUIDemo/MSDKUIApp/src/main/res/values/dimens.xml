@@ -29,4 +29,5 @@
     <dimen name="current_street_margin_bottom">98dp</dimen>
     <dimen name="current_street_margin_side_portrait">80dp</dimen>
     <dimen name="current_street_margin_side_landscape">88dp</dimen>
+    <dimen name="guidanceManeuverEndMargin">28dp</dimen>
 </resources>

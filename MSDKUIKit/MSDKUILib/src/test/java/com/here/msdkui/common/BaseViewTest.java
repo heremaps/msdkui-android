@@ -24,6 +24,7 @@ import com.here.msdkui.common.measurements.UnitSystem;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
 
 /**
  * Tests for {@link BaseView}.
@@ -36,6 +37,8 @@ public class BaseViewTest extends RobolectricTest {
         assertEquals(concreteBaseView.getUnitSystem(), UnitSystem.METRIC);
         concreteBaseView.setUnitSystem(UnitSystem.IMPERIAL_UK);
         assertEquals(concreteBaseView.getUnitSystem(), UnitSystem.IMPERIAL_UK);
+        concreteBaseView.setSaveEnabled(true);
+        assertTrue(concreteBaseView.mSaveStateEnabled);
     }
 
     /**

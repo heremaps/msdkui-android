@@ -129,10 +129,10 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
                 R.id.busyStateProgressBar);
 
         // null data should be hidden.
-        assertEquals(distanceView.getVisibility(), View.INVISIBLE);
+        assertEquals(distanceView.getVisibility(), View.GONE);
         assertEquals(infoView1.getVisibility(), View.VISIBLE);
         assertThat(infoView1.getText().toString(), is(getString(R.string.msdkui_maneuverpanel_updating)));
-        assertEquals(infoView2.getVisibility(), View.INVISIBLE);
+        assertEquals(infoView2.getVisibility(), View.GONE);
         assertEquals(iconView.getVisibility(), View.INVISIBLE);
         assertEquals(busyProgressBar.getVisibility(), View.VISIBLE);
     }
@@ -141,14 +141,14 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
     public void testExtraIconView() {
         final ImageView extraIconView = (ImageView) mGuidanceManeuverView.findViewById(R.id.extraIconView);
         assertEquals(extraIconView.getVisibility(), View.GONE);
-        GuidanceManeuverData data = new GuidanceManeuverData(-1, -1, "", "", Mockito.mock(Bitmap.class));
+        GuidanceManeuverData data = new GuidanceManeuverData(-1, -1L, "", "", Mockito.mock(Bitmap.class));
         mGuidanceManeuverView.setViewState(new GuidanceManeuverView.State(data));
         assertEquals(extraIconView.getVisibility(), View.VISIBLE);
     }
 
     @Test
     public void testUIWhenSomeDataIsNull() {
-        GuidanceManeuverData data = createData(0, -1, null, null);
+        GuidanceManeuverData data = createData(0, null, null, null);
         // create proper data to see if everything is fine.
         mGuidanceManeuverView.setViewState(new GuidanceManeuverView.State(data));
 
@@ -158,7 +158,7 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
         final ImageView iconView = (ImageView) mGuidanceManeuverView.findViewById(R.id.maneuverIconView);
 
         // null data should be hidden.
-        assertEquals(distanceView.getVisibility(), View.VISIBLE);
+        assertEquals(distanceView.getVisibility(), View.GONE);
         assertEquals(infoView1.getVisibility(), View.GONE);
         assertEquals(infoView2.getVisibility(), View.GONE);
         assertEquals(iconView.getVisibility(), View.GONE);
@@ -231,7 +231,7 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
         assertThat(createdFromParcel.getViewState(), equalTo(GuidanceManeuverView.State.UPDATING));
     }
 
-    private GuidanceManeuverData createData(int iconId, long distance, String info1, String info2) {
+    private GuidanceManeuverData createData(int iconId, Long distance, String info1, String info2) {
         return new GuidanceManeuverData(iconId, distance, info1, info2);
     }
 }

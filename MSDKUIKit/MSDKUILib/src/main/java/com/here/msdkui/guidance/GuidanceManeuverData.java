@@ -27,10 +27,7 @@ import android.os.Parcelable;
  */
 public class GuidanceManeuverData implements Parcelable {
 
-    /**
-     * Creator for parcelable.
-     */
-    public static final Parcelable.Creator<GuidanceManeuverData> CREATOR = new Parcelable.Creator<GuidanceManeuverData>() {
+    public static final Creator<GuidanceManeuverData> CREATOR = new Creator<GuidanceManeuverData>() {
         @Override
         public GuidanceManeuverData createFromParcel(Parcel in) {
             return new GuidanceManeuverData(in);
@@ -41,7 +38,6 @@ public class GuidanceManeuverData implements Parcelable {
             return new GuidanceManeuverData[size];
         }
     };
-
     /**
      * Icon id.
      */
@@ -49,7 +45,7 @@ public class GuidanceManeuverData implements Parcelable {
     /**
      * Distance to next maneuver.
      */
-    private final long mDistance;
+    private final Long mDistance;
     /**
      * Additional information. For example, a {@link com.here.android.mpa.routing.Signpost Signpost} or null.
      */
@@ -58,7 +54,6 @@ public class GuidanceManeuverData implements Parcelable {
      * Additional information. For example, a street name.
      */
     private final String mInfo2;
-
     /**
      * The next road icon for this maneuver.
      */
@@ -67,38 +62,29 @@ public class GuidanceManeuverData implements Parcelable {
     /**
      * Constructs a new instance using the provided icon, distance and info strings.
      *
-     * @param iconId
-     *         resource id of the maneuver icon.
-     * @param distance
-     *         distance to next {@link com.here.android.mpa.routing.Maneuver}.
-     * @param info1
-     *         information for the 1st line of {@link GuidanceManeuverView}. In most cases, it is used to display
-     *         highway exit numbers. In case there is no relevant information, null can be set.
-     * @param info2
-     *         information for the 2nd line of {@link GuidanceManeuverView}. In most cases, it is used to display
-     *         next maneuver street or the destination.
+     * @param iconId   resource id of the maneuver icon.
+     * @param distance distance to next {@link com.here.android.mpa.routing.Maneuver}.
+     * @param info1    information for the 1st line of {@link GuidanceManeuverView}. In most cases, it is used to display
+     *                 highway exit numbers. In case there is no relevant information, null can be set.
+     * @param info2    information for the 2nd line of {@link GuidanceManeuverView}. In most cases, it is used to display
+     *                 next maneuver street or the destination.
      */
-    public GuidanceManeuverData(int iconId, long distance, String info1, String info2) {
+    public GuidanceManeuverData(int iconId, Long distance, String info1, String info2) {
         this(iconId, distance, info1, info2, null);
     }
 
     /**
      * Constructs a new instance using the provided icons, distance and info strings.
      *
-     * @param iconId
-     *         resource id of the maneuver icon.
-     * @param distance
-     *         distance to next {@link com.here.android.mpa.routing.Maneuver}.
-     * @param info1
-     *         information for the 1st line of this panel. In most cases, it is used to display
-     *         highway exit numbers. In case there is no relevant information, null can be set.
-     * @param info2
-     *         information for the 2nd line of this panel. In most cases, it is used to display
-     *         next maneuver street or the destination.
-     * @param nextRoadIcon
-     *         next road icon for this maneuver.
+     * @param iconId       resource id of the maneuver icon.
+     * @param distance     distance to next {@link com.here.android.mpa.routing.Maneuver}.
+     * @param info1        information for the 1st line of this panel. In most cases, it is used to display
+     *                     highway exit numbers. In case there is no relevant information, null can be set.
+     * @param info2        information for the 2nd line of this panel. In most cases, it is used to display
+     *                     next maneuver street or the destination.
+     * @param nextRoadIcon next road icon for this maneuver.
      */
-    public GuidanceManeuverData(int iconId, long distance, String info1, String info2, Bitmap nextRoadIcon) {
+    public GuidanceManeuverData(int iconId, Long distance, String info1, String info2, Bitmap nextRoadIcon) {
         mIconId = iconId;
         mDistance = distance;
         mInfo1 = info1;
@@ -108,10 +94,33 @@ public class GuidanceManeuverData implements Parcelable {
 
     GuidanceManeuverData(Parcel in) {
         mIconId = in.readInt();
-        mDistance = in.readLong();
+        if (in.readByte() == 0) {
+            mDistance = null;
+        } else {
+            mDistance = in.readLong();
+        }
         mInfo1 = in.readString();
         mInfo2 = in.readString();
         mNextRoadIcon = in.readParcelable(Bitmap.class.getClassLoader());
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(mIconId);
+        if (mDistance == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(mDistance);
+        }
+        dest.writeString(mInfo1);
+        dest.writeString(mInfo2);
+        dest.writeParcelable(mNextRoadIcon, flags);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     /**
@@ -146,7 +155,7 @@ public class GuidanceManeuverData implements Parcelable {
      *
      * @return the distance to next maneuver in meters.
      */
-    public long getDistance() {
+    public Long getDistance() {
         return mDistance;
     }
 
@@ -183,7 +192,7 @@ public class GuidanceManeuverData implements Parcelable {
         if (obj1 instanceof GuidanceManeuverData) {
             final GuidanceManeuverData obj2 = (GuidanceManeuverData) obj1;
             if (this.mIconId == obj2.mIconId &&
-                    this.mDistance == obj2.mDistance &&
+                    areEqual(this.mDistance, obj2.mDistance) &&
                     areEqual(this.mInfo1, obj2.mInfo1) &&
                     areEqual(this.mInfo2, obj2.mInfo2) &&
                     areEqual(this.mNextRoadIcon, obj2.mNextRoadIcon)) {
@@ -195,19 +204,5 @@ public class GuidanceManeuverData implements Parcelable {
 
     private boolean areEqual(Object first, Object second) {
         return first == null ? second == null : first.equals(second);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(mIconId);
-        dest.writeLong(mDistance);
-        dest.writeString(mInfo1);
-        dest.writeString(mInfo2);
-        dest.writeParcelable(mNextRoadIcon, flags);
     }
 }

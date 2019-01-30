@@ -85,6 +85,11 @@
         <item name="guidanceManeuverPanelSecondaryText">@style/CustomGuidanceManeuverPanelSecondaryText</item>
     </style>
 
+    <style name="GuidanceManeuverViewRedScreen2" parent="AppTheme">
+        <item name="guidanceManeuverPanelHeadingTextScreen2">@style/CustomGuidanceManeuverPanelHeadingText</item>
+        <item name="guidanceManeuverPanelSecondaryTextScreen2">@style/CustomGuidanceManeuverPanelSecondaryText</item>
+    </style>
+
     <style name="CustomGuidanceManeuverPanelHeadingText" parent="GuidanceManeuverPanelHeadingText">
         <item name="android:textColor">@android:color/holo_red_dark</item>
     </style>

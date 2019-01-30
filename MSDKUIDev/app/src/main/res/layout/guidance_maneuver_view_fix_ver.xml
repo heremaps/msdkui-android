@@ -21,7 +21,6 @@
         android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.here.msdkui.guidance.GuidanceManeuverView
-            android:background="@drawable/rectangle"
             android:gravity="center"
             android:id="@+id/guidanceManeuverView"
             android:layout_width="match_parent"

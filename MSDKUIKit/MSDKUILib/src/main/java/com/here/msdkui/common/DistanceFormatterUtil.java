@@ -71,7 +71,7 @@ public final class DistanceFormatterUtil {
      * @param system
      *         the unit system {@link UnitSystem}.
      *
-     * @return a string representation including unit or "-- [smaller unit]" if distance is smaller than 0.
+     * @return a string representation including unit.
      */
     public static String format(final Context context, final long distance, final UnitSystem system) {
         switch (system) {
@@ -94,15 +94,12 @@ public final class DistanceFormatterUtil {
      * @param distance
      *         the distance in meters.
      *
-     * @return a string representation including unit or "-- m" if distance is smaller than 0.
+     * @return a string representation including unit.
      */
     public static String formatInMetricSystem(final Context context, final long distance) {
         final String value;
         final String unit;
-        if (distance < 0) { // invalid
-            value = context.getString(R.string.msdkui_value_not_available);
-            unit = context.getString(R.string.msdkui_unit_meter);
-        } else if (distance < METER_THRESHOLD) {
+        if (distance < METER_THRESHOLD) {
             value = FORMATTER.format(distance);
             unit = context.getString(R.string.msdkui_unit_meter);
         } else if (distance < KM_THRESHOLD) {
@@ -123,7 +120,7 @@ public final class DistanceFormatterUtil {
      * @param distance
      *         the distance in meters.
      *
-     * @return a string representation including unit or "-- yd" if distance is smaller than 0.
+     * @return a string representation including unit.
      */
     public static String formatInImperialUsSystem(final Context context, final long distance) {
         final String value;
@@ -134,10 +131,7 @@ public final class DistanceFormatterUtil {
                 distanceMeters.getUnit(), MeasurementUnit.YARD).getValue();
         final double distanceMiles = lengthConverter.convert(distanceMeters.getValue(),
                 distanceMeters.getUnit(), MeasurementUnit.MILE).getValue();
-        if (distance < 0) { // invalid
-            value = context.getString(R.string.msdkui_value_not_available);
-            unit = context.getString(R.string.msdkui_unit_yard);
-        } else if (distanceYards < YARDS_THRESHOLD) {
+        if (distanceYards < YARDS_THRESHOLD) {
             value = FORMATTER.format(Math.round(distanceYards));
             unit = context.getString(R.string.msdkui_unit_yard);
         } else if (distanceMiles <= TEN) {
@@ -158,7 +152,7 @@ public final class DistanceFormatterUtil {
      * @param distance
      *         the distance in meters.
      *
-     * @return a string representation including unit or "-- ft" if distance is smaller than 0.
+     * @return a string representation including unit.
      */
     public static String formatInImperialUkSystem(final Context context, final long distance) {
         final String value;
@@ -169,10 +163,7 @@ public final class DistanceFormatterUtil {
                 distanceMeters.getUnit(), MeasurementUnit.FOOT).getValue();
         final double distanceMiles = lengthConverter.convert(distanceMeters.getValue(),
                 distanceMeters.getUnit(), MeasurementUnit.MILE).getValue();
-        if (distance < 0) { // invalid
-            value = context.getString(R.string.msdkui_value_not_available);
-            unit = context.getString(R.string.msdkui_unit_foot);
-        } else if (distanceFeet < FEET_THRESHOLD) {
+        if (distanceFeet < FEET_THRESHOLD) {
             value = FORMATTER.format(Math.round(distanceFeet));
             unit = context.getString(R.string.msdkui_unit_foot);
         } else if (distanceMiles <= TEN) {
@@ -199,7 +190,7 @@ public final class DistanceFormatterUtil {
      * @param system
      *         the unit system {@link UnitSystem}.
      *
-     * @return a string representation including unit or "-- [smaller unit]" if distance is smaller than 0.
+     * @return a string representation including unit.
      */
     public static String formatDistance(final Context context, final long distance, final UnitSystem system) {
         switch (system) {
@@ -237,7 +228,7 @@ public final class DistanceFormatterUtil {
      * @param distance
      *         the distance in meters.
      *
-     * @return a string representation including unit or "-- m" if distance is smaller than 0.
+     * @return a string representation including unit.
      */
     public static String formatDistanceInMetricSystem(final Context context, final long distance) {
         final String value;
@@ -247,9 +238,7 @@ public final class DistanceFormatterUtil {
         } else {
             unit = context.getString(R.string.msdkui_unit_kilometer);
         }
-        if (distance < 0) { // invalid
-            value = context.getString(R.string.msdkui_value_not_available);
-        } else if (distance < METER_THRESHOLD_10) {
+        if (distance < METER_THRESHOLD_10) {
             value = FORMATTER.format(distance);
         } else if (distance < METER_THRESHOLD_200) {
             value = FORMATTER.format(roundNear10(distance));
@@ -288,7 +277,7 @@ public final class DistanceFormatterUtil {
      * @param distance
      *         the distance in meters.
      *
-     * @return a string representation including unit or "-- yd" if distance is smaller than 0.
+     * @return a string representation including unit.
      */
     public static String formatDistanceInImperialUsSystem(final Context context, final long distance) {
         final String value;
@@ -304,9 +293,7 @@ public final class DistanceFormatterUtil {
         } else {
             unit = context.getString(R.string.msdkui_unit_mile);
         }
-        if (distance < 0) { // invalid
-            value = context.getString(R.string.msdkui_value_not_available);
-        } else if (distanceYards < YARDS_THRESHOLD_10) {
+        if (distanceYards < YARDS_THRESHOLD_10) {
             value = FORMATTER.format(Math.round(distanceYards));
         } else if (distanceYards < YARDS_THRESHOLD_350) {
             value = FORMATTER.format(roundNear10((long) distanceYards));
@@ -345,7 +332,7 @@ public final class DistanceFormatterUtil {
      * @param distance
      *         the distance in meters.
      *
-     * @return a string representation including unit or "-- ft" if distance is smaller than 0.
+     * @return a string representation including unit.
      */
     public static String formatDistanceInImperialUkSystem(final Context context, final long distance) {
         final String value;
@@ -361,9 +348,7 @@ public final class DistanceFormatterUtil {
         } else {
             unit = context.getString(R.string.msdkui_unit_mile);
         }
-        if (distance < 0) { // invalid
-            value = context.getString(R.string.msdkui_value_not_available);
-        } else if (distanceFeet < FEET_THRESHOLD_10) {
+        if (distanceFeet < FEET_THRESHOLD_10) {
             value = FORMATTER.format(Math.round(distanceFeet));
         } else if (distanceFeet < FEET_THRESHOLD_1050) {
             value = FORMATTER.format(roundNear10((long) distanceFeet));

@@ -81,7 +81,10 @@ public class RouteDescriptionListAdapter extends RecyclerView.Adapter<RouteDescr
      * @return a new instance of {@link RouteDescriptionItem}.
      */
     protected View getRowView(final Context context) {
-        return new RouteDescriptionItem(context);
+        RouteDescriptionItem item = new RouteDescriptionItem(context);
+        item.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        return item;
     }
 
     @Override

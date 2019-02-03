@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2017-2019 HERE Europe B.V.
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -153,12 +153,12 @@
   <string name="msdkui_tunnel_cat_e">श्रेणी E</string>
   <string name="msdkui_tunnels_allowed_title">सुरंग की अनुमति</string>
   <string name="msdkui_undefined">निर्धारित नहीं</string>
-  <string name="msdkui_unit_foot">फीट</string>
+  <string name="msdkui_unit_foot">फ़ीट</string>
   <string name="msdkui_unit_kilometer">किमी.</string>
   <string name="msdkui_unit_km_per_h">किमी/घंटा</string>
   <string name="msdkui_unit_meter">मीटर</string>
   <string name="msdkui_unit_mile">मील</string>
-  <string name="msdkui_unit_miles_per_hour">मील / घंटा</string>
+  <string name="msdkui_unit_miles_per_hour">मीप्रघं</string>
   <string name="msdkui_unit_yard">गज</string>
   <string name="msdkui_userposition_search">आपका स्थान पता कर रहे हैं</string>
   <string name="msdkui_violate_truck_options">ट्रक विकल्पों को नज़रअंदाज करें</string>

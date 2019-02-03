@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2017-2019 HERE Europe B.V.
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -163,7 +163,7 @@
   <string name="msdkui_userposition_search">Standort wird ermittelt</string>
   <string name="msdkui_violate_truck_options">Optionen für Lkw ignorieren</string>
   <string name="msdkui_waypoint_current_location">Aktueller Standort</string>
-  <string name="msdkui_waypoint_select_location">Wegpunkt aussuchen</string>
+  <string name="msdkui_waypoint_select_location">Wegpunkt</string>
   <string name="msdkui_weight_per_axle">Gewicht pro Achse</string>
   <string name="msdkui_width">Breite</string>
 </resources>

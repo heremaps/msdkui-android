@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2017-2019 HERE Europe B.V.
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -153,17 +153,17 @@
   <string name="msdkui_tunnel_cat_e">Категорія E</string>
   <string name="msdkui_tunnels_allowed_title">Тунелі дозволено</string>
   <string name="msdkui_undefined">Не визначено</string>
-  <string name="msdkui_unit_foot">ft</string>
+  <string name="msdkui_unit_foot">фут</string>
   <string name="msdkui_unit_kilometer">км</string>
   <string name="msdkui_unit_km_per_h">км/год</string>
   <string name="msdkui_unit_meter">м</string>
-  <string name="msdkui_unit_mile">mi</string>
-  <string name="msdkui_unit_miles_per_hour">mph</string>
-  <string name="msdkui_unit_yard">yd</string>
-  <string name="msdkui_userposition_search">Отримання місцезнаходження</string>
+  <string name="msdkui_unit_mile">миля</string>
+  <string name="msdkui_unit_miles_per_hour">миль/год</string>
+  <string name="msdkui_unit_yard">ярд</string>
+  <string name="msdkui_userposition_search">Ваше місцезнаходження</string>
   <string name="msdkui_violate_truck_options">Ігнорувати характеристики вантажівки</string>
   <string name="msdkui_waypoint_current_location">Поточне розташування</string>
-  <string name="msdkui_waypoint_select_location">Виберіть точку маршруту</string>
+  <string name="msdkui_waypoint_select_location">Точка маршруту</string>
   <string name="msdkui_weight_per_axle">Навантаження на вісь</string>
   <string name="msdkui_width">Ширина</string>
 </resources>

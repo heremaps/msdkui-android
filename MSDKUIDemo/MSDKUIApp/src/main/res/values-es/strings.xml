@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2017-2019 HERE Europe B.V.
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
   <string name="msdkui_app_about">Acerca de</string>
   <string name="msdkui_app_about_info_part_four">Desde ahora ya puede utilizar los componentes del kit de la interfaz de usuario del HERE Mobile SDK para planificar la ruta y disfrutar de la experiencia de la navegación guiada. Consulte más detalles en la guía de usuario.</string>
   <string name="msdkui_app_about_info_part_one">Diseñe interfaces atractivas para Android e iOS con el kit de la interfaz de usuario del HERE Mobile SDK</string>
-  <string name="msdkui_app_about_info_part_three">Con tan solo unas cuantas líneas de código podrá crear una interfaz de usuario completa gracias a la edición Premium del HERE Mobile SDK. Así pues, en lugar de tener que dedicar varios días a elaborar una lista de maniobras utilizando las API nativas, ahora solo necesitará un par de horas. Y menos horas de desarrollo equivalen a un plazo de lanzamiento al mercado mucho más corto.\n\nY por supuesto, si lo desea podrá usar el kit de la interfaz de usuario para cambiar el aspecto (colores, dimensiones) y el comportamiento (subcomponentes, flujo, lógica y presentación de los datos) de algunos de los controles de la interfaz. Todo depende de usted.</string>
+  <string name="msdkui_app_about_info_part_three">Con tan solo unas cuantas líneas de código podrá crear una interfaz de usuario completa gracias a la edición Premium del HERE Mobile SDK. Así pues, en lugar de tener que dedicar varias horas a elaborar una lista de maniobras utilizando las API nativas, ahora tan solo necesitará unos minutos. Y menos tiempo de desarrollo es sinónimo de menos tiempo de lanzamiento al mercado.\n\nY por supuesto, si lo desea podrá usar el kit de la interfaz de usuario para cambiar el aspecto de algunos de los controles de la interfaz (colores, dimensiones) y su comportamiento (presentación de los datos, lógica, flujo, subcomponentes). Todo depende de usted.</string>
   <string name="msdkui_app_about_info_part_two">Una interfaz de usuario óptima acostumbra a marcar la diferencia entre encontrar usuarios y conservarlos, o incluso perderlos directamente frente a los competidores. Por eso el kit de la interfaz de usuario del HERE Mobile SDK para Android e iOS se entrega con una amplia oferta de pantallas preinstaladas totalmente funcionales y listas para su uso en la aplicación.</string>
   <string name="msdkui_app_add">Añadir</string>
   <string name="msdkui_app_add_waypoint">Añadir punto intermedio</string>
@@ -35,7 +35,7 @@
   <string name="msdkui_app_guidance_button_showmaneuvers">Ver maniobras</string>
   <string name="msdkui_app_guidance_button_showmap">Mostrar mapa</string>
   <string name="msdkui_app_guidance_button_start">Iniciar navegación</string>
-  <string name="msdkui_app_guidance_start_simulation">Se iniciará una simulación de la guía</string>
+  <string name="msdkui_app_guidance_start_simulation">Se iniciará una simulación de la guía.</string>
   <string name="msdkui_app_guidance_teaser_description">Ayude a los usuarios a llegar a su destino con la guía paso a paso.</string>
   <string name="msdkui_app_guidance_teaser_title">Navegación en coche</string>
   <string name="msdkui_app_guidance_waypoint_subtitle">Toque en el mapa para fijar su destino</string>
@@ -54,8 +54,8 @@
   <string name="msdkui_app_route_results_title">Rutas</string>
   <string name="msdkui_app_routeoverview_to">A:</string>
   <string name="msdkui_app_routeplanner_getdirections">Obtener indicaciones</string>
-  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Empiece escogiendo las paradas</string>
-  <string name="msdkui_app_routeresults_error">No se ha encontrado ninguna ruta</string>
+  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Empiece escogiendo un \"desde\" o un \"hasta\"</string>
+  <string name="msdkui_app_routeresults_error">No se ha encontrado ninguna ruta.</string>
   <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Obtenga itinerarios para ir en coche, camión, bicicleta y a pie.</string>
   <string name="msdkui_app_rp_teaser_title">Planificador de ruta</string>

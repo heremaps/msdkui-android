@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2017-2019 HERE Europe B.V.
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -144,7 +144,7 @@
   <string name="msdkui_transport_mode">Uri ng transportasyon: %1$s</string>
   <string name="msdkui_truck">Trak</string>
   <string name="msdkui_truck_options_title">Mga opsyon ng trak</string>
-  <string name="msdkui_truck_type">Uri ng lorry</string>
+  <string name="msdkui_truck_type">Uri ng trak</string>
   <string name="msdkui_truck_type_tractor">Articulated lorry</string>
   <string name="msdkui_truck_type_truck">Lorry/Trak</string>
   <string name="msdkui_tunnel_cat_b">Kategorya B</string>
@@ -160,7 +160,7 @@
   <string name="msdkui_unit_mile">mi</string>
   <string name="msdkui_unit_miles_per_hour">mph</string>
   <string name="msdkui_unit_yard">yd</string>
-  <string name="msdkui_userposition_search">Kinukuha ang iyong lokasyon</string>
+  <string name="msdkui_userposition_search">Kinukuha lokasyon mo</string>
   <string name="msdkui_violate_truck_options">Balewalain ang mga opsyon na trak</string>
   <string name="msdkui_waypoint_current_location">Kasalukuyang lokasyon</string>
   <string name="msdkui_waypoint_select_location">Pumili ng direksyon</string>

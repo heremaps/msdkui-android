@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2017-2019 HERE Europe B.V.
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
   <string name="msdkui_app_about">Info</string>
   <string name="msdkui_app_about_info_part_four">Mit den Komponenten im HERE Mobile SDK UI Kit können Sie sofort einen Routenplaner mit Navigation erstellen.  Weitere Informationen finden Sie im Benutzerhandbuch.</string>
   <string name="msdkui_app_about_info_part_one">Erstellen Sie mit dem HERE Mobile SDK UI Kit ansprechende Benutzeroberflächen für Android und iOS</string>
-  <string name="msdkui_app_about_info_part_three">Mit der Premium-Edition des HERE Mobile SDK können Sie mit wenigen Zeilen Code eine vollständige Benutzeroberfläche erstellen. So benötigen Sie nicht mehrere Tage zum Erstellen einer Liste mit Fahranweisungen wie bei nativen APIs, sondern nur wenige Stunden. Eine kürzere Entwicklungszeit bedeutet eine schnellere Time-to-Market. \n\nNatürlich können Sie nach Wunsch mit dem UI-Kit das Aussehen (Farben, Größen) und das Verhalten (Datenpräsentation, Logik, Ablauf, Teilkomponenten) einiger UI-Steuerelemente ändern. Das liegt ganz bei Ihnen.</string>
+  <string name="msdkui_app_about_info_part_three">Mit der Premium-Edition des HERE Mobile SDK können Sie mit wenigen Zeilen Code eine vollständige Benutzeroberfläche erstellen. So benötigen Sie nicht mehrere Stunden zum Erstellen einer Liste von Fahranweisungen wie bei nativen APIs, sondern nur wenige Minuten. Eine kürzere Entwicklungszeit bedeutet eine schnellere Time-to-Market. \n\nNatürlich können Sie nach Wunsch mit dem UI-Kit das Aussehen (Farben, Größen) und das Verhalten (Datenpräsentation, Logik, Ablauf, Teilkomponenten) einiger UI-Steuerelemente ändern. Das liegt ganz bei Ihnen.</string>
   <string name="msdkui_app_about_info_part_two">Eine gute Benutzeroberfläche entscheidet oft darüber, ob Sie Benutzer gewinnen und auch halten oder aber an Mitbewerber verlieren. Aus diesem Grund sind im HERE Mobile SDK UI Kit für Android und iOS bereits eine ganze Reihe von Bildschirmen enthalten, die voll funktionsfähig und in Ihrer Anwendung sofort einsetzbar sind.</string>
   <string name="msdkui_app_add">Hinzufügen</string>
   <string name="msdkui_app_add_waypoint">Wegpunkt hinzufügen</string>
@@ -35,7 +35,7 @@
   <string name="msdkui_app_guidance_button_showmaneuvers">Fahranweisungen</string>
   <string name="msdkui_app_guidance_button_showmap">Karte anzeigen</string>
   <string name="msdkui_app_guidance_button_start">Navigation starten</string>
-  <string name="msdkui_app_guidance_start_simulation">Eine Navigationssimulation wird gestartet</string>
+  <string name="msdkui_app_guidance_start_simulation">Eine Navigationssimulation wird gestartet.</string>
   <string name="msdkui_app_guidance_teaser_description">Bringen Sie Ihre Benutzer mit der Turn-by-Turn-Navigation ans Ziel.</string>
   <string name="msdkui_app_guidance_teaser_title">Fahrzeugnavigation</string>
   <string name="msdkui_app_guidance_waypoint_subtitle">Tippen Sie auf die Karte, um Ihr Ziel festzulegen</string>
@@ -54,8 +54,8 @@
   <string name="msdkui_app_route_results_title">Routen</string>
   <string name="msdkui_app_routeoverview_to">Nach:</string>
   <string name="msdkui_app_routeplanner_getdirections">Route berechnen</string>
-  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Wählen Sie zunächst Wegpunkte aus</string>
-  <string name="msdkui_app_routeresults_error">Keine Routen gefunden</string>
+  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Wählen Sie zunächst einen Wegpunkt für \"Von\" oder \"Nach\" aus</string>
+  <string name="msdkui_app_routeresults_error">Es wurden keine Routen gefunden.</string>
   <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Nutzen Sie die Routenberechnung für Autos, Lkws, Fahrräder und Fußgänger.</string>
   <string name="msdkui_app_rp_teaser_title">Routenplaner</string>

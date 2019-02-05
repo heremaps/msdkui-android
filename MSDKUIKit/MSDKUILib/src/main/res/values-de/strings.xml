@@ -163,7 +163,7 @@
   <string name="msdkui_userposition_search">Standort wird ermittelt</string>
   <string name="msdkui_violate_truck_options">Optionen für Lkw ignorieren</string>
   <string name="msdkui_waypoint_current_location">Aktueller Standort</string>
-  <string name="msdkui_waypoint_select_location">Wegpunkt aussuchen</string>
+  <string name="msdkui_waypoint_select_location">Wegpunkt</string>
   <string name="msdkui_weight_per_axle">Gewicht pro Achse</string>
   <string name="msdkui_width">Breite</string>
 </resources>

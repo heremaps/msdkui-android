@@ -19,7 +19,7 @@
   <string name="msdkui_app_about">Informacje</string>
   <string name="msdkui_app_about_info_part_four">Obecnie za pomocą składników zestawu HERE Mobile SDK UI Kit możesz utworzyć planer tras i środowisko nawigacji. Więcej informacji na ten temat zawiera podręcznik użytkownika.</string>
   <string name="msdkui_app_about_info_part_one">Twórz atrakcyjne interfejsy dla systemów Android i iOS za pomocą zestawu HERE Mobile SDK UI Kit</string>
-  <string name="msdkui_app_about_info_part_three">Dzięki wersji Premium zestawu HERE Mobile SDK możesz utworzyć pełny interfejs użytkownika przy użyciu zaledwie kilku wierszy kodu. Utworzenie listy manewrów, które zajęłoby kilka dni przy użyciu natywnych interfejsów API, zajmie jedynie kilka godzin. Mniej czasu spędzonego na programowaniu oznacza szybsze wprowadzenie produktu na rynek. \n\nOczywiście, jeśli chcesz, za pomocą zestawu UI Kit możesz zmienić wygląd (kolory, wymiary) i zachowanie (prezentowanie danych, logikę, przepływ, składniki podrzędne) niektórych kontrolek interfejsu użytkownika. Wszystko zależy od Ciebie.</string>
+  <string name="msdkui_app_about_info_part_three">Dzięki wersji Premium zestawu HERE Mobile SDK możesz utworzyć pełny interfejs użytkownika przy użyciu zaledwie kilku wierszy kodu. Utworzenie listy manewrów, które zajęłoby kilka dni przy użyciu natywnych interfejsów API, zajmie jedynie kilka godzin. Mniej czasu spędzonego na programowaniu oznacza szybsze wprowadzenie produktu na rynek. \n\nOczywiście za pomocą zestawu UI Kit możesz zmienić wygląd (kolory, wymiary) i zachowanie (prezentowanie danych, logikę, przepływ, składniki podrzędne) niektórych kontrolek interfejsu użytkownika. Wszystko zależy od Ciebie.</string>
   <string name="msdkui_app_about_info_part_two">Dobry interfejs użytkownika często decyduje o tym, czy znajdziesz i utrzymasz użytkowników, czy utracisz ich na rzecz konkurencji. Z tego powodu do zestawu HERE Mobile SDK UI Kit dla systemów Android i iOS wstępnie dołączono różne ekrany, które są w pełni funkcjonalne i gotowe do użycia w Twojej aplikacji.</string>
   <string name="msdkui_app_add">Dodaj</string>
   <string name="msdkui_app_add_waypoint">Dodaj punkt nawigacyjny</string>
@@ -34,8 +34,8 @@
   <string name="msdkui_app_guidance_button_end">Zakończ</string>
   <string name="msdkui_app_guidance_button_showmaneuvers">Zobacz manewry</string>
   <string name="msdkui_app_guidance_button_showmap">Pokaż mapę</string>
-  <string name="msdkui_app_guidance_button_start">Rozpocznij nawigację</string>
-  <string name="msdkui_app_guidance_start_simulation">Zostanie rozpoczęta symulacja nawigacji</string>
+  <string name="msdkui_app_guidance_button_start">Rozpocznij</string>
+  <string name="msdkui_app_guidance_start_simulation">Zostanie rozpoczęta symulacja nawigacji.</string>
   <string name="msdkui_app_guidance_teaser_description">Pomóż swoim użytkownikom dotrzeć do celu dzięki szczegółowej nawigacji.</string>
   <string name="msdkui_app_guidance_teaser_title">Nawigacja samochodowa</string>
   <string name="msdkui_app_guidance_waypoint_subtitle">Naciśnij mapę, aby ustawić miejsce docelowe</string>
@@ -54,8 +54,8 @@
   <string name="msdkui_app_route_results_title">Trasy</string>
   <string name="msdkui_app_routeoverview_to">Do:</string>
   <string name="msdkui_app_routeplanner_getdirections">Uzyskaj wskazówki</string>
-  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Start by choosing a \"from\" or a \"to\"</string>
-  <string name="msdkui_app_routeresults_error">Nie znaleziono żadnych tras</string>
+  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Rozpocznij od wybrania punktu początkowego lub końcowego</string>
+  <string name="msdkui_app_routeresults_error">Nie znaleziono żadnych tras.</string>
   <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Uzyskaj wskazówki dla samochodów, ciężarówek, rowerów i pieszych.</string>
   <string name="msdkui_app_rp_teaser_title">Planer tras</string>

@@ -19,7 +19,7 @@
   <string name="msdkui_app_about">हमारे बारे में</string>
   <string name="msdkui_app_about_info_part_four">इस समय आप HERE मोबाइल एसडीके यूआई किट में दिए गए घटकों का उपयोग करके मार्ग प्लानर और मार्गदर्शन अनुभव बना सकते हैं। इसके बारे में और जानकारी उपयोक्ता मार्गदर्शिका में है।</string>
   <string name="msdkui_app_about_info_part_one">HERE मोबाइल एसडीके यूआई किट से एंड्रॉइड और आईओएस के लिए सुंदर इंटरफ़ेस बनाएँ</string>
-  <string name="msdkui_app_about_info_part_three">आप HERE मोबाइल एसडीके के प्रीमियम संस्करण के साथ मात्र कुछ पंक्तियों का कोड प्रयोग करके एक पूरा यूआई बना सकते हैं। इसलिए नेटिव एपीआई का उपयोग करके मोड़ों की सूची बनाने के लिए कई दिनों की बजाय आपको बस कुछ घंटे चाहिए होंगे। कम विकास समय का अर्थ है जल्द से जल्द बाजार में उतरना।\n\nबेशक, यदि आप चाहें तो, आप यूआई किट का उपयोग करके कुछ यूआई नियंत्रणों की दिखावट (रंग, माप) और व्यवहार (आँकड़ों का प्रस्तुतिकरण, तर्क, प्रवाह, उप-घटक) बदल सकते हैं। यह पूरी तरह आप पर निर्भर है।</string>
+  <string name="msdkui_app_about_info_part_three">आप HERE मोबाइल एसडीके के प्रीमियम संस्करण के साथ मात्र कुछ पंक्तियों के कोड से पूरा यूआई बना सकते हैं। इसलिए नेटिव एपीआई का उपयोग करते हुए मोड़ने-घुमाने की सूची बनाने के लिए कई घंटों की बजाए आपको बस कुछ मिनट चाहिए होंगे। विकास में लगने वाले समय में बचत का अर्थ है कि उत्पाद को और ज़ल्दी बाज़ार में उतारा जा सकेगा। बेशक, यदि आप चाहें तो कुछ यूआई नियंत्रणों की दिखावट (रंग, माप) और व्यवहार (आंकड़ों का प्रस्तुतिकरण, तर्क, प्रवाह, उपघटक) बदल सकते हैं। यह पूरी तरह आप पर निर्भर है।</string>
   <string name="msdkui_app_about_info_part_two">एक अच्छा उपयोक्ता इंटरफ़ेस प्रायः उपयोक्ता खोजने और उन्हें अपने साथ बनाए रखने या उन्हें अपने प्रतिस्पर्धियों के हाथों खो बैठने के बीच का मुख्य अंतर होता है। यही कारण है कि HERE मोबाइल एसडीके यूआई किट फ़ॉर एंड्रॉइड एंड आईओएस में ऐसी विभिन्न प्रकार की स्क्रीन पहले से दी गईं हैं जो पूरी तरह कार्यक्षम हैं और आपके एप्लिकेशन में उपयोग के लिए तैयार हैं।</string>
   <string name="msdkui_app_add">जोड़ें</string>
   <string name="msdkui_app_add_waypoint">वे-पॉइंट जोड़ें</string>
@@ -35,7 +35,7 @@
   <string name="msdkui_app_guidance_button_showmaneuvers">मोड़ देखें</string>
   <string name="msdkui_app_guidance_button_showmap">मैप दिखाएँ</string>
   <string name="msdkui_app_guidance_button_start">नेविगेशन आरंभ करें</string>
-  <string name="msdkui_app_guidance_start_simulation">एक मार्गदर्शन नकल आरंभ होगी</string>
+  <string name="msdkui_app_guidance_start_simulation">एक मार्गदर्शन नकल शुरू होगी।</string>
   <string name="msdkui_app_guidance_teaser_description">हर मोड़ पर मार्गदर्शन के साथ अपने उपयोक्ताओं को उनके गंतव्य तक पहुँचने में सहायता दें।</string>
   <string name="msdkui_app_guidance_teaser_title">ड्राइव नेविगेशन</string>
   <string name="msdkui_app_guidance_waypoint_subtitle">अपना गंतव्य तय करने के लिए मैप छुएँ</string>
@@ -54,8 +54,8 @@
   <string name="msdkui_app_route_results_title">मार्ग</string>
   <string name="msdkui_app_routeoverview_to">गंतव्य:</string>
   <string name="msdkui_app_routeplanner_getdirections">दिशाएँ प्राप्त करें</string>
-  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Start by choosing a \"from\" or a \"to\"</string>
-  <string name="msdkui_app_routeresults_error">कोई मार्ग नहीं मिला</string>
+  <string name="msdkui_app_routeplanner_startchoosingwaypoint">शुरुआत \"उद्गम\" या \"गंतव्य\" चुनकर करें</string>
+  <string name="msdkui_app_routeresults_error">कोई मार्ग नहीं मिला।</string>
   <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">कार, लॉरियों, साइकिलों और पैदल चलने के निर्देश पाएँ।</string>
   <string name="msdkui_app_rp_teaser_title">मार्ग योजनाकार</string>

@@ -32,6 +32,7 @@ class ManeuverItemView : AppCompatActivity() {
         setting.customTheme?.run {
             setTheme(this)
         }
+        title = "${javaClass.simpleName} ${setting.title.toLowerCase()}"
         val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.maneuver_item_view else
             R.layout.maneuver_item_view_fix
         setContentView(resourceId)

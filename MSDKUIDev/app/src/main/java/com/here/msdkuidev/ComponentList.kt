@@ -18,14 +18,20 @@ package com.here.msdkuidev
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import android.view.View
 import com.here.msdkuidev.Constant.COMPONENT
 import com.here.msdkuidev.Constant.FIX_VALUE
-import com.here.msdkuidev.base.BaseListActivity
+import com.here.msdkuidev.base.ListFragment
 import com.here.msdkuidev.component.*
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.main_activity.*
+import android.support.v4.view.ViewPager
+import android.support.v4.app.FragmentStatePagerAdapter
+import android.support.v7.app.AppCompatActivity
+import com.here.msdkuidev.Constant.INDEX
 
-class ComponentList : BaseListActivity() {
+class ComponentList : AppCompatActivity(), ListFragment.Listener {
 
     val list = arrayListOf<Setting<*>>()
 
@@ -51,20 +57,64 @@ class ComponentList : BaseListActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.main_activity)
         addListContent()
-        initList()
+        setupViewPager(viewpager)
+        tabLayout.setupWithViewPager(viewpager)
+        setupTabIcons()
     }
 
-    fun initList() {
-        setUpList(list.map { setting -> Pair(setting.getClassName().simpleName, setting.subTitle) }, itemClickListener)
+    private fun setupTabIcons() {
+        tabLayout.getTabAt(0)?.text = "wrap"
+        tabLayout.getTabAt(1)?.text = "match"
     }
 
-    private val itemClickListener = object : LandingScreenAdapter.Listener {
-        override fun onItemClicked(view: View) {
-            val position = landing_list.getChildLayoutPosition(view)
-            startActivity(Intent(this@ComponentList, ComponentSettingList::class.java).apply {
-                putExtra(COMPONENT, list[position])
-            })
+    private fun setupViewPager(viewPager: ViewPager) {
+        val adapter = ViewPagerAdapter(
+            supportFragmentManager
+        )
+        val page1 = ListFragment().apply { arguments =  Bundle().apply { putInt(INDEX, 1) }}
+        val page2 = ListFragment().apply { arguments =  Bundle().apply { putInt(INDEX, 2) }}
+        adapter.addPage(page1)
+        adapter.addPage(page2)
+        viewPager.adapter = adapter
+    }
+
+    override fun getList(index: Int?): List<Pair<String, String>> {
+        val list = when(index) {
+            1 -> list.filter { setting -> setting.subTitle != FIX_VALUE }
+            else -> list.filter { setting -> setting.subTitle == FIX_VALUE }
+        }
+        return list.asSequence().map { setting -> Pair(setting.getClassName().simpleName, setting.subTitle) }.toList()
+    }
+
+    override fun onItemClicked(view: View, position: Int) {
+        val index = if (viewpager.currentItem % 2 == 0) position * 2 else position * 2 + 1
+        startActivity(Intent(this@ComponentList, ComponentSettingList::class.java).apply {
+            putExtra(COMPONENT, list[index])
+        })
+    }
+
+    internal inner class ViewPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
+        private val mFragmentList = arrayListOf<Fragment>()
+
+        override fun getItem(position: Int): Fragment {
+            return mFragmentList[position]
+        }
+
+        override fun getCount(): Int {
+            return mFragmentList.size
+        }
+
+        fun addPage(fragment: Fragment) {
+            mFragmentList.add(fragment)
+        }
+
+        override fun getItemPosition(`object`: Any): Int {
+            // Causes adapter to reload all Fragments when
+            // notifyDataSetChanged is called
+            notifyDataSetChanged()
+            return POSITION_NONE
         }
     }
 }

@@ -28,6 +28,7 @@ class GuidanceSpeedView : AppCompatActivity() {
         val setting = intent.getParcelableExtra(Constant.ITEM) as GuidanceSpeedViewSetting.GuidanceSpeedViewSettingItem
         val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.guidance_current_speed else
             R.layout.guidance_current_speed_fix
+        title = "${javaClass.simpleName} ${setting.title.toLowerCase()}"
         setContentView(resourceId)
         if (!setting.defaultView) {
             setting.unit.run {

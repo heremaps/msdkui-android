@@ -33,6 +33,7 @@ class GuidanceEstimatedArrival : AppCompatActivity() {
             // in case of multiple changes, it should b created one theme having all changes
             setTheme(this)
         }
+        title = "${javaClass.simpleName} ${setting.title.toLowerCase()}"
         val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.guidance_estimated_arrival else
             R.layout.guidance_estimated_arrival_fix
         setContentView(resourceId)

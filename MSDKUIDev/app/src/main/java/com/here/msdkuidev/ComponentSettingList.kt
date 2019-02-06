@@ -18,30 +18,35 @@ package com.here.msdkuidev
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.here.msdkuidev.Constant.COMPONENT
 import com.here.msdkuidev.Constant.ITEM
-import com.here.msdkuidev.base.BaseListActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import com.here.msdkuidev.base.ListFragment
 
-class ComponentSettingList : BaseListActivity() {
+class ComponentSettingList : AppCompatActivity(), ListFragment.Listener {
 
-    lateinit var settingMap: Setting<*>
+    private lateinit var settingMap: Setting<*>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         settingMap = intent.getSerializableExtra(COMPONENT) as Setting<*>
-        setUpList(settingMap.getItems(this@ComponentSettingList).keys.map { key-> Pair(key, "") }, itemClickListener)
+        setContentView(R.layout.frame_layout)
+        supportFragmentManager.beginTransaction().add(R.id.frame_layout, ListFragment()).commit()
+        title = settingMap.getClassName().simpleName
     }
 
-    private val itemClickListener = object : LandingScreenAdapter.Listener {
-        override fun onItemClicked(view: View) {
-            val position = landing_list.getChildLayoutPosition(view)
-            val item = settingMap.getItems(this@ComponentSettingList).values.toList()[position]
-            item.subTitle = settingMap.subTitle
-            startActivity(Intent(this@ComponentSettingList, settingMap.getClassName()).apply {
-                putExtra(ITEM, item)
-            })
+    override fun getList(index: Int?): List<Pair<String, String>> {
+        return settingMap.getItems(this@ComponentSettingList).keys.map { key-> Pair(key, "") }
+    }
+
+    override fun onItemClicked(view: View, position: Int) {
+        val item = settingMap.getItems(this@ComponentSettingList).values.toList()[position].apply {
+            subTitle = settingMap.subTitle
+            title = settingMap.getItems(this@ComponentSettingList).keys.toList()[position]
         }
+        startActivity(Intent(this@ComponentSettingList, settingMap.getClassName()).apply {
+            putExtra(ITEM, item)
+        })
     }
 }

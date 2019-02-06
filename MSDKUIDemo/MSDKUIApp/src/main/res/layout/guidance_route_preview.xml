@@ -43,7 +43,7 @@
 
     <com.here.msdkui.routing.RouteDescriptionItem
         android:id="@+id/description"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
 
     <com.here.msdkui.routing.ManeuverList
         android:id="@+id/guidance_maneuver_list"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@id/list_end_divider"

@@ -17,6 +17,7 @@
 package com.here.msdkuidev
 
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import com.here.msdkuidev.Constant.COMPONENT
 import com.here.msdkuidev.Constant.ITEM
@@ -27,8 +28,8 @@ class ComponentSettingList : BaseListActivity() {
 
     lateinit var settingMap: Setting<*>
 
-    override fun onStart() {
-        super.onStart()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         settingMap = intent.getSerializableExtra(COMPONENT) as Setting<*>
         setUpList(settingMap.getItems(this@ComponentSettingList).keys.map { key-> Pair(key, "") }, itemClickListener)
     }

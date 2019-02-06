@@ -192,11 +192,16 @@
         <attr name="guidanceManeuverPanel" format="reference" />
         <attr name="guidanceManeuverPanelHeadingText" format="reference" />
         <attr name="guidanceManeuverPanelSecondaryText" format="reference" />
-        <attr name="guidanceManeuverPanelHeadingTextLand" format="reference" />
-        <attr name="guidanceManeuverPanelSecondaryTextLand" format="reference" />
         <attr name="guidanceManeuverPanelDestinationText" format="reference" />
         <attr name="guidanceManeuverPanelLeftIcon" format="reference" />
         <attr name="guidanceManeuverPanelRightIcon" format="reference" />
+
+        <attr name="guidanceManeuverPanelScreen2" format="reference" />
+        <attr name="guidanceManeuverPanelHeadingTextScreen2" format="reference" />
+        <attr name="guidanceManeuverPanelSecondaryTextScreen2" format="reference" />
+        <attr name="guidanceManeuverPanelDestinationTextScreen2" format="reference" />
+        <attr name="guidanceManeuverPanelLeftIconScreen2" format="reference" />
+        <attr name="guidanceManeuverPanelRightIconScreen2" format="reference" />
 
         <attr name="guidanceNextManeuverPanel" format="reference" />
         <attr name="guidanceNextManeuverPanelLeftIcon" format="reference" />

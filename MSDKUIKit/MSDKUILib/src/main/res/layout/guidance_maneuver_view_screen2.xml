@@ -13,74 +13,76 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="?attr/guidanceManeuverPanel"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minWidth="260dp"
-    android:paddingTop="@dimen/contentMarginHuge">
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="?attr/guidanceManeuverPanelScreen2"
+        android:minWidth="@dimen/guidanceManeuverViewScreen2MinHeight">
 
     <ImageView
-        android:id="@+id/maneuverIconView"
-        style="?attr/guidanceManeuverPanelLeftIcon"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_car_position_marker"
-        tools:ignore="ContentDescription"/>
+            android:id="@+id/maneuverIconView"
+            style="?attr/guidanceManeuverPanelLeftIconScreen2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/distanceView"
+            app:srcCompat="@drawable/ic_car_position_marker"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            tools:ignore="ContentDescription"
+            app:layout_constraintEnd_toStartOf="@+id/distanceView"/>
 
     <ProgressBar
-        android:id="@+id/busyStateProgressBar"
-        style="?attr/guidanceManeuverPanelLeftIcon"
-        android:theme="@style/MSDKUIDarkTheme.WhiteAccent"
-        android:visibility="gone"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/busyStateProgressBar"
+            style="?attr/guidanceManeuverPanelLeftIconScreen2"
+            android:theme="@style/MSDKUIDarkTheme.WhiteAccent"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/distanceView"
-        style="?attr/guidanceManeuverPanelHeadingTextLand"
-        app:layout_constraintWidth_default="wrap"
-        app:layout_constraintBottom_toBottomOf="@id/maneuverIconView"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@id/maneuverIconView"
-        app:layout_constraintTop_toTopOf="@id/maneuverIconView" />
+            android:id="@+id/distanceView"
+            style="?attr/guidanceManeuverPanelHeadingTextScreen2"
+            app:layout_constraintWidth_default="wrap"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintBottom_toBottomOf="@id/maneuverIconView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/maneuverIconView"
+            app:layout_constraintTop_toTopOf="@id/maneuverIconView"/>
 
     <View
-        android:id="@+id/margin"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/contentMarginLarge"
-        app:layout_constraintTop_toBottomOf="@+id/maneuverIconView" />
+            android:id="@+id/margin"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/contentMarginLarge"
+            app:layout_constraintTop_toBottomOf="@+id/maneuverIconView"/>
 
     <TextView
-        android:id="@+id/infoView1"
-        style="?attr/guidanceManeuverPanelSecondaryTextLand"
-        android:text="@string/msdkui_maneuverpanel_nodata"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/margin" />
+            android:id="@+id/infoView1"
+            style="?attr/guidanceManeuverPanelSecondaryTextScreen2"
+            android:text="@string/msdkui_maneuverpanel_nodata"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/margin"/>
 
     <TextView
-        android:id="@+id/infoView2"
-        style="?attr/guidanceManeuverPanelSecondaryTextLand"
-        app:layout_constraintBottom_toTopOf="@+id/extraIconView"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/infoView1" />
+            android:id="@+id/infoView2"
+            style="?attr/guidanceManeuverPanelSecondaryTextScreen2"
+            app:layout_constraintBottom_toTopOf="@+id/extraIconView"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/infoView1"/>
 
     <ImageView
-        android:id="@+id/extraIconView"
-        style="?attr/guidanceManeuverPanelRightIcon"
-        android:layout_marginBottom="@dimen/contentMarginHuge"
-        android:layout_marginStart="@dimen/contentMarginHuge"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/infoView2"
-        tools:ignore="ContentDescription" />
+            android:id="@+id/extraIconView"
+            style="?attr/guidanceManeuverPanelRightIconScreen2"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/infoView2"
+            tools:ignore="ContentDescription"/>
 
 </android.support.constraint.ConstraintLayout>
 

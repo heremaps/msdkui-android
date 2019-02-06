@@ -15,8 +15,12 @@
   -->
 
 <com.here.msdkui.guidance.GuidanceManeuverView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingStart="@dimen/guidanceManeuverEndMargin"
+    android:paddingTop="@dimen/contentMarginLarge"
+    android:paddingEnd="@dimen/contentMarginHuge"
+    android:paddingBottom="@dimen/contentMarginHuge"
     android:id="@+id/guidanceManeuverViewId"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:viewMode="screen1" />

@@ -35,7 +35,7 @@ import static org.hamcrest.core.Is.is;
 public class GuidanceManeuverDataTest extends RobolectricTest {
 
     private static final int ICON_ID = 1;
-    private static final long DISTANCE = 1L;
+    private static final Long DISTANCE = 1L;
     private static final String INFO1 = "Info1";
     private static final String INFO2 = "Info2";
     private static final Bitmap NEXT_ROAD_ICON = Bitmap.createBitmap(10, 10, Bitmap.Config.ARGB_8888);

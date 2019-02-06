@@ -55,4 +55,6 @@
     <dimen name="current_speed_landscape_size">64dp</dimen>
 
     <dimen name="speed_limit_stroke_size">4dp</dimen>
+
+    <dimen name="guidanceManeuverViewScreen2MinHeight">260dp</dimen>
 </resources>

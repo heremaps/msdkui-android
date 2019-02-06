@@ -52,10 +52,10 @@ class ComponentList : BaseListActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         addListContent()
+        initList()
     }
 
-    override fun onStart() {
-        super.onStart()
+    fun initList() {
         setUpList(list.map { setting -> Pair(setting.getClassName().simpleName, setting.subTitle) }, itemClickListener)
     }
 

@@ -39,6 +39,7 @@
     <TextView
         android:id="@+id/maneuver_instruction_view"
         style="?attr/maneuverDescriptionItemInstructionText"
+        app:layout_constraintWidth_default="wrap"
         app:layout_constraintBottom_toTopOf="@+id/maneuver_address_view"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintLeft_toRightOf="@+id/maneuver_icon_view"
@@ -48,6 +49,7 @@
 
     <TextView
         android:id="@+id/maneuver_address_view"
+        app:layout_constraintWidth_default="wrap"
         style="?attr/maneuverDescriptionItemAddressText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0"
@@ -56,9 +58,11 @@
         app:layout_constraintTop_toBottomOf="@id/maneuver_instruction_view" />
 
     <TextView
+        app:layout_constraintHorizontal_bias="0.0"
         android:id="@+id/maneuver_distance_view"
+        app:layout_constraintWidth_default="wrap"
         style="?attr/maneuverDescriptionItemDistanceText"
         app:layout_constraintBaseline_toBaselineOf="@+id/maneuver_address_view"
-        app:layout_constraintLeft_toRightOf="@id/vertical_guideline"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintStart_toEndOf="@id/vertical_guideline"
+        app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>

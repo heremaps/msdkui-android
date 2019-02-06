@@ -33,6 +33,7 @@ import android.widget.TextView;
 import com.here.msdkui.R;
 import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.DistanceFormatterUtil;
+import com.here.msdkui.common.ThemeUtil;
 
 /**
  * A view that shows the next maneuver view for guidance. The view consumes the data contained in
@@ -127,6 +128,9 @@ public class GuidanceManeuverView extends BaseView {
         } else {
             LayoutInflater.from(context).inflate(R.layout.guidance_maneuver_view_screen1, this);
         }
+        if (getBackground() == null) {
+            setBackgroundColor(ThemeUtil.getColor(getContext(), R.attr.colorBackgroundDark));
+        }
         setViewState(State.NO_DATA);
     }
 
@@ -134,28 +138,34 @@ public class GuidanceManeuverView extends BaseView {
         ImageView iconView = findViewById(R.id.maneuverIconView);
         iconView.setImageResource(R.drawable.ic_car_position_marker);
         findViewById(R.id.busyStateProgressBar).setVisibility(View.GONE);
-        findViewById(R.id.distanceView).setVisibility(View.INVISIBLE);
+        findViewById(R.id.distanceView).setVisibility(View.GONE);
         findViewById(R.id.extraIconView).setVisibility(View.GONE);
         final TextView infoView1 = findViewById(R.id.infoView1);
+        infoView1.setVisibility(VISIBLE);
         infoView1.setText(getContext().getString(R.string.msdkui_maneuverpanel_nodata));
-        findViewById(R.id.infoView2).setVisibility(View.INVISIBLE);
+        findViewById(R.id.infoView2).setVisibility(View.GONE);
     }
 
     private void populateBusyProgressBarView() {
         findViewById(R.id.maneuverIconView).setVisibility(INVISIBLE);
         findViewById(R.id.busyStateProgressBar).setVisibility(View.VISIBLE);
-        findViewById(R.id.distanceView).setVisibility(View.INVISIBLE);
+        findViewById(R.id.distanceView).setVisibility(View.GONE);
         findViewById(R.id.extraIconView).setVisibility(View.GONE);
         final TextView infoView1 = findViewById(R.id.infoView1);
+        infoView1.setVisibility(VISIBLE);
         infoView1.setText(getContext().getString(R.string.msdkui_maneuverpanel_updating));
-        findViewById(R.id.infoView2).setVisibility(View.INVISIBLE);
+        findViewById(R.id.infoView2).setVisibility(View.GONE);
     }
 
     private void populateDistanceView(@NonNull GuidanceManeuverData maneuverData) {
         final TextView distanceView = findViewById(R.id.distanceView);
-        distanceView.setVisibility(View.VISIBLE);
-        distanceView.setText(DistanceFormatterUtil.formatDistance(
-                getContext(), maneuverData.getDistance(), mUnitSystem));
+        if (maneuverData.getDistance() == null) {
+            distanceView.setVisibility(View.GONE);
+        } else {
+            distanceView.setVisibility(View.VISIBLE);
+            distanceView.setText(DistanceFormatterUtil.formatDistance(
+                    getContext(), maneuverData.getDistance(), mUnitSystem));
+        }
     }
 
     private void populateInfoView1(@NonNull GuidanceManeuverData maneuverData) {
@@ -204,9 +214,11 @@ public class GuidanceManeuverView extends BaseView {
     }
 
     /**
-     * Populate the UI with {@link GuidanceManeuverData}. Setting null data will put the view in waiting state.
+     * Populate the UI with {@link GuidanceManeuverData}.
+     * Please note that setting null field in {@link GuidanceManeuverData} will put the respective child view's
+     * visibility to {@code View.GONE}.
      *
-     * @param maneuverData The {@link GuidanceManeuverData} to use. In case of null, the loading state of the view will be shown.
+     * @param maneuverData The {@link GuidanceManeuverData} to use.
      */
     private void populate(@Nullable GuidanceManeuverData maneuverData) {
         if (maneuverData == null) {
@@ -235,6 +247,8 @@ public class GuidanceManeuverView extends BaseView {
 
     /**
      * Sets the {@link GuidanceManeuverData} which will be used for UI population.
+     * Please note that setting null field in {@link GuidanceManeuverData} will put the respective child view's
+     * visibility to {@code View.GONE}.
      *
      * @param maneuverData the {@link GuidanceManeuverData} to populate the UI.
      * @see #setViewState(com.here.msdkui.guidance.GuidanceManeuverView.State)
@@ -257,6 +271,8 @@ public class GuidanceManeuverView extends BaseView {
 
     /**
      * Sets the {@link com.here.msdkui.guidance.GuidanceManeuverView.State GuidanceManeuverView.State} which will be used for UI population.
+     * Please note setting null state will set the visibility of {@code GuidanceManeuverView} to {@code View.GONE} and
+     * setting null field in {@link GuidanceManeuverData} will put the respective child view's visibility to {@code View.GONE}.
      *
      * @param state the {@link com.here.msdkui.guidance.GuidanceManeuverView.State GuidanceManeuverView.State} to populate the UI.
      *              Please note that in case of null, GuidanceManeuverView will be gone.
@@ -289,7 +305,10 @@ public class GuidanceManeuverView extends BaseView {
     protected Parcelable onSaveInstanceState() {
         final Parcelable superState = super.onSaveInstanceState();
         final SavedState savedState = new SavedState(superState);
-        savedState.setViewState(this.mState);
+        savedState.setSaveStateEnabled(this.mSaveStateEnabled);
+        if (mSaveStateEnabled) {
+            savedState.setViewState(this.mState);
+        }
         return savedState;
     }
 
@@ -301,7 +320,8 @@ public class GuidanceManeuverView extends BaseView {
         }
         final SavedState savedState = (SavedState) state;
         super.onRestoreInstanceState(savedState.getSuperState());
-        if (savedState.getViewState() != null) {
+        setSaveStateEnabled(savedState.mSaveDataEnabled);
+        if (mSaveStateEnabled && savedState.getViewState() != null) {
             setViewState(savedState.getViewState());
         }
     }
@@ -325,6 +345,7 @@ public class GuidanceManeuverView extends BaseView {
                 };
 
         private State mState;
+        private boolean mSaveDataEnabled;
 
         SavedState(Parcelable superState) {
             super(superState);
@@ -332,6 +353,7 @@ public class GuidanceManeuverView extends BaseView {
 
         SavedState(Parcel in) {
             super(in);
+            mSaveDataEnabled = in.readByte() == 1;
             int value = in.readByte();
             if (value == 1) {
                 mState = State.CREATOR.createFromParcel(in);
@@ -341,6 +363,7 @@ public class GuidanceManeuverView extends BaseView {
         @Override
         public void writeToParcel(Parcel out, int flags) {
             super.writeToParcel(out, flags);
+            out.writeByte(mSaveDataEnabled ? (byte) 1 : (byte) 0);
             if (mState == null) {
                 out.writeByte((byte) 0);
                 return;
@@ -362,6 +385,10 @@ public class GuidanceManeuverView extends BaseView {
          */
         void setViewState(@Nullable State state) {
             this.mState = state;
+        }
+
+        void setSaveStateEnabled(boolean saveEnabled) {
+            mSaveDataEnabled = saveEnabled;
         }
     }
 

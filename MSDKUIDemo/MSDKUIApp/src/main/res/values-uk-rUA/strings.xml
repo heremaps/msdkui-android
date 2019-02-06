@@ -19,7 +19,7 @@
   <string name="msdkui_app_about">Про програму</string>
   <string name="msdkui_app_about_info_part_four">Набір елементів інтерфейсу HERE Mobile SDK містить компоненти, за допомогою яких ви можете створити власний планувальник маршрутів та інтерфейс навігації. Докладні відомості про це див. в посібнику користувача.</string>
   <string name="msdkui_app_about_info_part_one">Створюйте чудові інтерфейси користувача для рішень на платформах Android і iOS завдяки пакету HERE Mobile SDK</string>
-  <string name="msdkui_app_about_info_part_three">Завдяки пакету HERE Mobile SDK випуску \"Преміум\" ви можете створити повноцінний інтерфейс користувача за допомогою лише кількох рядків коду. Вам не потрібно витрачати кілька днів на створення списку маневрів за допомогою стандартних API-інтерфейсів. Усе це можна зробити за лічені години. Що менше часу триває розробка, то скоріше рішення потрапить на ринок.\n\nЗа потреби за допомогою цього набору ви можете змінити вигляд (колір, розміри) і поведінку (представлення даних, логіку, цикл, підкомпоненти) певних елементів керування інтерфейсу користувача. Вирішуйте самі.</string>
+  <string name="msdkui_app_about_info_part_three">Завдяки пакету HERE Mobile SDK випуску \"Преміум\" ви можете створити повноцінний інтерфейс користувача за допомогою лише кількох рядків коду. Вам не потрібно витрачати кілька годин на створення списку маневрів за допомогою стандартних API-інтерфейсів. Усе це можна зробити за лічені хвилини. Що менше часу триває розробка, то скоріше рішення потрапить на ринок.\n\nЗа потреби за допомогою цього набору ви можете змінити вигляд (колір, розміри) і поведінку (представлення даних, логіку, процес, підкомпоненти) певних елементів керування інтерфейсу користувача. Вирішуйте самі.</string>
   <string name="msdkui_app_about_info_part_two">Зацікавленість користувачів певним рішенням часто залежить від його інтерфейсу. Якщо він не дуже зручний і привабливий, люди можуть обрати продукти конкурентів. Щоб цього не сталося, ми додали в набір елементів інтерфейсу користувача HERE Mobile SDK для Android і iOS безліч повністю функціональних екранів, які ви можете застосовувати у власних програмах.</string>
   <string name="msdkui_app_add">Додати</string>
   <string name="msdkui_app_add_waypoint">Додати точку маршруту</string>
@@ -35,7 +35,7 @@
   <string name="msdkui_app_guidance_button_showmaneuvers">Усі маневри</string>
   <string name="msdkui_app_guidance_button_showmap">Показати карту</string>
   <string name="msdkui_app_guidance_button_start">Почати навігацію</string>
-  <string name="msdkui_app_guidance_start_simulation">Розпочнеться моделювання вказівок</string>
+  <string name="msdkui_app_guidance_start_simulation">Розпочнеться моделювання вказівок.</string>
   <string name="msdkui_app_guidance_teaser_description">Допоможіть користувачам потрапити до потрібного місця завдяки покроковим указівкам.</string>
   <string name="msdkui_app_guidance_teaser_title">Навігація</string>
   <string name="msdkui_app_guidance_waypoint_subtitle">Торкніться карти, щоб вибрати місце призначення</string>
@@ -54,8 +54,8 @@
   <string name="msdkui_app_route_results_title">Маршрути</string>
   <string name="msdkui_app_routeoverview_to">Куди:</string>
   <string name="msdkui_app_routeplanner_getdirections">Отримати вказівки</string>
-  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Start by choosing a \"from\" or a \"to\"</string>
-  <string name="msdkui_app_routeresults_error">Не вдалося знайти маршрути</string>
+  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Щоб розпочати, виберіть пункт відправлення або призначення.</string>
+  <string name="msdkui_app_routeresults_error">Не вдалося знайти маршрути.</string>
   <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Дізнайтеся, як дістатися місця призначення легковим автомобілем, вантажівкою, велосипедом або пішки.</string>
   <string name="msdkui_app_rp_teaser_title">Планувальник маршруту</string>

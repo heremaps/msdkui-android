@@ -31,6 +31,7 @@ class GuidanceNextManeuverView : AppCompatActivity() {
         setting.customTheme?.run {
             setTheme(this)
         }
+        title = "${javaClass.simpleName} ${setting.title.toLowerCase()}"
         val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.guidance_next_maneuver_view else
             R.layout.guidance_next_maneuver_view_fix
         setContentView(resourceId)

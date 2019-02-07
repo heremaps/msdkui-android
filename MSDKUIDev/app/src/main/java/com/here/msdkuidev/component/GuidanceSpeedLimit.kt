@@ -29,6 +29,7 @@ class GuidanceSpeedLimit : AppCompatActivity() {
         setting.customTheme?.run {
             setTheme(this)
         }
+        title = "${javaClass.simpleName} ${setting.title.toLowerCase()}"
         val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.guidance_speed_limit else
             R.layout.guidance_speed_limit_fix
         setContentView(resourceId)

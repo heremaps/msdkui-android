@@ -28,6 +28,7 @@ class GuidanceStreetLabel : AppCompatActivity() {
         val setting = intent.getParcelableExtra(Constant.ITEM) as GuidanceStreetLabelSetting.GuidanceStreetLabelSettingItem
         val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.guidance_street_label else
             R.layout.guidance_street_label_fix
+        title = "${javaClass.simpleName} ${setting.title.toLowerCase()}"
         setContentView(resourceId)
         if (!setting.defaultView) guidanceStreetLabelView.setCurrentStreetData(setting.guidanceStreetLabelData)
     }

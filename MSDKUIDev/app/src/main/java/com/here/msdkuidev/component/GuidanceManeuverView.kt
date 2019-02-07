@@ -31,6 +31,7 @@ class GuidanceManeuverView : AppCompatActivity() {
         setting.customTheme?.run {
             setTheme(this)
         }
+        title = "${javaClass.simpleName} ${setting.title.toLowerCase()}"
         val resourceId = if (setting.subTitle == Constant.DEFAULT && setting.direction == 0) {
             R.layout.guidance_maneuver_view_hori
         } else if(setting.subTitle == Constant.DEFAULT && setting.direction == 1) {

@@ -19,7 +19,8 @@ package com.here.msdkuiapp.guidance
 import com.here.android.mpa.common.PositioningManager
 import com.here.android.mpa.guidance.NavigationManager
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
-import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
+import com.here.msdkuiapp.guidance.SingletonHelper.appPositioningManager
+import com.here.msdkuiapp.position.AppPositioningManager
 import junit.framework.Assert.assertNotNull
 import org.junit.Test
 import org.mockito.Mockito.mock
@@ -34,7 +35,7 @@ class SingletonHelperTest {
         navigationManager = mock(NavigationManager::class.java)
         assertNotNull(SingletonHelper.navigationManager)
 
-        positioningManager = mock(PositioningManager::class.java)
+        appPositioningManager = mock(AppPositioningManager::class.java)
         assertNotNull(SingletonHelper.navigationManager)
     }
 }

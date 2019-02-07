@@ -24,12 +24,14 @@ import com.here.android.mpa.common.PositioningManager
 import com.here.android.mpa.guidance.NavigationManager
 import com.here.android.mpa.mapping.Map
 import com.here.android.mpa.routing.RouteResult
+import com.here.android.mpa.routing.RoutingError
 import com.here.msdkuiapp.MSDKUIApplication
 import com.here.msdkuiapp.base.BasePermissionActivity
 import com.here.msdkuiapp.common.Provider
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
-import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
+import com.here.msdkuiapp.guidance.SingletonHelper.appPositioningManager
 import com.here.msdkuiapp.map.MapFragmentWrapper
+import com.here.msdkuiapp.position.AppPositioningManager
 import com.here.testutils.BaseTest
 import com.here.testutils.anySafe
 import com.here.testutils.argumentCaptor
@@ -79,7 +81,7 @@ class GuidanceCoordinatorTest : BaseTest() {
         MockitoAnnotations.initMocks(this)
         `when`(mockFragmentManager.beginTransaction()).thenReturn(mockFragmentTransaction)
         navigationManager = mockNavigationManager
-        positioningManager = mock(PositioningManager::class.java)
+        appPositioningManager = mock(AppPositioningManager::class.java)
         `when`(mockContext.applicationContext).thenReturn(mockMSDKUIApplication)
         guidanceCoordinator = GuidanceCoordinator(mockContext, mockFragmentManager).apply {
             mapFragment = mockMapFragment
@@ -97,7 +99,7 @@ class GuidanceCoordinatorTest : BaseTest() {
         val mockRerouteResult = mock(RouteResult::class.java)
 
         `when`(mockRerouteResult.route).thenReturn(mockRoute)
-        guidanceCoordinator.rerouteListener.onRerouteEnd(mockRerouteResult)
+        guidanceCoordinator.rerouteListener.onRerouteEnd(mockRerouteResult, mock(RoutingError::class.java))
         assertEquals(guidanceCoordinator.route, mockRerouteResult.route)
 
         guidanceCoordinator.trafficRerouteListener.onTrafficRerouted(mockRerouteResult)

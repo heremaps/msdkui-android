@@ -24,6 +24,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import com.here.android.mpa.common.ApplicationContext
+import com.here.android.mpa.common.GeoCoordinate
 import com.here.android.mpa.common.MapEngine
 import com.here.android.mpa.common.OnEngineInitListener
 import com.here.android.mpa.guidance.VoiceCatalog
@@ -31,7 +32,7 @@ import com.here.msdkuiapp.R
 import com.here.msdkuiapp.base.BaseActivity
 import com.here.msdkuiapp.guidance.GuidanceRouteSelectionActivity
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
-import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
+import com.here.msdkuiapp.guidance.SingletonHelper.appPositioningManager
 import com.here.msdkuiapp.routing.RoutingActivity
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
@@ -46,9 +47,9 @@ class LandingActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing)
-        MapEngine.getInstance().init(ApplicationContext(applicationContext), OnEngineInitListener { error ->
+        MapEngine.getInstance().init(ApplicationContext(applicationContext)) { error ->
             if (error == OnEngineInitListener.Error.NONE) downloadVoicePackage(VoiceCatalog.getInstance())
-        })
+        }
         setUpList()
     }
 
@@ -89,7 +90,7 @@ class LandingActivity : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
-        positioningManager?.run {
+        appPositioningManager?.run {
             if (isActive) {
                 stop()
             }

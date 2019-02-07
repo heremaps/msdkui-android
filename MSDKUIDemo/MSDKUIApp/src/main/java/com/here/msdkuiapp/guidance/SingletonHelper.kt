@@ -19,6 +19,7 @@ package com.here.msdkuiapp.guidance
 import com.here.android.mpa.common.MapEngine
 import com.here.android.mpa.common.PositioningManager
 import com.here.android.mpa.guidance.NavigationManager
+import com.here.msdkuiapp.position.AppPositioningManager
 
 object SingletonHelper {
 
@@ -37,6 +38,6 @@ object SingletonHelper {
      *
      * Setters & Getters are auto generated.
      */
-    internal var positioningManager: PositioningManager? = null
-        get() = field ?: if (MapEngine.isInitialized()) PositioningManager.getInstance() else null
+    internal var appPositioningManager: AppPositioningManager? = null
+        get() = field ?: AppPositioningManager.getInstance()
 }

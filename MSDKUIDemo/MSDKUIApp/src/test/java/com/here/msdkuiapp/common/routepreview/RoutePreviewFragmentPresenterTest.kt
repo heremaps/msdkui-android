@@ -16,7 +16,6 @@
 
 package com.here.msdkuiapp.common.routepreview
 
-import android.app.AlertDialog
 import com.here.android.mpa.common.GeoCoordinate
 import com.here.android.mpa.common.PositioningManager
 import com.here.android.mpa.routing.*
@@ -32,6 +31,7 @@ import com.here.msdkuiapp.base.BaseContract
 import com.here.msdkuiapp.common.AppActionBar
 import com.here.msdkuiapp.common.Provider
 import com.here.msdkuiapp.guidance.SingletonHelper
+import com.here.msdkuiapp.position.AppPositioningManager
 import com.here.testutils.BaseTest
 import com.here.testutils.anySafe
 import com.here.testutils.argumentCaptor
@@ -66,12 +66,12 @@ class RoutePreviewFragmentPresenterTest : BaseTest() {
     private lateinit var mockProvider: Provider
 
     @Mock(answer = Answers.RETURNS_DEEP_STUBS)
-    private lateinit var mockPositioningManager: PositioningManager
+    private lateinit var mockPositioningManager: AppPositioningManager
 
     @Before
     override fun setUp() {
         MockitoAnnotations.initMocks(this)
-        SingletonHelper.positioningManager = mockPositioningManager
+        SingletonHelper.appPositioningManager = mockPositioningManager
         `when`(mockContract.getCurrentViewContract()).thenReturn(mockRoutePreview)
         presenter = RoutePreviewFragmentPresenter()
         presenter.provider = mockProvider
@@ -94,9 +94,7 @@ class RoutePreviewFragmentPresenterTest : BaseTest() {
     fun testRouteCalculationWithOneWaypoint() {
 
         // calculate route with one waypoint, should fail
-        `when`(mockPositioningManager.hasValidPosition()).thenReturn(false)
-
-        val mockRouteWaypoint = mock(RouteWaypoint::class.java)
+        val mockRouteWaypoint = mock(RouteWaypoint::class.java, RETURNS_DEEP_STUBS)
         `when`(mockProvider.providesRouteWaypoint(anySafe())).thenReturn(mockRouteWaypoint)
 
         val entry = mock(WaypointEntry::class.java)
@@ -122,7 +120,7 @@ class RoutePreviewFragmentPresenterTest : BaseTest() {
         val mockCoreRouter = mock(CoreRouter::class.java, RETURNS_DEEP_STUBS)
         `when`(mockProvider.providesCoreRouter()).thenReturn(mockCoreRouter)
 
-        `when`(mockPositioningManager.hasValidPosition()).thenReturn(true)
+        `when`(mockPositioningManager.isValidPosition).thenReturn(true)
 
         val entry = mock(WaypointEntry::class.java)
         `when`(entry.routeWaypoint).thenReturn(mockRouteWaypoint)
@@ -153,7 +151,7 @@ class RoutePreviewFragmentPresenterTest : BaseTest() {
         val mockCoreRouter = mock(CoreRouter::class.java, RETURNS_DEEP_STUBS)
         `when`(mockProvider.providesCoreRouter()).thenReturn(mockCoreRouter)
 
-        `when`(mockPositioningManager.hasValidPosition()).thenReturn(true)
+        `when`(mockPositioningManager.isValidPosition).thenReturn(true)
 
         val entry = mock(WaypointEntry::class.java)
         `when`(entry.routeWaypoint).thenReturn(mockRouteWaypoint)

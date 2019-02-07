@@ -26,7 +26,7 @@ import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.base.BaseFragmentCoordinator
 import com.here.msdkuiapp.common.routepreview.RoutePreviewFragment
-import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
+import com.here.msdkuiapp.guidance.SingletonHelper.appPositioningManager
 import com.here.msdkuiapp.isLocationOk
 import com.here.msdkuiapp.map.MapFragmentWrapper
 
@@ -77,10 +77,9 @@ class GuidanceRouteSelectionCoordinator(private val context: Context, fragmentMa
     }
 
     override fun onPositionAvailable() {
-        positioningManager?.run {
-            val geoCoordinate = if (hasValidPosition()) position?.coordinate else lastKnownPosition?.coordinate
+        appPositioningManager?.run {
             mapFragment?.showPositionIndicator()
-            mapFragment?.map?.setCenter(geoCoordinate, Map.Animation.LINEAR)
+            mapFragment?.map?.setCenter(currentLocation, Map.Animation.LINEAR)
         }
         mapFragment?.onTouch(true, this)
     }

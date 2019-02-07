@@ -27,6 +27,8 @@ import com.here.msdkui.guidance.GuidanceSpeedListener
 import com.here.msdkui.guidance.GuidanceSpeedPresenter
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.common.Util
+import com.here.msdkuiapp.guidance.SingletonHelper.appPositioningManager
+import com.here.msdkuiapp.position.AppPositioningManager
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
 
@@ -63,7 +65,7 @@ class GuidanceSpeedLimitFragment : Fragment(), GuidanceSpeedListener  {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         if (mPresenter == null) {
             mPresenter = GuidanceSpeedPresenter(SingletonHelper.navigationManager ?: return,
-                    SingletonHelper.positioningManager ?: return).apply {
+                    appPositioningManager?.sdkPositioningManager ?: return).apply {
                 addListener(this@GuidanceSpeedLimitFragment)
                 resume()
             }

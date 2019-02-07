@@ -30,7 +30,7 @@ import com.here.msdkuiapp.common.Constant.GUIDANCE_IS_SIMULATION_KEY
 import com.here.msdkuiapp.common.Constant.GUIDANCE_SIMULATION_SPEED
 import com.here.msdkuiapp.common.Provider
 import com.here.msdkuiapp.guidance.GuidanceActivity
-import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
+import com.here.msdkuiapp.guidance.SingletonHelper.appPositioningManager
 import com.here.msdkuiapp.msdkuiApplication
 
 /**
@@ -62,14 +62,8 @@ class RoutePreviewFragmentPresenter() : BasePresenter<GuidanceContracts.RoutePre
     fun setWaypoint(destination: WaypointEntry, withCurrentPosition: Boolean = true) {
         state.destination = destination
         if (withCurrentPosition.not()) return
-        positioningManager?.run {
-            when {
-                hasValidPosition() -> state.cordsList.add(provider.providesRouteWaypoint(position.coordinate))
-                lastKnownPosition != null && lastKnownPosition.isValid -> state.cordsList.add(provider
-                        .providesRouteWaypoint(lastKnownPosition.coordinate))
-                else -> {
-                }
-            }
+        appPositioningManager?.currentLocation?.run {
+            state.cordsList.add(provider.providesRouteWaypoint(this))
         }
         state.cordsList.add(destination.routeWaypoint)
     }

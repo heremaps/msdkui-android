@@ -19,7 +19,7 @@
   <string name="msdkui_app_about">Tungkol sa</string>
   <string name="msdkui_app_about_info_part_four">Sa ngayon, magagamit mo ang mga component sa HERE Mobile SDK UI Kit upang gumawa ng pamplano ng ruta at karansasan sa patnubay. Alamin pa ang higit tungkol dito sa gabay ng gumagamit.</string>
   <string name="msdkui_app_about_info_part_one">Gumawa ng magagandang interface para sa Android at iOS gamit ang HERE Mobile SDK Kit.</string>
-  <string name="msdkui_app_about_info_part_three">Sa paggamit lamang ng iilang linya ng code, makakagawa ka na ng buong UI gamit ang Premium edition ng HERE Mobile SDK. Kaya, sa halip na kailangan pa ng ilang araw para makagawa ng listahan ng maneobra gamit ang native APIs, ang kailangan mo lamang ay ilang oras. Mas kaunting panahon sa pag-develop mas mabilis na panahon para i-market.\n\nSiyempre, kung gusto mo, maaari mong gamitin ang UI Kit upang baguhin ang hitsura (mga kulay, dimension) at behaviour (data presentation, logic, flow, mga subcomponent) ng ilang kontrol ng UI. Ikaw ang bahala.</string>
+  <string name="msdkui_app_about_info_part_three">Sa paggamit lang nang ilang linya ng code, maaari kang lumikha ng buong UI gamit ang Premium na edisyon ng HERE Mobile SDK. Kaya imbes na mangailangan nang mangilan-ngilang oras para makabuo ng manoeuvre na listahan gamit ang mga native API, kakailanganin mo lang nang ilang minuto. Mas maikling oras ng pag-develope ay nangangahulugan nang mas mabilis na oras para imerkado.\n\nSiyempre maaari mong gamitin ang UI Kit para baguhin ang hitsura (mga kulay, sukat) at gawi (datos presentasyon, lohika, daloy, mga subcomponens) ng ilang kontrol ng UI. Bahala ka.</string>
   <string name="msdkui_app_about_info_part_two">Ang isang magandang user interface ay kadalasang ang pangunahing kaibahan ay sa pagitan ng paghahanap at pagpapanatili ng mga gumagamit, o ang maiwala sila at mapunta sa iyong mga kakompetensiya. Iyan ang dahilan kung bakit ang HERE Mobile SDK Kit para sa Android at iOS ay may naka-pack nang iba’t ibang screen na lubusang gumagana at handa nang gamitin sa iyong application.</string>
   <string name="msdkui_app_add">Magdagdag</string>
   <string name="msdkui_app_add_waypoint">Magdagdag ng waypoint</string>
@@ -34,8 +34,8 @@
   <string name="msdkui_app_guidance_button_end">Tapusin</string>
   <string name="msdkui_app_guidance_button_showmaneuvers">Tingnan hakbang</string>
   <string name="msdkui_app_guidance_button_showmap">Ipakita ang mapa</string>
-  <string name="msdkui_app_guidance_button_start">Simulan ang nabigasyon</string>
-  <string name="msdkui_app_guidance_start_simulation">Isang gabay na simulation ang magsisimula na</string>
+  <string name="msdkui_app_guidance_button_start">Simulan nabigasyon</string>
+  <string name="msdkui_app_guidance_start_simulation">Magsisimula ang simulation ng gabay.</string>
   <string name="msdkui_app_guidance_teaser_description">Tulungan ang mga user mo na makapunta sa kanilang destinasyon na may gabay sa bawat pagliko.</string>
   <string name="msdkui_app_guidance_teaser_title">Nabigasyon</string>
   <string name="msdkui_app_guidance_waypoint_subtitle">Tapikin ang mapa para itakda ang destinasyon mo</string>
@@ -54,8 +54,8 @@
   <string name="msdkui_app_route_results_title">Mga ruta</string>
   <string name="msdkui_app_routeoverview_to">Tungo:</string>
   <string name="msdkui_app_routeplanner_getdirections">Kumuha ng mga direksyon</string>
-  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Start by choosing a \"from\" or a \"to\"</string>
-  <string name="msdkui_app_routeresults_error">Hindi nakahanap ng anumang mga ruta</string>
+  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Simulan sa pamamagitan ng pagpili ng \"mula sa\" o isang \"papunta sa\"</string>
+  <string name="msdkui_app_routeresults_error">Hindi nakakita ng anumang mga ruta.</string>
   <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Kunin ang mga direksiyon para sa mga kotse, lorry, bisikleta at paglalakad.</string>
   <string name="msdkui_app_rp_teaser_title">Tagaplano ng ruta</string>

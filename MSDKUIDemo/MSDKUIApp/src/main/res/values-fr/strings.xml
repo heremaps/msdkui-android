@@ -19,7 +19,7 @@
   <string name="msdkui_app_about">À propos</string>
   <string name="msdkui_app_about_info_part_four">À présent, vous pouvez utiliser les composants de HERE Mobile SDK UI Kit pour créer un outil de planification d\'itinéraires et une expérience de guidage. Découvrez-en davantage à ce sujet dans le manuel d\'utilisation.</string>
   <string name="msdkui_app_about_info_part_one">Créez de belles interfaces pour Android et iOS grâce à HERE Mobile SDK UI Kit</string>
-  <string name="msdkui_app_about_info_part_three">Quelques lignes de code vous permettent de créer une interface utilisateur complète avec la version Premium de HERE Mobile SDK. Ainsi, vous n\'avez plus besoin de plusieurs jours pour créer une liste de manœuvres à l\'aide des API natives ; quelques heures suffisent. La réduction du temps de développement accélère la commercialisation. \n\nBien entendu, si vous le souhaitez, vous pouvez utiliser UI Kit pour modifier l\'apparence (couleurs, dimensions) et le comportement (présentation des données, logique, flux, sous-composants) de certaines commandes de l\'IU. Le choix vous appartient.</string>
+  <string name="msdkui_app_about_info_part_three">Quelques lignes de code vous permettent de créer une interface utilisateur complète avec la version Premium de HERE Mobile SDK. Ainsi, vous n\'avez plus besoin de plusieurs heures pour créer une liste de manœuvres à l\'aide des API natives ; quelques minutes suffisent. La réduction du temps de développement accélère la commercialisation.\n\nBien entendu, vous pouvez utiliser UI Kit pour modifier l\'apparence (couleurs, dimensions) et le comportement (présentation des données, logique, flux, sous-composants) de certaines commandes de l\'IU. Le choix vous appartient.</string>
   <string name="msdkui_app_about_info_part_two">Souvent, une bonne interface utilisateur est la principale différence entre trouver et garder des utilisateurs, ou les perdre au profit de ses concurrents. C\'est pour cette raison que l\'application HERE Mobile SDK UI Kit pour Android et iOS est fournie avec divers écrans pré-installés. Ceux-ci sont parfaitement fonctionnels et prêts à l\'emploi dans votre application.</string>
   <string name="msdkui_app_add">Ajouter</string>
   <string name="msdkui_app_add_waypoint">Ajouter une étape</string>
@@ -34,8 +34,8 @@
   <string name="msdkui_app_guidance_button_end">Fin</string>
   <string name="msdkui_app_guidance_button_showmaneuvers">Voir manœuvres</string>
   <string name="msdkui_app_guidance_button_showmap">Afficher la carte</string>
-  <string name="msdkui_app_guidance_button_start">Démarrer la navigation</string>
-  <string name="msdkui_app_guidance_start_simulation">Une simulation de guidage démarre</string>
+  <string name="msdkui_app_guidance_button_start">Démarrer navigation</string>
+  <string name="msdkui_app_guidance_start_simulation">Une simulation de guidage démarre.</string>
   <string name="msdkui_app_guidance_teaser_description">Aidez vos utilisateurs à arriver à destination avec la navigation détaillée.</string>
   <string name="msdkui_app_guidance_teaser_title">Navigation auto</string>
   <string name="msdkui_app_guidance_waypoint_subtitle">Appuyez sur la carte pour définir une destination</string>
@@ -54,8 +54,8 @@
   <string name="msdkui_app_route_results_title">Itinéraires</string>
   <string name="msdkui_app_routeoverview_to">Dest. :</string>
   <string name="msdkui_app_routeplanner_getdirections">Calculer un itinéraire</string>
-  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Start by choosing a \"from\" or a \"to\"</string>
-  <string name="msdkui_app_routeresults_error">Aucun itinéraire trouvé</string>
+  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Pour commencer, sélectionnez un point de départ et une destination</string>
+  <string name="msdkui_app_routeresults_error">Aucun itinéraire trouvé.</string>
   <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Obtenez des itinéraires en voiture, en poids lourd, à vélo et à pieds.</string>
   <string name="msdkui_app_rp_teaser_title">Planification d\'itinéraire</string>

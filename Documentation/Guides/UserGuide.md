@@ -4,25 +4,24 @@ Are you looking for a framework that lets you build feature-rich and compelling 
 This user guide describes the general workflow using the HERE Mobile SDK UI Kit and its components in detail. If you are looking for a quick overview, please look at our [README](../../README.md), our [Quick Start](QuickStart.md) guide or the latest _Release Notes_.
 
 ## Contents
-<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [Why use the HERE Mobile SDK UI Kit?](#why-use-the-here-mobile-sdk-ui-kit)
 - [Where to start?](#where-to-start)
 - [How to read this guide?](#how-to-read-this-guide)
-- [Getting Started - A HERE Mobile SDK UI Kit Primer](#getting-started-a-here-mobile-sdk-ui-kit-primer)
+- [Getting started - A HERE Mobile SDK UI Kit Primer](#getting-started---a-here-mobile-sdk-ui-kit-primer)
 - [Overview of the HERE Mobile SDK UI Kit Primer example](#overview-of-the-here-mobile-sdk-ui-kit-primer-example)
 - [Adding HERE Mobile SDK UI Kit components](#adding-here-mobile-sdk-ui-kit-components)
 	- [Loading the map view](#loading-the-map-view)
 - [Using the WaypointList](#using-the-waypointlist)
 	- [Calculating the route](#calculating-the-route)
-- [Using TransportModePanel](#using-transportmodepanel)
-- [Implementing Route Details screen](#implementing-route-details-screen)
-- [Using RouteDescriptionList](#using-routedescriptionlist)
-- [Implementing Guidance screen](#implementing-guidance-screen)
-- [Using GuidanceManeuverView](#using-guidancemaneuverview)
+- [Using the TransportModePanel](#using-the-transportmodepanel)
+- [Implementing the route details screen](#implementing-the-route-details-screen)
+- [Using the RouteDescriptionList](#using-the-routedescriptionlist)
+- [Implementing the guidance screen](#implementing-the-guidance-screen)
+- [Using the GuidanceManeuverView](#using-the-guidancemaneuverview)
 - [Where to go from here?](#where-to-go-from-here)
 
-<!-- /TOC -->
+
 
 ## Why use the HERE Mobile SDK UI Kit?
 The HERE Mobile SDK UI Kit provides highly flexible and customizable User Interface building blocks that can be freely combined and arranged with your own UI components - with just a few lines of code.
@@ -35,7 +34,7 @@ The HERE Mobile SDK UI Kit builds upon optimized native platform code to fully s
 
 - **Flexible:** All HERE Mobile SDK UI Kit components can be independently integrated from each other - allowing extensible cutting-edge user interfaces. Imagine an interactive route summary mixed with customized planning options directly showing the route to your facility? Or presenting route maneuvers based on the user's traffic preference on the same view? No matter what kind of user flow you want to create, with the HERE Mobile SDK UI Kit it is now all in your hands - making the HERE Mobile SDK a more powerful development tool than ever before.
 
-With the HERE Mobile SDK UI Kit, realizing complete apps including comprehensive route planning and state-of-the-art guidance becomes a matter of minutes. While hiding the underlying complexity, you still have all the freedom you need to build unique and powerful apps - take a quick tour with our [HERE Mobile SDK UI Kit Primer](#getting-started-a-here-mobile-sdk-ui-kit-primer) to see a practical example.
+With the HERE Mobile SDK UI Kit, realizing complete apps including comprehensive route planning and state-of-the-art guidance becomes a matter of minutes. While hiding the underlying complexity, you still have all the freedom you need to build unique and powerful apps - take a quick tour with our [HERE Mobile SDK UI Kit Primer](#getting-started---a-here-mobile-sdk-ui-kit-primer) to see a practical example.
 
 Version 1.x of the HERE Mobile SDK UI Kit mainly focuses on enabling user experiences related to route planning and guidance. The HERE Mobile SDK UI Kit components are available for iOS and Android, supporting Java and Kotlin on Android, likewise Swift on iOS.
 
@@ -45,7 +44,7 @@ Version 1.x of the HERE Mobile SDK UI Kit mainly focuses on enabling user experi
 - You can also find:
   - Numerous [examples](../Guides_Examples/) accompanying this user guide
   - A HERE MSDK UI [demo app](../../MSDKUIDemo/) showcasing most features of the HERE Mobile SDK UI Kit in production-ready quality
-- Read the [HERE Mobile SDK UI Kit Primer](#getting-started-a-here-mobile-sdk-ui-kit-primer) chapter of this user guide.
+- Read the [HERE Mobile SDK UI Kit Primer](#getting-started---a-here-mobile-sdk-ui-kit-primer) chapter of this user guide.
 
 ## How to read this guide?
 In the following sections we will guide you through the most common usage scenarios and reveal tips and easy-to-understand guidelines to help you get the most out of using the HERE Mobile SDK UI Kit for Android. All _main_ sections can be read independent from each other, so you can skip any section and dive straight into the topics you are most interested in.
@@ -54,7 +53,7 @@ In the following sections we will guide you through the most common usage scenar
 
 All HERE Mobile SDK UI Kit components support initialization from layouts or by code (programmatically). For most examples, we recommend using layouts. As you can use HERE Mobile SDK UI Kit components like any other view or 3rd party custom component, the general workflow does not contain any specific treatment. If you are new to working with views and layouts under Android, we recommend to read Android's [Layout Guide](https://developer.android.com/guide/topics/ui/declaring-layout).
 
-## Getting Started - A HERE Mobile SDK UI Kit Primer
+## Getting started - A HERE Mobile SDK UI Kit Primer
 In this short tutorial, we are guiding you through your first application with the HERE Mobile SDK UI Kit. We are creating a small route planning application and provide reusable code snippets and guidelines on how to avoid the most common pitfalls. The resulting app is kept as simple as possible - feel free to modify or extend it based on your own taste and needs.
 
 >**Note:** For integrating the HERE Mobile SDK UI Kit framework, please have a look at our [Quick Start](QuickStart.md) to safely guide you through the first steps.
@@ -232,7 +231,7 @@ TransportMode transportMode = transportModePanel.getSelectedTransportMode();
 
 Note that we show a route on the map once route calculation is completed. In this example, we show only the first calculated route - even if more routes could be found.
 
-## Using TransportModePanel
+## Using the TransportModePanel
 As mentioned in the previous section, we want to calculate a route for a specific transportation mode. Therefore we have added the `TransportModePanel` HERE Mobile SDK UI Kit component. By default it shows all supported transportation modes:
 - `RouteOptions.TransportMode.CAR`
 - `RouteOptions.TransportMode.TRUCK`
@@ -297,7 +296,7 @@ The screenshot shows how the updated `MainActivity` could look like:
   <img src="./Images/primer_main.png" width="250"/>
 </p></center>
 
-## Implementing Route Details screen
+## Implementing the route details screen
 In the previous screen the user was able to calculate a route based on her or his waypoint selection and a suitable route mode. Now we want to show a summary for the found routes and their maneuvers on a new screen. As described above, we will show this in the `RouteDetailsActivity` of our HERE Mobile SDK UI Kit Primer example app. The `RouteDetailsActivity` controller holds two HERE Mobile SDK UI Kit components:
 - `RouteDescriptionList`: Shows all found routes as a summary in a scrollable list
 - `ManeuverList`: Shows all maneuvers belonging to a route
@@ -340,7 +339,7 @@ routeDescriptionList = findViewById(R.id.routeDescriptionList);
 maneuverList = findViewById(R.id.maneuverList);
 ```
 
-## Using RouteDescriptionList
+## Using the RouteDescriptionList
 Firstly, we use the routes calculated from the previous screens and check if we have routes to show. As we have pre-filled the `WaypointList`, we most likely will have at least one route to show. For example, if a route may not be found when crossing the ocean, you may want to let the `RouteDescriptionList` component indicate a localized message that _no routes_ are set:
 ```java
 outeDescriptionList.setRoutes(new ArrayList<>());
@@ -400,7 +399,7 @@ maneuverList.setOnItemClickedListener(new CustomRecyclerView.OnItemClickedListen
 });
 ```
 
-## Implementing Guidance screen
+## Implementing the guidance screen
 To finish our quick overview, we want to use the selected route from the previous step to start guidance along that route. For this, we only need one new HERE Mobile SDK UI Kit component:
 - `GuidanceManeuverView`
 
@@ -432,7 +431,7 @@ In addition, we also want to show a map during guidance to let the user orientat
 </LinearLayout>
 ```
 
-## Using GuidanceManeuverView
+## Using the GuidanceManeuverView
 The `GuidanceManeuverView` is a panel where information about the next maneuvers will appear. As with all HERE Mobile SDK UI Kit components, it is already configured, so you only need to pass in the current `GuidanceManeuverData`.
 
 This data is provided by the `GuidanceManeuverPresenter` helper class, that accepts a `GuidanceManeuverListener` to notify the listener once new `GuidanceManeuverData` is available:
@@ -476,7 +475,7 @@ Since we passed the `route` that should be used for guidance to the `GuidanceMan
 
 >**Note:** The current `guidanceManeuverData` can be `null`. If `null` is passed to `guidanceManeuverView.setManeuverData()`, then the panel will show a loading state - indicating that there is currently no data to show. In case you want to stick with the default behavior, you can simply pass `guidanceManeuverData` - regardless if it is `null` or not. If you want to change the default behavior, you can set a customized `GuidanceManeuverData` instance. Please note, before starting the trip, no initial maneuver data may be present. In such a case, the panel shows a suitable default instruction, like "Follow the route on the map", until the first maneuver data - whether `null` or not - is provided.
 
-Once we resume the `GuidanceManeuverPresenter`, we may also want to start guidance. For this example we are calling the helper method `GuidanceSimulator.getInstance().startGuidanceSimulation(route, map);`. Notice that you can use the HERE Mobile SDK to start _simulated_ guidance. For implementation details, please check the example's code. During the development phase, it is usually more convenient to simulate the navigation experience along the provided route - so that we can quickly see how the `GuidanceManeuverView` changes it's content in real-time.
+Once we resume the `GuidanceManeuverPresenter`, we may also want to start guidance. For this example we are calling the helper method `GuidanceSimulator.getInstance().startGuidanceSimulation(route, map);`. Notice that you can use the HERE Mobile SDK to start _simulated_ guidance. For implementation details, please check the example's code. During the development phase, it is usually more convenient to simulate the navigation experience along the provided route - so that we can quickly see how the `GuidanceManeuverView` changes its content in real-time.
 
 <center><p>
   <img src="Images/primer_guidance.png" width="250"/>

@@ -32,7 +32,8 @@ class ComponentSettingList : AppCompatActivity(), ListFragment.Listener {
         super.onCreate(savedInstanceState)
         settingMap = intent.getSerializableExtra(COMPONENT) as Setting<*>
         setContentView(R.layout.frame_layout)
-        supportFragmentManager.beginTransaction().add(R.id.frame_layout, ListFragment()).commit()
+        supportFragmentManager.findFragmentById(R.id.frame_layout) ?:
+            supportFragmentManager.beginTransaction().add(R.id.frame_layout, ListFragment()).commit()
         title = settingMap.getClassName().simpleName
     }
 

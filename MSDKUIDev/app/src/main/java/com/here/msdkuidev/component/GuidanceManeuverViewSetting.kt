@@ -187,7 +187,7 @@ class GuidanceManeuverViewSetting() : Setting<GuidanceManeuverView>() {
 
             "Distance gone vertical" to GuidanceManeuverViewSettingItem().apply {
                 state = com.here.msdkui.guidance.GuidanceManeuverView.State(GuidanceManeuverData(
-                    iconId, -2, info1, info2, bitmap)
+                    iconId, null, info1, info2, bitmap)
                 )
                 noDistance = true
                 direction = 1

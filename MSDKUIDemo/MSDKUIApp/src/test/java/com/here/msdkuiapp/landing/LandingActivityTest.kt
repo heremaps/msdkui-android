@@ -23,7 +23,8 @@ import com.here.android.mpa.guidance.VoiceCatalog
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.guidance.GuidanceRouteSelectionActivity
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
-import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
+import com.here.msdkuiapp.guidance.SingletonHelper.appPositioningManager
+import com.here.msdkuiapp.position.AppPositioningManager
 import com.here.msdkuiapp.routing.RoutingActivity
 import com.here.testutils.BaseTest
 import com.here.testutils.argumentCaptor
@@ -76,8 +77,8 @@ class LandingActivityTest : BaseTest() {
     @Test
     fun testBackPress() {
         val activity = activityController.create().visible().get()
-        val mockPositioningManager = mock(PositioningManager::class.java)
-        positioningManager = mockPositioningManager
+        val mockPositioningManager = mock(AppPositioningManager::class.java)
+        appPositioningManager = mockPositioningManager
         `when`(mockPositioningManager.isActive).thenReturn(true)
         activity.onBackPressed()
         verify(mockPositioningManager).stop()

@@ -23,7 +23,8 @@ import com.here.msdkuiapp.GuidanceContracts
 import com.here.msdkuiapp.base.BaseContract
 import com.here.msdkuiapp.common.AppActionBar
 import com.here.msdkuiapp.common.Provider
-import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
+import com.here.msdkuiapp.guidance.SingletonHelper.appPositioningManager
+import com.here.msdkuiapp.position.AppPositioningManager
 import com.here.testutils.BaseTest
 import com.here.testutils.anySafe
 import com.here.testutils.argumentCaptor
@@ -54,7 +55,7 @@ class GuidanceWaypointSelectionPresenterTest : BaseTest() {
     private lateinit var mockCoordinatorListener: GuidanceWaypointSelectionFragment.Listener
 
     @Mock
-    private lateinit var mockPositioningManager: PositioningManager
+    private lateinit var mockPositioningManager: AppPositioningManager
 
     @Before
     override fun setUp() {
@@ -65,7 +66,7 @@ class GuidanceWaypointSelectionPresenterTest : BaseTest() {
         `when`(mockContractImpl.getCurrentViewContract()).thenReturn(mockContract)
         presenter.onAttach(activityContext!!, mockContractImpl)
         presenter.coordinatorListener = mockCoordinatorListener
-        positioningManager = mockPositioningManager
+        appPositioningManager = mockPositioningManager
     }
 
     @Test
@@ -86,10 +87,9 @@ class GuidanceWaypointSelectionPresenterTest : BaseTest() {
 
     @Test
     fun testOnLocationReady() {
-        `when`(mockPositioningManager.isActive).thenReturn(false)
         presenter.onLocationReady()
         verify(mockContract).onUiUpdate(anyString(), eq(false), eq(false))
-        verify(mockPositioningManager).start(anySafe())
+        verify(mockPositioningManager).initPositioning(anySafe())
     }
 
     @Test

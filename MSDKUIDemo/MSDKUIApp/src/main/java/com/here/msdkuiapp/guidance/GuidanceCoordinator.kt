@@ -23,6 +23,7 @@ import com.here.android.mpa.guidance.NavigationManager
 import com.here.android.mpa.mapping.Map
 import com.here.android.mpa.routing.Route
 import com.here.android.mpa.routing.RouteResult
+import com.here.android.mpa.routing.RoutingError
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.base.BaseFragmentCoordinator
 import com.here.msdkuiapp.msdkuiApplication
@@ -41,7 +42,7 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
 
     internal val rerouteListener: NavigationManager.RerouteListener =
             object : NavigationManager.RerouteListener() {
-                override fun onRerouteEnd(rerouteResult: RouteResult) {
+                override fun onRerouteEnd(rerouteResult: RouteResult, error: RoutingError) {
                     rerouteResult.route?.run {
                         updateRoute(this)
                     }

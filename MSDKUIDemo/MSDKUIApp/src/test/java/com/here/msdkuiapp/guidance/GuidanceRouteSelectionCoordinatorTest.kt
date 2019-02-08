@@ -29,9 +29,10 @@ import com.here.msdkuiapp.R
 import com.here.msdkuiapp.base.BasePermissionActivity
 import com.here.msdkuiapp.common.routepreview.RoutePreviewFragment
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
-import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
+import com.here.msdkuiapp.guidance.SingletonHelper.appPositioningManager
 import com.here.msdkuiapp.isLocationOk
 import com.here.msdkuiapp.map.MapFragmentWrapper
+import com.here.msdkuiapp.position.AppPositioningManager
 import com.here.testutils.BaseTest
 import com.here.testutils.anySafe
 import com.here.testutils.argumentCaptor
@@ -57,7 +58,7 @@ class GuidanceRouteSelectionCoordinatorTest : BaseTest() {
     private lateinit var mockFragmentManager: FragmentManager
 
     @Mock
-    private lateinit var mockPositioningManager: PositioningManager
+    private lateinit var mockPositioningManager: AppPositioningManager
 
     @Mock
     private lateinit var mockMapFragment: MapFragmentWrapper
@@ -73,7 +74,7 @@ class GuidanceRouteSelectionCoordinatorTest : BaseTest() {
         MockitoAnnotations.initMocks(this)
         `when`(mockFragmentManager.beginTransaction()).thenReturn(mockFragmentTransaction)
         navigationManager = mock(NavigationManager::class.java)
-        positioningManager = mockPositioningManager
+        appPositioningManager = mockPositioningManager
         selectionCoordinator = GuidanceRouteSelectionCoordinator(mockContext, mockFragmentManager).apply {
             mapFragment = mockMapFragment
             `when`(mapFragment!!.map).thenReturn(mockMap)
@@ -122,7 +123,7 @@ class GuidanceRouteSelectionCoordinatorTest : BaseTest() {
     @Test
     fun testOnPositionAvailable() {
         selectionCoordinator.onPositionAvailable()
-        `when`(mockPositioningManager.hasValidPosition()).thenReturn(true)
+        `when`(mockPositioningManager.isValidPosition).thenReturn(true)
 
         verifyOnPositionAvailable()
     }
@@ -133,7 +134,7 @@ class GuidanceRouteSelectionCoordinatorTest : BaseTest() {
                 .thenReturn(mock(Fragment::class.java))
 
         // required for verifyOnPositionAvailable()
-        `when`(mockPositioningManager.hasValidPosition()).thenReturn(true)
+        `when`(mockPositioningManager.isValidPosition).thenReturn(true)
 
         selectionCoordinator.onBackPressed()
 

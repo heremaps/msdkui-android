@@ -23,7 +23,8 @@ import com.here.msdkui.guidance.GuidanceSpeedData
 import com.here.msdkui.guidance.GuidanceSpeedPresenter
 import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
-import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
+import com.here.msdkuiapp.guidance.SingletonHelper.appPositioningManager
+import com.here.msdkuiapp.position.AppPositioningManager
 
 import com.here.testutils.BaseTest
 import junit.framework.Assert.assertEquals
@@ -77,7 +78,7 @@ class GuidanceCurrentSpeedFragmentTest : BaseTest() {
     @Test
     fun testFragmentCreationWithNotInitializedPresenter() {
         navigationManager = mock(NavigationManager::class.java)
-        positioningManager = mock(PositioningManager::class.java)
+        appPositioningManager = mock(AppPositioningManager::class.java, RETURNS_DEEP_STUBS)
         guidanceCurrentSpeedFragment = GuidanceCurrentSpeedFragment.newInstance()
         addFrag(guidanceCurrentSpeedFragment, GuidanceSpeedLimitFragment::class.java.name)
         assertNotNull(guidanceCurrentSpeedFragment.presenter)

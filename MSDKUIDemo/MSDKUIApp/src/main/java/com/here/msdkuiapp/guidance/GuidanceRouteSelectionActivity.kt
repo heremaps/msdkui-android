@@ -20,6 +20,7 @@ import android.os.Bundle
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.base.BaseFragmentCoordinator
 import com.here.msdkuiapp.base.BasePermissionActivity
+import com.here.msdkuiapp.guidance.SingletonHelper.appPositioningManager
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
 
@@ -49,4 +50,9 @@ class GuidanceRouteSelectionActivity : BasePermissionActivity() {
         set(value) {
             guidanceRouteSelectionCoordinator = value as GuidanceRouteSelectionCoordinator
         }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        appPositioningManager?.reset()
+    }
 }

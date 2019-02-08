@@ -17,13 +17,16 @@
 package com.here.msdkuiapp.guidance
 
 import com.here.msdkuiapp.base.BaseFragmentCoordinator
+import com.here.msdkuiapp.guidance.SingletonHelper.appPositioningManager
+import com.here.msdkuiapp.position.AppPositioningManager
 import com.here.testutils.BaseTest
-import junit.framework.Assert
+import org.junit.Assert
 import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 import org.robolectric.Robolectric
@@ -74,11 +77,13 @@ class GuidanceRouteSelectionActivityTest : BaseTest() {
     @Test
     fun testBackPressWhenCoordinator() {
         Mockito.`when`(mockCoordinator.onBackPressed()).thenReturn(false)
+        SingletonHelper.appPositioningManager = mock(AppPositioningManager::class.java)
         val activity = activityController.get()
         with(activity) {
             coordinator = mockCoordinator as GuidanceRouteSelectionCoordinator
             onBackPressed()
         }
+        verify(appPositioningManager!!).reset()
         Mockito.verify(mockCoordinator).onBackPressed()
         Assert.assertTrue(activity.isFinishing)
     }

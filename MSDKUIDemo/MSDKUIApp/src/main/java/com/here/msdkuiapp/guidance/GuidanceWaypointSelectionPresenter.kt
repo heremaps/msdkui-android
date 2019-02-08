@@ -19,7 +19,6 @@ package com.here.msdkuiapp.guidance
 import android.widget.Toast
 import com.here.android.mpa.common.GeoCoordinate
 import com.here.android.mpa.common.MapEngine
-import com.here.android.mpa.common.PositioningManager
 import com.here.android.mpa.search.ErrorCode
 import com.here.android.mpa.search.Location
 import com.here.msdkui.routing.WaypointEntry
@@ -28,8 +27,8 @@ import com.here.msdkuiapp.R
 import com.here.msdkuiapp.base.BasePresenter
 import com.here.msdkuiapp.common.AppActionBar
 import com.here.msdkuiapp.common.Provider
-import com.here.msdkuiapp.guidance.SingletonHelper.positioningManager
-import com.here.msdkuiapp.position.PositionListener
+import com.here.msdkuiapp.guidance.SingletonHelper.appPositioningManager
+import com.here.msdkuiapp.position.AppPositioningManager
 import java.util.*
 
 /**
@@ -38,7 +37,6 @@ import java.util.*
 class GuidanceWaypointSelectionPresenter : BasePresenter<GuidanceContracts.GuidanceWaypointSelection>() {
 
     private val state = State()
-    private val positionListener = PositionListener()
     internal var provider = Provider()
     var coordinatorListener: GuidanceWaypointSelectionFragment.Listener? = null
 
@@ -86,7 +84,7 @@ class GuidanceWaypointSelectionPresenter : BasePresenter<GuidanceContracts.Guida
     }
 
     private fun handleDefaultCase() {
-        if (MapEngine.isInitialized() && positioningManager!!.hasValidPosition()) {
+        if (MapEngine.isInitialized() && appPositioningManager!!.isValidPosition) {
             contract?.onUiUpdate(getString(R.string.msdkui_app_guidance_waypoint_subtitle),
                     withColor = false, rightIconVisible = true)
         } else {
@@ -94,16 +92,7 @@ class GuidanceWaypointSelectionPresenter : BasePresenter<GuidanceContracts.Guida
         }
     }
 
-    private fun initPositioning() {
-        positioningManager?.run {
-            if (!isActive) {
-                start(PositioningManager.LocationMethod.GPS_NETWORK)
-            }
-            positionListener.listener = positionChangeListener
-        }
-    }
-
-    private val positionChangeListener = object : PositionListener.Listener {
+    private val positionChangeListener = object : AppPositioningManager.Listener {
         override fun onPositionAvailable() {
             updateUI()
             state.entry ?: coordinatorListener?.onPositionAvailable()
@@ -140,7 +129,7 @@ class GuidanceWaypointSelectionPresenter : BasePresenter<GuidanceContracts.Guida
      */
     fun onLocationReady() {
         contract?.onUiUpdate(getString(R.string.msdkui_app_userposition_search), false)
-        initPositioning()
+        appPositioningManager?.initPositioning(positionChangeListener)
     }
 
     private class State {

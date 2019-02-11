@@ -20,7 +20,6 @@ import com.here.android.mpa.common.GeoCoordinate
 import com.here.android.mpa.common.GeoPosition
 import com.here.android.mpa.common.PositioningManager
 import com.here.testutils.anySafe
-import com.here.testutils.argumentCaptor
 import org.hamcrest.CoreMatchers.`is`
 import org.junit.After
 import org.junit.Assert.assertFalse
@@ -67,7 +66,7 @@ class AppPositioningManagerTest {
 
     @Test
     fun testValidPosition() {
-        positioningManagerInstance.currentLocation = mock(GeoCoordinate::class.java)
+        positioningManagerInstance.customLocation = mock(GeoCoordinate::class.java)
         assertTrue(positioningManagerInstance.isValidPosition)
     }
 
@@ -92,7 +91,7 @@ class AppPositioningManagerTest {
         positioningManagerInstance.initPositioning(mockListener)
         verify(mockListener).onPositionAvailable()
 
-        positioningManagerInstance.currentLocation = mock(GeoCoordinate::class.java)
+        positioningManagerInstance.customLocation = mock(GeoCoordinate::class.java)
         positioningManagerInstance.initPositioning(mockListener)
         verify(mockListener, atLeastOnce()).onPositionAvailable()
 
@@ -109,10 +108,10 @@ class AppPositioningManagerTest {
 
     @Test
     fun testStop() {
-        positioningManagerInstance.currentLocation = mock(GeoCoordinate::class.java)
+        positioningManagerInstance.customLocation = mock(GeoCoordinate::class.java)
         positioningManagerInstance.stop()
         verify(sdkPositioningManagerMock).stop()
-        assertNull(positioningManagerInstance.currentLocation)
+        assertNull(positioningManagerInstance.customLocation)
     }
 
     @Test

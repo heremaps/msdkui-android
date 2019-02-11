@@ -38,15 +38,16 @@ class AppPositioningManager private constructor(): PositioningManager.OnPosition
     }
 
     /**
-     * Gets current location.
+     * Sets a custom location for your current location. if not set, default custom location will be
+     * your current location.
      */
-    var currentLocation: GeoCoordinate? = null
+    var customLocation: GeoCoordinate? = null
 
     /**
      * Determines if there is a valid position.
      */
     val isValidPosition
-    get() = currentLocation != null
+    get() = customLocation != null
 
     /**
      * Gets sdk positioning manager.
@@ -66,11 +67,11 @@ class AppPositioningManager private constructor(): PositioningManager.OnPosition
     var listener: Listener? = null
         set(value) {
             sdkPositioningManager?.run {
-                currentLocation?.run {
+                customLocation?.run {
                     value?.onPositionAvailable()
                 } ?: run {
                     if (hasValidPosition()) {
-                        currentLocation = position.coordinate
+                        customLocation = position.coordinate
                         value?.onPositionAvailable()
                     } else {
                         addListener(WeakReference(this@AppPositioningManager))
@@ -106,7 +107,7 @@ class AppPositioningManager private constructor(): PositioningManager.OnPosition
      * Reset the current location.
      */
     fun reset() {
-        currentLocation = null
+        customLocation = null
     }
 
     override fun onPositionFixChanged(method: PositioningManager.LocationMethod?, status: PositioningManager.LocationStatus?) {
@@ -115,7 +116,7 @@ class AppPositioningManager private constructor(): PositioningManager.OnPosition
 
     override fun onPositionUpdated(method: PositioningManager.LocationMethod?, position: GeoPosition?, isMapMatched: Boolean) {
         if (position?.isValid == true && sdkPositioningManager?.hasValidPosition() == true) {
-            currentLocation = position.coordinate
+            customLocation = position.coordinate
             listener?.onPositionAvailable()
             sdkPositioningManager?.removeListener(this@AppPositioningManager)
         }

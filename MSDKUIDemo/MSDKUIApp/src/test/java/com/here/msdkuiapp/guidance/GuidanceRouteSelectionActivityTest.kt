@@ -80,10 +80,9 @@ class GuidanceRouteSelectionActivityTest : BaseTest() {
         SingletonHelper.appPositioningManager = mock(AppPositioningManager::class.java)
         val activity = activityController.get()
         with(activity) {
-            coordinator = mockCoordinator as GuidanceRouteSelectionCoordinator
+            coordinator = mockCoordinator
             onBackPressed()
         }
-        verify(appPositioningManager!!).reset()
         Mockito.verify(mockCoordinator).onBackPressed()
         Assert.assertTrue(activity.isFinishing)
     }

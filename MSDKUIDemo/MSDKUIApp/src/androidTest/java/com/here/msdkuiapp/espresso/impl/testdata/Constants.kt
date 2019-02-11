@@ -52,6 +52,11 @@ object Constants {
     const val FROM_TO_PATTERN = "%1\$s"
 
     /**
+     * Pattern for ETA, which finds all letters of a given string
+     */
+    const val ETA_PATTERN = "[A-Za-z ]*"
+
+    /**
      * Map related coordinates
      */
     private const val GEO_COORDINATE_HERE_BERLIN_LAT = 52.53093

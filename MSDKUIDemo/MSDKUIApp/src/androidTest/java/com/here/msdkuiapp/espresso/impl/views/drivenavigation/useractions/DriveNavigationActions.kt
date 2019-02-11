@@ -28,9 +28,11 @@ import android.support.test.espresso.matcher.ViewMatchers.withParent
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import android.view.View
 import com.here.msdkuiapp.R
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.isNumeric
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
+import com.here.msdkuiapp.espresso.impl.testdata.Constants
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewDescription
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewSeeManoeuvresNaviBtn
@@ -42,6 +44,9 @@ import com.here.msdkuiapp.guidance.GuidanceRouteSelectionCoordinator
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.not
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 /**
  * Drive Navigation & Overview related actions
@@ -123,5 +128,44 @@ object DriveNavigationActions {
     fun tapOnSeeManeuversBtn(): GuidanceActions {
         onRouteOverviewSeeManoeuvresNaviBtn.check(matches(isDisplayed())).perform(click())
         return GuidanceActions
+    }
+
+    /**
+     * Converts text from a given string to time.
+     *
+     * @param view view which is currently being worked on.
+     * @param text string which will be converted.
+     */
+    fun getTimeFromText(view: View, text: String): LocalTime {
+        return LocalTime.parse(text, DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
+    }
+
+    /**
+     * Converts text from a given string to a float.
+     *
+     * @param view view which is currently being worked on.
+     * @param text string which will be converted.
+     */
+    fun getNumberFromText(view: View, text: String): Float {
+        return text.replace(Regex(Constants.ETA_PATTERN), "").toFloat()
+    }
+
+    /**
+     * Wait until ETA data is or is not being displayed
+     * 
+     * @param isDisplayed expect ETA to be displayed or not.
+     */
+    fun waitForETAData(isDisplayed: Boolean): DriveNavigationActions {
+        val noData = "--"
+        val etaData= listOf(R.id.eta, R.id.duration, R.id.distance)
+        for (i in etaData)
+            if (isDisplayed == false) {
+                onRootView.perform(waitForCondition(CoreMatchers.withIdAndText(
+                        i, noData), 250000, 2000))
+            } else {
+                onRootView.perform(CoreMatchers.waitForTextChange(
+                        withId(i), noData, 2000, 100))
+            }
+        return this
     }
 }

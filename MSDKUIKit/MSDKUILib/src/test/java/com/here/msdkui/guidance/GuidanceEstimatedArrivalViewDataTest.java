@@ -21,7 +21,6 @@ import android.os.Parcel;
 import com.here.RobolectricTest;
 import com.here.msdkui.common.DateFormatterUtil;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 

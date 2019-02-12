@@ -82,12 +82,18 @@ public class GuidanceEstimatedArrivalViewTest extends RobolectricTest {
     }
 
     @Test
+    public void setNullSetting() {
+        mEstimatedArrivalView.setEstimatedArrivalData(null);
+        assertThat(mEstimatedArrivalView.getVisibility(), is(View.GONE));
+    }
+
+    @Test
     public void testUIWhenDataIsInvalid() {
         final TextView eta = mEstimatedArrivalView.findViewById(R.id.eta);
         final TextView distance = mEstimatedArrivalView.findViewById(R.id.distance);
         final TextView duration = mEstimatedArrivalView.findViewById(R.id.duration);
 
-        GuidanceEstimatedArrivalViewData data = new GuidanceEstimatedArrivalViewData(new Date(-1L), -1, -1);
+        GuidanceEstimatedArrivalViewData data = new GuidanceEstimatedArrivalViewData(null, null, null);
         mEstimatedArrivalView.setEstimatedArrivalData(data);
 
         assertEquals(eta.getVisibility(), View.VISIBLE);

@@ -29,6 +29,7 @@ import java.util.Date;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNull;
 
 /**
  * Test for {@link GuidanceEstimatedArrivalViewData} class.
@@ -82,5 +83,18 @@ public class GuidanceEstimatedArrivalViewDataTest extends RobolectricTest {
         assertThat(createdFromParcel.getEta(), is(ETA_DATE));
         assertThat(createdFromParcel.getDistance(), is(DISTANCE));
         assertThat(createdFromParcel.getDuration(), is(DURATION));
+    }
+
+    @Test
+    public void testNullDataIsParcelable() {
+        GuidanceEstimatedArrivalViewData data = new GuidanceEstimatedArrivalViewData(null, null, null);
+        Parcel parcel = Parcel.obtain();
+        data.writeToParcel(parcel, data.describeContents());
+        parcel.setDataPosition(0);
+
+        GuidanceEstimatedArrivalViewData createdFromParcel = GuidanceEstimatedArrivalViewData.CREATOR.createFromParcel(parcel);
+        assertNull(createdFromParcel.getEta());
+        assertNull(createdFromParcel.getDistance());
+        assertNull(createdFromParcel.getDuration());
     }
 }

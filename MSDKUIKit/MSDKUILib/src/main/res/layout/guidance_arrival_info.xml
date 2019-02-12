@@ -24,12 +24,14 @@
         android:id="@+id/eta"
         style="?attr/guidanceArrivalTime"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_min="wrap"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/duration"
         style="?attr/guidanceArrivalDuration"
+        app:layout_constraintWidth_default="wrap"
         app:layout_constraintBaseline_toBaselineOf="@+id/dot"
         app:layout_constraintEnd_toStartOf="@+id/dot"
         app:layout_constraintStart_toStartOf="parent" />
@@ -37,6 +39,7 @@
     <TextView
         android:id="@+id/distance"
         style="?attr/guidanceArrivalDistance"
+        app:layout_constraintWidth_default="wrap"
         app:layout_constraintBaseline_toBaselineOf="@+id/dot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/dot" />

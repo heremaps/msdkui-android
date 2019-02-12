@@ -27,18 +27,19 @@ import kotlinx.android.synthetic.main.guidance_maneuver_view_hori.*
 class GuidanceManeuverView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val setting = intent.getParcelableExtra(Constant.ITEM) as GuidanceManeuverViewSetting.GuidanceManeuverViewSettingItem
+        val setting =
+            intent.getParcelableExtra(Constant.ITEM) as GuidanceManeuverViewSetting.GuidanceManeuverViewSettingItem
         setting.customTheme?.run {
             setTheme(this)
         }
-        title = "${javaClass.simpleName} ${setting.title.toLowerCase()}"
+        title = setting.title.toLowerCase()
         val resourceId = if (setting.subTitle == Constant.DEFAULT && setting.direction == 0) {
             R.layout.guidance_maneuver_view_hori
-        } else if(setting.subTitle == Constant.DEFAULT && setting.direction == 1) {
+        } else if (setting.subTitle == Constant.DEFAULT && setting.direction == 1) {
             R.layout.guidance_maneuver_view_ver
-        }  else if (setting.subTitle == Constant.FIX_VALUE && setting.direction == 0) {
+        } else if (setting.subTitle == Constant.FIX_VALUE && setting.direction == 0) {
             R.layout.guidance_maneuver_view_fix_hori
-        } else  {
+        } else {
             R.layout.guidance_maneuver_view_fix_ver
         }
 
@@ -46,8 +47,8 @@ class GuidanceManeuverView : AppCompatActivity() {
         setting.defaultView ?: run {
             guidanceManeuverView.viewState = setting.state
         }
-        if(setting.noDistance == true) {
-           guidanceManeuverView.findViewById<TextView>(R.id.distanceView).visibility = View.GONE
+        if (setting.noDistance == true) {
+            guidanceManeuverView.findViewById<TextView>(R.id.distanceView).visibility = View.GONE
         }
     }
 }

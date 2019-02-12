@@ -46,7 +46,7 @@ public class GuidanceEstimatedArrivalViewPresenter extends BaseGuidancePresenter
         updateEtaData(getEta(), getDestinationDistance(), getTimeToArrival());
     }
 
-    private void updateEtaData(Date date, long distance, int duration) {
+    private void updateEtaData(Date date, Long distance, Integer duration) {
         final GuidanceEstimatedArrivalViewData data = new GuidanceEstimatedArrivalViewData(date, distance, duration);
         notifyDataChanged(data);
     }

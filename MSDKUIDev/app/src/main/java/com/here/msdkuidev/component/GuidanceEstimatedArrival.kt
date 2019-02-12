@@ -28,24 +28,17 @@ class GuidanceEstimatedArrival : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val setting = intent.getParcelableExtra(ITEM) as GuidanceEstimatedArrivalSetting.GuidanceEstimatedArrivalSettingItem
-        setting.customTheme?.run { // for separate changes set multiple theme,
+        val setting =
+            intent.getParcelableExtra(ITEM) as GuidanceEstimatedArrivalSetting.GuidanceEstimatedArrivalSettingItem
+        setting.customTheme?.run {
+            // for separate changes set multiple theme,
             // in case of multiple changes, it should b created one theme having all changes
             setTheme(this)
         }
-        title = "${javaClass.simpleName} ${setting.title.toLowerCase()}"
-        val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.guidance_estimated_arrival else
+        title = setting.title.toLowerCase()
+        val resourceId = if (setting.subTitle == Constant.DEFAULT) R.layout.guidance_estimated_arrival else
             R.layout.guidance_estimated_arrival_fix
         setContentView(resourceId)
         guidanceEstimatedArrivalView.estimatedArrivalData = setting.guidanceEstimatedArrivalViewData
-        if(setting.withoutTimeOfArrival == true) {
-            guidanceEstimatedArrivalView.findViewById<TextView>(R.id.eta).text = "--"
-        }
-        if(setting.withoutDistance == true) {
-            guidanceEstimatedArrivalView.findViewById<TextView>(R.id.distance).text = "--"
-        }
-        if(setting.withoutDuration == true) {
-            guidanceEstimatedArrivalView.findViewById<TextView>(R.id.duration).text = "--"
-        }
     }
 }

@@ -19,6 +19,7 @@ package com.here.msdkui.guidance;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import android.support.annotation.NonNull;
 import com.here.msdkui.common.DateFormatterUtil;
 
 import java.util.Date;
@@ -29,11 +30,8 @@ import java.util.Date;
  * Use {@link GuidanceEstimatedArrivalViewPresenter} to get notified on new instances of this class during guidance.
  */
 public class GuidanceEstimatedArrivalViewData implements Parcelable {
-    /**
-     * Creator for parcelable.
-     */
-    public static final Parcelable.Creator<GuidanceEstimatedArrivalViewData> CREATOR =
-            new Parcelable.Creator<GuidanceEstimatedArrivalViewData>() {
+
+    public static final Creator<GuidanceEstimatedArrivalViewData> CREATOR = new Creator<GuidanceEstimatedArrivalViewData>() {
         @Override
         public GuidanceEstimatedArrivalViewData createFromParcel(Parcel in) {
             return new GuidanceEstimatedArrivalViewData(in);
@@ -44,7 +42,6 @@ public class GuidanceEstimatedArrivalViewData implements Parcelable {
             return new GuidanceEstimatedArrivalViewData[size];
         }
     };
-
     /**
      * ETA date.
      */
@@ -52,32 +49,68 @@ public class GuidanceEstimatedArrivalViewData implements Parcelable {
     /**
      * Distance to destination.
      */
-    private final long mDistance;
+    private final Long mDistance;
     /**
      * Remaining duration of the travel.
      */
-    private final int mDuration;
+    private final Integer mDuration;
 
     /**
      * Constructs a new instance using the provided icon and info strings.
      *
-     * @param etaDate
-     *         estimated time of arrival.
-     * @param distance
-     *         distance to the destination.
-     * @param duration
-     *         remaining duration of the travel.
+     * @param etaDate  estimated time of arrival.
+     * @param distance distance to the destination.
+     * @param duration remaining duration of the travel.
      */
-    public GuidanceEstimatedArrivalViewData(Date etaDate, long distance, int duration) {
-        mEta = new Date(etaDate.getTime());
+    public GuidanceEstimatedArrivalViewData(Date etaDate, Long distance, Integer duration) {
+        mEta = etaDate == null ? null : new Date(etaDate.getTime());
         mDistance = distance;
         mDuration = duration;
     }
 
-    GuidanceEstimatedArrivalViewData(Parcel in) {
-        mEta = (Date) in.readSerializable();
-        mDistance = in.readLong();
-        mDuration = in.readInt();
+    protected GuidanceEstimatedArrivalViewData(Parcel in) {
+        if (in.readByte() == 0) {
+            mEta = null;
+        } else {
+            mEta = new Date(in.readLong());
+        }
+        if (in.readByte() == 0) {
+            mDistance = null;
+        } else {
+            mDistance = in.readLong();
+        }
+        if (in.readByte() == 0) {
+            mDuration = null;
+        } else {
+            mDuration = in.readInt();
+        }
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (mEta == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(mEta.getTime());
+        }
+        if (mDistance == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(mDistance);
+        }
+        if (mDuration == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(mDuration);
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     /**
@@ -86,7 +119,7 @@ public class GuidanceEstimatedArrivalViewData implements Parcelable {
      * @return estimated time of arrival.
      */
     public Date getEta() {
-        return new Date(mEta.getTime());
+        return mEta == null ? null : (Date) mEta.clone();
     }
 
     /**
@@ -94,7 +127,7 @@ public class GuidanceEstimatedArrivalViewData implements Parcelable {
      *
      * @return a distance in meters.
      */
-    public long getDistance() {
+    public Long getDistance() {
         return mDistance;
     }
 
@@ -103,10 +136,11 @@ public class GuidanceEstimatedArrivalViewData implements Parcelable {
      *
      * @return remaining travel time in milliseconds.
      */
-    public int getDuration() {
+    public Integer getDuration() {
         return mDuration;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "GuidanceEstimatedArrivalViewData(mEta=" + DateFormatterUtil.format(this.mEta) +
@@ -126,11 +160,9 @@ public class GuidanceEstimatedArrivalViewData implements Parcelable {
     public boolean equals(Object obj1) {
         if (obj1 instanceof GuidanceEstimatedArrivalViewData) {
             final GuidanceEstimatedArrivalViewData obj2 = (GuidanceEstimatedArrivalViewData) obj1;
-            if (areEqual(this.mEta, obj2.mEta) &&
-                    this.mDistance == obj2.mDistance &&
-                    this.mDuration == obj2.mDuration) {
-                return true;
-            }
+            return areEqual(this.mEta, obj2.mEta) &&
+                    areEqual(this.mDistance, obj2.mDistance) &&
+                    areEqual(this.mDuration, obj2.mDuration);
         }
         return false;
     }
@@ -139,15 +171,4 @@ public class GuidanceEstimatedArrivalViewData implements Parcelable {
         return first == null ? second == null : first.equals(second);
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeSerializable(mEta);
-        dest.writeLong(mDistance);
-        dest.writeInt(mDuration);
-    }
 }

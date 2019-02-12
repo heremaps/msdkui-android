@@ -34,9 +34,6 @@ class GuidanceEstimatedArrivalSetting : Setting<GuidanceEstimatedArrival>() {
 
         // ui customization
         var customTheme: Int? = null
-        var withoutTimeOfArrival: Boolean? = null
-        var withoutDuration: Boolean? = null
-        var withoutDistance: Boolean? = null
 
         constructor() : super()
 
@@ -45,18 +42,12 @@ class GuidanceEstimatedArrivalSetting : Setting<GuidanceEstimatedArrival>() {
                     parcel.readParcelable(GuidanceEstimatedArrivalViewData::class.java.classLoader)
 
             customTheme = parcel.readValue(Int::class.java.classLoader) as? Int
-            withoutTimeOfArrival = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
-            withoutDuration = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
-            withoutDistance = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
         }
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
             super.writeToParcel(parcel, flags)
             parcel.writeParcelable(guidanceEstimatedArrivalViewData, flags)
             parcel.writeValue(customTheme)
-            parcel.writeValue(withoutTimeOfArrival)
-            parcel.writeValue(withoutDuration)
-            parcel.writeValue(withoutDistance)
         }
 
         override fun describeContents(): Int {
@@ -93,18 +84,23 @@ class GuidanceEstimatedArrivalSetting : Setting<GuidanceEstimatedArrival>() {
             },
 
             "Without time of arrival" to GuidanceEstimatedArrivalSettingItem().apply {
-                guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(Date(), distance, duration)
-                withoutTimeOfArrival = true
+                guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(null, distance, duration)
             },
 
             "Without duration" to GuidanceEstimatedArrivalSettingItem().apply {
-                guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(Date(), distance, duration)
-                withoutDuration = true
+                guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(Date(), distance, null)
             },
 
             "Without distance" to GuidanceEstimatedArrivalSettingItem().apply {
-                guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(Date(), distance, duration)
-                withoutDistance = true
+                guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(Date(), null, duration)
+            },
+
+            "Left aligned, red without properties" to GuidanceEstimatedArrivalSettingItem().apply {
+                customTheme = R.style.GuidanceEstimatedArrivalLeftAlignedRedGreen
+            },
+
+            "Right aligned, red without properties" to GuidanceEstimatedArrivalSettingItem().apply {
+                customTheme = R.style.GuidanceEstimatedArrivalRightAlignedRedGreen
             },
 
             "Left aligned, red, green" to GuidanceEstimatedArrivalSettingItem().apply {

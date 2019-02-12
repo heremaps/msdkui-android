@@ -324,11 +324,11 @@ public class BaseGuidancePresenter {
      *
      * @return time to arrive in seconds or -1 if time couldn't be retrieved.
      */
-    public int getTimeToArrival() {
+    public Integer getTimeToArrival() {
         final RouteTta routeTta = mNavigationManager.getTta(Route.TrafficPenaltyMode.OPTIMAL, false);
         if (routeTta != null) {
             return routeTta.getDuration();
         }
-        return -1;
+        return null;
     }
 }

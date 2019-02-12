@@ -795,15 +795,16 @@
     </style>
 
     <style name="GuidanceArrivalTime" parent="Base.TextAppearance.AppCompat.Headline">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">?attr/colorForeground</item>
         <item name="android:text">@string/msdkui_value_not_available</item>
+        <item name="android:textAlignment">center</item>
         <item name="android:textStyle">bold</item>
     </style>
 
     <style name="GuidanceArrivalDuration" parent="@style/TextAppearance.AppCompat.Body2">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingRight">8dp</item>
         <item name="android:textColor">?attr/colorForegroundSecondary</item>
@@ -811,7 +812,7 @@
     </style>
 
     <style name="GuidanceArrivalDistance" parent="@style/TextAppearance.AppCompat.Body2">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">?attr/colorForegroundSecondary</item>
         <item name="android:text">@string/msdkui_value_not_available</item>

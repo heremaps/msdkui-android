@@ -142,7 +142,7 @@ public class BaseGuidancePresenterTest extends RobolectricTest {
         RouteTta mockRouteTta = mock(RouteTta.class);
 
         when(mNavigationManager.getTta(Route.TrafficPenaltyMode.OPTIMAL, false)).thenReturn(null);
-        assertThat(mBaseGuidancePresenter.getTimeToArrival(), is(-1));
+        assertNull(mBaseGuidancePresenter.getTimeToArrival());
 
 
         when(mNavigationManager.getTta(Route.TrafficPenaltyMode.OPTIMAL, false)).thenReturn(mockRouteTta);

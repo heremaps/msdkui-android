@@ -16,11 +16,15 @@
 
 package com.here.msdkuiapp.guidance
 
+import android.content.res.Configuration
 import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.TEXT_ALIGNMENT_CENTER
+import android.view.View.TEXT_ALIGNMENT_VIEW_START
 import android.view.ViewGroup
+import android.widget.TextView
 import com.here.msdkui.guidance.GuidanceEstimatedArrivalViewData
 import com.here.msdkui.guidance.GuidanceEstimatedArrivalViewPresenter
 import com.here.msdkui.guidance.GuidanceEstimatedArrivalView
@@ -60,6 +64,9 @@ class GuidanceEstimatedArrivalFragment : Fragment(), GuidanceEstimatedArrivalVie
      * Creates Presenter for this [GuidanceEstimatedArrivalFragment].
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        view.findViewById<TextView>(R.id.eta).textAlignment =
+                if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) TEXT_ALIGNMENT_CENTER
+                else TEXT_ALIGNMENT_VIEW_START
         if (viewPresenter == null) {
             viewPresenter = GuidanceEstimatedArrivalViewPresenter(SingletonHelper.navigationManager).apply {
                 addListener(this@GuidanceEstimatedArrivalFragment)

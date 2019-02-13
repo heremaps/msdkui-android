@@ -37,16 +37,19 @@ import android.widget.DatePicker
 import android.widget.TimePicker
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onLandingScreenList
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
-import com.here.msdkuiapp.espresso.impl.mock.MockLocationData
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.DRIVE_NAVIGATION_ITEM
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_0
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ROUTE_PLANNER_ITEM
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation
 import com.here.msdkuiapp.espresso.impl.utils.ScreenOrientationUtils.Companion.getOrientation
 import com.here.msdkuiapp.espresso.impl.utils.ScreenOrientationUtils.Companion.setOrientation
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationBarView.onDriveNavigationBarTitleView
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationBarActions
+import com.here.msdkuiapp.espresso.impl.views.map.utils.MapData
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRoutePlannerTitleView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
+import com.here.android.mpa.common.GeoCoordinate
+import com.here.msdkuiapp.position.AppPositioningManager
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 
@@ -202,22 +205,21 @@ open class CoreActions {
     }
 
     /**
-     * Provides mocking location for testing
+     * Inject coordinates into PositioningManager.
+     *
+     * @param off add or remove current location. (Default: false)
+     * @param location a set of latitude and longitude. (Default: HERE Berlin)
      */
-    fun provideMockLocation(mockLocationData: MockLocationData): CoreActions {
-        mockLocationData.run {
-            if (isMocked) mockLocation!!.setMockLocation(testPlace)
-        }
-        return this
-    }
-
-    /**
-     * Stop mocking location service
-     */
-    fun stopMockLocation(mockLocationData: MockLocationData): CoreActions {
-        mockLocationData.run {
-            if (isMocked) mockLocation!!.stopMocking()
-        }
-        return this
+    fun setCurrentLocation(off: Boolean = false, locationData: MapData = GEO_POINT_0) {
+        val appPositioningManager = AppPositioningManager.getInstance()
+        val lat = locationData.lat
+        val long = locationData.lng
+            if (!off) {
+                appPositioningManager.run {
+                    customLocation = GeoCoordinate(lat, long)
+                }
+            } else {
+                appPositioningManager.reset()
+            }
     }
 }

@@ -26,8 +26,6 @@ import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.viewIsDisplayed
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForTextChange
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
-import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedUnit
-import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedValue
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardDistanceInfo
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardDurationInfo
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardEtaInfo
@@ -104,8 +102,9 @@ object GuidanceActions {
      * Check dashboard on guidance
      */
     fun checkGuidanceDashBoardInfo(): GuidanceActions {
-        onGuidanceDashBoardCurrentSpeedValue.check(matches(isDisplayed()))
-        onGuidanceDashBoardCurrentSpeedUnit.check(matches(isDisplayed()))
+        // FIXME:MSDKUI-1816
+        // onGuidanceDashBoardCurrentSpeedValue.check(matches(isDisplayed()))
+        // onGuidanceDashBoardCurrentSpeedUnit.check(matches(isDisplayed()))
         onGuidanceDashBoardEtaInfo.check(matches(isDisplayed()))
         onGuidanceDashBoardDistanceInfo.check(matches(isDisplayed()))
         onGuidanceDashBoardDurationInfo.check(matches(isDisplayed()))

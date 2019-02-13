@@ -147,7 +147,8 @@ object DriveNavigationActions {
      * @param text string which will be converted.
      */
     fun getNumberFromText(view: View, text: String): Float {
-        return text.replace(Regex(Constants.ETA_PATTERN), "").toFloat()
+        return text.replace(Regex(Constants.ETA_PATTERN), "")
+                .replace(Regex(","), ".").toFloat()
     }
 
     /**

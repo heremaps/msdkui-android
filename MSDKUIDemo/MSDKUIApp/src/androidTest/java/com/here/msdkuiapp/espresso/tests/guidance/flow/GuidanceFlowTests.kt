@@ -31,7 +31,7 @@ import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getText
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIdAndText
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
-import com.here.msdkuiapp.espresso.impl.testdata.Constants
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_5
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation.PORTRAIT
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers
@@ -52,25 +52,26 @@ import com.here.msdkuiapp.espresso.impl.views.guidance.useractions.GuidanceActio
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
 import com.here.msdkuiapp.espresso.tests.TestBase
-import org.junit.After
-import org.junit.FixMethodOrder
-import org.junit.Ignore
-import org.junit.Test
+import org.junit.*
 import org.junit.runners.MethodSorters
 
 /**
  * UI flow tests for guidance
  */
-@Ignore // FIXME: MSDKUI-1350
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
 
-    private val destination = Constants.GEO_POINT_1
-    private val destinationForShortSimulation = Constants.GEO_POINT_3
+    private val destination = GEO_POINT_5
+
+    @Before
+    fun prepare() {
+        // Set current location for guidance test
+        CoreActions().setCurrentLocation()
+    }
 
     @After
     fun tearDown() {
-        CoreActions().changeOrientation(PORTRAIT).stopMockLocation(mockLocationData)
+        CoreActions().changeOrientation(PORTRAIT)
     }
 
     /**
@@ -84,7 +85,6 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
             CoreActions().changeOrientation(it)
             //Enter Drive Navigation
             CoreActions().enterDriveNavigation()
-                    .provideMockLocation(mockLocationData)
             // Check drive navigation view opened
             DriveNavigationBarActions.waitForDriveNavigationView()
             // Check drive navigation view title
@@ -112,7 +112,6 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
             CoreActions().changeOrientation(it)
             //Enter Drive Navigation
             CoreActions().enterDriveNavigation()
-                    .provideMockLocation(mockLocationData)
             // Check drive navigation view opened
             DriveNavigationBarActions.waitForDriveNavigationView()
             // Check drive navigation view title
@@ -135,12 +134,11 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
     @Test
     @FunctionalUITest
     fun testGuidanceRouteOverview() {
+            //Enter Drive Navigation
+            CoreActions().enterDriveNavigation()
         enumValues<ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
             CoreActions().changeOrientation(it)
-            //Enter Drive Navigation
-            CoreActions().enterDriveNavigation()
-                    .provideMockLocation(mockLocationData)
             // Check drive navigation view opened
             DriveNavigationBarActions.waitForDriveNavigationView()
                     .waitForDestinationDisplayed()
@@ -158,14 +156,10 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
             // Check 'See manoeuvres' & 'Start navigation' button displayed
             onRouteOverviewSeeManoeuvresNaviBtn.check(matches(isDisplayed()))
             onRouteOverviewStartNaviBtn.check(matches(isDisplayed()))
-            //Wait for position fix
-            CoreActions().provideMockLocation(mockLocationData)
             // Returns back to the Drive Navigation
             CoreActions().pressBackButton()
             // Check drive navigation view opened
             DriveNavigationBarActions.waitForDriveNavigationView()
-            // Returns back to the Landing Screen
-            CoreActions().pressBackButton()
         }
     }
 
@@ -177,7 +171,6 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
     fun testSwitchOrientationWhileNavigationSimulationIsOngoing() {
         //Enter Drive Navigation
         CoreActions().enterDriveNavigation()
-                .provideMockLocation(mockLocationData)
         // Check drive navigation view opened
         DriveNavigationBarActions.waitForDriveNavigationView()
                 .waitForDestinationDisplayed()
@@ -211,12 +204,11 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
             CoreActions().changeOrientation(it)
             //Enter Drive Navigation
             CoreActions().enterDriveNavigation()
-                    .provideMockLocation(mockLocationData)
             // Check drive navigation view opened
             DriveNavigationBarActions.waitForDriveNavigationView()
                     .waitForDestinationDisplayed()
             // Tap anywhere on map view to define destination
-            MapActions.waitForMapViewEnabled().tap(destinationForShortSimulation)
+            MapActions.waitForMapViewEnabled().tap(destination)
             // Tap on tick to confirm the first waypoint selection
             DriveNavigationBarActions.waitForDestinationNotDisplayed()
             RoutePlannerBarActions.tapOnTickButton()
@@ -259,15 +251,13 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
     fun testCurrentStreetLabelInGuidanceSimulation() {
         //Enter Drive Navigation
         CoreActions().enterDriveNavigation()
-                .provideMockLocation(mockLocationData)
         // Check drive navigation view opened
         DriveNavigationBarActions.waitForDriveNavigationView()
                 .waitForDestinationDisplayed()
         // Tap anywhere on map view
-        MapActions.waitForMapViewEnabled().tap(destinationForShortSimulation)
+        MapActions.waitForMapViewEnabled().tap(destination)
         // Tap on tick to confirm the first waypoint selection
         DriveNavigationBarActions.waitForDestinationNotDisplayed()
-                .provideMockLocation(mockLocationData)
         RoutePlannerBarActions.tapOnTickButton()
         // Check guidance route overview view opened
         DriveNavigationBarActions.waitForRouteOverView()
@@ -296,22 +286,19 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
             CoreActions().changeOrientation(it)
             //Enter Drive Navigation
             CoreActions().enterDriveNavigation()
-                    .provideMockLocation(mockLocationData)
             // Check drive navigation view opened
             DriveNavigationBarActions.waitForDriveNavigationView()
                     .waitForDestinationDisplayed()
             // Tap destination on map
-            MapActions.waitForMapViewEnabled().tap(destinationForShortSimulation)
+            MapActions.waitForMapViewEnabled().tap(destination)
             // Tap on tick to confirm destination selection
             DriveNavigationBarActions.waitForDestinationNotDisplayed()
-                    .provideMockLocation(mockLocationData)
             RoutePlannerBarActions.tapOnTickButton()
             // Check guidance route overview view opened
             DriveNavigationBarActions.waitForRouteOverView()
                     .waitForGuidanceDescriptionDisplayed()
             // Start navigation simulation
             DriveNavigationActions.startNavigationSimulation()
-
             // Check next-next maneuver panel elements
             GuidanceActions.waitForGuidanceNextManeuverPanelDisplayed()
             DriveNavigationMatchers.checkNextManeuverPanelElementsDisplayed()
@@ -320,8 +307,7 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
             GuidanceActions.waitForGuidanceNextManeuverChanged(streetName)
             // Recheck next-next maneuver panel elements
             DriveNavigationMatchers.checkNextManeuverPanelElementsDisplayed()
-
-            // Stop the guidance with "X" button
+            // Stop guidance
             GuidanceActions.tapOnStopNavigationBtn()
         }
     }
@@ -337,15 +323,13 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
             CoreActions().changeOrientation(it)
             //Enter Drive Navigation
             CoreActions().enterDriveNavigation()
-                    .provideMockLocation(mockLocationData)
             // Check drive navigation view opened
             DriveNavigationBarActions.waitForDriveNavigationView()
                     .waitForDestinationDisplayed()
             // Tap anywhere on map view
-            MapActions.waitForMapViewEnabled().tap(destinationForShortSimulation)
+            MapActions.waitForMapViewEnabled().tap(destination)
             // Tap on tick to confirm the first waypoint selection
             DriveNavigationBarActions.waitForDestinationNotDisplayed()
-                    .provideMockLocation(mockLocationData)
             RoutePlannerBarActions.tapOnTickButton()
             // Check guidance route overview view opened
             DriveNavigationBarActions.waitForRouteOverView()
@@ -370,7 +354,7 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
             onView(withId(R.id.guidance_dashboard_view)).perform(swipeDown())
             DriveNavigationActions.waitGuidanceDashBoardCollapse()
             DriveNavigationMatchers.checkGuidanceDashBoardExpanded(false)
-            // Stop the guidance with "X" button
+            // Stop the guidance
             GuidanceActions.tapOnStopNavigationBtn()
         }
     }
@@ -378,6 +362,7 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
     /**
      * MSDKUI-1274: Display the current speed and speed limit warning
      */
+    @Ignore //FIXME: MSDKUI-1816
     @Test
     @FunctionalUITest
     fun testDisplayCurrentSpeedAndSpeedLimitWarning() {
@@ -388,15 +373,13 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
                 CoreActions().changeOrientation(it)
                 //Enter Drive Navigation
                 CoreActions().enterDriveNavigation()
-                        .provideMockLocation(mockLocationData)
                 // Check drive navigation view opened
                 DriveNavigationBarActions.waitForDriveNavigationView()
                         .waitForDestinationDisplayed()
                 // Tap destination point
-                MapActions.waitForMapViewEnabled().tap(destinationForShortSimulation)
+                MapActions.waitForMapViewEnabled().tap(destination)
                 // Tap on tick to confirm the first waypoint selection
                 DriveNavigationBarActions.waitForDestinationNotDisplayed()
-                        .provideMockLocation(mockLocationData)
                 RoutePlannerBarActions.tapOnTickButton()
                 // Check guidance route overview view opened
                 DriveNavigationBarActions.waitForRouteOverView()
@@ -427,15 +410,13 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
     fun testEstimatedArrivalInformation() {
         //Enter Drive Navigation
         CoreActions().enterDriveNavigation()
-                .provideMockLocation(mockLocationData)
         // Check drive navigation view opened
         DriveNavigationBarActions.waitForDriveNavigationView()
                 .waitForDestinationDisplayed()
         // Tap anywhere on map view
-        MapActions.waitForMapViewEnabled().tap(destinationForShortSimulation)
+        MapActions.waitForMapViewEnabled().tap(destination)
         // Tap on tick to confirm the first waypoint selection
         DriveNavigationBarActions.waitForDestinationNotDisplayed()
-                .provideMockLocation(mockLocationData)
         RoutePlannerBarActions.tapOnTickButton()
         // Check guidance route overview view opened
         DriveNavigationBarActions.waitForRouteOverView()

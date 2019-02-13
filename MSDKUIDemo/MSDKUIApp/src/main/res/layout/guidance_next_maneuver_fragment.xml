@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (C) 2017-2019 HERE Europe B.V.
+  ~ Copyright (C) 2017-2018 HERE Europe B.V.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -14,9 +14,13 @@
   ~ limitations under the License.
   -->
 
-<resources>
-    <item name="guidanceStreetLabelViewId" type="id" />
-    <item name="guidanceEstimatedArrivalViewId" type="id" />
-    <item name="guidanceCurrentSpeedViewId" type="id" />
-    <item name="guidanceSpeedLimitViewId" type="id" />
-</resources>
+<com.here.msdkui.guidance.GuidanceNextManeuverView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/guidanceNextManeuverViewId"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/guidance_next_maneuver_height"
+    android:visibility="gone"
+    android:layout_gravity="center_vertical"
+    android:gravity="center_vertical"
+    android:paddingStart="@dimen/guidance_next_maneuver_paddingstart"
+    android:paddingEnd="@dimen/contentMarginHuge"
+    />

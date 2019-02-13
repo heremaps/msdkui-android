@@ -205,7 +205,7 @@
 
         <attr name="guidanceNextManeuverPanel" format="reference" />
         <attr name="guidanceNextManeuverPanelLeftIcon" format="reference" />
-        <attr name="guidanceNextManeuverPanelText" format="reference" />
+        <attr name="guidanceNextManeuverPanelStreetText" format="reference" />
         <attr name="guidanceNextManeuverPanelDistanceText" format="reference" />
         <attr name="guidanceNextManeuverPanelDotText" format="reference" />
 

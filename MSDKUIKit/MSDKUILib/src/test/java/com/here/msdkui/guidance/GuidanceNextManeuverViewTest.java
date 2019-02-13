@@ -73,6 +73,50 @@ public class GuidanceNextManeuverViewTest extends RobolectricTest {
     }
 
     @Test
+    public void testUIInitWithDifferentConstructor() {
+
+        mGuidanceNextManeuverView = new GuidanceNextManeuverView(getApplicationContext(), null, 0, 0);
+        final TextView distanceView = mGuidanceNextManeuverView.findViewById(R.id.nextManeuverDistance);
+        final TextView streetName = mGuidanceNextManeuverView.findViewById(R.id.afterNextManeuverStreetName);
+        final View containerView = mGuidanceNextManeuverView.findViewById(R.id.afterNextManeuverContainer);
+
+        assertEquals(View.GONE, containerView.getVisibility());
+
+        GuidanceNextManeuverData data = createData(mIconId, mDistance, mStreetName);
+        // create proper data to see if everything is fine.
+        mGuidanceNextManeuverView.setNextManeuverData(data);
+
+        // since distance and icon are correct, panel should be visible.
+        assertEquals(containerView.getVisibility(), View.VISIBLE);
+
+        // verify the data
+        assertThat(distanceView.getText(), is(equalTo(mDistance + " m")));
+        assertThat(streetName.getText(), is(equalTo(mStreetName)));
+    }
+
+    @Test
+    public void testUIInitWithNullForFieldVisibility() {
+        final TextView distanceView = mGuidanceNextManeuverView.findViewById(R.id.nextManeuverDistance);
+        final TextView streetName = mGuidanceNextManeuverView.findViewById(R.id.afterNextManeuverStreetName);
+        final TextView dotView = mGuidanceNextManeuverView.findViewById(R.id.dot);
+        final View containerView = mGuidanceNextManeuverView.findViewById(R.id.afterNextManeuverContainer);
+
+        assertEquals(View.GONE, containerView.getVisibility());
+
+        GuidanceNextManeuverData data = createData(null, null, null);
+        // create proper data to see if everything is fine.
+        mGuidanceNextManeuverView.setNextManeuverData(data);
+
+        // since distance and icon are correct, panel should be visible.
+        assertEquals(containerView.getVisibility(), View.VISIBLE);
+
+        // verify the data
+        assertEquals(View.GONE, distanceView.getVisibility());
+        assertEquals(View.GONE, streetName.getVisibility());
+        assertEquals(View.GONE, dotView.getVisibility());
+    }
+
+    @Test
     public void testSettingDataReturnsTheSame() {
         GuidanceNextManeuverData data = createData(mIconId, mDistance, mStreetName);
         mGuidanceNextManeuverView.setNextManeuverData(data);
@@ -111,7 +155,7 @@ public class GuidanceNextManeuverViewTest extends RobolectricTest {
         assertNotNull(createdFromParcel.getSavedState());
     }
 
-    private GuidanceNextManeuverData createData(int iconId, long distance, String streetName) {
+    private GuidanceNextManeuverData createData(Integer iconId, Long distance, String streetName) {
         return new GuidanceNextManeuverData(iconId, distance, streetName);
     }
 }

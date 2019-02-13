@@ -153,7 +153,7 @@
 
         <item name="guidanceNextManeuverPanel">@style/GuidanceNextManeuverPanel</item>
         <item name="guidanceNextManeuverPanelLeftIcon">@style/GuidanceNextManeuverPanelLeftIcon</item>
-        <item name="guidanceNextManeuverPanelText">@style/GuidanceNextManeuverPanelText</item>
+        <item name="guidanceNextManeuverPanelStreetText">@style/GuidanceNextManeuverPanelStreetText</item>
         <item name="guidanceNextManeuverPanelDistanceText">@style/GuidanceNextManeuverPanelDistanceText</item>
         <item name="guidanceNextManeuverPanelDotText">@style/GuidanceNextManeuverPanelDotText</item>
 
@@ -828,9 +828,8 @@
 
     <!-- Guidance next maneuver panel -->
     <style name="GuidanceNextManeuverPanel">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">48dp</item>
-        <item name="android:background">?attr/colorBackgroundViewDark</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:visibility">gone</item>
     </style>
 
@@ -838,37 +837,34 @@
         <item name="android:layout_width">32dp</item>
         <item name="android:layout_height">32dp</item>
         <item name="android:contentDescription">@null</item>
-        <item name="android:layout_marginLeft">32dp</item>
-        <item name="android:layout_marginStart">32dp</item>
         <item name="android:tint">?attr/colorForegroundSecondaryLight</item>
-    </style>
-
-    <style name="GuidanceNextManeuverPanelText" parent="@style/TextAppearance.AppCompat.Subhead">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:textColor">?attr/colorForegroundSecondaryLight</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:ellipsize">end</item>
-        <item name="android:paddingRight">8dp</item>
-        <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
-        <item name="android:layout_marginEnd">@dimen/contentMarginHuge</item>
+        <item name="android:layout_marginEnd">20dp</item>
     </style>
 
     <style name="GuidanceNextManeuverPanelDistanceText" parent="@style/TextAppearance.AppCompat.Subhead">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">?attr/colorForegroundSecondaryLight</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:singleLine">true</item>
+        <item name="android:singleLine">false</item>
         <item name="android:ellipsize">end</item>
-        <item name="android:paddingRight">8dp</item>
-        <item name="android:layout_marginLeft">20dp</item>
     </style>
 
-    <style name="GuidanceNextManeuverPanelDotText" parent="@style/GuidanceNextManeuverPanelText">
+    <style name="GuidanceNextManeuverPanelDotText" parent="@style/GuidanceNextManeuverPanelStreetText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:paddingRight">8dp</item>
         <item name="android:text">@string/msdkui_bullet</item>
+        <item name="android:paddingStart">8dp</item>
+    </style>
+
+    <style name="GuidanceNextManeuverPanelStreetText" parent="@style/TextAppearance.AppCompat.Subhead">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">?attr/colorForegroundSecondaryLight</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
     <style name="GuidanceCurrentSpeedPanelText" parent="@style/TextAppearance.AppCompat.Headline">

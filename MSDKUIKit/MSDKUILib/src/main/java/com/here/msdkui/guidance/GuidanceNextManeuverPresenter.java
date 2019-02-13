@@ -75,7 +75,7 @@ public class GuidanceNextManeuverPresenter extends BaseGuidancePresenter {
             notifyDataChanged(null);
         } else {
             final GuidanceNextManeuverData data = new GuidanceNextManeuverData(getIcon(maneuver),
-                    maneuver.getDistanceFromPreviousManeuver(), getStreet(maneuver));
+                    (long) maneuver.getDistanceFromPreviousManeuver(), getStreet(maneuver));
             if (data.getIconId() == 0 || data.getDistance() < 0 ||
                     data.getDistance() > DistanceFormatterUtil.THOUSAND) {
                 notifyDataChanged(null);

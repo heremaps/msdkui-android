@@ -31,6 +31,7 @@ import android.widget.TextView;
 import com.here.msdkui.R;
 import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.DistanceFormatterUtil;
+import com.here.msdkui.common.ThemeUtil;
 
 /**
  * A view that shows maneuver after next maneuver.
@@ -104,6 +105,9 @@ public class GuidanceNextManeuverView extends BaseView {
 
     private void init(Context context) {
         LayoutInflater.from(context).inflate(R.layout.guidance_next_maneuver_panel, this);
+        if (getBackground() == null) {
+            setBackgroundColor(ThemeUtil.getColor(getContext(), R.attr.colorBackgroundViewDark));
+        }
     }
 
     /**
@@ -113,21 +117,41 @@ public class GuidanceNextManeuverView extends BaseView {
      *         {@link GuidanceNextManeuverData}
      */
     private void populate(GuidanceNextManeuverData nextManeuverData) {
-
-        final View afterNextManeuverContainer = (View) findViewById(R.id.afterNextManeuverContainer);
-        final TextView maneuverDistance = (TextView) findViewById(R.id.nextManeuverDistance);
-        final TextView streetName = (TextView) findViewById(R.id.afterNextManeuverStreetName);
-        final ImageView iconView = (ImageView) findViewById(R.id.nextManeuverIconView);
-
+        final View afterNextManeuverContainer = findViewById(R.id.afterNextManeuverContainer);
         if (nextManeuverData == null) {
             afterNextManeuverContainer.setVisibility(View.GONE);
+            return;
+        }
+        afterNextManeuverContainer.setVisibility(View.VISIBLE);
+
+        final ImageView iconView = findViewById(R.id.nextManeuverIconView);
+        if (nextManeuverData.getIconId() == null) {
+            iconView.setVisibility(View.GONE);
         } else {
-            afterNextManeuverContainer.setVisibility(View.VISIBLE);
+            iconView.setVisibility(View.VISIBLE);
             iconView.setImageResource(nextManeuverData.getIconId());
+        }
+
+        final TextView maneuverDistance = findViewById(R.id.nextManeuverDistance);
+        if (nextManeuverData.getDistance() == null) {
+            maneuverDistance.setVisibility(View.GONE);
+        } else {
+            maneuverDistance.setVisibility(View.VISIBLE);
             maneuverDistance.setText(DistanceFormatterUtil.format(
                     getContext(), nextManeuverData.getDistance(), mUnitSystem));
+        }
+
+        final TextView streetName = findViewById(R.id.afterNextManeuverStreetName);
+        if (nextManeuverData.getStreetName() == null) {
+            streetName.setVisibility(View.GONE);
+        } else {
+            streetName.setVisibility(View.VISIBLE);
             streetName.setText(nextManeuverData.getStreetName());
         }
+
+        final TextView dotView = findViewById(R.id.dot);
+        dotView.setVisibility(nextManeuverData.getDistance() == null || nextManeuverData.getStreetName() == null ?
+                View.GONE : View.VISIBLE);
     }
 
     /**
@@ -144,6 +168,8 @@ public class GuidanceNextManeuverView extends BaseView {
      * Sets {@link GuidanceNextManeuverData} which will be used to populate UI. Please note
      * setting null data will set the visibility of the layout to GONE. It can be useful to prevent
      * showing outdated or irrelevant data. for example, when the next maneuver is too far away.
+     * and setting null field in {@link GuidanceNextManeuverData} will put the respective child view's visibility
+     * to {@code View.GONE}.
      *
      * @param data
      *         the {@link GuidanceNextManeuverData} to populate the UI.
@@ -158,11 +184,11 @@ public class GuidanceNextManeuverView extends BaseView {
     @Override
     protected Parcelable onSaveInstanceState() {
         final Parcelable superState = super.onSaveInstanceState();
-        if (mNextManeuverData == null) {
-            return superState;
-        }
         final SavedState savedState = new SavedState(superState);
-        savedState.setStateToSave(this.mNextManeuverData);
+        savedState.mSaveDataEnabled = this.mSaveStateEnabled;
+        if (mSaveStateEnabled) {
+            savedState.setStateToSave(this.mNextManeuverData);
+        }
         return savedState;
     }
 
@@ -174,7 +200,10 @@ public class GuidanceNextManeuverView extends BaseView {
         }
         final SavedState savedState = (SavedState) state;
         super.onRestoreInstanceState(savedState.getSuperState());
-        setNextManeuverData(savedState.getSavedState());
+        setSaveStateEnabled(savedState.mSaveDataEnabled);
+        if (mSaveStateEnabled && savedState.getSavedState() != null) {
+            setNextManeuverData(savedState.getSavedState());
+        }
     }
 
     /**
@@ -195,6 +224,7 @@ public class GuidanceNextManeuverView extends BaseView {
                     }
                 };
         private GuidanceNextManeuverData mStateToSave;
+        private boolean mSaveDataEnabled;
 
         SavedState(Parcelable superState) {
             super(superState);
@@ -202,6 +232,7 @@ public class GuidanceNextManeuverView extends BaseView {
 
         SavedState(Parcel in) {
             super(in);
+            mSaveDataEnabled = in.readByte() == 1;
             if (in.readByte() != 0) {
                 mStateToSave = GuidanceNextManeuverData.CREATOR.createFromParcel(in);
             }
@@ -210,6 +241,7 @@ public class GuidanceNextManeuverView extends BaseView {
         @Override
         public void writeToParcel(Parcel out, int flags) {
             super.writeToParcel(out, flags);
+            out.writeByte(mSaveDataEnabled ? (byte) 1 : (byte) 0);
             if (mStateToSave == null) {
                 out.writeByte((byte) 0);
             } else {

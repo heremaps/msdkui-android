@@ -26,10 +26,8 @@ import android.os.Parcelable;
  * {@link GuidanceNextManeuverPresenter} can be used to get notified on new instances of this class during guidance.
  */
 public class GuidanceNextManeuverData implements Parcelable {
-    /**
-     * Creator for parcelable.
-     */
-    public static final Parcelable.Creator<GuidanceNextManeuverData> CREATOR = new Parcelable.Creator<GuidanceNextManeuverData>() {
+
+    public static final Creator<GuidanceNextManeuverData> CREATOR = new Creator<GuidanceNextManeuverData>() {
         @Override
         public GuidanceNextManeuverData createFromParcel(Parcel in) {
             return new GuidanceNextManeuverData(in);
@@ -44,11 +42,11 @@ public class GuidanceNextManeuverData implements Parcelable {
     /**
      * Icon id.
      */
-    private final int mIconId;
+    private final Integer mIconId;
     /**
      * Distance to the respective maneuver.
      */
-    private final long mDistance;
+    private final Long mDistance;
     /**
      * The name of the street after the maneuver.
      */
@@ -64,16 +62,46 @@ public class GuidanceNextManeuverData implements Parcelable {
      * @param streetName
      *         street name after the maneuver displayed on {@link GuidanceNextManeuverView}
      */
-    public GuidanceNextManeuverData(int iconId, long distance, String streetName) {
+    public GuidanceNextManeuverData(Integer iconId, Long distance, String streetName) {
         mIconId = iconId;
         mDistance = distance;
         mStreetName = streetName;
     }
 
-    GuidanceNextManeuverData(Parcel in) {
-        mIconId = in.readInt();
-        mDistance = in.readLong();
+    protected GuidanceNextManeuverData(Parcel in) {
+        if (in.readByte() == 0) {
+            mIconId = null;
+        } else {
+            mIconId = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            mDistance = null;
+        } else {
+            mDistance = in.readLong();
+        }
         mStreetName = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (mIconId == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(mIconId);
+        }
+        if (mDistance == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeLong(mDistance);
+        }
+        dest.writeString(mStreetName);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     /**
@@ -81,7 +109,7 @@ public class GuidanceNextManeuverData implements Parcelable {
      *
      * @return an icon resource id.
      */
-    public int getIconId() {
+    public Integer getIconId() {
         return mIconId;
     }
 
@@ -90,7 +118,7 @@ public class GuidanceNextManeuverData implements Parcelable {
      *
      * @return a distance in meters.
      */
-    public long getDistance() {
+    public Long getDistance() {
         return mDistance;
     }
 
@@ -122,28 +150,14 @@ public class GuidanceNextManeuverData implements Parcelable {
     public boolean equals(Object obj1) {
         if (obj1 instanceof GuidanceNextManeuverData) {
             final GuidanceNextManeuverData obj2 = (GuidanceNextManeuverData) obj1;
-            if (this.mIconId == obj2.mIconId &&
-                    this.mDistance == obj2.mDistance &&
-                    areEqual(this.mStreetName, obj2.mStreetName)) {
-                return true;
-            }
+            return areEqual(this.mIconId, obj2.mIconId) &&
+                    areEqual(this.mDistance, obj2.mDistance) &&
+                    areEqual(this.mStreetName, obj2.mStreetName);
         }
         return false;
     }
 
     private boolean areEqual(Object first, Object second) {
         return first == null ? second == null : first.equals(second);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(mIconId);
-        dest.writeLong(mDistance);
-        dest.writeString(mStreetName);
     }
 }

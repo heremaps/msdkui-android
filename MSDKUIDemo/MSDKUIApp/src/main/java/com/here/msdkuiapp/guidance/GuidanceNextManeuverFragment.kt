@@ -20,8 +20,11 @@ import android.support.v4.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import com.here.android.mpa.routing.Route
+import com.here.msdkui.guidance.GuidanceManeuverView
 import com.here.msdkui.guidance.GuidanceNextManeuverData
 import com.here.msdkui.guidance.GuidanceNextManeuverView
 import com.here.msdkui.guidance.GuidanceNextManeuverListener
@@ -52,10 +55,9 @@ class GuidanceNextManeuverFragment : Fragment(), GuidanceNextManeuverListener {
      * Creates Panel View.
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return GuidanceNextManeuverView(activity).apply {
-            id = R.id.guidanceNextManeuverViewId
-            unitSystem = Util.getLocaleUnit()
-        }
+        val view =  inflater.inflate(R.layout.guidance_next_maneuver_fragment, container, false) as GuidanceNextManeuverView
+        view.unitSystem =  Util.getLocaleUnit()
+        return view
     }
 
     /**
@@ -81,6 +83,12 @@ class GuidanceNextManeuverFragment : Fragment(), GuidanceNextManeuverListener {
     }
 
     override fun onDataChanged(data: GuidanceNextManeuverData?) {
-        (view as? GuidanceNextManeuverView)?.nextManeuverData = data
+        val nextManeuverView = (view as? GuidanceNextManeuverView)
+        data?.run {
+            nextManeuverView?.visibility = VISIBLE
+            nextManeuverView?.nextManeuverData = data
+        } ?: run {
+            nextManeuverView?.visibility = GONE
+        }
     }
 }

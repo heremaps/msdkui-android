@@ -26,6 +26,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNull;
 
 /**
  * Tests for {@link GuidanceNextManeuverData}.
@@ -77,5 +78,18 @@ public class GuidanceNextManeuverDataTest extends RobolectricTest {
         assertThat(createdFromParcel.getStreetName(), is(STREET_NAME));
         assertThat(createdFromParcel.getIconId(), is(ICON_ID));
         assertThat(createdFromParcel.getDistance(), is(DISTANCE));
+    }
+
+    @Test
+    public void testNullDataIsParcelable() {
+        GuidanceNextManeuverData data = new GuidanceNextManeuverData(null, null, null);
+        Parcel parcel = Parcel.obtain();
+        data.writeToParcel(parcel, data.describeContents());
+        parcel.setDataPosition(0);
+
+        GuidanceNextManeuverData createdFromParcel = GuidanceNextManeuverData.CREATOR.createFromParcel(parcel);
+        assertNull(createdFromParcel.getStreetName());
+        assertNull(createdFromParcel.getIconId());
+        assertNull(createdFromParcel.getDistance());
     }
 }

@@ -20,6 +20,7 @@ import android.os.Parcel;
 import android.support.v4.app.FragmentActivity;
 import android.view.AbsSavedState;
 
+import android.view.View;
 import com.here.RobolectricTest;
 import com.here.msdkui.R;
 
@@ -43,6 +44,18 @@ public class GuidanceStreetLabelViewTest extends RobolectricTest {
     public void setUp() {
         super.setUp();
         mGuidanceStreetLabelView = new GuidanceStreetLabelView(getApplicationContext());
+    }
+
+    @Test
+    public void testDifferentConstructorInvocation() {
+        mGuidanceStreetLabelView = new GuidanceStreetLabelView(getApplicationContext(), null, 0, 0);
+        assertNotNull(mGuidanceStreetLabelView);
+    }
+
+    @Test
+    public void testVisibilityOfView() {
+        mGuidanceStreetLabelView.setCurrentStreetData(null);
+        assertEquals(mGuidanceStreetLabelView.getVisibility(), View.GONE);
     }
 
     @Test
@@ -76,6 +89,15 @@ public class GuidanceStreetLabelViewTest extends RobolectricTest {
         parcel.setDataPosition(0);
 
         GuidanceStreetLabelView.SavedState createdFromParcel = GuidanceStreetLabelView.SavedState.CREATOR.createFromParcel(
+                parcel);
+        assertNotNull(createdFromParcel.getSavedState());
+
+        // test for null
+        savedState.setStateToSave(null);
+        savedState.writeToParcel(parcel, savedState.describeContents());
+        parcel.setDataPosition(0);
+
+        createdFromParcel = GuidanceStreetLabelView.SavedState.CREATOR.createFromParcel(
                 parcel);
         assertNotNull(createdFromParcel.getSavedState());
     }

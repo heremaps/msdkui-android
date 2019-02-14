@@ -21,7 +21,6 @@
         android:layout_height="match_parent">
 
     <com.here.msdkui.guidance.GuidanceStreetLabelView
-            android:background="@drawable/rectangle"
             android:id="@+id/guidanceStreetLabelView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

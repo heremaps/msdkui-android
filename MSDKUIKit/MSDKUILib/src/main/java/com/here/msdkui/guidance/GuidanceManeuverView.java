@@ -283,6 +283,7 @@ public class GuidanceManeuverView extends BaseView {
             setVisibility(GONE);
             return;
         }
+        setVisibility(View.VISIBLE);
         if (State.NO_DATA.equals(mState)) {
             populateDefaultState();
         } else if (State.UPDATING.equals(mState)) {

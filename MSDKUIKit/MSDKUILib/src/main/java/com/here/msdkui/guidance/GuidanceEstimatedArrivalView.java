@@ -99,6 +99,7 @@ public class GuidanceEstimatedArrivalView extends BaseView {
             setVisibility(View.GONE);
             return;
         }
+        setVisibility(View.VISIBLE);
         final TextView eta = (TextView) findViewById(R.id.eta);
         final TextView distance = (TextView) findViewById(R.id.distance);
         final TextView duration = (TextView) findViewById(R.id.duration);

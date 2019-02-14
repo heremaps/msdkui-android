@@ -31,26 +31,17 @@ class GuidanceNextManeuverViewSetting() : Setting<GuidanceNextManeuverView>() {
 
         // data customization
         var guidanceNextManeuverData: GuidanceNextManeuverData? = null
-        var defaultView: Boolean? = null
-        var withNoDistance : Boolean? = null
-        var customTheme : Int ? = null
 
         constructor() : super()
 
         constructor(parcel: Parcel) : super(parcel) {
             guidanceNextManeuverData =
                     parcel.readParcelable(GuidanceNextManeuverData::class.java.classLoader)
-            defaultView = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
-            withNoDistance = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
-            customTheme = parcel.readValue(Int::class.java.classLoader) as? Int
         }
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
             super.writeToParcel(parcel, flags)
             parcel.writeParcelable(guidanceNextManeuverData, flags)
-            parcel.writeValue(defaultView)
-            parcel.writeValue(withNoDistance)
-            parcel.writeValue(customTheme)
         }
 
         override fun describeContents(): Int {
@@ -74,24 +65,24 @@ class GuidanceNextManeuverViewSetting() : Setting<GuidanceNextManeuverView>() {
     }
 
     override fun getItems(context: Context): LinkedHashMap<String, SettingItem> {
+        val info1 = "Lindenstraße 110"
+        val iconId = R.drawable.ic_maneuver_icon_15
+        val distance:Long = 2000
         return linkedMapOf(
-            "Default view" to GuidanceNextManeuverViewSettingItem().apply {
-                defaultView = true
-            },
-            "Set null data" to GuidanceNextManeuverViewSettingItem().apply {
+            "Default view or set null data" to GuidanceNextManeuverViewSettingItem().apply {
                 guidanceNextManeuverData = null
             },
             "With all properties set" to GuidanceNextManeuverViewSettingItem().apply {
-                guidanceNextManeuverData = GuidanceNextManeuverData(R.drawable.ic_maneuver_icon_2, 5000, "Info1")
+                guidanceNextManeuverData = GuidanceNextManeuverData(iconId, distance, info1)
             },
-
             "Without maneuver icon" to GuidanceNextManeuverViewSettingItem().apply {
-                guidanceNextManeuverData = GuidanceNextManeuverData(0, 2000, "Info1")
-                customTheme = R.style.GuidanceNextManeuverViewWithoutIcon
+                guidanceNextManeuverData = GuidanceNextManeuverData(null, distance, info1)
+            },
+            "Without street" to GuidanceNextManeuverViewSettingItem().apply {
+                guidanceNextManeuverData = GuidanceNextManeuverData(iconId, distance, null)
             },
             "Without distance" to GuidanceNextManeuverViewSettingItem().apply {
-                guidanceNextManeuverData = GuidanceNextManeuverData(R.drawable.ic_maneuver_icon_2, 0, "Info1")
-                withNoDistance = true
+                guidanceNextManeuverData = GuidanceNextManeuverData(iconId, null, info1)
             }
         )
     }

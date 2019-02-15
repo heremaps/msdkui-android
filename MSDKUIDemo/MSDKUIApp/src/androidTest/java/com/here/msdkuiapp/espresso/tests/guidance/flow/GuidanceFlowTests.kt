@@ -38,6 +38,7 @@ import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavi
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers.checkCurrentStreetViewValueChanged
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers.checkManeuverPanelData
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers.checkManeuverPanelIsDestinationReached
+import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers.waitForETAChanged
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationBarView.onDriveNavigationBarTitleView
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewSeeManoeuvresNaviBtn
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewStartNaviBtn
@@ -51,8 +52,8 @@ import com.here.msdkuiapp.espresso.impl.views.guidance.useractions.GuidanceActio
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
 import com.here.msdkuiapp.espresso.tests.TestBase
-import org.junit.FixMethodOrder
 import org.junit.After
+import org.junit.FixMethodOrder
 import org.junit.Ignore
 import org.junit.Test
 import org.junit.runners.MethodSorters
@@ -62,7 +63,7 @@ import org.junit.runners.MethodSorters
  */
 @Ignore // FIXME: MSDKUI-1350
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
+class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
 
     private val destination = Constants.GEO_POINT_1
     private val destinationForShortSimulation = Constants.GEO_POINT_3
@@ -417,4 +418,35 @@ class GuidanceFlowTests: TestBase<SplashActivity>(SplashActivity::class.java)  {
         }
     }
 
+
+    /**
+     * MSDKUI-1476: Check Estimated arrival data during guidance
+     */
+    @Test
+    @FunctionalUITest
+    fun testEstimatedArrivalInformation() {
+        //Enter Drive Navigation
+        CoreActions().enterDriveNavigation()
+                .provideMockLocation(mockLocationData)
+        // Check drive navigation view opened
+        DriveNavigationBarActions.waitForDriveNavigationView()
+                .waitForDestinationDisplayed()
+        // Tap anywhere on map view
+        MapActions.waitForMapViewEnabled().tap(destinationForShortSimulation)
+        // Tap on tick to confirm the first waypoint selection
+        DriveNavigationBarActions.waitForDestinationNotDisplayed()
+                .provideMockLocation(mockLocationData)
+        RoutePlannerBarActions.tapOnTickButton()
+        // Check guidance route overview view opened
+        DriveNavigationBarActions.waitForRouteOverView()
+                .waitForGuidanceDescriptionDisplayed()
+        // Start navigation simulation
+        DriveNavigationActions.startNavigationSimulation()
+        // Wait for ETA to start displaying
+        DriveNavigationActions.waitForETAData(true)
+        // Wait for ETA to change during guidance
+        onRootView.perform(waitForETAChanged())
+        // Wait for ETA to not display (guidance to finish)
+        DriveNavigationActions.waitForETAData(false)
+    }
 }

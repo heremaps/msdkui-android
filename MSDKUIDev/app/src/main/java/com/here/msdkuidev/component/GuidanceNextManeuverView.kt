@@ -27,19 +27,12 @@ import kotlinx.android.synthetic.main.guidance_next_maneuver_view.*
 class GuidanceNextManeuverView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val setting = intent.getParcelableExtra(Constant.ITEM) as GuidanceNextManeuverViewSetting.GuidanceNextManeuverViewSettingItem
-        setting.customTheme?.run {
-            setTheme(this)
-        }
-        title = "${javaClass.simpleName} ${setting.title.toLowerCase()}"
-        val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.guidance_next_maneuver_view else
+        val setting =
+            intent.getParcelableExtra(Constant.ITEM) as GuidanceNextManeuverViewSetting.GuidanceNextManeuverViewSettingItem
+        title = setting.title.toLowerCase()
+        val resourceId = if (setting.subTitle == Constant.DEFAULT) R.layout.guidance_next_maneuver_view else
             R.layout.guidance_next_maneuver_view_fix
         setContentView(resourceId)
-        setting.defaultView ?: run {
-            guidanceNextManeuverView.nextManeuverData = setting.guidanceNextManeuverData
-        }
-        if(setting.withNoDistance == true) {
-            guidanceNextManeuverView.findViewById<TextView>(R.id.nextManeuverDistance).visibility = View.GONE
-        }
+        guidanceNextManeuverView.nextManeuverData = setting.guidanceNextManeuverData
     }
 }

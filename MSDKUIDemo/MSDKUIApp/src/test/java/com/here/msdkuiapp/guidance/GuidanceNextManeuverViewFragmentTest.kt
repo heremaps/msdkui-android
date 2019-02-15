@@ -16,6 +16,7 @@
 
 package com.here.msdkuiapp.guidance
 
+import android.view.View
 import com.here.android.mpa.guidance.NavigationManager
 import com.here.android.mpa.routing.Route
 import com.here.msdkui.guidance.GuidanceNextManeuverData
@@ -24,8 +25,10 @@ import com.here.msdkui.guidance.GuidanceNextManeuverPresenter
 import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
 import com.here.testutils.BaseTest
-import junit.framework.Assert.assertEquals
-import junit.framework.Assert.assertNotNull
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -65,6 +68,14 @@ class GuidanceNextManeuverViewFragmentTest : BaseTest() {
     }
 
     @Test
+    fun testAttachingPresenter() {
+        guidanceNextManeuverFragment.presenter = null
+        addFrag(guidanceNextManeuverFragment,
+                GuidanceNextManeuverFragment::class.java.name)
+        assertNotNull(guidanceNextManeuverFragment.presenter)
+    }
+
+    @Test
     fun testSetterGetterRoute() {
         guidanceNextManeuverFragment.route = mock(Route::class.java)
         assertNotNull(guidanceNextManeuverFragment.route)
@@ -97,5 +108,7 @@ class GuidanceNextManeuverViewFragmentTest : BaseTest() {
         val data = mock(GuidanceNextManeuverData::class.java)
         guidanceNextManeuverFragment.onDataChanged(data)
         assertEquals((guidanceNextManeuverFragment.view as GuidanceNextManeuverView).nextManeuverData, data)
+        guidanceNextManeuverFragment.onDataChanged(null)
+        assertThat((guidanceNextManeuverFragment.view as GuidanceNextManeuverView).visibility, `is`(View.GONE))
     }
 }

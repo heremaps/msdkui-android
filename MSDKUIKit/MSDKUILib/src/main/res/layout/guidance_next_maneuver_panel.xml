@@ -15,38 +15,47 @@
   ~ limitations under the License.
   -->
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/afterNextManeuverContainer"
-    style="?attr/guidanceNextManeuverPanel">
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/afterNextManeuverContainer"
+        style="?attr/guidanceNextManeuverPanel">
 
     <ImageView
-        android:id="@+id/nextManeuverIconView"
-        style="?attr/guidanceNextManeuverPanelLeftIcon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+            android:id="@+id/nextManeuverIconView"
+            style="?attr/guidanceNextManeuverPanelLeftIcon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/nextManeuverDistance"
+            tools:ignore="ContentDescription"/>
 
     <TextView
-        android:id="@+id/nextManeuverDistance"
-        style="?attr/guidanceNextManeuverPanelDistanceText"
-        app:layout_constraintLeft_toRightOf="@id/nextManeuverIconView" />
+            android:id="@+id/nextManeuverDistance"
+            style="?attr/guidanceNextManeuverPanelDistanceText"
+            app:layout_constraintWidth_default="wrap"
+            app:layout_constraintWidth_min="wrap"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/nextManeuverIconView"
+            app:layout_constraintEnd_toStartOf="@+id/dot"/>
 
     <TextView
-        android:id="@+id/dot"
-        style="?attr/guidanceNextManeuverPanelDotText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/nextManeuverDistance"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/dot"
+            style="?attr/guidanceNextManeuverPanelDotText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/nextManeuverDistance"
+            app:layout_constraintEnd_toStartOf="@+id/afterNextManeuverStreetName"
+            app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/afterNextManeuverStreetName"
-        style="?attr/guidanceNextManeuverPanelText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/dot"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/afterNextManeuverStreetName"
+            style="?attr/guidanceNextManeuverPanelStreetText"
+            app:layout_constraintWidth_default="wrap"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/dot"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

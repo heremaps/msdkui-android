@@ -24,6 +24,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.TextView;
 
 import com.here.android.mpa.guidance.NavigationManager;
@@ -44,8 +45,7 @@ public class GuidanceEstimatedArrivalView extends BaseView {
     /**
      * Constructs a new instance.
      *
-     * @param context
-     *         the required {@link Context}.
+     * @param context the required {@link Context}.
      */
     public GuidanceEstimatedArrivalView(Context context) {
         this(context, null);
@@ -54,11 +54,8 @@ public class GuidanceEstimatedArrivalView extends BaseView {
     /**
      * Constructs a new instance.
      *
-     * @param context
-     *         the required {@link Context}.
-     *
-     * @param attrs
-     *         a set of attributes.
+     * @param context the required {@link Context}.
+     * @param attrs   a set of attributes.
      */
     public GuidanceEstimatedArrivalView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
@@ -67,14 +64,9 @@ public class GuidanceEstimatedArrivalView extends BaseView {
     /**
      * Constructs a new instance.
      *
-     * @param context
-     *         the required {@link Context}.
-     *
-     * @param attrs
-     *         a set of attributes.
-     *
-     * @param defStyleAttr
-     *         a default style attribute.
+     * @param context      the required {@link Context}.
+     * @param attrs        a set of attributes.
+     * @param defStyleAttr a default style attribute.
      */
     public GuidanceEstimatedArrivalView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -84,23 +76,16 @@ public class GuidanceEstimatedArrivalView extends BaseView {
     /**
      * Constructs a new instance.
      *
-     * @param context
-     *         the required {@link Context}.
-     *
-     * @param attrs
-     *         a set of attributes.
-     *
-     * @param defStyleAttr
-     *         a default style attribute.
-     *
-     * @param defStyleRes
-     *         a default style resource.
-     *
-     * Requires Lollipop (API level 21).
+     * @param context      the required {@link Context}.
+     * @param attrs        a set of attributes.
+     * @param defStyleAttr a default style attribute.
+     * @param defStyleRes  a default style resource.
+     *                     <p>
+     *                     Requires Lollipop (API level 21).
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public GuidanceEstimatedArrivalView(Context context, @Nullable AttributeSet attrs, int defStyleAttr,
-            int defStyleRes) {
+                                        int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context);
     }
@@ -110,21 +95,26 @@ public class GuidanceEstimatedArrivalView extends BaseView {
     }
 
     private void populate(@Nullable GuidanceEstimatedArrivalViewData data) {
+        if (data == null) {
+            setVisibility(View.GONE);
+            return;
+        }
+        setVisibility(View.VISIBLE);
         final TextView eta = (TextView) findViewById(R.id.eta);
         final TextView distance = (TextView) findViewById(R.id.distance);
         final TextView duration = (TextView) findViewById(R.id.duration);
         final String etaText =
-                data == null || data.getEta().equals(NavigationManager.INVALID_ETA_DATE) ?
+                data.getEta() == null || data.getEta().equals(NavigationManager.INVALID_ETA_DATE) ?
                         getContext().getString(R.string.msdkui_value_not_available) :
                         DateFormatterUtil.format(getContext(), data.getEta());
         eta.setText(etaText);
 
-        final String distanceText = data == null || data.getDistance() < 0 ?
+        final String distanceText = data.getDistance() == null || data.getDistance() < 0 ?
                 getContext().getString(R.string.msdkui_value_not_available) :
                 DistanceFormatterUtil.formatDistance(getContext(), data.getDistance(), mUnitSystem);
         distance.setText(distanceText);
 
-        final String durationText = data == null || data.getDuration() < 0 ?
+        final String durationText = data.getDuration() == null || data.getDuration() < 0 ?
                 getContext().getString(R.string.msdkui_value_not_available) :
                 TimeFormatterUtil.format(getContext(), data.getDuration());
         duration.setText(durationText);
@@ -135,15 +125,17 @@ public class GuidanceEstimatedArrivalView extends BaseView {
      *
      * @return data used to populate this view.
      */
-    @Nullable public GuidanceEstimatedArrivalViewData getEstimatedArrivalData() {
+    @Nullable
+    public GuidanceEstimatedArrivalViewData getEstimatedArrivalData() {
         return mData;
     }
 
     /**
-     * Sets the @{link Date} of estimated arrival.
+     * Sets the @{link Date} of estimated arrival. please note that setting {@code null} data will set the view
+     * visibility to {@code View.GONE} and setting null field in {@link GuidanceEstimatedArrivalViewData} will
+     * put the respective child view's visibility to {@code View.GONE}.
      *
-     * @param data
-     *         the data to set.
+     * @param data the data to set.
      */
     public void setEstimatedArrivalData(@Nullable GuidanceEstimatedArrivalViewData data) {
         mData = data;
@@ -157,7 +149,10 @@ public class GuidanceEstimatedArrivalView extends BaseView {
             return superState;
         }
         final SavedState savedState = new SavedState(superState);
-        savedState.setStateToSave(this.mData);
+        savedState.mSaveDataEnabled = this.mSaveStateEnabled;
+        if (mSaveStateEnabled) {
+            savedState.setStateToSave(this.mData);
+        }
         return savedState;
     }
 
@@ -169,7 +164,10 @@ public class GuidanceEstimatedArrivalView extends BaseView {
         }
         final SavedState savedState = (SavedState) state;
         super.onRestoreInstanceState(savedState.getSuperState());
-        setEstimatedArrivalData(savedState.getSavedState());
+        setSaveStateEnabled(savedState.mSaveDataEnabled);
+        if (mSaveStateEnabled && savedState.getSavedState() != null) {
+            setEstimatedArrivalData(savedState.getSavedState());
+        }
     }
 
     /**
@@ -190,6 +188,7 @@ public class GuidanceEstimatedArrivalView extends BaseView {
                     }
                 };
         private GuidanceEstimatedArrivalViewData mStateToSave;
+        private boolean mSaveDataEnabled;
 
         SavedState(Parcelable superState) {
             super(superState);
@@ -197,6 +196,7 @@ public class GuidanceEstimatedArrivalView extends BaseView {
 
         SavedState(Parcel in) {
             super(in);
+            mSaveDataEnabled = in.readByte() == 1;
             if (in.readByte() != 0) {
                 mStateToSave = GuidanceEstimatedArrivalViewData.CREATOR.createFromParcel(in);
             }
@@ -205,6 +205,7 @@ public class GuidanceEstimatedArrivalView extends BaseView {
         @Override
         public void writeToParcel(Parcel out, int flags) {
             super.writeToParcel(out, flags);
+            out.writeByte(mSaveDataEnabled ? (byte) 1 : (byte) 0);
             if (mStateToSave == null) {
                 out.writeByte((byte) 0);
             } else {
@@ -226,8 +227,7 @@ public class GuidanceEstimatedArrivalView extends BaseView {
         /**
          * Sets the state to be saved.
          *
-         * @param state
-         *         an instance of {@link GuidanceEstimatedArrivalViewData} to be saved.
+         * @param state an instance of {@link GuidanceEstimatedArrivalViewData} to be saved.
          */
         void setStateToSave(@Nullable GuidanceEstimatedArrivalViewData state) {
             this.mStateToSave = state;

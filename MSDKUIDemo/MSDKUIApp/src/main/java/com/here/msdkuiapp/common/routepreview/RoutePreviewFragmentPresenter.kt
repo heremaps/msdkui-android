@@ -62,7 +62,7 @@ class RoutePreviewFragmentPresenter() : BasePresenter<GuidanceContracts.RoutePre
     fun setWaypoint(destination: WaypointEntry, withCurrentPosition: Boolean = true) {
         state.destination = destination
         if (withCurrentPosition.not()) return
-        appPositioningManager?.currentLocation?.run {
+        appPositioningManager?.customLocation?.run {
             state.cordsList.add(provider.providesRouteWaypoint(this))
         }
         state.cordsList.add(destination.routeWaypoint)

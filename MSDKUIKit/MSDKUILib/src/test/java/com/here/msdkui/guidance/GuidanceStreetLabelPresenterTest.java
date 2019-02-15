@@ -27,10 +27,11 @@ import org.junit.Test;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
 import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.powermock.api.mockito.PowerMockito.when;
 
 /**
  * Test for {@link GuidanceStreetLabelPresenter} class.
@@ -56,7 +57,7 @@ public class GuidanceStreetLabelPresenterTest extends RobolectricTest {
         when(mNavigationManager.getNextManeuver()).thenReturn(maneuver);
         when(mNavigationManager.getNextManeuverDistance()).thenReturn(200L);
         mGuidanceStreetLabelPresenter.handleNewInstructionEvent();
-        verify(listener).onDataChanged(any());
+        verify(listener, times(2)).onDataChanged(any());
     }
 
     @Test
@@ -67,7 +68,7 @@ public class GuidanceStreetLabelPresenterTest extends RobolectricTest {
         when(mNavigationManager.getNextManeuver()).thenReturn(maneuver);
         when(mNavigationManager.getNextManeuverDistance()).thenReturn(200L);
         mGuidanceStreetLabelPresenter.handleManeuverEvent();
-        verify(listener).onDataChanged(any());
+        verify(listener, times(2)).onDataChanged(any());
     }
 
     @Test
@@ -75,7 +76,7 @@ public class GuidanceStreetLabelPresenterTest extends RobolectricTest {
         GuidanceStreetLabelListener listener = mock(GuidanceStreetLabelListener.class);
         mGuidanceStreetLabelPresenter.addListener(listener);
         mGuidanceStreetLabelPresenter.handleGpsLost();
-        verify(listener).onDataChanged(any());
+        verify(listener, times(2)).onDataChanged(any());
     }
 
     @Test
@@ -86,7 +87,7 @@ public class GuidanceStreetLabelPresenterTest extends RobolectricTest {
         when(mNavigationManager.getNextManeuver()).thenReturn(maneuver);
         when(mNavigationManager.getNextManeuverDistance()).thenReturn(200L);
         mGuidanceStreetLabelPresenter.handleGpsRestore();
-        verify(listener).onDataChanged(any());
+        verify(listener, times(2)).onDataChanged(any());
     }
 
     @Test
@@ -97,7 +98,7 @@ public class GuidanceStreetLabelPresenterTest extends RobolectricTest {
         when(mNavigationManager.getNextManeuver()).thenReturn(maneuver);
         when(mNavigationManager.getNextManeuverDistance()).thenReturn(200L);
         mGuidanceStreetLabelPresenter.handleManeuverEvent();
-        verify(listener).onDataChanged(any());
+        verify(listener, times(2)).onDataChanged(any());
 
         mGuidanceStreetLabelPresenter.removeListener(listener);
         mGuidanceStreetLabelPresenter.handleManeuverEvent();

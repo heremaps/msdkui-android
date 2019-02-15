@@ -283,6 +283,7 @@ public class GuidanceManeuverView extends BaseView {
             setVisibility(GONE);
             return;
         }
+        setVisibility(View.VISIBLE);
         if (State.NO_DATA.equals(mState)) {
             populateDefaultState();
         } else if (State.UPDATING.equals(mState)) {
@@ -305,7 +306,7 @@ public class GuidanceManeuverView extends BaseView {
     protected Parcelable onSaveInstanceState() {
         final Parcelable superState = super.onSaveInstanceState();
         final SavedState savedState = new SavedState(superState);
-        savedState.setSaveStateEnabled(this.mSaveStateEnabled);
+        savedState.mSaveDataEnabled = this.mSaveStateEnabled;
         if (mSaveStateEnabled) {
             savedState.setViewState(this.mState);
         }
@@ -385,10 +386,6 @@ public class GuidanceManeuverView extends BaseView {
          */
         void setViewState(@Nullable State state) {
             this.mState = state;
-        }
-
-        void setSaveStateEnabled(boolean saveEnabled) {
-            mSaveDataEnabled = saveEnabled;
         }
     }
 

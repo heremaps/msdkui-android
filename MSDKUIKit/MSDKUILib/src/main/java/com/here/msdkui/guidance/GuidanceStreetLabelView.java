@@ -21,13 +21,12 @@ import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.here.msdkui.R;
@@ -36,7 +35,7 @@ import com.here.msdkui.R;
  * A view that shows the current street the user is driving on. This view consumes data contained in
  * {@link GuidanceStreetLabelData}.
  */
-public class GuidanceStreetLabelView extends FrameLayout {
+public class GuidanceStreetLabelView extends LinearLayout {
 
     private GuidanceStreetLabelData mGuidanceStreetLabelData;
 
@@ -105,26 +104,32 @@ public class GuidanceStreetLabelView extends FrameLayout {
 
     private void init(Context context) {
         LayoutInflater.from(context).inflate(R.layout.guidance_current_street, this);
+        setVisibility(GONE);
+        if (getBackground() == null) {
+            setBackground(ContextCompat.getDrawable(getContext(), R.drawable.current_street_name_bg));
+        }
     }
 
     /**
-     * Sets current street data.
+     * Sets current street data {@link GuidanceStreetLabelData} which will be used to populate UI.
+     * Please note setting null GuidanceStreetLabelData or null field inside the data will set the visibility of the
+     * view to {@code View.GONE}.
      *
      * @param currentStreetData -
      *          the data that should be used to populate this view.
      */
-    public void setCurrentStreetData(@NonNull final GuidanceStreetLabelData currentStreetData) {
-        final View container = findViewById(R.id.guidance_current_street_view);
-        if (currentStreetData.getCurrentStreetName() == null || currentStreetData.getCurrentStreetName().isEmpty()) {
-            container.setVisibility(GONE);
+    public void setCurrentStreetData(@Nullable final GuidanceStreetLabelData currentStreetData) {
+        if (currentStreetData == null || currentStreetData.getCurrentStreetName() == null ||
+                currentStreetData.getCurrentStreetName().isEmpty()) {
+            setVisibility(GONE);
             return;
         } else {
-            container.setVisibility(VISIBLE);
+            setVisibility(VISIBLE);
         }
 
         final TextView currentStreetLabelView = findViewById(R.id.guidance_current_street_text);
         currentStreetLabelView.setText(currentStreetData.getCurrentStreetName());
-        container.getBackground().setColorFilter(currentStreetData.getBackgroundColor(), PorterDuff.Mode.SRC);
+        getBackground().setColorFilter(currentStreetData.getBackgroundColor(), PorterDuff.Mode.SRC);
         mGuidanceStreetLabelData = new GuidanceStreetLabelData(currentStreetData.getCurrentStreetName(),
                 currentStreetData.getBackgroundColor());
     }
@@ -140,10 +145,7 @@ public class GuidanceStreetLabelView extends FrameLayout {
 
     @Override
     protected Parcelable onSaveInstanceState() {
-        final Parcelable superState = super.onSaveInstanceState();
-        if (mGuidanceStreetLabelData == null) {
-            return superState;
-        }
+       final Parcelable superState = super.onSaveInstanceState();
         final GuidanceStreetLabelView.SavedState savedState = new GuidanceStreetLabelView.SavedState(superState);
         savedState.setStateToSave(this.mGuidanceStreetLabelData);
         return savedState;
@@ -157,7 +159,9 @@ public class GuidanceStreetLabelView extends FrameLayout {
         }
         final GuidanceStreetLabelView.SavedState savedState = (GuidanceStreetLabelView.SavedState) state;
         super.onRestoreInstanceState(savedState.getSuperState());
-        setCurrentStreetData(savedState.getSavedState());
+        if (savedState.getSavedState() != null) {
+            setCurrentStreetData(savedState.getSavedState());
+        }
     }
 
     /**
@@ -185,13 +189,20 @@ public class GuidanceStreetLabelView extends FrameLayout {
 
         SavedState(Parcel in) {
             super(in);
-            mStateToSave = GuidanceStreetLabelData.CREATOR.createFromParcel(in);
+            if (in.readByte() != 0) {
+                mStateToSave = GuidanceStreetLabelData.CREATOR.createFromParcel(in);
+            }
         }
 
         @Override
         public void writeToParcel(Parcel out, int flags) {
             super.writeToParcel(out, flags);
-            mStateToSave.writeToParcel(out, flags);
+            if (mStateToSave == null) {
+                out.writeByte((byte) 0);
+            } else {
+                out.writeByte((byte) 1);
+                mStateToSave.writeToParcel(out, flags);
+            }
         }
 
         GuidanceStreetLabelData getSavedState() {

@@ -93,6 +93,8 @@ public class GuidanceStreetLabelPresenter extends BaseGuidancePresenter {
     public void addListener(GuidanceStreetLabelListener listener) {
         if (listener != null && !mListener.contains(listener)) {
             mListener.add(listener);
+            listener.onDataChanged(new GuidanceStreetLabelData(mContext.getString(R.string.msdkui_userposition_search),
+                    ThemeUtil.getColor(mContext, R.attr.colorForegroundSecondary)));
         }
     }
 

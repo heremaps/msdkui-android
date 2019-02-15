@@ -25,12 +25,13 @@ import kotlinx.android.synthetic.main.guidance_speed_limit.*
 class GuidanceSpeedLimit : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val setting = intent.getParcelableExtra(Constant.ITEM) as GuidanceSpeedLimitSetting.GuidanceSpeedLimitSettingItem
+        val setting =
+            intent.getParcelableExtra(Constant.ITEM) as GuidanceSpeedLimitSetting.GuidanceSpeedLimitSettingItem
         setting.customTheme?.run {
             setTheme(this)
         }
-        title = "${javaClass.simpleName} ${setting.title.toLowerCase()}"
-        val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.guidance_speed_limit else
+        title = setting.title.toLowerCase()
+        val resourceId = if (setting.subTitle == Constant.DEFAULT) R.layout.guidance_speed_limit else
             R.layout.guidance_speed_limit_fix
         setContentView(resourceId)
         guidanceSpeedLimitView.unitSystem = setting.unitSystem

@@ -16,8 +16,10 @@
 
 package com.here.msdkuidev.component
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.TextView
 import com.here.msdkuidev.Constant
 import com.here.msdkuidev.R
 import kotlinx.android.synthetic.main.guidance_street_label.*
@@ -25,11 +27,15 @@ import kotlinx.android.synthetic.main.guidance_street_label.*
 class GuidanceStreetLabel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val setting = intent.getParcelableExtra(Constant.ITEM) as GuidanceStreetLabelSetting.GuidanceStreetLabelSettingItem
-        val resourceId = if(setting.subTitle == Constant.DEFAULT) R.layout.guidance_street_label else
+        val setting =
+            intent.getParcelableExtra(Constant.ITEM) as GuidanceStreetLabelSetting.GuidanceStreetLabelSettingItem
+        val resourceId = if (setting.subTitle == Constant.DEFAULT) R.layout.guidance_street_label else
             R.layout.guidance_street_label_fix
-        title = "${javaClass.simpleName} ${setting.title.toLowerCase()}"
+        title = setting.title.toLowerCase()
         setContentView(resourceId)
         if (!setting.defaultView) guidanceStreetLabelView.setCurrentStreetData(setting.guidanceStreetLabelData)
+        if(setting.redText) {
+            guidanceStreetLabelView.findViewById<TextView>(R.id.guidance_current_street_text).setTextColor(Color.RED)
+        }
     }
 }

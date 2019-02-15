@@ -50,9 +50,4 @@ class GuidanceRouteSelectionActivity : BasePermissionActivity() {
         set(value) {
             guidanceRouteSelectionCoordinator = value as GuidanceRouteSelectionCoordinator
         }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        appPositioningManager?.reset()
-    }
 }

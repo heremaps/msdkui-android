@@ -16,7 +16,9 @@
 
 package com.here.msdkuidev.component
 
+import android.content.ContextWrapper
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import com.here.msdkuidev.Constant
 import com.here.msdkuidev.R
@@ -38,7 +40,7 @@ class GuidanceSpeedLimit : AppCompatActivity() {
         if (!setting.defaultView) {
             guidanceSpeedLimitView.setCurrentSpeedData(setting.guidanceSpeedData)
             setting.customBackground?.run {
-                guidanceSpeedLimitView.setBackgroundResource(this)
+                guidanceSpeedLimitView.background = ContextCompat.getDrawable(this@GuidanceSpeedLimit, this)
             }
         }
     }

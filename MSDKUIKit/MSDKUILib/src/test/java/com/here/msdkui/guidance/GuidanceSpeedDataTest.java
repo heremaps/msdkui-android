@@ -26,6 +26,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNull;
 
 /**
  * Tests for class {@link GuidanceSpeedData}.
@@ -51,7 +52,7 @@ public class GuidanceSpeedDataTest extends RobolectricTest {
     @Test
     public void testIfSpeeding() {
         assertThat(mCurrentSpeedData.isSpeeding(), is(not(true)));
-        int lowLimit = 40;
+        double lowLimit = 40;
         GuidanceSpeedData data1 = new GuidanceSpeedData(VELOCITY, lowLimit);
         assertThat(data1.isSpeeding(), is(true));
     }
@@ -60,7 +61,7 @@ public class GuidanceSpeedDataTest extends RobolectricTest {
     public void testEquality() {
         GuidanceSpeedData data1 = new GuidanceSpeedData(VELOCITY, SPEED_LIMIT);
         assertThat(data1, is(mCurrentSpeedData));
-        final int speed = 70;
+        final double speed = 70;
         GuidanceSpeedData data2 = new GuidanceSpeedData(speed, SPEED_LIMIT);
         assertThat(mCurrentSpeedData, is(not(data2)));
         assertThat(null, is(not(mCurrentSpeedData)));
@@ -84,5 +85,14 @@ public class GuidanceSpeedDataTest extends RobolectricTest {
         GuidanceSpeedData createdFromParcel = GuidanceSpeedData.CREATOR.createFromParcel(parcel);
         assertThat(createdFromParcel.getCurrentSpeed(), is(VELOCITY));
         assertThat(createdFromParcel.getCurrentSpeedLimit(), is(SPEED_LIMIT));
+
+        // test for null data
+        data = new GuidanceSpeedData(null, null);
+        data.writeToParcel(parcel, data.describeContents());
+
+        createdFromParcel = GuidanceSpeedData.CREATOR.createFromParcel(parcel);
+        assertNull(createdFromParcel.getCurrentSpeed());
+        assertNull(createdFromParcel.getCurrentSpeedLimit());
+
     }
 }

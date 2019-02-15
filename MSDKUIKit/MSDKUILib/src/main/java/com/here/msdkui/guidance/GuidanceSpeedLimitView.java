@@ -24,8 +24,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.TextView;
 
 import com.here.msdkui.R;
@@ -33,8 +33,7 @@ import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.SpeedFormatterUtil;
 
 /**
- * A view that shows the current speed limit. When user does not exceed speed limit, then
- * this view is hidden. This view consumes data contained in {@link GuidanceSpeedData}.
+ * A view that shows the current speed limit. This view consumes data contained in {@link GuidanceSpeedData}.
  */
 public class GuidanceSpeedLimitView extends BaseView {
 
@@ -104,42 +103,44 @@ public class GuidanceSpeedLimitView extends BaseView {
     }
 
     private void init(final Context context) {
-        mGuidanceSpeedData = new GuidanceSpeedData();
         LayoutInflater.from(context).inflate(R.layout.guidance_speed_limit_panel, this);
+        setGravity(Gravity.CENTER);
+        setVisibility(GONE);
     }
 
     private void populateUi(@Nullable GuidanceSpeedData data) {
-        final View container = (View) findViewById(R.id.guidance_speed_limit_container);
-        if (data == null) {
-            container.setVisibility(GONE);
+        if (data == null || data.getCurrentSpeedLimit() <= 0) {
+            mGuidanceSpeedData = data;
+            setVisibility(GONE);
             return;
         }
 
         if (!data.equals(mGuidanceSpeedData)) {
-            if (data.getCurrentSpeedLimit() > 0) {
-                final TextView speedLimit = (TextView) findViewById(R.id.speed_limit);
+            mGuidanceSpeedData = data;
+            final TextView speedLimit = findViewById(R.id.speed_limit);
+            setVisibility(VISIBLE);
+            if (data.getCurrentSpeedLimit() != null) {
                 speedLimit.setText(String.valueOf(SpeedFormatterUtil.format(
                         data.getCurrentSpeedLimit(), mUnitSystem)));
-                container.setVisibility(VISIBLE);
+                speedLimit.setVisibility(VISIBLE);
             } else {
-                container.setVisibility(GONE);
+                speedLimit.setVisibility(GONE);
             }
         }
     }
 
     /**
-     * Sets current speed data.
+     * Sets {@link GuidanceSpeedData} to populate current speed limit in view.
+     * Please note, passing {@code null} data will set the current view's visibility to {@code View.GONE} and
+     * passing {@code null} {@link GuidanceSpeedData#getCurrentSpeedLimit() currentSpeedLimit}
+     * in {@link GuidanceSpeedData} will set the speed text view's visibility to {@code View.GONE}.
+     * Hiding current speed text can be useful when the user wants to show only background.
+     *
      * @param data
      *             the data that should be used to populate this view.
      */
     public void setCurrentSpeedData(@Nullable GuidanceSpeedData data) {
         populateUi(data);
-
-        if (data == null) {
-            mGuidanceSpeedData.invalidate();
-        } else if (!data.equals(mGuidanceSpeedData)) {
-            mGuidanceSpeedData = new GuidanceSpeedData(data.getCurrentSpeed(), data.getCurrentSpeedLimit());
-        }
     }
 
     /**
@@ -147,7 +148,7 @@ public class GuidanceSpeedLimitView extends BaseView {
      * @return the data that was used to populate this view.
      */
     public @NonNull GuidanceSpeedData getCurrentSpeedData() {
-        return new GuidanceSpeedData(mGuidanceSpeedData.getCurrentSpeed(), mGuidanceSpeedData.getCurrentSpeedLimit());
+        return mGuidanceSpeedData;
     }
 
     @Override

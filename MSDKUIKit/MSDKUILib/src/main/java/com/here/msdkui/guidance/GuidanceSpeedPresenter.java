@@ -89,7 +89,7 @@ public class GuidanceSpeedPresenter extends BaseGuidancePresenter {
         final double speed = geoPosition != null && geoPosition.isValid() && geoPosition.getSpeed() != GeoPosition.UNKNOWN ?
                 geoPosition.getSpeed() : -1;
         if (speed >= 0) {
-            final GuidanceSpeedData data = new GuidanceSpeedData(speed, speedLimit);
+            final GuidanceSpeedData data = new GuidanceSpeedData(speed, (double) speedLimit);
             notifyDataChanged(data);
         } else {
             notifyDataChanged(null);

@@ -21,6 +21,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.here.msdkui.guidance.GuidanceManeuverView
 import com.here.msdkui.guidance.GuidanceSpeedData
 import com.here.msdkui.guidance.GuidanceSpeedLimitView
 import com.here.msdkui.guidance.GuidanceSpeedListener
@@ -53,10 +54,9 @@ class GuidanceSpeedLimitFragment : Fragment(), GuidanceSpeedListener  {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return GuidanceSpeedLimitView(activity).apply {
-            id = R.id.guidanceSpeedLimitViewId
-            unitSystem = Util.getLocaleUnit()
-        }
+        val view =  inflater.inflate(R.layout.guidance_speed_limit_fragment, container, false) as GuidanceSpeedLimitView
+        view.unitSystem =  Util.getLocaleUnit()
+        return view
     }
 
     /**
@@ -70,7 +70,6 @@ class GuidanceSpeedLimitFragment : Fragment(), GuidanceSpeedListener  {
                 resume()
             }
         }
-        view.setBackgroundResource(R.drawable.speed_limit_bg)
     }
 
     override fun onPause() {

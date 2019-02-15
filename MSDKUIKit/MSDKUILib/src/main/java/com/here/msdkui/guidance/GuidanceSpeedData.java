@@ -18,15 +18,13 @@ package com.here.msdkui.guidance;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 /**
  * A data class holding current speed and applicable speed limit.
  */
 public class GuidanceSpeedData implements Parcelable {
 
-    /**
-     * Creator for parcelable.
-     */
     public static final Creator<GuidanceSpeedData> CREATOR = new Creator<GuidanceSpeedData>() {
         @Override
         public GuidanceSpeedData createFromParcel(Parcel in) {
@@ -39,35 +37,52 @@ public class GuidanceSpeedData implements Parcelable {
         }
     };
 
-    private static final int INVALID_VALUE = -1;
-    private static final double COMPARISION_PRECISION = .0000001;
-
-    private double mCurrentSpeed;
-    private double mCurrentSpeedLimit;
-
-    /**
-     * Constructs a new instance.
-     */
-    public GuidanceSpeedData() {
-        this(INVALID_VALUE, INVALID_VALUE);
-    }
+    private Double mCurrentSpeed;
+    private Double mCurrentSpeedLimit;
 
     /**
      * Constructs a new instance using current speed and color values.
      *
-     * @param speed
-     *          a current speed value in meter per second.
-     * @param speedLimit
-     *          a current speed limit value in meter per second.
+     * @param speed      a current speed value in meter per second.
+     * @param speedLimit a current speed limit value in meter per second.
      */
-    public GuidanceSpeedData(double speed, double speedLimit) {
+    public GuidanceSpeedData(Double speed, Double speedLimit) {
         mCurrentSpeed = speed;
         mCurrentSpeedLimit = speedLimit;
     }
 
-    GuidanceSpeedData(Parcel in) {
-        mCurrentSpeed = in.readDouble();
-        mCurrentSpeedLimit = in.readDouble();
+    protected GuidanceSpeedData(Parcel in) {
+        if (in.readByte() == 0) {
+            mCurrentSpeed = null;
+        } else {
+            mCurrentSpeed = in.readDouble();
+        }
+        if (in.readByte() == 0) {
+            mCurrentSpeedLimit = null;
+        } else {
+            mCurrentSpeedLimit = in.readDouble();
+        }
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        if (mCurrentSpeed == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(mCurrentSpeed);
+        }
+        if (mCurrentSpeedLimit == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeDouble(mCurrentSpeedLimit);
+        }
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     /**
@@ -75,7 +90,7 @@ public class GuidanceSpeedData implements Parcelable {
      *
      * @return a speed value in meter per second.
      */
-    public double getCurrentSpeed() {
+    public Double getCurrentSpeed() {
         return mCurrentSpeed;
     }
 
@@ -84,7 +99,7 @@ public class GuidanceSpeedData implements Parcelable {
      *
      * @return a speed limit value in meter per second.
      */
-    public double getCurrentSpeedLimit() {
+    public Double getCurrentSpeedLimit() {
         return mCurrentSpeedLimit;
     }
 
@@ -98,22 +113,15 @@ public class GuidanceSpeedData implements Parcelable {
     }
 
     /**
-     * Sets internal data to invalid state.
-     */
-    public void invalidate() {
-        mCurrentSpeed = INVALID_VALUE;
-        mCurrentSpeedLimit = INVALID_VALUE;
-    }
-
-    /**
      * Checks if internal state is correct.
      *
      * @return true if object holds correct data, false otherwise.
      */
     public boolean isValid() {
-        return mCurrentSpeed > INVALID_VALUE && mCurrentSpeedLimit > INVALID_VALUE;
+        return mCurrentSpeed != null && mCurrentSpeedLimit != null;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "GuidanceSpeedData(mCurrentSpeed=" + this.mCurrentSpeed +
@@ -123,25 +131,23 @@ public class GuidanceSpeedData implements Parcelable {
 
     @Override
     public int hashCode() {
-        return (int) (this.mCurrentSpeed * 31) + (int) (this.mCurrentSpeedLimit * 31);
+        long var = Double.doubleToLongBits(this.mCurrentSpeed);
+        int var1 = (int) (var ^ var >>> 32) * 31;
+        long var2 = Double.doubleToLongBits(this.mCurrentSpeedLimit);
+        return var1 + (int) (var2 ^ var2 >>> 32);
     }
 
     @Override
-    public boolean equals(Object obj1) {
-        if (obj1 instanceof GuidanceSpeedData) {
-            final GuidanceSpeedData obj2 = (GuidanceSpeedData) obj1;
-            return Math.abs(this.mCurrentSpeed - obj2.mCurrentSpeed) < COMPARISION_PRECISION &&
-                    Math.abs(this.mCurrentSpeedLimit - obj2.mCurrentSpeedLimit) < COMPARISION_PRECISION;
+    public boolean equals(Object var1) {
+        if (this != var1) {
+            if (var1 instanceof GuidanceSpeedData) {
+                GuidanceSpeedData var2 = (GuidanceSpeedData) var1;
+                return Double.compare(this.mCurrentSpeed, var2.mCurrentSpeed) == 0 &&
+                        Double.compare(this.mCurrentSpeedLimit, var2.mCurrentSpeedLimit) == 0;
+            }
+            return false;
+        } else {
+            return true;
         }
-        return false;
-    }
-
-    @Override public int describeContents() {
-        return 0;
-    }
-
-    @Override public void writeToParcel(Parcel dest, int flags) {
-        dest.writeDouble(mCurrentSpeed);
-        dest.writeDouble(mCurrentSpeedLimit);
     }
 }

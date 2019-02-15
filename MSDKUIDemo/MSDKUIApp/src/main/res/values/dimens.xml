@@ -32,4 +32,5 @@
     <dimen name="guidanceManeuverEndMargin">28dp</dimen>
     <dimen name="guidance_next_maneuver_height">48dp</dimen>
     <dimen name="guidance_next_maneuver_paddingstart">32dp</dimen>
+    <dimen name="guidance_street_label_height">40dp</dimen>
 </resources>

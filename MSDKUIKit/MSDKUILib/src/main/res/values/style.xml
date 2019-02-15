@@ -770,19 +770,18 @@
 
     <!-- GuidanceCurrentStreet -->
     <style name="GuidanceCurrentStreet">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
-        <item name="android:layout_marginStart">@dimen/contentMarginHuge</item>
-        <item name="android:layout_marginRight">@dimen/contentMarginHuge</item>
-        <item name="android:layout_marginEnd">@dimen/contentMarginHuge</item>
-        <item name="android:paddingLeft">@dimen/contentMarginHuge</item>
-        <item name="android:paddingStart">@dimen/contentMarginHuge</item>
-        <item name="android:paddingRight">@dimen/contentMarginHuge</item>
-        <item name="android:paddingEnd">@dimen/contentMarginHuge</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:paddingStart">@dimen/contentMarginSmall</item>
+        <item name="android:paddingEnd">@dimen/contentMarginSmall</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="GuidanceCurrentStreetText" parent="@style/TextAppearance.AppCompat.Subhead">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
         <item name="android:textColor">?attr/colorForegroundLight</item>
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>

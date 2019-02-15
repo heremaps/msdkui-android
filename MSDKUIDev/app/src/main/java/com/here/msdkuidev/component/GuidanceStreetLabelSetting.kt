@@ -28,21 +28,24 @@ class GuidanceStreetLabelSetting : Setting<GuidanceStreetLabel>() {
 
     class GuidanceStreetLabelSettingItem : SettingItem {
 
-        var guidanceStreetLabelData: GuidanceStreetLabelData = GuidanceStreetLabelData("", 0)
+        var guidanceStreetLabelData: GuidanceStreetLabelData? = null
         var defaultView = false
+        var redText = false
 
         constructor() : super()
 
         constructor(parcel: Parcel) : super(parcel) {
             guidanceStreetLabelData =
-                    parcel.readParcelable(GuidanceStreetLabelData::class.java.classLoader)!!
+                    parcel.readParcelable(GuidanceStreetLabelData::class.java.classLoader)
             defaultView = parcel.readValue(Boolean::class.java.classLoader) as Boolean
+            redText = parcel.readValue(Boolean::class.java.classLoader) as Boolean
         }
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
             super.writeToParcel(parcel, flags)
             parcel.writeParcelable(guidanceStreetLabelData, flags)
             parcel.writeValue(defaultView)
+            parcel.writeValue(redText)
         }
 
         override fun describeContents(): Int {
@@ -73,11 +76,15 @@ class GuidanceStreetLabelSetting : Setting<GuidanceStreetLabel>() {
             "With all properties set" to GuidanceStreetLabelSettingItem().apply {
                 guidanceStreetLabelData = GuidanceStreetLabelData("Street Label Text", Color.BLACK)
             },
-            "Without background color" to GuidanceStreetLabelSettingItem().apply {
+            "Without background and with red text color" to GuidanceStreetLabelSettingItem().apply {
                 guidanceStreetLabelData = GuidanceStreetLabelData("Street Label Text", 0)
+                redText = true
             },
-            "Without street name" to GuidanceStreetLabelSettingItem().apply {
+            "street name is null" to GuidanceStreetLabelSettingItem().apply {
                 guidanceStreetLabelData = GuidanceStreetLabelData(null, Color.BLACK)
+            },
+            "data is null" to GuidanceStreetLabelSettingItem().apply {
+                guidanceStreetLabelData = null
             }
         )
     }

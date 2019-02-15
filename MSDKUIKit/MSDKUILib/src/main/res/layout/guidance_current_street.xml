@@ -18,7 +18,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/guidance_current_street_view"
-    android:background="@drawable/current_street_name_bg"
     style="@style/GuidanceCurrentStreet">
 
     <TextView
@@ -27,7 +26,6 @@
         android:layout_height="wrap_content"
         style="@style/GuidanceCurrentStreetText"
         android:gravity="center"
-        android:text="@string/msdkui_userposition_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

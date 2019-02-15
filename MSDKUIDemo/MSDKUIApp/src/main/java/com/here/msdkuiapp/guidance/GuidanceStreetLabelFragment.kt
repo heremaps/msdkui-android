@@ -22,6 +22,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.here.android.mpa.routing.Route
+import com.here.msdkui.guidance.GuidanceNextManeuverView
 import com.here.msdkui.guidance.GuidanceStreetLabelView
 import com.here.msdkui.guidance.GuidanceStreetLabelData
 import com.here.msdkui.guidance.GuidanceStreetLabelListener
@@ -52,9 +53,7 @@ class GuidanceStreetLabelFragment : Fragment(), GuidanceStreetLabelListener {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val streetLabelView = GuidanceStreetLabelView(activity)
-        streetLabelView.id = R.id.guidanceStreetLabelViewId
-        return streetLabelView
+        return inflater.inflate(R.layout.guidance_street_label_fragment, container, false)
     }
 
     /**

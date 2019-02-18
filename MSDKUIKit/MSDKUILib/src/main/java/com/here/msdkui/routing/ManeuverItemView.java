@@ -30,6 +30,7 @@ import com.here.android.mpa.routing.Maneuver;
 import com.here.msdkui.R;
 import com.here.msdkui.common.BaseView;
 import com.here.msdkui.common.DistanceFormatterUtil;
+import com.here.msdkui.common.ThemeUtil;
 
 import java.util.EnumMap;
 import java.util.EnumSet;
@@ -113,6 +114,9 @@ public class ManeuverItemView extends BaseView {
 
     private void init(final Context context, final AttributeSet attrs, final int defStyleAttr, final int defStyleRes) {
         LayoutInflater.from(context).inflate(R.layout.maneuver_item, this);
+        if (getBackground() == null) {
+            setBackgroundColor(ThemeUtil.getColor(getContext(), R.attr.colorBackgroundViewLight));
+        }
         initSections();
         attrsInit(attrs, defStyleAttr, defStyleRes);
     }

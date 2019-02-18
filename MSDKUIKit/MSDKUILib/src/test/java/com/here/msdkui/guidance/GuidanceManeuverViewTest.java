@@ -183,7 +183,7 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
         mGuidanceManeuverView.setViewState(new GuidanceManeuverView.State(createData(mIconId, mDistance, mInfo1, mInfo2)));
         assertNotNull(mGuidanceManeuverView.getManeuverData());
         final FragmentActivity activity = getFragmentActivity();
-        mGuidanceManeuverView.setId(R.id.vertical_guideline);
+        mGuidanceManeuverView.setId(1);
         activity.setContentView(mGuidanceManeuverView);
         activity.recreate();
         assertNotNull(mGuidanceManeuverView.getManeuverData());

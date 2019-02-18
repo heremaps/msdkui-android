@@ -15,54 +15,55 @@
   ~ limitations under the License.
   -->
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    style="?attr/maneuverDescriptionItem">
-
-    <android.support.constraint.Guideline
-        android:id="@+id/vertical_guideline"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.75" />
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        style="?attr/maneuverDescriptionItem">
 
     <ImageView
-        android:id="@+id/maneuver_icon_view"
-        style="?attr/maneuverDescriptionItemIcon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="-2dp"
-        tools:ignore="ContentDescription" />
+            android:id="@+id/maneuver_icon_view"
+            style="?attr/maneuverDescriptionItemIcon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            tools:ignore="ContentDescription"
+            app:layout_constraintEnd_toStartOf="@+id/maneuver_instruction_view"/>
 
     <TextView
-        android:id="@+id/maneuver_instruction_view"
-        style="?attr/maneuverDescriptionItemInstructionText"
-        app:layout_constraintWidth_default="wrap"
-        app:layout_constraintBottom_toTopOf="@+id/maneuver_address_view"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintLeft_toRightOf="@+id/maneuver_icon_view"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+            android:id="@+id/maneuver_instruction_view"
+            style="?attr/maneuverDescriptionItemInstructionText"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintWidth_default="wrap"
+            app:layout_constraintBottom_toTopOf="@+id/maneuver_address_view"
+            app:layout_constraintStart_toEndOf="@id/maneuver_icon_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+    />
 
     <TextView
-        android:id="@+id/maneuver_address_view"
-        app:layout_constraintWidth_default="wrap"
-        style="?attr/maneuverDescriptionItemAddressText"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0"
-        app:layout_constraintLeft_toRightOf="@+id/maneuver_icon_view"
-        app:layout_constraintRight_toLeftOf="@id/vertical_guideline"
-        app:layout_constraintTop_toBottomOf="@id/maneuver_instruction_view" />
+            android:id="@+id/maneuver_address_view"
+            style="?attr/maneuverDescriptionItemAddressText"
+            app:layout_constraintWidth_default="wrap"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/maneuver_icon_view"
+            app:layout_constraintStart_toStartOf="@id/maneuver_instruction_view"
+            app:layout_constraintEnd_toStartOf="@id/maneuver_distance_view"
+            app:layout_constraintTop_toBottomOf="@id/maneuver_instruction_view"/>
 
     <TextView
-        app:layout_constraintHorizontal_bias="0.0"
-        android:id="@+id/maneuver_distance_view"
-        app:layout_constraintWidth_default="wrap"
-        style="?attr/maneuverDescriptionItemDistanceText"
-        app:layout_constraintBaseline_toBaselineOf="@+id/maneuver_address_view"
-        app:layout_constraintStart_toEndOf="@id/vertical_guideline"
-        app:layout_constraintEnd_toEndOf="parent" />
+            android:id="@+id/maneuver_distance_view"
+            style="?attr/maneuverDescriptionItemDistanceText"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintWidth_default="wrap"
+            app:layout_constraintTop_toBottomOf="@+id/maneuver_instruction_view"
+            app:layout_constraintBottom_toBottomOf="@id/maneuver_address_view"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@id/maneuver_address_view"
+            app:layout_constraintEnd_toEndOf="parent"/>
 </android.support.constraint.ConstraintLayout>

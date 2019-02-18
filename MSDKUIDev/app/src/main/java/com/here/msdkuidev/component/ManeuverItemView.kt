@@ -21,6 +21,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.here.msdkui.routing.ManeuverItemView
 import com.here.msdkuidev.Constant
 import com.here.msdkuidev.R
 import kotlinx.android.synthetic.main.maneuver_item_view.*
@@ -38,24 +39,30 @@ class ManeuverItemView : AppCompatActivity() {
         setContentView(resourceId)
         // All code below emulates behavior of ManeuverItemView setManeuver() function.
         // If this function change, then it is very important to update this code.
-        setting.iconId?.run {
-            if (this == 0) {
-                maneuverItemView.findViewById<ImageView>(R.id.maneuver_icon_view).visibility = View.GONE
-            } else {
-                maneuverItemView.findViewById<ImageView>(R.id.maneuver_icon_view).setImageResource(this)
+
+        with(maneuverItemView) {
+            setting.iconId?.run {
+                if (this == 0) {
+                    setSectionVisible(ManeuverItemView.Section.ICON, false)
+                } else {
+                    setSectionVisible(ManeuverItemView.Section.ICON, true)
+                    findViewById<ImageView>(R.id.maneuver_icon_view).setImageResource(this)
+                }
             }
-        }
-        setting.instruction?.run {
-            maneuverItemView.findViewById<TextView>(R.id.maneuver_instruction_view).text = this
-        }
-        setting.address?.run {
-            maneuverItemView.findViewById<TextView>(R.id.maneuver_address_view).text = this
-        }
-        setting.distance ?: run {
-            maneuverItemView.findViewById<TextView>(R.id.maneuver_distance_view).visibility = View.GONE
-        }
-        setting.distance?.run {
-            maneuverItemView.findViewById<TextView>(R.id.maneuver_distance_view).text = this
+            setting.instruction?.run {
+                maneuverItemView.setSectionVisible(ManeuverItemView.Section.INSTRUCTIONS, true)
+                findViewById<TextView>(R.id.maneuver_instruction_view).text = this
+            } ?: setSectionVisible(ManeuverItemView.Section.INSTRUCTIONS, false)
+
+            setting.address?.run {
+                setSectionVisible(ManeuverItemView.Section.ADDRESS, true)
+                findViewById<TextView>(R.id.maneuver_address_view).text = this
+            } ?: setSectionVisible(ManeuverItemView.Section.ADDRESS, false)
+
+            setting.distance?.run {
+                setSectionVisible(ManeuverItemView.Section.DISTANCE, true)
+                findViewById<TextView>(R.id.maneuver_distance_view).text = this
+            } ?: setSectionVisible(ManeuverItemView.Section.DISTANCE, false)
         }
     }
 }

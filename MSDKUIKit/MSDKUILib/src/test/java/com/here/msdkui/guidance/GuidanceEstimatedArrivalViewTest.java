@@ -120,7 +120,7 @@ public class GuidanceEstimatedArrivalViewTest extends RobolectricTest {
         // when data is not null
         mEstimatedArrivalView.setEstimatedArrivalData(data);
         assertNotNull(mEstimatedArrivalView.getEstimatedArrivalData());
-        mEstimatedArrivalView.setId(R.id.vertical_guideline);
+        mEstimatedArrivalView.setId(1);
         activity.setContentView(mEstimatedArrivalView);
         activity.recreate();
         assertNotNull(mEstimatedArrivalView.getEstimatedArrivalData());

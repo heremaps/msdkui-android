@@ -17,5 +17,4 @@
 <resources>
     <item name="guidanceEstimatedArrivalViewId" type="id" />
     <item name="guidanceCurrentSpeedViewId" type="id" />
-    <item name="guidanceSpeedLimitViewId" type="id" />
 </resources>

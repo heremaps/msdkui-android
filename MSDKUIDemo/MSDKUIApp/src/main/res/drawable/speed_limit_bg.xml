@@ -18,5 +18,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="oval">
     <solid android:color="@color/lui_white" />
+    <size android:height="@dimen/speed_limit_bg_size" android:width="@dimen/speed_limit_bg_size" />
     <stroke android:width="@dimen/speed_limit_stroke_size" android:color="@color/lui_negative"/>
 </shape>

@@ -143,7 +143,6 @@ public class GuidanceSpeedView extends BaseView {
     }
 
     private void init(final Context context) {
-        mGuidanceSpeedData = new GuidanceSpeedData();
         LayoutInflater.from(context).inflate(R.layout.guidance_current_speed_panel, this);
     }
 
@@ -200,14 +199,15 @@ public class GuidanceSpeedView extends BaseView {
     public void setCurrentSpeedData(@Nullable GuidanceSpeedData data) {
         populateUi(data);
         if (data == null || !data.isValid()) {
-            mGuidanceSpeedData.invalidate();
+            mGuidanceSpeedData = data;
             return;
         }
         boolean refreshBackground = false;
-        if (!mGuidanceSpeedData.isValid() || data.isSpeeding() != mGuidanceSpeedData.isSpeeding()) {
+        if (mGuidanceSpeedData == null || !mGuidanceSpeedData.isValid() ||
+                data.isSpeeding() != mGuidanceSpeedData.isSpeeding()) {
             refreshBackground = true;
         }
-        mGuidanceSpeedData = new GuidanceSpeedData(data.getCurrentSpeed(), data.getCurrentSpeedLimit());
+        mGuidanceSpeedData = data;
         if (refreshBackground) {
             post(this::refreshDrawableState);
         }
@@ -219,8 +219,7 @@ public class GuidanceSpeedView extends BaseView {
      * @return the data that was used to populate this view.
      */
     public @NonNull GuidanceSpeedData getCurrentSpeedData() {
-        return new GuidanceSpeedData(mGuidanceSpeedData.getCurrentSpeed(),
-                mGuidanceSpeedData.getCurrentSpeedLimit());
+        return mGuidanceSpeedData;
     }
 
     /**

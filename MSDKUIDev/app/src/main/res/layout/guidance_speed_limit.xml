@@ -21,7 +21,6 @@
         android:layout_height="match_parent">
 
     <com.here.msdkui.guidance.GuidanceSpeedLimitView
-            android:background="@drawable/rectangle"
             android:id="@+id/guidanceSpeedLimitView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -85,15 +85,15 @@ class GuidanceSpeedLimitSetting : Setting<GuidanceSpeedLimit>() {
                 customTheme = R.style.GuidanceSpeedLimitBrownText
                 unitSystem = UnitSystem.IMPERIAL_US
             },
-            "km/h, black, background image" to GuidanceSpeedLimitSettingItem().apply {
+            "km/h, black text, red circle background" to GuidanceSpeedLimitSettingItem().apply {
                 guidanceSpeedData = GuidanceSpeedData(13.89, 8.33)
                 customBackground = R.drawable.speed_limit_background
             },
-            "Without speed limit" to GuidanceSpeedLimitSettingItem().apply {
-                guidanceSpeedData = GuidanceSpeedData(13.89, 0.0)
+            "Without data -- no speed limit no background" to GuidanceSpeedLimitSettingItem().apply {
+                guidanceSpeedData = null
             },
             "Without speed limit, background image" to GuidanceSpeedLimitSettingItem().apply {
-                guidanceSpeedData = GuidanceSpeedData(13.89, 0.0)
+                guidanceSpeedData = GuidanceSpeedData(13.89, null)
                 customBackground = R.drawable.speed_limit_background
             }
         )

@@ -32,6 +32,7 @@ import org.junit.Test;
 
 import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -39,8 +40,8 @@ import static org.junit.Assert.assertThat;
  */
 public class GuidanceSpeedViewTest extends RobolectricTest {
 
-    private static final int VELOCITY = 60;
-    private static final int SPEED_LIMIT = 50;
+    private static final double VELOCITY = 60;
+    private static final double SPEED_LIMIT = 50;
     private static final int RED_COLOR = 16711680;
     private static final int BLUE_COLOR = 255;
 
@@ -50,6 +51,12 @@ public class GuidanceSpeedViewTest extends RobolectricTest {
     public void setUp() {
         super.setUp();
         mCurrentGuidanceSpeedView = new GuidanceSpeedView(getApplicationContext());
+    }
+
+    @Test
+    public void testUiInitWithDifferentConstructor() {
+        mCurrentGuidanceSpeedView = new GuidanceSpeedView(getApplicationContext(), null, 0, 0);
+        assertThat(mCurrentGuidanceSpeedView.getVisibility(), is(View.VISIBLE));
     }
 
     @Test
@@ -95,7 +102,7 @@ public class GuidanceSpeedViewTest extends RobolectricTest {
 
     @Test
     public void testSetterAndGetter() {
-        GuidanceSpeedData data = new GuidanceSpeedData(10, 10);
+        GuidanceSpeedData data = new GuidanceSpeedData(10.0, 10.0);
         mCurrentGuidanceSpeedView.setCurrentSpeedData(data);
         assertThat(mCurrentGuidanceSpeedView.getCurrentSpeedData(), is(data));
     }
@@ -103,7 +110,7 @@ public class GuidanceSpeedViewTest extends RobolectricTest {
     @Test
     public void testSettingNullDataWontCrash() {
         mCurrentGuidanceSpeedView.setCurrentSpeedData(null);
-        assertThat(mCurrentGuidanceSpeedView.getCurrentSpeedData().isValid(), is(false));
+        assertNull(mCurrentGuidanceSpeedView.getCurrentSpeedData());
     }
 
     @Test
@@ -121,11 +128,11 @@ public class GuidanceSpeedViewTest extends RobolectricTest {
 
         // when data is null
         mCurrentGuidanceSpeedView.setCurrentSpeedData(null);
-        assertThat(mCurrentGuidanceSpeedView.getCurrentSpeedData().isValid(), is(false));
+        assertNull(mCurrentGuidanceSpeedView.getCurrentSpeedData());
         mCurrentGuidanceSpeedView.setId(R.id.vertical_guideline);
         activity.setContentView(mCurrentGuidanceSpeedView);
         activity.recreate();
-        assertThat(mCurrentGuidanceSpeedView.getCurrentSpeedData().isValid(), is(false));
+        assertNull(mCurrentGuidanceSpeedView.getCurrentSpeedData());
     }
 
     @Test

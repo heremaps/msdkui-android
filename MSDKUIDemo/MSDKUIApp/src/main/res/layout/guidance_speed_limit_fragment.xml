@@ -15,12 +15,9 @@
   ~ limitations under the License.
   -->
 
-<merge
+<com.here.msdkui.guidance.GuidanceSpeedLimitView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/guidance_speed_limit_container"
-    style="?attr/guidanceSpeedLimitPanel"
-    android:visibility="gone">
-    <TextView
-        android:id="@+id/speed_limit"
-        style="?attr/guidanceSpeedLimitText" />
-</merge>
+    android:id="@+id/guidanceSpeedLimitViewId"
+    android:background="@drawable/speed_limit_bg"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />

@@ -889,14 +889,17 @@
     </style>
 
     <style name="GuidanceSpeedLimitPanel">
-        <item name="android:layout_width">56dp</item>
-        <item name="android:layout_height">56dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="GuidanceSpeedLimitText" parent="@style/TextAppearance.AppCompat.Headline">
         <item name="android:textColor">?attr/colorForeground</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
         <item name="android:textStyle">bold</item>
     </style>

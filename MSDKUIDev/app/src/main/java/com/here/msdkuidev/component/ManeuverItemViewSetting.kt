@@ -76,8 +76,8 @@ class ManeuverItemViewSetting() : Setting<ManeuverItemView>() {
         return linkedMapOf(
             "Without any value and all sections visible" to ManeuverItemViewSettingItem().apply {
                 iconId = 0
-                instruction = ""
-                address = ""
+                instruction = null
+                address = null
             },
             "With all values (short instruction)" to ManeuverItemViewSettingItem().apply {
                 iconId = R.drawable.ic_maneuver_icon_12
@@ -98,51 +98,74 @@ class ManeuverItemViewSetting() : Setting<ManeuverItemView>() {
                 address = "Fuubarstrasse"
                 distance = "10 km"
             },
-            "visibleSections = icon" to ManeuverItemViewSettingItem().apply {
-                iconId = R.drawable.ic_maneuver_icon_12
+            "Only instructions" to ManeuverItemViewSettingItem().apply {
+                iconId = 0
                 instruction = "Short instruction!"
-                address = "Fuubarstrasse"
-                distance = "10 km"
-                customTheme = R.style.ManeuverItemVisibleSectionIcon
-            },
-            "visibleSections = instructions" to ManeuverItemViewSettingItem().apply {
-                iconId = R.drawable.ic_maneuver_icon_12
-                instruction = "Short instruction!"
-                address = "Fuubarstrasse"
-                distance = "10 km"
+                address = null
+                distance = null
                 customTheme = R.style.ManeuverItemVisibleSectionInstructions
             },
-            "visibleSections = address" to ManeuverItemViewSettingItem().apply {
-                iconId = R.drawable.ic_maneuver_icon_12
-                instruction = "Short instruction!"
+
+            "Only address" to ManeuverItemViewSettingItem().apply {
+                iconId = 0
+                instruction = null
                 address = "Fuubarstrasse"
-                distance = "10 km"
+                distance = null
                 customTheme = R.style.ManeuverItemVisibleSectionAddress
             },
-            "visibleSections = distance" to ManeuverItemViewSettingItem().apply {
-                iconId = R.drawable.ic_maneuver_icon_12
+
+            "Without icon" to ManeuverItemViewSettingItem().apply {
+                iconId = 0
                 instruction = "Short instruction!"
                 address = "Fuubarstrasse"
                 distance = "10 km"
-                customTheme = R.style.ManeuverItemVisibleSectionDistance
             },
+
+            "Without instructions" to ManeuverItemViewSettingItem().apply {
+                iconId = R.drawable.ic_maneuver_icon_12
+                instruction = null
+                address = "Fuubarstrasse"
+                distance = "10 km"
+            },
+
+            "Without address" to ManeuverItemViewSettingItem().apply {
+                iconId = R.drawable.ic_maneuver_icon_12
+                instruction = "Short instruction!"
+                address = null
+                distance = "10 km"
+            },
+
+            "Without distance" to ManeuverItemViewSettingItem().apply {
+                iconId = R.drawable.ic_maneuver_icon_12
+                instruction = "Short instruction!"
+                address = "Fuubarstrasse"
+                distance = null
+            },
+
+            "Without address and distance" to ManeuverItemViewSettingItem().apply {
+                iconId = R.drawable.ic_maneuver_icon_12
+                instruction = "Short instruction!"
+                address = null
+                distance = null
+            },
+
             "With all values (short instruction, long address)" to ManeuverItemViewSettingItem().apply {
                 iconId = R.drawable.ic_maneuver_icon_12
                 instruction = "Short instruction!"
-                address = "Fuubarstrasse, more data to show here, a lot of data."
+                address = "Fuubarstrasse, more data to show here a lot of data."
                 distance = "10 km"
             },
             "With all values (long instruction, long address)" to ManeuverItemViewSettingItem().apply {
                 iconId = R.drawable.ic_maneuver_icon_12
                 instruction = "This is a very very very long instruction!"
-                address = "Fuubarstrasse, more data to show here, a lot of data."
+                address = "Fuubarstrasse, more data to show here a lot of data."
                 distance = "10 km"
             },
             "With all values (long instruction, long address, long distance)" to ManeuverItemViewSettingItem().apply {
                 iconId = R.drawable.ic_maneuver_icon_12
                 instruction = "This is a very very very long instruction!"
-                address = "Fuubarstrasse, more data to show here, a lot of data."
-                distance = "1 200 km"
+                address = "Fuubarstrasse, more data to show here a lot of data."
+                distance = "1200 km"
             }
         )
     }

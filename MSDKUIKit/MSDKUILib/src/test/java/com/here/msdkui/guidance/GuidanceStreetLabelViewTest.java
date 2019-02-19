@@ -21,8 +21,8 @@ import android.support.v4.app.FragmentActivity;
 import android.view.AbsSavedState;
 
 import android.view.View;
+
 import com.here.RobolectricTest;
-import com.here.msdkui.R;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -73,7 +73,7 @@ public class GuidanceStreetLabelViewTest extends RobolectricTest {
         mGuidanceStreetLabelView.setCurrentStreetData(createData(STREET_NAME, COLOR));
         assertNotNull(mGuidanceStreetLabelView.getGuidanceCurrentStreetData());
         final FragmentActivity activity = getFragmentActivity();
-        mGuidanceStreetLabelView.setId(R.id.vertical_guideline);
+        mGuidanceStreetLabelView.setId(1);
         activity.setContentView(mGuidanceStreetLabelView);
         activity.recreate();
         assertNotNull(mGuidanceStreetLabelView.getGuidanceCurrentStreetData());

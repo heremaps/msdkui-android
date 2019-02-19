@@ -29,8 +29,7 @@
             app:layout_constraintEnd_toStartOf="@+id/distanceView"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintHorizontal_bias="0.0"
-            tools:ignore="ContentDescription"
-            android:layout_marginEnd="20dp"/>
+            tools:ignore="ContentDescription"/>
 
     <ProgressBar
             android:id="@+id/busyStateProgressBar"

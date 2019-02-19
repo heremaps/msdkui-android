@@ -108,7 +108,7 @@ public class GuidanceSpeedLimitViewTest extends RobolectricTest {
         // when data is not null
         mGuidanceSpeedLimitView.setCurrentSpeedData(data);
         assertNotNull(mGuidanceSpeedLimitView.getCurrentSpeedData());
-        mGuidanceSpeedLimitView.setId(R.id.vertical_guideline);
+        mGuidanceSpeedLimitView.setId(1);
         activity.setContentView(mGuidanceSpeedLimitView);
         activity.recreate();
         assertNotNull(mGuidanceSpeedLimitView.getCurrentSpeedData());
@@ -116,7 +116,7 @@ public class GuidanceSpeedLimitViewTest extends RobolectricTest {
         // when data is null
         mGuidanceSpeedLimitView.setCurrentSpeedData(null);
         assertNull(mGuidanceSpeedLimitView.getCurrentSpeedData());
-        mGuidanceSpeedLimitView.setId(R.id.vertical_guideline);
+        mGuidanceSpeedLimitView.setId(1);
         activity.setContentView(mGuidanceSpeedLimitView);
         activity.recreate();
         assertNull(mGuidanceSpeedLimitView.getCurrentSpeedData());

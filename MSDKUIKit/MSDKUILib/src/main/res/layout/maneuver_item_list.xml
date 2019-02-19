@@ -14,12 +14,11 @@
   ~ limitations under the License.
   -->
 
-<com.here.msdkui.guidance.GuidanceNextManeuverView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/guidanceNextManeuverViewId"
+<com.here.msdkui.routing.ManeuverItemView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/guidance_next_maneuver_height"
-    android:layout_gravity="center_vertical"
-    android:gravity="center_vertical"
-    android:paddingStart="@dimen/guidance_next_maneuver_paddingstart"
-    android:paddingEnd="@dimen/contentMarginHuge"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/contentMarginExtraLarge"
+    android:paddingEnd="@dimen/contentMarginExtraLarge"
+    android:paddingBottom="@dimen/contentMarginHuge"
+    android:paddingTop="@dimen/contentMarginHuge"
     />

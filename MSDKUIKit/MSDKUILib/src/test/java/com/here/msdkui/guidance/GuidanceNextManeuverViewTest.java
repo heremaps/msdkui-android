@@ -56,16 +56,15 @@ public class GuidanceNextManeuverViewTest extends RobolectricTest {
 
         final TextView distanceView = mGuidanceNextManeuverView.findViewById(R.id.nextManeuverDistance);
         final TextView streetName = mGuidanceNextManeuverView.findViewById(R.id.afterNextManeuverStreetName);
-        final View containerView = mGuidanceNextManeuverView.findViewById(R.id.afterNextManeuverContainer);
 
-        assertEquals(View.GONE, containerView.getVisibility());
+        assertEquals(View.GONE, mGuidanceNextManeuverView.getVisibility());
 
         GuidanceNextManeuverData data = createData(mIconId, mDistance, mStreetName);
         // create proper data to see if everything is fine.
         mGuidanceNextManeuverView.setNextManeuverData(data);
 
         // since distance and icon are correct, panel should be visible.
-        assertEquals(containerView.getVisibility(), View.VISIBLE);
+        assertEquals(mGuidanceNextManeuverView.getVisibility(), View.VISIBLE);
 
         // verify the data
         assertThat(distanceView.getText(), is(equalTo(mDistance + " m")));
@@ -78,16 +77,15 @@ public class GuidanceNextManeuverViewTest extends RobolectricTest {
         mGuidanceNextManeuverView = new GuidanceNextManeuverView(getApplicationContext(), null, 0, 0);
         final TextView distanceView = mGuidanceNextManeuverView.findViewById(R.id.nextManeuverDistance);
         final TextView streetName = mGuidanceNextManeuverView.findViewById(R.id.afterNextManeuverStreetName);
-        final View containerView = mGuidanceNextManeuverView.findViewById(R.id.afterNextManeuverContainer);
 
-        assertEquals(View.GONE, containerView.getVisibility());
+        assertEquals(View.GONE, mGuidanceNextManeuverView.getVisibility());
 
         GuidanceNextManeuverData data = createData(mIconId, mDistance, mStreetName);
         // create proper data to see if everything is fine.
         mGuidanceNextManeuverView.setNextManeuverData(data);
 
         // since distance and icon are correct, panel should be visible.
-        assertEquals(containerView.getVisibility(), View.VISIBLE);
+        assertEquals(mGuidanceNextManeuverView.getVisibility(), View.VISIBLE);
 
         // verify the data
         assertThat(distanceView.getText(), is(equalTo(mDistance + " m")));
@@ -99,16 +97,15 @@ public class GuidanceNextManeuverViewTest extends RobolectricTest {
         final TextView distanceView = mGuidanceNextManeuverView.findViewById(R.id.nextManeuverDistance);
         final TextView streetName = mGuidanceNextManeuverView.findViewById(R.id.afterNextManeuverStreetName);
         final TextView dotView = mGuidanceNextManeuverView.findViewById(R.id.dot);
-        final View containerView = mGuidanceNextManeuverView.findViewById(R.id.afterNextManeuverContainer);
 
-        assertEquals(View.GONE, containerView.getVisibility());
+        assertEquals(View.GONE, mGuidanceNextManeuverView.getVisibility());
 
         GuidanceNextManeuverData data = createData(null, null, null);
         // create proper data to see if everything is fine.
         mGuidanceNextManeuverView.setNextManeuverData(data);
 
         // since distance and icon are correct, panel should be visible.
-        assertEquals(containerView.getVisibility(), View.VISIBLE);
+        assertEquals(mGuidanceNextManeuverView.getVisibility(), View.VISIBLE);
 
         // verify the data
         assertEquals(View.GONE, distanceView.getVisibility());
@@ -134,7 +131,7 @@ public class GuidanceNextManeuverViewTest extends RobolectricTest {
         mGuidanceNextManeuverView.setNextManeuverData(createData(mIconId, mDistance, mStreetName));
         assertNotNull(mGuidanceNextManeuverView.getNextManeuverData());
         final FragmentActivity activity = getFragmentActivity();
-        mGuidanceNextManeuverView.setId(R.id.vertical_guideline);
+        mGuidanceNextManeuverView.setId(1);
         activity.setContentView(mGuidanceNextManeuverView);
         activity.recreate();
         assertNotNull(mGuidanceNextManeuverView.getNextManeuverData());

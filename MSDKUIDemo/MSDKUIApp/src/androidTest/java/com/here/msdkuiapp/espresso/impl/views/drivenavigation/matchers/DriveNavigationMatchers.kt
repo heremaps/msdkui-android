@@ -16,16 +16,13 @@
 
 package com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers
 
-import android.support.test.espresso.ViewInteraction
+import android.support.test.espresso.*
 import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
-import android.support.test.espresso.matcher.ViewMatchers.withText
-import android.support.test.espresso.matcher.ViewMatchers.withId
+import android.support.test.espresso.matcher.ViewMatchers
+import android.support.test.espresso.util.HumanReadables
 import android.view.View
-import com.here.msdkui.common.measurements.UnitSystem
 import com.here.msdkui.routing.RouteUtil
 import com.here.msdkui.routing.RouteDescriptionItem
-import com.here.msdkuiapp.R
 import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getColorById
@@ -58,6 +55,14 @@ import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
+import java.util.concurrent.TimeoutException
+import android.widget.TextView
+import android.support.test.espresso.matcher.ViewMatchers.*
+
+import com.here.msdkuiapp.R
+import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationActions.getNumberFromText
+import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationActions.getTimeFromText
+
 
 object DriveNavigationMatchers {
 
@@ -206,6 +211,62 @@ object DriveNavigationMatchers {
     }
 
     /**
+     * Waits and checks ETA data during guidance by reading it from dashboard,
+     * converting it to measurable type and comparing it initial values.
+     */
+    fun waitForETAChanged(): ViewAction {
+        val timeout: Long = 30000
+        val checkInterval: Long = 5000
+        return object : ViewAction {
+            override fun getConstraints(): Matcher<View> {
+                return ViewMatchers.isRoot()
+            }
+
+            override fun getDescription(): String {
+                return "wait ETA data to update correctly during $timeout timeout."
+            }
+
+            override fun perform(uiController: UiController, view: View) {
+                uiController.loopMainThreadUntilIdle()
+                val startTime = System.currentTimeMillis()
+                val endTime = startTime + timeout
+
+                //  Save initial ETA data
+                val initialETA = getTimeFromText(view, view.findViewById<TextView>(R.id.eta)
+                        .text.toString())
+                val initialDuration = getNumberFromText(view, view.findViewById<TextView>(R.id.duration)
+                        .text.toString())
+                val initialDistance = getNumberFromText(view, view.findViewById<TextView>(R.id.distance)
+                        .text.toString())
+
+                // Verify new ETA against initial
+                do {
+                    uiController.loopMainThreadForAtLeast(checkInterval)
+                    if (
+                            // ETA should stay same all the time
+                            initialETA.equals(getTimeFromText(view, view.findViewById<TextView>(R.id.eta)
+                                    .text.toString())) &&
+                            // Duration should decrease over time
+                            initialDuration > getNumberFromText(view, view.findViewById<TextView>(R.id.duration)
+                                    .text.toString()) &&
+                            // Distance should decrease over time
+                            initialDistance > getNumberFromText(view, view.findViewById<TextView>(R.id.distance)
+                                    .text.toString())) {
+                        return
+                    }
+                } while (startTime < endTime)
+
+                // Timeout happens
+                throw PerformException.Builder()
+                        .withActionDescription(this.description)
+                        .withViewDescription(HumanReadables.describe(view))
+                        .withCause(TimeoutException())
+                        .build()
+            }
+        }
+    }
+
+    /**
      * Check transportation icons correspond to icons in description and maneuver lists' items
      */
     private fun withRouteDescription(viewMatcher: ViewInteraction): Matcher<View> {
@@ -221,8 +282,8 @@ object DriveNavigationMatchers {
                 val route = (view as RouteDescriptionItem).route
 
                 with(actualValues) {
-                    add(RouteUtil.getArrivalTime(context, route,true).toString().trim())
-                    add(RouteUtil.getTimeToArrive(context, route,true).toString().trim())
+                    add(RouteUtil.getArrivalTime(context, route, true).toString().trim())
+                    add(RouteUtil.getTimeToArrive(context, route, true).toString().trim())
                     add(RouteUtil.getTrafficDelayed(context, route).toString().trim())
                     add(RouteUtil.getDetails(context, route, Util.getLocaleUnit()).toString().trim())
                     return filter { s -> s == expectedValue }.single().isNotEmpty()

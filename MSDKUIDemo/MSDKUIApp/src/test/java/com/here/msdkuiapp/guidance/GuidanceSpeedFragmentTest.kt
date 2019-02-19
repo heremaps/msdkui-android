@@ -17,7 +17,6 @@
 
 package com.here.msdkuiapp.guidance
 
-import com.here.android.mpa.common.PositioningManager
 import com.here.android.mpa.guidance.NavigationManager
 import com.here.msdkui.guidance.GuidanceSpeedData
 import com.here.msdkui.guidance.GuidanceSpeedPresenter
@@ -29,8 +28,8 @@ import com.here.msdkuiapp.position.AppPositioningManager
 import com.here.testutils.BaseTest
 import junit.framework.Assert.assertEquals
 import junit.framework.Assert.assertNotNull
-import kotlinx.android.synthetic.main.guidance_current_speed.guidance_current_speed
-import kotlinx.android.synthetic.main.guidance_current_speed.view.guidance_current_speed
+import kotlinx.android.synthetic.main.guidance_speed.guidance_current_speed
+import kotlinx.android.synthetic.main.guidance_speed.view.guidance_current_speed
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -39,11 +38,11 @@ import org.mockito.Mockito.*
 import org.mockito.MockitoAnnotations
 
 /**
- * Tests for class [GuidanceCurrentSpeedFragment].
+ * Tests for class [GuidanceSpeedFragment].
  */
-class GuidanceCurrentSpeedFragmentTest : BaseTest() {
+class GuidanceSpeedFragmentTest : BaseTest() {
 
-    private lateinit var guidanceCurrentSpeedFragment: GuidanceCurrentSpeedFragment
+    private lateinit var guidanceSpeedFragment: GuidanceSpeedFragment
 
     @Mock
     private lateinit var mockGuidanceCurrentSpeedPresenter: GuidanceSpeedPresenter
@@ -52,26 +51,26 @@ class GuidanceCurrentSpeedFragmentTest : BaseTest() {
     override fun setUp() {
         super.setUp()
         MockitoAnnotations.initMocks(this)
-        guidanceCurrentSpeedFragment = GuidanceCurrentSpeedFragment.newInstance()
-        guidanceCurrentSpeedFragment.presenter = mockGuidanceCurrentSpeedPresenter
+        guidanceSpeedFragment = GuidanceSpeedFragment.newInstance()
+        guidanceSpeedFragment.presenter = mockGuidanceCurrentSpeedPresenter
     }
 
     @Test
     fun testPauseAndResume() {
-        guidanceCurrentSpeedFragment.presenter = mockGuidanceCurrentSpeedPresenter
-        assertNotNull(guidanceCurrentSpeedFragment.presenter)
-        guidanceCurrentSpeedFragment.onPause()
+        guidanceSpeedFragment.presenter = mockGuidanceCurrentSpeedPresenter
+        assertNotNull(guidanceSpeedFragment.presenter)
+        guidanceSpeedFragment.onPause()
         verify(mockGuidanceCurrentSpeedPresenter).pause()
-        guidanceCurrentSpeedFragment.onResume()
+        guidanceSpeedFragment.onResume()
         verify(mockGuidanceCurrentSpeedPresenter).resume()
     }
 
     @Test
     fun testFragmentCreation() {
-        addFrag(guidanceCurrentSpeedFragment, GuidanceCurrentSpeedFragment::class.java.name)
-        assertNotNull(guidanceCurrentSpeedFragment)
-        assertNotNull(guidanceCurrentSpeedFragment.view)
-        assertEquals(guidanceCurrentSpeedFragment.view!!.guidance_current_speed.unitSystem,
+        addFrag(guidanceSpeedFragment, GuidanceSpeedFragment::class.java.name)
+        assertNotNull(guidanceSpeedFragment)
+        assertNotNull(guidanceSpeedFragment.view)
+        assertEquals(guidanceSpeedFragment.view!!.guidance_current_speed.unitSystem,
                 Util.getLocaleUnit())
     }
 
@@ -79,37 +78,37 @@ class GuidanceCurrentSpeedFragmentTest : BaseTest() {
     fun testFragmentCreationWithNotInitializedPresenter() {
         navigationManager = mock(NavigationManager::class.java)
         appPositioningManager = mock(AppPositioningManager::class.java, RETURNS_DEEP_STUBS)
-        guidanceCurrentSpeedFragment = GuidanceCurrentSpeedFragment.newInstance()
-        addFrag(guidanceCurrentSpeedFragment, GuidanceSpeedLimitFragment::class.java.name)
-        assertNotNull(guidanceCurrentSpeedFragment.presenter)
+        guidanceSpeedFragment = GuidanceSpeedFragment.newInstance()
+        addFrag(guidanceSpeedFragment, GuidanceSpeedLimitFragment::class.java.name)
+        assertNotNull(guidanceSpeedFragment.presenter)
     }
 
     @Test
     fun testSetterGetterPanelPresenter() {
-        guidanceCurrentSpeedFragment.presenter = mockGuidanceCurrentSpeedPresenter
-        assertNotNull(guidanceCurrentSpeedFragment.presenter)
+        guidanceSpeedFragment.presenter = mockGuidanceCurrentSpeedPresenter
+        assertNotNull(guidanceSpeedFragment.presenter)
     }
 
     @Test
     fun testOnPause() {
-        guidanceCurrentSpeedFragment.onPause()
+        guidanceSpeedFragment.onPause()
         verify(mockGuidanceCurrentSpeedPresenter).pause()
     }
 
     @Test
     fun testOnResume() {
-        guidanceCurrentSpeedFragment.onResume()
+        guidanceSpeedFragment.onResume()
         verify(mockGuidanceCurrentSpeedPresenter).resume()
     }
 
     @Test
     fun testCallback() {
         val speed = 60.0
-        addFrag(guidanceCurrentSpeedFragment, GuidanceCurrentSpeedFragment::class.java.name)
+        addFrag(guidanceSpeedFragment, GuidanceSpeedFragment::class.java.name)
         val data = Mockito.mock(GuidanceSpeedData::class.java)
         `when`(data.currentSpeed).thenReturn(speed)
         `when`(data.isValid).thenReturn(true)
-        guidanceCurrentSpeedFragment.onDataChanged(data)
-        assertEquals(speed, (guidanceCurrentSpeedFragment.guidance_current_speed).currentSpeedData.currentSpeed)
+        guidanceSpeedFragment.onDataChanged(data)
+        assertEquals(speed, (guidanceSpeedFragment.guidance_current_speed).currentSpeedData.currentSpeed)
     }
 }

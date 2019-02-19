@@ -86,9 +86,6 @@ class GuidanceSpeedViewSetting : Setting<GuidanceSpeedView>() {
             "With speed value=0" to GuidanceSpeedViewSettingItem().apply {
                 guidanceSpeedData = GuidanceSpeedData(0.0, 20.0)
             },
-            "With negative speed value" to GuidanceSpeedViewSettingItem().apply {
-                guidanceSpeedData = GuidanceSpeedData(-1.0, 12.0)
-            },
             "km/h, red" to GuidanceSpeedViewSettingItem().apply {
                 guidanceSpeedData = GuidanceSpeedData(13.0, 8.0)
                 color = Color.RED

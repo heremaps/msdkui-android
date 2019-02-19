@@ -20,6 +20,7 @@ package com.here.msdkuiapp.guidance
 import android.support.v4.app.Fragment
 import android.content.res.Configuration
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -33,13 +34,14 @@ import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.guidance.SingletonHelper.appPositioningManager
 import kotlinx.android.extensions.CacheImplementation
 import kotlinx.android.extensions.ContainerOptions
-import kotlinx.android.synthetic.main.guidance_current_speed.*
+import kotlinx.android.synthetic.main.guidance_speed.*
+import kotlinx.android.synthetic.main.guidance_speed.view.guidance_current_speed
 
 /**
  * Fragment class for [GuidanceSpeedView] view.
  */
 @ContainerOptions(CacheImplementation.NO_CACHE)
-class GuidanceCurrentSpeedFragment : Fragment(), GuidanceSpeedListener {
+class GuidanceSpeedFragment : Fragment(), GuidanceSpeedListener {
 
     internal var presenter: GuidanceSpeedPresenter? = null
 
@@ -48,7 +50,7 @@ class GuidanceCurrentSpeedFragment : Fragment(), GuidanceSpeedListener {
     }
 
     companion object {
-        fun newInstance() = GuidanceCurrentSpeedFragment()
+        fun newInstance() = GuidanceSpeedFragment()
     }
 
     /**
@@ -56,7 +58,13 @@ class GuidanceCurrentSpeedFragment : Fragment(), GuidanceSpeedListener {
      */
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.guidance_current_speed, container, false)
+        val view = inflater.inflate(R.layout.guidance_speed, container, false)
+        if (isLandscapeOrientation) { // apply rounded background in landscape mode, which wil
+            // change according to speed.
+            view.guidance_current_speed.background = ContextCompat.getDrawable(inflater.context,
+                    R.drawable.current_speed_bg)
+        }
+        return view
     }
 
     /**
@@ -67,7 +75,7 @@ class GuidanceCurrentSpeedFragment : Fragment(), GuidanceSpeedListener {
         if (presenter == null) {
             presenter = GuidanceSpeedPresenter(SingletonHelper.navigationManager ?: return,
                     appPositioningManager?.sdkPositioningManager ?: return).apply {
-                addListener(this@GuidanceCurrentSpeedFragment)
+                addListener(this@GuidanceSpeedFragment)
                 resume()
             }
         }
@@ -83,18 +91,45 @@ class GuidanceCurrentSpeedFragment : Fragment(), GuidanceSpeedListener {
         presenter?.resume()
     }
 
+    private val isLandscapeOrientation
+        get() = activity!!.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+
+    private val colorNegative by lazy {
+        val color = ThemeUtil.getColor(activity, R.attr.colorNegative)
+        color
+    }
+
+    private val colorForeground by lazy {
+        val color = ThemeUtil.getColor(activity, R.attr.colorForeground)
+        color
+    }
+
+    private val colorForegroundLight by lazy {
+        val color = ThemeUtil.getColor(activity, R.attr.colorForegroundLight)
+        color
+    }
+
+    private val colorForegroundSecondary by lazy {
+        val color = ThemeUtil.getColor(activity, R.attr.colorForeground)
+        color
+    }
+
     override fun onDataChanged(data: GuidanceSpeedData?) {
         guidance_current_speed?.run {
             setCurrentSpeedData(data)
             data?.run {
-                if (activity!!.resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-                    if (isSpeeding) {
-                        valueTextColor = ThemeUtil.getColor(activity, R.attr.colorNegative)
-                        unitTextColor = ThemeUtil.getColor(activity, R.attr.colorNegative)
-                    } else {
-                        valueTextColor = ThemeUtil.getColor(activity, R.attr.colorForeground)
-                        unitTextColor = ThemeUtil.getColor(activity, R.attr.colorForegroundSecondary)
-                    }
+                if (isLandscapeOrientation) {
+                    valueTextColor = colorForegroundLight
+                    unitTextColor = colorForegroundLight
+                    return
+                }
+                // portrait mode
+                if (isSpeeding) {
+                    valueTextColor = colorNegative
+                    unitTextColor = colorNegative
+                } else {
+                    valueTextColor = colorForeground
+                    unitTextColor = colorForegroundSecondary
                 }
             }
         }

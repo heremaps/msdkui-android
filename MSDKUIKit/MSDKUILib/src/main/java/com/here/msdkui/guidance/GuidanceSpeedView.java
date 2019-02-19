@@ -66,8 +66,8 @@ public class GuidanceSpeedView extends BaseView {
     };
 
     private GuidanceSpeedData mGuidanceSpeedData;
-    private int mValueTextColor;
-    private int mUnitTextColor;
+    private int mValueTextColor  = 0;
+    private int mUnitTextColor = 0;
 
     /**
      * Constructs a new instance.
@@ -260,6 +260,8 @@ public class GuidanceSpeedView extends BaseView {
         final GuidanceSpeedView.SavedState savedState = (GuidanceSpeedView.SavedState) state;
         super.onRestoreInstanceState(savedState.getSuperState());
         setCurrentSpeedData(savedState.getSavedSpeedData());
+        setValueTextColor(savedState.mValueTextColor);
+        setUnitTextColor(savedState.mUnitTextColor);
     }
 
     /**

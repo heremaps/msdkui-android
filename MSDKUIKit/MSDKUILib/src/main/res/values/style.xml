@@ -342,6 +342,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:focusable">true</item>
         <item name="android:focusableInTouchMode">false</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
     <style name="ManeuverDescriptionItemIcon">

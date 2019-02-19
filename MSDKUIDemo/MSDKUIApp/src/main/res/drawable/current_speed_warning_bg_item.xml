@@ -14,7 +14,7 @@
   ~ limitations under the License.
   -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <corners android:radius="@dimen/current_speed_bg_radius" />
+    android:shape="oval">
     <solid android:color="@color/lui_negative" />
+    <size android:height="@dimen/current_speed_landscape_size" android:width="@dimen/current_speed_landscape_size" />
 </shape>

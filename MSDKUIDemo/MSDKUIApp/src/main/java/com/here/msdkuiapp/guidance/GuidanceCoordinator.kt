@@ -198,7 +198,7 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
     }
 
     private fun addSpeedPanel() {
-        addFragment(R.id.current_speed_panel_container, GuidanceCurrentSpeedFragment::class.java, false)
+        addFragment(R.id.current_speed_panel_container, GuidanceSpeedFragment::class.java, false)
     }
 
     private fun addSpeedLimitPanel() {

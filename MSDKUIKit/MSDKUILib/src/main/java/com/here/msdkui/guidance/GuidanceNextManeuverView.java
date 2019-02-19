@@ -166,7 +166,7 @@ public class GuidanceNextManeuverView extends BaseView {
     /**
      * Sets {@link GuidanceNextManeuverData} which will be used to populate UI. Please note
      * setting null data will set the visibility of the layout to GONE. It can be useful to prevent
-     * showing outdated or irrelevant data. for example, when the next maneuver is too far away.
+     * showing outdated or irrelevant data. for example, when the next maneuver is too far away
      * and setting null field in {@link GuidanceNextManeuverData} will put the respective child view's visibility
      * to {@code View.GONE}.
      *

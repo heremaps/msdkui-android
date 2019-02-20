@@ -137,12 +137,13 @@ public class GuidanceManeuverView extends BaseView {
     private void populateDefaultState() {
         ImageView iconView = findViewById(R.id.maneuverIconView);
         iconView.setImageResource(R.drawable.ic_car_position_marker);
+        final TextView defaultViewTextView = findViewById(R.id.defaultViewText);
+        defaultViewTextView.setVisibility(VISIBLE);
+        defaultViewTextView.setText(getContext().getString(R.string.msdkui_maneuverpanel_nodata));
         findViewById(R.id.busyStateProgressBar).setVisibility(View.GONE);
         findViewById(R.id.distanceView).setVisibility(View.GONE);
         findViewById(R.id.extraIconView).setVisibility(View.GONE);
-        final TextView infoView1 = findViewById(R.id.infoView1);
-        infoView1.setVisibility(VISIBLE);
-        infoView1.setText(getContext().getString(R.string.msdkui_maneuverpanel_nodata));
+        findViewById(R.id.infoView1).setVisibility(View.GONE);
         findViewById(R.id.infoView2).setVisibility(View.GONE);
     }
 
@@ -151,9 +152,10 @@ public class GuidanceManeuverView extends BaseView {
         findViewById(R.id.busyStateProgressBar).setVisibility(View.VISIBLE);
         findViewById(R.id.distanceView).setVisibility(View.GONE);
         findViewById(R.id.extraIconView).setVisibility(View.GONE);
-        final TextView infoView1 = findViewById(R.id.infoView1);
-        infoView1.setVisibility(VISIBLE);
-        infoView1.setText(getContext().getString(R.string.msdkui_maneuverpanel_updating));
+        final TextView defaultViewTextView = findViewById(R.id.defaultViewText);
+        defaultViewTextView.setVisibility(VISIBLE);
+        defaultViewTextView.setText(getContext().getString(R.string.msdkui_maneuverpanel_updating));
+        findViewById(R.id.infoView1).setVisibility(View.GONE);
         findViewById(R.id.infoView2).setVisibility(View.GONE);
     }
 
@@ -227,6 +229,7 @@ public class GuidanceManeuverView extends BaseView {
         }
         setVisibility(VISIBLE);
         findViewById(R.id.busyStateProgressBar).setVisibility(View.GONE);
+        findViewById(R.id.defaultViewText).setVisibility(View.GONE);
         populateIconView(maneuverData);
         populateExtraIconView(maneuverData);
         populateDistanceView(maneuverData);

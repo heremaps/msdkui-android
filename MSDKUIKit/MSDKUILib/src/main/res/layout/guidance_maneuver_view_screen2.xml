@@ -59,11 +59,19 @@
     <TextView
             android:id="@+id/infoView1"
             style="?attr/guidanceManeuverPanelSecondaryTextScreen2"
-            android:text="@string/msdkui_maneuverpanel_nodata"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/margin"/>
+
+    <TextView
+            android:id="@+id/defaultViewText"
+            style="?attr/guidanceManeuverPanelSecondaryTextScreen2"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/margin"
+    />
 
     <TextView
             android:id="@+id/infoView2"

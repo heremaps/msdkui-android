@@ -23,7 +23,7 @@ import com.here.msdkuiapp.espresso.impl.annotation.IntegrationUITest
 import com.here.msdkuiapp.espresso.impl.core.CoreActions
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onPlannerBarAppNameTitleView
 import com.here.msdkuiapp.espresso.impl.testdata.Constants
-import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_1
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_5
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers.DriveNavigationMatchers
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationActions
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationBarActions
@@ -31,13 +31,11 @@ import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGu
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedValue
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardEtaInfo
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverPanel
-import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceSpeedLimiter
 import com.here.msdkuiapp.espresso.impl.views.guidance.useractions.GuidanceActions
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
 import com.here.msdkuiapp.espresso.tests.TestBase
 import org.junit.Before
-import org.junit.After
 import org.junit.FixMethodOrder
 import org.junit.Ignore
 import org.junit.Test
@@ -46,15 +44,17 @@ import org.junit.runners.MethodSorters
 /**
  * Test for integration of RoutePlanner component with other components.
  */
-@Ignore // FIXME: MSDKUI-1350
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.java) {
 
-    private val destination = GEO_POINT_1
+    private val destination = GEO_POINT_5
 
     @Before
     fun prepare() {
-        CoreActions().enterDriveNavigation().provideMockLocation(mockLocationData)
+        // Set current location for guidance test
+        CoreActions().setCurrentLocation()
+        //Enter Drive Navigation
+        CoreActions().enterDriveNavigation()
         // Check drive navigation view opened and default destination label displayed
         DriveNavigationBarActions.waitForDestinationDisplayed()
         // Check map view displayed and tap anywhere on map view
@@ -66,11 +66,6 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
         // Check that route overview exists
         DriveNavigationBarActions.waitForRouteOverView()
                 .waitForGuidanceDescriptionDisplayed()
-    }
-
-    @After
-    fun tearDown() {
-        CoreActions().stopMockLocation(mockLocationData)
     }
 
     /**
@@ -100,6 +95,7 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     /**
      * MSDKUI-1267: Integration tests for showing current speed on maneuver panel
      */
+    @Ignore //FIXME: MSDKUI-1816
     @Test
     @IntegrationUITest
     fun testForGuidanceManeuverPanel_shouldDisplayCurrentSpeed() {
@@ -164,6 +160,7 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     /**
      * MSDKUI-1271 Integration tests for guidance speed limit.
      */
+    @Ignore //FIXME: MSDKUI-1816
     @Test
     @IntegrationUITest
     fun testForGuidanceSpeedLimit_shouldDisplaySpeedLimit() {

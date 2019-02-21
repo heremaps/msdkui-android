@@ -58,6 +58,7 @@ import org.hamcrest.TypeSafeMatcher
 import java.util.concurrent.TimeoutException
 import android.widget.TextView
 import android.support.test.espresso.matcher.ViewMatchers.*
+import android.util.Log
 
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationActions.getNumberFromText
@@ -216,7 +217,7 @@ object DriveNavigationMatchers {
      */
     fun waitForETAChanged(): ViewAction {
         val timeout: Long = 30000
-        val checkInterval: Long = 5000
+        val checkInterval: Long = 1000
         return object : ViewAction {
             override fun getConstraints(): Matcher<View> {
                 return ViewMatchers.isRoot()
@@ -238,14 +239,16 @@ object DriveNavigationMatchers {
                         .text.toString())
                 val initialDistance = getNumberFromText(view, view.findViewById<TextView>(R.id.distance)
                         .text.toString())
-
                 // Verify new ETA against initial
                 do {
                     uiController.loopMainThreadForAtLeast(checkInterval)
                     if (
                             // ETA should stay same all the time
+                            (initialETA.equals(getTimeFromText(view, view.findViewById<TextView>(R.id.eta)
+                                    .text.toString())) ||
+                            // In some cases ETA can differ by +1 minute
                             initialETA.equals(getTimeFromText(view, view.findViewById<TextView>(R.id.eta)
-                                    .text.toString())) &&
+                                    .text.toString()).plusMinutes(1))) &&
                             // Duration should decrease over time
                             initialDuration > getNumberFromText(view, view.findViewById<TextView>(R.id.duration)
                                     .text.toString()) &&

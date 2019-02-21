@@ -16,6 +16,7 @@
 
 package com.here.msdkuiapp.espresso.impl.core
 
+import android.support.test.espresso.IdlingRegistry
 import android.support.test.espresso.UiController
 import android.support.test.espresso.ViewAction
 import android.support.test.espresso.action.GeneralLocation
@@ -28,6 +29,7 @@ import android.support.test.espresso.action.ViewActions.pressBack
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions
+import android.support.test.espresso.idling.CountingIdlingResource
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
@@ -37,16 +39,20 @@ import android.widget.DatePicker
 import android.widget.TimePicker
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onLandingScreenList
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
-import com.here.msdkuiapp.espresso.impl.mock.MockLocationData
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.DRIVE_NAVIGATION_ITEM
+import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_0
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ROUTE_PLANNER_ITEM
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation
 import com.here.msdkuiapp.espresso.impl.utils.ScreenOrientationUtils.Companion.getOrientation
 import com.here.msdkuiapp.espresso.impl.utils.ScreenOrientationUtils.Companion.setOrientation
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationBarView.onDriveNavigationBarTitleView
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationBarActions
+import com.here.msdkuiapp.espresso.impl.views.map.utils.MapData
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRoutePlannerTitleView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
+import com.here.android.mpa.common.GeoCoordinate
+import com.here.android.mpa.common.MapEngine
+import com.here.msdkuiapp.position.AppPositioningManager
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 
@@ -202,22 +208,30 @@ open class CoreActions {
     }
 
     /**
-     * Provides mocking location for testing
+     * Inject coordinates into PositioningManager.
+     *
+     * @param off add or remove current location (default: false)
+     * @param location a set of latitude and longitude (default: HERE Berlin)
      */
-    fun provideMockLocation(mockLocationData: MockLocationData): CoreActions {
-        mockLocationData.run {
-            if (isMocked) mockLocation!!.setMockLocation(testPlace)
+    fun setCurrentLocation(off: Boolean = false, locationData: MapData = GEO_POINT_0) {
+        //Map engine must be initialized before we can inject coordinates.
+        waitForMap()
+        AppPositioningManager.getInstance().apply {
+            if(off) reset()
+            else customLocation = GeoCoordinate(locationData.lat, locationData.lng)
         }
-        return this
     }
 
     /**
-     * Stop mocking location service
+     * Wait for map engine to be initialized
      */
-    fun stopMockLocation(mockLocationData: MockLocationData): CoreActions {
-        mockLocationData.run {
-            if (isMocked) mockLocation!!.stopMocking()
+    private fun waitForMap() {
+        with(CountingIdlingResource("MapEngineIdlingResource")) {
+            val idlingRegistry = IdlingRegistry.getInstance()
+            idlingRegistry.register(this)
+            if(MapEngine.isInitialized())
+                decrement()
+            idlingRegistry.unregister(this)
         }
-        return this
     }
 }

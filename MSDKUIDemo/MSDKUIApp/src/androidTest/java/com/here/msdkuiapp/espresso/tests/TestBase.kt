@@ -22,8 +22,6 @@ import android.support.test.InstrumentationRegistry
 import android.support.test.rule.ActivityTestRule
 import android.support.test.rule.GrantPermissionRule
 import android.support.test.runner.AndroidJUnit4
-import com.here.msdkuiapp.espresso.impl.mock.MockLocation
-import com.here.msdkuiapp.espresso.impl.mock.MockLocationData
 import org.junit.Rule
 import org.junit.runner.RunWith
 
@@ -46,11 +44,6 @@ abstract class TestBase<T: Activity>(activityClass: Class<T>): ActivityTestRule<
             android.Manifest.permission.ACCESS_FINE_LOCATION,
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
             android.Manifest.permission.READ_EXTERNAL_STORAGE)
-
-    /**
-     * Mocking location service. Set parameter 'isMocked = true' to activate mock location
-     */
-    val mockLocationData: MockLocationData = MockLocationData(MockLocation(getInstrumentation().targetContext))
 
     /**
      * Gets instrumentation

@@ -105,6 +105,7 @@ public class GuidanceNextManeuverView extends BaseView {
 
     private void init(Context context) {
         LayoutInflater.from(context).inflate(R.layout.guidance_next_maneuver_panel, this);
+        setVisibility(View.GONE);
         if (getBackground() == null) {
             setBackgroundColor(ThemeUtil.getColor(getContext(), R.attr.colorBackgroundViewDark));
         }
@@ -117,13 +118,11 @@ public class GuidanceNextManeuverView extends BaseView {
      *         {@link GuidanceNextManeuverData}
      */
     private void populate(GuidanceNextManeuverData nextManeuverData) {
-        final View afterNextManeuverContainer = findViewById(R.id.afterNextManeuverContainer);
         if (nextManeuverData == null) {
-            afterNextManeuverContainer.setVisibility(View.GONE);
-            return;
+           setVisibility(View.GONE);
+           return;
         }
-        afterNextManeuverContainer.setVisibility(View.VISIBLE);
-
+       setVisibility(View.VISIBLE);
         final ImageView iconView = findViewById(R.id.nextManeuverIconView);
         if (nextManeuverData.getIconId() == null) {
             iconView.setVisibility(View.GONE);

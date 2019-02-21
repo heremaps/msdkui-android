@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.here.android.mpa.routing.Maneuver;
+import com.here.msdkui.R;
 import com.here.msdkui.common.measurements.UnitSystem;
 
 import java.util.List;
@@ -81,10 +82,7 @@ public class ManeuverListAdapter extends RecyclerView.Adapter<ManeuverListAdapte
      * @return an instance of {@link ManeuverItemView}.
      */
     protected View getRowView(final Context context) {
-        ManeuverItemView item = new ManeuverItemView(context);
-        item.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
-        return item;
+        return View.inflate(context, R.layout.maneuver_item_list, null);
     }
 
     @Override

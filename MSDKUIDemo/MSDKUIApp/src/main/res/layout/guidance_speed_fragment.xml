@@ -14,14 +14,14 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:ignore="UnusedResources">
-    <item
-        app:guidanceSpeedLimitExceeded="true"
-        android:drawable="@drawable/current_speed_warning_bg_item" />
-    <item
-        app:guidanceSpeedLimitExceeded="false"
-        android:drawable="@drawable/current_speed_bg_item" />
-</selector>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <com.here.msdkui.guidance.GuidanceSpeedView
+        android:id="@+id/guidance_current_speed"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</android.support.constraint.ConstraintLayout>

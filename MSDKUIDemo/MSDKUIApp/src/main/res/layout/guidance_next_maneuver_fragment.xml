@@ -18,7 +18,6 @@
     android:id="@+id/guidanceNextManeuverViewId"
     android:layout_width="match_parent"
     android:layout_height="@dimen/guidance_next_maneuver_height"
-    android:visibility="gone"
     android:layout_gravity="center_vertical"
     android:gravity="center_vertical"
     android:paddingStart="@dimen/guidance_next_maneuver_paddingstart"

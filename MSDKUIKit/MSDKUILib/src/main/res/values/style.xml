@@ -340,9 +340,9 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">?attr/colorBackgroundViewLight</item>
         <item name="android:focusable">true</item>
         <item name="android:focusableInTouchMode">false</item>
+        <item name="android:layout_gravity">center</item>
     </style>
 
     <style name="ManeuverDescriptionItemIcon">
@@ -351,10 +351,9 @@
         <item name="android:minWidth">@dimen/min_value</item>
         <item name="android:minHeight">@dimen/min_value</item>
         <item name="android:scaleType">centerInside</item>
-        <item name="android:layout_marginLeft">@dimen/contentMarginExtraLarge</item>
-        <item name="android:layout_marginStart">@dimen/contentMarginExtraLarge</item>
         <item name="android:contentDescription">@null</item>
         <item name="android:tint">?attr/colorForeground</item>
+        <item name="android:layout_marginEnd">10dp</item>
     </style>
 
     <style name="ManeuverDescriptionItemInstructionText">
@@ -363,21 +362,14 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">@dimen/contentMarginSmall</item>
-        <item name="android:layout_marginLeft">10dp</item>
-        <item name="android:layout_marginStart">10dp</item>
-        <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
-        <item name="android:layout_marginEnd">@dimen/contentMarginLarge</item>
-        <item name="android:layout_marginTop">@dimen/contentMarginHuge</item>
     </style>
 
     <style name="ManeuverDescriptionItemAddressText">
-        <item name="android:textSize">@dimen/textSizeMedium</item>
-        <item name="android:textColor">?attr/colorForegroundSecondary</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">@dimen/contentMarginLarge</item>
-        <item name="android:layout_marginStart">@dimen/contentMarginLarge</item>
-        <item name="android:paddingBottom">@dimen/contentMarginHuge</item>
+        <item name="android:textSize">@dimen/textSizeMedium</item>
+        <item name="android:textColor">?attr/colorForegroundSecondary</item>
+        <item name="android:textAlignment">viewStart</item>
     </style>
 
     <style name="ManeuverDescriptionItemDistanceText">
@@ -385,10 +377,7 @@
         <item name="android:textColor">?attr/colorForegroundSecondary</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">@dimen/contentMarginMedium</item>
         <item name="android:layout_marginStart">@dimen/contentMarginMedium</item>
-        <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
-        <item name="android:layout_marginEnd">@dimen/contentMarginLarge</item>
         <item name="android:textAlignment">viewEnd</item>
     </style>
 
@@ -706,6 +695,7 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">top</item>
         <item name="android:focusable">true</item>
         <item name="android:focusableInTouchMode">false</item>
     </style>
@@ -829,7 +819,6 @@
     <style name="GuidanceNextManeuverPanel">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:visibility">gone</item>
     </style>
 
     <style name="GuidanceNextManeuverPanelLeftIcon">

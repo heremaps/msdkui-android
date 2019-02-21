@@ -109,7 +109,7 @@ public class GuidanceSpeedLimitView extends BaseView {
     }
 
     private void populateUi(@Nullable GuidanceSpeedData data) {
-        if (data == null || data.getCurrentSpeedLimit() <= 0) {
+        if (data == null || data.getCurrentSpeedLimit() != null && data.getCurrentSpeedLimit() <= 0) {
             mGuidanceSpeedData = data;
             setVisibility(GONE);
             return;

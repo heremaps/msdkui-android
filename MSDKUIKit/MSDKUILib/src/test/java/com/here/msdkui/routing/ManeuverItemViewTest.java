@@ -57,6 +57,12 @@ public class ManeuverItemViewTest extends RobolectricTest {
     }
 
     @Test
+    public void testInitWithAnotherConstruction() {
+        mManeuverItemView = new ManeuverItemView(getApplicationContext(), null, 0, 0);
+        createdViewShouldHaveProperInitialContent();
+    }
+
+    @Test
     public void createdViewShouldHaveProperInitialContent() {
         final ImageView icon = mManeuverItemView.findViewById(R.id.maneuver_icon_view);
         assertNotNull(icon);

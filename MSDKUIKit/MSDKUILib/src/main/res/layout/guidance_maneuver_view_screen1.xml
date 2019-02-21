@@ -29,8 +29,17 @@
             app:layout_constraintEnd_toStartOf="@+id/distanceView"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintHorizontal_bias="0.0"
-            tools:ignore="ContentDescription"
-            android:layout_marginEnd="20dp"/>
+            tools:ignore="ContentDescription"/>
+
+    <TextView
+            android:id="@+id/defaultViewText"
+            style="?attr/guidanceManeuverPanelSecondaryText"
+            app:layout_constraintWidth_default="wrap"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="@dimen/contentMarginHuge"
+            app:layout_constraintStart_toEndOf="@id/maneuverIconView"
+            app:layout_constraintBottom_toBottomOf="@id/maneuverIconView"
+    />
 
     <ProgressBar
             android:id="@+id/busyStateProgressBar"
@@ -41,10 +50,10 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-            app:layout_constraintHorizontal_bias="0.0"
             android:id="@+id/distanceView"
-            app:layout_constraintWidth_default="wrap"
             style="?attr/guidanceManeuverPanelHeadingText"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintWidth_default="wrap"
             app:layout_constraintEnd_toStartOf="@+id/extraIconView"
             app:layout_constraintStart_toEndOf="@+id/maneuverIconView"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -61,7 +70,6 @@
             android:id="@+id/infoView1"
             style="?attr/guidanceManeuverPanelSecondaryText"
             app:layout_constraintWidth_default="wrap"
-            android:text="@string/msdkui_maneuverpanel_nodata"
             app:layout_constraintStart_toStartOf="@id/distanceView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"

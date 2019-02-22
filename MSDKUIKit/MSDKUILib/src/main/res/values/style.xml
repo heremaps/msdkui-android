@@ -646,7 +646,6 @@
     </style>
 
     <style name="RouteDescriptionItemIcon" parent="Image">
-        <item name="android:layout_marginTop">@dimen/contentMarginExtraLarge</item>
         <item name="android:tint">?attr/colorForeground</item>
     </style>
 

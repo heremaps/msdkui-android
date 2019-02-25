@@ -39,10 +39,10 @@ class RoutingCoordinator(private val context: Context, fragmentManager: Fragment
         WaypointSelectionFragment.Listener, RouteDescriptionListFragment.Listener,
         OptionPanelFragment.Listener, RoutePreviewFragment.Listener {
 
-    private var topFragment: Fragment? = null
+    private val topFragment: Fragment?
         get() = getFragment(R.id.route_top_container)
 
-    private var bottomFragment: Fragment? = null
+    private val bottomFragment: Fragment?
         get() = getFragment(R.id.route_bottom_container)
 
     private val plannerFragment: RoutePlannerFragment?

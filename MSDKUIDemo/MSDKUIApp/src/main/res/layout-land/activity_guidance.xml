@@ -34,6 +34,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toLeftOf="@id/vertical_guideline" />
 
     <FrameLayout
@@ -53,6 +54,7 @@
 
         <View
             android:id="@+id/grayed_screen_view_first_part"
+            tools:ignore="InconsistentLayout"
             style="@style/GuidanceGrayedScreenFirstPart" />
 
         <com.here.msdkuiapp.guidance.GuidanceDashBoardView
@@ -98,12 +100,16 @@
 
     <FrameLayout
         android:id="@+id/permissionId"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
     <View
         android:id="@+id/grayed_screen_view_second_part"
+        tools:ignore="InconsistentLayout"
         style="@style/GuidanceGrayedScreenSecondPart"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@id/vertical_guideline"
         app:layout_constraintRight_toRightOf="parent" />
 

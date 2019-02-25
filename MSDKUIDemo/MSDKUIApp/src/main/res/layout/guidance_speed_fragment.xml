@@ -14,14 +14,9 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<android.support.constraint.ConstraintLayout
+<com.here.msdkui.guidance.GuidanceSpeedView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/guidance_current_speed"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
-    <com.here.msdkui.guidance.GuidanceSpeedView
-        android:id="@+id/guidance_current_speed"
-        android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</android.support.constraint.ConstraintLayout>
+    android:layout_height="wrap_content"
+    android:gravity="center" />

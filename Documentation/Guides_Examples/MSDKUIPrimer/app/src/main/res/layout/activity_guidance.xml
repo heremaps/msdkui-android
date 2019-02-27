@@ -26,11 +26,11 @@
         android:layout_height="wrap_content"/>
 
     <fragment
-        class="com.here.android.mpa.mapping.MapFragment"
         android:id="@+id/mapFragment"
+        class="com.here.android.mpa.mapping.MapFragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_height="338dp"
+        android:layout_weight="1" />
 
     <Button
         android:layout_width="match_parent"

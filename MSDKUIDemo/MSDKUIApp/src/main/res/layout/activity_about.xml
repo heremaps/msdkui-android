@@ -28,6 +28,8 @@
 
         <LinearLayout
             android:id="@+id/app_version_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             style="@style/AboutVersionInfoContainer"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/ui_kit_version_container" >
@@ -42,6 +44,8 @@
         <LinearLayout
             android:id="@+id/ui_kit_version_container"
             style="@style/AboutVersionInfoContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/app_version_container"
             app:layout_constraintBottom_toTopOf="@id/here_sdk_version_container" >
             <TextView
@@ -55,6 +59,8 @@
         <LinearLayout
             android:id="@+id/here_sdk_version_container"
             style="@style/AboutVersionInfoContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ui_kit_version_container"
             app:layout_constraintBottom_toTopOf="@id/divider_and_text_info_container" >
             <TextView
@@ -68,6 +74,8 @@
         <LinearLayout
             android:id="@+id/divider_and_text_info_container"
             style="@style/AboutDividerAndTextInfoContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/here_sdk_version_container"
             app:layout_constraintBottom_toBottomOf="parent" >
 

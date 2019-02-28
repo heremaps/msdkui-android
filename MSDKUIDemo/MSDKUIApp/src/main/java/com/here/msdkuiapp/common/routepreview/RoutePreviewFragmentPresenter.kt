@@ -99,7 +99,7 @@ class RoutePreviewFragmentPresenter() : BasePresenter<GuidanceContracts.RoutePre
 
         if (state.cordsList.size < 2 || !state.cordsList.all { it.originalPosition.isValid }) {
             contract?.onProgress(false)
-            state.errorMessage = getString(R.string.msdkui_no_route_found)
+            state.errorMessage = getString(R.string.msdkui_app_routeresults_error)
             contract?.routingFailed(state.errorMessage)
             return
         }
@@ -112,7 +112,7 @@ class RoutePreviewFragmentPresenter() : BasePresenter<GuidanceContracts.RoutePre
             override fun onCalculateRouteFinished(inputList: List<RouteResult>, routingError: RoutingError) {
                 contract?.onProgress(false)
                 if (inputList.isEmpty() || routingError != RoutingError.NONE) {
-                    state.errorMessage = getString(R.string.msdkui_no_route_found)
+                    state.errorMessage = getString(R.string.msdkui_app_routeresults_error)
                     contract?.routingFailed(state.errorMessage)
                     return
                 }

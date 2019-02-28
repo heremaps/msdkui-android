@@ -161,9 +161,8 @@ class RoutePlannerPresenter : BasePresenter<RoutingContracts.RoutePlanner>() {
             override fun onCalculateRouteFinished(inputList: List<RouteResult>, routingError: RoutingError) {
                 contract?.onProgress(false)
                 if (inputList.isEmpty()) {
-                    val errorMessage = "Routing failed  ${routingError.name}"
-                    Log.e(RoutePlannerPresenter::class.java.name, errorMessage)
-                    coordinatorListener?.onRoutingFailed(errorMessage)
+                    Log.e(RoutePlannerPresenter::class.java.name, "Routing failed  ${routingError.name}")
+                    coordinatorListener?.onRoutingFailed(getString(R.string.msdkui_app_routeresults_error))
                     RoutingIdlingResourceWrapper.decrement()
                     return
                 }

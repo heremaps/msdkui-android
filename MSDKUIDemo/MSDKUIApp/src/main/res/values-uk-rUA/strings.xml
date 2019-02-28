@@ -56,7 +56,6 @@
   <string name="msdkui_app_routeplanner_getdirections">Отримати вказівки</string>
   <string name="msdkui_app_routeplanner_startchoosingwaypoint">Щоб розпочати, виберіть пункт відправлення або призначення.</string>
   <string name="msdkui_app_routeresults_error">Не вдалося знайти маршрути.</string>
-  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Дізнайтеся, як дістатися місця призначення легковим автомобілем, вантажівкою, велосипедом або пішки.</string>
   <string name="msdkui_app_rp_teaser_title">Планувальник маршруту</string>
   <string name="msdkui_app_rp_waypoint_subtitle">Торкніться карти або натисніть її та затримайте палець</string>

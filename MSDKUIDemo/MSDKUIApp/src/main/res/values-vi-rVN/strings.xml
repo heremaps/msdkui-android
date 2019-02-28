@@ -56,7 +56,6 @@
   <string name="msdkui_app_routeplanner_getdirections">Tìm chỉ đường</string>
   <string name="msdkui_app_routeplanner_startchoosingwaypoint">Bắt đầu bằng cách chọn địa điểm \"từ\" hoặc \"đến\"</string>
   <string name="msdkui_app_routeresults_error">Không tìm thấy tuyến đường nào.</string>
-  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Nhận chỉ đường xe ô-tô, xe tải, xe đạp và đi bộ.</string>
   <string name="msdkui_app_rp_teaser_title">Bộ lập lộ trình</string>
   <string name="msdkui_app_rp_waypoint_subtitle">Nhấn hoặc nhấn giữ lên bản đồ</string>

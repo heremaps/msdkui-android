@@ -35,7 +35,7 @@
   <string name="msdkui_app_guidance_button_showmaneuvers">Voir manœuvres</string>
   <string name="msdkui_app_guidance_button_showmap">Afficher la carte</string>
   <string name="msdkui_app_guidance_button_start">Démarrer navigation</string>
-  <string name="msdkui_app_guidance_start_simulation">Une simulation de guidage démarre.</string>
+  <string name="msdkui_app_guidance_start_simulation">Une simulation de guidage va démarrer.</string>
   <string name="msdkui_app_guidance_teaser_description">Aidez vos utilisateurs à arriver à destination avec la navigation détaillée.</string>
   <string name="msdkui_app_guidance_teaser_title">Navigation auto</string>
   <string name="msdkui_app_guidance_waypoint_subtitle">Appuyez sur la carte pour définir une destination</string>
@@ -56,7 +56,6 @@
   <string name="msdkui_app_routeplanner_getdirections">Calculer un itinéraire</string>
   <string name="msdkui_app_routeplanner_startchoosingwaypoint">Pour commencer, sélectionnez un point de départ et une destination</string>
   <string name="msdkui_app_routeresults_error">Aucun itinéraire trouvé.</string>
-  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Obtenez des itinéraires en voiture, en poids lourd, à vélo et à pieds.</string>
   <string name="msdkui_app_rp_teaser_title">Planification d\'itinéraire</string>
   <string name="msdkui_app_rp_waypoint_subtitle">Appuyez brièvement ou longuement sur la carte</string>

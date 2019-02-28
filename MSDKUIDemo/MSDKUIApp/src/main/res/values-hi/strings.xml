@@ -56,7 +56,6 @@
   <string name="msdkui_app_routeplanner_getdirections">दिशाएँ प्राप्त करें</string>
   <string name="msdkui_app_routeplanner_startchoosingwaypoint">शुरुआत \"उद्गम\" या \"गंतव्य\" चुनकर करें</string>
   <string name="msdkui_app_routeresults_error">कोई मार्ग नहीं मिला।</string>
-  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">कार, लॉरियों, साइकिलों और पैदल चलने के निर्देश पाएँ।</string>
   <string name="msdkui_app_rp_teaser_title">मार्ग योजनाकार</string>
   <string name="msdkui_app_rp_waypoint_subtitle">मैप छुएँ या देर तक दबाएँ</string>

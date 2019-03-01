@@ -16,6 +16,5 @@
 
 
 <resources>
-    <string name="msdkui_no_route_found" translatable="false">Didn\'t find any routes</string>
     <string name="msdkui_unknown" translatable="false">Unknown</string>
 </resources>

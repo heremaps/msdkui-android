@@ -30,6 +30,8 @@ import android.support.v4.view.ViewPager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v7.app.AppCompatActivity
 import com.here.msdkuidev.Constant.INDEX
+import com.here.msdkuidev.Constant.MATCH_PARENT
+import com.here.msdkuidev.Constant.WRAP_CONTENT
 
 class ComponentList : AppCompatActivity(), ListFragment.Listener {
 
@@ -65,8 +67,8 @@ class ComponentList : AppCompatActivity(), ListFragment.Listener {
     }
 
     private fun setupTabIcons() {
-        tabLayout.getTabAt(0)?.text = "wrap"
-        tabLayout.getTabAt(1)?.text = "match"
+        tabLayout.getTabAt(0)?.text = WRAP_CONTENT
+        tabLayout.getTabAt(1)?.text = MATCH_PARENT
     }
 
     private fun setupViewPager(viewPager: ViewPager) {

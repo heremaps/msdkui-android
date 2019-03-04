@@ -18,8 +18,8 @@ package com.here.msdkuiapp.espresso.tests.routing.flow
 
 import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
-import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.support.test.espresso.matcher.ViewMatchers.*
+import com.here.msdkuiapp.R
 import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.FunctionalUITest
 import com.here.msdkuiapp.espresso.impl.core.CoreActions
@@ -29,6 +29,9 @@ import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getText
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getTime
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withDateText
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.viewIsDisplayed
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForTextChange
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIndex
+import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_0
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_1
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_2
@@ -519,7 +522,7 @@ class RoutePlannerFlowTests : TestBase<SplashActivity>(SplashActivity::class.jav
         // Select second waypoint item
         RoutePlannerActions.selectWaypoint(WaypointData(GEO_POINT_0, WAYPOINT_2))
         // Save initial route details
-        val routeLength = getRouteInformation(ROUTE_RESULT_1).details
+        val routeDetails = getRouteInformation(ROUTE_RESULT_1).details
         // Switch off tunnel from route options
         RoutePlannerOptionsActions.tapSwitchTunnelOption()
         // Go back to route planner route view
@@ -527,7 +530,8 @@ class RoutePlannerFlowTests : TestBase<SplashActivity>(SplashActivity::class.jav
                 .perform(ViewActions.click())
                 .perform(ViewActions.click())
         // Check that new route details differ from initial
-        onRouteListItemDetails(ROUTE_RESULT_1).check(matches(not(withText(routeLength))))
+        onRootView.perform(waitForTextChange(withIndex(withId(R.id.desc_details), ROUTE_RESULT_1),
+                routeDetails as String))
     }
 
     /**

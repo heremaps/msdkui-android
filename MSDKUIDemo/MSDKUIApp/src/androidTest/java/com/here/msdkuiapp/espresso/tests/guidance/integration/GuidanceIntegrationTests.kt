@@ -35,10 +35,7 @@ import com.here.msdkuiapp.espresso.impl.views.guidance.useractions.GuidanceActio
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
 import com.here.msdkuiapp.espresso.tests.TestBase
-import org.junit.Before
-import org.junit.FixMethodOrder
-import org.junit.Ignore
-import org.junit.Test
+import org.junit.*
 import org.junit.runners.MethodSorters
 
 /**
@@ -66,6 +63,12 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
         // Check that route overview exists
         DriveNavigationBarActions.waitForRouteOverView()
                 .waitForGuidanceDescriptionDisplayed()
+    }
+
+    @After
+    fun tearDown() {
+        // Reset current location
+        CoreActions().setCurrentLocation(true)
     }
 
     /**
@@ -101,8 +104,13 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     fun testForGuidanceManeuverPanel_shouldDisplayCurrentSpeed() {
         // Start navigation simulation
         DriveNavigationActions.startNavigationSimulation()
+        // Wait for speed to display
+        GuidanceActions.waitForCurrentSpeed()
         // Check that speed value element is displayed on guidance view
         onGuidanceDashBoardCurrentSpeedValue.check(matches(isDisplayed()))
+        GuidanceActions.tapOnStopNavigationBtn()
+        // Check that returns from guidance to Landing screen
+        onPlannerBarAppNameTitleView.check(matches(isDisplayed()))
     }
 
     /**
@@ -112,7 +120,7 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     @IntegrationUITest
     fun testForGuidanceCurrentStreet_shouldDisplayCurrentStreet() {
         // Start navigation
-        DriveNavigationActions.tapOnStartNavigationBtn()
+        DriveNavigationActions.startNavigationSimulation()
         // Check that current street element is displayed on guidance view for both orientations
         enumValues<Constants.ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
@@ -120,6 +128,9 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
             // Check is view displayed
             onGuidanceCurrentStreetInfo.check(matches(isDisplayed()))
         }
+        GuidanceActions.tapOnStopNavigationBtn()
+        // Check that returns from guidance to Landing screen
+        onPlannerBarAppNameTitleView.check(matches(isDisplayed()))
     }
 
     /**
@@ -129,7 +140,7 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     @IntegrationUITest
     fun testForGuidanceManeuverPanel_shouldDisplayETA() {
         // Start navigation
-        DriveNavigationActions.tapOnStartNavigationBtn()
+        DriveNavigationActions.startNavigationSimulation()
         // Check that ETA view is displayed on both screen orientations
         enumValues<Constants.ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
@@ -137,6 +148,9 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
             // Check is view displayed
             onGuidanceDashBoardEtaInfo.check(matches(isDisplayed()))
         }
+        GuidanceActions.tapOnStopNavigationBtn()
+        // Check that returns from guidance to Landing screen
+        onPlannerBarAppNameTitleView.check(matches(isDisplayed()))
     }
 
     /**
@@ -155,20 +169,25 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
             GuidanceActions.waitForGuidanceNextManeuverPanelDisplayed()
             onGuidanceNextManeuverPanel.check(matches(isDisplayed()))
         }
+        GuidanceActions.tapOnStopNavigationBtn()
+        // Check that returns from guidance to Landing screen
+        onPlannerBarAppNameTitleView.check(matches(isDisplayed()))
     }
 
     /**
      * MSDKUI-1271 Integration tests for guidance speed limit.
      */
-    @Ignore //FIXME: MSDKUI-1816
     @Test
     @IntegrationUITest
     fun testForGuidanceSpeedLimit_shouldDisplaySpeedLimit() {
         // Start navigation simulation
         DriveNavigationActions.startNavigationSimulation()
-        // Check that guidance speed limit is dispalyed
+        // Check that guidance speed limit is displayed
         GuidanceActions.waitForSpeedLimitDisplayed()
             CoreActions().changeOrientation(Constants.ScreenOrientation.LANDSCAPE)
         GuidanceActions.waitForSpeedLimitDisplayed()
+        GuidanceActions.tapOnStopNavigationBtn()
+        // Check that returns from guidance to Landing screen
+        onPlannerBarAppNameTitleView.check(matches(isDisplayed()))
     }
 }

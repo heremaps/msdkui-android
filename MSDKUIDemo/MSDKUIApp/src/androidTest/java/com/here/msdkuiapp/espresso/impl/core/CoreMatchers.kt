@@ -16,22 +16,15 @@
 
 package com.here.msdkuiapp.espresso.impl.core
 
-import android.content.Context
+import android.graphics.drawable.GradientDrawable
 import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.PerformException
-import android.support.test.espresso.ViewAction
-import android.support.test.espresso.UiController
-import android.support.test.espresso.FailureHandler
-import android.support.test.espresso.ViewInteraction
+import android.support.test.espresso.*
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.BoundedMatcher
-import android.support.test.espresso.matcher.ViewMatchers.isRoot
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
-import android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.espresso.util.HumanReadables
 import android.support.test.espresso.util.TreeIterables
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.DatePicker
@@ -45,7 +38,6 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
 import java.lang.Double.parseDouble
-import java.lang.NumberFormatException
 import java.util.*
 import java.util.concurrent.TimeUnit.SECONDS
 import java.util.concurrent.TimeoutException
@@ -222,18 +214,34 @@ object CoreMatchers {
      */
     fun hasTextColor(colorAttrId: Int): Matcher<View> {
         return object : BoundedMatcher<View, TextView>(TextView::class.java) {
-            private var context: Context? = null
-
             override fun matchesSafely(textView: TextView): Boolean {
-                context = textView.context
-                val expectedColor = ThemeUtil.getColor(context, colorAttrId)
+                val expectedColor = ThemeUtil.getColor(textView.context, colorAttrId)
                 val textViewColor = textView.currentTextColor
-
                 return textViewColor == expectedColor
             }
 
             override fun describeTo(description: Description) {
                 description.appendText("has color with attr id $colorAttrId ")
+            }
+        }
+    }
+
+    /**
+     * Matches [View] based on it's attribute color.
+     * @param drawableId Attribute id (from R.attr)
+     */
+    fun withColorFromDrawable(drawableId: Int): Matcher<View> {
+        return object : BoundedMatcher<View, View>(View::class.java) {
+            override fun matchesSafely(view: View): Boolean {
+                val currentColor = (view.background.current as GradientDrawable)
+                        .color?.defaultColor
+                val expectedColor = (ContextCompat.getDrawable(view.context, drawableId) as GradientDrawable)
+                        .color?.defaultColor
+                return currentColor!!.equals(expectedColor)
+            }
+
+            override fun describeTo(description: Description) {
+                description.appendText("is drawable with id $drawableId ")
             }
         }
     }

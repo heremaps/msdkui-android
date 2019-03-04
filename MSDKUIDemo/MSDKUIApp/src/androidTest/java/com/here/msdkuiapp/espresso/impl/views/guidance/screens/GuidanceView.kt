@@ -87,6 +87,12 @@ object GuidanceView {
         get() = onView(withId(R.id.afterNextManeuverStreetName))
 
     /**
+     * The [ViewInteraction] Current speed view on guidance dashboard
+     */
+    val onGuidanceDashBoardCurrentSpeed: ViewInteraction
+        get() = onView(withId(R.id.guidance_current_speed))
+
+    /**
      * The [ViewInteraction] Current speed value on guidance dashboard
      */
     val onGuidanceDashBoardCurrentSpeedValue: ViewInteraction

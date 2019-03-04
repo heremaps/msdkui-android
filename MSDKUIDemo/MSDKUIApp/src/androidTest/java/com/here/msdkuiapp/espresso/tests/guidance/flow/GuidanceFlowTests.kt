@@ -20,8 +20,7 @@ import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.swipeDown
 import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
-import android.support.test.espresso.matcher.ViewMatchers.withId
+import android.support.test.espresso.matcher.ViewMatchers.*
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.FunctionalUITest
@@ -29,8 +28,9 @@ import com.here.msdkuiapp.espresso.impl.core.CoreActions
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getText
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
-import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIdAndText
+import com.here.msdkuiapp.espresso.impl.core.CoreView
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
+import com.here.msdkuiapp.espresso.impl.testdata.Constants
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_5
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.ScreenOrientation.PORTRAIT
@@ -49,6 +49,7 @@ import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGu
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardPullLine
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverStreetNameInfo
 import com.here.msdkuiapp.espresso.impl.views.guidance.useractions.GuidanceActions
+import com.here.msdkuiapp.espresso.impl.views.map.screens.MapView
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
 import com.here.msdkuiapp.espresso.tests.TestBase
@@ -71,6 +72,7 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
 
     @After
     fun tearDown() {
+        CoreActions().setCurrentLocation(true)
         CoreActions().changeOrientation(PORTRAIT)
     }
 
@@ -83,6 +85,8 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
         enumValues<ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
             CoreActions().changeOrientation(it)
+            // Wait for drive navigation icon
+            waitForCondition(CoreView.onLandingScreenDriverNavigationViewIcon)
             //Enter Drive Navigation
             CoreActions().enterDriveNavigation()
             // Check drive navigation view opened
@@ -110,6 +114,8 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
         enumValues<ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
             CoreActions().changeOrientation(it)
+            // Wait for drive navigation icon
+            waitForCondition(CoreView.onLandingScreenDriverNavigationViewIcon)
             //Enter Drive Navigation
             CoreActions().enterDriveNavigation()
             // Check drive navigation view opened
@@ -139,6 +145,8 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
         enumValues<ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
             CoreActions().changeOrientation(it)
+            // Wait for drive navigation icon
+            waitForCondition(CoreView.onLandingScreenDriverNavigationViewIcon)
             // Check drive navigation view opened
             DriveNavigationBarActions.waitForDriveNavigationView()
                     .waitForDestinationDisplayed()
@@ -161,6 +169,8 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
             // Check drive navigation view opened
             DriveNavigationBarActions.waitForDriveNavigationView()
         }
+        // Returns back to Landing screen
+        CoreActions().pressBackButton()
     }
 
     /**
@@ -187,10 +197,15 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
         enumValues<ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
             CoreActions().changeOrientation(it)
+            // Wait for map view
+            waitForCondition(MapView.onMapFragmentWrapperView)
+            // Wait for maneuver panel initial state to pass
+            GuidanceActions.waitForManeuverInitialStateToPass()
             // Check maneuver panel and dashboard is displayed
             GuidanceActions.checkGuidanceManeuverPanelInfo()
             GuidanceActions.checkGuidanceDashBoardInfo()
         }
+        GuidanceActions.tapOnStopNavigationBtn()
     }
 
     /**
@@ -202,6 +217,8 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
         enumValues<ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
             CoreActions().changeOrientation(it)
+            // Wait for drive navigation icon
+            waitForCondition(CoreView.onLandingScreenDriverNavigationViewIcon)
             //Enter Drive Navigation
             CoreActions().enterDriveNavigation()
             // Check drive navigation view opened
@@ -220,12 +237,9 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
             // Save maneuvers information from maneuvers list
             val maneuversDataList = ManeuversActions.getManeuversDataFromManeuversList()
             // Start simulation
-            DriveNavigationActions.startNavigationSimulation()
-            // First check maneuver panel starting state.
-            onRootView.perform(waitForCondition(
-                    withIdAndText(R.id.infoView1, R.string.msdkui_maneuverpanel_nodata),
-                    // Check interval is very short because maneuver panel is in this state for very short time.
-                    checkInterval = 30))
+            DriveNavigationActions.startNavigationSimulation(30)
+            // Wait for maneuver panel initial state to pass
+            GuidanceActions.waitForManeuverInitialStateToPass()
             // During simulation first maneuver is skipped,
             // so let's make sure that there is more than one maneuver.
             val maneuversCount = maneuversDataList.size
@@ -249,6 +263,11 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
     @Test
     @FunctionalUITest
     fun testCurrentStreetLabelInGuidanceSimulation() {
+        enumValues<ScreenOrientation>().forEach {
+        // Set screen orientation: PORTRAIT / LANDSCAPE
+        CoreActions().changeOrientation(it)
+        // Wait for drive navigation icon
+        waitForCondition(CoreView.onLandingScreenDriverNavigationViewIcon)
         //Enter Drive Navigation
         CoreActions().enterDriveNavigation()
         // Check drive navigation view opened
@@ -264,14 +283,12 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
                 .waitForGuidanceDescriptionDisplayed()
         // Start navigation simulation
         DriveNavigationActions.startNavigationSimulation()
-        enumValues<ScreenOrientation>().forEach {
-            // Set screen orientation: PORTRAIT / LANDSCAPE
-            CoreActions().changeOrientation(it)
             // Check that current street view is displayed and store its current value
             onGuidanceCurrentStreetInfoText.check(matches(isDisplayed()))
             val currentStreetData = getText(onGuidanceCurrentStreetInfoText)
             // Check that current street view value changed
             checkCurrentStreetViewValueChanged(currentStreetData)
+            GuidanceActions.tapOnStopNavigationBtn()
         }
     }
 
@@ -284,6 +301,8 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
         enumValues<ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
             CoreActions().changeOrientation(it)
+            // Wait for drive navigation icon
+            waitForCondition(CoreView.onLandingScreenDriverNavigationViewIcon)
             //Enter Drive Navigation
             CoreActions().enterDriveNavigation()
             // Check drive navigation view opened
@@ -321,6 +340,8 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
         enumValues<ScreenOrientation>().forEach {
             // Set screen orientation: PORTRAIT / LANDSCAPE
             CoreActions().changeOrientation(it)
+            // Wait for drive navigation icon
+            waitForCondition(CoreView.onLandingScreenDriverNavigationViewIcon)
             //Enter Drive Navigation
             CoreActions().enterDriveNavigation()
             // Check drive navigation view opened
@@ -367,15 +388,16 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
     @FunctionalUITest
     fun testDisplayCurrentSpeedAndSpeedLimitWarning() {
         val overSpeedOptions = arrayOf(false, true)
-        enumValues<ScreenOrientation>().forEach {
             for (isOverSpeedEnabled in overSpeedOptions) {
+                enumValues<ScreenOrientation>().forEach {
                 // Set screen orientation: PORTRAIT / LANDSCAPE
                 CoreActions().changeOrientation(it)
+                // Wait for drive navigation icon
+                waitForCondition(CoreView.onLandingScreenDriverNavigationViewIcon)
                 //Enter Drive Navigation
                 CoreActions().enterDriveNavigation()
                 // Check drive navigation view opened
                 DriveNavigationBarActions.waitForDriveNavigationView()
-                        .waitForDestinationDisplayed()
                 // Tap destination point
                 MapActions.waitForMapViewEnabled().tap(destination)
                 // Tap on tick to confirm the first waypoint selection
@@ -390,15 +412,14 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
                 } else {
                     DriveNavigationActions.startNavigationSimulation()
                 }
-                // Wait for speed value to appear
-                DriveNavigationActions.waitCurrentSpeedValue()
-                // Check speed and units
-                DriveNavigationMatchers.checkCurrentSpeed(isOverSpeedEnabled)
-                        .checkSpeedUnitsDisplayed(isOverSpeedEnabled)
+                    // Wait for speed to display
+                    GuidanceActions.waitForCurrentSpeed()
+                DriveNavigationMatchers.checkCurrentSpeed(isOverSpeedEnabled, it)
+                               .checkSpeedUnitsDisplayed(isOverSpeedEnabled, it)
                 // Stop guidance
                 GuidanceActions.tapOnStopNavigationBtn()
+                }
             }
-        }
     }
 
 
@@ -422,12 +443,17 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
         DriveNavigationBarActions.waitForRouteOverView()
                 .waitForGuidanceDescriptionDisplayed()
         // Start navigation simulation
-        DriveNavigationActions.startNavigationSimulation()
+        DriveNavigationActions.startNavigationSimulation(30)
         // Wait for ETA to start displaying
         DriveNavigationActions.waitForETAData(true)
+        // In case of miles used for distance, wait for it to pass
+        onRootView.perform(CoreMatchers.waitForTextChange(withId(R.id.distance),
+                "1" + CoreMatchers.getTextById(R.string.msdkui_unit_mile),
+                checkInterval = 2000))
         // Wait for ETA to change during guidance
         onRootView.perform(waitForETAChanged())
         // Wait for ETA to not display (guidance to finish)
         DriveNavigationActions.waitForETAData(false)
+        GuidanceActions.tapOnStopNavigationBtn()
     }
 }

@@ -16,20 +16,20 @@
 
 package com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions
 
+import android.app.Activity
 import android.support.test.espresso.UiController
 import android.support.test.espresso.ViewAction
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.longClick
 import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
-import android.support.test.espresso.matcher.ViewMatchers.isRoot
-import android.support.test.espresso.matcher.ViewMatchers.withText
-import android.support.test.espresso.matcher.ViewMatchers.withParent
-import android.support.test.espresso.matcher.ViewMatchers.withId
+import android.support.test.espresso.matcher.ViewMatchers.*
+import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
+import android.support.test.runner.lifecycle.Stage
+import android.support.v4.os.ConfigurationCompat
 import android.view.View
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
-import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.isNumeric
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getTextById
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
 import com.here.msdkuiapp.espresso.impl.testdata.Constants
@@ -66,7 +66,7 @@ object DriveNavigationActions {
      *
      * @param simulationSpeed simulation speed in m/s. 0 - fallback to default simulation speed
      */
-    fun startNavigationSimulation(simulationSpeed: Long = 0): GuidanceActions {
+    fun startNavigationSimulation(simulationSpeed: Long = 0): DriveNavigationActions {
         if (simulationSpeed > 0) {
             onRootView.perform(object: ViewAction {
                 override fun getDescription(): String {
@@ -78,16 +78,19 @@ object DriveNavigationActions {
                 }
 
                 override fun perform(uiController: UiController?, view: View) {
-                    ((view.context as GuidanceRouteSelectionActivity)
-                            .coordinator as GuidanceRouteSelectionCoordinator)
-                            .routePreviewFragment!!.presenter.simulationSpeed = simulationSpeed
+                    ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED).apply {
+                        with(iterator().next() as Activity) {
+                            ((this as GuidanceRouteSelectionActivity)
+                                    .coordinator as GuidanceRouteSelectionCoordinator)
+                                    .routePreviewFragment?.presenter?.simulationSpeed = simulationSpeed
+                        }
+                    }
                 }
-
             })
         }
         onRouteOverviewStartNaviBtn.check(matches(isDisplayed())).perform(longClick())
         onRouteOverviewStartSimulationOkBtn.check(matches(isDisplayed())).perform(click())
-        return GuidanceActions
+        return DriveNavigationActions
     }
 
     /**
@@ -115,14 +118,6 @@ object DriveNavigationActions {
     }
 
     /**
-     * Wait for current speed to get value
-     */
-    fun waitCurrentSpeedValue(): DriveNavigationActions {
-        onRootView.perform(waitForCondition(allOf(withId(R.id.guidance_current_speed_value), isNumeric())))
-        return this
-    }
-
-    /**
      * Click "See maneuvers" button to show maneuvers list
      */
     fun tapOnSeeManeuversBtn(): GuidanceActions {
@@ -137,7 +132,8 @@ object DriveNavigationActions {
      * @param text string which will be converted.
      */
     fun getTimeFromText(view: View, text: String): LocalTime {
-        return LocalTime.parse(text, DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT))
+        return LocalTime.parse(text, DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
+                .withLocale(ConfigurationCompat.getLocales(view.context.resources.configuration)[0]))
     }
 
     /**
@@ -157,16 +153,20 @@ object DriveNavigationActions {
      * @param isDisplayed expect ETA to be displayed or not.
      */
     fun waitForETAData(isDisplayed: Boolean): DriveNavigationActions {
-        val noData = "--"
-        val etaData= listOf(R.id.eta, R.id.duration, R.id.distance)
-        for (i in etaData)
-            if (isDisplayed == false) {
-                onRootView.perform(waitForCondition(CoreMatchers.withIdAndText(
-                        i, noData), 250000, 2000))
-            } else {
-                onRootView.perform(CoreMatchers.waitForTextChange(
-                        withId(i), noData, 2000, 100))
+        val noEtaData = getTextById(R.string.msdkui_value_not_available)
+        if (isDisplayed == false) {
+            onRootView.perform(waitForCondition(CoreMatchers.withIdAndText(
+                    R.id.eta, noEtaData), 250000, 2000))
+            //When ETA status is confirmed check distance and duration immediately
+            listOf(R.id.distance, R.id.duration).forEach {
+                withId(it).matches(withText(noEtaData))
             }
+        } else {
+            listOf(R.id.eta, R.id.distance, R.id.duration).forEach {
+                onRootView.perform(CoreMatchers.waitForTextChange(
+                        withId(it), noEtaData, 2000, 100))
+            }
+        }
         return this
     }
 }

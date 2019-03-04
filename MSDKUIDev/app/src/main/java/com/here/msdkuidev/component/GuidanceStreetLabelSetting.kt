@@ -20,6 +20,8 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Parcel
 import android.os.Parcelable
+import com.here.msdkui.R
+import com.here.msdkui.common.ThemeUtil
 import com.here.msdkui.guidance.GuidanceStreetLabelData
 import com.here.msdkuidev.Setting
 import com.here.msdkuidev.SettingItem
@@ -73,15 +75,18 @@ class GuidanceStreetLabelSetting : Setting<GuidanceStreetLabel>() {
             "Default" to GuidanceStreetLabelSettingItem().apply {
                 defaultView = true
             },
-            "With all properties set" to GuidanceStreetLabelSettingItem().apply {
-                guidanceStreetLabelData = GuidanceStreetLabelData("Street Label Text", Color.BLACK)
+            "With all properties set -- background colorPositive" to GuidanceStreetLabelSettingItem().apply {
+                guidanceStreetLabelData = GuidanceStreetLabelData("Street Label Text",
+                    ThemeUtil.getColor(context, R.attr.colorPositive))
             },
+            "With all properties set -- background colorForegroundSecondary" to GuidanceStreetLabelSettingItem().apply {
+                guidanceStreetLabelData = GuidanceStreetLabelData("Street Label Text",
+                    ThemeUtil.getColor(context, R.attr.colorForegroundSecondary))
+            },
+
             "Without background and with red text color" to GuidanceStreetLabelSettingItem().apply {
                 guidanceStreetLabelData = GuidanceStreetLabelData("Street Label Text", 0)
                 redText = true
-            },
-            "street name is null" to GuidanceStreetLabelSettingItem().apply {
-                guidanceStreetLabelData = GuidanceStreetLabelData(null, Color.BLACK)
             },
             "data is null" to GuidanceStreetLabelSettingItem().apply {
                 guidanceStreetLabelData = null

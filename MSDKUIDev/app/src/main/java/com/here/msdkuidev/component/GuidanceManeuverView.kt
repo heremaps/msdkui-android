@@ -20,6 +20,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
+import com.here.msdkui.common.ThemeUtil
 import com.here.msdkuidev.Constant
 import com.here.msdkuidev.R
 import kotlinx.android.synthetic.main.guidance_maneuver_view_hori.*
@@ -49,6 +50,11 @@ class GuidanceManeuverView : AppCompatActivity() {
         }
         if (setting.noDistance == true) {
             guidanceManeuverView.findViewById<TextView>(R.id.distanceView).visibility = View.GONE
+        }
+
+        if(setting.highlight  == true) {
+            guidanceManeuverView.highLightManeuver(
+                ThemeUtil.getColor(this, com.here.msdkui.R.attr.colorAccentLight))
         }
     }
 }

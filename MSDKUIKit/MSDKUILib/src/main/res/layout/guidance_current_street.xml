@@ -18,13 +18,13 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/guidance_current_street_view"
-    style="@style/GuidanceCurrentStreet">
+    style="?attr/guidanceCurrentStreet">
 
     <TextView
         android:id="@+id/guidance_current_street_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/GuidanceCurrentStreetText"
+        style="?attr/guidanceCurrentStreetText"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

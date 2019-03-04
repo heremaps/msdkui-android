@@ -24,7 +24,8 @@
             android:id="@+id/maneuverIconView"
             style="?attr/guidanceManeuverPanelLeftIcon"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/defaultViewText"
+            app:layout_constraintBottom_toBottomOf="@+id/defaultViewText"
             app:srcCompat="@drawable/ic_car_position_marker"
             app:layout_constraintEnd_toStartOf="@+id/distanceView"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -35,10 +36,13 @@
             android:id="@+id/defaultViewText"
             style="?attr/guidanceManeuverPanelSecondaryText"
             app:layout_constraintWidth_default="wrap"
+            app:layout_constrainedHeigh_default="wrap"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="@dimen/contentMarginHuge"
             app:layout_constraintStart_toEndOf="@id/maneuverIconView"
-            app:layout_constraintBottom_toBottomOf="@id/maneuverIconView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintBottom_toBottomOf="parent"
     />
 
     <ProgressBar

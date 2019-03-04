@@ -41,6 +41,8 @@ class GuidanceSpeedLimit : AppCompatActivity() {
             guidanceSpeedLimitView.setCurrentSpeedData(setting.guidanceSpeedData)
             setting.customBackground?.run {
                 guidanceSpeedLimitView.background = ContextCompat.getDrawable(this@GuidanceSpeedLimit, this)
+            } ?:  run {
+                guidanceSpeedLimitView.background = ContextCompat.getDrawable(this@GuidanceSpeedLimit, R.drawable.rectangle)
             }
         }
     }

@@ -59,10 +59,14 @@ class GuidanceSpeedFragment : Fragment(), GuidanceSpeedListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.guidance_speed_fragment, container, false)
-        if (isLandscapeOrientation) { // apply rounded background in landscape mode, which wil
+        if (isLandscapeOrientation) { // apply rounded background in landscape mode, which will
             // change according to speed.
-            view.guidance_current_speed.background = ContextCompat.getDrawable(inflater.context,
-                    R.drawable.current_speed_bg)
+            with(view.guidance_current_speed) {
+                background = ContextCompat.getDrawable(inflater.context,
+                        R.drawable.current_speed_bg)
+                valueTextColor = colorForegroundLight
+                unitTextColor = colorForegroundLight
+            }
         }
         return view
     }

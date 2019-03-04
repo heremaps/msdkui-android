@@ -20,37 +20,20 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".56" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".48" />
-
     <TextView
         android:id="@+id/guidance_current_speed_value"
-        style="?attr/guidanceCurrentSpeedPanelText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/contentMarginSmall"
-        app:layout_constraintBottom_toTopOf="@id/guideline"
+       style="?attr/guidanceCurrentSpeedPanelText"
+        app:layout_constraintBottom_toTopOf="@+id/guidance_current_speed_unit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/guidance_current_speed_unit"
-        style="?attr/guidanceCurrentSpeedPanelSecondaryText"
+       style="?attr/guidanceCurrentSpeedPanelSecondaryText"
         app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline1" />
-
+        app:layout_constraintTop_toBottomOf="@+id/guidance_current_speed_value" />
 
 </android.support.constraint.ConstraintLayout>

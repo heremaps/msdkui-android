@@ -38,6 +38,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="@dimen/contentMarginHuge"
             app:layout_constraintStart_toEndOf="@id/maneuverIconView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintBottom_toBottomOf="@id/maneuverIconView"
     />
 

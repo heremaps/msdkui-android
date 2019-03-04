@@ -153,6 +153,7 @@ public class GuidanceSpeedView extends BaseView {
         final TextView speed = findViewById(R.id.guidance_current_speed_value);
         speed.setText(speedText);
         final TextView speedUnit = findViewById(R.id.guidance_current_speed_unit);
+        speedUnit.setVisibility(VISIBLE);
         String speedUnitString = SpeedFormatterUtil.getUnitString(
                 speedUnit.getContext(), mUnitSystem);
         if (!speedUnitString.contentEquals(speedUnit.getText())) {

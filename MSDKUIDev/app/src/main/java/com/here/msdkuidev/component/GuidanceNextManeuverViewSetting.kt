@@ -36,7 +36,7 @@ class GuidanceNextManeuverViewSetting() : Setting<GuidanceNextManeuverView>() {
 
         constructor(parcel: Parcel) : super(parcel) {
             guidanceNextManeuverData =
-                    parcel.readParcelable(GuidanceNextManeuverData::class.java.classLoader)
+                parcel.readParcelable(GuidanceNextManeuverData::class.java.classLoader)
         }
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -67,13 +67,16 @@ class GuidanceNextManeuverViewSetting() : Setting<GuidanceNextManeuverView>() {
     override fun getItems(context: Context): LinkedHashMap<String, SettingItem> {
         val info1 = "Lindenstraße 110"
         val iconId = R.drawable.ic_maneuver_icon_15
-        val distance:Long = 2000
+        val distance: Long = 2000
         return linkedMapOf(
             "Default view or set null data" to GuidanceNextManeuverViewSettingItem().apply {
                 guidanceNextManeuverData = null
             },
             "With all properties set" to GuidanceNextManeuverViewSettingItem().apply {
                 guidanceNextManeuverData = GuidanceNextManeuverData(iconId, distance, info1)
+            },
+            "With long street name" to GuidanceNextManeuverViewSettingItem().apply {
+                guidanceNextManeuverData = GuidanceNextManeuverData(iconId, distance, "Long street name but not very long street name.")
             },
             "Without maneuver icon" to GuidanceNextManeuverViewSettingItem().apply {
                 guidanceNextManeuverData = GuidanceNextManeuverData(null, distance, info1)
@@ -83,6 +86,9 @@ class GuidanceNextManeuverViewSetting() : Setting<GuidanceNextManeuverView>() {
             },
             "Without distance" to GuidanceNextManeuverViewSettingItem().apply {
                 guidanceNextManeuverData = GuidanceNextManeuverData(iconId, null, info1)
+            },
+            "Without street, distance" to GuidanceNextManeuverViewSettingItem().apply {
+                guidanceNextManeuverData = GuidanceNextManeuverData(iconId, null, null)
             }
         )
     }

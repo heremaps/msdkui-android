@@ -31,6 +31,7 @@ class GuidanceEstimatedArrivalSetting : Setting<GuidanceEstimatedArrival>() {
 
         // data customization
         var guidanceEstimatedArrivalViewData: GuidanceEstimatedArrivalViewData? = null
+        var default : Boolean ? = null
 
         // ui customization
         var customTheme: Int? = null
@@ -40,14 +41,15 @@ class GuidanceEstimatedArrivalSetting : Setting<GuidanceEstimatedArrival>() {
         constructor(parcel: Parcel) : super(parcel) {
             guidanceEstimatedArrivalViewData =
                     parcel.readParcelable(GuidanceEstimatedArrivalViewData::class.java.classLoader)
-
             customTheme = parcel.readValue(Int::class.java.classLoader) as? Int
+            default = parcel.readValue(Boolean::class.java.classLoader) as? Boolean
         }
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
             super.writeToParcel(parcel, flags)
             parcel.writeParcelable(guidanceEstimatedArrivalViewData, flags)
             parcel.writeValue(customTheme)
+            parcel.writeValue(default)
         }
 
         override fun describeContents(): Int {
@@ -77,7 +79,9 @@ class GuidanceEstimatedArrivalSetting : Setting<GuidanceEstimatedArrival>() {
 
         return linkedMapOf(
 
-            "Without properties" to GuidanceEstimatedArrivalSettingItem(),
+            "Without properties" to GuidanceEstimatedArrivalSettingItem().apply {
+                default = true
+            },
 
             "With all properties" to GuidanceEstimatedArrivalSettingItem().apply {
                 guidanceEstimatedArrivalViewData = GuidanceEstimatedArrivalViewData(Date(), distance, duration)

@@ -54,9 +54,8 @@
   <string name="msdkui_app_route_results_title">Rutas</string>
   <string name="msdkui_app_routeoverview_to">A:</string>
   <string name="msdkui_app_routeplanner_getdirections">Obtener indicaciones</string>
-  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Empiece escogiendo un \"desde\" o un \"hasta\"</string>
+  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Empiece escogiendo un \"de\" o un \"a\"</string>
   <string name="msdkui_app_routeresults_error">No se ha encontrado ninguna ruta.</string>
-  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Obtenga itinerarios para ir en coche, camión, bicicleta y a pie.</string>
   <string name="msdkui_app_rp_teaser_title">Planificador de ruta</string>
   <string name="msdkui_app_rp_waypoint_subtitle">Toque el mapa o pulse sobre él sin soltar</string>

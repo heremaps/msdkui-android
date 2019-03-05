@@ -56,7 +56,6 @@
   <string name="msdkui_app_routeplanner_getdirections">Uzyskaj wskazówki</string>
   <string name="msdkui_app_routeplanner_startchoosingwaypoint">Rozpocznij od wybrania punktu początkowego lub końcowego</string>
   <string name="msdkui_app_routeresults_error">Nie znaleziono żadnych tras.</string>
-  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Uzyskaj wskazówki dla samochodów, ciężarówek, rowerów i pieszych.</string>
   <string name="msdkui_app_rp_teaser_title">Planer tras</string>
   <string name="msdkui_app_rp_waypoint_subtitle">Naciśnij lub naciśnij i przytrzymaj mapę</string>
@@ -67,7 +66,7 @@
   <string name="msdkui_app_swap_waypoints">Zamień punkty nawigacyjne</string>
   <string name="msdkui_app_teaser_link">Sprawdź to</string>
   <string name="msdkui_app_ui_kit_version">Wersja aplikacji MSDKUI</string>
-  <string name="msdkui_app_userposition_search">Pobieranie Twojej lokalizacji</string>
+  <string name="msdkui_app_userposition_search">Pobieranie lokalizacji</string>
   <string name="msdkui_app_waypoint_not_valid">Nieprawidłowy punkt nawigacyjny</string>
-  <string name="msdkui_app_waypoint_select_location">Wybierz punkt nawigacyjny</string>
+  <string name="msdkui_app_waypoint_select_location">Punkt nawigacyjny</string>
 </resources>

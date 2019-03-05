@@ -17,6 +17,8 @@
 package com.here.msdkuidev
 
 object Constant {
+    const val MATCH_PARENT = "match parent"
+    const val WRAP_CONTENT = "wrap content"
     const val DEFAULT: String = "in wrap_content mode"
     const val FIX_VALUE: String = "in match_parent mode with 50dp margin"
     const val COMPONENT = "Component"

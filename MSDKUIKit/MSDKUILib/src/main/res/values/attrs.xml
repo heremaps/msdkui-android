@@ -223,6 +223,9 @@
 
         <attr name="guidanceSpeedLimitPanel" format="reference" />
         <attr name="guidanceSpeedLimitText" format="reference" />
+
+        <attr name="guidanceCurrentStreet" format="reference" />
+        <attr name="guidanceCurrentStreetText" format="reference" />
     </declare-styleable>
 
 </resources>

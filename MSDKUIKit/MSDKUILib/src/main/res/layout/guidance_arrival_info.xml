@@ -23,6 +23,7 @@
     <TextView
         android:id="@+id/eta"
         style="?attr/guidanceArrivalTime"
+        android:text="@string/msdkui_value_not_available"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_min="wrap"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,6 +32,7 @@
     <TextView
         android:id="@+id/duration"
         style="?attr/guidanceArrivalDuration"
+        android:text="@string/msdkui_value_not_available"
         app:layout_constraintWidth_default="wrap"
         app:layout_constraintBaseline_toBaselineOf="@+id/dot"
         app:layout_constraintEnd_toStartOf="@+id/dot"
@@ -39,6 +41,7 @@
     <TextView
         android:id="@+id/distance"
         style="?attr/guidanceArrivalDistance"
+        android:text="@string/msdkui_value_not_available"
         app:layout_constraintWidth_default="wrap"
         app:layout_constraintBaseline_toBaselineOf="@+id/dot"
         app:layout_constraintEnd_toEndOf="parent"

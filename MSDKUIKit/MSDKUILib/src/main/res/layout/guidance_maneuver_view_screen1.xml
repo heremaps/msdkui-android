@@ -36,7 +36,6 @@
             android:id="@+id/defaultViewText"
             style="?attr/guidanceManeuverPanelSecondaryText"
             app:layout_constraintWidth_default="wrap"
-            app:layout_constrainedHeigh_default="wrap"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="@dimen/contentMarginHuge"
             app:layout_constraintStart_toEndOf="@id/maneuverIconView"

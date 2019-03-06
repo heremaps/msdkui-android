@@ -39,7 +39,7 @@ class GuidanceEstimatedArrival : AppCompatActivity() {
         val resourceId = if (setting.subTitle == Constant.DEFAULT) R.layout.guidance_estimated_arrival else
             R.layout.guidance_estimated_arrival_fix
         setContentView(resourceId)
-        if(setting.default == false) {
+        if(setting.default != true) {
             guidanceEstimatedArrivalView.estimatedArrivalData = setting.guidanceEstimatedArrivalViewData
         }
     }

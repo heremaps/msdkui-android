@@ -164,7 +164,7 @@ class GuidanceManeuverViewSetting() : Setting<GuidanceManeuverView>() {
                 customTheme = R.style.GuidanceManeuverViewRed
             },
 
-            "Default view, vertical" to GuidanceManeuverViewSettingItem().apply {
+            "Default or No data state, vertical" to GuidanceManeuverViewSettingItem().apply {
                 defaultView = true
                 direction = 1
             },

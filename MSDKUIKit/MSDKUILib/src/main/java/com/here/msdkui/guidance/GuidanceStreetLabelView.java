@@ -16,7 +16,6 @@
 
 package com.here.msdkui.guidance;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.GradientDrawable;

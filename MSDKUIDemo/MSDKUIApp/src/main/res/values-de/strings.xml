@@ -56,7 +56,6 @@
   <string name="msdkui_app_routeplanner_getdirections">Route berechnen</string>
   <string name="msdkui_app_routeplanner_startchoosingwaypoint">Wählen Sie zunächst einen Wegpunkt für \"Von\" oder \"Nach\" aus</string>
   <string name="msdkui_app_routeresults_error">Es wurden keine Routen gefunden.</string>
-  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Nutzen Sie die Routenberechnung für Autos, Lkws, Fahrräder und Fußgänger.</string>
   <string name="msdkui_app_rp_teaser_title">Routenplaner</string>
   <string name="msdkui_app_rp_waypoint_subtitle">Tippen Sie auf die Karte bzw. halten Sie die Karte gedrückt</string>

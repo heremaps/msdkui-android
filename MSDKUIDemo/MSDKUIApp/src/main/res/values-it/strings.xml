@@ -19,7 +19,7 @@
   <string name="msdkui_app_about">Informazioni su</string>
   <string name="msdkui_app_about_info_part_four">Ora puoi usare i componenti del kit HERE Mobile SDK UI per creare un pianificatore di itinerari e un\'esperienza per ricevere indicazioni. Per maggiori informazioni, consulta la guida dell\'utente.</string>
   <string name="msdkui_app_about_info_part_one">Realizza splendide interfacce per Android e iOS con il kit HERE Mobile SDK UI</string>
-  <string name="msdkui_app_about_info_part_three">Usando solo poche righe di codice, puoi creare una UI completa con l\'edizione Premium dell\'HERE Mobile SDK. Invece di impiegare diverse ore per realizzare un elenco di manovre usando le API native, ci metterai solo un paio di minuti. Minor tempo per lo sviluppo significa accesso più veloce al mercato. \n\nNaturalmente, se lo desideri, puoi usare il kit UI per cambiare l\'aspetto (colori, dimensioni) e comportamento (presentazione dei dati, logica, flusso, sottocomponenti) di alcuni controlli della UI, sta solo a te.</string>
+  <string name="msdkui_app_about_info_part_three">Usando solo poche righe di codice, puoi creare una UI completa con l\'edizione Premium dell\'HERE Mobile SDK. Invece di impiegare diverse ore per realizzare un elenco di manovre usando le API native, ci metterai solo un paio di minuti. Minor tempo per lo sviluppo significa accesso più veloce al mercato. \n\nNaturalmente, se lo desideri, puoi usare il kit UI per cambiare l\'aspetto (colori, dimensioni) e comportamento (presentazione dei dati, logica, flusso, sottocomponenti) di alcuni controlli della UI; sta solo a te.</string>
   <string name="msdkui_app_about_info_part_two">Una buona interfaccia utente spesso fa la differenza tra trovare e fidelizzare gli utenti o perderli a favore dei tuoi concorrenti. Questo è il motivo per cui il kit HERE Mobile SDK UI per Android e iOS contiene una varietà di schermate completamente funzionanti e pronte per essere utilizzate nella tua applicazione.</string>
   <string name="msdkui_app_add">Aggiungi</string>
   <string name="msdkui_app_add_waypoint">Aggiungi tappa</string>
@@ -56,7 +56,6 @@
   <string name="msdkui_app_routeplanner_getdirections">Ottieni indicazioni</string>
   <string name="msdkui_app_routeplanner_startchoosingwaypoint">Per iniziare, scegli un punto di partenza o una destinazione</string>
   <string name="msdkui_app_routeresults_error">Nessun itinerario trovato.</string>
-  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Ottieni indicazioni per auto, autocarri, biciclette e a piedi.</string>
   <string name="msdkui_app_rp_teaser_title">Pianificazione itinerario</string>
   <string name="msdkui_app_rp_waypoint_subtitle">Tocca o tocca a lungo sulla mappa</string>

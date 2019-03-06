@@ -157,7 +157,7 @@
   <string name="msdkui_unit_kilometer">km</string>
   <string name="msdkui_unit_km_per_h">km/h</string>
   <string name="msdkui_unit_meter">m</string>
-  <string name="msdkui_unit_mile">millas</string>
+  <string name="msdkui_unit_mile">mi</string>
   <string name="msdkui_unit_miles_per_hour">mph</string>
   <string name="msdkui_unit_yard">yd</string>
   <string name="msdkui_userposition_search">Obteniendo su ubicación</string>

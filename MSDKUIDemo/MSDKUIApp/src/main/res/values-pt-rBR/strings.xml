@@ -19,7 +19,7 @@
   <string name="msdkui_app_about">Sobre</string>
   <string name="msdkui_app_about_info_part_four">Você pode usar os componentes do kit de interface do usuário do HERE Mobile SDK agora mesmo para criar um planejador de rotas e sua experiência em orientação. Saiba mais sobre isso no manual do usuário.</string>
   <string name="msdkui_app_about_info_part_one">Crie belas interfaces para Android e iOS com o kit de interface do usuário HERE Mobile SDK</string>
-  <string name="msdkui_app_about_info_part_three">Você pode criar uma interface do usuário completa usando apenas algumas linhas de código com a edição Premium do HERE Mobile SDK. Ao invés de gastar várias horas para criar uma lista de manobras usando APIs nativos, você só vai precisar de algunss minutos. Menos tempo de desenvolvimento significa mais tempo para comercializar. \n\nVocê pode, é claro,  usar o kit de interface do usuário para alterar a aparência (cores e dimensões) e o comportamento (apresentação de dados, lógica, fluxo, subcomponentes) de alguns controles da interface do usuário. A escolha é sua.</string>
+  <string name="msdkui_app_about_info_part_three">Você pode criar uma interface do usuário completa usando apenas algumas linhas de código com a edição Premium do HERE Mobile SDK. Ao invés de gastar várias horas para criar uma lista de manobras usando APIs nativos, você só vai precisar de alguns minutos. Menos tempo de desenvolvimento significa mais tempo para comercializar. \n\nVocê pode, é claro,  usar o kit de interface do usuário para alterar a aparência (cores e dimensões) e o comportamento (apresentação de dados, lógica, fluxo, subcomponentes) de alguns controles da interface do usuário. A escolha é sua.</string>
   <string name="msdkui_app_about_info_part_two">Geralmente, uma boa interface do usuário é a diferença principal entre encontrar e manter usuários, ou perdê-los para seus concorrentes. É por isso que o kit de interface do usuário HERE Mobile SDK para Android e iOS já vem com uma variedade de telas totalmente funcionais e prontas para usar no seu aplicativo.</string>
   <string name="msdkui_app_add">Adicionar</string>
   <string name="msdkui_app_add_waypoint">Adicionar parada</string>
@@ -56,7 +56,6 @@
   <string name="msdkui_app_routeplanner_getdirections">Obter orientações</string>
   <string name="msdkui_app_routeplanner_startchoosingwaypoint">Escolha um \"de\" ou um \"para\" para começar</string>
   <string name="msdkui_app_routeresults_error">Nenhuma rota encontrada.</string>
-  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Traça rotas de carro, caminhão, bicicleta e a pé.</string>
   <string name="msdkui_app_rp_teaser_title">Planejador de rota</string>
   <string name="msdkui_app_rp_waypoint_subtitle">Toque ou pressione e segure no mapa</string>

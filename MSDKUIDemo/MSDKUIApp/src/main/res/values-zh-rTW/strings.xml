@@ -56,7 +56,6 @@
   <string name="msdkui_app_routeplanner_getdirections">取得方位</string>
   <string name="msdkui_app_routeplanner_startchoosingwaypoint">選擇「起點」或「目的地」以便開始</string>
   <string name="msdkui_app_routeresults_error">找不到任何路線。</string>
-  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">獲取汽車、卡車、自行車及步行的方向。</string>
   <string name="msdkui_app_rp_teaser_title">路線規劃工具</string>
   <string name="msdkui_app_rp_waypoint_subtitle">點擊或長按地圖</string>

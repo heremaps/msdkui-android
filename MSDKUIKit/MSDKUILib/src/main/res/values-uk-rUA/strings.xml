@@ -160,7 +160,7 @@
   <string name="msdkui_unit_mile">миля</string>
   <string name="msdkui_unit_miles_per_hour">миль/год</string>
   <string name="msdkui_unit_yard">ярд</string>
-  <string name="msdkui_userposition_search">Ваше місцезнаходження</string>
+  <string name="msdkui_userposition_search">Пошук місцезн.</string>
   <string name="msdkui_violate_truck_options">Ігнорувати характеристики вантажівки</string>
   <string name="msdkui_waypoint_current_location">Поточне розташування</string>
   <string name="msdkui_waypoint_select_location">Точка маршруту</string>

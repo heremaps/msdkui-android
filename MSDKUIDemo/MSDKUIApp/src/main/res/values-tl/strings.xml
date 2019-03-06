@@ -54,9 +54,8 @@
   <string name="msdkui_app_route_results_title">Mga ruta</string>
   <string name="msdkui_app_routeoverview_to">Tungo:</string>
   <string name="msdkui_app_routeplanner_getdirections">Kumuha ng mga direksyon</string>
-  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Simulan sa pamamagitan ng pagpili ng \"mula sa\" o isang \"papunta sa\"</string>
+  <string name="msdkui_app_routeplanner_startchoosingwaypoint">Simulan sa pamamagitan ng pagpili ng \"mula sa\" o isang \"tungo sa\"</string>
   <string name="msdkui_app_routeresults_error">Hindi nakakita ng anumang mga ruta.</string>
-  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Kunin ang mga direksiyon para sa mga kotse, lorry, bisikleta at paglalakad.</string>
   <string name="msdkui_app_rp_teaser_title">Tagaplano ng ruta</string>
   <string name="msdkui_app_rp_waypoint_subtitle">I-tap o pindutin nang matagal ang mapa</string>

@@ -56,7 +56,6 @@
   <string name="msdkui_app_routeplanner_getdirections">Get directions</string>
   <string name="msdkui_app_routeplanner_startchoosingwaypoint">Start by choosing a \"from\" or a \"to\"</string>
   <string name="msdkui_app_routeresults_error">Didn\'t find any routes.</string>
-  <string name="msdkui_app_routeresults_error_connection">Need an internet connection</string>
   <string name="msdkui_app_rp_teaser_description">Get directions for cars, trucks, bicycles and walking.</string>
   <string name="msdkui_app_rp_teaser_title">Route planner</string>
   <string name="msdkui_app_rp_waypoint_subtitle">Tap or long press on the map</string>

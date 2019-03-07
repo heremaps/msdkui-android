@@ -120,6 +120,7 @@ public class GuidanceStreetLabelView extends LinearLayout {
      *          the data that should be used to populate this view.
      */
     public void setCurrentStreetData(@Nullable final GuidanceStreetLabelData currentStreetData) {
+         mGuidanceStreetLabelData = currentStreetData;
         if (currentStreetData == null || currentStreetData.getCurrentStreetName() == null ||
                 currentStreetData.getCurrentStreetName().isEmpty()) {
             setVisibility(GONE);

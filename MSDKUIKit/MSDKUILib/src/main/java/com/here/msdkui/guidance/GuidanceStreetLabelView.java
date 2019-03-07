@@ -18,6 +18,7 @@ package com.here.msdkui.guidance;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -119,6 +120,7 @@ public class GuidanceStreetLabelView extends LinearLayout {
      *          the data that should be used to populate this view.
      */
     public void setCurrentStreetData(@Nullable final GuidanceStreetLabelData currentStreetData) {
+         mGuidanceStreetLabelData = currentStreetData;
         if (currentStreetData == null || currentStreetData.getCurrentStreetName() == null ||
                 currentStreetData.getCurrentStreetName().isEmpty()) {
             setVisibility(GONE);
@@ -126,12 +128,12 @@ public class GuidanceStreetLabelView extends LinearLayout {
         } else {
             setVisibility(VISIBLE);
         }
-
         final TextView currentStreetLabelView = findViewById(R.id.guidance_current_street_text);
         currentStreetLabelView.setText(currentStreetData.getCurrentStreetName());
-        getBackground().setColorFilter(currentStreetData.getBackgroundColor(), PorterDuff.Mode.SRC);
-        mGuidanceStreetLabelData = new GuidanceStreetLabelData(currentStreetData.getCurrentStreetName(),
-                currentStreetData.getBackgroundColor());
+        GradientDrawable drawable = (GradientDrawable) getBackground();
+        currentStreetLabelView.measure(0, 0);
+        drawable.setCornerRadius(currentStreetLabelView.getMeasuredHeight() >> 1);
+        drawable.setColorFilter(currentStreetData.getBackgroundColor(), PorterDuff.Mode.SRC);
     }
 
     /**

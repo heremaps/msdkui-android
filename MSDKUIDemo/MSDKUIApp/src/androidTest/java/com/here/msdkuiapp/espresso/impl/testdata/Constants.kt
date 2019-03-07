@@ -69,8 +69,8 @@ object Constants {
     private const val GEO_COORDINATE_BERLINER_BERG_LNG = 13.43271
     private const val GEO_COORDINATE_BIRRA_LAT = 52.53859
     private const val GEO_COORDINATE_BIRRA_LNG = 13.42346
-    private const val GEO_COORDINATE_JASMUNDER_STRASSE_LAT = 52.540095
-    private const val GEO_COORDINATE_JASMUNDER_STRASSE_LNG = 13.387686
+    private const val GEO_COORDINATE_JASMUNDER_STRASSE_LAT = 52.540553
+    private const val GEO_COORDINATE_JASMUNDER_STRASSE_LNG = 13.387301
 
     /**
      * Map related points

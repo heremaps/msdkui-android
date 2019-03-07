@@ -28,7 +28,6 @@ import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerB
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarWaypointLabel
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerFromText
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerToText
-import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerView.onPlannerWaypointLocationView
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.not
 

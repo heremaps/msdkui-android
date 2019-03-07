@@ -16,28 +16,39 @@
 
 package com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers
 
-import android.support.test.espresso.*
+import android.support.test.espresso.PerformException
+import android.support.test.espresso.UiController
+import android.support.test.espresso.ViewAction
+import android.support.test.espresso.ViewInteraction
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers
+import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.espresso.util.HumanReadables
 import android.view.View
-import com.here.msdkui.routing.RouteUtil
+import android.widget.TextView
 import com.here.msdkui.routing.RouteDescriptionItem
+import com.here.msdkui.routing.RouteUtil
+import com.here.msdkuiapp.R
 import com.here.msdkuiapp.common.Util
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getColorById
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.hasTextColor
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.isNumeric
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withColorFromDrawable
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIdAndTag
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIdAndText
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIdAndTextColor
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
+import com.here.msdkuiapp.espresso.impl.testdata.Constants
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewDescriptionView
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewDestination
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewSeeManoeuvresNaviBtn
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationView.onRouteOverviewStartNaviBtn
+import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationActions.getNumberFromText
+import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationActions.getTimeFromText
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardAbout
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeed
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedUnit
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardCurrentSpeedValue
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardSettings
@@ -56,13 +67,6 @@ import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
 import java.util.concurrent.TimeoutException
-import android.widget.TextView
-import android.support.test.espresso.matcher.ViewMatchers.*
-import android.util.Log
-
-import com.here.msdkuiapp.R
-import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationActions.getNumberFromText
-import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveNavigationActions.getTimeFromText
 
 
 object DriveNavigationMatchers {
@@ -185,18 +189,39 @@ object DriveNavigationMatchers {
     /**
      * Check Current speed being displayed, having numeric value and proper text color
      */
-    fun checkCurrentSpeed(isOverSpeeding: Boolean): DriveNavigationMatchers {
-        val expectedTextColorAttrId = if (isOverSpeeding) R.attr.colorNegative else R.attr.colorForeground
-        onGuidanceDashBoardCurrentSpeedValue.check(matches(allOf(isDisplayed(), isNumeric(), hasTextColor(expectedTextColorAttrId))))
+    fun checkCurrentSpeed(isOverSpeeding: Boolean, screenOrientation: Constants.ScreenOrientation): DriveNavigationMatchers {
+        val expectedTextColorAttrIdPortrait =
+                if(isOverSpeeding) R.attr.colorNegative
+                else R.attr.colorForeground
+        val expectedViewDrawableIdLandscape =
+                if (isOverSpeeding) R.drawable.current_speed_warning_bg_item
+                else R.drawable.current_speed_normal_bg_item
+        // Colors are also different depending on screen orientation
+        if (screenOrientation == Constants.ScreenOrientation.PORTRAIT)
+        onGuidanceDashBoardCurrentSpeedValue.check(matches(allOf(isDisplayed(),
+                isNumeric(), hasTextColor(expectedTextColorAttrIdPortrait))))
+        else
+            onGuidanceDashBoardCurrentSpeed.check(matches(allOf(isDisplayed(),
+                    withColorFromDrawable(expectedViewDrawableIdLandscape))))
+            onGuidanceDashBoardCurrentSpeedValue.check(matches(allOf(isDisplayed(),
+                    isNumeric(), hasTextColor(R.attr.colorForegroundLight))))
         return this
     }
 
     /**
      * Check Speed units being displayed and having proper text color
      */
-    fun checkSpeedUnitsDisplayed(isOverSpeeding: Boolean): DriveNavigationMatchers {
-        val expectedTextColorAttrId = if (isOverSpeeding) R.attr.colorNegative else R.attr.colorForegroundSecondary
-        onGuidanceDashBoardCurrentSpeedUnit.check(matches(allOf(isDisplayed(), hasTextColor(expectedTextColorAttrId))))
+    fun checkSpeedUnitsDisplayed(isOverSpeeding: Boolean, screenOrientation: Constants.ScreenOrientation): DriveNavigationMatchers {
+        val expectedTextColorAttrIdPortrait =
+                if (isOverSpeeding) R.attr.colorNegative
+                else R.attr.colorForeground
+        // Colors are also different depending on screen orientation
+        if (screenOrientation == Constants.ScreenOrientation.PORTRAIT)
+        onGuidanceDashBoardCurrentSpeedUnit.check(matches(allOf(isDisplayed(),
+                hasTextColor(expectedTextColorAttrIdPortrait))))
+        else
+            onGuidanceDashBoardCurrentSpeedUnit.check(matches(allOf(isDisplayed(),
+                    hasTextColor(R.attr.colorForegroundLight))))
         return this
     }
 
@@ -239,7 +264,6 @@ object DriveNavigationMatchers {
                         .text.toString())
                 val initialDistance = getNumberFromText(view, view.findViewById<TextView>(R.id.distance)
                         .text.toString())
-                // Verify new ETA against initial
                 do {
                     uiController.loopMainThreadForAtLeast(checkInterval)
                     if (

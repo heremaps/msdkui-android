@@ -16,20 +16,12 @@
 
 package com.here.msdkuiapp.espresso.impl.core
 
-import android.support.test.espresso.IdlingRegistry
 import android.support.test.espresso.UiController
 import android.support.test.espresso.ViewAction
-import android.support.test.espresso.action.GeneralLocation
-import android.support.test.espresso.action.GeneralSwipeAction
-import android.support.test.espresso.action.Press
-import android.support.test.espresso.action.Swipe
-import android.support.test.espresso.action.CoordinatesProvider
-import android.support.test.espresso.action.ViewActions.actionWithAssertions
-import android.support.test.espresso.action.ViewActions.pressBack
-import android.support.test.espresso.action.ViewActions.click
+import android.support.test.espresso.action.*
+import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions
-import android.support.test.espresso.idling.CountingIdlingResource
 import android.support.test.espresso.matcher.ViewMatchers
 import android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
@@ -37,6 +29,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.DatePicker
 import android.widget.TimePicker
+import com.here.android.mpa.common.GeoCoordinate
+import com.here.android.mpa.common.MapEngine
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onLandingScreenList
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.DRIVE_NAVIGATION_ITEM
@@ -50,11 +44,10 @@ import com.here.msdkuiapp.espresso.impl.views.drivenavigation.useractions.DriveN
 import com.here.msdkuiapp.espresso.impl.views.map.utils.MapData
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarRoutePlannerTitleView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
-import com.here.android.mpa.common.GeoCoordinate
-import com.here.android.mpa.common.MapEngine
 import com.here.msdkuiapp.position.AppPositioningManager
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
+import java.util.concurrent.TimeoutException
 
 /**
  * Core framework actions
@@ -213,25 +206,29 @@ open class CoreActions {
      * @param off add or remove current location (default: false)
      * @param location a set of latitude and longitude (default: HERE Berlin)
      */
-    fun setCurrentLocation(off: Boolean = false, locationData: MapData = GEO_POINT_0) {
-        //Map engine must be initialized before we can inject coordinates.
+    fun setCurrentLocation(off: Boolean = false, locationData: MapData = GEO_POINT_0): CoreActions {
         waitForMap()
+        // Set or reset current position
         AppPositioningManager.getInstance().apply {
-            if(off) reset()
-            else customLocation = GeoCoordinate(locationData.lat, locationData.lng)
+            if(off) stop()
+            else
+                customLocation = GeoCoordinate(locationData.lat, locationData.lng)
         }
+        return this
     }
+
 
     /**
      * Wait for map engine to be initialized
      */
-    private fun waitForMap() {
-        with(CountingIdlingResource("MapEngineIdlingResource")) {
-            val idlingRegistry = IdlingRegistry.getInstance()
-            idlingRegistry.register(this)
-            if(MapEngine.isInitialized())
-                decrement()
-            idlingRegistry.unregister(this)
+     private fun waitForMap() {
+        with(System.currentTimeMillis()) {
+            val endTime = this + 3000
+            do {
+                if(MapEngine.isInitialized())
+                    return
+            } while (this < endTime)
         }
+        throw TimeoutException("Wait for MapEngine timed out")
     }
 }

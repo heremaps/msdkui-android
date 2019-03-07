@@ -20,8 +20,6 @@ import android.app.Activity
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
 import android.support.test.runner.lifecycle.Stage
-import java.util.Calendar
-import java.util.Locale
 
 /**
  * Utility for acquiring current activity

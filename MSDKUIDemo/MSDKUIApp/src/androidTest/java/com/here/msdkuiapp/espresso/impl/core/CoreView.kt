@@ -60,4 +60,10 @@ object CoreView {
     val onLandingScreenDriverNavigationView: ViewInteraction
         get() = onView(withText(R.string.msdkui_app_guidance_teaser_title))
 
+    /**
+    * @return The [Matcher]<[View]> Drive navigation icon on landing screen
+    */
+    val onLandingScreenDriverNavigationViewIcon: Matcher<View>
+        get() = withId(R.id.ls_icon)
+
 }

@@ -46,12 +46,6 @@ object RoutePlannerView {
         get() = onView(withId(R.id.waypoint_list))
 
     /**
-     * The [ViewInteraction] Choose waypoint location view on route planner
-     */
-    val onPlannerWaypointLocationView: ViewInteraction
-        get() = onView(withText(R.string.msdkui_waypoint_select_location))
-
-    /**
      * The [String] Choose waypoint location text on route planner
      */
     val onPlannerWaypointLocationText: String
@@ -140,11 +134,6 @@ object RoutePlannerView {
      */
     private val onTransportPanelLorry: ViewInteraction
         get() = onView(withContentDescription(TYPE_LORRY))
-
-    /**
-     * The [ViewInteraction] Given waypoint location view on route planner
-     */
-    fun onPlannerWaypointLocationView(textView: String?): ViewInteraction = onView(withText(textView))
 
     /**
      * The [ViewInteraction] Choose waypoint label on route planner

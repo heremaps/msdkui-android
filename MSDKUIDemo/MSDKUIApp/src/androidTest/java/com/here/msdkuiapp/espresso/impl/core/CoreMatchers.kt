@@ -237,7 +237,7 @@ object CoreMatchers {
                         .color?.defaultColor
                 val expectedColor = (ContextCompat.getDrawable(view.context, drawableId) as GradientDrawable)
                         .color?.defaultColor
-                return currentColor!!.equals(expectedColor)
+                return currentColor!! == (expectedColor)
             }
 
             override fun describeTo(description: Description) {
@@ -319,52 +319,10 @@ object CoreMatchers {
      */
     fun viewIsDisplayed(viewInteraction: ViewInteraction): Boolean {
         var isDisplayed = true
-        viewInteraction.withFailureHandler(object : FailureHandler {
-            override fun handle(error: Throwable, viewMatcher: Matcher<View>) {
-                isDisplayed = false
-            }
-        }).check(matches(isDisplayed()))
+        viewInteraction.withFailureHandler { error, viewMatcher ->
+            isDisplayed = false }
+                .check(matches(isDisplayed()))
         return isDisplayed
-    }
-
-    /**
-     * Matches the tag of the view.
-     */
-    fun withTag(tag: Int): Matcher<in View>? {
-        return object : TypeSafeMatcher<View>(), Matcher<View> {
-
-            override fun matchesSafely(view: View): Boolean {
-                if (view.tag != null && view.tag is Int) {
-                    return view.tag == tag
-                } else {
-                    return false
-                }
-            }
-
-            override fun describeTo(description: Description) {
-                description.appendText("with tag: $tag")
-            }
-        }
-    }
-
-    /**
-     * Matches the text color of the view.
-     */
-    fun withTextColor(color: Int): Matcher<in View>? {
-        return object : TypeSafeMatcher<View>(), Matcher<View> {
-
-            override fun matchesSafely(view: View): Boolean {
-                if (view is TextView && color == view.currentTextColor) {
-                    return true
-                }
-                return false
-            }
-
-            override fun describeTo(description: Description) {
-                description.appendText("with text color $color")
-            }
-
-        }
     }
 
     /**
@@ -372,13 +330,6 @@ object CoreMatchers {
      */
     fun withIdAndText(id: Int, text: String): Matcher<View> {
         return allOf(withId(id), withText(text))
-    }
-
-    /**
-     * Matches the id and the resource id text of the view.
-     */
-    fun withIdAndText(id: Int, textResourceId: Int): Matcher<View> {
-        return allOf(withId(id), withText(textResourceId))
     }
 
     /**
@@ -401,5 +352,45 @@ object CoreMatchers {
      */
     fun getColorById(resourceId: Int): Int {
         return ThemeUtil.getColor(CurrentActivityUtils.currentActivity, resourceId)
+    }
+
+    /**
+     * Matches the tag of the view.
+     */
+    private fun withTag(tag: Int): Matcher<in View>? {
+        return object : TypeSafeMatcher<View>(), Matcher<View> {
+
+            override fun matchesSafely(view: View): Boolean {
+                return if (view.tag != null && view.tag is Int) {
+                    view.tag == tag
+                } else {
+                    false
+                }
+            }
+
+            override fun describeTo(description: Description) {
+                description.appendText("with tag: $tag")
+            }
+        }
+    }
+
+    /**
+     * Matches the text color of the view.
+     */
+    private fun withTextColor(color: Int): Matcher<in View>? {
+        return object : TypeSafeMatcher<View>(), Matcher<View> {
+
+            override fun matchesSafely(view: View): Boolean {
+                if (view is TextView && color == view.currentTextColor) {
+                    return true
+                }
+                return false
+            }
+
+            override fun describeTo(description: Description) {
+                description.appendText("with text color $color")
+            }
+
+        }
     }
 }

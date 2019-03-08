@@ -60,12 +60,6 @@ object RouteView {
         get() = onRouteListItemDuration(ROUTE_RESULT_1)
 
     /**
-     * The [ViewInteraction] icon type of the first item in routes list
-     */
-    val onRouteListItemIconType: ViewInteraction
-        get() = onRouteListItemIconType(ROUTE_RESULT_1)
-
-    /**
      * The [ViewInteraction] delay information of the first item in routes list
      */
     val onRouteListItemDelayInformation: ViewInteraction

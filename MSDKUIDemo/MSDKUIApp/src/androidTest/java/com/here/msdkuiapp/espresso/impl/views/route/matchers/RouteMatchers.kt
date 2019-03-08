@@ -46,7 +46,6 @@ import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteOve
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteOverviewDetails
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteOverviewDuration
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteOverviewItem
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onSeeManeuverSteps
 import com.here.msdkuiapp.espresso.impl.views.route.useractions.RouteActions
 import com.here.msdkuiapp.espresso.impl.views.route.useractions.RouteBarActions
 import com.here.msdkuiapp.espresso.impl.views.route.utils.RouteData
@@ -134,30 +133,6 @@ object RouteMatchers {
             onRouteListItemArrival(routeItem).check(matches(not(withText(arrival))))
         }
         return this
-    }
-
-    /**
-     * Check Route overview item data with selected from route display list
-     */
-    fun withRouteOverviewData(routeData: RouteData): RouteBarActions {
-        routeData.run {
-            onRouteListItemDuration.check(matches(withText(duration)))
-            onRouteListItemDetails.check(matches(withText(details)))
-            onRouteListItemArrival.check(matches(withText(arrival)))
-            when (transportType) {
-                TYPE_CAR, TYPE_TRUCK -> onRouteListItemDelayInformation.check(matches(withText(traffic)))
-                else -> print("WALK & BICYCLE transportation types does not contain Traffic information!")
-            }
-        }
-        return RouteBarActions
-    }
-
-    /**
-     * Checks if maneuver steps button is visible.
-     */
-    fun checkSeeManeuverStepsButtonDisplayed(): RouteBarActions {
-        onSeeManeuverSteps.check(matches(isDisplayed()))
-        return RouteBarActions
     }
 
     /**

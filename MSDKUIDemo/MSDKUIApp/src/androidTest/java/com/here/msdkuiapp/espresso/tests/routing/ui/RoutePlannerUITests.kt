@@ -24,7 +24,6 @@ import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.CompatibilityUITest
 import com.here.msdkuiapp.espresso.impl.core.CoreActions
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withListSize
-import com.here.msdkuiapp.espresso.impl.views.map.screens.MapView.onMapFragmentWrapper
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerBarMatchers.checkActionbarDisplayed
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerAddWaypointButtonView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerSwapImageButtonView

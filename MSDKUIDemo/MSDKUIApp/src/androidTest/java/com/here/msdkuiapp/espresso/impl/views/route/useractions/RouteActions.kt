@@ -78,14 +78,6 @@ object RouteActions {
     }
 
     /**
-     * Swipe Up route description result list on route panel
-     */
-    fun swipeUpRouteList(): RouteActions {
-        onRouteDescriptionList.perform(swipeUp())
-        return this
-    }
-
-    /**
      * Swipe Down route description result list on route panel
      */
     fun swipeDownRouteList(): RouteActions {
@@ -142,4 +134,11 @@ object RouteActions {
         return this
     }
 
+    /**
+     * Swipe Up route description result list on route panel
+     */
+    private fun swipeUpRouteList(): RouteActions {
+        onRouteDescriptionList.perform(swipeUp())
+        return this
+    }
 }

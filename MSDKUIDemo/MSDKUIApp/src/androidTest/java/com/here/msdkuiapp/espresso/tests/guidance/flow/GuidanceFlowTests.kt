@@ -443,12 +443,14 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
                 .waitForGuidanceDescriptionDisplayed()
         // Start navigation simulation
         DriveNavigationActions.startNavigationSimulation(30)
+        // Wait for map view to be present
+        waitForCondition(MapView.onMapFragmentWrapperView)
         // Wait for ETA to start displaying
         DriveNavigationActions.waitForETAData(true)
         // In case of miles used for distance, wait for it to pass
         onRootView.perform(CoreMatchers.waitForTextChange(withId(R.id.distance),
                 "1" + CoreMatchers.getTextById(R.string.msdkui_unit_mile),
-                checkInterval = 2000))
+                checkInterval = 100))
         // Wait for ETA to change during guidance
         onRootView.perform(waitForETAChanged())
         // Wait for ETA to not display (guidance to finish)

@@ -31,7 +31,6 @@ import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem
 import com.here.msdkuiapp.espresso.impl.views.map.useractions.MapActions
 import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteMatchers
-import com.here.msdkuiapp.espresso.impl.views.route.useractions.RouteActions
 import com.here.msdkuiapp.espresso.impl.views.route.utils.RouteData
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerBarMatchers
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers.RoutePlannerMatchers

@@ -204,7 +204,7 @@ open class CoreActions {
      * Inject coordinates into PositioningManager.
      *
      * @param off add or remove current location (default: false)
-     * @param location a set of latitude and longitude (default: HERE Berlin)
+     * @param locationData latitude and longitude (default: HERE Berlin)
      */
     fun setCurrentLocation(off: Boolean = false, locationData: MapData = GEO_POINT_0): CoreActions {
         waitForMap()

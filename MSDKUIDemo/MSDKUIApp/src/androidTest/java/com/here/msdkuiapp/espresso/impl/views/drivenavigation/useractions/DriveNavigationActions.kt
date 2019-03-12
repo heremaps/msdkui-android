@@ -44,9 +44,9 @@ import com.here.msdkuiapp.guidance.GuidanceRouteSelectionCoordinator
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.Matchers.not
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 /**
  * Drive Navigation & Overview related actions
@@ -131,9 +131,20 @@ object DriveNavigationActions {
      * @param view view which is currently being worked on.
      * @param text string which will be converted.
      */
-    fun getTimeFromText(view: View, text: String): LocalTime {
-        return LocalTime.parse(text, DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)
-                .withLocale(ConfigurationCompat.getLocales(view.context.resources.configuration)[0]))
+    fun getTimeFromText(view: View, text: String): Date {
+        // Possible used time formats on guidance ETA
+        val dates = listOf("h:mm a", "hh:mm", "HH:mm")
+        var date: Date? = null
+        for (i in dates) {
+            try {
+               date = SimpleDateFormat(i, ConfigurationCompat
+                        .getLocales(view.context.resources.configuration)[0])
+                        .parse(text)
+            } catch (e: ParseException) { }
+            if (date != null)
+                return date
+        }
+        throw ParseException("Date could not be parsed", 0)
     }
 
     /**
@@ -154,7 +165,7 @@ object DriveNavigationActions {
      */
     fun waitForETAData(isDisplayed: Boolean): DriveNavigationActions {
         val noEtaData = getTextById(R.string.msdkui_value_not_available)
-        if (isDisplayed == false) {
+        if (!isDisplayed) {
             onRootView.perform(waitForCondition(CoreMatchers.withIdAndText(
                     R.id.eta, noEtaData), 250000, 2000))
             //When ETA status is confirmed check distance and duration immediately

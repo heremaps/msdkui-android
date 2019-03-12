@@ -25,7 +25,6 @@ import android.support.test.espresso.matcher.ViewMatchers.withTagValue
 import android.view.View
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.RemoveWaypointBtn
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Matcher
@@ -52,12 +51,6 @@ object RoutePlannerBarView {
     */
     val onPlannerBarRightImageIconCheck: Matcher<View>
         get() = allOf(withId(R.id.ac_right_icon), withTagValue(`is`(R.drawable.ic_check_black_24dp as Any)))
-
-    /**
-     * @return The [Matcher]<[View]> confirmation 'Collapse' right image view icon on action bar
-     */
-    val onPlannerBarRightImageIconCollapse: Matcher<View>
-        get() = allOf(withId(R.id.ac_right_icon), withTagValue(`is`(R.drawable.ic_collapse as Any)))
 
     /**
      * @return The [Matcher]<[View]> confirmation 'Expand' right image view icon on action bar
@@ -88,12 +81,6 @@ object RoutePlannerBarView {
      */
     val onPlannerBarRoutePlannerTitle: Matcher<View>
         get() = withText(R.string.msdkui_app_rp_teaser_title)
-
-    /**
-     * @return The [Matcher]<[View]> Routes title text view for routes results on action bar
-     */
-    val onPlannerBarRouteResultTitle: Matcher<View>
-        get() = withText(R.string.msdkui_app_route_results_title)
 
     /**
      * @return The [ViewInteraction] Options title text view on action bar
@@ -154,11 +141,6 @@ object RoutePlannerBarView {
      */
     fun onPlannerRemoveWaypointButtonView(button: RoutingTestData.RemoveWaypointBtn): ViewInteraction
             = onView(withContentDescription(button.value))
-
-    /**
-     * @return The [Matcher]<[View]> remove image view button on route planner
-     */
-    fun onPlannerRemoveWaypointButton(button: RemoveWaypointBtn): Matcher<View> = withContentDescription(button.value)
 
     /**
      * @return The [ViewInteraction] Route planner app title text view by given view selector id on action bar

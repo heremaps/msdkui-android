@@ -268,11 +268,11 @@ object DriveNavigationMatchers {
                     uiController.loopMainThreadForAtLeast(checkInterval)
                     if (
                             // ETA should stay same all the time
-                            (initialETA.equals(getTimeFromText(view, view.findViewById<TextView>(R.id.eta)
+                            (initialETA == (getTimeFromText(view, view.findViewById<TextView>(R.id.eta)
                                     .text.toString())) ||
-                            // In some cases ETA can differ by +1 minute
-                            initialETA.equals(getTimeFromText(view, view.findViewById<TextView>(R.id.eta)
-                                    .text.toString()).plusMinutes(1))) &&
+                            // In some cases Initial ETA can differ from guidance ETA
+                            initialETA.before(getTimeFromText(view, view.findViewById<TextView>(R.id.eta)
+                                    .text.toString()))) &&
                             // Duration should decrease over time
                             initialDuration > getNumberFromText(view, view.findViewById<TextView>(R.id.duration)
                                     .text.toString()) &&
@@ -313,7 +313,7 @@ object DriveNavigationMatchers {
                     add(RouteUtil.getTimeToArrive(context, route, true).toString().trim())
                     add(RouteUtil.getTrafficDelayed(context, route).toString().trim())
                     add(RouteUtil.getDetails(context, route, Util.getLocaleUnit()).toString().trim())
-                    return filter { s -> s == expectedValue }.single().isNotEmpty()
+                    return single { s -> s == expectedValue }.isNotEmpty()
                 }
             }
 

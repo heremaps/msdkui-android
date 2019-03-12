@@ -47,13 +47,13 @@ object GuidanceView {
     /**
      * The [ViewInteraction] Location info on guidance maneuver panel
      */
-    val onGuidanceManueverPanelLocationInfo: ViewInteraction
+    val onGuidanceManeuverPanelLocationInfo: ViewInteraction
         get() = onView(withId(R.id.infoView2))
 
     /**
-     * The [ViewInteraction] Manuever icon on guidance maneuver panel
+     * The [ViewInteraction] Maneuver icon on guidance maneuver panel
      */
-    val onGuidanceManeuverPanelManueverIcon: ViewInteraction
+    val onGuidanceManeuverPanelManeuverIcon: ViewInteraction
         get() = onView(withId(R.id.maneuverIconView))
 
     /**

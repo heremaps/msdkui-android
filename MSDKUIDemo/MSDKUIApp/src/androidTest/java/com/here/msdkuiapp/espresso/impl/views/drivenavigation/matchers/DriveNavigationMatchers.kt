@@ -241,8 +241,8 @@ object DriveNavigationMatchers {
      * converting it to measurable type and comparing it initial values.
      */
     fun waitForETAChanged(): ViewAction {
-        val timeout: Long = 30000
-        val checkInterval: Long = 1000
+        val timeout: Long = 10000
+        val checkInterval: Long = 500
         return object : ViewAction {
             override fun getConstraints(): Matcher<View> {
                 return ViewMatchers.isRoot()
@@ -256,7 +256,6 @@ object DriveNavigationMatchers {
                 uiController.loopMainThreadUntilIdle()
                 val startTime = System.currentTimeMillis()
                 val endTime = startTime + timeout
-
                 //  Save initial ETA data
                 val initialETA = getTimeFromText(view, view.findViewById<TextView>(R.id.eta)
                         .text.toString())
@@ -268,10 +267,11 @@ object DriveNavigationMatchers {
                     uiController.loopMainThreadForAtLeast(checkInterval)
                     if (
                             // ETA should stay same all the time
-                            (initialETA == (getTimeFromText(view, view.findViewById<TextView>(R.id.eta)
-                                    .text.toString())) ||
-                            // In some cases Initial ETA can differ from guidance ETA
-                            initialETA.before(getTimeFromText(view, view.findViewById<TextView>(R.id.eta)
+                            (initialETA == getTimeFromText(view, view.findViewById<TextView>(R.id.eta)
+                                    .text.toString()) ||
+                            // Initial ETA can be after current ETA because simulation can overspeed in
+                            // some areas of the map
+                            initialETA.after(getTimeFromText(view, view.findViewById<TextView>(R.id.eta)
                                     .text.toString()))) &&
                             // Duration should decrease over time
                             initialDuration > getNumberFromText(view, view.findViewById<TextView>(R.id.duration)
@@ -282,7 +282,6 @@ object DriveNavigationMatchers {
                         return
                     }
                 } while (startTime < endTime)
-
                 // Timeout happens
                 throw PerformException.Builder()
                         .withActionDescription(this.description)

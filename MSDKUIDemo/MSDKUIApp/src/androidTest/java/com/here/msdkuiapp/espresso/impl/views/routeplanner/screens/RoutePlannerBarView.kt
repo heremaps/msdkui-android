@@ -18,10 +18,7 @@ package com.here.msdkuiapp.espresso.impl.views.routeplanner.screens
 
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.ViewInteraction
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.withText
-import android.support.test.espresso.matcher.ViewMatchers.withContentDescription
-import android.support.test.espresso.matcher.ViewMatchers.withTagValue
+import android.support.test.espresso.matcher.ViewMatchers.*
 import android.view.View
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData

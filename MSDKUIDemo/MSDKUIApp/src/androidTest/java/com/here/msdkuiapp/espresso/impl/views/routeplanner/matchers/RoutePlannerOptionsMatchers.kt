@@ -19,18 +19,14 @@ package com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.CAR_AVOID_TRAFFIC
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.RouteType.TYPE_FASTEST
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.AvoidTrafficType.TYPE_BEST
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.RouteType.TYPE_FASTEST
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.TYPE_SCOOTER
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.TYPE_CAR
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.TYPE_WALK
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.TYPE_TRUCK
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.TYPE_BICYCLE
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.*
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TunnelsAllowedType.NOT_DEFINED
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerBarView.onPlannerBarOptionsTitleView
-import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerOptionsActions
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerOptionsActions
 
 
 /**

@@ -17,9 +17,7 @@
 package com.here.msdkuiapp.espresso.impl.views.route.useractions
 
 import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.action.ViewActions.swipeUp
-import android.support.test.espresso.action.ViewActions.swipeDown
+import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.contrib.RecyclerViewActions.scrollToPosition
@@ -28,8 +26,8 @@ import android.support.test.espresso.matcher.ViewMatchers.withText
 import android.support.v7.widget.RecyclerView
 import com.here.msdkui.routing.ManeuverListAdapter
 import com.here.msdkuiapp.R
-import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getTextById
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getText
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getTextById
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.viewIsDisplayed
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForCondition
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
@@ -38,11 +36,11 @@ import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
 import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteBarMatchers
 import com.here.msdkuiapp.espresso.impl.views.route.matchers.RouteMatchers
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverInstruction
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteManeuversList
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemArrival
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDuration
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescriptionList
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescriptionView
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemArrival
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDuration
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteManeuversList
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onSeeManeuverSteps
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions.RoutePlannerBarActions
 

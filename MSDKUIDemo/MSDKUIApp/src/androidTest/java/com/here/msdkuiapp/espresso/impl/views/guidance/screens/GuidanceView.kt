@@ -135,16 +135,16 @@ object GuidanceView {
         get() = onView(withId(R.id.pull_line))
 
     /**
-     * The [ViewInteraction] Dashboard Settings view
+     * The [Matcher]<[View]> Dashboard Settings view
      */
-    val onGuidanceDashBoardSettings: ViewInteraction
-        get() = onView(allOf(withText(R.string.msdkui_app_settings), withParent(withParent(withId(R.id.items_list)))))
+    val onGuidanceDashBoardSettings: Matcher<View>
+        get() = allOf(withText(R.string.msdkui_app_settings), withParent(withParent(withId(R.id.items_list))))
 
     /**
-     * The [ViewInteraction] Dashboard About view
+     * The [Matcher]<[View]> Dashboard About view
      */
-    val onGuidanceDashBoardAbout: ViewInteraction
-        get() = onView(allOf(withText(R.string.msdkui_app_about), withParent(withParent(withId(R.id.items_list)))))
+    val onGuidanceDashBoardAbout: Matcher<View>
+        get() = allOf(withText(R.string.msdkui_app_about), withParent(withParent(withId(R.id.items_list))))
 
     /**
      * The [ViewInteraction] Current street name info view

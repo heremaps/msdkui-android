@@ -20,16 +20,14 @@ import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
 import com.here.msdkui.R
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.RouteType
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.AvoidTrafficType
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TunnelsAllowedType
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.*
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionPanelCheckRouteOptionBox
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionsPanelAvoidTrafficLabelView
-import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionsPanelSpinnerView
-import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionsPanelRouteOptionsSettingView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionsPanelContextMenuListView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionsPanelHazardousMaterialsSettingView
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionsPanelRouteOptionsSettingView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionsPanelRouteTypeLabelView
+import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionsPanelSpinnerView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionsPanelTruckOptionsSettingView
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionsPanelTunnelsAllowedLabelView
 

@@ -74,26 +74,6 @@ open class CoreActions {
     }
 
     /**
-     * An action that performs a swipe from bottom to one view height
-     * above the view across the horizontal center of the view.
-     */
-    fun swipeTwiceUp(): ViewAction {
-        val oneHeightAboveTopCenter = CoordinatesProvider { view ->
-            val locationOnScreen = IntArray(2)
-            view.getLocationOnScreen(locationOnScreen)
-            val x: Float = locationOnScreen[0] + view.width / 2.0f
-            val y: Float = locationOnScreen[1] - view.height.toFloat()
-            floatArrayOf(x, y)
-        }
-        return actionWithAssertions(GeneralSwipeAction(
-                Swipe.FAST,
-                GeneralLocation.BOTTOM_CENTER,
-                oneHeightAboveTopCenter,
-                Press.FINGER
-        ))
-    }
-
-    /**
      * An action that performs a swipe from center to [n] view heights
      * above or below the view center. n > 0 - swipe down, n < 0 - swipe up
      */

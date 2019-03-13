@@ -82,7 +82,9 @@ public class ManeuverListAdapter extends RecyclerView.Adapter<ManeuverListAdapte
      * @return an instance of {@link ManeuverItemView}.
      */
     protected View getRowView(final Context context) {
-        return View.inflate(context, R.layout.maneuver_item_list, null);
+        View view =  View.inflate(context, R.layout.maneuver_item_list, null);
+        view.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        return view;
     }
 
     @Override

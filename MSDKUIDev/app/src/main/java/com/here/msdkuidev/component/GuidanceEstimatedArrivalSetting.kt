@@ -101,10 +101,12 @@ class GuidanceEstimatedArrivalSetting : Setting<GuidanceEstimatedArrival>() {
 
             "Left aligned, red without properties" to GuidanceEstimatedArrivalSettingItem().apply {
                 customTheme = R.style.GuidanceEstimatedArrivalLeftAlignedRedGreen
+                default = true
             },
 
             "Right aligned, red without properties" to GuidanceEstimatedArrivalSettingItem().apply {
                 customTheme = R.style.GuidanceEstimatedArrivalRightAlignedRedGreen
+                default = true
             },
 
             "Left aligned, red, green" to GuidanceEstimatedArrivalSettingItem().apply {

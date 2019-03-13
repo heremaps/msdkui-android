@@ -33,6 +33,10 @@ class GuidanceStreetLabel : AppCompatActivity() {
             R.layout.guidance_street_label_fix
         title = setting.title.toLowerCase()
         setContentView(resourceId)
+        if(setting.bigSize) {
+            guidanceStreetLabelView.findViewById<TextView>(R.id.guidance_current_street_text).textSize =
+                30f
+        }
         if (!setting.defaultView) guidanceStreetLabelView.setCurrentStreetData(setting.guidanceStreetLabelData)
         if(setting.redText) {
             guidanceStreetLabelView.findViewById<TextView>(R.id.guidance_current_street_text).setTextColor(Color.RED)

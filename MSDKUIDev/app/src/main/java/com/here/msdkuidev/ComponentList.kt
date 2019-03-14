@@ -60,7 +60,9 @@ class ComponentList : AppCompatActivity(), ListFragment.Listener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
-        addListContent()
+        addListContent().also {
+            list.sortBy { it.getClassName().simpleName }
+        }
         setupViewPager(viewpager)
         tabLayout.setupWithViewPager(viewpager)
         setupTabIcons()

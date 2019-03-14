@@ -42,8 +42,6 @@ import com.here.msdkuiapp.espresso.impl.views.guidance.useractions.GuidanceActio
 import com.here.msdkuiapp.guidance.GuidanceRouteSelectionActivity
 import com.here.msdkuiapp.guidance.GuidanceRouteSelectionCoordinator
 import org.hamcrest.Matcher
-import org.hamcrest.Matchers.allOf
-import org.hamcrest.Matchers.not
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -99,22 +97,6 @@ object DriveNavigationActions {
     fun waitForGuidanceDescriptionDisplayed(): DriveNavigationMatchers {
         onRootView.perform(waitForCondition(onRouteOverviewDescription))
         return DriveNavigationMatchers
-    }
-
-    /**
-     * Wait for guidance dashboard to expand
-     */
-    fun waitGuidanceDashBoardExpand(): DriveNavigationActions {
-        onRootView.perform(waitForCondition(allOf(withText(R.string.msdkui_app_about), withParent(withParent(withId(R.id.items_list))))))
-        return this
-    }
-
-    /**
-     * Wait for guidance dashboard to collapse
-     */
-    fun waitGuidanceDashBoardCollapse(): DriveNavigationActions {
-        onRootView.perform(waitForCondition(allOf(withText(R.string.msdkui_app_settings), withParent(withParent(withId(R.id.items_list))), not(isDisplayed()))))
-        return this
     }
 
     /**

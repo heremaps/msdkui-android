@@ -178,11 +178,11 @@ object DriveNavigationMatchers {
      */
     fun checkGuidanceDashBoardExpanded(isExpanded: Boolean = true) {
         if (isExpanded) {
-            onGuidanceDashBoardSettings.check(matches(isDisplayed()))
-            onGuidanceDashBoardAbout.check(matches(isDisplayed()))
+            onRootView.perform(waitForCondition(onGuidanceDashBoardSettings))
+            onRootView.perform(waitForCondition(onGuidanceDashBoardAbout))
         } else {
-            onGuidanceDashBoardSettings.check(matches(not(isDisplayed())))
-            onGuidanceDashBoardAbout.check(matches(not(isDisplayed())))
+            onRootView.perform(waitForCondition(onGuidanceDashBoardSettings, isVisible = false))
+            onRootView.perform(waitForCondition(onGuidanceDashBoardAbout, isVisible = false))
         }
     }
 

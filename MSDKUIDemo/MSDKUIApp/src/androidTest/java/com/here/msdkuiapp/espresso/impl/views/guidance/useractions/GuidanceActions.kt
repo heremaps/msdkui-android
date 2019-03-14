@@ -31,8 +31,8 @@ import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGu
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceDashBoardEtaInfo
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceEndNaviBtn
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceManeuverPanelDistanceInfo
-import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceManeuverPanelManeuverIcon
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceManeuverPanelLocationInfo
+import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceManeuverPanelManeuverIcon
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverDistanceInfo
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverIcon
 import com.here.msdkuiapp.espresso.impl.views.guidance.screens.GuidanceView.onGuidanceNextManeuverPanel

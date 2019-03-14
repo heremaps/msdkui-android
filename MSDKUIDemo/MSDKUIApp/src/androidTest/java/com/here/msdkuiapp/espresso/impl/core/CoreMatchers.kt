@@ -18,7 +18,10 @@ package com.here.msdkuiapp.espresso.impl.core
 
 import android.graphics.drawable.GradientDrawable
 import android.support.test.InstrumentationRegistry
-import android.support.test.espresso.*
+import android.support.test.espresso.PerformException
+import android.support.test.espresso.UiController
+import android.support.test.espresso.ViewAction
+import android.support.test.espresso.ViewInteraction
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.matcher.BoundedMatcher
 import android.support.test.espresso.matcher.ViewMatchers.*

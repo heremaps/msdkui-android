@@ -34,13 +34,13 @@ import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuver
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverIconType
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverInstruction
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onManeuverInstructionText
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescLineBar
+import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescriptionList
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemArrival
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDelayInformation
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDetails
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemDuration
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteListItemIconType
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescLineBar
-import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteDescriptionList
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteOverviewArrival
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteOverviewDelayInformation
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteView.onRouteOverviewDetails

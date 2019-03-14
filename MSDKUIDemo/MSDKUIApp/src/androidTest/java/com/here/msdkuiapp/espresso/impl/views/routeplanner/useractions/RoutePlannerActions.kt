@@ -16,9 +16,7 @@
 
 package com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions
 
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.action.ViewActions.swipeDown
-import android.support.test.espresso.action.ViewActions.swipeUp
+import android.support.test.espresso.action.ViewActions.*
 import android.support.test.espresso.assertion.ViewAssertions.matches
 import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.matcher.ViewMatchers.isDisplayed

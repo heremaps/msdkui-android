@@ -18,9 +18,7 @@ package com.here.msdkuiapp.espresso.impl.core
 
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.ViewInteraction
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.isRoot
-import android.support.test.espresso.matcher.ViewMatchers.withText
+import android.support.test.espresso.matcher.ViewMatchers.*
 import android.view.View
 import com.here.msdkuiapp.R
 import org.hamcrest.Matcher

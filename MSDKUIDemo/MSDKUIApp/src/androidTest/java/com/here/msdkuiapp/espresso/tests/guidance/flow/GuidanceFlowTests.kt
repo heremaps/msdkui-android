@@ -16,7 +16,7 @@
 
 package com.here.msdkuiapp.espresso.tests.guidance.flow
 
-import android.support.test.espresso.Espresso.onView
+import android.support.test.espresso.action.ViewActions
 import android.support.test.espresso.action.ViewActions.click
 import android.support.test.espresso.action.ViewActions.swipeDown
 import android.support.test.espresso.assertion.ViewAssertions.matches
@@ -337,9 +337,6 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
     @Test
     @FunctionalUITest
     fun testDashboardOverviewInGuidanceSimulation() {
-        enumValues<ScreenOrientation>().forEach {
-            // Set screen orientation: PORTRAIT / LANDSCAPE
-            CoreActions().changeOrientation(it)
             // Wait for drive navigation icon
             waitForCondition(CoreView.onLandingScreenDriverNavigationViewIcon)
             //Enter Drive Navigation
@@ -357,27 +354,26 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
                     .waitForGuidanceDescriptionDisplayed()
             // Start navigation simulation
             DriveNavigationActions.startNavigationSimulation()
+        enumValues<ScreenOrientation>().forEach {
+            // Set screen orientation: PORTRAIT / LANDSCAPE
+            CoreActions().changeOrientation(it)
             // Check that dashboard components are visible
             GuidanceActions.checkGuidanceDashBoardInfo()
             // Expand dashboard by tap and check
             onGuidanceDashBoardPullLine.perform(click())
-            DriveNavigationActions.waitGuidanceDashBoardExpand()
             DriveNavigationMatchers.checkGuidanceDashBoardExpanded()
             // Collapse dashboard by tap and check
             onGuidanceDashBoardPullLine.perform(click())
-            DriveNavigationActions.waitGuidanceDashBoardCollapse()
             DriveNavigationMatchers.checkGuidanceDashBoardExpanded(false)
-            // Expand dashboard by swipe and check
-            onView(withId(R.id.collapsed_view)).perform(CoreActions().swipeTwiceUp())
-            DriveNavigationActions.waitGuidanceDashBoardExpand()
+            // Expand dashboard by swipe
+            onGuidanceDashBoardPullLine.perform(ViewActions.swipeUp())
             DriveNavigationMatchers.checkGuidanceDashBoardExpanded()
-            // Collapse dashboard by swipe and check
-            onView(withId(R.id.guidance_dashboard_view)).perform(swipeDown())
-            DriveNavigationActions.waitGuidanceDashBoardCollapse()
+            // Collapse dashboard by tap and check
+            onGuidanceDashBoardPullLine.perform(swipeDown())
             DriveNavigationMatchers.checkGuidanceDashBoardExpanded(false)
-            // Stop the guidance
-            GuidanceActions.tapOnStopNavigationBtn()
         }
+        // Stop the guidance
+        GuidanceActions.tapOnStopNavigationBtn()
     }
 
     /**
@@ -387,8 +383,7 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
     @Test
     @FunctionalUITest
     fun testDisplayCurrentSpeedAndSpeedLimitWarning() {
-        val overSpeedOptions = arrayOf(false, true)
-            for (isOverSpeedEnabled in overSpeedOptions) {
+            for (isOverSpeedEnabled in listOf(true, false)) {
                 enumValues<ScreenOrientation>().forEach {
                 // Set screen orientation: PORTRAIT / LANDSCAPE
                 CoreActions().changeOrientation(it)

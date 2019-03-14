@@ -27,9 +27,9 @@ import com.here.msdkuiapp.espresso.impl.core.CoreMatchers
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getDate
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getText
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getTime
-import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withDateText
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.viewIsDisplayed
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.waitForTextChange
+import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withDateText
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIndex
 import com.here.msdkuiapp.espresso.impl.core.CoreView.onRootView
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.GEO_POINT_0
@@ -74,7 +74,7 @@ import org.junit.Before
 import org.junit.FixMethodOrder
 import org.junit.Test
 import org.junit.runners.MethodSorters
-import java.util.Collections
+import java.util.*
 import java.util.Calendar.HOUR_OF_DAY
 import java.util.Calendar.MINUTE
 import kotlin.math.abs

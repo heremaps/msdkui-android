@@ -18,9 +18,7 @@ package com.here.msdkuiapp.espresso.impl.views.routeplanner.screens
 
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.ViewInteraction
-import android.support.test.espresso.matcher.ViewMatchers.withId
-import android.support.test.espresso.matcher.ViewMatchers.withText
-import android.support.test.espresso.matcher.ViewMatchers.withContentDescription
+import android.support.test.espresso.matcher.ViewMatchers.*
 import android.view.View
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getTextById
@@ -28,9 +26,9 @@ import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.viewIsDisplayed
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIndex
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.FROM_TO_PATTERN
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.TYPE_LORRY
-import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.TransportType.TYPE_TRUCK
+import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.WaypointItem
 import org.hamcrest.CoreMatchers.startsWith
 import org.hamcrest.Matcher
 

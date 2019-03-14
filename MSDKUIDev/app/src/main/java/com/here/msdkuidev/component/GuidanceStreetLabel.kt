@@ -34,8 +34,7 @@ class GuidanceStreetLabel : AppCompatActivity() {
         title = setting.title.toLowerCase()
         setContentView(resourceId)
         if(setting.bigSize) {
-            guidanceStreetLabelView.findViewById<TextView>(R.id.guidance_current_street_text).textSize =
-                30f
+            guidanceStreetLabelView.findViewById<TextView>(R.id.guidance_current_street_text).textSize = 30f
         }
         if (!setting.defaultView) guidanceStreetLabelView.setCurrentStreetData(setting.guidanceStreetLabelData)
         if(setting.redText) {

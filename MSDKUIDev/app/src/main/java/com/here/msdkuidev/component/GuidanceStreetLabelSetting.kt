@@ -33,6 +33,7 @@ class GuidanceStreetLabelSetting : Setting<GuidanceStreetLabel>() {
         var guidanceStreetLabelData: GuidanceStreetLabelData? = null
         var defaultView = false
         var redText = false
+        var bigSize = false
 
         constructor() : super()
 
@@ -41,6 +42,7 @@ class GuidanceStreetLabelSetting : Setting<GuidanceStreetLabel>() {
                     parcel.readParcelable(GuidanceStreetLabelData::class.java.classLoader)
             defaultView = parcel.readValue(Boolean::class.java.classLoader) as Boolean
             redText = parcel.readValue(Boolean::class.java.classLoader) as Boolean
+            bigSize = parcel.readValue(Boolean::class.java.classLoader) as Boolean
         }
 
         override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -48,6 +50,7 @@ class GuidanceStreetLabelSetting : Setting<GuidanceStreetLabel>() {
             parcel.writeParcelable(guidanceStreetLabelData, flags)
             parcel.writeValue(defaultView)
             parcel.writeValue(redText)
+            parcel.writeValue(bigSize)
         }
 
         override fun describeContents(): Int {
@@ -63,7 +66,6 @@ class GuidanceStreetLabelSetting : Setting<GuidanceStreetLabel>() {
                 return arrayOfNulls(size)
             }
         }
-
     }
 
     override fun getClassName(): Class<GuidanceStreetLabel> {
@@ -75,6 +77,7 @@ class GuidanceStreetLabelSetting : Setting<GuidanceStreetLabel>() {
             "Default" to GuidanceStreetLabelSettingItem().apply {
                 defaultView = true
             },
+
             "With all properties set -- background colorPositive" to GuidanceStreetLabelSettingItem().apply {
                 guidanceStreetLabelData = GuidanceStreetLabelData("Street Label Text",
                     ThemeUtil.getColor(context, R.attr.colorPositive))
@@ -88,8 +91,10 @@ class GuidanceStreetLabelSetting : Setting<GuidanceStreetLabel>() {
                 guidanceStreetLabelData = GuidanceStreetLabelData("Street Label Text", 0)
                 redText = true
             },
-            "data is null" to GuidanceStreetLabelSettingItem().apply {
-                guidanceStreetLabelData = null
+
+            "With 30sp text size" to GuidanceStreetLabelSettingItem().apply {
+                guidanceStreetLabelData = GuidanceStreetLabelData("Street Label Text", ThemeUtil.getColor(context, R.attr.colorPositive))
+                bigSize = true
             }
         )
     }

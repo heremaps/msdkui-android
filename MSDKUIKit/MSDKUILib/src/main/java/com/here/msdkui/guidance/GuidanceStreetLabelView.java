@@ -18,6 +18,7 @@ package com.here.msdkui.guidance;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.os.Parcel;
@@ -130,10 +131,20 @@ public class GuidanceStreetLabelView extends LinearLayout {
         }
         final TextView currentStreetLabelView = findViewById(R.id.guidance_current_street_text);
         currentStreetLabelView.setText(currentStreetData.getCurrentStreetName());
-        GradientDrawable drawable = (GradientDrawable) getBackground();
-        currentStreetLabelView.measure(0, 0);
-        drawable.setCornerRadius(currentStreetLabelView.getMeasuredHeight() >> 1);
-        drawable.setColorFilter(currentStreetData.getBackgroundColor(), PorterDuff.Mode.SRC);
+        refresh();
+    }
+
+    /**
+     * Refresh the view to re-calculate the radius of view.
+     */
+    public void refresh()  {
+        Drawable backgroundDrawable = getBackground();
+        if (backgroundDrawable instanceof GradientDrawable) {
+            GradientDrawable drawable = (GradientDrawable) backgroundDrawable;
+            measure(0, 0);
+            drawable.setCornerRadius(getMeasuredHeight() >> 1);
+            drawable.setColorFilter(mGuidanceStreetLabelData.getBackgroundColor(), PorterDuff.Mode.SRC);
+        }
     }
 
     /**

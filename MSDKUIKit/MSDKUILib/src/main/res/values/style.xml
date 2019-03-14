@@ -761,20 +761,22 @@
     <!-- GuidanceCurrentStreet -->
     <style name="GuidanceCurrentStreet">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:paddingStart">@dimen/contentMarginMedium</item>
-        <item name="android:paddingEnd">@dimen/contentMarginMedium</item>
+        <item name="android:paddingStart">@dimen/contentMarginExtraLarge</item>
+        <item name="android:paddingEnd">@dimen/contentMarginExtraLarge</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:gravity">center</item>
     </style>
 
     <style name="GuidanceCurrentStreetText" parent="@style/TextAppearance.AppCompat.Subhead">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:textColor">?attr/colorForegroundLight</item>
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <!-- Guidance ETA -->

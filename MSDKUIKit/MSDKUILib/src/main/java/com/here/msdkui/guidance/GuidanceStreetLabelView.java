@@ -139,7 +139,7 @@ public class GuidanceStreetLabelView extends LinearLayout {
      */
     public void refresh()  {
         Drawable backgroundDrawable = getBackground();
-        if(backgroundDrawable instanceof GradientDrawable) {
+        if (backgroundDrawable instanceof GradientDrawable) {
             GradientDrawable drawable = (GradientDrawable) backgroundDrawable;
             measure(0, 0);
             drawable.setCornerRadius(getMeasuredHeight() >> 1);

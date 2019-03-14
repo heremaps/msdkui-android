@@ -99,7 +99,9 @@ public class ManeuverList extends CustomRecyclerView {
     private void init() {
         mAdapter = new ManeuverListAdapter(mManeuverList);
         setAdapter(mAdapter);
-        setBackgroundColor(ThemeUtil.getColor(getContext(), R.attr.colorBackgroundViewLight));
+        if (getBackground() == null) {
+            setBackgroundColor(ThemeUtil.getColor(getContext(), R.attr.colorBackgroundViewLight));
+        }
     }
 
     /**

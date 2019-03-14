@@ -17,9 +17,11 @@
 package com.here.msdkui.guidance;
 
 import android.os.Parcel;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentActivity;
 import android.view.AbsSavedState;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.here.RobolectricTest;
@@ -114,6 +116,15 @@ public class GuidanceNextManeuverViewTest extends RobolectricTest {
     }
 
     @Test
+    public void testIconEndMargin() {
+        mGuidanceNextManeuverView.setIconEndMargin(10);
+        final ImageView iconView = mGuidanceNextManeuverView.findViewById(R.id.nextManeuverIconView);
+        final ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams)
+                iconView.getLayoutParams();
+        assertThat(layoutParams.getMarginEnd(), equalTo(10));
+    }
+
+    @Test
     public void testSettingDataReturnsTheSame() {
         GuidanceNextManeuverData data = createData(mIconId, mDistance, mStreetName);
         mGuidanceNextManeuverView.setNextManeuverData(data);
@@ -139,7 +150,6 @@ public class GuidanceNextManeuverViewTest extends RobolectricTest {
 
     @Test
     public void testPanelDataIsParcelable() {
-
         final GuidanceNextManeuverData data = createData(mIconId, mDistance, mStreetName);
         GuidanceNextManeuverView.SavedState savedState = new GuidanceNextManeuverView.SavedState(AbsSavedState.EMPTY_STATE);
         savedState.setStateToSave(data);
@@ -151,6 +161,7 @@ public class GuidanceNextManeuverViewTest extends RobolectricTest {
                 parcel);
         assertNotNull(createdFromParcel.getSavedState());
     }
+
 
     private GuidanceNextManeuverData createData(Integer iconId, Long distance, String streetName) {
         return new GuidanceNextManeuverData(iconId, distance, streetName);

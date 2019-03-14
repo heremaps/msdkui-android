@@ -22,6 +22,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,8 +44,7 @@ public class GuidanceNextManeuverView extends BaseView {
     /**
      * Constructs a new instance.
      *
-     * @param context
-     *         the required {@link Context}.
+     * @param context the required {@link Context}.
      */
     public GuidanceNextManeuverView(Context context) {
         this(context, null);
@@ -53,11 +53,8 @@ public class GuidanceNextManeuverView extends BaseView {
     /**
      * Constructs a new instance.
      *
-     * @param context
-     *         the required {@link Context}.
-     *
-     * @param attrs
-     *         a set of attributes.
+     * @param context the required {@link Context}.
+     * @param attrs   a set of attributes.
      */
     public GuidanceNextManeuverView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
@@ -66,14 +63,9 @@ public class GuidanceNextManeuverView extends BaseView {
     /**
      * Constructs a new instance.
      *
-     * @param context
-     *         the required {@link Context}.
-     *
-     * @param attrs
-     *         a set of attributes.
-     *
-     * @param defStyleAttr
-     *         a default style attribute.
+     * @param context      the required {@link Context}.
+     * @param attrs        a set of attributes.
+     * @param defStyleAttr a default style attribute.
      */
     public GuidanceNextManeuverView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -83,19 +75,12 @@ public class GuidanceNextManeuverView extends BaseView {
     /**
      * Constructs a new instance.
      *
-     * @param context
-     *         the required {@link Context}.
-     *
-     * @param attrs
-     *         a set of attributes.
-     *
-     * @param defStyleAttr
-     *         a default style attribute.
-     *
-     * @param defStyleRes
-     *         a default style resource.
-     *
-     * Requires Lollipop (API level 21).
+     * @param context      the required {@link Context}.
+     * @param attrs        a set of attributes.
+     * @param defStyleAttr a default style attribute.
+     * @param defStyleRes  a default style resource.
+     *                     <p>
+     *                     Requires Lollipop (API level 21).
      */
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public GuidanceNextManeuverView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
@@ -114,15 +99,15 @@ public class GuidanceNextManeuverView extends BaseView {
     /**
      * Populate the UI with {@link GuidanceNextManeuverData}.
      *
-     * @param nextManeuverData
-     *         {@link GuidanceNextManeuverData}
+     * @param nextManeuverData {@link GuidanceNextManeuverData}
      */
     private void populate(GuidanceNextManeuverData nextManeuverData) {
         if (nextManeuverData == null) {
-           setVisibility(View.GONE);
-           return;
+            setVisibility(View.GONE);
+            return;
         }
-       setVisibility(View.VISIBLE);
+        setVisibility(View.VISIBLE);
+
         final ImageView iconView = findViewById(R.id.nextManeuverIconView);
         if (nextManeuverData.getIconId() == null) {
             iconView.setVisibility(View.GONE);
@@ -151,6 +136,21 @@ public class GuidanceNextManeuverView extends BaseView {
         final TextView dotView = findViewById(R.id.dot);
         dotView.setVisibility(nextManeuverData.getDistance() == null || nextManeuverData.getStreetName() == null ?
                 View.GONE : View.VISIBLE);
+
+        if (maneuverDistance.getVisibility() == GONE && streetName.getVisibility() == GONE) {
+            setIconEndMargin(0);
+        }
+    }
+
+    /**
+     * Sets icon end margin.
+     * @param margin integer to represent margin size.
+     */
+    void setIconEndMargin(final int margin) {
+        final ImageView iconView = findViewById(R.id.nextManeuverIconView);
+        final ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams)
+                iconView.getLayoutParams();
+        layoutParams.setMarginEnd(margin);
     }
 
     /**
@@ -170,9 +170,7 @@ public class GuidanceNextManeuverView extends BaseView {
      * and setting null field in {@link GuidanceNextManeuverData} will put the respective child view's visibility
      * to {@code View.GONE}.
      *
-     * @param data
-     *         the {@link GuidanceNextManeuverData} to populate the UI.
-     *
+     * @param data the {@link GuidanceNextManeuverData} to populate the UI.
      * @see com.here.msdkui.guidance.GuidanceNextManeuverPresenter
      */
     public void setNextManeuverData(@Nullable GuidanceNextManeuverData data) {

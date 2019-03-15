@@ -18,6 +18,10 @@ package com.here.msdkuidev.component
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.Gravity
+import android.view.View.TEXT_ALIGNMENT_TEXT_END
+import android.view.View.TEXT_ALIGNMENT_TEXT_START
+import android.widget.TextView
 import com.here.msdkuidev.Constant
 import com.here.msdkuidev.R
 import kotlinx.android.synthetic.main.guidance_current_speed.*
@@ -32,7 +36,6 @@ class GuidanceSpeedView : AppCompatActivity() {
         setContentView(resourceId)
         if (!setting.defaultView) {
             setting.unit.run {
-                print(this)
                 guidanceSpeedView.unitSystem = this
             }
             guidanceSpeedView.setCurrentSpeedData(setting.guidanceSpeedData)
@@ -42,6 +45,10 @@ class GuidanceSpeedView : AppCompatActivity() {
             setting.color?.run {
                 guidanceSpeedView.unitTextColor = this
                 guidanceSpeedView.valueTextColor = this
+            }
+            setting.alignment?.run {
+                guidanceSpeedView.findViewById<TextView> (R.id.guidance_current_speed_value).textAlignment = if( this == 0)
+                    TEXT_ALIGNMENT_TEXT_START else TEXT_ALIGNMENT_TEXT_END
             }
         }
     }

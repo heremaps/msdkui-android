@@ -34,6 +34,7 @@ class GuidanceSpeedViewSetting : Setting<GuidanceSpeedView>() {
         var customBackground: Int? = null
         var defaultView = false
         var color: Int? = null
+        var alignment: Int? = null
         var unit : UnitSystem = UnitSystem.METRIC
 
         constructor() : super()
@@ -43,6 +44,7 @@ class GuidanceSpeedViewSetting : Setting<GuidanceSpeedView>() {
             customBackground = parcel.readValue(Int::class.java.classLoader) as? Int
             defaultView = parcel.readByte() != 0.toByte()
             color = parcel.readValue(Int::class.java.classLoader) as? Int
+            alignment = parcel.readValue(Int::class.java.classLoader) as? Int
             unit = parcel.readSerializable() as UnitSystem
         }
 
@@ -52,6 +54,7 @@ class GuidanceSpeedViewSetting : Setting<GuidanceSpeedView>() {
             parcel.writeValue(customBackground)
             parcel.writeByte(if (defaultView) 1 else 0)
             parcel.writeValue(color)
+            parcel.writeValue(alignment)
             parcel.writeSerializable(unit)
         }
 
@@ -80,11 +83,22 @@ class GuidanceSpeedViewSetting : Setting<GuidanceSpeedView>() {
                 defaultView = true
             },
             "null" to GuidanceSpeedViewSettingItem(),
+            "With speed value=0" to GuidanceSpeedViewSettingItem().apply {
+                guidanceSpeedData = GuidanceSpeedData(0.0, 20.0)
+            },
             "With speed > 0" to GuidanceSpeedViewSettingItem().apply {
                 guidanceSpeedData = GuidanceSpeedData(13.0, 8.0)
             },
-            "With speed value=0" to GuidanceSpeedViewSettingItem().apply {
-                guidanceSpeedData = GuidanceSpeedData(0.0, 20.0)
+            "With speed, left aligned" to GuidanceSpeedViewSettingItem().apply {
+                guidanceSpeedData = GuidanceSpeedData(13.0, 8.0)
+                alignment = 0
+            },
+            "With speed, right aligned" to GuidanceSpeedViewSettingItem().apply {
+                guidanceSpeedData = GuidanceSpeedData(13.0, 8.0)
+                alignment = 1
+            },
+            "With speed > 0" to GuidanceSpeedViewSettingItem().apply {
+                guidanceSpeedData = GuidanceSpeedData(13.0, 8.0)
             },
             "km/h, red" to GuidanceSpeedViewSettingItem().apply {
                 guidanceSpeedData = GuidanceSpeedData(13.0, 8.0)

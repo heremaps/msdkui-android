@@ -141,8 +141,7 @@ public class GuidanceStreetLabelView extends LinearLayout {
         Drawable backgroundDrawable = getBackground();
         if (backgroundDrawable instanceof GradientDrawable) {
             GradientDrawable drawable = (GradientDrawable) backgroundDrawable;
-            measure(0, 0);
-            drawable.setCornerRadius(getMeasuredHeight() >> 1);
+            post(() -> drawable.setCornerRadius(getHeight() >> 1));
             drawable.setColorFilter(mGuidanceStreetLabelData.getBackgroundColor(), PorterDuff.Mode.SRC);
         }
     }

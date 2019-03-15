@@ -859,10 +859,11 @@
 
     <style name="GuidanceCurrentSpeedPanelText" parent="@style/TextAppearance.AppCompat.Headline">
         <item name="android:textColor">?attr/colorForeground</item>
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:text">@string/msdkui_value_not_available</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="GuidanceCurrentSpeedPanelSecondaryText" parent="@style/TextAppearance.AppCompat.Body2">

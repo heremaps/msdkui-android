@@ -11,9 +11,9 @@ This user guide describes the general workflow using the HERE Mobile SDK UI Kit 
 - [Getting started - A HERE Mobile SDK UI Kit Primer](#getting-started---a-here-mobile-sdk-ui-kit-primer)
 - [Overview of the HERE Mobile SDK UI Kit Primer example](#overview-of-the-here-mobile-sdk-ui-kit-primer-example)
 - [Adding HERE Mobile SDK UI Kit components](#adding-here-mobile-sdk-ui-kit-components)
-	- [Loading the map view](#loading-the-map-view)
+  - [Loading the map view](#loading-the-map-view)
 - [Using the WaypointList](#using-the-waypointlist)
-	- [Calculating the route](#calculating-the-route)
+  - [Calculating the route](#calculating-the-route)
 - [Using the TransportModePanel](#using-the-transportmodepanel)
 - [Implementing the route details screen](#implementing-the-route-details-screen)
 - [Using the RouteDescriptionList](#using-the-routedescriptionlist)
@@ -403,6 +403,8 @@ maneuverList.setOnItemClickedListener(new CustomRecyclerView.OnItemClickedListen
 To finish our quick overview, we want to use the selected route from the previous step to start guidance along that route. For this, we only need one new HERE Mobile SDK UI Kit component:
 - `GuidanceManeuverView`
 
+Since the contents of the `GuidanceManeuverView` may vary in height, it is recommended to _not_ set a fixed layout height. Note that all guidance components wrap their content without an additional padding. This allows us to specify the desired value in our layout.
+
 In addition, we also want to show a map during guidance to let the user orientate where we currently are. This results in the following vertical `LinearLayout`, where the `GuidanceManeuverView` is placed above the `MapFragment`:
 ```xml
 <LinearLayout
@@ -414,7 +416,8 @@ In addition, we also want to show a map during guidance to let the user orientat
     <com.here.msdkui.guidance.GuidanceManeuverView
         android:id="@+id/guidanceManeuverView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:padding="@dimen/contentMarginHuge"/>
 
     <fragment
         class="com.here.android.mpa.mapping.MapFragment"
@@ -432,7 +435,7 @@ In addition, we also want to show a map during guidance to let the user orientat
 ```
 
 ## Using the GuidanceManeuverView
-The `GuidanceManeuverView` is a panel where information about the next maneuvers will appear. As with all HERE Mobile SDK UI Kit components, it is already configured, so you only need to pass in the current `GuidanceManeuverData`.
+The `GuidanceManeuverView` is a panel where information about the next maneuvers will appear. As with all HERE Mobile SDK UI Kit components, it is already configured, so you only need to pass in the desired state based on the provided `GuidanceManeuverData`.
 
 This data is provided by the `GuidanceManeuverPresenter` helper class, that accepts a `GuidanceManeuverListener` to notify the listener once new `GuidanceManeuverData` is available:
 ```java
@@ -441,11 +444,14 @@ guidanceManeuverPresenter = new GuidanceManeuverPresenter(this, NavigationManage
 guidanceManeuverPresenter.addListener(new GuidanceManeuverListener() {
     @Override
     public void onDataChanged(@Nullable GuidanceManeuverData guidanceManeuverData) {
-        if (guidanceManeuverData != null) {
+        if (guidanceManeuverData == null) {
+            guidanceManeuverView.setViewState(GuidanceManeuverView.State.UPDATING);
+        } else {
             Log.d(LOG_TAG, "onDataChanged: 1st line: " + guidanceManeuverData.getInfo1());
             Log.d(LOG_TAG, "onDataChanged: 2nd line: " + guidanceManeuverData.getInfo2());
+
+            guidanceManeuverView.setViewState(new GuidanceManeuverView.State(guidanceManeuverData));
         }
-        guidanceManeuverView.setManeuverData(guidanceManeuverData);
     }
 
     @Override
@@ -456,7 +462,13 @@ guidanceManeuverPresenter.addListener(new GuidanceManeuverListener() {
 });
 ```
 
-While the first callback simply sets the received `GuidanceManeuverData` to the `GuidanceManeuverView`, the latter informs us when the user has finally reached the destination. In this case, we choose to highlight the last maneuver.
+While the first callback simply sets the desired state to the `GuidanceManeuverView`, the latter informs us when the user has finally reached the destination. In this case, we choose to highlight the last maneuver.
+
+Since we passed the `route` that should be used for guidance to the `GuidanceManeuverPresenter`, the presenter is then taking care of forwarding any navigation events - allowing us to intercept the current `GuidanceManeuverData` if desired. In our implementation, we simply set state based on the `guidanceManeuverData` to the `GuidanceManeuverView`, so the user can see which turn to take next.
+
+The current `guidanceManeuverData` can be `null`. If it is `null`, we set the `UPDATING`-state to show a loading state indicating that there is currently no data to show. If you want to change the default behavior, you can use a customized `GuidanceManeuverData` instance.
+
+>Before starting the trip, no initial maneuver data may be present. In such a case, the panel shows a suitable default instruction, like "Follow the route on the map", until the first maneuver data - whether `null` or not - is provided.
 
 Note that we must resume the `GuidanceManeuverPresenter` to receive guidance events: As we already passed the `NavigationManager` singleton and the route object to the constructor of the `GuidanceManeuverPresenter`, we only have to call `resume()` to start listening - and to call `pause()` to stop listening. Please, also make sure to declare the presenter as member variable - otherwise you will not receive any events once the scope of the calling method was executed.
 ```java
@@ -470,10 +482,6 @@ private void stopGuidanceSimulation() {
     GuidanceSimulator.getInstance().stopGuidance();
 }
 ```
-
-Since we passed the `route` that should be used for guidance to the `GuidanceManeuverPresenter`, the presenter is then taking care of forwarding any navigation events - allowing us to intercept the current `GuidanceManeuverData` if desired. In our implementation we simply set the current `guidanceManeuverData` to the `GuidanceManeuverView`, so the user can see which turn to take next.
-
->**Note:** The current `guidanceManeuverData` can be `null`. If `null` is passed to `guidanceManeuverView.setManeuverData()`, then the panel will show a loading state - indicating that there is currently no data to show. In case you want to stick with the default behavior, you can simply pass `guidanceManeuverData` - regardless if it is `null` or not. If you want to change the default behavior, you can set a customized `GuidanceManeuverData` instance. Please note, before starting the trip, no initial maneuver data may be present. In such a case, the panel shows a suitable default instruction, like "Follow the route on the map", until the first maneuver data - whether `null` or not - is provided.
 
 Once we resume the `GuidanceManeuverPresenter`, we may also want to start guidance. For this example we are calling the helper method `GuidanceSimulator.getInstance().startGuidanceSimulation(route, map);`. Notice that you can use the HERE Mobile SDK to start _simulated_ guidance. For implementation details, please check the example's code. During the development phase, it is usually more convenient to simulate the navigation experience along the provided route - so that we can quickly see how the `GuidanceManeuverView` changes its content in real-time.
 

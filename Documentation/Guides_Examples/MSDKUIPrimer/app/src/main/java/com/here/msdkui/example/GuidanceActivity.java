@@ -67,11 +67,14 @@ public class GuidanceActivity extends AppCompatActivity {
         guidanceManeuverPresenter.addListener(new GuidanceManeuverListener() {
             @Override
             public void onDataChanged(@Nullable GuidanceManeuverData guidanceManeuverData) {
-                if (guidanceManeuverData != null) {
+                if (guidanceManeuverData == null) {
+                    guidanceManeuverView.setViewState(GuidanceManeuverView.State.UPDATING);
+                } else {
                     Log.d(LOG_TAG, "onDataChanged: 1st line: " + guidanceManeuverData.getInfo1());
                     Log.d(LOG_TAG, "onDataChanged: 2nd line: " + guidanceManeuverData.getInfo2());
+
+                    guidanceManeuverView.setViewState(new GuidanceManeuverView.State(guidanceManeuverData));
                 }
-                guidanceManeuverView.setManeuverData(guidanceManeuverData);
             }
 
             @Override

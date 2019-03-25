@@ -11,7 +11,7 @@ This guide is for developers who want to contribute to the MSDKUI codebase, buil
 	- [Running unit tests for the MSDKUILib](#running-unit-tests-for-the-msdkuilib)
 	- [Generating a unit test coverage report](#generating-a-unit-test-coverage-report)
 - [Building the Demo app](#building-the-demo-app)
-	- [Setting the HERE Mobile SDK license](#setting-the-here-mobile-sdk-license)
+	- [Setting the HERE Mobile SDK credentials](#setting-the-here-mobile-sdk-credentials)
 	- [Building and Running the Demo](#building-and-running-the-demo)
 	- [Running unit tests for the MDKUIApp](#running-unit-tests-for-the-mdkuiapp)
 	- [Generating a unit test coverage report](#generating-a-unit-test-coverage-report)
@@ -76,7 +76,7 @@ Execute `/gradlew :MSDKUILib:testDebugUnitTest :MSDKUILib:jacocoTestDebugReport`
 
 Before building, testing, or running the MSDKUI Demo application it's important to set the HERE Mobile SDK credentials. If you don't know your credentials, please ask your HERE stakeholder or register on [developer.here.com](https://developer.here.com) and create new ones.
 
-### Setting the HERE Mobile SDK license
+### Setting the HERE Mobile SDK credentials
 
 Don't set your credentials directly to the Android manifest (as otherwise you would need to exclude them for every commit). Instead add `MSDKUI_APP_ID_ANDROID`, `MSDKUI_APP_TOKEN_ANDROID` and `MSDKUI_APP_LICENSE_ANDROID` to your OS `$PATH`, see _MSDKUIDemo/MSDKUIApp/build.gradle_ for details.
 

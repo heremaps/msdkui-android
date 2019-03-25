@@ -59,12 +59,12 @@ The HERE Mobile SDK UI Kit is already fully localized for the following language
 - Vietnamese
 
 ## Supported platforms
-The HERE Mobile SDK UI Kit components are available for Android and [iOS](https://github.com/heremaps/msdkui-ios). The required HERE Mobile SDK is Version 3.9, only the _Premium edition_ is supported. The HERE Mobile SDK UI Kit supports scooter routing. Please, make sure to extend your license key if you want to include scooter routing in your app.
+The HERE Mobile SDK UI Kit components are available for Android and [iOS](https://github.com/heremaps/msdkui-ios). The required HERE Mobile SDK is Version 3.10.1, only the _Premium edition_ is supported. The HERE Mobile SDK UI Kit supports scooter routing. Please, make sure to extend your license key if you want to include scooter routing in your app.
 
 **Android Environment**
-- Minimum supported API version is 19 (KitKat), allowing you to reach approximately 95,3% of all Android devices
-- Android Support Library is required, please always use to the latest one.
-- We recommend using Android Studio 3.1.3.
+- Minimum supported API version is 19 (KitKat), allowing you to reach more than 95% of all Android devices.
+- The Android Support Library is required, please always use to the latest one.
+- We recommend using Android Studio 3.3.
 
 ## Quick Start
 Please have a look at our [Quick Start](Documentation/Guides/QuickStart.md) tutorial to see how easy it is to integrate the HERE Mobile SDK UI Kit into your own apps. More information on how to use the HERE Mobile SDK UI Kit can be found in our [User Guide](Documentation/Guides/UserGuide.md). Information on how to contribute to this project can be found in our [Contribution Guide](Documentation/Guides/ContributionGuide.md).
@@ -79,6 +79,6 @@ Please have a look at our [Quick Start](Documentation/Guides/QuickStart.md) tuto
 We are happy to hear your feedback. Please [contact us](https://developer.here.com/contact-us) for any questions, suggestions or improvements. Thank you for your using the HERE Mobile SDK UI Kit.
 
 ## License
-Copyright (c) 2017-2018 HERE Europe B.V.
+Copyright (c) 2017-2019 HERE Europe B.V.
 
 See the [LICENSE](LICENSE) file in the root of this project for license details.

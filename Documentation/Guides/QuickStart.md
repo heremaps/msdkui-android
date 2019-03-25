@@ -18,7 +18,7 @@ Thank you for using the HERE Mobile SDK UI Kit. In this Quick Start guide, we ar
 ## How to run the example apps
 If you just want to try out the accompanying examples, please perform the following steps:
 
-- Include the HERE Mobile SDK 3.9, Premium, and the HERE Mobile SDK UI Kit: Copy the `HERE-sdk.aar` and the `MSDKUILib.aar` to _app/libs_ (if not done already, [build the MSDKUILib](ContributionGuide.md#building-the-here-ui-kit-library) via Gradle: `./gradlew clean :MSDKUILib:assembleRelease`).
+- Include the HERE Mobile SDK 3.10.1, Premium, and the HERE Mobile SDK UI Kit: Copy the `HERE-sdk.aar` and the `MSDKUILib.aar` to _app/libs_ (if not done already, [build the MSDKUILib](ContributionGuide.md#building-the-here-ui-kit-library) via Gradle from folder _MSDKUIKit/MSDKUILib_: `./gradlew clean :MSDKUILib:assembleRelease`).
 - Open the project in Android Studio.
 - Add the credentials for the HERE Mobile SDK to the `AndroidManifest.xml` file:
 ```xml
@@ -46,7 +46,7 @@ If you want to build your own app, it may be useful to follow the guide below wh
 Let's start by creating a new Android app. If you want to integrate the HERE Mobile SDK UI Kit into an existing app, you can skip this step. No HERE Mobile SDK or HERE Mobile SDK UI Kit specific code is involved here.
 If you are new to Android development, please follow the guides on [developer.android.com](https://developer.android.com/guide/) to help you get started with the first steps.
 
-For this Quick Start app, we used Android Studio 3.0.1. This is the minimum Android Studio version you can use for development (higher versions are recommended).
+For this Quick Start app, we used Android Studio 3.3. The minimum supported Android Studio version you can use for development is 3.0.1 (higher versions are recommended).
 
 - Start Android Studio and select _Start a new Android Studio project_.
 - Select an Application name of your choice, for example _HelloMSDKUI_.

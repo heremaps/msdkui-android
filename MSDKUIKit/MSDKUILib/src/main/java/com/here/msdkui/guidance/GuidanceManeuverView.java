@@ -217,7 +217,7 @@ public class GuidanceManeuverView extends BaseView {
 
     /**
      * Populate the UI with {@link GuidanceManeuverData}.
-     * Please note that setting null field in {@link GuidanceManeuverData} will put the respective child view's
+     * Please note that setting a null field in {@link GuidanceManeuverData} will put the respective child view's
      * visibility to {@code View.GONE}.
      *
      * @param maneuverData The {@link GuidanceManeuverData} to use.
@@ -238,7 +238,7 @@ public class GuidanceManeuverView extends BaseView {
     }
 
     /**
-     * Gets maneuver data which is being used for UI population.
+     * Gets the maneuver data which is being used for UI population.
      *
      * @return a {@link GuidanceManeuverData} instance.
      * @deprecated This method will be removed in release 2.1.0. Please see {@link #getViewState()}.
@@ -250,7 +250,7 @@ public class GuidanceManeuverView extends BaseView {
 
     /**
      * Sets the {@link GuidanceManeuverData} which will be used for UI population.
-     * Please note that setting null field in {@link GuidanceManeuverData} will put the respective child view's
+     * Please note that setting a null field in {@link GuidanceManeuverData} will put the respective child view's
      * visibility to {@code View.GONE}.
      *
      * @param maneuverData the {@link GuidanceManeuverData} to populate the UI.
@@ -274,11 +274,11 @@ public class GuidanceManeuverView extends BaseView {
 
     /**
      * Sets the {@link com.here.msdkui.guidance.GuidanceManeuverView.State GuidanceManeuverView.State} which will be used for UI population.
-     * Please note setting null state will set the visibility of {@code GuidanceManeuverView} to {@code View.GONE} and
-     * setting null field in {@link GuidanceManeuverData} will put the respective child view's visibility to {@code View.GONE}.
+     * Please note that setting null will set the visibility of the {@code GuidanceManeuverView} to {@code View.GONE}.
+     * Setting a field in {@link GuidanceManeuverData} to null will put the respective child view's visibility to {@code View.GONE}.
      *
      * @param state the {@link com.here.msdkui.guidance.GuidanceManeuverView.State GuidanceManeuverView.State} to populate the UI.
-     *              Please note that in case of null, GuidanceManeuverView will be gone.
+     *              Please note that in case of null, the {@code GuidanceManeuverView} will be gone.
      */
     public void setViewState(@Nullable final State state) {
         mState = state;
@@ -297,7 +297,7 @@ public class GuidanceManeuverView extends BaseView {
     }
 
     /**
-     * Highlights maneuver section (info2) of view using the provided color.
+     * Highlights the maneuver section (info2) of the view using the provided color.
      *
      * @param color the color to highlight a maneuver.
      */
@@ -400,12 +400,12 @@ public class GuidanceManeuverView extends BaseView {
     public static class State implements Parcelable {
 
         /**
-         * Represent the default state of view where the view doesn't have data.
+         * Represents the default state of the view without maneuver data.
          */
         public static final State NO_DATA = new State(0);
 
         /**
-         * Represent loading state where the view is awaiting for maneuver data.
+         * Represents a loading state where the view is awaiting maneuver data.
          */
         public static final State UPDATING = new State(1);
 
@@ -429,7 +429,7 @@ public class GuidanceManeuverView extends BaseView {
         }
 
         /**
-         * Represent state where the view contains maneuver data.
+         * Represents a state where the view contains maneuver data.
          *
          * @param data {@link com.here.msdkui.guidance.GuidanceManeuverData} to populate the view.
          */

@@ -90,12 +90,11 @@ class MapFragmentWrapper : RetainFragment() {
         }
 
         private fun handleEvent(point: PointF?) {
-            val geo = map?.pixelToGeo(point)
-            state.mapMarker?.coordinate = geo
-            state.mapContainer?.addMapObject(state.mapMarker)
-            fragmentHandler?.post {
-                geo?.run {
-                    listener?.onPointSelectedOnMap(geo)
+            map?.pixelToGeo(point)?.run {
+                state.mapMarker?.coordinate = this
+                state.mapContainer?.addMapObject(state.mapMarker)
+                fragmentHandler?.post {
+                    listener?.onPointSelectedOnMap(this)
                 }
             }
         }

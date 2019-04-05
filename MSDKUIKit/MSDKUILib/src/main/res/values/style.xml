@@ -187,6 +187,11 @@
         <item name="android:scaleType">centerInside</item>
     </style>
 
+    <style name="SmallImage" parent="Image">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+    </style>
+
     <style name="TextStyle">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -648,7 +653,7 @@
         <item name="android:paddingBottom">@dimen/contentMarginExtraLarge</item>
     </style>
 
-    <style name="RouteDescriptionItemIcon" parent="Image">
+    <style name="RouteDescriptionItemIcon" parent="SmallImage">
         <item name="android:tint">?attr/colorForeground</item>
     </style>
 
@@ -656,6 +661,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">?attr/colorForeground</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
     </style>
 
     <style name="RouteDescriptionTrafficWarning" parent="@style/TextAppearance.AppCompat.Body1">
@@ -672,6 +678,7 @@
         <item name="android:contentDescription">@null</item>
         <item name="android:background">?attr/colorHint</item>
         <item name="android:layout_marginRight">@dimen/contentMarginLarge</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
         <item name="android:layout_marginEnd">@dimen/contentMarginLarge</item>
         <item name="android:orientation">horizontal</item>
     </style>
@@ -682,6 +689,7 @@
         <item name="android:singleLine">true</item>
         <item name="android:ellipsize">end</item>
         <item name="android:textColor">?attr/colorForegroundSecondary</item>
+        <item name="android:layout_marginLeft">@dimen/contentMarginHuge</item>
     </style>
 
     <style name="RouteDescriptionDescArrival" parent="@style/TextAppearance.AppCompat.Body2">

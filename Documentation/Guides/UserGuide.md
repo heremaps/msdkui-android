@@ -36,7 +36,7 @@ The HERE Mobile SDK UI Kit builds upon optimized native platform code to fully s
 
 With the HERE Mobile SDK UI Kit, realizing complete apps including comprehensive route planning and state-of-the-art guidance becomes a matter of minutes. While hiding the underlying complexity, you still have all the freedom you need to build unique and powerful apps - take a quick tour with our [HERE Mobile SDK UI Kit Primer](#getting-started---a-here-mobile-sdk-ui-kit-primer) to see a practical example.
 
-Version 1.x of the HERE Mobile SDK UI Kit mainly focuses on enabling user experiences related to route planning and guidance. The HERE Mobile SDK UI Kit components are available for iOS and Android, supporting Java and Kotlin on Android, likewise Swift on iOS.
+Version 2.x of the HERE Mobile SDK UI Kit mainly focuses on enabling user experiences related to route planning and guidance. The HERE Mobile SDK UI Kit components are available for iOS and Android, supporting Java and Kotlin on Android, likewise Swift on iOS.
 
 ## Where to start?
 - If you haven't done so, please read our [Quick Start](QuickStart.md) guide to see how you can integrate the HERE Mobile SDK UI Kit into your own apps.

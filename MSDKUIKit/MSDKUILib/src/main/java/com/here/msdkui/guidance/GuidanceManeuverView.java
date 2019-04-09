@@ -241,7 +241,7 @@ public class GuidanceManeuverView extends BaseView {
      * Gets the maneuver data which is being used for UI population.
      *
      * @return a {@link GuidanceManeuverData} instance.
-     * @deprecated This method will be removed in release 2.1.0. Please see {@link #getViewState()}.
+     * @deprecated This method will be removed. Please see {@link #getViewState()}.
      */
     public @Nullable
     GuidanceManeuverData getManeuverData() {
@@ -255,7 +255,7 @@ public class GuidanceManeuverView extends BaseView {
      *
      * @param maneuverData the {@link GuidanceManeuverData} to populate the UI.
      * @see #setViewState(com.here.msdkui.guidance.GuidanceManeuverView.State)
-     * @deprecated This method will be removed in release 2.1.0. Please see {@link #getViewState()}.
+     * @deprecated This method will be removed. Please see {@link #getViewState()}.
      */
     public void setManeuverData(@NonNull GuidanceManeuverData maneuverData) {
         mState = new State(maneuverData);

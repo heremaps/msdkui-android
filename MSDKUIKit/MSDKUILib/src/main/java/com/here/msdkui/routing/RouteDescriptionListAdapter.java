@@ -39,6 +39,8 @@ public class RouteDescriptionListAdapter extends RecyclerView.Adapter<RouteDescr
 
     /**
      * Constructs a new instance using a list of {@link Route} elements.
+     *
+     * @param routeList list of {@link Route} elements.
      */
     public RouteDescriptionListAdapter(final List<Route> routeList) {
         super();
@@ -138,6 +140,8 @@ public class RouteDescriptionListAdapter extends RecyclerView.Adapter<RouteDescr
 
         /**
          * Constructs a new instance.
+         *
+         * @param view view for new instance.
          */
         public ViewHolder(final View view) {
             super(view);

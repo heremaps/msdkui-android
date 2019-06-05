@@ -18,12 +18,12 @@ cache:
 
 before_install:
   - pip install --user awscli
-  - echo yes | sdkmanager "build-tools;28.0.3"
 
 jobs:
   include:
     - stage: Library unit tests
       script:
+        - echo yes | sdkmanager "build-tools;28.0.3"
         - aws s3 cp s3://$SDK_URL/$SDK_VER MSDKUIKit/libs/HERE-sdk.aar
         - cd MSDKUIKit
         - ./gradlew -x test :MSDKUILib:check :MSDKUILib:testDebugUnitTest :MSDKUILib:jacocoTestDebugReport :MSDKUILib:assembleAndroidTest

@@ -2,8 +2,8 @@ language: android
 
 android:
   components:
-    - android-28
-    - build-tools-28.0.3
+    - tools
+    - platform-tools
   licenses:
     - 'android-sdk-license-.+'
 
@@ -18,6 +18,9 @@ cache:
 
 before_install:
   - pip install --user awscli
+  - touch $HOME/.android/repositories.cfg
+  - yes | sdkmanager "platforms;android-28"
+  - yes | sdkmanager "build-tools;28.0.3"
 
 jobs:
   include:

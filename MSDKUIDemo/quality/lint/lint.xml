@@ -52,4 +52,7 @@
     <issue id="AllowBackup" severity="ignore" />
     <!-- TODO: MSDKUI-1414 -->
     <issue id="IconDensities" severity="ignore" />
+    <!-- TODO: MSDKUI-2055 increase com.google.android.gms:play-services-location version
+         and migrate project to AndroidX -->
+    <issue id="GradleDependency" severity="ignore" />
 </lint>

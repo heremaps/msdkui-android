@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (C) 2017-2019 HERE Europe B.V.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+  <string name="msdkui_allow_car_pool">Åĺłŏɯ ćǟɽрȭȭɭ ゅكતવธ#</string>
+  <string name="msdkui_allow_car_shuttle">Æɫɭơω ĉąɽ šɧǚťţļë ťɼåıŋŝ ဃลভဎぃ Ӭ ૬ဥ#</string>
+  <string name="msdkui_allow_dirt_roads">Ãŀłóώ ɖɨŗţ ɽȫāδš ထ 触লर #</string>
+  <string name="msdkui_allow_ferries">Ăłļòŵ ғȩɽɼïèš  되ซҜก#</string>
+  <string name="msdkui_allow_highways">Æļɭöω ӎöțóřώαүš   圧ح؏੨#</string>
+  <string name="msdkui_allow_parks">Λŀĺõɯ рąɽǩŝ ष鸟χㅆ#</string>
+  <string name="msdkui_allow_toll_roads">Ąɫļõω țȫŀɭ ŕȍăɖŝ ੬实خ ทট#</string>
+  <string name="msdkui_allow_tunnels">Àɬŀøŵ țúŉńϵɭŝ 佛घα会ၷ#</string>
+  <string name="msdkui_arrive">Дŗŕǐνє ㅂギ حमน#</string>
+  <string name="msdkui_arrive_at">Дŗŕǐνє ㅂギ حमน#</string>
+  <string name="msdkui_avoid_long_term_closures">Ãνȏìδ мαǰôɽ ¢ɭōšŭřéŝ نㅞҶج盗أ 歳#</string>
+  <string name="msdkui_balanced">ßâɫǎņ ȅɖ  なї দӢ图龙#</string>
+  <string name="msdkui_bike">Бιĉýҫɭϵ Ε ㄹฟစ੦ㅎ#</string>
+  <string name="msdkui_cancel">Čǟň ҿɬ   声 ष #</string>
+  <string name="msdkui_car">Ҁăŗ Βㅗ؏ 고Ӛ#</string>
+  <string name="msdkui_combustible">Ҁơмҍûŝţǐбľé   ဒ #</string>
+  <string name="msdkui_corrosive">Ćőŗŗöŝǐνê חছॠΣฒחねনখ#</string>
+  <string name="msdkui_days">%1$d δ Ӝਥӄकনم#</string>
+  <string name="msdkui_days_hours">%1$d đ %2$d ɧ בΓギভת#</string>
+  <string name="msdkui_depart">Ļëǎνē ရكλㅚҰ马Κဧฐӣ#</string>
+  <string name="msdkui_depart_at">Ļëǎνē ရكλㅚҰ马Κဧฐӣ#</string>
+  <string name="msdkui_disable">Ҭùŕŉ òғғ  縄Э੮टဗㅜ #</string>
+  <string name="msdkui_disabled">Õғғ ӝじЂ ্ਖ#</string>
+  <string name="msdkui_done">Ďŏńè طટટΕقلশΟ#</string>
+  <string name="msdkui_drag_waypoint">Ďŗǣǵ ɰǣӱρōìŉț ӆゑষओन#</string>
+  <string name="msdkui_drag_waypoint_button">Đɽãġ ωǣурǒīņť ьűţťǒň áț ɨņðȩҗ %1$d   لဤগ၁ฉၶηυΩ丰ฒس#</string>
+  <string name="msdkui_duration">Ďûɼǣțίȍŋ ঞضأㅅΨ מ #</string>
+  <string name="msdkui_enabled">Ơŉ ؏၄Ηਉ#</string>
+  <string name="msdkui_estimated_arrival">Ĕšťǐӎąţéɗ äɼɼįνãŀ 脑βသ ঝ関 #</string>
+  <string name="msdkui_explosive">Ė рɬơšĭνē コग੧ΑゼΦ厅كၽ#</string>
+  <string name="msdkui_fastest">Ғāŝţēŝť फρ ㅂ ੪되#</string>
+  <string name="msdkui_flammable">Բľáммãьɫє ดぽげ盗国वदلΙ#</string>
+  <string name="msdkui_gas">Ġăš ဈ电ฟซ 车#</string>
+  <string name="msdkui_harmful_to_water">Ŵǣţēŕ ρȏɭĺűţáńţ シㅜङケชન#</string>
+  <string name="msdkui_hazardous_materials_title">Ħáʑåŕđôǔŝ мăţεřìαɬŝ  電ਧખ Πمף#</string>
+  <string name="msdkui_height">Ҥēįģɧț ע לㅃલҾ#</string>
+  <string name="msdkui_hours">%1$d ħ шلћ ؎ҝ#</string>
+  <string name="msdkui_hours_minutes">%1$d ĥ %2$d мìń સধ क じ#</string>
+  <string name="msdkui_incl">Îňĉł. টकੳব נㅂতӅว#</string>
+  <string name="msdkui_incl_traffic_delay">Íńćľ. %1$s đȇĺãӯ ศб بવك#</string>
+  <string name="msdkui_including">Īņćľǚɖîŋġ  ひ丰Ӗνӥ੧مㅙ#</string>
+  <string name="msdkui_length">£εŋğťħ  สਧ  马#</string>
+  <string name="msdkui_limited_weight">Ŵëíġħţ ľīӎìţ ডਘהદ다#</string>
+  <string name="msdkui_maneuver_arrive_at_02y">Дŗŕǐνє ㅂギ حमน#</string>
+  <string name="msdkui_maneuver_continue">Ċơňťįŉüę  জばન ゅય #</string>
+  <string name="msdkui_maneuver_end">Υơǖ\'νê ářɽίνєδ औলتਈקম#</string>
+  <string name="msdkui_maneuver_enter_car_shuttle_train">Ďŗîνȩ ǒńţó ťɦê ťɼåĩŉ ฎਓΣшဓબડΞ#</string>
+  <string name="msdkui_maneuver_enter_ferry">Ҭǎƙė țħę ƒêɽŕү 气요ঙ 时ә#</string>
+  <string name="msdkui_maneuver_enter_highway">Ĵòίŉ ťɦϵ мőţȏřωǟӯ ગજ  Δتㅐ#</string>
+  <string name="msdkui_maneuver_exit">Έҗǐţ %1$s سכ ધףㅃઞテ요#</string>
+  <string name="msdkui_maneuver_exit_directions_towards">%1$s ťôώåŕɖš %2$s ਞبষヌবذأ#</string>
+  <string name="msdkui_maneuver_head_to">Ήèāɗ %1$s उษұછӚ၇၇ ਡ#</string>
+  <string name="msdkui_maneuver_leave_highway">Țåķė țɦé ė ïť ќ 고ছل#</string>
+  <string name="msdkui_maneuver_orientation_east">éαŝţ ੩أ ㅟΟষחΗ#</string>
+  <string name="msdkui_maneuver_orientation_north">ňȏŗţħ ปㅟऊهผ요 ထकص#</string>
+  <string name="msdkui_maneuver_orientation_north_east">ňȍɼțħȩāšț ਇป؎रォגطγ੧#</string>
+  <string name="msdkui_maneuver_orientation_north_west">ņõŕțɦɰєšţ ひ绳फӁ다ဘ ၶလ#</string>
+  <string name="msdkui_maneuver_orientation_south">ŝȫüťĥ 德จઙશกΤঠ্ટฝ#</string>
+  <string name="msdkui_maneuver_orientation_south_east">šőüțɧєášţ ၆転 ૮أ ਝ熱ગ#</string>
+  <string name="msdkui_maneuver_orientation_south_west">šôǖțĥɯȩšť Στמผ؈ Ѓ 虫#</string>
+  <string name="msdkui_maneuver_orientation_west">ɰεŝť نပঝਥ开ড宝 #</string>
+  <string name="msdkui_maneuver_pt_change">Ĉĥáńǵè ਖဍギㅆ冰ঞ#</string>
+  <string name="msdkui_maneuver_pt_change_at">Ċɦǎńĝë ǟť %1$s छظၺυ ઘ#</string>
+  <string name="msdkui_maneuver_pt_get_on_here">Ģêť ôň  ટફ Дو#</string>
+  <string name="msdkui_maneuver_pt_stopover">ѿǎўρóɨňţ אذζ战ੜฆ π#</string>
+  <string name="msdkui_maneuver_pt_travel_start">Țǎĸè %1$s ફㅂઠ气 ੮תজѓ#</string>
+  <string name="msdkui_maneuver_pt_walk">Ŵâļκ 万Ωથણה ਜو#</string>
+  <string name="msdkui_maneuver_road_name_divider">%1$s/%2$s ㅃਠงऊガથइضグ#</string>
+  <string name="msdkui_maneuver_turn_keep_left">Ҝєȇρ ŀϵғț षব Ҿદฟכㅕइ#</string>
+  <string name="msdkui_maneuver_turn_keep_middle">Ҭαķė ťħε šťřϵèť ıń țɦҽ мìðɖłë ဃㅍੴг্קફဆสㅉ안ช#</string>
+  <string name="msdkui_maneuver_turn_keep_right">Ҡëȅρ ɼìğĥţ ဨช惠ך脑وਦ্ط #</string>
+  <string name="msdkui_maneuver_turn_left">Ŧůŗń ɬҽғť פફㅒιףνЛょァ#</string>
+  <string name="msdkui_maneuver_turn_right">Ҭůɽŉ ɽıǵɦť Ҽਗ਼ฟဝҋঘ庁Ατખ#</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_1">Ťãƙê ťħê 1šț єӝɨț 医بز龟ঠΔਕ#</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_10">Ҭãĸë ťɦҽ 10ţĥ єжĭț  ㅛוฃΧלၒ#</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_11">Ťăĸé ťɦҿ 11ťħ ҿӽīť Ο拜 宝鸡૮体#</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_12">Ҭăķҽ ťɧę 12țħ ȅӝĭț υਫ਼ဈפח证豊#</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_2">Ţǎǩϵ ťħê 2ňď éӝìţ づธၕו  ज#</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_3">Ҭåķė ťĥȅ 3ŗɗ ϵӽίţ ד证ਐルશכל#</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_4">Ŧåƙє ţĥȇ 4țĥ é ɨť ဆ ӄ Πฌए#</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_5">Ҭăǩε ţĥë 5țħ éӝɨť  ฉ广ด团 ၁#</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_6">Ţâǩε ţɦȅ 6țĥ ȅӽιț ੪も  ဢ学د#</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_7">Țâƙè ţɧę 7ťɦ єӽɨț οΤκअฐ૯ћ#</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_8">Ţāĸȇ ťɦϵ 8țħ ҽжĭț ਝ ฑ脑 หฉ#</string>
+  <string name="msdkui_maneuver_turn_roundabout_exit_9">Ťǎǩε ťɦę 9ţɦ ҿӽīț ઠઢม੪虫ဢฝ#</string>
+  <string name="msdkui_maneuver_turn_sharply_left">Ҭųŕŋ šħǟŗрľу łεƒť  ঠੳ্红ရ妒#</string>
+  <string name="msdkui_maneuver_turn_sharply_right">Ţǔɼŋ šɧãřрļý ŗïǵĥť κ売ظਫ਼אχਸ਼#</string>
+  <string name="msdkui_maneuver_turn_slightly_left">Ťůɼň šɫîǵɦțĺγ ŀėғţ  ρဠญ યਪ#</string>
+  <string name="msdkui_maneuver_turn_slightly_right">Ťūɼŉ šļίɠɦťļу ɼĩĝɧţ ၾਏ조੬ ၻમو#</string>
+  <string name="msdkui_maneuver_uturn">Щâκé â Ũ-țùɽņ ણਘト  #</string>
+  <string name="msdkui_maneuverpanel_nodata">Բőłĺôω ţĥè ŕȍůţҿ őŉ ťɧȅ ӎǣρ ظဌزוदΛסပゑਝ图#</string>
+  <string name="msdkui_maneuverpanel_updating">Úрδαťíńģ ઙصぉၷקएนश#</string>
+  <string name="msdkui_minutes">%1$d ӎîń ㅍद다Л ฐゾ假#</string>
+  <string name="msdkui_next_maneuver">Ӥȩ ţ мæņōȅüνɽҽ ဃЎصञट #</string>
+  <string name="msdkui_no_traffic_delays">Иő đϵɭąγš Ε 聴ウၹ縄바ਢฎ#</string>
+  <string name="msdkui_none">Иȭňȩ イਚ أ ยตズ#</string>
+  <string name="msdkui_number_of_trailers">Ţɽãίɭēɽŝ ギΚคף ဈ艺ક#</string>
+  <string name="msdkui_ok">ŐҚ  ਛဒੜ#</string>
+  <string name="msdkui_optimal">ßêŝț هذਗ਼ক ધㅜၿ#</string>
+  <string name="msdkui_options">Ơрțîøńŝ エပ جق ૯#</string>
+  <string name="msdkui_organic">Õŕĝǎŋί    ကੜץдၓ#</string>
+  <string name="msdkui_other">Ōţħϵŕ พ电ၕν会 φ마ট조#</string>
+  <string name="msdkui_pedestrian">Ŵâļκ 万Ωથણה ਜو#</string>
+  <string name="msdkui_poison">Ҏȍίŝöņ وમ东חਏㅓ#</string>
+  <string name="msdkui_poisonous">Țȏжĭ¢ įŉɧäɭáņť Ҿ国氷गટㅕ#</string>
+  <string name="msdkui_radioactive">Яãɖįöæĉțîνϵ ਮ η #</string>
+  <string name="msdkui_remove">Ŕҿӎőνȇ ؎ঠ οષ૫#</string>
+  <string name="msdkui_remove_waypoint">Ŗεмơνé ωâγрȭĭńţ ぅΙてハফ #</string>
+  <string name="msdkui_remove_waypoint_button">Ŗėмơνȩ ѡàӯρóǐńţ ҍůťțŏŉ åť įňɗèχ %1$d ト੯ਖਊ厅δҜ무עੜ卖气ဘ脑#</string>
+  <string name="msdkui_route_results_title">Řȏǔţęš ス医คร岁ฒ#</string>
+  <string name="msdkui_route_type_title">Ŕȍūțȩ țŷрȅ अฉગ開טてबछφў#</string>
+  <string name="msdkui_routing_options_title">Яøŭţę òрțĩøŉš န红旧ऐㄲ#</string>
+  <string name="msdkui_rp_from">From: %1$s 岁й触ゐエλঠ Ν #</string>
+  <string name="msdkui_rp_to">To: %1$s ฬوる၁ぉنધ #</string>
+  <string name="msdkui_rp_via">Ѷɨâ ပӝਮѝ શ#</string>
+  <string name="msdkui_scooter">Șҫǒōțęŕ ၵΩ黑 ੪ซၹ#</string>
+  <string name="msdkui_seconds">%1$d ŝ   લੴ়ဖ#</string>
+  <string name="msdkui_selected">Şęĺҽҫţҿδ ্ツষビ转 כਕ#</string>
+  <string name="msdkui_set">Šȅţ ㅁ无 رဋҹ#</string>
+  <string name="msdkui_shortest">Śɦȭřťéŝţ ဃぃ੩ו فظঘ#</string>
+  <string name="msdkui_speed">Šрêēð ニਟङ拜بথפΠתฑ#</string>
+  <string name="msdkui_speed_limit">Șρȅéδ łìӎįţ ذฟਥ #</string>
+  <string name="msdkui_tab_icon">Ťàб ıčőņ 东楽גਘหઞ૫ङ#</string>
+  <string name="msdkui_traffic">Æνøίð ťɼãƒғıč ل해ळਸ #</string>
+  <string name="msdkui_traffic_blocked">Ҁłóŝêδ  歳ㅃגまυ#</string>
+  <string name="msdkui_transport_mode">Ţɽäŉŝρõŗț type: %1$s ညㅋၷદचҔၼ와 亀#</string>
+  <string name="msdkui_truck">Łȍřɽұ Ε د ਬਭथਓਵસ#</string>
+  <string name="msdkui_truck_options_title">Ťŕưɕƙ óрţïõńŝ दคӪ ણ#</string>
+  <string name="msdkui_truck_type">Ĺȫɽŕӱ ťурҿ λરਡआσषย くบ#</string>
+  <string name="msdkui_truck_type_tractor">Ãɽţïҫüɬāťêđ ľȫŗřӳ ૯ หس  ㄲ#</string>
+  <string name="msdkui_truck_type_truck">Ľȭřŕÿ/Ŧɼǜ¢ǩ 와ศ দ#</string>
+  <string name="msdkui_tunnel_cat_b">Ҫàţȅġȭŗʏ Б ดણਲਅ时မ၅気 团#</string>
+  <string name="msdkui_tunnel_cat_c">Ĉǎţҿğőŕӳ Č د Ӫ ङㅌ气 ਧค#</string>
+  <string name="msdkui_tunnel_cat_d">Ċãţęğōɼӱ Đ খجરဓㅞЪべ转खษ#</string>
+  <string name="msdkui_tunnel_cat_e">Čáţȇɠőŕŷ Ё す  ગ ณઠلऐआ#</string>
+  <string name="msdkui_tunnels_allowed_title">Ţʉńńèłŝ āɫļȫŵèď  Υ যડ #</string>
+  <string name="msdkui_undefined">Ñóț ɖϵƒīňєð σযဏ实#</string>
+  <string name="msdkui_unit_foot">ғț Ωশਐဏ#</string>
+  <string name="msdkui_unit_kilometer">ķм φਲਏΣ#</string>
+  <string name="msdkui_unit_km_per_h">ķӎ/ɦ ণحζ 假고ထ卖#</string>
+  <string name="msdkui_unit_meter">м 假 #</string>
+  <string name="msdkui_unit_mile">ӎī  Ҝဨ #</string>
+  <string name="msdkui_unit_miles_per_hour">ӎрĥ מअχઠ૫ك#</string>
+  <string name="msdkui_unit_yard">ÿδ  ਫ਼Ӑਖ#</string>
+  <string name="msdkui_userposition_search">Ġėţťǐņģ ӱȍùŗ ɫȏ¢ãţǐȭŉ  জא૦ςו 東#</string>
+  <string name="msdkui_violate_truck_options">İǵŋőřė ţŕû¢ƙ øрťιøŉŝ س њડט ถ૧#</string>
+  <string name="msdkui_waypoint_current_location">Ҁůɽŗēŋţ ɫȭĉāťιȭŉ قא东ञયん#</string>
+  <string name="msdkui_waypoint_select_location">Ċɦȏȍšε ɰαŷρȭĭŉț ၑ听धφδ #</string>
+  <string name="msdkui_weight_per_axle">ѿϵɨɠɦț рϵŗ â łє خउ ਬખΤ#</string>
+  <string name="msdkui_width">ѿįďţɦ টบӆ ਭၐবウણધ#</string>
+</resources>

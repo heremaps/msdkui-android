@@ -5,3 +5,6 @@
 build/
 
 local.properties
+
+#Strings
+MSDKUILib/src/main/res/values-zz-rZZ/strings.xml

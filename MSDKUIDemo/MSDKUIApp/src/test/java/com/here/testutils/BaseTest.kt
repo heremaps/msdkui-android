@@ -20,20 +20,18 @@ import android.app.Activity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import android.content.Context
-import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
-import com.here.msdkuiapp.BuildConfig
+import androidx.test.core.app.ApplicationProvider
 import com.here.msdkuiapp.R
 import org.hamcrest.CoreMatchers
 import org.hamcrest.MatcherAssert
 import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
-import org.robolectric.RuntimeEnvironment
 import org.robolectric.Shadows
 import org.robolectric.annotation.Config
 
-@Config(constants = BuildConfig::class, sdk = [23])
+@Config(sdk = [23])
 @RunWith(RobolectricTestRunner::class)
 abstract class BaseTest {
 
@@ -49,7 +47,17 @@ abstract class BaseTest {
      * Gets Application context.
      */
     val applicationContext: Context
-        get() = RuntimeEnvironment.application.applicationContext
+        get() = ApplicationProvider.getApplicationContext()
+
+    /**
+     * Gets Application context and attach material theme.
+     */
+    val applicationContextWithTheme: Context
+        get() {
+            val context : Context = ApplicationProvider.getApplicationContext()
+            context.setTheme(R.style.MSDKUIDarkTheme)
+            return context
+        }
 
     /**
      * Gets Activity context.

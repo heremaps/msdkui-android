@@ -92,6 +92,7 @@ android {
         implementation "com.google.code.gson:gson:$gson_version"
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+        testImplementation "androidx.test:core:$test_version"
         testImplementation "junit:junit:$junit_version"
         implementation "androidx.test.espresso:espresso-idling-resource:$espresso_version"
         androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"

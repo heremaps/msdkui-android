@@ -44,7 +44,7 @@ class GuidanceDashBoardViewTest : BaseTest() {
     override fun setUp() {
         super.setUp()
         MockitoAnnotations.initMocks(this)
-        mGuidanceDashBoardView = GuidanceDashBoardView(applicationContext)
+        mGuidanceDashBoardView = GuidanceDashBoardView(applicationContextWithTheme)
         mGuidanceDashBoardView.presenter = mockPresenter
     }
 

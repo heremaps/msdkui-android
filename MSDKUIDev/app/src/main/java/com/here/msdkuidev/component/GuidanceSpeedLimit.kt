@@ -18,8 +18,8 @@ package com.here.msdkuidev.component
 
 import android.content.ContextWrapper
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import com.here.msdkuidev.Constant
 import com.here.msdkuidev.R
 import kotlinx.android.synthetic.main.guidance_speed_limit.*

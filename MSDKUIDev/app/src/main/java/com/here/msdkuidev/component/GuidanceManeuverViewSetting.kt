@@ -23,7 +23,7 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.os.Parcel
 import android.os.Parcelable
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.here.msdkui.guidance.GuidanceManeuverData
 import com.here.msdkuidev.R
 import com.here.msdkuidev.Setting

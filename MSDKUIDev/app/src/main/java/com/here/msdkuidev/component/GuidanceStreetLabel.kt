@@ -18,7 +18,7 @@ package com.here.msdkuidev.component
 
 import android.graphics.Color
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.TextView
 import com.here.msdkuidev.Constant
 import com.here.msdkuidev.R

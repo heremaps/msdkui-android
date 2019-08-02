@@ -160,7 +160,7 @@ public class WaypointListAdapterTest extends RobolectricTest implements Waypoint
         mWaypointListAdapter = new WaypointListAdapter(entries);
         assertThat(mWaypointListAdapter.getItemCount(), equalTo(entries.size()));
         mWaypointListAdapter.setListener(this);
-        final WaypointItem itemView = new WaypointItem(RuntimeEnvironment.application.getApplicationContext());
+        final WaypointItem itemView = new WaypointItem(getApplicationContext());
         mWaypointsListViewHolder = spy(mWaypointListAdapter.new WaypointsListViewHolder(itemView));
         doReturn(0).when(mWaypointsListViewHolder)
                 .getAdapterPosition();
@@ -173,7 +173,7 @@ public class WaypointListAdapterTest extends RobolectricTest implements Waypoint
         mWaypointListAdapter.setListener(this);
         mWaypointsListViewHoldersList.clear();
         for (int i = 0; i < entries.size(); i++) {
-            final WaypointItem itemView = new WaypointItem(RuntimeEnvironment.application.getApplicationContext());
+            final WaypointItem itemView = new WaypointItem(getApplicationContext());
             WaypointListAdapter.WaypointsListViewHolder holder = spy(mWaypointListAdapter.new WaypointsListViewHolder(itemView));
             doReturn(i).when(holder)
                     .getAdapterPosition();

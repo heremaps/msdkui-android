@@ -28,6 +28,7 @@ import com.here.msdkui.common.DateFormatterUtil;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.robolectric.android.controller.ActivityController;
 
 import java.util.Date;
 
@@ -115,14 +116,14 @@ public class GuidanceEstimatedArrivalViewTest extends RobolectricTest {
     @Test
     public void testDataIsNotLostWhileRecreatingActivity() {
         final GuidanceEstimatedArrivalViewData data = new GuidanceEstimatedArrivalViewData(ETA_DATE, DISTANCE, DURATION);
-        final FragmentActivity activity = getFragmentActivity();
+        final ActivityController<FragmentActivity> activityController = getActivityController();
 
         // when data is not null
         mEstimatedArrivalView.setEstimatedArrivalData(data);
         assertNotNull(mEstimatedArrivalView.getEstimatedArrivalData());
         mEstimatedArrivalView.setId(1);
-        activity.setContentView(mEstimatedArrivalView);
-        activity.recreate();
+        activityController.get().setContentView(mEstimatedArrivalView);
+        activityController.recreate();
         assertNotNull(mEstimatedArrivalView.getEstimatedArrivalData());
     }
 

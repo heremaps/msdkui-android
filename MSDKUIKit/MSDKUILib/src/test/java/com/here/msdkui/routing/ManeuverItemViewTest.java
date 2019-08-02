@@ -137,7 +137,7 @@ public class ManeuverItemViewTest extends RobolectricTest {
     @Test
     public void testCreationWithIconSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visible, "0x01")
+                .addAttribute(R.attr.visible, "icon")
                 .build();
 
         ManeuverItemView item = new ManeuverItemView(getContextWithTheme(), attributeSet);
@@ -149,7 +149,7 @@ public class ManeuverItemViewTest extends RobolectricTest {
     @Test
     public void testCreationWithInstructionsSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visible, "0x02")
+                .addAttribute(R.attr.visible, "instructions")
                 .build();
 
         ManeuverItemView item = new ManeuverItemView(getContextWithTheme(), attributeSet);
@@ -161,7 +161,7 @@ public class ManeuverItemViewTest extends RobolectricTest {
     @Test
     public void testCreationWithAddressSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visible, "0x04")
+                .addAttribute(R.attr.visible, "address")
                 .build();
 
         ManeuverItemView item = new ManeuverItemView(getContextWithTheme(), attributeSet);
@@ -173,7 +173,7 @@ public class ManeuverItemViewTest extends RobolectricTest {
     @Test
     public void testCreationWithDistanceSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visible, "0x08")
+                .addAttribute(R.attr.visible, "distance")
                 .build();
 
         ManeuverItemView item = new ManeuverItemView(getContextWithTheme(), attributeSet);

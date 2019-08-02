@@ -16,7 +16,7 @@
 
 package com.here.msdkuiapp.base
 
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.FragmentManager
 import com.here.msdkuiapp.common.AppActionBar
 import com.here.testutils.BaseTest
 import junit.framework.Assert.*

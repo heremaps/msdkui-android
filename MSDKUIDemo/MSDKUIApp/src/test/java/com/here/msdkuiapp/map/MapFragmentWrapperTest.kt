@@ -19,7 +19,7 @@ package com.here.msdkuiapp.map
 import MockUtils.mockRoute
 import android.content.Context
 import android.graphics.PointF
-import android.support.v4.app.FragmentActivity
+import androidx.fragment.app.FragmentActivity
 import android.view.LayoutInflater
 import com.here.android.mpa.common.GeoBoundingBox
 import com.here.android.mpa.common.Image

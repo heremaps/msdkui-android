@@ -16,8 +16,8 @@
 
 package com.here.msdkuiapp.base
 
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import android.os.Bundle
 import com.here.msdkuiapp.common.FragmentFactory.create
 

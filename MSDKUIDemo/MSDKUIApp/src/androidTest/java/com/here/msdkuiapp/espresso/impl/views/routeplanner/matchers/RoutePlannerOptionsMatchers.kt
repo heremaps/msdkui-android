@@ -16,8 +16,8 @@
 
 package com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers
 
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import com.here.msdkuiapp.espresso.impl.testdata.Constants.CAR_AVOID_TRAFFIC
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.AvoidTrafficType.TYPE_BEST
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.RouteType.TYPE_FASTEST

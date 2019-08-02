@@ -16,8 +16,8 @@
 
 package com.here.msdkuiapp.routing
 
-import android.support.test.espresso.IdlingRegistry
-import android.support.test.espresso.idling.CountingIdlingResource
+import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.idling.CountingIdlingResource
 import java.io.Closeable
 
 /**

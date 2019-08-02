@@ -18,7 +18,7 @@ package com.here.msdkuiapp.common
 
 import android.app.Activity
 import android.content.Intent
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.widget.Toolbar
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView

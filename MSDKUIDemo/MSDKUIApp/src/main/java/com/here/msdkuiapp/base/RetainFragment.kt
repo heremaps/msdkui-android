@@ -16,7 +16,7 @@
 
 package com.here.msdkuiapp.base
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 
 /**
  * Fragment class for retaining instance. This class can be extended by those fragment class who want to retain instance.

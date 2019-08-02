@@ -16,8 +16,8 @@
 
 package com.here.msdkuiapp.espresso.tests.guidance.integration
 
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.IntegrationUITest
 import com.here.msdkuiapp.espresso.impl.core.CoreActions

@@ -16,7 +16,7 @@
 
 package com.here.msdkuiapp.common.mapselection
 
-import android.support.v7.app.ActionBar
+import androidx.appcompat.app.ActionBar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

@@ -16,7 +16,7 @@
 
 package com.here.msdkuiapp.common
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.here.msdkuiapp.common.mapselection.WaypointSelectionFragment
 import com.here.msdkuiapp.common.routepreview.RoutePreviewFragment
 import com.here.msdkuiapp.guidance.GuidanceManeuverFragment

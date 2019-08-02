@@ -17,7 +17,7 @@
 package com.here.msdkui.guidance;
 
 import android.os.Parcel;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 import android.view.AbsSavedState;
 
 import android.view.View;

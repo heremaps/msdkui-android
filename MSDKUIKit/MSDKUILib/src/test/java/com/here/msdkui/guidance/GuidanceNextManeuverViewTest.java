@@ -17,8 +17,8 @@
 package com.here.msdkui.guidance;
 
 import android.os.Parcel;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.FragmentActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentActivity;
 import android.view.AbsSavedState;
 import android.view.View;
 import android.widget.ImageView;

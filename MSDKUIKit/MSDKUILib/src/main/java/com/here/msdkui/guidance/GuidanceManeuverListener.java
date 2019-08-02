@@ -16,7 +16,7 @@
 
 package com.here.msdkui.guidance;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  * A listener that notifies when there is a change in {@link GuidanceManeuverData}.

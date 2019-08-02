@@ -66,10 +66,10 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation(name: 'HERE-sdk', ext: 'aar')
 
-    implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
-    implementation "com.android.support:appcompat-v7:$support_library_version"
-    implementation "com.android.support:design:$support_library_version"
-    implementation "com.android.support:recyclerview-v7:$support_library_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "com.google.android.material:material:$android_material_version"
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
 
     testImplementation "org.robolectric:robolectric:$robolectric_version"
     testImplementation "org.powermock:powermock-module-junit4:$powermock_version"

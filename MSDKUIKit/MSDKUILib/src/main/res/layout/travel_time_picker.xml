@@ -19,17 +19,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="?attr/travelTimePicker">
 
-    <android.support.design.widget.TabLayout
+    <com.google.android.material.tabs.TabLayout
         android:id="@+id/picker_tab"
         style="?attr/travelTimePickerTabLayout">
 
-        <android.support.design.widget.TabItem
+        <com.google.android.material.tabs.TabItem
             style="?attr/travelTimePickerTabLeaveItem" />
 
-        <android.support.design.widget.TabItem
+        <com.google.android.material.tabs.TabItem
             style="?attr/travelTimePickerTabArriveItem" />
 
-    </android.support.design.widget.TabLayout>
+    </com.google.android.material.tabs.TabLayout>
 
     <DatePicker
         android:id="@+id/travel_date"

@@ -16,7 +16,7 @@
 
 package com.here;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.here.android.mpa.common.GeoCoordinate;
 import com.here.android.mpa.common.RoadElement;

@@ -20,7 +20,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 import android.text.Spannable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;

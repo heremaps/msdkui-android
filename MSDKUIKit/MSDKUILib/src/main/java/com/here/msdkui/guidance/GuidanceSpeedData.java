@@ -18,7 +18,7 @@ package com.here.msdkui.guidance;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * A data class holding current speed and applicable speed limit.

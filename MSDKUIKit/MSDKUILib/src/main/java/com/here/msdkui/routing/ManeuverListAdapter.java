@@ -17,7 +17,7 @@
 package com.here.msdkui.routing;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -28,7 +28,7 @@ import com.here.msdkui.common.measurements.UnitSystem;
 import java.util.List;
 
 /**
- * A {@link android.support.v7.widget.RecyclerView.Adapter} to bind a view item of the list to a 
+ * A {@link RecyclerView.Adapter} to bind a view item of the list to a
  * {@link ManeuverItemView}.
  */
 public class ManeuverListAdapter extends RecyclerView.Adapter<ManeuverListAdapter.ViewHolder> {
@@ -107,7 +107,7 @@ public class ManeuverListAdapter extends RecyclerView.Adapter<ManeuverListAdapte
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         /**
-         * Constructs a new {@link android.support.v7.widget.RecyclerView.ViewHolder}.
+         * Constructs a new {@link RecyclerView.ViewHolder}.
          *
          * @param view
          *         a view to be hold.

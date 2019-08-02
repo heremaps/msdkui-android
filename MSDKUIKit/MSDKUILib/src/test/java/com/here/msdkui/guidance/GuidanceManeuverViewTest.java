@@ -19,7 +19,7 @@ package com.here.msdkui.guidance;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Parcel;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.view.AbsSavedState;
 import android.view.View;

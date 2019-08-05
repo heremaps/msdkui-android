@@ -379,7 +379,7 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
     /**
      * MSDKUI-1274: Display the current speed and speed limit warning
      */
-    @Ignore //FIXME: MSDKUI-1816
+    @Ignore("FIXME: MSDKUI-1816")
     @Test
     @FunctionalUITest
     fun testDisplayCurrentSpeedAndSpeedLimitWarning() {

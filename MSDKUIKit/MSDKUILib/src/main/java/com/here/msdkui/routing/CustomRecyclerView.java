@@ -174,7 +174,7 @@ public class CustomRecyclerView extends RecyclerView {
     }
 
     /**
-     * Implementation of a {@link RecyclerView.OnItemTouchListener}.
+     * Implementation of a {@link androidx.recyclerview.widget.RecyclerView.OnItemTouchListener}.
      */
     public static class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
         private final OnItemClickedListener mListener;

@@ -98,7 +98,7 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     /**
      * MSDKUI-1267: Integration tests for showing current speed on maneuver panel
      */
-    @Ignore //FIXME: MSDKUI-1816
+    @Ignore("FIXME: MSDKUI-1816")
     @Test
     @IntegrationUITest
     fun testForGuidanceManeuverPanel_shouldDisplayCurrentSpeed() {

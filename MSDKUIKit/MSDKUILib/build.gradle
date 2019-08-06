@@ -85,14 +85,22 @@ afterEvaluate {
     })
 }
 
+/**
+ * Tested with Javadoc 1.8.0
+ */
 task generateJavadoc(type: Javadoc) {
-    failOnError false
+    failOnError true
     source = android.sourceSets.main.java.sourceFiles
     ext.ResDebug = "build/generated/source/r/debug"
     ext.ResRelease = "build/generated/source/r/release"
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator), ext.ResRelease, ext.ResDebug)
     classpath += configurations.compile
     exclude '**/R.java'
+}
+
+task releaseJavadoc(type: Copy, dependsOn: generateJavadoc) {
+    from(file("${project.docsDir}/javadoc"))
+    into(file("$buildDir/../../../docs"))
 }
 
 task javadocJar(type: Jar, dependsOn: generateJavadoc) {

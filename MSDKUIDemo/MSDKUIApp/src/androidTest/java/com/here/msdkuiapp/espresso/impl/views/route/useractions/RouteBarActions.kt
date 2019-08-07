@@ -16,7 +16,7 @@
 
 package com.here.msdkuiapp.espresso.impl.views.route.useractions
 
-import android.support.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.click
 import com.here.msdkuiapp.espresso.impl.views.route.screens.RouteBarView.onRouteBarBackImageIcon
 
 /**

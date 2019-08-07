@@ -72,6 +72,7 @@ task findbugs(type: FindBugs, dependsOn: "assemble", group: 'verification') {
 pmd {
     toolVersion = '6.7.0'
     ignoreFailures = false
+    ruleSets = []
     ruleSetFiles = files("${project.rootDir}/quality/pmd/pmd-ruleset.xml")
 }
 

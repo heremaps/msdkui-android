@@ -17,14 +17,14 @@
 package com.here.msdkui.routing;
 
 import android.app.Dialog;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 import android.content.DialogInterface;
 import android.icu.util.TimeZone;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v7.app.AlertDialog;
+import com.google.android.material.tabs.TabLayout;
+import androidx.appcompat.app.AlertDialog;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.DatePicker;
@@ -280,16 +280,16 @@ public class TravelTimePicker extends DialogFragment {
      * @param date the {@link Date} to set by default.
      *
      * @deprecated this method will not work from release 2.0.
-     * Please use {@link #open(android.support.v4.app.FragmentManager, Date)} instead.
+     * Please use {@link #open(FragmentManager, Date)} instead.
      */
     public void open(final android.app.FragmentManager manager, final Date date) {
     }
 
     /**
      * Shows this picker fragment using the current date.
-     * @param manager the {@link android.support.v4.app.FragmentManager} where this fragment will be added to.
+     * @param manager the {@link FragmentManager} where this fragment will be added to.
      *  @deprecated this method will not work from release 2.0. Please use
-     *  {@link #open(android.support.v4.app.FragmentManager)} instead.
+     *  {@link #open(FragmentManager)} instead.
      */
     public void open(final android.app.FragmentManager manager) {
     }

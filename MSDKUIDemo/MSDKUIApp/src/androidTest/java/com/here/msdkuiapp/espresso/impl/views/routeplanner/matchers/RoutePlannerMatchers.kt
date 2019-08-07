@@ -16,8 +16,8 @@
 
 package com.here.msdkuiapp.espresso.impl.views.routeplanner.matchers
 
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.*
 import android.view.View
 import com.here.msdkui.routing.*
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.getText

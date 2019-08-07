@@ -16,7 +16,7 @@
 
 package com.here.msdkuiapp.guidance
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.graphics.PorterDuff
 import android.os.Bundle
 import android.view.LayoutInflater

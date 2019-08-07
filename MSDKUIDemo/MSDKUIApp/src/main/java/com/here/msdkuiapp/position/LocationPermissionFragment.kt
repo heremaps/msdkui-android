@@ -16,7 +16,7 @@
 
 package com.here.msdkuiapp.position
 
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent

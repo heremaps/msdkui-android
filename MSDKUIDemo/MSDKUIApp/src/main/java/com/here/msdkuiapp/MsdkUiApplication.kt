@@ -17,7 +17,7 @@
 package com.here.msdkuiapp
 
 import android.app.Application
-import android.support.multidex.MultiDexApplication
+import androidx.multidex.MultiDexApplication
 import com.here.android.mpa.routing.Route
 
 /**

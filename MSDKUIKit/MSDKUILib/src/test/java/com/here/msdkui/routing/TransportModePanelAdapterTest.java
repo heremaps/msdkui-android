@@ -16,9 +16,9 @@
 
 package com.here.msdkui.routing;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.PagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.PagerAdapter;
 
 import com.here.RobolectricTest;
 import com.here.android.mpa.routing.RouteOptions;

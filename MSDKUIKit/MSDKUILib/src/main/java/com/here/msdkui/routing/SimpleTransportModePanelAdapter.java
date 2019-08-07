@@ -19,8 +19,8 @@ package com.here.msdkui.routing;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.core.content.ContextCompat;
 
 import com.here.android.mpa.routing.RouteOptions;
 import com.here.msdkui.R;

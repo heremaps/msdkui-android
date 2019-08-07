@@ -16,12 +16,12 @@
 
 package com.here.msdkuiapp.espresso.tests.guidance.flow
 
-import android.support.test.espresso.action.ViewActions
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.action.ViewActions.swipeDown
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
-import android.support.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.swipeDown
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.FunctionalUITest
@@ -379,7 +379,7 @@ class GuidanceFlowTests : TestBase<SplashActivity>(SplashActivity::class.java) {
     /**
      * MSDKUI-1274: Display the current speed and speed limit warning
      */
-    @Ignore //FIXME: MSDKUI-1816
+    @Ignore("FIXME: MSDKUI-1816")
     @Test
     @FunctionalUITest
     fun testDisplayCurrentSpeedAndSpeedLimitWarning() {

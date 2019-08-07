@@ -18,7 +18,7 @@ package com.here.msdkuiapp.base
 
 import android.os.Bundle
 import android.os.Environment
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.here.android.mpa.common.MapSettings
 import com.here.msdkuiapp.common.AppActionBar
 import kotlinx.android.extensions.CacheImplementation

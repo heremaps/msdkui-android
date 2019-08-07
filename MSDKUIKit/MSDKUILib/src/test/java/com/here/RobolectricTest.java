@@ -17,85 +17,67 @@
 package com.here;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.test.core.app.ApplicationProvider;
 
-import com.here.msdkui.BuildConfig;
 import com.here.msdkui.R;
 
 import org.junit.Rule;
 import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.modules.junit4.PowerMockRunner;
 import org.powermock.modules.junit4.PowerMockRunnerDelegate;
 import org.powermock.modules.junit4.rule.PowerMockRule;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
+import org.robolectric.android.controller.ActivityController;
 import org.robolectric.annotation.Config;
-
-import static org.robolectric.RuntimeEnvironment.application;
 
 /**
  * Base class for Roboelectric tests.
  */
-@RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21, application = TestApplication.class)
-@PowerMockIgnore({ "org.mockito.*", "org.robolectric.*", "android.*", "org.powermock.*" })
+@RunWith(RobolectricTestRunner.class)
+@Config(sdk = 21, application = TestApplication.class)
+@PowerMockIgnore({ "org.mockito.*", "org.robolectric.*", "android.*", "androidx.*", "org.powermock.*", "com.google.android.material.*" })
 public abstract class RobolectricTest {
     @Rule
     public PowerMockRule mRule = new PowerMockRule();
 
-    private FragmentActivity mFragmentActivity;
+    private ActivityController<FragmentActivity> mFragmentActivityController;
 
     /**
      * Build an fragment activity.
      */
     public void setUp() {
-        mFragmentActivity = Robolectric.buildActivity(FragmentActivity.class)
-                .create()
+        mFragmentActivityController = Robolectric.buildActivity(FragmentActivity.class).create();
+        FragmentActivity fragmentActivity = mFragmentActivityController
                 .start()
                 .resume()
                 .get();
-        mFragmentActivity.setTheme(R.style.MSDKUIDarkTheme);
-    }
-
-    /**
-     * Gets FragmentManager.
-     */
-    public android.app.FragmentManager getFragmentManager() {
-        return mFragmentActivity.getFragmentManager();
+        fragmentActivity.setTheme(R.style.MSDKUIDarkTheme);
     }
 
     /**
      * Gets getSupportFragmentManager.
      */
+
     public FragmentManager getSupportFragmentManager() {
-        return mFragmentActivity.getSupportFragmentManager();
+        return mFragmentActivityController.get().getSupportFragmentManager();
     }
 
     /**
      * Gets Application context.
      */
     public Context getApplicationContext() {
-        return application.getApplicationContext();
-    }
-
-    /**
-     * Gets Activity context.
-     */
-    public Context getActivityContext() {
-        return mFragmentActivity;
+        return ApplicationProvider.getApplicationContext();
     }
 
     /**
      * Gets context and attach material theme.
      */
     public Context getContextWithTheme() {
-        final Context context = RuntimeEnvironment.application.getApplicationContext();
+        final Context context = ApplicationProvider.getApplicationContext();
         context.setTheme(R.style.MSDKUIDarkTheme);
         return context;
     }
@@ -108,20 +90,10 @@ public abstract class RobolectricTest {
     }
 
     /**
-     * Gets FragmentActivity.
+     * Gets FragmentActivity ActivityController.
      */
-    public FragmentActivity getFragmentActivity() {
-        return mFragmentActivity;
-    }
-
-    /**
-     * Add fragment to the activity with given tag.
-     */
-    public void addFragment(final Fragment fragment, final String tag) {
-        final FragmentManager fragmentManager = mFragmentActivity.getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.add(fragment, tag);
-        transaction.commit();
+    public ActivityController<FragmentActivity> getActivityController() {
+        return mFragmentActivityController;
     }
 }
 

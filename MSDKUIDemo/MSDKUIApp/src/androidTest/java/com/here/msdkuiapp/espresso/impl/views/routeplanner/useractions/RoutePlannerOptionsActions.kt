@@ -16,9 +16,9 @@
 
 package com.here.msdkuiapp.espresso.impl.views.routeplanner.useractions
 
-import android.support.test.espresso.action.ViewActions.click
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import com.here.msdkui.R
 import com.here.msdkuiapp.espresso.impl.testdata.RoutingTestData.*
 import com.here.msdkuiapp.espresso.impl.views.routeplanner.screens.RoutePlannerOptionsView.onOptionPanelCheckRouteOptionBox

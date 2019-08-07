@@ -17,7 +17,7 @@
 package com.here.msdkuiapp.espresso.impl.testdata
 
 import android.content.pm.ActivityInfo
-import android.support.test.espresso.action.Tap
+import androidx.test.espresso.action.Tap
 import com.here.msdkuiapp.espresso.impl.views.map.utils.MapData
 
 /**

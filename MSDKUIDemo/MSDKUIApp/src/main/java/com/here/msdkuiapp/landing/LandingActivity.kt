@@ -19,8 +19,8 @@ package com.here.msdkuiapp.landing
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.View
 import com.here.android.mpa.common.ApplicationContext

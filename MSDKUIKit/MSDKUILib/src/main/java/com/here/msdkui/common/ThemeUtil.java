@@ -23,8 +23,8 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.ColorInt;
+import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.util.TypedValue;
 

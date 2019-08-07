@@ -53,10 +53,8 @@ abstract class BaseTest {
      * Gets Application context and attach material theme.
      */
     val applicationContextWithTheme: Context
-        get() {
-            val context : Context = ApplicationProvider.getApplicationContext()
-            context.setTheme(R.style.MSDKUIDarkTheme)
-            return context
+        get() = (ApplicationProvider.getApplicationContext() as Context).apply {
+            setTheme(R.style.MSDKUIDarkTheme)
         }
 
     /**

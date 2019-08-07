@@ -19,7 +19,7 @@ package com.here.msdkuidev
 import android.content.Context
 import android.os.Parcel
 import android.os.Parcelable
-import android.support.v7.widget.DialogTitle
+import androidx.appcompat.widget.DialogTitle
 import com.here.msdkuidev.Constant.DEFAULT
 import java.io.Serializable
 

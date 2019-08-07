@@ -16,14 +16,14 @@
 
 package com.here.msdkuiapp.guidance
 
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.FragmentManager
 import android.content.Context
 import android.content.Intent
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
-import android.support.design.widget.BottomSheetBehavior
-import android.support.v7.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import androidx.recyclerview.widget.RecyclerView
 import android.view.View
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.about.AboutActivity

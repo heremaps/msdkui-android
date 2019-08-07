@@ -17,7 +17,7 @@
 package com.here.msdkui.guidance;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.here.android.mpa.routing.Maneuver;

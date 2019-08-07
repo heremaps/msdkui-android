@@ -47,7 +47,7 @@ public class TravelTimePanelTest extends RobolectricTest implements TravelTimePa
     @Before
     public void setUp() {
         super.setUp();
-        mTravelTimePanel = new TravelTimePanel(getActivityContext());
+        mTravelTimePanel = new TravelTimePanel(getActivityController().get());
     }
 
     @Test

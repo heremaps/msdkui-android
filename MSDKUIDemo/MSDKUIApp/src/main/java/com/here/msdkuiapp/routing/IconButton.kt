@@ -19,8 +19,8 @@ package com.here.msdkuiapp.routing
 import android.content.Context
 import android.content.res.TypedArray
 import android.os.Build
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.AppCompatImageButton
+import androidx.core.content.ContextCompat
+import androidx.appcompat.widget.AppCompatImageButton
 import android.util.AttributeSet
 
 import com.here.msdkuiapp.R

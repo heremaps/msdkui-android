@@ -158,7 +158,7 @@ public class RouteDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithTypeSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visibleSection, "0x01")
+                .addAttribute(R.attr.visibleSection, "typeIcon")
                 .build();
 
         RouteDescriptionItem item = new RouteDescriptionItem(getContextWithTheme(), attributeSet);
@@ -170,7 +170,7 @@ public class RouteDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithTimeSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visibleSection, "0x02")
+                .addAttribute(R.attr.visibleSection, "time")
                 .build();
 
         RouteDescriptionItem item = new RouteDescriptionItem(getContextWithTheme(), attributeSet);
@@ -182,7 +182,7 @@ public class RouteDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithDetailsSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visibleSection, "0x04")
+                .addAttribute(R.attr.visibleSection, "details")
                 .build();
 
         RouteDescriptionItem item = new RouteDescriptionItem(getContextWithTheme(), attributeSet);
@@ -194,7 +194,7 @@ public class RouteDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithTrafficWarningSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visibleSection, "0x08")
+                .addAttribute(R.attr.visibleSection, "trafficWarning")
                 .build();
 
         RouteDescriptionItem item = new RouteDescriptionItem(getContextWithTheme(), attributeSet);
@@ -206,7 +206,7 @@ public class RouteDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithArrivalTimeSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visibleSection, "0x10")
+                .addAttribute(R.attr.visibleSection, "arrivalTime")
                 .build();
 
         RouteDescriptionItem item = new RouteDescriptionItem(getContextWithTheme(), attributeSet);
@@ -218,7 +218,7 @@ public class RouteDescriptionItemTest extends RobolectricTest {
     @Test
     public void testCreationWithBarSectionVisible() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.visibleSection, "0x20")
+                .addAttribute(R.attr.visibleSection, "sectionBar")
                 .build();
 
         RouteDescriptionItem item = new RouteDescriptionItem(getContextWithTheme(), attributeSet);

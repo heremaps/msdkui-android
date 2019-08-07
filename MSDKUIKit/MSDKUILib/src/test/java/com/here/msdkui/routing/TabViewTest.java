@@ -26,6 +26,7 @@ import org.robolectric.Robolectric;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
+import static org.robolectric.Shadows.shadowOf;
 
 /**
  * Test class for {@link TabView} class.
@@ -44,7 +45,9 @@ public class TabViewTest extends RobolectricTest {
 
         assertNotNull(tabView);
         assertEquals(testLabel, tabView.getLabel());
-        assertEquals(getContextWithTheme().getResources().getDrawable(R.drawable.ic_drive), tabView.getIcon());
+        assertEquals(
+                shadowOf(getApplicationContext().getResources().getDrawable(R.drawable.ic_drive)).getCreatedFromResId(),
+                shadowOf(tabView.getIcon()).getCreatedFromResId());
     }
 
     @Test

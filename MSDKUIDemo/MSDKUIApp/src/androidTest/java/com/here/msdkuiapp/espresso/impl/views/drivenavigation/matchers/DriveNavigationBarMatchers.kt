@@ -16,7 +16,7 @@
 
 package com.here.msdkuiapp.espresso.impl.views.drivenavigation.matchers
 
-import android.support.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationBarView.onDriveNavigationBarDestinationLabel
 import com.here.msdkuiapp.espresso.impl.views.drivenavigation.screens.DriveNavigationBarView.onDriveNavigationBarLocationTitle
 

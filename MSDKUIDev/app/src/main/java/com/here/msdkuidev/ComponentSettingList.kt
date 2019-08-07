@@ -18,7 +18,7 @@ package com.here.msdkuidev
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import com.here.msdkuidev.Constant.COMPONENT
 import com.here.msdkuidev.Constant.ITEM

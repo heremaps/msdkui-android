@@ -19,7 +19,7 @@ package com.here.msdkui.guidance;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Parcel;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.view.AbsSavedState;
 import android.view.View;
@@ -34,6 +34,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.robolectric.Robolectric;
+import org.robolectric.android.controller.ActivityController;
 
 import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -106,7 +107,6 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
         mGuidanceManeuverView = new GuidanceManeuverView(getApplicationContext(), attributeSet);
         testUIInit();
         attributeSet = Robolectric.buildAttributeSet()
-                .addAttribute(R.attr.viewMode, "2")
                 .build();
         mGuidanceManeuverView = new GuidanceManeuverView(getApplicationContext(), attributeSet);
         testUIInit();
@@ -185,10 +185,10 @@ public class GuidanceManeuverViewTest extends RobolectricTest {
     public void testDataIsNotLostWhileRecreatingActivity() {
         mGuidanceManeuverView.setViewState(new GuidanceManeuverView.State(createData(mIconId, mDistance, mInfo1, mInfo2)));
         assertNotNull(mGuidanceManeuverView.getManeuverData());
-        final FragmentActivity activity = getFragmentActivity();
+        final ActivityController<FragmentActivity> activityController = getActivityController();
         mGuidanceManeuverView.setId(1);
-        activity.setContentView(mGuidanceManeuverView);
-        activity.recreate();
+        activityController.get().setContentView(mGuidanceManeuverView);
+        activityController.recreate();
         assertNotNull(mGuidanceManeuverView.getManeuverData());
     }
 

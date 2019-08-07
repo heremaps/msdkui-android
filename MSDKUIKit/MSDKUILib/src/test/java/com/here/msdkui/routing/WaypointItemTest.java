@@ -41,6 +41,7 @@ import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertSame;
 import static junit.framework.Assert.assertTrue;
 import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.robolectric.Shadows.shadowOf;
 
 
 /**
@@ -126,7 +127,7 @@ public class WaypointItemTest extends RobolectricTest implements WaypointItem.Li
     public void testCreationWithAttributes() {
         AttributeSet attributeSet = Robolectric.buildAttributeSet()
                 .addAttribute(R.attr.removingEnabled, "true")
-                .addAttribute(R.attr.draggingEnabled, " true")
+                .addAttribute(R.attr.draggingEnabled, "true")
                 .addAttribute(R.attr.removingEnabledIcon, "@drawable/ic_remove_listitem")
                 .addAttribute(R.attr.draggingEnabledIcon, "@drawable/ic_drag_listitem")
                 .build();
@@ -136,7 +137,9 @@ public class WaypointItemTest extends RobolectricTest implements WaypointItem.Li
         assertNotNull(waypointItem);
         assertTrue(waypointItem.isDragEnabled());
         assertTrue(waypointItem.isRemoveEnabled());
-        assertEquals(getContextWithTheme().getResources().getDrawable(R.drawable.ic_remove_listitem), waypointItem.getRemoveDrawable());
+        assertEquals(
+                shadowOf(getApplicationContext().getResources().getDrawable(R.drawable.ic_remove_listitem)).getCreatedFromResId(),
+                shadowOf(waypointItem.getRemoveDrawable()).getCreatedFromResId());
     }
 
     /**

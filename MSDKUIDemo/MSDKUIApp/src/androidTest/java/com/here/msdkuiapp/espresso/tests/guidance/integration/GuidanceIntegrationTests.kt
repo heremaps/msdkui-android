@@ -16,8 +16,8 @@
 
 package com.here.msdkuiapp.espresso.tests.guidance.integration
 
-import android.support.test.espresso.assertion.ViewAssertions.matches
-import android.support.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import com.here.msdkuiapp.SplashActivity
 import com.here.msdkuiapp.espresso.impl.annotation.IntegrationUITest
 import com.here.msdkuiapp.espresso.impl.core.CoreActions
@@ -98,7 +98,7 @@ class GuidanceIntegrationTests: TestBase<SplashActivity>(SplashActivity::class.j
     /**
      * MSDKUI-1267: Integration tests for showing current speed on maneuver panel
      */
-    @Ignore //FIXME: MSDKUI-1816
+    @Ignore("FIXME: MSDKUI-1816")
     @Test
     @IntegrationUITest
     fun testForGuidanceManeuverPanel_shouldDisplayCurrentSpeed() {

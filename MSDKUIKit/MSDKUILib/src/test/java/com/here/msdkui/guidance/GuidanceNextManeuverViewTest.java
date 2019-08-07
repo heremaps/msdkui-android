@@ -17,8 +17,8 @@
 package com.here.msdkui.guidance;
 
 import android.os.Parcel;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.FragmentActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentActivity;
 import android.view.AbsSavedState;
 import android.view.View;
 import android.widget.ImageView;
@@ -29,6 +29,7 @@ import com.here.msdkui.R;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.robolectric.android.controller.ActivityController;
 
 import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -141,10 +142,10 @@ public class GuidanceNextManeuverViewTest extends RobolectricTest {
     public void testDataIsNotLostWhileRecreatingActivity() {
         mGuidanceNextManeuverView.setNextManeuverData(createData(mIconId, mDistance, mStreetName));
         assertNotNull(mGuidanceNextManeuverView.getNextManeuverData());
-        final FragmentActivity activity = getFragmentActivity();
+        final ActivityController<FragmentActivity> activityController = getActivityController();
         mGuidanceNextManeuverView.setId(1);
-        activity.setContentView(mGuidanceNextManeuverView);
-        activity.recreate();
+        activityController.get().setContentView(mGuidanceNextManeuverView);
+        activityController.recreate();
         assertNotNull(mGuidanceNextManeuverView.getNextManeuverData());
     }
 

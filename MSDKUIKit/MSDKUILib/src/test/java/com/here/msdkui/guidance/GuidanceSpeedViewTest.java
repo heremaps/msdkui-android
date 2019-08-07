@@ -17,7 +17,7 @@
 package com.here.msdkui.guidance;
 
 import android.os.Parcel;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 import android.view.AbsSavedState;
 import android.view.View;
 import android.widget.TextView;
@@ -29,6 +29,7 @@ import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.robolectric.android.controller.ActivityController;
 
 import static junit.framework.Assert.assertNotNull;
 import static org.hamcrest.core.Is.is;
@@ -116,22 +117,21 @@ public class GuidanceSpeedViewTest extends RobolectricTest {
     @Test
     public void testDataIsNotLostWhileRecreatingActivity() {
         final GuidanceSpeedData data = new GuidanceSpeedData(VELOCITY, SPEED_LIMIT);
-        final FragmentActivity activity = getFragmentActivity();
+        final ActivityController<FragmentActivity> activityController = getActivityController();
 
         // when data is not null
         mCurrentGuidanceSpeedView.setCurrentSpeedData(data);
         assertNotNull(mCurrentGuidanceSpeedView.getCurrentSpeedData());
         mCurrentGuidanceSpeedView.setId(1);
-        activity.setContentView(mCurrentGuidanceSpeedView);
-        activity.recreate();
+        activityController.get().setContentView(mCurrentGuidanceSpeedView);
+        activityController.recreate();
         assertNotNull(mCurrentGuidanceSpeedView.getCurrentSpeedData());
 
         // when data is null
         mCurrentGuidanceSpeedView.setCurrentSpeedData(null);
         assertNull(mCurrentGuidanceSpeedView.getCurrentSpeedData());
         mCurrentGuidanceSpeedView.setId(1);
-        activity.setContentView(mCurrentGuidanceSpeedView);
-        activity.recreate();
+        activityController.recreate();
         assertNull(mCurrentGuidanceSpeedView.getCurrentSpeedData());
     }
 

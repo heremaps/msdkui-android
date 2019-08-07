@@ -87,8 +87,10 @@ public class GuidanceSpeedDataTest extends RobolectricTest {
         assertThat(createdFromParcel.getCurrentSpeedLimit(), is(SPEED_LIMIT));
 
         // test for null data
+        parcel = Parcel.obtain();
         data = new GuidanceSpeedData(null, null);
         data.writeToParcel(parcel, data.describeContents());
+        parcel.setDataPosition(0);
 
         createdFromParcel = GuidanceSpeedData.CREATOR.createFromParcel(parcel);
         assertNull(createdFromParcel.getCurrentSpeed());

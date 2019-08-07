@@ -17,9 +17,9 @@
 package com.here.msdkuiapp.espresso.impl.utils
 
 import android.app.Activity
-import android.support.test.InstrumentationRegistry
-import android.support.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
-import android.support.test.runner.lifecycle.Stage
+import androidx.test.InstrumentationRegistry
+import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
+import androidx.test.runner.lifecycle.Stage
 
 /**
  * Utility for acquiring current activity

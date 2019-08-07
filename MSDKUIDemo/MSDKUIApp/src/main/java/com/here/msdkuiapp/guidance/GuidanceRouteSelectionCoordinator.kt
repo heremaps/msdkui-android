@@ -16,7 +16,7 @@
 
 package com.here.msdkuiapp.guidance
 
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.FragmentManager
 import android.content.Context
 import com.here.android.mpa.common.GeoCoordinate
 import com.here.android.mpa.common.MapEngine

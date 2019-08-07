@@ -18,8 +18,8 @@ package com.here.msdkuiapp.routing
 
 import android.app.Activity
 import android.content.Context
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import android.widget.TextView
 import com.here.android.mpa.routing.DynamicPenalty
 import com.here.android.mpa.routing.Route

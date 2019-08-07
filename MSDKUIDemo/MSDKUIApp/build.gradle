@@ -31,7 +31,7 @@ android {
         versionCode 1
         versionName artifact_version
         vectorDrawables.useSupportLibrary = true
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
         resValue 'string', 'HERE_SDK_APP_ID', System.getenv("MSDKUI_APP_ID_ANDROID") ?: "APP_ID"
         resValue 'string', 'HERE_SDK_APP_TOKEN', System.getenv("MSDKUI_APP_TOKEN_ANDROID") ?: "APP_TOKEN"
         resValue 'string', 'HERE_SDK_LICENSE_KEY', System.getenv("MSDKUI_APP_LICENSE_ANDROID") ?: "APP_LICENSE"
@@ -83,21 +83,22 @@ android {
         implementation(name: 'HERE-sdk', ext: 'aar')
         implementation(name: 'MSDKUILib', ext: 'aar')
 
-        implementation "com.android.support:design:$support_library_version"
-        implementation "com.android.support:support-v13:$support_library_version"
-        implementation "com.android.support.constraint:constraint-layout:$constraint_layout_version"
-        implementation "com.android.support:multidex:$multidex_version"
+        implementation "androidx.core:core:$android_x_core"
+        implementation "com.google.android.material:material:$android_material_version"
+        implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+        implementation "androidx.multidex:multidex:$multidex_version"
 
         implementation "com.google.android.gms:play-services-location:$play_service_version"
         implementation "com.google.code.gson:gson:$gson_version"
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+        testImplementation "androidx.test:core:$test_version"
         testImplementation "junit:junit:$junit_version"
-        implementation "com.android.support.test.espresso:espresso-idling-resource:$espresso_version"
-        androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
-        androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espresso_version"
-        androidTestImplementation "com.android.support.test:runner:$test_version"
-        androidTestImplementation "com.android.support.test:rules:$test_version"
+        implementation "androidx.test.espresso:espresso-idling-resource:$espresso_version"
+        androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+        androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_version"
+        androidTestImplementation "androidx.test:runner:$test_version"
+        androidTestImplementation "androidx.test:rules:$test_version"
 
         testImplementation "org.robolectric:robolectric:$robolectric_version"
         testImplementation "org.robolectric:multidex:3.4.2"

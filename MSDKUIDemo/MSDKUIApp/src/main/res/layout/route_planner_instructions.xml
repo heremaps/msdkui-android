@@ -15,14 +15,14 @@
   ~ limitations under the License.
   -->
 
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/route_planner_instructions"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/lui_white" >
 
-    <android.support.constraint.Guideline
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/top_guideline"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.25"
@@ -66,4 +66,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/get_directions_label"
         android:text="@string/msdkui_app_routeplanner_startchoosingwaypoint"/>
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

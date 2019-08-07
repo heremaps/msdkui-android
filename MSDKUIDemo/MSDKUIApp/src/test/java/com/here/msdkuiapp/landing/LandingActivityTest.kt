@@ -16,7 +16,7 @@
 
 package com.here.msdkuiapp.landing
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import com.here.android.mpa.common.PositioningManager
 import com.here.android.mpa.guidance.NavigationManager
 import com.here.android.mpa.guidance.VoiceCatalog

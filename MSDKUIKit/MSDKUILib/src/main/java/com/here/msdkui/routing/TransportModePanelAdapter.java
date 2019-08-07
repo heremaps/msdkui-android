@@ -16,9 +16,9 @@
 
 package com.here.msdkui.routing;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.here.android.mpa.routing.RouteOptions;
 
@@ -78,7 +78,7 @@ public abstract class TransportModePanelAdapter extends FragmentStatePagerAdapte
      * Gets the custom {@link TabView} at a given position, which represents a
      * {@link com.here.android.mpa.routing.RouteOptions.TransportMode}.
      *
-     * This method can be used to update {@link android.support.design.widget.TabLayout.Tab}
+     * This method can be used to update {@link com.google.android.material.tabs.TabLayout.Tab}
      * with the returned custom {@link TabView}.
      *
      * @param position the position to get the {@link TabView} from.

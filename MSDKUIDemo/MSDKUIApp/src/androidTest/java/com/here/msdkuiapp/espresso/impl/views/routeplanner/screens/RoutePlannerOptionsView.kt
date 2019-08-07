@@ -16,11 +16,11 @@
 
 package com.here.msdkuiapp.espresso.impl.views.routeplanner.screens
 
-import android.support.test.espresso.DataInteraction
-import android.support.test.espresso.Espresso.onData
-import android.support.test.espresso.Espresso.onView
-import android.support.test.espresso.ViewInteraction
-import android.support.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.DataInteraction
+import androidx.test.espresso.Espresso.onData
+import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.ViewInteraction
+import androidx.test.espresso.matcher.ViewMatchers.*
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.espresso.impl.core.CoreMatchers.withIndex
 import org.hamcrest.CoreMatchers.allOf

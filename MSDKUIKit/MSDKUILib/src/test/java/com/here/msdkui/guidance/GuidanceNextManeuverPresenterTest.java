@@ -24,7 +24,6 @@ import com.here.android.mpa.routing.Route;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.never;
@@ -35,7 +34,6 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 /**
  * Tests for  {@link GuidanceNextManeuverPresenter}.
  */
-@PrepareForTest({ NavigationManager.class })
 public class GuidanceNextManeuverPresenterTest extends RobolectricTest {
 
     private GuidanceNextManeuverPresenter mNextManeuverPresenter;

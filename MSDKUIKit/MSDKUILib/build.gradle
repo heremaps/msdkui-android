@@ -73,9 +73,11 @@ dependencies {
 
     testImplementation "androidx.test:core:$test_version"
     testImplementation "org.robolectric:robolectric:$robolectric_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "org.mockito:mockito-inline:$mockito_version"
     testImplementation "org.powermock:powermock-module-junit4:$powermock_version"
     testImplementation "org.powermock:powermock-module-junit4-rule:$powermock_version"
-    testImplementation "org.powermock:powermock-api-mockito:$powermock_version"
+    testImplementation "org.powermock:powermock-api-mockito2:$powermock_version"
     testImplementation "org.powermock:powermock-classloading-xstream:$powermock_version"
 
 }

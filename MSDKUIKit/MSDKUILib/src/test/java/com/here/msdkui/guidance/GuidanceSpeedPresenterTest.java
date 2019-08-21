@@ -34,7 +34,7 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 /**
  * Tests for class {@link GuidanceSpeedPresenter}.
  */
-@PrepareForTest({ NavigationManager.class, PositioningManager.class, GeoPosition.class })
+@PrepareForTest({ PositioningManager.class, GeoPosition.class })
 public class GuidanceSpeedPresenterTest extends RobolectricTest {
 
     private GuidanceSpeedPresenter mCurrentSpeedPresenter;

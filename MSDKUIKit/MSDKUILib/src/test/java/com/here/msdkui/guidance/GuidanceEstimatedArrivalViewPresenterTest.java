@@ -36,7 +36,7 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 /**
  * Tests for {@link GuidanceEstimatedArrivalViewPresenter}.
  */
-@PrepareForTest({ NavigationManager.class, RouteTta.class })
+@PrepareForTest({ RouteTta.class })
 public class GuidanceEstimatedArrivalViewPresenterTest extends RobolectricTest {
 
     private GuidanceEstimatedArrivalViewPresenter mEstimatedArrivalPresenter;

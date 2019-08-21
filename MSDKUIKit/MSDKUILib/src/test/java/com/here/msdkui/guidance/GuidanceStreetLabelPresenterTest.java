@@ -24,7 +24,6 @@ import com.here.android.mpa.routing.Route;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.times;
@@ -36,7 +35,6 @@ import static org.powermock.api.mockito.PowerMockito.when;
 /**
  * Test for {@link GuidanceStreetLabelPresenter} class.
  */
-@PrepareForTest({ NavigationManager.class })
 public class GuidanceStreetLabelPresenterTest extends RobolectricTest {
 
     private GuidanceStreetLabelPresenter mGuidanceStreetLabelPresenter;

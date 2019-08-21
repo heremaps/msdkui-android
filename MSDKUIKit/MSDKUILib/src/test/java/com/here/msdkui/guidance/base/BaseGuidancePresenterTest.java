@@ -43,7 +43,7 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 /**
  * Tests for {@link BaseGuidancePresenter}.
  */
-@PrepareForTest({ NavigationManager.class, RouteTta.class })
+@PrepareForTest({ RouteTta.class })
 public class BaseGuidancePresenterTest extends RobolectricTest {
 
     private NavigationManager mNavigationManager;

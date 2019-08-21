@@ -43,7 +43,7 @@ import static org.powermock.api.mockito.PowerMockito.mock;
 /**
  * Tests for {@link GuidanceManeuverPresenter}.
  */
-@PrepareForTest({ NavigationManager.class, Signpost.class, Image.class })
+@PrepareForTest({ Signpost.class, Image.class })
 public class GuidanceManeuverPresenterTest extends RobolectricTest {
 
     private GuidanceManeuverPresenter mGuidanceManeuverPresenter;

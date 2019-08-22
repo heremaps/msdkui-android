@@ -17,8 +17,8 @@
 package com.here.msdkui.example;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.here.android.mpa.common.GeoCoordinate;

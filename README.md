@@ -64,7 +64,8 @@ The HERE Mobile SDK UI Kit components are available for Android and [iOS](https:
 **Android Environment**
 - Minimum supported API version is 19 (KitKat), allowing you to reach more than 95% of all Android devices.
 - The Android Support Library is required, please always use to the latest one.
-- We recommend using Android Studio 3.3.
+- We recommend using Android Studio 3.4.2.
+- [AndroidX](https://developer.android.com/jetpack/androidx) is required.
 
 ## Quick Start
 Please have a look at our [Quick Start](Documentation/Guides/QuickStart.md) tutorial to see how easy it is to integrate the HERE Mobile SDK UI Kit into your own apps. More information on how to use the HERE Mobile SDK UI Kit can be found in our [User Guide](Documentation/Guides/UserGuide.md). Information on how to contribute to this project can be found in our [Contribution Guide](Documentation/Guides/ContributionGuide.md).

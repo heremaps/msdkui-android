@@ -16,7 +16,7 @@
 
 package helper;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import com.here.android.mpa.common.GeoPosition;

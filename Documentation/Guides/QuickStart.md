@@ -18,7 +18,7 @@ Thank you for using the HERE Mobile SDK UI Kit. In this Quick Start guide, we ar
 ## How to run the example apps
 If you just want to try out the accompanying examples, please perform the following steps:
 
-- Include the HERE Mobile SDK 3.11, Premium, and the HERE Mobile SDK UI Kit: Copy the `HERE-sdk.aar` and the `MSDKUILib.aar` to _app/libs_ (if not done already, [build the MSDKUILib](ContributionGuide.md#building-the-here-ui-kit-library) via Gradle from folder _MSDKUIKit/MSDKUILib_: `./gradlew clean :MSDKUILib:assembleRelease`).
+- Include the HERE Mobile SDK 3.11, Premium, and the HERE Mobile SDK UI Kit: Copy the `HERE-sdk.aar` and the `MSDKUILib-release.aar` to the example's _app/libs_ folder (if not done already, [build the MSDKUILib](ContributionGuide.md#building-the-here-ui-kit-library) via Gradle from folder _MSDKUIKit_ and make sure to copy the `HERE-sdk.aar` also to _MSDKUIKit/libs/_. Build the framework by executing: `./gradlew clean :MSDKUILib:assembleRelease`).
 - Open the project in Android Studio.
 - Add the credentials for the HERE Mobile SDK to the `AndroidManifest.xml` file:
 ```xml
@@ -35,7 +35,9 @@ If you just want to try out the accompanying examples, please perform the follow
 
 When you register on [developer.here.com](https://developer.here.com), the registered bundle identifier must match the [applicationId](https://developer.android.com/studio/build/application-id) in the app's build.gradle. For the example apps this is by default `com.here.msdkui.example` - you may need to adapt the `applicationId` to the one you have registered.
 
-For more information on how to set up a new project, please, refer to our guide below which contains much more useful information on how to use the example apps.
+For more information on how to set up a new project, please, refer to our guide below which contains much more useful information on how to use the MSDKUI and to build your own apps.
+
+> Please note that the HERE Mobile SDK UI Kit uses [AndroidX](https://developer.android.com/jetpack/androidx). You can migrate an existing project to AndroidX by selecting _Refactor > Migrate to AndroidX_ from the menu bar in Android Studio.
 
 ## How to run the Demo app
 Along with the accompanying example apps and code snippets, we also provide a more complex demo app showing a complete and fully functional flow. If you want to try out the Demo application, please take a look at the [Contribution Guide](ContributionGuide.md).
@@ -46,7 +48,7 @@ If you want to build your own app, it may be useful to follow the guide below wh
 Let's start by creating a new Android app. If you want to integrate the HERE Mobile SDK UI Kit into an existing app, you can skip this step. No HERE Mobile SDK or HERE Mobile SDK UI Kit specific code is involved here.
 If you are new to Android development, please follow the guides on [developer.android.com](https://developer.android.com/guide/) to help you get started with the first steps.
 
-For this Quick Start app, we used Android Studio 3.3. The minimum supported Android Studio version you can use for development is 3.0.1 (higher versions are recommended).
+For this Quick Start app, we used Android Studio 3.4.2. The minimum supported Android Studio version you can use for development is 3.2 (higher versions are recommended).
 
 - Start Android Studio and select _Start a new Android Studio project_.
 - Select an Application name of your choice, for example _HelloMSDKUI_.
@@ -92,17 +94,17 @@ Extend the the dependencies closure and make sure it references the following li
 ```java
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:design:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.0.0'
     implementation(name: 'HERE-sdk', ext: 'aar')
     implementation(name: 'MSDKUILib-release', ext: 'aar')
 }
 ```
 
-Depending on your specific project configuration, you may have other entries here. It is recommended to include always the latest versions. Note that the AppCompat version should match your `compileSdkVersion`, so in our case, it should be _28_.
+Depending on your specific project configuration, you may have other entries here. It is recommended to include always the latest versions.
 
-As you can see, we add both the HERE Mobile SDK _and_ the HERE Mobile SDK UI Kit library as dependencies. Additionally, the HERE Mobile SDK UI Kit requires the latest _Android AppCompat support library_, the _Android Design library_ and the supporting _Constraint layout_. The latter two are needed for the layouts of certain HERE Mobile SDK UI Kit components.
+As you can see, we add both the HERE Mobile SDK _and_ the HERE Mobile SDK UI Kit library as dependencies. Additionally, the HERE Mobile SDK UI Kit requires the latest _AndroidX AppCompat support library_, the _Android Material Design library_ and the supporting _Constraint layout_. The latter two are needed for the layouts of certain HERE Mobile SDK UI Kit components.
 
 Since the HERE Mobile SDK UI Kit uses Lambda expressions, _Java 8_ is required. Open the _app-level_ `build.gradle` file, if not already open. Please, add the following to the Android`-closure to [desugar](https://developer.android.com/studio/write/java8-support) the output of the javac compiler:
 ```java

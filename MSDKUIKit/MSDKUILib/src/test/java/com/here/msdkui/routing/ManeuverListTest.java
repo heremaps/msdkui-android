@@ -18,31 +18,23 @@ package com.here.msdkui.routing;
 
 import com.here.MockUtils;
 import com.here.RobolectricTest;
-import com.here.android.mpa.common.RoadElement;
 import com.here.android.mpa.routing.Route;
-import com.here.android.mpa.routing.RouteElement;
-import com.here.android.mpa.routing.RouteElements;
-import com.here.android.mpa.routing.RoutePlan;
-import com.here.android.mpa.routing.RouteTta;
 import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.when;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Test class for {@link ManeuverList} class.
  */
-@PrepareForTest({ RouteTta.class, RouteElements.class, RouteElement.class, RoadElement.class,
-        RoutePlan.class })
 public class ManeuverListTest extends RobolectricTest {
 
     private ManeuverList mManeuverList;

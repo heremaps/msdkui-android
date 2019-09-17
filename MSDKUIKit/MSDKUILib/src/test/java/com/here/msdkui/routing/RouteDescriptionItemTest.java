@@ -23,19 +23,11 @@ import android.widget.TextView;
 
 import com.here.MockUtils;
 import com.here.RobolectricTest;
-import com.here.android.mpa.common.GeoCoordinate;
-import com.here.android.mpa.common.RoadElement;
-import com.here.android.mpa.routing.RouteElement;
-import com.here.android.mpa.routing.RouteElements;
 import com.here.android.mpa.routing.RouteOptions;
-import com.here.android.mpa.routing.RoutePlan;
-import com.here.android.mpa.routing.RouteTta;
 import com.here.msdkui.R;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.robolectric.Robolectric;
 
 import java.util.EnumSet;
@@ -52,8 +44,6 @@ import static org.hamcrest.Matchers.is;
 /**
  * Test class for {@link RouteDescriptionItem} class.
  */
-@PrepareForTest({GeoCoordinate.class, RouteTta.class, RouteElements.class, RouteElement.class, RoadElement.class, RoutePlan.class})
-@PowerMockIgnore("com.here.msdkui.routing.SectionBar")
 public class RouteDescriptionItemTest extends RobolectricTest {
 
     private static final int TOTAL_SECTION = 6;

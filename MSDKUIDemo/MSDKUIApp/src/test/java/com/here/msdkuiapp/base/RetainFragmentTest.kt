@@ -42,7 +42,7 @@ class RetainFragmentTest : BaseTest() {
         val fr = RetainFragmentImpl()
         fr.value = 1
         addFrag(fr)
-        fragmentActivity!!.recreate()
+        fragmentActivityController!!.recreate()
         assertThat(fr.value, `is`(1))
     }
 }

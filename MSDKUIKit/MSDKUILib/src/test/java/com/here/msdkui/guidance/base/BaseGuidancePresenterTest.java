@@ -28,7 +28,6 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.MockitoAnnotations;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import java.lang.ref.WeakReference;
 
@@ -36,14 +35,13 @@ import static junit.framework.Assert.assertNull;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.mock;
 
 /**
  * Tests for {@link BaseGuidancePresenter}.
  */
-@PrepareForTest({ RouteTta.class })
 public class BaseGuidancePresenterTest extends RobolectricTest {
 
     private NavigationManager mNavigationManager;

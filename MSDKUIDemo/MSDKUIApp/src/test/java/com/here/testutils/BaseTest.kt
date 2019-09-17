@@ -29,13 +29,14 @@ import org.junit.runner.RunWith
 import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.Shadows
+import org.robolectric.android.controller.ActivityController
 import org.robolectric.annotation.Config
 
 @Config(sdk = [23])
 @RunWith(RobolectricTestRunner::class)
 abstract class BaseTest {
 
-    var fragmentActivity: FragmentActivity? = null
+    var fragmentActivityController: ActivityController<FragmentActivity>? = null
 
     /**
      * Gets getSupportFragmentManager.
@@ -61,14 +62,17 @@ abstract class BaseTest {
      * Gets Activity context.
      */
     val activityContext: Context?
-        get() = fragmentActivity
+        get() = fragmentActivityController?.get()
+
+    /**
+     * Gets fragment Activity.
+     */
+    val fragmentActivity: FragmentActivity?
+        get() = fragmentActivityController?.get()
 
     internal open fun setUp() {
-        fragmentActivity = Robolectric.buildActivity(FragmentActivity::class.java)
-                .create()
-                .start()
-                .resume()
-                .get().apply { setTheme(R.style.MSDKUIDarkTheme) }
+        fragmentActivityController = Robolectric.buildActivity(FragmentActivity::class.java).create()
+        fragmentActivityController!!.start().resume().get().setTheme(R.style.MSDKUIDarkTheme)
     }
 
     /**
@@ -82,7 +86,7 @@ abstract class BaseTest {
      * Add fragment to the activity with given tag.
      */
     public fun addFrag(fragment: Fragment, tag: String = ""): Fragment {
-        fragmentActivity!!.supportFragmentManager.run {
+        supportFragmentManager?.run {
             beginTransaction().apply {
                 add(fragment, tag)
                 commit()

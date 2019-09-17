@@ -18,20 +18,12 @@ package com.here.msdkui.routing;
 
 import com.here.MockUtils;
 import com.here.RobolectricTest;
-import com.here.android.mpa.common.GeoCoordinate;
-import com.here.android.mpa.common.RoadElement;
 import com.here.android.mpa.routing.Route;
-import com.here.android.mpa.routing.RouteElement;
-import com.here.android.mpa.routing.RouteElements;
-import com.here.android.mpa.routing.RoutePlan;
-import com.here.android.mpa.routing.RouteTta;
 import com.here.msdkui.R;
 import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,14 +35,12 @@ import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
-import static org.powermock.api.mockito.PowerMockito.doReturn;
 
 /**
  * Test class for {@link RouteDescriptionListAdapter} class.
  */
-@PrepareForTest({GeoCoordinate.class, RouteTta.class, RouteElements.class, RouteElement.class, RoadElement.class, RoutePlan.class})
-@PowerMockIgnore("com.here.msdkui.routing.SectionBar")
 public class RouteDescriptionsListAdapterTest extends RobolectricTest {
 
     private RouteDescriptionListAdapter mRoutesDescriptionsListAdapter;

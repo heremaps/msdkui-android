@@ -72,7 +72,7 @@ class LocationPermissionFragment : Fragment(), BaseContract<GuidanceContracts.Gu
         activity!!.unregisterReceiver(gpsReceiver)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intent: Intent?) {
         super.onActivityResult(requestCode, resultCode, intent)
         LocationServiceUtils.onActivityResult(requestCode, resultCode, presenter)
     }

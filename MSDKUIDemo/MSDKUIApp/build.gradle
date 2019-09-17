@@ -83,7 +83,7 @@ android {
         implementation(name: 'HERE-sdk', ext: 'aar')
         implementation(name: 'MSDKUILib', ext: 'aar')
 
-        implementation "androidx.core:core:$android_x_core"
+        implementation "androidx.appcompat:appcompat:$appcompat_version"
         implementation "com.google.android.material:material:$android_material_version"
         implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
         implementation "androidx.multidex:multidex:$multidex_version"
@@ -102,12 +102,9 @@ android {
 
         testImplementation "org.robolectric:robolectric:$robolectric_version"
         testImplementation "org.robolectric:multidex:3.4.2"
-        testImplementation("org.powermock:powermock-api-mockito2:$mockito2_version") {
-            exclude module: 'hamcrest-core'
-            exclude module: 'objenesis'
-        }
-        testImplementation "org.powermock:powermock-module-junit4:$powermock_version"
-        testImplementation "org.mockito:mockito-inline:$mockito_inline"
-        androidTestImplementation "org.mockito:mockito-android:$mockito_inline"
+        testImplementation "org.mockito:mockito-core:$mockito_version"
+        testImplementation "org.mockito:mockito-inline:$mockito_version"
+        androidTestImplementation "org.mockito:mockito-android:$mockito_version"
+
     }
 }

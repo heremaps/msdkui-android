@@ -29,21 +29,19 @@ import com.here.android.mpa.routing.Signpost;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.mock;
 
 /**
  * Tests for {@link GuidanceManeuverPresenter}.
  */
-@PrepareForTest({ Signpost.class, Image.class })
 public class GuidanceManeuverPresenterTest extends RobolectricTest {
 
     private GuidanceManeuverPresenter mGuidanceManeuverPresenter;

@@ -20,15 +20,11 @@ import android.view.View;
 
 import com.here.MockUtils;
 import com.here.RobolectricTest;
-import com.here.android.mpa.common.GeoCoordinate;
-import com.here.android.mpa.routing.RouteWaypoint;
 import com.here.msdkui.R;
 import com.here.msdkui.common.ThemeUtil;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -38,14 +34,12 @@ import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
-import static org.powermock.api.mockito.PowerMockito.doReturn;
 
 /**
  * Test class for {@link WaypointListAdapter} class.
  */
-@PowerMockIgnore({ "com.here.msdkui.routing.DraggableImageView" })
-@PrepareForTest({RouteWaypoint.class, GeoCoordinate.class})
 public class WaypointListAdapterTest extends RobolectricTest implements WaypointList.Listener {
 
     private boolean mIsCallbackCalled;

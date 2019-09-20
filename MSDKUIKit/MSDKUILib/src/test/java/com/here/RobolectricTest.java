@@ -23,11 +23,7 @@ import androidx.test.core.app.ApplicationProvider;
 
 import com.here.msdkui.R;
 
-import org.junit.Rule;
 import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.modules.junit4.PowerMockRunnerDelegate;
-import org.powermock.modules.junit4.rule.PowerMockRule;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.android.controller.ActivityController;
@@ -36,13 +32,9 @@ import org.robolectric.annotation.Config;
 /**
  * Base class for Roboelectric tests.
  */
-@PowerMockRunnerDelegate(RobolectricTestRunner.class)
 @RunWith(RobolectricTestRunner.class)
 @Config(sdk = 21, application = TestApplication.class)
-@PowerMockIgnore({ "org.mockito.*", "org.robolectric.*", "android.*", "androidx.*", "org.powermock.*", "com.google.android.material.*" })
 public abstract class RobolectricTest {
-    @Rule
-    public PowerMockRule mRule = new PowerMockRule();
 
     private ActivityController<FragmentActivity> mFragmentActivityController;
 

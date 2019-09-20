@@ -35,7 +35,7 @@ open class ListFragment : Fragment() {
 
     private lateinit var listener: Listener
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
         try {
             listener = activity as Listener

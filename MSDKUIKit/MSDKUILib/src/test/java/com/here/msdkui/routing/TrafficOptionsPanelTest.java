@@ -24,7 +24,6 @@ import com.here.msdkui.R;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import java.util.List;
 
@@ -35,7 +34,6 @@ import static org.hamcrest.Matchers.is;
 /**
  * An options panel for displaying the traffic options of a dynamic penalty.
  */
-@PrepareForTest({DynamicPenalty.class})
 public class TrafficOptionsPanelTest extends RobolectricTest {
 
     private TrafficOptionsPanel mTrafficOptionsPanel;

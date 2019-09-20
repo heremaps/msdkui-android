@@ -35,8 +35,8 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Matchers.any;
-import static org.powermock.api.mockito.PowerMockito.doAnswer;
-import static org.powermock.api.mockito.PowerMockito.when;
+import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.when;
 
 /**
  * An options panel for displaying the hazardous materials options of {@link RouteOptions RouteOptions}.

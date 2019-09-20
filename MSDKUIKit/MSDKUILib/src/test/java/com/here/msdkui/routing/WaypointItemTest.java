@@ -24,14 +24,10 @@ import android.widget.TextView;
 
 import com.here.MockUtils;
 import com.here.RobolectricTest;
-import com.here.android.mpa.common.GeoCoordinate;
-import com.here.android.mpa.routing.RouteWaypoint;
 import com.here.msdkui.R;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.powermock.core.classloader.annotations.PowerMockIgnore;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.robolectric.Robolectric;
 
 import static junit.framework.Assert.assertEquals;
@@ -40,15 +36,13 @@ import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertNull;
 import static junit.framework.Assert.assertSame;
 import static junit.framework.Assert.assertTrue;
-import static org.powermock.api.mockito.PowerMockito.mock;
+import static org.mockito.Mockito.mock;
 import static org.robolectric.Shadows.shadowOf;
 
 
 /**
  * Test class for {@link WaypointItem} class.
  */
-@PowerMockIgnore({ "com.here.msdkui.routing.DraggableImageView" })
-@PrepareForTest({RouteWaypoint.class, GeoCoordinate.class})
 public class WaypointItemTest extends RobolectricTest implements WaypointItem.Listener {
 
     private WaypointItem mWaypointItem;

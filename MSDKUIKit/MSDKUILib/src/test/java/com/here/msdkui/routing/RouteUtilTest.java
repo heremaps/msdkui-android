@@ -23,14 +23,8 @@ import android.text.format.DateUtils;
 
 import com.here.MockUtils;
 import com.here.RobolectricTest;
-import com.here.android.mpa.common.GeoCoordinate;
-import com.here.android.mpa.common.RoadElement;
 import com.here.android.mpa.routing.Route;
-import com.here.android.mpa.routing.RouteElement;
-import com.here.android.mpa.routing.RouteElements;
 import com.here.android.mpa.routing.RouteOptions;
-import com.here.android.mpa.routing.RoutePlan;
-import com.here.android.mpa.routing.RouteTta;
 import com.here.msdkui.R;
 import com.here.msdkui.common.DateFormatterUtil;
 import com.here.msdkui.common.DistanceFormatterUtil;
@@ -38,7 +32,6 @@ import com.here.msdkui.common.TimeFormatterUtil;
 import com.here.msdkui.common.measurements.UnitSystem;
 
 import org.junit.Test;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -50,8 +43,6 @@ import static org.hamcrest.Matchers.equalTo;
 /**
  * Gets the different information from {@link Route} to be used in {@link RouteDescriptionList}.
  */
-@PrepareForTest({ GeoCoordinate.class, RouteTta.class, RouteElements.class, RouteElement.class, RoadElement.class,
-        RoutePlan.class })
 public final class RouteUtilTest extends RobolectricTest {
 
     @Test

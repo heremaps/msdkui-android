@@ -106,10 +106,10 @@ class GuidanceActivity : BasePermissionActivity() {
         guidanceCoordinator?.destroy()
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
+    override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         guidanceCoordinator?.run {
-            outState?.putBoolean(GUIDANCE_DID_FINISHED, didGuidanceFinished)
+            outState.putBoolean(GUIDANCE_DID_FINISHED, didGuidanceFinished)
         }
     }
 

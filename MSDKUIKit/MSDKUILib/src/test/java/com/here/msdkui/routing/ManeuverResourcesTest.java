@@ -26,7 +26,6 @@ import com.here.msdkui.R;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,13 +38,12 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.isEmptyString;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.mock;
 
 /**
  * Test class for {@link ManeuverResources} class.
  */
-@PrepareForTest({RoadElement.class, Signpost.class})
 public class ManeuverResourcesTest extends RobolectricTest {
 
     private static final String DIRECTION = "left";

@@ -26,8 +26,6 @@ import com.here.android.mpa.routing.Signpost;
 
 import org.junit.Test;
 import org.mockito.Matchers;
-import org.mockito.Mockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,13 +37,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.doAnswer;
-import static org.powermock.api.mockito.PowerMockito.mock;
-import static org.powermock.api.mockito.PowerMockito.when;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Tests for {@link GuidanceManeuverUtil}.
  */
-@PrepareForTest({ GeoCoordinate.class, Signpost.class })
 public class GuidanceManeuverUtilTest extends RobolectricTest {
 
     @Test
@@ -98,8 +95,8 @@ public class GuidanceManeuverUtilTest extends RobolectricTest {
         when(maneuver.getAction()).thenReturn(Maneuver.Action.LEAVE_HIGHWAY);
 
         Signpost signpost = mock(Signpost.class);
-        Mockito.when(signpost.getExitNumber()).thenReturn("52");
-        Mockito.when(maneuver.getSignpost()).thenReturn(signpost);
+        when(signpost.getExitNumber()).thenReturn("52");
+        when(maneuver.getSignpost()).thenReturn(signpost);
         final Context context = mock(Context.class);
         doAnswer(invocation -> {
             return invocation.getArguments()[1] + " " + invocation.getArguments()[2];
@@ -118,8 +115,8 @@ public class GuidanceManeuverUtilTest extends RobolectricTest {
         when(maneuver.getRoadName()).thenReturn("");
         when(maneuver.getRoadNumber()).thenReturn("");
         Signpost signpost = mock(Signpost.class);
-        Mockito.when(signpost.getExitText()).thenReturn(signPostExitText);
-        Mockito.when(maneuver.getSignpost()).thenReturn(signpost);
+        when(signpost.getExitText()).thenReturn(signPostExitText);
+        when(maneuver.getSignpost()).thenReturn(signpost);
         final Context context = mock(Context.class);
         doAnswer(invocation -> {
             return invocation.getArguments()[1] + " " + invocation.getArguments()[2];

@@ -23,18 +23,16 @@ import com.here.android.mpa.guidance.NavigationManager;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.powermock.api.mockito.PowerMockito.mock;
 
 /**
  * Tests for class {@link GuidanceSpeedPresenter}.
  */
-@PrepareForTest({ PositioningManager.class, GeoPosition.class })
 public class GuidanceSpeedPresenterTest extends RobolectricTest {
 
     private GuidanceSpeedPresenter mCurrentSpeedPresenter;

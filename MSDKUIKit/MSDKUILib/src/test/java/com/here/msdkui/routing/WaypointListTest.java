@@ -20,12 +20,10 @@ import android.content.Context;
 
 import com.here.MockUtils;
 import com.here.RobolectricTest;
-import com.here.android.mpa.common.GeoCoordinate;
 import com.here.android.mpa.routing.RouteWaypoint;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.robolectric.RuntimeEnvironment;
 
 import java.util.ArrayList;
@@ -40,7 +38,6 @@ import static org.hamcrest.Matchers.is;
 /**
  * Test class for {@link WaypointList} class.
  */
-@PrepareForTest({ RouteWaypoint.class, GeoCoordinate.class })
 public class WaypointListTest extends RobolectricTest {
 
     private WaypointList mWaypointList;

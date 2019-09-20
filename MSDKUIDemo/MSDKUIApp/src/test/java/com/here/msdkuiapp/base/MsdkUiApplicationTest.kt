@@ -19,7 +19,7 @@ package com.here.msdkuiapp.base
 import com.here.android.mpa.routing.Route
 import com.here.msdkuiapp.msdkuiApplication
 import com.here.testutils.BaseTest
-import junit.framework.Assert.assertNotNull
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.mock
@@ -37,7 +37,7 @@ class MSDKUIApplicationTest : BaseTest() {
     @Test
     fun testSavingRoute() {
         applicationContext.msdkuiApplication.route = mock(Route::class.java)
-        fragmentActivity!!.recreate()
+        fragmentActivityController!!.recreate()
         assertNotNull(applicationContext.msdkuiApplication.route)
     }
 }

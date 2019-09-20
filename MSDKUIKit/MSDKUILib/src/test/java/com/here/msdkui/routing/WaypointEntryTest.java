@@ -18,13 +18,11 @@ package com.here.msdkui.routing;
 
 import com.here.MockUtils;
 import com.here.RobolectricTest;
-import com.here.android.mpa.common.GeoCoordinate;
 import com.here.android.mpa.routing.RouteWaypoint;
 import com.here.msdkui.R;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -34,7 +32,6 @@ import static junit.framework.Assert.assertTrue;
 /**
  * Test class for {@link WaypointEntry} class.
  */
-@PrepareForTest({RouteWaypoint.class, GeoCoordinate.class})
 public class WaypointEntryTest extends RobolectricTest {
 
     private RouteWaypoint mRouteWaypoint;

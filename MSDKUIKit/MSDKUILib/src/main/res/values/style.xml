@@ -539,8 +539,6 @@
     <style name="TravelTimePickerTabLayout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/picker_tab_height</item>
-        <item name="tabGravity">fill</item>
-        <item name="tabMode">fixed</item>
     </style>
 
     <style name="TravelTimePickerTabLeaveItem">

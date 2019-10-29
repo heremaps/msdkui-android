@@ -35,7 +35,7 @@
     <TextView
             android:id="@+id/defaultViewText"
             style="?attr/guidanceManeuverPanelSecondaryText"
-            app:layout_constraintWidth_default="wrap"
+            app:layout_constrainedWidth="true"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="@dimen/contentMarginHuge"
             app:layout_constraintStart_toEndOf="@id/maneuverIconView"
@@ -56,7 +56,7 @@
             android:id="@+id/distanceView"
             style="?attr/guidanceManeuverPanelHeadingText"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintWidth_default="wrap"
+            app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toStartOf="@+id/extraIconView"
             app:layout_constraintStart_toEndOf="@+id/maneuverIconView"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -72,7 +72,7 @@
     <TextView
             android:id="@+id/infoView1"
             style="?attr/guidanceManeuverPanelSecondaryText"
-            app:layout_constraintWidth_default="wrap"
+            app:layout_constrainedWidth="true"
             app:layout_constraintStart_toStartOf="@id/distanceView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0"
@@ -84,7 +84,7 @@
             android:id="@+id/infoView2"
             style="?attr/guidanceManeuverPanelSecondaryText"
             app:layout_constraintEnd_toStartOf="@+id/extraIconView"
-            app:layout_constraintWidth_default="wrap"
+            app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/infoView1"
             app:layout_constraintEnd_toEndOf="parent"

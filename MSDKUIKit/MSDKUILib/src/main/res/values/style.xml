@@ -362,13 +362,13 @@
     <style name="ManeuverDescriptionItemInstructionText">
         <item name="android:textSize">@dimen/textSizeLarge</item>
         <item name="android:textColor">?attr/colorForeground</item>
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">@dimen/contentMarginSmall</item>
     </style>
 
     <style name="ManeuverDescriptionItemAddressText">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/textSizeMedium</item>
         <item name="android:textColor">?attr/colorForegroundSecondary</item>
@@ -378,7 +378,7 @@
     <style name="ManeuverDescriptionItemDistanceText">
         <item name="android:textSize">@dimen/textSizeMedium</item>
         <item name="android:textColor">?attr/colorForegroundSecondary</item>
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">@dimen/contentMarginMedium</item>
         <item name="android:textAlignment">viewEnd</item>
@@ -722,14 +722,14 @@
     </style>
 
     <style name="GuidanceManeuverPanelHeadingText" parent="Headline2">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">?attr/colorForegroundLight</item>
         <item name="android:singleLine">false</item>
     </style>
 
     <style name="GuidanceManeuverPanelSecondaryText" parent="Base.TextAppearance.AppCompat.Title">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">?attr/colorForegroundLight</item>
         <item name="android:singleLine">false</item>
@@ -751,7 +751,7 @@
     </style>
 
     <style name="GuidanceManeuverPanelHeadingTextScreen2" parent="GuidanceManeuverPanelHeadingText">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_marginTop">0dp</item>     <!-- we have padding in parent theme -->
     </style>
 
@@ -799,7 +799,7 @@
     </style>
 
     <style name="GuidanceArrivalDuration" parent="@style/TextAppearance.AppCompat.Body2">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingRight">8dp</item>
         <item name="android:textColor">?attr/colorForegroundSecondary</item>
@@ -807,7 +807,7 @@
     </style>
 
     <style name="GuidanceArrivalDistance" parent="@style/TextAppearance.AppCompat.Body2">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">?attr/colorForegroundSecondary</item>
         <item name="android:text">@string/msdkui_value_not_available</item>
@@ -836,7 +836,7 @@
     </style>
 
     <style name="GuidanceNextManeuverPanelDistanceText" parent="@style/TextAppearance.AppCompat.Subhead">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">?attr/colorForegroundSecondaryLight</item>
         <item name="android:gravity">center_vertical</item>
@@ -853,7 +853,7 @@
     </style>
 
     <style name="GuidanceNextManeuverPanelStreetText" parent="@style/TextAppearance.AppCompat.Subhead">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">?attr/colorForegroundSecondaryLight</item>
         <item name="android:gravity">center_vertical</item>

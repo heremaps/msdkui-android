@@ -91,7 +91,7 @@ When you register on [developer.here.com](https://developer.here.com), the regis
 
 ### Building and Running the Demo
 
-In order to build and to run the demo app with Android Studio, you need to integrate the HERE Mobile SDK (Premium) version 3.12. Additionally, you need to integrate the HERE Mobile SDK UI Kit library.
+In order to build and to run the demo app with Android Studio, you need to integrate the HERE Mobile SDK (Premium) version 3.13. Additionally, you need to integrate the HERE Mobile SDK UI Kit library.
 
 - Put the HERE-sdk.aar file from your HERE SDK package and the HERE UI Kit library to _MSDKUIDemo/libs/_.
 - Open and build the project located at _MSDKUIDemo/_ in Android Studio.

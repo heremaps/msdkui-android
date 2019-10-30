@@ -44,7 +44,8 @@ object MockUtils {
 
         val route: Route = mock<Route>(Route::class.java)
         return route.apply {
-            `when`<RouteTta>(getTta(any<Route.TrafficPenaltyMode>(Route.TrafficPenaltyMode::class.java), anyInt())).thenReturn(mockTta)
+            `when`<RouteTta>(getTtaIncludingTraffic(anyInt())).thenReturn(mockTta)
+            `when`<RouteTta>(getTtaExcludingTraffic(anyInt())).thenReturn(mockTta)
             `when`<List<Maneuver>>(maneuvers).thenReturn(mockManeuvers)
             `when`<RouteElements>(routeElements).thenReturn(mockRouteElements)
             `when`<RoutePlan>(routePlan).thenReturn(mockPlan)
@@ -217,7 +218,7 @@ object MockUtils {
                 `when`(isBlocked).thenReturn(false)
                 `when`(duration).thenReturn(1000)
             }
-            `when`(route.getTta(any(Route.TrafficPenaltyMode::class.java), anyInt())).thenReturn(mRouteTta1)
+            `when`(route.getTtaIncludingTraffic(anyInt())).thenReturn(mRouteTta1)
 
             val elementsList = ArrayList(Collections.singletonList(mockRouteElement()))
             mRouteElements = mock(RouteElements::class.java).apply {
@@ -249,12 +250,12 @@ object MockUtils {
         fun setTrafficPenaltyMinutes(minutes: Int): MockRouteBuilder {
             val delayInSeconds = minutes * 60
             `when`(mRouteTta1.duration).thenReturn(delayInSeconds)
-            `when`(route.getTta(eq(Route.TrafficPenaltyMode.OPTIMAL), anyInt())).thenReturn(mRouteTta1)
+            `when`(route.getTtaIncludingTraffic(anyInt())).thenReturn(mRouteTta1)
             if (mRouteTta2 == null) {
                 mRouteTta2 = mock(RouteTta::class.java)
             }
             `when`(mRouteTta2!!.duration).thenReturn(0)
-            `when`(route.getTta(eq(Route.TrafficPenaltyMode.DISABLED), anyInt())).thenReturn(mRouteTta2)
+            `when`(route.getTtaExcludingTraffic(anyInt())).thenReturn(mRouteTta2)
 
             return this
         }

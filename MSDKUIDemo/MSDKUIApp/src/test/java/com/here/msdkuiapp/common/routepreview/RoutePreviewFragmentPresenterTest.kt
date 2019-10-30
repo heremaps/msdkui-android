@@ -17,12 +17,11 @@
 package com.here.msdkuiapp.common.routepreview
 
 import com.here.android.mpa.common.GeoCoordinate
-import com.here.android.mpa.common.PositioningManager
 import com.here.android.mpa.routing.*
 import com.here.android.mpa.search.ErrorCode
 import com.here.android.mpa.search.Location
 import com.here.android.mpa.search.ResultListener
-import com.here.android.mpa.search.ReverseGeocodeRequest2
+import com.here.android.mpa.search.ReverseGeocodeRequest
 import com.here.msdkui.routing.WaypointEntry
 import com.here.msdkuiapp.GuidanceContracts
 import com.here.msdkuiapp.MSDKUIApplication
@@ -198,7 +197,7 @@ class RoutePreviewFragmentPresenterTest : BaseTest() {
     @Test
     fun testGeocodingCodingWhenSettingRoute() {
 
-        val mockReq = mock(ReverseGeocodeRequest2::class.java)
+        val mockReq = mock(ReverseGeocodeRequest::class.java)
         `when`(mockProvider.providesReverseGeocodeRequest(anySafe())).thenReturn(mockReq)
         val captor = argumentCaptor<ResultListener<Location>>()
         with(presenter) {

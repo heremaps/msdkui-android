@@ -266,9 +266,9 @@ public class RouteDescriptionList extends CustomRecyclerView {
 
     private void sortByTime(final List<Route> routes) {
         Collections.sort(routes, (final Route route1, final Route route2) -> {
-            final int tta1 = route1.getTta(Route.TrafficPenaltyMode.OPTIMAL, Route.WHOLE_ROUTE)
+            final int tta1 = route1.getTtaIncludingTraffic(Route.WHOLE_ROUTE)
                     .getDuration();
-            final int tta2 = route2.getTta(Route.TrafficPenaltyMode.OPTIMAL, Route.WHOLE_ROUTE)
+            final int tta2 = route2.getTtaIncludingTraffic(Route.WHOLE_ROUTE)
                     .getDuration();
             if (getSortOrder() == SortOrder.DESCENDING) {
                 return tta2 - tta1;

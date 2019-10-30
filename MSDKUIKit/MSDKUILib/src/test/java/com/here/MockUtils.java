@@ -40,7 +40,6 @@ import java.util.List;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyInt;
-import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -228,7 +227,8 @@ public final class MockUtils {
             mRouteTta1 = mock(RouteTta.class);
             when(mRouteTta1.isBlocked()).thenReturn(false);
             when(mRouteTta1.getDuration()).thenReturn(1000);
-            when(mRoute.getTta(any(Route.TrafficPenaltyMode.class), anyInt())).thenReturn(mRouteTta1);
+            when(mRoute.getTtaIncludingTraffic(anyInt())).thenReturn(mRouteTta1);
+            when(mRoute.getTtaExcludingTraffic(anyInt())).thenReturn(mRouteTta1);
 
             mRouteElements = mock(RouteElements.class);
             List<RouteElement> elements = new ArrayList<>(Collections.singletonList(mockRouteElement()));
@@ -263,12 +263,12 @@ public final class MockUtils {
         public MockRouteBuilder setTrafficPenaltyMinutes(int minutes) {
             int delayInSeconds = minutes * 60;
             when(mRouteTta1.getDuration()).thenReturn(delayInSeconds);
-            when(mRoute.getTta(eq(Route.TrafficPenaltyMode.OPTIMAL), anyInt())).thenReturn(mRouteTta1);
+            when(mRoute.getTtaIncludingTraffic(anyInt())).thenReturn(mRouteTta1);
             if (mRouteTta2 == null) {
                 mRouteTta2 = mock(RouteTta.class);
             }
             when(mRouteTta2.getDuration()).thenReturn(0);
-            when(mRoute.getTta(eq(Route.TrafficPenaltyMode.DISABLED), anyInt())).thenReturn(mRouteTta2);
+            when(mRoute.getTtaExcludingTraffic(anyInt())).thenReturn(mRouteTta2);
 
             return this;
         }

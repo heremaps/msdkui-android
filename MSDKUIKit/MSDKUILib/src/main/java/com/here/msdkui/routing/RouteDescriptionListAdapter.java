@@ -124,7 +124,7 @@ public class RouteDescriptionListAdapter extends RecyclerView.Adapter<RouteDescr
      * Sets if total time to arrival should be re-calculated including potential traffic delays.
      *
      * <p>Please note, setting this to true will call route tta with traffic. For more details please
-     * see {@link com.here.android.mpa.routing.Route#getTta(Route.TrafficPenaltyMode, int)}</p>
+     * see {@link com.here.android.mpa.routing.Route#getTtaIncludingTraffic(int)}</p>
      *
      * @param isTraffic true if traffic should be enabled, false otherwise.
      */

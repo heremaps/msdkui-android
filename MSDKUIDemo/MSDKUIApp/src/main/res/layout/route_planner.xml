@@ -42,10 +42,10 @@
 
     <com.here.msdkui.routing.WaypointList
         android:id="@+id/waypoint_list"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        app:layout_constraintWidth_default="wrap"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/bottom_list"
         app:layout_constraintLeft_toLeftOf="@+id/vertical_guideline2"
         app:layout_constraintRight_toLeftOf="@+id/vertical_guideline"

@@ -78,7 +78,7 @@
     <FrameLayout
         android:id="@+id/current_street_name_fragment"
         style="@style/GuidanceCurrentStreetAppPlacement"
-        app:layout_constraintWidth_default="wrap"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@+id/mapfragment_wrapper"
         app:layout_constraintEnd_toEndOf="@id/mapfragment_wrapper"
         app:layout_constraintStart_toStartOf="@id/mapfragment_wrapper" />

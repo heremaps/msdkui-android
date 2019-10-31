@@ -43,7 +43,7 @@
     <TextView
             android:id="@+id/distanceView"
             style="?attr/guidanceManeuverPanelHeadingTextScreen2"
-            app:layout_constraintWidth_default="wrap"
+            app:layout_constrainedWidth="true"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintBottom_toBottomOf="@id/maneuverIconView"
             app:layout_constraintEnd_toEndOf="parent"

@@ -135,15 +135,15 @@ public final class RouteDescriptionHandler {
             return builder;
         }
 
-        final boolean isBlockedRoad = mRoute.getTta(Route.TrafficPenaltyMode.OPTIMAL, WHOLE_ROUTE).isBlocked();
+        final boolean isBlockedRoad = mRoute.getTtaIncludingTraffic(WHOLE_ROUTE).isBlocked();
         if (isBlockedRoad) {
             appendDrawable(builder, R.drawable.ic_warning, R.attr.colorAlert);
             appendText(builder, mContext.getString(R.string.msdkui_traffic_blocked), R.attr.colorAlert);
             return builder;
         }
-        final long durationWithTraffic = mRoute.getTta(Route.TrafficPenaltyMode.OPTIMAL, WHOLE_ROUTE)
+        final long durationWithTraffic = mRoute.getTtaIncludingTraffic(WHOLE_ROUTE)
                 .getDuration();
-        final long durationWithoutTraffic = mRoute.getTta(Route.TrafficPenaltyMode.DISABLED, WHOLE_ROUTE)
+        final long durationWithoutTraffic = mRoute.getTtaExcludingTraffic(WHOLE_ROUTE)
                 .getDuration();
         final long delayInSeconds = durationWithTraffic > durationWithoutTraffic ?
                 durationWithTraffic - durationWithoutTraffic :
@@ -288,10 +288,10 @@ public final class RouteDescriptionHandler {
 
     private long getTta(final boolean isTraffic) {
         if (isTraffic) {
-            return mRoute.getTta(Route.TrafficPenaltyMode.OPTIMAL, WHOLE_ROUTE)
+            return mRoute.getTtaIncludingTraffic(WHOLE_ROUTE)
                     .getDuration() * DateUtils.SECOND_IN_MILLIS;
         }
-        return mRoute.getTta(Route.TrafficPenaltyMode.DISABLED, WHOLE_ROUTE)
+        return mRoute.getTtaExcludingTraffic(WHOLE_ROUTE)
                 .getDuration() * DateUtils.SECOND_IN_MILLIS;
     }
 

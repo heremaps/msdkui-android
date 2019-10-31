@@ -123,7 +123,7 @@ class WaypointSelectionPresenterTest : BaseTest() {
 
         val mockRouteWaypoint = mock(RouteWaypoint::class.java)
         `when`(mockProvider.providesRouteWaypoint(anySafe())).thenReturn(mockRouteWaypoint)
-        val request = mock(ReverseGeocodeRequest2::class.java)
+        val request = mock(ReverseGeocodeRequest::class.java)
         `when`(mockProvider.providesReverseGeocodeRequest(anySafe())).thenReturn(request)
 
         val cord = mock(GeoCoordinate::class.java)

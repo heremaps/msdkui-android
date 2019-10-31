@@ -17,7 +17,6 @@
 package com.here.msdkuiapp.guidance
 
 import com.here.android.mpa.common.GeoCoordinate
-import com.here.android.mpa.common.PositioningManager
 import com.here.android.mpa.search.*
 import com.here.msdkuiapp.GuidanceContracts
 import com.here.msdkuiapp.base.BaseContract
@@ -95,7 +94,7 @@ class GuidanceWaypointSelectionPresenterTest : BaseTest() {
     @Test
     fun testUpdateCord() {
         val mockCord = mock(GeoCoordinate::class.java)
-        val request = mock(ReverseGeocodeRequest2::class.java)
+        val request = mock(ReverseGeocodeRequest::class.java)
 
         `when`(mockCord.isValid).thenReturn(true)
         `when`(mockProvider.providesReverseGeocodeRequest(mockCord)).thenReturn(request)

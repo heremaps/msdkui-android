@@ -32,7 +32,7 @@ import com.here.android.mpa.routing.Route
 import com.here.android.mpa.routing.RouteOptions
 import com.here.android.mpa.routing.RoutePlan
 import com.here.android.mpa.routing.RouteWaypoint
-import com.here.android.mpa.search.ReverseGeocodeRequest2
+import com.here.android.mpa.search.ReverseGeocodeRequest
 import java.util.Locale
 
 /**
@@ -75,11 +75,11 @@ class Provider {
     }
 
     /**
-     * Provides [ReverseGeocodeRequest2].
-     * @return created [ReverseGeocodeRequest2]
+     * Provides [ReverseGeocodeRequest].
+     * @return created [ReverseGeocodeRequest]
      */
-    fun providesReverseGeocodeRequest(cord: GeoCoordinate): ReverseGeocodeRequest2 {
-        val ret = ReverseGeocodeRequest2(cord)
+    fun providesReverseGeocodeRequest(cord: GeoCoordinate): ReverseGeocodeRequest {
+        val ret = ReverseGeocodeRequest(cord)
         ret.locale = Locale.getDefault()
         return ret
     }

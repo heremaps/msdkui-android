@@ -64,7 +64,7 @@ public final class RouteBarScaler {
     }
 
     private long getDurationInMilliSeconds(final Route route) {
-        return route.getTta(Route.TrafficPenaltyMode.OPTIMAL, WHOLE_ROUTE)
+        return route.getTtaIncludingTraffic(WHOLE_ROUTE)
                 .getDuration() * DateUtils.SECOND_IN_MILLIS;
     }
 

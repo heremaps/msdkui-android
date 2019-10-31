@@ -121,9 +121,9 @@ public class RouteDescriptionsListTest extends RobolectricTest {
         when(routeTta1.getDuration()).thenReturn(tta1);
         when(routeTta2.getDuration()).thenReturn(tta2);
         when(route1.getLength()).thenReturn(length1);
-        when(route1.getTta(Route.TrafficPenaltyMode.OPTIMAL, Route.WHOLE_ROUTE)).thenReturn(routeTta1);
+        when(route1.getTtaIncludingTraffic(Route.WHOLE_ROUTE)).thenReturn(routeTta1);
         when(route2.getLength()).thenReturn(length2);
-        when(route2.getTta(Route.TrafficPenaltyMode.OPTIMAL, Route.WHOLE_ROUTE)).thenReturn(routeTta2);
+        when(route2.getTtaIncludingTraffic(Route.WHOLE_ROUTE)).thenReturn(routeTta2);
 
         // ascending by distance
         mRoutesDescriptionList.setSortType(RouteDescriptionList.SortType.DISTANCE);

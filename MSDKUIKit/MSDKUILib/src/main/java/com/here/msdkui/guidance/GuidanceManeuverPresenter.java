@@ -22,7 +22,6 @@ import android.graphics.Bitmap;
 import com.here.android.mpa.common.Image;
 import com.here.android.mpa.guidance.NavigationManager;
 import com.here.android.mpa.routing.Maneuver;
-import com.here.android.mpa.routing.Route;
 import com.here.android.mpa.routing.Signpost;
 import com.here.msdkui.R;
 import com.here.msdkui.guidance.base.BaseGuidancePresenter;
@@ -49,11 +48,9 @@ public class GuidanceManeuverPresenter extends BaseGuidancePresenter {
      *         a {@link Context} to retrieve resources.
      * @param navigationManager
      *         a {@link NavigationManager} to be used for guidance handling.
-     * @param route
-     *         a route to be used for guidance.
      */
-    public GuidanceManeuverPresenter(Context context, NavigationManager navigationManager, Route route) {
-        super(navigationManager, route);
+    public GuidanceManeuverPresenter(Context context, NavigationManager navigationManager) {
+        super(navigationManager, null);
         mContext = context;
     }
 

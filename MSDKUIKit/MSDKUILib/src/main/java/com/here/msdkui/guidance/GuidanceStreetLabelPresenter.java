@@ -20,7 +20,6 @@ import android.content.Context;
 
 import com.here.android.mpa.guidance.NavigationManager;
 import com.here.android.mpa.routing.Maneuver;
-import com.here.android.mpa.routing.Route;
 import com.here.msdkui.R;
 import com.here.msdkui.common.ThemeUtil;
 import com.here.msdkui.guidance.base.BaseGuidancePresenter;
@@ -47,13 +46,9 @@ public class GuidanceStreetLabelPresenter extends BaseGuidancePresenter {
      *
      * @param navigationManager
      *         a {@link NavigationManager}.
-     *
-     * @param route
-     *         a {@link Route}.
      */
-    public GuidanceStreetLabelPresenter(Context context, NavigationManager navigationManager,
-                                        Route route) {
-        super(navigationManager, route);
+    public GuidanceStreetLabelPresenter(Context context, NavigationManager navigationManager) {
+        super(navigationManager, null);
         mContext = context;
     }
 

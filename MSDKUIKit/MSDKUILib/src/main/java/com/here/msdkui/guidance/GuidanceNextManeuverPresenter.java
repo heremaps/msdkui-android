@@ -20,7 +20,6 @@ import android.content.Context;
 
 import com.here.android.mpa.guidance.NavigationManager;
 import com.here.android.mpa.routing.Maneuver;
-import com.here.android.mpa.routing.Route;
 import com.here.msdkui.common.DistanceFormatterUtil;
 import com.here.msdkui.guidance.base.BaseGuidancePresenter;
 
@@ -45,11 +44,9 @@ public class GuidanceNextManeuverPresenter extends BaseGuidancePresenter {
      *         a {@link Context} to retrieve resources.
      * @param navigationManager
      *         a {@link NavigationManager} to be used for guidance handling.
-     * @param route
-     *         a route to be used for guidance.
      */
-    public GuidanceNextManeuverPresenter(Context context, NavigationManager navigationManager, Route route) {
-        super(navigationManager, route);
+    public GuidanceNextManeuverPresenter(Context context, NavigationManager navigationManager) {
+        super(navigationManager, null);
         mContext = context;
     }
 

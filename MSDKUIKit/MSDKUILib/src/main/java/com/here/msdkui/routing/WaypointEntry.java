@@ -147,8 +147,9 @@ public class WaypointEntry {
      * then resource id label (if is valid), otherwise defaultValue param is returned.
      */
     public String getLabel(final @NonNull Context context, final @NonNull String defaultValue) {
-        if (getStringLabel() != null && !getStringLabel().isEmpty()) {
-            return getStringLabel();
+        String stringLabel = getStringLabel();
+        if (stringLabel != null && !stringLabel.isEmpty()) {
+            return stringLabel;
         } else if (getResourceIdLabel() != 0) {
             return context.getString(getResourceIdLabel());
         } else {

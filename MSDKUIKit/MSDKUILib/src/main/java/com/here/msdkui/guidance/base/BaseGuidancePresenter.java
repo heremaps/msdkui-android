@@ -26,6 +26,7 @@ import com.here.android.mpa.routing.Maneuver;
 import com.here.android.mpa.routing.Route;
 import com.here.android.mpa.routing.RouteResult;
 import com.here.android.mpa.routing.RouteTta;
+import com.here.android.mpa.routing.RoutingError;
 
 import java.lang.ref.WeakReference;
 import java.util.Date;
@@ -93,12 +94,12 @@ public class BaseGuidancePresenter {
                     handleRerouteBegin();
                 }
 
-                @Override public void onRerouteEnd(RouteResult routeResult) {
-                    handleRerouteEnd(routeResult);
-                }
-
-                @Override public void onRerouteFailed() {
-                    handleRerouteFailed();
+                @Override public void onRerouteEnd(RouteResult routeResult, RoutingError error) {
+                    if (error == RoutingError.NONE) {
+                        handleRerouteEnd(routeResult);
+                    } else {
+                        handleRerouteFailed(error);
+                    }
                 }
             };
 
@@ -222,8 +223,10 @@ public class BaseGuidancePresenter {
 
     /**
      * Notifies when rerouting ends with failure.
+     *
+     * @param error rerouting error.
      */
-    protected void handleRerouteFailed() {
+    protected void handleRerouteFailed(RoutingError error) {
         // Let the sub class override it, if interested.
     }
 

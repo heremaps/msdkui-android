@@ -1,5 +1,6 @@
 dist : xenial
 language: android
+python: 3
 
 android:
   components:
@@ -18,7 +19,7 @@ cache:
     - $HOME/.gradle/wrapper/
 
 before_install:
-  - pip3 install --user awscli
+  - pip install --user awscli
 
 jobs:
   include:

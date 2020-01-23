@@ -18,7 +18,7 @@ cache:
     - $HOME/.gradle/wrapper/
 
 before_install:
-  - pip install --user awscli
+  - pip3 install --user awscli
 
 jobs:
   include:

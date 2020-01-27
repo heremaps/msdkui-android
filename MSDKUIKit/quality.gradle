@@ -15,10 +15,9 @@
  */
 
 apply plugin: 'checkstyle'
-apply plugin: 'findbugs'
 apply plugin: 'pmd'
 
-check.dependsOn 'checkstyle', 'findbugs', 'pmd', 'lint'
+check.dependsOn 'checkstyle', 'spotbugs', 'pmd', 'lint'
 
 checkstyle {
     toolVersion '8.12'
@@ -37,35 +36,6 @@ task checkstyle(type: Checkstyle, dependsOn: "assemble", group: 'verification') 
     exclude '**/gen/**'
     exclude '**/R.java'
     exclude '**/BuildConfig.java'
-    classpath = files()
-}
-
-findbugs {
-    toolVersion = "3.0.1"
-    ignoreFailures = false
-    effort = "max"
-    reportLevel = "low"
-    excludeFilter = file("${project.rootDir}/quality/findbugs/findbugs-filter.xml")
-}
-
-task findbugs(type: FindBugs, dependsOn: "assemble", group: 'verification') {
-    classes = files("$projectDir.absolutePath/build/intermediates/javac/")
-    source 'src'
-    include '**/*.java'
-    exclude '**/gen/**'
-
-    reports {
-        // FindBugs tasks can only have one report enabled
-        xml {
-            enabled = false
-            destination file("$projectDir.absolutePath/build/reports/findbugs/findbugs.xml")
-        }
-        html {
-            enabled = !xml.enabled
-            destination file("$projectDir.absolutePath/build/reports/findbugs/findbugs.html")
-        }
-    }
-
     classpath = files()
 }
 

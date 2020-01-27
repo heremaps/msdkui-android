@@ -117,3 +117,33 @@ artifacts {
     archives sourcesJar
     archives javadocJar
 }
+
+apply plugin: 'com.github.spotbugs'
+
+spotbugs {
+    toolVersion = "3.1.12"
+    ignoreFailures = false
+    effort = "max"
+    reportLevel = "low"
+    excludeFilter = file("${project.rootDir}/quality/spotbugs/spotbugs-filter.xml")
+}
+
+task spotbugs(type: com.github.spotbugs.SpotBugsTask, dependsOn: "assemble", group: 'verification') {
+    classes = files("$projectDir.absolutePath/build/intermediates/javac/")
+    source 'src'
+    include '**/*.java'
+    exclude '**/gen/**'
+
+    reports {
+        xml {
+            enabled = false
+            destination file("$projectDir.absolutePath/build/reports/spotbugs/spotbugs.xml")
+        }
+        html {
+            enabled = !xml.enabled
+            destination file("$projectDir.absolutePath/build/reports/spotbugs/spotbugs.html")
+        }
+    }
+
+    classpath = files()
+}

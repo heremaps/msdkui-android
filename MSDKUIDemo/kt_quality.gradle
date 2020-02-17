@@ -19,17 +19,21 @@ apply plugin: 'io.gitlab.arturbosch.detekt'
 check.dependsOn 'detekt'
 
 detekt {
-    version = "1.0.0.RC8"
-}
-
-task detekt(type: JavaExec, dependsOn: "assemble", group: 'verification')  {
-    main = "io.gitlab.arturbosch.detekt.cli.Main"
-    classpath = configurations.detekt
-    def input = "$projectDir"
-    def config = "$project.rootDir/quality/detekt/detekt-config.yml"
-    def filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
-    def output = "${project.buildDir}/reports/detekt/"
-    def outputName = "detekt"
-    def params = [ '-i', input, '-c', config, '-f', filters, '-o', output, '-on', outputName]
-    args(params)
+    failFast = true
+    buildUponDefaultConfig = true
+    config = files("$project.rootDir/quality/detekt/detekt-config.yml")
+    reports {
+        xml {
+            enabled = true
+            destination = file("${project.buildDir}/reports/detekt/report.xml")
+        }
+        html {
+            enabled = true
+            destination = file("${project.buildDir}/reports/detekt/report.html")
+        }
+        txt {
+            enabled = true
+            destination = file("${project.buildDir}/reports/detekt/report.txt")
+        }
+    }
 }

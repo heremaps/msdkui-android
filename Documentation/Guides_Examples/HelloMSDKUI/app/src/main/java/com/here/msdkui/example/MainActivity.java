@@ -17,8 +17,6 @@
 package com.here.msdkui.example;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.here.android.mpa.common.GeoCoordinate;
@@ -29,6 +27,9 @@ import com.here.msdkui.routing.WaypointList;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Shows a WaypointList where each waypoint has a custom name. Usually

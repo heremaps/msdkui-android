@@ -66,7 +66,7 @@ The HERE Mobile SDK UI Kit Primer example app consists of three screens illustra
 **Main Screen** (`MainActivity.java`)
 - Shows a programmatically pre-populated `WaypointList`
 - A `TransportModePanel` to select a transport mode and to trigger immediate route calculation
-- A `MapFragment` to show the calculated route and zoom to selected waypoints
+- An `AndroidXMapFragment` to show the calculated route and zoom to selected waypoints
 - An Android `Button` to navigate to the next screen
 
 **Route Details Screen** (`RouteDetailsActivity.java`)
@@ -76,7 +76,7 @@ The HERE Mobile SDK UI Kit Primer example app consists of three screens illustra
 
 **Guidance Screen** (`GuidanceActivity.java`)
 - Shows a `GuidanceManeuverView` to indicate the next maneuvers
-- A `MapFragment` to show the current position and orientation on the map
+- An `AndroidXMapFragment` to show the current position and orientation on the map
 - An Android `Button` to stop guidance
 
 First we need to create a new Android project, integrate the HERE Mobile SDK and the HERE Mobile SDK UI Kit. If you followed the [Quick Start](QuickStart.md) guide, you have already created a `MainActivity` as the main entry point to your application. If you prefer, you can also integrate this example into an existing application. The following steps will remain the same.
@@ -105,7 +105,7 @@ For this example, we use a `LinearLayout` as parent layout to group our componen
         android:layout_height="wrap_content"/>
 
     <fragment
-        class="com.here.android.mpa.mapping.MapFragment"
+        class="com.here.android.mpa.mapping.AndroidXMapFragment"
         android:id="@+id/mapFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -122,19 +122,19 @@ For this example, we use a `LinearLayout` as parent layout to group our componen
 For this layout we have nested four components ordered from top to bottom:
 - A HERE Mobile SDK UI Kit component: `WaypointList`
 - A HERE Mobile SDK UI Kit component: `TransportModePanel`
-- A `MapFragment` to show a route
+- An `AndroidXMapFragment` to show a route
 - A `Button` to advance to the next activity
 
 Note that all components share the same namespace `com.here.msdkui.<name_of_module>`. In this case, both components belong to the `routing` module.
 Since all HERE Mobile SDK UI Kit components are direct or indirect children of `View`, they behave like any other `View` component.
 
 ### Loading the map view
-Before we can start using our HERE Mobile SDK UI Kit components, please make sure to initialize the HERE MapFragment as shown in our [Quick Start](QuickStart.md) guide. We use a wrapper class called `MapInitializer` to request the required Android permissions and load the MapFragment:
+Before we can start using our HERE Mobile SDK UI Kit components, please make sure to initialize the HERE `AndroidXMapFragment` as shown in our [Quick Start](QuickStart.md) guide. We use a wrapper class called `MapInitializer` to request the required Android permissions and load the `AndroidXMapFragment`:
 ```java
 mapInitializer = new MapInitializer(this, this::onMapLoaded);
 ```
 
-Alternatively, you can use your own wrapper class or follow the steps on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/app-create-simple.html). Please find the implementation details of how to initialize a HERE `MapFragment` in the source code of the example - or look for other HERE SDK examples on [GitHub](https://github.com/heremaps/here-android-sdk-examples). This step does not involve any HERE Mobile SDK UI Kit specific actions.
+Alternatively, you can use your own wrapper class or follow the steps on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/app-create-simple.html). Please find the implementation details of how to initialize a HERE `AndroidXMapFragment` in the source code of the example - or look for other HERE SDK examples on [GitHub](https://github.com/heremaps/here-android-sdk-examples). This step does not involve any HERE Mobile SDK UI Kit specific actions.
 
 Usually, loading the map can take place in your Activity's `onCreate()`-method. Once the map is successfully loaded, we can access our inflated HERE Mobile SDK UI Kit components:
 ```java
@@ -223,7 +223,7 @@ We implemented the following behavior:
 - When a waypoint is dragged, we also want to calculate a new route
 
 ### Calculating the route
-Since we integrated a HERE `MapFragment`, we can easily show a new route on it. For route calculation, we use the HERE Mobile SDK's [core router](https://developer.here.com/documentation/android-premium/api_reference_java/com/here/android/mpa/routing/CoreRouter.html). If you are interested in the implementation details, please have a look at the example code. For the purpose of this guide, we only need to be aware that route calculation requires `RouteWaypoint` objects and `RouteOptions` containing details about the desired route. For example, a travel date, traffic options or a transport mode. For the sake of simplicity, for this Primer app we only provide a transport mode option. The `RouteWaypoint` list and the transport mode can easily be retrieved like:
+Since we integrated a HERE `AndroidXMapFragment`, we can easily show a new route on it. For route calculation, we use the HERE Mobile SDK's [core router](https://developer.here.com/documentation/android-premium/api_reference_java/com/here/android/mpa/routing/CoreRouter.html). If you are interested in the implementation details, please have a look at the example code. For the purpose of this guide, we only need to be aware that route calculation requires `RouteWaypoint` objects and `RouteOptions` containing details about the desired route. For example, a travel date, traffic options or a transport mode. For the sake of simplicity, for this Primer app we only provide a transport mode option. The `RouteWaypoint` list and the transport mode can easily be retrieved like:
 ```java
 List<RouteWaypoint> waypoints = waypointList.getRouteWaypoints();
 TransportMode transportMode = transportModePanel.getSelectedTransportMode();
@@ -405,7 +405,7 @@ To finish our quick overview, we want to use the selected route from the previou
 
 Since the contents of the `GuidanceManeuverView` may vary in height, it is recommended to _not_ set a fixed layout height. Note that all guidance components wrap their content without an additional padding. This allows us to specify the desired value in our layout.
 
-In addition, we also want to show a map during guidance to let the user orientate where we currently are. This results in the following vertical `LinearLayout`, where the `GuidanceManeuverView` is placed above the `MapFragment`:
+In addition, we also want to show a map during guidance to let the user orientate where we currently are. This results in the following vertical `LinearLayout`, where the `GuidanceManeuverView` is placed above the `AndroidXMapFragment`:
 ```xml
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -420,7 +420,7 @@ In addition, we also want to show a map during guidance to let the user orientat
         android:padding="@dimen/contentMarginHuge"/>
 
     <fragment
-        class="com.here.android.mpa.mapping.MapFragment"
+        class="com.here.android.mpa.mapping.AndroidXMapFragment"
         android:id="@+id/mapFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"

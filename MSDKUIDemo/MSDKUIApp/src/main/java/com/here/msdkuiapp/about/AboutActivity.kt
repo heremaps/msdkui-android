@@ -33,7 +33,7 @@ class AboutActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about)
         appActionBar.run {
-            setBack(true, R.drawable.ic_clear_black_24dp)
+            setBack(true, R.drawable.ic_msdkui_clear_black_24dp)
             setTitle(value = getString(R.string.msdkui_app_about))
             setRightIcon(false)
         }

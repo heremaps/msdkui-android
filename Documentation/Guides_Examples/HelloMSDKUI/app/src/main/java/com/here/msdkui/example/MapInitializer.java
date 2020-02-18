@@ -16,21 +16,22 @@
 
 package com.here.msdkui.example;
 
-import android.app.Activity;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import android.util.Log;
 
 import com.here.android.mpa.common.MapSettings;
 import com.here.android.mpa.common.OnEngineInitListener;
+import com.here.android.mpa.mapping.AndroidXMapFragment;
 import com.here.android.mpa.mapping.Map;
-import com.here.android.mpa.mapping.MapFragment;
 
 import java.io.File;
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 /**
  * Convenience class to request the required Android permissions as defined by manifest and
@@ -43,13 +44,13 @@ public class MapInitializer {
     private static final String MAP_SERVICE_INTENT_NAME = "com.here.msdkui.example.MapService";
 
     private final ResultListener resultListener;
-    private final Activity activity;
+    private final AppCompatActivity activity;
 
     public interface ResultListener {
         void onMapInitDone(Map map);
     }
 
-    public MapInitializer(@NonNull Activity activity, @NonNull ResultListener resultListener) {
+    public MapInitializer(@NonNull AppCompatActivity activity, @NonNull ResultListener resultListener) {
         this.activity = activity;
         this.resultListener = resultListener;
 
@@ -65,7 +66,7 @@ public class MapInitializer {
         String cacheLocation =
                 activity.getApplicationContext().getFilesDir().getPath() + File.separator + "example_maps_cache";
         if (MapSettings.setIsolatedDiskCacheRootPath(cacheLocation, MAP_SERVICE_INTENT_NAME)) {
-            MapFragment mapFragment = (MapFragment) activity.getFragmentManager().findFragmentById(R.id.mapFragment);
+            AndroidXMapFragment mapFragment = (AndroidXMapFragment) activity.getSupportFragmentManager().findFragmentById(R.id.mapFragment);
             mapFragment.init(error -> {
                 if (error == OnEngineInitListener.Error.NONE) {
                     mapFragment.getPositionIndicator().setVisible(true);

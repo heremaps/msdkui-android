@@ -94,9 +94,9 @@ Extend the the dependencies closure and make sure it references the following li
 ```java
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
     implementation(name: 'HERE-sdk', ext: 'aar')
     implementation(name: 'MSDKUILib-release', ext: 'aar')
 }
@@ -203,7 +203,7 @@ If you started with an empty Android project, the default layout was hosting a "
         android:layout_height="wrap_content"/>
 
     <fragment
-        class="com.here.android.mpa.mapping.MapFragment"
+        class="com.here.android.mpa.mapping.AndroidXMapFragment"
         android:id="@+id/mapFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -211,14 +211,14 @@ If you started with an empty Android project, the default layout was hosting a "
 </LinearLayout>
 ```
 Our first HERE Mobile SDK UI Kit component for this example is `WaypointList` component. A `WaypointList` contains items describing waypoints for which a route can be calculated.  Since `WaypointList` is a direct child of `RecyclerView`, it behaves like you would expect from any other `RecyclerView`.
-Below the `WaypointList` we show the HERE `MapFragment`. Note that the map will occupy as much space as allowed by the `WaypointList`, since we are giving it a layout weight of 1.
+Below the `WaypointList` we show the HERE `AndroidXMapFragment`. Note that the map will occupy as much space as allowed by the `WaypointList`, since we are giving it a layout weight of 1.
 
 ### Loading the Map
-Before we can start using the `WaypointList` component, we have to prepare loading the `MapFragment`. As described on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/app-create-simple.html), we have to request the required [Android permissions](https://developer.here.com/documentation/android-premium/topics/request-android-permissions.html) first. Then we can initialize the `MapFragment`.
+Before we can start using the `WaypointList` component, we have to prepare loading the `AndroidXMapFragment`. As described on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/app-create-simple.html), we have to request the required [Android permissions](https://developer.here.com/documentation/android-premium/topics/request-android-permissions.html) first. Then we can initialize the `AndroidXMapFragment`.
 
 As our focus for this Quick Start guide is on using the HERE Mobile SDK UI Kit components, we have wrapped both steps in a helper class called `MapInitializer`. For implementation details, please check the example's code. You can use your own wrapper class or follow the steps on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/app-create-simple.html).
 
-Once the HERE `MapFragment` is successfully loaded, we want to show a `Toast` message with the current version of the HERE Mobile SDK UI Kit library:
+Once the HERE `AndroidXMapFragment` is successfully loaded, we want to show a `Toast` message with the current version of the HERE Mobile SDK UI Kit library:
 ```java
 Toast.makeText(this, "HERE MSDK UI Kit version: " +
 				com.here.msdkui.BuildConfig.VERSION_NAME, Toast.LENGTH_SHORT).show();
@@ -245,7 +245,7 @@ The HERE Mobile SDK UI Kit uses the `WaypointEntry` class as a wrapper to hold c
 
 By calling the `findViewById()`-method of our `Activity`, we lookup the inflated instance of our `WaypointList` and finally set the entries we want to show.
 
-Now it's time to build and run the app. If all goes well, you should see a `WaypointList` covering the top area of the view, above a HERE `MapFragment`.
+Now it's time to build and run the app. If all goes well, you should see a `WaypointList` covering the top area of the view, above a HERE `AndroidXMapFragment`.
 
 <center><p>
   <img src="Images/HelloMSDKUI.png" width="250"/>

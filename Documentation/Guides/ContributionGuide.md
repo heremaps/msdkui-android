@@ -1,4 +1,4 @@
-# MSDKUI Contribution Guide
+# MSDKUI (HERE Mobile SDK UI Kit) Contribution Guide
 
 This guide is for developers who want to contribute to the MSDKUI codebase, build the MSDKUI library, or run the demo application on their local machines. For using the `MSDKUILib.aar` on your own project, or running the accompanying example apps, please check the [QuickStart](QuickStart.md) guide.
 
@@ -6,7 +6,7 @@ This guide is for developers who want to contribute to the MSDKUI codebase, buil
 
 - [Getting the code](#getting-the-code)
 - [See available Gradle tasks](#see-available-gradle-tasks)
-- [Building the HERE UI Kit library](#building-the-here-ui-kit-library)
+- [Building the MSDKUI library](#building-the-msdkui-library)
 	- [Building the MSDKUI API Reference from the command line](#building-the-msdkui-api-reference-from-the-command-line)
 	- [Running unit tests for the MSDKUILib](#running-unit-tests-for-the-msdkuilib)
 	- [Generating a unit test coverage report](#generating-a-unit-test-coverage-report)
@@ -16,7 +16,7 @@ This guide is for developers who want to contribute to the MSDKUI codebase, buil
 	- [Running unit tests for the MDKUIApp](#running-unit-tests-for-the-mdkuiapp)
 	- [Generating a unit test coverage report](#generating-a-unit-test-coverage-report)
 	- [Running UI tests for the MDKUIApp](#running-ui-tests-for-the-mdkuiapp)
-	- [Optional: Building the HERE UI Kit Library and the Demo as part of one project](#optional-building-the-here-ui-kit-library-and-the-demo-as-part-of-one-project)
+	- [Optional: Building the MSDKUI Library and the Demo as part of one project](#optional-building-the-msdkui-library-and-the-demo-as-part-of-one-project)
 - [Building the Dev app](#building-the-dev-app)
 - [Commit policy](#commit-policy)
 	- [Writing Git commit messages](#writing-git-commit-messages)
@@ -38,11 +38,11 @@ The HERE SDK UI Kit for Android is built using Gradle. For an overview of the av
 - ./gradlew task from MSDKUIKIT folder to see all lib related tasks
 - ./gradlew task from MSDKUIDemo folder to see all Demo app related tasks
 
-## Building the HERE UI Kit library
+## Building the MSDKUI library
 
-The easiest way to build the HERE Mobile SDK UI Kit library (MSDKUILib) is using the command line:
+The easiest way to build the MSDKUI library (MSDKUILib) is using the command line:
 - Put the `HERE-sdk.aar` file from your HERE SDK package to _MSDKUIKit/libs/_.
-- Build the HERE Mobile SDK UI Kit library via Gradle. Navigate to the _MSDKUIKit_ folder and execute: `./gradlew clean :MSDKUILib:assembleRelease`.
+- Build the MSDKUI library via Gradle. Navigate to the _MSDKUIKit_ folder and execute: `./gradlew clean :MSDKUILib:assembleRelease`.
 
 >**Note:** Please, make sure to set `ANDROID_HOME` to your environment `PATH` variable. It should point to the location where you have installed the Android SDK.
 
@@ -91,7 +91,7 @@ When you register on [developer.here.com](https://developer.here.com), the regis
 
 ### Building and Running the Demo
 
-In order to build and to run the demo app with Android Studio, you need to integrate the HERE Mobile SDK (Premium) version 3.14. Additionally, you need to integrate the HERE Mobile SDK UI Kit library.
+In order to build and to run the demo app with Android Studio, you need to integrate the HERE Mobile SDK (Premium) version 3.14. Additionally, you need to integrate the MSDKUI library.
 
 - Put the HERE-sdk.aar file from your HERE SDK package and the HERE UI Kit library to _MSDKUIDemo/libs/_.
 - Open and build the project located at _MSDKUIDemo/_ in Android Studio.
@@ -107,7 +107,7 @@ Switch to command line and navigate to the _MSDKUIDemo_ folder. Execute: `./grad
 
 ### Generating a unit test coverage report
 
-Execute `/gradlew :MSDKUIApp:testDebugUnitTest :MSDKUIApp:jacocoTestDebugReport` to run all unit tests _and_ to generate a coverage report. The report wil be available in _MSDKUIApp/build/reports/jacoco/jacocoTestDebugReport_. Open `index.html` to see an overview of the current code coverage.
+Execute `/gradlew :MSDKUIApp:testDebugUnitTest :MSDKUIApp:jacocoTestDebugReport` to run all unit tests _and_ to generate a coverage report. The report will be available in _MSDKUIApp/build/reports/jacoco/jacocoTestDebugReport_. Open `index.html` to see an overview of the current code coverage.
 
 >**Note:** To generate the coverage report from within Android Studio, execute the Gradle Task from the "Tools Window": `MSDKUIApp -> Tasks -> reporting -> jacocoTestDebugReport` (right-click and run).
 
@@ -117,7 +117,7 @@ Switch to command line and navigate to the _MSDKUIDemo_ folder. Execute: `./grad
 
 >**Note:** Alternatively, you can also run the UI tests from within Android Studio by right clicking on a specific test or the _androidTest_ subfolder and clicking "Run Tests". You can also directly select the Gradle Task: `MSDKUIApp -> Tasks -> build -> assembleAndroidTest` (right-click and run).
 
-### Optional: Building the HERE UI Kit Library and the Demo as part of one project
+### Optional: Building the MSDKUI Library and the Demo as part of one project
 
 Usually, it should be sufficient to keep library and Demo project separated. If you are planning to contribute to the Demo app - or to test your new components as part of the Demo app - it may be convenient to build both as part of one Android Studio project.
 

@@ -1,16 +1,16 @@
-# HERE Mobile SDK UI Kit - User Guide
-Are you looking for a framework that lets you build feature-rich and compelling user interfaces on top of the HERE Mobile SDK, _Premium_ edition? Then the HERE Mobile SDK UI Kit for iOS and Android is the perfect companion for you.
+# MSDKUI (HERE Mobile SDK UI Kit) - User Guide
+Are you looking for a framework that lets you build feature-rich and compelling user interfaces on top of the HERE Mobile SDK, _Premium_ edition? Then the MSDKUI (HERE Mobile SDK UI Kit) for iOS and Android is the perfect companion for you.
 
 This user guide describes the general workflow using the HERE Mobile SDK UI Kit and its components in detail. If you are looking for a quick overview, please look at our [README](../../README.md), our [Quick Start](QuickStart.md) guide or the latest _Release Notes_.
 
 ## Contents
 
-- [Why use the HERE Mobile SDK UI Kit?](#why-use-the-here-mobile-sdk-ui-kit)
+- [Why use the MSDKUI?](#why-use-the-here-msdkui)
 - [Where to start?](#where-to-start)
 - [How to read this guide?](#how-to-read-this-guide)
-- [Getting started - A HERE Mobile SDK UI Kit Primer](#getting-started---a-here-mobile-sdk-ui-kit-primer)
-- [Overview of the HERE Mobile SDK UI Kit Primer example](#overview-of-the-here-mobile-sdk-ui-kit-primer-example)
-- [Adding HERE Mobile SDK UI Kit components](#adding-here-mobile-sdk-ui-kit-components)
+- [Getting started - A MSDKUI Primer](#getting-started---a-msdkui-primer)
+- [Overview of the MSDKUI Primer example](#overview-of-the-msdkui-primer-example)
+- [Adding MSDKUI components](#adding-msdkui-components)
   - [Loading the map view](#loading-the-map-view)
 - [Using the WaypointList](#using-the-waypointlist)
   - [Calculating the route](#calculating-the-route)
@@ -23,45 +23,45 @@ This user guide describes the general workflow using the HERE Mobile SDK UI Kit 
 
 
 
-## Why use the HERE Mobile SDK UI Kit?
-The HERE Mobile SDK UI Kit provides highly flexible and customizable User Interface building blocks that can be freely combined and arranged with your own UI components - with just a few lines of code.
+## Why use the MSDKUI?
+The MSDKUI provides highly flexible and customizable User Interface building blocks that can be freely combined and arranged with your own UI components - with just a few lines of code.
 
-The HERE Mobile SDK UI Kit builds upon optimized native platform code to fully support Xcode's _Interface Builder_ and Android Studio's _Layout Editor_ resulting in reduced development time and a faster time to market for your apps.
+The MSDKUI builds upon optimized native platform code to fully support Xcode's _Interface Builder_ and Android Studio's _Layout Editor_ resulting in reduced development time and a faster time to market for your apps.
 
-- **Cleaner code:** By using the HERE Mobile SDK UI Kit's already assembled modular high- and low-level components, you can easily decouple existing (or new) HERE Mobile SDK logic from your UI modules and other parts of your application.
+- **Cleaner code:** By using the MSDKUI's already assembled modular high- and low-level components, you can easily decouple existing (or new) HERE Mobile SDK logic from your UI modules and other parts of your application.
 
 - **Easy to learn:** Each prebuilt component allows for straight-forward customization, either by switching on/off a predefined set of styles or by customizing the views programmatically. As each component is based on platform code, it behaves exactly like you would expect from any other native UI component you may have already in use.
 
-- **Flexible:** All HERE Mobile SDK UI Kit components can be independently integrated from each other - allowing extensible cutting-edge user interfaces. Imagine an interactive route summary mixed with customized planning options directly showing the route to your facility? Or presenting route maneuvers based on the user's traffic preference on the same view? No matter what kind of user flow you want to create, with the HERE Mobile SDK UI Kit it is now all in your hands - making the HERE Mobile SDK a more powerful development tool than ever before.
+- **Flexible:** All MSDKUI components can be independently integrated from each other - allowing extensible cutting-edge user interfaces. Imagine an interactive route summary mixed with customized planning options directly showing the route to your facility? Or presenting route maneuvers based on the user's traffic preference on the same view? No matter what kind of user flow you want to create, with the HERE Mobile SDK UI Kit it is now all in your hands - making the HERE Mobile SDK a more powerful development tool than ever before.
 
-With the HERE Mobile SDK UI Kit, realizing complete apps including comprehensive route planning and state-of-the-art guidance becomes a matter of minutes. While hiding the underlying complexity, you still have all the freedom you need to build unique and powerful apps - take a quick tour with our [HERE Mobile SDK UI Kit Primer](#getting-started---a-here-mobile-sdk-ui-kit-primer) to see a practical example.
+With the MSDKUI, realizing complete apps including comprehensive route planning and state-of-the-art guidance becomes a matter of minutes. While hiding the underlying complexity, you still have all the freedom you need to build unique and powerful apps - take a quick tour with our [HERE Mobile SDK UI Kit Primer](#getting-started---a-msdkui-primer) to see a practical example.
 
-Version 2.x of the HERE Mobile SDK UI Kit mainly focuses on enabling user experiences related to route planning and guidance. The HERE Mobile SDK UI Kit components are available for iOS and Android, supporting Java and Kotlin on Android, likewise Swift on iOS.
+Version 2.x of the MSDKUI mainly focuses on enabling user experiences related to route planning and guidance. The MSDKUI components are available for iOS and Android, supporting Java and Kotlin on Android, likewise Swift on iOS.
 
 ## Where to start?
-- If you haven't done so, please read our [Quick Start](QuickStart.md) guide to see how you can integrate the HERE Mobile SDK UI Kit into your own apps.
+- If you haven't done so, please read our [Quick Start](QuickStart.md) guide to see how you can integrate the MSDKUI into your own apps.
 - Check the [API Reference](https://heremaps.github.io/msdkui-android/) that can also be built locally using the command line, see [Contribution Guide](ContributionGuide.md).
 - You can also find:
   - Numerous [examples](../Guides_Examples/) accompanying this user guide
-  - A HERE MSDK UI [demo app](../../MSDKUIDemo/) showcasing most features of the HERE Mobile SDK UI Kit in production-ready quality
-- Read the [HERE Mobile SDK UI Kit Primer](#getting-started---a-here-mobile-sdk-ui-kit-primer) chapter of this user guide.
+  - A HERE MSDK UI [demo app](../../MSDKUIDemo/) showcasing most features of the MSDKUI in production-ready quality
+- Read the [HERE Mobile SDK UI Kit Primer](#getting-started---a-msdkui-primer) chapter of this user guide.
 
 ## How to read this guide?
-In the following sections we will guide you through the most common usage scenarios and reveal tips and easy-to-understand guidelines to help you get the most out of using the HERE Mobile SDK UI Kit for Android. All _main_ sections can be read independent from each other, so you can skip any section and dive straight into the topics you are most interested in.
+In the following sections we will guide you through the most common usage scenarios and reveal tips and easy-to-understand guidelines to help you get the most out of using the MSDKUI for Android. All _main_ sections can be read independent from each other, so you can skip any section and dive straight into the topics you are most interested in.
 
->**Note:** All examples that are built as part of this user guide are optimized for portrait mode to keep the projects light weighted and focused. The HERE Mobile SDK UI Kit fully supports portrait _and_ landscape mode. Adapting user interfaces for specific resolutions and orientations depends on your specific requirements - and taste - which is beyond the scope of this document. If supporting landscape requires specific attention or differs from standard Android behavior, it is noted down - otherwise not.
+>**Note:** All examples that are built as part of this user guide are optimized for portrait mode to keep the projects light weighted and focused. The MSDKUI fully supports portrait _and_ landscape mode. Adapting user interfaces for specific resolutions and orientations depends on your specific requirements - and taste - which is beyond the scope of this document. If supporting landscape requires specific attention or differs from standard Android behavior, it is noted down - otherwise not.
 
-All HERE Mobile SDK UI Kit components support initialization from layouts or by code (programmatically). For most examples, we recommend using layouts. As you can use HERE Mobile SDK UI Kit components like any other view or 3rd party custom component, the general workflow does not contain any specific treatment. If you are new to working with views and layouts under Android, we recommend to read Android's [Layout Guide](https://developer.android.com/guide/topics/ui/declaring-layout).
+AllMSDKUI components support initialization from layouts or by code (programmatically). For most examples, we recommend using layouts. As you can use MSDKUI components like any other view or 3rd party custom component, the general workflow does not contain any specific treatment. If you are new to working with views and layouts under Android, we recommend to read Android's [Layout Guide](https://developer.android.com/guide/topics/ui/declaring-layout).
 
-## Getting started - A HERE Mobile SDK UI Kit Primer
-In this short tutorial, we are guiding you through your first application with the HERE Mobile SDK UI Kit. We are creating a small route planning application and provide reusable code snippets and guidelines on how to avoid the most common pitfalls. The resulting app is kept as simple as possible - feel free to modify or extend it based on your own taste and needs.
+## Getting started - A MSDKUI Primer
+In this short tutorial, we are guiding you through your first application with the MSDKUI. We are creating a small route planning application and provide reusable code snippets and guidelines on how to avoid the most common pitfalls. The resulting app is kept as simple as possible - feel free to modify or extend it based on your own taste and needs.
 
->**Note:** For integrating the HERE Mobile SDK UI Kit framework, please have a look at our [Quick Start](QuickStart.md) to safely guide you through the first steps.
+>**Note:** For integrating the MSDKUI framework, please have a look at our [Quick Start](QuickStart.md) to safely guide you through the first steps.
 
 You can find the complete example code of the _MSDKUIPrimer_ app in the [examples section](../Guides_Examples/). We recommend that you follow this tutorial step-by-step. However, if you get stuck or if you just want to inspect the resulting code of this tutorial, please refer to the app as a point of reference.
 
-## Overview of the HERE Mobile SDK UI Kit Primer example
-The HERE Mobile SDK UI Kit Primer example app consists of three screens illustrating some of the main HERE Mobile SDK UI Kit components _in action_:
+## Overview of the MSDKUI Primer example
+The HERE Mobile SDK UI Kit Primer example app consists of three screens illustrating some of the main MSDKUI components _in action_:
 
 **Main Screen** (`MainActivity.java`)
 - Shows a programmatically pre-populated `WaypointList`
@@ -79,10 +79,10 @@ The HERE Mobile SDK UI Kit Primer example app consists of three screens illustra
 - An `AndroidXMapFragment` to show the current position and orientation on the map
 - An Android `Button` to stop guidance
 
-First we need to create a new Android project, integrate the HERE Mobile SDK and the HERE Mobile SDK UI Kit. If you followed the [Quick Start](QuickStart.md) guide, you have already created a `MainActivity` as the main entry point to your application. If you prefer, you can also integrate this example into an existing application. The following steps will remain the same.
+First we need to create a new Android project, integrate the HERE Mobile SDK and the MSDKUI. If you followed the [Quick Start](QuickStart.md) guide, you have already created a `MainActivity` as the main entry point to your application. If you prefer, you can also integrate this example into an existing application. The following steps will remain the same.
 
-## Adding HERE Mobile SDK UI Kit components
-Let's add the first HERE Mobile SDK UI Kit components to our new project. As outlined before, we want to show two HERE Mobile SDK UI Kit components on our `MainActivity`:
+## Adding MSDKUI components
+Let's add the first MSDKUI components to our new project. As outlined before, we want to show two MSDKUI components on our `MainActivity`:
 - `WaypointList`
 - `TransportModePanel`
 
@@ -120,23 +120,23 @@ For this example, we use a `LinearLayout` as parent layout to group our componen
 ```
 
 For this layout we have nested four components ordered from top to bottom:
-- A HERE Mobile SDK UI Kit component: `WaypointList`
-- A HERE Mobile SDK UI Kit component: `TransportModePanel`
+- A MSDKUI component: `WaypointList`
+- A MSDKUI component: `TransportModePanel`
 - An `AndroidXMapFragment` to show a route
 - A `Button` to advance to the next activity
 
 Note that all components share the same namespace `com.here.msdkui.<name_of_module>`. In this case, both components belong to the `routing` module.
-Since all HERE Mobile SDK UI Kit components are direct or indirect children of `View`, they behave like any other `View` component.
+Since all MSDKUI components are direct or indirect children of `View`, they behave like any other `View` component.
 
 ### Loading the map view
-Before we can start using our HERE Mobile SDK UI Kit components, please make sure to initialize the HERE `AndroidXMapFragment` as shown in our [Quick Start](QuickStart.md) guide. We use a wrapper class called `MapInitializer` to request the required Android permissions and load the `AndroidXMapFragment`:
+Before we can start using our MSDKUI components, please make sure to initialize the HERE `AndroidXMapFragment` as shown in our [Quick Start](QuickStart.md) guide. We use a wrapper class called `MapInitializer` to request the required Android permissions and load the `AndroidXMapFragment`:
 ```java
 mapInitializer = new MapInitializer(this, this::onMapLoaded);
 ```
 
-Alternatively, you can use your own wrapper class or follow the steps on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/app-create-simple.html). Please find the implementation details of how to initialize a HERE `AndroidXMapFragment` in the source code of the example - or look for other HERE SDK examples on [GitHub](https://github.com/heremaps/here-android-sdk-examples). This step does not involve any HERE Mobile SDK UI Kit specific actions.
+Alternatively, you can use your own wrapper class or follow the steps on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/app-create-simple.html). Please find the implementation details of how to initialize a HERE `AndroidXMapFragment` in the source code of the example - or look for other HERE SDK examples on [GitHub](https://github.com/heremaps/here-android-sdk-examples). This step does not involve any MSDKUI specific actions.
 
-Usually, loading the map can take place in your Activity's `onCreate()`-method. Once the map is successfully loaded, we can access our inflated HERE Mobile SDK UI Kit components:
+Usually, loading the map can take place in your Activity's `onCreate()`-method. Once the map is successfully loaded, we can access our inflated MSDKUI components:
 ```java
 private WaypointList waypointList;
 private TransportModePanel transportModePanel;
@@ -152,7 +152,7 @@ private void onMapLoaded(Map hereMap) {
 ## Using the WaypointList
 Now we have references to our components at hand, so we can start using them and attach the behavior we desire. For this Primer tutorial, we want to add a few waypoints programmatically.
 
-HERE Mobile SDK UI Kit provides the `WaypointEntry` class as a wrapper to allow modification of certain attributes, so that you can set - for example - street names for each waypoint instead of showing the raw coordinates (default). Please see the [Quick Start](QuickStart.md) guide for an example.
+MSDKUI provides the `WaypointEntry` class as a wrapper to allow modification of certain attributes, so that you can set - for example - street names for each waypoint instead of showing the raw coordinates (default). Please see the [Quick Start](QuickStart.md) guide for an example.
 ```java
 List<WaypointEntry> waypointEntries = new ArrayList<>();
 waypointEntries.add(new WaypointEntry(new RouteWaypoint(new GeoCoordinate(52.53852,13.42506))));
@@ -166,7 +166,7 @@ As a next step, we need to add the `WaypointEntry` objects to the `WaypointList`
 waypointList.setEntries(waypointEntries);
 ```
 
-Note that order matters, but don't worry, the `WaypointList` HERE Mobile SDK UI Kit component by default already provides drag handles to change the order afterwards.
+Note that order matters, but don't worry, the `WaypointList` MSDKUI component by default already provides drag handles to change the order afterwards.
 
 However, we also want to get notified, whenever the user did any interaction with the `WaypointList`. Therefore we can attach a listener to the `WaypointList`. It provides the following callbacks:
 
@@ -232,7 +232,7 @@ TransportMode transportMode = transportModePanel.getSelectedTransportMode();
 Note that we show a route on the map once route calculation is completed. In this example, we show only the first calculated route - even if more routes could be found.
 
 ## Using the TransportModePanel
-As mentioned in the previous section, we want to calculate a route for a specific transportation mode. Therefore we have added the `TransportModePanel` HERE Mobile SDK UI Kit component. By default it shows all supported transportation modes:
+As mentioned in the previous section, we want to calculate a route for a specific transportation mode. Therefore we have added the `TransportModePanel` MSDKUI. By default it shows all supported transportation modes:
 - `RouteOptions.TransportMode.CAR`
 - `RouteOptions.TransportMode.TRUCK`
 - `RouteOptions.TransportMode.PEDESTRIAN`
@@ -297,7 +297,7 @@ The screenshot shows how the updated `MainActivity` could look like:
 </p></center>
 
 ## Implementing the route details screen
-In the previous screen the user was able to calculate a route based on her or his waypoint selection and a suitable route mode. Now we want to show a summary for the found routes and their maneuvers on a new screen. As described above, we will show this in the `RouteDetailsActivity` of our HERE Mobile SDK UI Kit Primer example app. The `RouteDetailsActivity` controller holds two HERE Mobile SDK UI Kit components:
+In the previous screen the user was able to calculate a route based on her or his waypoint selection and a suitable route mode. Now we want to show on a new screen a summary of the routes found and their maneuvers. As described above, we will show this in the `RouteDetailsActivity` of our MSDKUI Primer example app. The `RouteDetailsActivity` controller holds two MSDKUI components:
 - `RouteDescriptionList`: Shows all found routes as a summary in a scrollable list
 - `ManeuverList`: Shows all maneuvers belonging to a route
 
@@ -354,7 +354,7 @@ routeDescriptionList.setRoutesResult(RouteCalculator.getInstance().lastCalculate
 
 Note that we use a `RouteCalculator` convenience class to access the last calculated routes. If you are interested in the implementation details, please have a look at the example code.
 
-Since we want to get notified once a user selects a route, we can set a `CustomRecyclerView.OnItemClickedListener`. The `RouteDescriptionList` is a child of a `CustomRecyclerView` which derives from `RecyclerView`. To simplify usage, the HERE Mobile SDK UI Kit provides a `CustomRecyclerView` which allows click handling on list items:
+Since we want to get notified once a user selects a route, we can set a `CustomRecyclerView.OnItemClickedListener`. The `RouteDescriptionList` is a child of a `CustomRecyclerView` which derives from `RecyclerView`. To simplify usage, the MSDKUI provides a `CustomRecyclerView` which allows click handling on list items:
 ```java
 routeDescriptionList.setOnItemClickedListener(new CustomRecyclerView.OnItemClickedListener() {
     @Override
@@ -384,7 +384,7 @@ maneuverList.setRoute(selectedRoute);
 </p></center>
 
 
-Like for all HERE Mobile SDK UI Kit's list components, we can get notified once a user selects a specific maneuver by tapping on it. In order to react on this event we set the `CustomRecyclerView.OnItemClickedListener()` to know when an item of the list was clicked:
+Like for all MSDKUI's list components, we can get notified once a user selects a specific maneuver by tapping on it. In order to react on this event we set the `CustomRecyclerView.OnItemClickedListener()` to know when an item of the list was clicked:
 ```java
 maneuverList.setOnItemClickedListener(new CustomRecyclerView.OnItemClickedListener() {
     @Override
@@ -400,7 +400,7 @@ maneuverList.setOnItemClickedListener(new CustomRecyclerView.OnItemClickedListen
 ```
 
 ## Implementing the guidance screen
-To finish our quick overview, we want to use the selected route from the previous step to start guidance along that route. For this, we only need one new HERE Mobile SDK UI Kit component:
+To finish our quick overview, we want to use the selected route from the previous step to start guidance along that route. For this, we only need one new MSDKUI component:
 - `GuidanceManeuverView`
 
 Since the contents of the `GuidanceManeuverView` may vary in height, it is recommended to _not_ set a fixed layout height. Note that all guidance components wrap their content without an additional padding. This allows us to specify the desired value in our layout.
@@ -435,7 +435,7 @@ In addition, we also want to show a map during guidance to let the user orientat
 ```
 
 ## Using the GuidanceManeuverView
-The `GuidanceManeuverView` is a panel where information about the next maneuvers will appear. As with all HERE Mobile SDK UI Kit components, it is already configured, so you only need to pass in the desired state based on the provided `GuidanceManeuverData`.
+The `GuidanceManeuverView` is a panel where information about the next maneuvers will appear. As with all MSDKUI components, it is already configured, so you only need to pass in the desired state based on the provided `GuidanceManeuverData`.
 
 This data is provided by the `GuidanceManeuverPresenter` helper class, that accepts a `GuidanceManeuverListener` to notify the listener once new `GuidanceManeuverData` is available:
 ```java
@@ -492,9 +492,9 @@ Once we resume the `GuidanceManeuverPresenter`, we may also want to start guidan
 More information on how to start guidance using the HERE Mobile SDK is described on [developer.here.com](https://developer.here.com/documentation/android-premium/topics/map-guidance.html).
 
 ## Where to go from here?
-Congratulations, by following this HERE Mobile SDK UI Kit Primer tutorial, you have discovered the basic HERE Mobile SDK UI Kit components and how they can work together to build extremely powerful apps. Please take a look at the [API Reference](https://heremaps.github.io/msdkui-android/) to learn more about the various HERE Mobile SDK UI Kit components.
+Congratulations, by following this HERE Mobile SDK UI Kit Primer tutorial, you have discovered the basic MSDKUI components and how they can work together to build extremely powerful apps. Please take a look at the [API Reference](https://heremaps.github.io/msdkui-android/) to learn more about the various MSDKUI components.
 
-There you can also find more example code, and our demo application that shows most of the available HERE Mobile SDK UI Kit components and capabilities.
+There you can also find more example code, and our demo application that shows most of the available MSDKUI components and capabilities.
 
 |![](Images/demo1.png)  | ![](Images/demo2.png) | ![](Images/demo3.png) |
 |:---:|:---:|:---:|
@@ -502,4 +502,4 @@ There you can also find more example code, and our demo application that shows m
 
 The screenshots above show the "MSDK UI Demo" app.
 
-We are happy to hear your feedback. Please [contact us](https://developer.here.com/contact-us) for any questions, suggestions or improvements. Thank you for using the HERE Mobile SDK UI Kit.
+We are happy to hear your feedback. Please [contact us](https://developer.here.com/contact-us) for any questions, suggestions or improvements. Thank you for using the MSDKUI.

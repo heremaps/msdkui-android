@@ -36,7 +36,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MapSettings.setIsolatedDiskCacheRootPath(getMapDataPath(), "com.here.msdkuiapp.AppService")
+        MapSettings.setIsolatedDiskCacheRootPath(getMapDataPath())
         appActionBar = AppActionBar(this).setUpActionBar()
     }
 

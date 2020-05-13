@@ -187,7 +187,7 @@ class RoutePlannerPresenterTest {
         verify(mockRouteOptions).routeCount = 5
         verify(mockRoutePlan).routeOptions = mockRouteOptions
         assertEquals(mockDynamicPenalty.trafficPenaltyMode, presenter.state.dynamicPenalty.trafficPenaltyMode)
-        verify(mockCoreRouter).dynamicPenalty = mockDynamicPenalty
+        verify(mockCoreRouter).setDynamicPenalty(mockDynamicPenalty)
         verify(mockCoreRouter).calculateRoute(eq(mockRoutePlan), listenerCaptor.capture())
 
         val routeList = ArrayList<RouteResult>()

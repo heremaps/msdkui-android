@@ -79,22 +79,24 @@ class MapFragmentWrapper : RetainFragment() {
     }
 
     private val gestureListener = object : MapGesture.OnGestureListener.OnGestureListenerAdapter() {
-        override fun onLongPressEvent(point: PointF?): Boolean {
+        override fun onLongPressEvent(point: PointF): Boolean {
             handleEvent(point)
             return true
         }
 
-        override fun onTapEvent(point: PointF?): Boolean {
+        override fun onTapEvent(point: PointF): Boolean {
             handleEvent(point)
             return true
         }
 
-        private fun handleEvent(point: PointF?) {
-            map?.pixelToGeo(point)?.run {
-                state.mapMarker?.coordinate = this
-                state.mapContainer?.addMapObject(state.mapMarker)
+        private fun handleEvent(point: PointF) {
+            map?.pixelToGeo(point)?.run pixelCoordinates@ {
+                state.mapMarker?.run mapMarker@ {
+                    coordinate = this@pixelCoordinates
+                    state.mapContainer?.addMapObject(this@mapMarker)
+                }
                 fragmentHandler?.post {
-                    listener?.onPointSelectedOnMap(this)
+                    listener?.onPointSelectedOnMap(this@pixelCoordinates)
                 }
             }
         }
@@ -177,8 +179,9 @@ class MapFragmentWrapper : RetainFragment() {
         Log.v(TAG, "Success")
         view?.contentDescription = null
         if (state.mapContainer == null) {
-            state.mapContainer = provider.providesMapContainer()
-            map?.addMapObject(state.mapContainer)
+            val mapContainer = provider.providesMapContainer()
+            state.mapContainer = mapContainer
+            map?.addMapObject(mapContainer)
         }
         if (state.mapMarker == null) {
             state.mapMarker = getMapMarker(R.drawable.ic_add_marker)
@@ -210,9 +213,10 @@ class MapFragmentWrapper : RetainFragment() {
     fun renderRoute(route: Route, withStartFlag: Boolean = true) {
         map?.run {
             clearMap()
-            state.mapRoute = provider.providesMapRoutes(route)
+            val routeFromProvider = provider.providesMapRoutes(route);
+            state.mapRoute = routeFromProvider
             state.routeBoundingBox = route.boundingBox
-            addMapObject(state.mapRoute)
+            addMapObject(routeFromProvider)
             if (withStartFlag) {
                 state.mapContainer?.addMapObject(getMapMarker(R.drawable.ic_route_start, route.start))
             }
@@ -227,16 +231,18 @@ class MapFragmentWrapper : RetainFragment() {
      * @return true if zoomTo function has been executed, otherwise false
      */
     internal fun zoomToBoundingBoxWithMargins(box: GeoBoundingBox?): Boolean {
-        box != null ?: map?.run {
-            val newWidth = width - 2 * maxOf(state.zoomLeftMargin, state.zoomRightMargin)
-            val newHeight = height - 2 * maxOf(state.zoomTopMargin, state.zoomBottomMargin)
-            if (newWidth > 0 && newHeight > 0) {
-                zoomTo(box,
-                        newWidth,
-                        newHeight,
-                        Map.Animation.LINEAR,
-                        Map.MOVE_PRESERVE_ORIENTATION)
-                return true
+        box?.let {
+            map?.run {
+                val newWidth = width - 2 * maxOf(state.zoomLeftMargin, state.zoomRightMargin)
+                val newHeight = height - 2 * maxOf(state.zoomTopMargin, state.zoomBottomMargin)
+                if (newWidth > 0 && newHeight > 0) {
+                    zoomTo(it,
+                            newWidth,
+                            newHeight,
+                            Map.Animation.LINEAR,
+                            Map.MOVE_PRESERVE_ORIENTATION)
+                    return true
+                }
             }
         }
         return false
@@ -340,7 +346,7 @@ class MapFragmentWrapper : RetainFragment() {
         if (state.gestureEnable) {
             mapView?.mapGesture?.addOnGestureListener(gestureListener, Int.MAX_VALUE, true)
         } else {
-            state.mapContainer?.removeMapObject(state.mapMarker)
+            state.mapMarker?.let { state.mapContainer?.removeMapObject(it) }
             mapView?.mapGesture?.removeOnGestureListener(gestureListener)
         }
     }

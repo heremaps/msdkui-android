@@ -86,7 +86,7 @@ object MapActions: CoreActions() {
                     view.getLocationOnScreen(screenPos)
                     val screenX: Float
                     val screenY: Float
-                    map.setCenter(GeoCoordinate(lat, lng), Map.Animation.NONE)
+                    map!!.setCenter(GeoCoordinate(lat, lng), Map.Animation.NONE)
                     screenX = screenPos[0] + view.width / 2f
                     screenY = screenPos[1] + view.height / 2f
                     floatArrayOf(screenX, screenY)

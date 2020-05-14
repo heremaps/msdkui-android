@@ -151,12 +151,14 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
     private fun doNavigationSettings(map: Map) {
         navigationManager?.apply {
             setMap(map)
-            if (runningState != NavigationManager.NavigationState.RUNNING && !didGuidanceFinished) {
-                mapUpdateMode = NavigationManager.MapUpdateMode.POSITION
-                if (isSimulation) {
-                    simulate(route, simulationSpeed)
-                } else {
-                    startNavigation(route)
+            route?.let {
+                if (runningState != NavigationManager.NavigationState.RUNNING && !didGuidanceFinished) {
+                    mapUpdateMode = NavigationManager.MapUpdateMode.POSITION
+                    if (isSimulation) {
+                        simulate(it, simulationSpeed)
+                    } else {
+                        startNavigation(it)
+                    }
                 }
             }
         }
@@ -211,7 +213,7 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
     private fun renderRoute() {
         route?.run {
             mapFragment?.renderRoute(this@run, false)
-            mapFragment?.map?.setCenter(start, Map.Animation.LINEAR)
+            start?.let { mapFragment?.map?.setCenter(it, Map.Animation.LINEAR) }
         }
     }
 

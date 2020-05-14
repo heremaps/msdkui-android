@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.here.android.mpa.common.PositioningManager
 import com.here.android.mpa.guidance.NavigationManager
 import com.here.android.mpa.guidance.VoiceCatalog
+import com.here.android.mpa.guidance.VoiceSkin
 import com.here.msdkuiapp.R
 import com.here.msdkuiapp.guidance.GuidanceRouteSelectionActivity
 import com.here.msdkuiapp.guidance.SingletonHelper.navigationManager
@@ -90,6 +91,8 @@ class LandingActivityTest : BaseTest() {
         val mockVoiceCatalog = mock(VoiceCatalog::class.java)
         navigationManager = mock(NavigationManager::class.java, RETURNS_DEEP_STUBS)
         `when`(mockVoiceCatalog.isLocalVoiceSkin(ArgumentMatchers.anyLong())).thenReturn(false)
+        val mockVoiceSkin = mock(VoiceSkin::class.java)
+        `when`(mockVoiceCatalog.getLocalVoiceSkin(ArgumentMatchers.anyLong())).thenReturn(mockVoiceSkin)
         val voiceCatalogDownloadListenerCapture = argumentCaptor<VoiceCatalog.OnDownloadDoneListener>()
         activity.downloadVoicePackage(mockVoiceCatalog)
         verify(mockVoiceCatalog).downloadVoice(ArgumentMatchers.anyLong(), captureSafe(voiceCatalogDownloadListenerCapture))

@@ -32,6 +32,7 @@ import com.here.msdkuiapp.common.Provider
 import com.here.msdkuiapp.guidance.GuidanceActivity
 import com.here.msdkuiapp.guidance.SingletonHelper.appPositioningManager
 import com.here.msdkuiapp.msdkuiApplication
+import java.util.Date
 
 /**
  * Presenter class to handle logic of [RoutePreviewFragment].
@@ -86,13 +87,15 @@ class RoutePreviewFragmentPresenter() : BasePresenter<GuidanceContracts.RoutePre
     fun doSetup() {
         contract?.onProgress(true)
         state.route?.run {
-            provider.providesReverseGeocodeRequest(destination).execute { location: Location?, errorCode: ErrorCode? ->
-                if (errorCode == ErrorCode.NONE) {
-                    state.destination = WaypointEntry(provider.providesRouteWaypoint(destination), location?.address?.text
-                            ?: "")
+            destination?.let {
+                provider.providesReverseGeocodeRequest(it).execute { location: Location?, errorCode: ErrorCode? ->
+                    if (errorCode == ErrorCode.NONE) {
+                        state.destination = WaypointEntry(provider.providesRouteWaypoint(it), location?.address?.text
+                                ?: "")
+                    }
+                    contract?.onProgress(false)
+                    populateUI()
                 }
-                contract?.onProgress(false)
-                populateUI()
             }
             return
         }
@@ -106,7 +109,10 @@ class RoutePreviewFragmentPresenter() : BasePresenter<GuidanceContracts.RoutePre
         val router = provider.providesCoreRouter()
         router.dynamicPenalty.trafficPenaltyMode = Route.TrafficPenaltyMode.OPTIMAL
         val routePlan = provider.provideRoutePlan()
-        routePlan.routeOptions.transportMode = RouteOptions.TransportMode.CAR
+        routePlan.routeOptions = with(routePlan.routeOptions) {
+            transportMode = RouteOptions.TransportMode.CAR
+            setTime(Date(), RouteOptions.TimeType.DEPARTURE)
+        }
         state.cordsList.forEach { waypoint -> routePlan.addWaypoint(waypoint) }
         router.calculateRoute(routePlan, object : CoreRouter.Listener {
             override fun onCalculateRouteFinished(inputList: List<RouteResult>, routingError: RoutingError) {

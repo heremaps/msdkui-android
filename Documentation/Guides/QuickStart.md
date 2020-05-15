@@ -48,7 +48,7 @@ If you want to build your own app, it may be useful to follow the guide below wh
 Let's start by creating a new Android app. If you want to integrate the HERE Mobile SDK UI Kit into an existing app, you can skip this step. No HERE Mobile SDK or HERE Mobile SDK UI Kit specific code is involved here.
 If you are new to Android development, please follow the guides on [developer.android.com](https://developer.android.com/guide/) to help you get started with the first steps.
 
-For this Quick Start app, we used Android Studio 3.4.2. The minimum supported Android Studio version you can use for development is 3.2 (higher versions are recommended).
+For this Quick Start app, we used Android Studio 3.6.3.
 
 - Start Android Studio and select _Start a new Android Studio project_.
 - Select an Application name of your choice, for example _HelloMSDKUI_.
@@ -168,17 +168,17 @@ As the HERE SDK needs to download and store map data, we must establish a map se
 <service
   android:name="com.here.android.mpa.service.MapService"
   android:label="{YOUR_LABEL_NAME}"
-  android:exported="false">
+  android:exported="false"
+  android:process="global.Here.Map.Service.v3">
   <intent-filter>
-    <action android:name="{YOUR_INTENT_NAME}">
-    </action>
+    <action android:name="com.here.android.mpa.service.MapService.v3" />
   </intent-filter>
 </service>
 ```
 
-For example, as label use _"ExampleMapService"_ and as intent name you may use: _"com.here.msdkui.example.MapService"_.
+For example, as label use _"ExampleMapService"_.
 
->**Note:** After editing `AndroidManifest.xml`, add a call to `MapSettings.setIsolatedDiskCacheRootPath(String path, String intent)` with the desired cache location and the custom intent name. It is recommended to set the disk cache location under your application directory if you do not want the cache to persist after your app is uninstalled. You can find an example [here](https://developer.here.com/documentation/android-premium/dev_guide/topics/map-service.html) or in the example app's `MapInitializer` helper class.
+>**Note:** After editing `AndroidManifest.xml`, add a call to `MapSettings.setIsolatedDiskCacheRootPath(String path)` with the desired cache location. It is recommended to set the disk cache location under your application directory if you do not want the cache to persist after your app is uninstalled. You can find an example [here](https://developer.here.com/documentation/android-premium/dev_guide/topics/map-service.html) or in the example app's `MapInitializer` helper class.
 
 Finally make sure to click the _"Sync Project with Gradle Files"_-button. If all goes well, you should see the libraries embedded into your project. Switch to _"Project view"_ and expand the _"External Libraries"_-section. Make sure the following entries are shown:
 - `HERE-sdk:@aar`

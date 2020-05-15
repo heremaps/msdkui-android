@@ -69,6 +69,9 @@ class GuidanceRouteSelectionCoordinatorTest : BaseTest() {
     @Mock
     private lateinit var mockMap: Map
 
+    @Mock
+    private lateinit var mockGeoCoordinate: GeoCoordinate
+
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
@@ -122,6 +125,7 @@ class GuidanceRouteSelectionCoordinatorTest : BaseTest() {
 
     @Test
     fun testOnPositionAvailable() {
+        `when`(mockPositioningManager.customLocation).thenReturn(mockGeoCoordinate)
         selectionCoordinator.onPositionAvailable()
         `when`(mockPositioningManager.isValidPosition).thenReturn(true)
 
@@ -135,6 +139,7 @@ class GuidanceRouteSelectionCoordinatorTest : BaseTest() {
 
         // required for verifyOnPositionAvailable()
         `when`(mockPositioningManager.isValidPosition).thenReturn(true)
+        `when`(mockPositioningManager.customLocation).thenReturn(mockGeoCoordinate)
 
         selectionCoordinator.onBackPressed()
 

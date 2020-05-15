@@ -1,4 +1,4 @@
-# MSDKUI (HERE Mobile SDK UI Kit) Contribution Guide
+# HERE Mobile SDK UI Kit (MSDKUI) Contribution Guide
 
 This guide is for developers who want to contribute to the MSDKUI codebase, build the MSDKUI library, or run the demo application on their local machines. For using the `MSDKUILib.aar` on your own project, or running the accompanying example apps, please check the [QuickStart](QuickStart.md) guide.
 
@@ -91,7 +91,7 @@ When you register on [developer.here.com](https://developer.here.com), the regis
 
 ### Building and Running the Demo
 
-In order to build and to run the demo app with Android Studio, you need to integrate the HERE Mobile SDK (Premium) version 3.14. Additionally, you need to integrate the MSDKUI library.
+In order to build and to run the demo app with Android Studio, you need to integrate the HERE Mobile SDK (Premium) version 3.15. Additionally, you need to integrate the HERE Mobile SDK UI Kit library.
 
 - Put the HERE-sdk.aar file from your HERE SDK package and the HERE UI Kit library to _MSDKUIDemo/libs/_.
 - Open and build the project located at _MSDKUIDemo/_ in Android Studio.

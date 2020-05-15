@@ -1,5 +1,5 @@
 # Quick Start
-Thank you for using the MSDKUI (HERE Mobile SDK UI Kit). In this Quick Start guide, we are going to introduce you to the MSDKUI and show you how easy it is to get started. As a very first example, we'll also develop a "Hello HERE Mobile SDK UI Kit" Android application as part of this guide. For more examples and in-depth information on how to work with the MSDKUI framework, please refer to the [User Guide](UserGuide.md).
+Thank you for using the HERE Mobile SDK UI Kit (MSDKUI). In this Quick Start guide, we are going to introduce you to the MSDKUI and show you how easy it is to get started. As a very first example, we'll also develop a "Hello HERE Mobile SDK UI Kit" Android application as part of this guide. For more examples and in-depth information on how to work with the MSDKUI framework, please refer to the [User Guide](UserGuide.md).
 
 ## Contents
 
@@ -18,7 +18,7 @@ Thank you for using the MSDKUI (HERE Mobile SDK UI Kit). In this Quick Start gui
 ## How to run the example apps
 If you just want to try out the accompanying examples, please perform the following steps:
 
-- Include the HERE Mobile SDK 3.14, Premium, and the HERE Mobile SDK UI Kit: Copy the `HERE-sdk.aar` and the `MSDKUILib-release.aar` to the example's _app/libs_ folder (if not done already, [build the MSDKUILib](ContributionGuide.md#building-the-msdkui-library) via Gradle from folder _MSDKUIKit_ and make sure to copy the `HERE-sdk.aar` also to _MSDKUIKit/libs/_. Build the framework by executing: `./gradlew clean :MSDKUILib:assembleRelease`).
+- Include the HERE Mobile SDK 3.15, Premium, and the HERE Mobile SDK UI Kit: Copy the `HERE-sdk.aar` and the `MSDKUILib-release.aar` to the example's _app/libs_ folder (if not done already, [build the MSDKUILib](ContributionGuide.md#building-the-here-ui-kit-library) via Gradle from folder _MSDKUIKit_ and make sure to copy the `HERE-sdk.aar` also to _MSDKUIKit/libs/_. Build the framework by executing: `./gradlew clean :MSDKUILib:assembleRelease`).
 - Open the project in Android Studio.
 - Add the credentials for the HERE Mobile SDK to the `AndroidManifest.xml` file:
 ```xml

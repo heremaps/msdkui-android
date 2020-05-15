@@ -108,13 +108,13 @@ class LandingActivity : BaseActivity() {
         if (!voiceCatalog.isLocalVoiceSkin(voiceSkinId)) {
             voiceCatalog.downloadVoice(voiceSkinId) { error ->
                 if (error == VoiceCatalog.Error.NONE) {
-                    navigationManager!!.voiceGuidanceOptions.voiceSkin = voiceCatalog.getLocalVoiceSkin(voiceSkinId)
+                    navigationManager!!.voiceGuidanceOptions.setVoiceSkin(voiceCatalog.getLocalVoiceSkin(voiceSkinId)!!)
                 } else {
                     Log.e(LandingActivity::class.java.name, "Error while downloading voice package $error")
                 }
             }
         } else {
-            navigationManager!!.voiceGuidanceOptions.voiceSkin = voiceCatalog.getLocalVoiceSkin(voiceSkinId)
+            navigationManager!!.voiceGuidanceOptions.setVoiceSkin(voiceCatalog.getLocalVoiceSkin(voiceSkinId)!!)
         }
     }
 }

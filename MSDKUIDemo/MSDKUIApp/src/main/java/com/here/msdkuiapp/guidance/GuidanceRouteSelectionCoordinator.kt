@@ -79,7 +79,7 @@ class GuidanceRouteSelectionCoordinator(private val context: Context, fragmentMa
     override fun onPositionAvailable() {
         appPositioningManager?.run {
             mapFragment?.showPositionIndicator()
-            mapFragment?.map?.setCenter(customLocation, Map.Animation.LINEAR)
+            customLocation?.let { mapFragment?.map?.setCenter(it, Map.Animation.LINEAR) }
         }
         mapFragment?.onTouch(true, this)
     }

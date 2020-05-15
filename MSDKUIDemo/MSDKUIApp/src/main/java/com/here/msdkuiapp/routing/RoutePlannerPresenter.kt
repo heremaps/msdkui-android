@@ -156,7 +156,7 @@ class RoutePlannerPresenter : BasePresenter<RoutingContracts.RoutePlanner>() {
         }
         val penalty = provider.providesDynamicPenalty()  // passing direct object get modified by sdk.
         penalty.trafficPenaltyMode = state.dynamicPenalty.trafficPenaltyMode
-        router.dynamicPenalty = penalty
+        router.setDynamicPenalty(penalty)
         router.calculateRoute(routePlan, object : CoreRouter.Listener {
             override fun onCalculateRouteFinished(inputList: List<RouteResult>, routingError: RoutingError) {
                 contract?.onProgress(false)

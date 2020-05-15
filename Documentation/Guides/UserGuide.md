@@ -1,11 +1,11 @@
-# MSDKUI (HERE Mobile SDK UI Kit) - User Guide
-Are you looking for a framework that lets you build feature-rich and compelling user interfaces on top of the HERE Mobile SDK, _Premium_ edition? Then the MSDKUI (HERE Mobile SDK UI Kit) for iOS and Android is the perfect companion for you.
+# HERE Mobile SDK UI Kit (MSDKUI) - User Guide
+Are you looking for a framework that lets you build feature-rich and compelling user interfaces on top of the HERE Mobile SDK, _Premium_ edition? Then the HERE Mobile SDK UI Kit (MSDKUI) for iOS and Android is the perfect companion for you.
 
 This user guide describes the general workflow using the HERE Mobile SDK UI Kit and its components in detail. If you are looking for a quick overview, please look at our [README](../../README.md), our [Quick Start](QuickStart.md) guide or the latest _Release Notes_.
 
 ## Contents
 
-- [Why use the MSDKUI?](#why-use-the-here-msdkui)
+- [Why use the MSDKUI?](#why-use-the-msdkui)
 - [Where to start?](#where-to-start)
 - [How to read this guide?](#how-to-read-this-guide)
 - [Getting started - A MSDKUI Primer](#getting-started---a-msdkui-primer)

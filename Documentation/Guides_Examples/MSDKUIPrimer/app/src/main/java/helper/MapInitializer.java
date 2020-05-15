@@ -42,7 +42,6 @@ public class MapInitializer {
 
     private static final String LOG_TAG = MapInitializer.class.getName();
     private static final int PERMISSIONS_REQUEST_CODE = 42;
-    private static final String MAP_SERVICE_INTENT_NAME = "com.here.msdkui.example.MapService";
 
     private final ResultListener resultListener;
     private final AppCompatActivity activity;
@@ -66,7 +65,7 @@ public class MapInitializer {
     private void initializeMap() {
         String cacheLocation =
                 activity.getApplicationContext().getFilesDir().getPath() + File.separator + "example_maps_cache";
-        if (MapSettings.setIsolatedDiskCacheRootPath(cacheLocation, MAP_SERVICE_INTENT_NAME)) {
+        if (MapSettings.setIsolatedDiskCacheRootPath(cacheLocation)) {
             AndroidXMapFragment mapFragment = (AndroidXMapFragment) activity.getSupportFragmentManager().findFragmentById(R.id.mapFragment);
             mapFragment.init(error -> {
                 if (error == OnEngineInitListener.Error.NONE) {

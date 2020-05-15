@@ -56,9 +56,10 @@
         <service
             android:name="com.here.android.mpa.service.MapService"
             android:exported="false"
-            android:label="ExampleMapService">
+            android:label="ExampleMapService"
+            android:process="global.Here.Map.Service.v3">
             <intent-filter>
-                <action android:name="com.here.msdkui.example.MapService" />
+                <action android:name="com.here.android.mpa.service.MapService.v3" />
             </intent-filter>
         </service>
 

@@ -1,9 +1,9 @@
-# What is the HERE Mobile SDK UI Kit?
-The HERE Mobile SDK UI Kit is a framework that provides modular and highly customizable user interface components that can be used on top of the HERE Mobile SDKs for iOS and Android ([Premium edition](https://developer.here.com/develop/mobile-sdks)).
+# What is the HERE Mobile SDK UI Kit (MSDKUI)?
+The HERE Mobile SDK UI Kit (MSDKUI) is a framework that provides modular and highly customizable user interface components that can be used on top of the HERE Mobile SDKs for iOS and Android ([Premium Edition](https://developer.here.com/develop/mobile-sdks)).
 
 ![](Documentation/Guides/Images/UIKit_Intro.png)
 
-Rapidly build beautiful UIs for common use cases and scenarios within minutes. Version 2.x of the HERE Mobile SDK UI Kit will mainly focus on route planning, maneuver details and guidance. More components will follow subsequently with the next releases.
+Rapidly build beautiful UIs for common use cases and scenarios within minutes. Version 2.x of the HERE Mobile SDK UI Kit (MSDKUI) will mainly focus on route planning, maneuver details and guidance. More components will follow subsequently with the next releases.
 
 ## Feature List
 - Modular UI building blocks
@@ -12,10 +12,10 @@ Rapidly build beautiful UIs for common use cases and scenarios within minutes. V
 - Full support for all device orientations and screen sizes
 - Already localized for 14+ languages
 - Full accessibility support including voice over for customers with special needs
-- Designed for the HERE Mobile SDK (iOS and Android, Premium edition)
+- Designed for the HERE Mobile SDKs for iOS and Android ([Premium Edition](https://developer.here.com/develop/mobile-sdks)).
 
 ## Component Overview
-The HERE Mobile SDK UI Kit comes with various high- and low-level components supporting core use cases around the HERE Mobile SDK. Along with these components we deliver a rich set of supportive controls and tailored data structures to further reduce your development cost. All components can be freely arranged in your layouts and are highly customizable. More components will be delivered as part of the next releases. We already provide UI-centric support for the following features:
+The HERE Mobile SDK UI Kit (MSDKUI) comes with various high- and low-level components supporting core use cases around the HERE Mobile SDK. Along with these components we deliver a rich set of supportive controls and tailored data structures to further reduce your development cost. All components can be freely arranged in your layouts and are highly customizable. More components will be delivered as part of the next releases. We already provide UI-centric support for the following features:
 
 ##### Route Planner
 - Waypoint list (start,  stop, incl. support for stopovers, drag & drop sorting)
@@ -59,7 +59,7 @@ The HERE Mobile SDK UI Kit is already fully localized for the following language
 - Vietnamese
 
 ## Supported platforms
-The HERE Mobile SDK UI Kit components are available for Android and [iOS](https://github.com/heremaps/msdkui-ios). The required HERE Mobile SDK is Version 3.15, only the _Premium edition_ is supported. The HERE Mobile SDK UI Kit supports scooter routing. Please, make sure to extend your license key if you want to include scooter routing in your app.
+The HERE Mobile SDK UI Kit (MSDKUI) components are available for Android and [iOS](https://github.com/heremaps/msdkui-ios). The required HERE Mobile SDK is Version 3.15, only the _Premium edition_ is supported. The HERE Mobile SDK UI Kit supports scooter routing. Please, make sure to extend your license key if you want to include scooter routing in your app.
 
 **Android Environment**
 - Minimum supported API version is 19 (KitKat), allowing you to reach more than 95% of all Android devices.
@@ -68,7 +68,7 @@ The HERE Mobile SDK UI Kit components are available for Android and [iOS](https:
 - [AndroidX](https://developer.android.com/jetpack/androidx) is required.
 
 ## Quick Start
-Please have a look at our [Quick Start](Documentation/Guides/QuickStart.md) tutorial to see how easy it is to integrate the HERE Mobile SDK UI Kit into your own apps. More information on how to use the HERE Mobile SDK UI Kit can be found in our [User Guide](Documentation/Guides/UserGuide.md). Information on how to contribute to this project can be found in our [Contribution Guide](Documentation/Guides/ContributionGuide.md).
+Please have a look at our [Quick Start](Documentation/Guides/QuickStart.md) tutorial to see how easy it is to integrate the HERE Mobile SDK UI Kit (MSDKUI) into your own apps. More information on how to use the HERE Mobile SDK UI Kit (MSDKUI) can be found in our [User Guide](Documentation/Guides/UserGuide.md). Information on how to contribute to this project can be found in our [Contribution Guide](Documentation/Guides/ContributionGuide.md).
 
 ## Documentation
 - The latest API Reference can be found [here](https://heremaps.github.io/msdkui-android/).
@@ -77,7 +77,7 @@ Please have a look at our [Quick Start](Documentation/Guides/QuickStart.md) tuto
 - A more complex and fully functional _demo app_ can be found in this repository.
 
 ## Get in Touch
-We are happy to hear your feedback. Please [contact us](https://developer.here.com/contact-us) for any questions, suggestions or improvements. Thank you for your using the HERE Mobile SDK UI Kit.
+We are happy to hear your feedback. Please [contact us](https://developer.here.com/contact-us) for any questions, suggestions or improvements. Thank you for your using the HERE Mobile SDK UI Kit (MSDKUI).
 
 ## License
 Copyright (c) 2017-2020 HERE Europe B.V.

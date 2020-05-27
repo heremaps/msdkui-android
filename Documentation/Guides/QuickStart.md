@@ -18,7 +18,7 @@ Thank you for using the HERE Mobile SDK UI Kit (MSDKUI). In this Quick Start gui
 ## How to run the example apps
 If you just want to try out the accompanying examples, please perform the following steps:
 
-- Include the HERE Mobile SDK 3.15, Premium Edition, and the HERE Mobile SDK UI Kit (MSDKUI): Copy the `HERE-sdk.aar` and the `MSDKUILib-release.aar` to the example's _app/libs_ folder (if not done already, [build the MSDKUILib](ContributionGuide.md#building-the-here-ui-kit-library) via Gradle from folder _MSDKUIKit_ and make sure to copy the `HERE-sdk.aar` also to _MSDKUIKit/libs/_. Build the framework by executing: `./gradlew clean :MSDKUILib:assembleRelease`).
+- Include the HERE SDK 3.15, Premium Edition, and the HERE Mobile SDK UI Kit (MSDKUI): Copy the `HERE-sdk.aar` and the `MSDKUILib-release.aar` to the example's _app/libs_ folder (if not done already, [build the MSDKUILib](ContributionGuide.md#building-the-here-ui-kit-library) via Gradle from folder _MSDKUIKit_ and make sure to copy the `HERE-sdk.aar` also to _MSDKUIKit/libs/_. Build the framework by executing: `./gradlew clean :MSDKUILib:assembleRelease`).
 - Open the project in Android Studio.
 - Add the credentials for the HERE Mobile SDK to the `AndroidManifest.xml` file:
 ```xml
@@ -64,7 +64,7 @@ Now let the Gradle sync finish and _run_ the project. Select an emulator or a re
 >**Note:** While all of the functionality of the HERE Mobile SDK UI Kit (MSDKUI) is accessible from the emulator, usage of a real device is strongly recommended. The overall performance will be better, and some features like gestures are just easier to use on multi-touch-enabled hardware.
 
 ### Integrating the HERE Mobile SDK and the HERE Mobile SDK UI Kit (MSDKUI)
-Now that we have a working Android app, we can start integrating the HERE SDK and the HERE Mobile SDK UI Kit (MSDKUI) library. Make sure you have downloaded the latest HERE Mobile SDK release package including the library AAR artefact usually called `HERE-sdk.aar`.
+Now that we have a working Android app, we can start integrating the HERE Mobile SDK and the HERE Mobile SDK UI Kit (MSDKUI) library. Make sure you have downloaded the latest HERE Mobile SDK release package including the library AAR artefact usually called `HERE-sdk.aar`.
 
 As a next step, we will build the HERE Mobile SDK UI Kit library (MSDKUILib):
 - Put the `HERE-sdk.aar` file from your HERE SDK package to _MSDKUI-Android/MSDKUIKit/libs/_.
@@ -76,7 +76,7 @@ The built HERE Mobile SDK UI Kit (MSDKUI) AAR is the located in your new _MSDKUI
 
 Now you should have two binaries: `HERE-sdk.aar` and `MSDKUILib-release.aar`. Copy both to the _libs_ folder of your Android project. Usually the path is inside the app folder, for example: `HelloMSDKUI/app/libs`.
 
-More details on integrating the HERE Mobile SDK can be found on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/quick-start.html). For this Quick Start guide, we will integrate the HERE SDK together with the MSDKUI lib. The steps are the same as shown on developer.here.com, except that we integrate the HERE Mobile SDK UI Kit (MSDKUI) on top.
+More details on integrating the HERE Mobile SDK can be found on [developer.here.com](https://developer.here.com/documentation/android-premium/dev_guide/topics/quick-start.html). For this Quick Start guide, we will integrate the HERE Mobile SDK together with the MSDKUI lib. The steps are the same as shown on developer.here.com, except that we integrate the HERE Mobile SDK UI Kit (MSDKUI) on top.
 
 ### Gradle Setup
 Within Android Studio, open the _app-level_ `build.gradle` file (to be found under the app folder) and configure the repositories for your project to use a flat hierarchy:
@@ -127,9 +127,9 @@ Overwrite the default `styles.xml` (to be found in `res/values`) to set a new ba
 Note that this step is required even if you don't plan to use custom themes. The Add your first HERE Mobile SDK UI Kit (MSDKUI) component requires `MSDKUIDarkTheme` as parent theme for its components.
 
 ### Setting your HERE Mobile SDK credentials
-The HERE Mobile SDK (Premium Edition) must be authenticated by providing a set of credentials specific for your project. If you don't know your credentials, please ask your HERE stakeholder or register on [developer.here.com](https://developer.here.com) and create new ones.
+The HERE SDK (Premium Edition) must be authenticated by providing a set of credentials specific for your project. If you don't know your credentials, please ask your HERE stakeholder or register on [developer.here.com](https://developer.here.com) and create new ones.
 
-In order to enter the app id, app code and license key and to provide these to the HERE SDK, please open the `AndroidManifest`-file and edit the following entries. Note that the `meta-data` tags should be nested under the `application`-tag.
+In order to enter the app id, app code and license key and to provide these to the HERE Mobile SDK, please open the `AndroidManifest`-file and edit the following entries. Note that the `meta-data` tags should be nested under the `application`-tag.
 
 ```xml
         <meta-data
@@ -163,7 +163,7 @@ As a minimum requirement we need access for storage and network, since the HERE 
 android:hardwareAccelerated="true"
 ```
 
-As the HERE SDK needs to download and store map data, we must establish a map service. Please add the following service nested under the `application`-tag:
+As the HERE Mobile SDK needs to download and store map data, we must establish a map service. Please add the following service nested under the `application`-tag:
 ```xml
 <service
   android:name="com.here.android.mpa.service.MapService"

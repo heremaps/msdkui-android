@@ -1,5 +1,5 @@
 # HERE Mobile SDK UI Kit (MSDKUI) - User Guide
-Are you looking for a framework that lets you build feature-rich and compelling user interfaces on top of the HERE Mobile SDK, _Premium_ Edition? Then the HERE Mobile SDK UI Kit (MSDKUI) for iOS and Android is the perfect companion for you.
+Are you looking for a framework that lets you build feature-rich and compelling user interfaces on top of the HERE SDK, _Premium_ Edition? Then the HERE Mobile SDK UI Kit (MSDKUI) for iOS and Android is the perfect companion for you.
 
 This user guide describes the general workflow using the HERE Mobile SDK UI Kit (MSDKUI) and its components in detail. If you are looking for a quick overview, please look at our [README](../../README.md), our [Quick Start](QuickStart.md) guide or the latest _Release Notes_.
 
@@ -297,7 +297,7 @@ The screenshot shows how the updated `MainActivity` could look like:
 </p></center>
 
 ## Implementing the route details screen
-In the previous screen the user was able to calculate a route based on her or his waypoint selection and a suitable route mode. Now we want to show a summary for the found routes and their maneuvers on a new screen. As described above, we will show this in the `RouteDetailsActivity` of our HERE Mobile SDK UI Kit (MSDKUI) Primer example app. The `RouteDetailsActivity` controller holds two HERE Mobile SDK UI Kit (MSDKUI) components:
+In the previous screen the user was able to calculate a route based on her or his waypoint selection and a suitable route mode. Now we want to show a summary of the routes found and their maneuvers on a new screen. As described above, we will show this in the `RouteDetailsActivity` of our HERE Mobile SDK UI Kit (MSDKUI) Primer example app. The `RouteDetailsActivity` controller holds two HERE Mobile SDK UI Kit (MSDKUI) components:
 - `RouteDescriptionList`: Shows all found routes as a summary in a scrollable list
 - `ManeuverList`: Shows all maneuvers belonging to a route
 

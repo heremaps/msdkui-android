@@ -68,7 +68,7 @@ Switch to command line and navigate to the _MSDKUIKit_ folder. Execute: `./gradl
 
 ### Generating a unit test coverage report
 
-Execute `/gradlew :MSDKUILib:testDebugUnitTest :MSDKUILib:jacocoTestDebugReport` to run all unit tests _and_ to generate a coverage report. The report wil be available in _MSDKUILib/build/reports/jacoco/jacocoTestDebugReport_. Open `index.html` to see an overview of the current code coverage.
+Execute `/gradlew :MSDKUILib:testDebugUnitTest :MSDKUILib:jacocoTestDebugReport` to run all unit tests _and_ to generate a coverage report. The report will be available in _MSDKUILib/build/reports/jacoco/jacocoTestDebugReport_. Open `index.html` to see an overview of the current code coverage.
 
 >**Note:** To generate the coverage report from within Android Studio, execute the Gradle Task from the "Tools Window": `MSDKUILib -> Tasks -> reporting -> jacocoTestDebugReport` (right-click and run).
 
@@ -91,7 +91,7 @@ When you register on [developer.here.com](https://developer.here.com), the regis
 
 ### Building and Running the Demo
 
-In order to build and to run the demo app with Android Studio, you need to integrate the HERE Mobile SDK (Premium) version 3.15. Additionally, you need to integrate the MSDKUI library.
+In order to build and to run the demo app with Android Studio, you need to integrate the HERE Mobile SDK (Premium Edition) version 3.15. Additionally, you need to integrate the MSDKUI library.
 
 - Put the HERE-sdk.aar file from your HERE SDK package and the MSDKUI library to _MSDKUIDemo/libs/_.
 - Open and build the project located at _MSDKUIDemo/_ in Android Studio.
@@ -107,7 +107,7 @@ Switch to command line and navigate to the _MSDKUIDemo_ folder. Execute: `./grad
 
 ### Generating a unit test coverage report
 
-Execute `/gradlew :MSDKUIApp:testDebugUnitTest :MSDKUIApp:jacocoTestDebugReport` to run all unit tests _and_ to generate a coverage report. The report wil be available in _MSDKUIApp/build/reports/jacoco/jacocoTestDebugReport_. Open `index.html` to see an overview of the current code coverage.
+Execute `/gradlew :MSDKUIApp:testDebugUnitTest :MSDKUIApp:jacocoTestDebugReport` to run all unit tests _and_ to generate a coverage report. The report will be available in _MSDKUIApp/build/reports/jacoco/jacocoTestDebugReport_. Open `index.html` to see an overview of the current code coverage.
 
 >**Note:** To generate the coverage report from within Android Studio, execute the Gradle Task from the "Tools Window": `MSDKUIApp -> Tasks -> reporting -> jacocoTestDebugReport` (right-click and run).
 

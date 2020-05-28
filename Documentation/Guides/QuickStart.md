@@ -14,7 +14,6 @@ Thank you for using the HERE Mobile SDK UI Kit (MSDKUI). In this Quick Start gui
 	- [Loading the Map](#loading-the-map)
 
 
-
 ## How to run the example apps
 If you just want to try out the accompanying examples, please perform the following steps:
 

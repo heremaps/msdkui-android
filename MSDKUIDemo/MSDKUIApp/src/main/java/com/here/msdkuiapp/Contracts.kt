@@ -76,6 +76,13 @@ class GuidanceContracts {
          *         true if route maneuvers list is visible, false otherwise.
          */
         fun toggleSteps(listVisible: Boolean)
+
+        /**
+         * Function returns whether root view exists or not.
+         *
+         * @return true if root view exist, otherwise false.
+         */
+        fun rootViewExist() : Boolean
     }
 
     /**

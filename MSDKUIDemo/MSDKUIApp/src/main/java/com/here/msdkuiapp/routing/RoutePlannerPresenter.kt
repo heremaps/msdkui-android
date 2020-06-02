@@ -160,6 +160,12 @@ class RoutePlannerPresenter : BasePresenter<RoutingContracts.RoutePlanner>() {
         router.calculateRoute(routePlan, object : CoreRouter.Listener {
             override fun onCalculateRouteFinished(inputList: List<RouteResult>, routingError: RoutingError) {
                 contract?.onProgress(false)
+                if (state.entryList.isEmpty() || !state.entryList.all { it.isValid }) {
+                    // If entryList is empty or invalid when route calculation ends then it means
+                    // that source waypoints has been cleared so result of this calculation
+                    // should be abandoned.
+                    return
+                }
                 if (inputList.isEmpty()) {
                     Log.e(RoutePlannerPresenter::class.java.name, "Routing failed  ${routingError.name}")
                     coordinatorListener?.onRoutingFailed(getString(R.string.msdkui_app_routeresults_error))

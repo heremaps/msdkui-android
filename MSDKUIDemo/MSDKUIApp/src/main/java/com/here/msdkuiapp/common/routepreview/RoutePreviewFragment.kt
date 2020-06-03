@@ -135,6 +135,10 @@ class RoutePreviewFragment : Fragment(), GuidanceContracts.RoutePreview {
         error_message.text = reason
     }
 
+    override fun rootViewExist(): Boolean {
+        return view != null
+    }
+
     /**
      * Sets destination for route calculation. Route will be calculated between given destination & current position.
      *

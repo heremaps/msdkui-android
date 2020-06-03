@@ -59,6 +59,7 @@ class RoutePreviewFragmentTest : BaseTest() {
         MockitoAnnotations.initMocks(this)
         fragment = RoutePreviewFragment.newInstance()
         fragment.presenter = mockPresenter
+        assertEquals(fragment.rootViewExist(), false)
         addFrag(fragment)
     }
 
@@ -127,6 +128,11 @@ class RoutePreviewFragmentTest : BaseTest() {
             assertThat(description.visibility, `is`(View.INVISIBLE))
             assertThat(error_message.visibility, `is`(View.VISIBLE))
         }
+    }
+
+    @Test
+    fun testRootViewExist() {
+        assertEquals(fragment.rootViewExist(), true)
     }
 
     @Test

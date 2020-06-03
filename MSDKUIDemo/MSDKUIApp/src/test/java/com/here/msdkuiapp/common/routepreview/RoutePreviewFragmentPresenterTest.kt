@@ -209,6 +209,7 @@ class RoutePreviewFragmentPresenterTest : BaseTest() {
         verify(mockRoutePreview).onProgress(visible = true)
         verify(mockProvider).providesReverseGeocodeRequest(anySafe())
         verify(mockReq).execute(captor.capture())
+        `when`(mockRoutePreview.rootViewExist()).thenReturn(true)
         captor.value.onCompleted(mock(Location::class.java, RETURNS_DEEP_STUBS), ErrorCode.NONE)
         verify(mockRoutePreview).onProgress(eq(false))
         verify(mockRoutePreview).populateUI(anySafe(), anySafe(), anyBoolean(), anyBoolean())

@@ -18,6 +18,7 @@ package com.here.msdkuiapp.common.routepreview
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.util.Log
 import com.here.android.mpa.routing.*
 import com.here.android.mpa.search.ErrorCode
 import com.here.android.mpa.search.Location
@@ -93,8 +94,13 @@ class RoutePreviewFragmentPresenter() : BasePresenter<GuidanceContracts.RoutePre
                         state.destination = WaypointEntry(provider.providesRouteWaypoint(it), location?.address?.text
                                 ?: "")
                     }
-                    contract?.onProgress(false)
-                    populateUI()
+                    contract?.run {
+                        // Interact with contracts ui only if this ui exist.
+                        if (rootViewExist()) {
+                            onProgress(false)
+                            populateUI()
+                        }
+                    }
                 }
             }
             return
@@ -118,6 +124,7 @@ class RoutePreviewFragmentPresenter() : BasePresenter<GuidanceContracts.RoutePre
             override fun onCalculateRouteFinished(inputList: List<RouteResult>, routingError: RoutingError) {
                 contract?.onProgress(false)
                 if (inputList.isEmpty() || routingError != RoutingError.NONE) {
+                    Log.e(RoutePreviewFragmentPresenter::class.java.name, "Routing failed  ${routingError.name}")
                     state.errorMessage = getString(R.string.msdkui_app_routeresults_error)
                     contract?.routingFailed(state.errorMessage)
                     return

@@ -60,15 +60,6 @@
             android:name=".guidance.GuidanceRouteSelectionActivity"
             android:theme="@style/GuidanceAppTheme" />
 
-        <service
-            android:name="com.here.android.mpa.service.MapService"
-            android:exported="false"
-            android:label="MSDKUIMapService"
-            android:process="global.Here.Map.Service.v3">
-            <intent-filter>
-                <action android:name="com.here.android.mpa.service.MapService.v3"/>
-            </intent-filter>
-        </service>
     </application>
 
 </manifest>

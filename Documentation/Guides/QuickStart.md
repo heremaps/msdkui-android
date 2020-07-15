@@ -162,22 +162,7 @@ As a minimum requirement we need access for storage and network, since the HERE 
 android:hardwareAccelerated="true"
 ```
 
-As the HERE SDK needs to download and store map data, we must establish a map service. Please add the following service nested under the `application`-tag:
-```xml
-<service
-  android:name="com.here.android.mpa.service.MapService"
-  android:label="{YOUR_LABEL_NAME}"
-  android:exported="false"
-  android:process="global.Here.Map.Service.v3">
-  <intent-filter>
-    <action android:name="com.here.android.mpa.service.MapService.v3" />
-  </intent-filter>
-</service>
-```
-
-For example, as label use _"ExampleMapService"_.
-
->**Note:** After editing `AndroidManifest.xml`, add a call to `MapSettings.setIsolatedDiskCacheRootPath(String path)` with the desired cache location. It is recommended to set the disk cache location under your application directory if you do not want the cache to persist after your app is uninstalled. You can find an example [here](https://developer.here.com/documentation/android-premium/dev_guide/topics/map-service.html) or in the example app's `MapInitializer` helper class.
+>**Note:** Additionally you can add a call to `MapSettings.setDiskCacheRootPath(String path)` with the desired cache location. It is recommended to set the disk cache location under your application directory if you do not want the cache to persist after your app is uninstalled. You can find an example [here](https://developer.here.com/documentation/android-premium/dev_guide/topics/map-service.html) or in the example app's `MapInitializer` helper class.
 
 Finally make sure to click the _"Sync Project with Gradle Files"_-button. If all goes well, you should see the libraries embedded into your project. Switch to _"Project view"_ and expand the _"External Libraries"_-section. Make sure the following entries are shown:
 - `HERE-sdk:@aar`

@@ -64,19 +64,16 @@ public class MapInitializer {
     private void initializeMap() {
         String cacheLocation =
                 activity.getApplicationContext().getFilesDir().getPath() + File.separator + "example_maps_cache";
-        if (MapSettings.setIsolatedDiskCacheRootPath(cacheLocation)) {
-            AndroidXMapFragment mapFragment = (AndroidXMapFragment) activity.getSupportFragmentManager().findFragmentById(R.id.mapFragment);
-            mapFragment.init(error -> {
-                if (error == OnEngineInitListener.Error.NONE) {
-                    mapFragment.getPositionIndicator().setVisible(true);
-                    resultListener.onMapInitDone(mapFragment.getMap());
-                } else {
-                    Log.e(LOG_TAG, "Cannot initialize Map Fragment: " + error.getDetails());
-                }
-            });
-        } else {
-            Log.e(LOG_TAG, "Unable to set isolated disk cache path.");
-        }
+        MapSettings.setDiskCacheRootPath(cacheLocation);
+        AndroidXMapFragment mapFragment = (AndroidXMapFragment) activity.getSupportFragmentManager().findFragmentById(R.id.mapFragment);
+        mapFragment.init(error -> {
+            if (error == OnEngineInitListener.Error.NONE) {
+                mapFragment.getPositionIndicator().setVisible(true);
+                resultListener.onMapInitDone(mapFragment.getMap());
+            } else {
+                Log.e(LOG_TAG, "Cannot initialize Map Fragment: " + error.getDetails());
+            }
+        });
     }
 
     private String[] getPermissionsToRequest() {

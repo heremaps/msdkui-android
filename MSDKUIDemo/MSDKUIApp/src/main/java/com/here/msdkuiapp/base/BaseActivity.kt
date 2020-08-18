@@ -18,6 +18,7 @@ package com.here.msdkuiapp.base
 
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.here.android.mpa.common.MapSettings
 import com.here.msdkuiapp.common.AppActionBar
@@ -31,12 +32,18 @@ import java.io.File
  */
 @ContainerOptions(CacheImplementation.NO_CACHE)
 abstract class BaseActivity : AppCompatActivity() {
+    private val TAG = BaseActivity::class.java.name
 
     lateinit var appActionBar: AppActionBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MapSettings.setDiskCacheRootPath(getMapDataPath())
+        try {
+            MapSettings.setDiskCacheRootPath(getMapDataPath())
+        } catch (e: IllegalArgumentException) {
+            Log.e(TAG, "Failed to set disk cache root path", e)
+        }
+
         appActionBar = AppActionBar(this).setUpActionBar()
     }
 

@@ -126,7 +126,7 @@ class RoutingCoordinatorTest : BaseTest() {
     fun testOnWaypointSelectionCancelled() {
         `when`(mockFragmentManager.findFragmentById(R.id.route_top_container)).thenReturn(mockRoutePlannerFragment)
         coordinator.onWaypointSelectionCancelled(null, null)
-        verify(mockRoutePlannerFragment).waypointSelectionCancelled(null, null)
+        verify(mockRoutePlannerFragment).waypointSelectionCancelled(null)
     }
 
     @Test

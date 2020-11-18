@@ -43,7 +43,7 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
     internal val rerouteListener: NavigationManager.RerouteListener =
             object : NavigationManager.RerouteListener() {
                 override fun onRerouteEnd(rerouteResult: RouteResult, error: RoutingError) {
-                    rerouteResult.route?.run {
+                    rerouteResult.route.run {
                         updateRoute(this)
                     }
                 }
@@ -52,7 +52,7 @@ class GuidanceCoordinator(private val context: Context, fragmentManager: Fragmen
     internal val trafficRerouteListener: NavigationManager.TrafficRerouteListener =
             object : NavigationManager.TrafficRerouteListener() {
                 override fun onTrafficRerouted(rerouteResult: RouteResult) {
-                    rerouteResult.route?.run {
+                    rerouteResult.route.run {
                         updateRoute(this)
                     }
                 }

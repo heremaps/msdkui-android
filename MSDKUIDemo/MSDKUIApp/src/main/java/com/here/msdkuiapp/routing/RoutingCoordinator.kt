@@ -76,7 +76,7 @@ class RoutingCoordinator(private val context: Context, fragmentManager: Fragment
     }
 
     override fun onWaypointSelectionCancelled(index: Int?, current: WaypointEntry?) {
-        plannerFragment?.waypointSelectionCancelled(index, current)
+        plannerFragment?.waypointSelectionCancelled(index)
     }
 
     override fun onWaypointSelected(index: Int?, current: WaypointEntry) {

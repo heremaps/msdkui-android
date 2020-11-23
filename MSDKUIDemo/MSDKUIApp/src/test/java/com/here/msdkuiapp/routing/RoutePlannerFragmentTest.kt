@@ -213,20 +213,20 @@ class RoutePlannerFragmentTest : BaseTest() {
         val waypointList = fragment.view!!.waypoint_list
         val entry = mock(WaypointEntry::class.java)
 
-        fragment.waypointSelectionCancelled(null, null)
-        fragment.waypointSelectionCancelled(0, null)
-        fragment.waypointSelectionCancelled(1, null)
+        fragment.waypointSelectionCancelled(null)
+        fragment.waypointSelectionCancelled(0)
+        fragment.waypointSelectionCancelled(1)
         // All above calls should not remove any entry from waypointList because of incorrect
         // index and min waypoint items requirement.
         assertEquals(waypointList.entriesCount, 2)
 
         waypointList.addEntry(entry)
         `when`(entry.isValid).thenReturn(true)
-        fragment.waypointSelectionCancelled(2, entry)
+        fragment.waypointSelectionCancelled(2)
         assertEquals(waypointList.entriesCount, 3)
 
         `when`(entry.isValid).thenReturn(false)
-        fragment.waypointSelectionCancelled(2, entry)
+        fragment.waypointSelectionCancelled(2)
         assertEquals(waypointList.entriesCount, 2)
     }
 }

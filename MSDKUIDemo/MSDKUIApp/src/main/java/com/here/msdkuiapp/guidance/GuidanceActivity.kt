@@ -134,7 +134,7 @@ class GuidanceActivity : BasePermissionActivity() {
      */
     private fun setUpDashBoard() {
         if (bottomSheetBehavior == null) bottomSheetBehavior = BottomSheetBehavior.from(guidance_dashboard_view)
-        bottomSheetBehavior?.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+        bottomSheetBehavior?.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
 
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 when (newState) {

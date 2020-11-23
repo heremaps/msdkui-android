@@ -188,7 +188,7 @@ class GuidanceActivityTest : BaseTest() {
         activityController.create()
 
         val captor = argumentCaptor<BottomSheetBehavior.BottomSheetCallback>()
-        verify(mockBottomSheetBehavior).setBottomSheetCallback(captor.capture())
+        verify(mockBottomSheetBehavior).addBottomSheetCallback(captor.capture())
 
         val grayedScreenFirsPart = activity.findViewById<View>(R.id.grayed_screen_view_first_part)
 

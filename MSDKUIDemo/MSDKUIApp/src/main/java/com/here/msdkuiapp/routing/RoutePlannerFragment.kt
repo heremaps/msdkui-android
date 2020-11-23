@@ -204,10 +204,8 @@ class RoutePlannerFragment() : RetainFragment(), RoutingContracts.RoutePlanner {
      *
      * @param index
      *         the index of the unselected [WaypointEntry].
-     * @param current
-     *         the unselected [WaypointEntry].
      */
-    fun waypointSelectionCancelled(index: Int?, current: WaypointEntry?) {
+    fun waypointSelectionCancelled(index: Int?) {
         index ?: return
         waypointList?.run {
             entries[index].run {

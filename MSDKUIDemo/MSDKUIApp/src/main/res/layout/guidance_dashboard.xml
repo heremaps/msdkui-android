@@ -43,7 +43,7 @@
         android:id="@+id/stop_navigation"
         style="@style/GuidanceStopNavigationButton"
         android:contentDescription="@string/msdkui_app_stop_navigation"
-        android:tint="?attr/colorSignificant"
+        app:tint="?attr/colorSignificant"
         app:srcCompat="@drawable/ic_close" />
 
     <View

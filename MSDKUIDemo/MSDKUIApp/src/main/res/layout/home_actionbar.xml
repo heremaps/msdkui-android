@@ -28,7 +28,7 @@
         android:layout_centerVertical="true"
         android:contentDescription="@string/msdkui_app_back"
         android:scaleType="centerInside"
-        android:tint="?attr/colorAccent"
+        app:tint="?attr/colorAccent"
         app:srcCompat="@drawable/ic_arrow_back_black_24dp" />
 
     <TextView
@@ -50,7 +50,7 @@
         android:contentDescription="@string/msdkui_app_info"
         android:padding="@dimen/contentMarginMedium"
         android:scaleType="centerInside"
-        android:tint="?attr/colorAccent"
+        app:tint="?attr/colorAccent"
         app:srcCompat="@drawable/ic_info_outline_black_24dp" />
 
 

@@ -17,11 +17,8 @@
 package com.here.msdkuiapp.base
 
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.here.android.mpa.common.DiskCacheUtility
-import com.here.android.mpa.common.DiskCacheUtility.MigrationResult
 import com.here.android.mpa.common.MapSettings
 import com.here.msdkuiapp.common.AppActionBar
 import kotlinx.android.extensions.CacheImplementation
@@ -41,25 +38,8 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val migrationResult = DiskCacheUtility.migrate(getMapDataPath(), getMapDataPathV2())
-        if (migrationResult == MigrationResult.SUCCESS ||
-            migrationResult == MigrationResult.FAILED ||
-            migrationResult == MigrationResult.MISSING_OLD_CACHE) {
-            // SUCCESS, FAILED and MISSING_OLD_CACHE are migration results that can occur during
-            // first app launch after update. In this case all map data located in old path will be
-            // removed because they are no longer used. From now app will use new path for map data
-            // and it will be either successfully migrated data or completely new downloaded data.
-            // In both cases next app launches migration result will be ALREADY_EXISTS and no
-            // additional actions are needed.
-            try {
-                deleteRecursive(File(getMapDataPath()))
-            } catch (e: Exception) {
-                Log.e(TAG, "Failed to delete old map data at: ${getMapDataPath()}", e)
-            }
-        }
-
         try {
-            MapSettings.setDiskCacheRootPath(getMapDataPathV2())
+            MapSettings.setDiskCacheRootPath(getMapDataPath())
         } catch (e: IllegalArgumentException) {
             Log.e(TAG, "Failed to set disk cache root path", e)
         }
@@ -76,27 +56,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     private fun getMapDataPath(): String {
-        return Environment.getExternalStorageDirectory()
-                .absolutePath + File.separator + ".msdkui-data"
-    }
-
-    private fun getMapDataPathV2(): String {
-        return Environment.getExternalStorageDirectory()
-                .absolutePath + File.separator + ".msdkui-data-v2"
-    }
-
-    @Throws(Exception::class)
-    private fun deleteRecursive(fileOrDirectory: File) {
-        if (fileOrDirectory.isDirectory) {
-            for (child in fileOrDirectory.listFiles()) {
-                try {
-                    deleteRecursive(child)
-                } catch (e: Exception) {
-                    Log.e(TAG, "Failed to delete: ${child.absolutePath}", e)
-                }
-            }
-        }
-        fileOrDirectory.delete()
+        return filesDir.absolutePath + File.separator + ".msdkui-data"
     }
 
     /**

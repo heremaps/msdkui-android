@@ -19,10 +19,11 @@ package com.here.msdkui.routing;
 import android.content.Context;
 import android.os.Build;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.SwitchCompat;
+
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.CompoundButton;
-import android.widget.Switch;
 import android.widget.TextView;
 
 import com.here.msdkui.R;
@@ -33,7 +34,7 @@ import com.here.msdkui.R;
 public class BooleanOptionItem extends OptionItem implements CompoundButton.OnCheckedChangeListener {
 
     private TextView mLabelView;
-    private Switch mValue;
+    private SwitchCompat mValue;
 
     /**
      * Constructs a new instance.
@@ -102,7 +103,7 @@ public class BooleanOptionItem extends OptionItem implements CompoundButton.OnCh
         LayoutInflater.from(context)
                 .inflate(R.layout.boolean_option_item, this);
         mLabelView = (TextView) findViewById(R.id.boolean_item_label);
-        mValue = (Switch) findViewById(R.id.boolean_item_value);
+        mValue = (SwitchCompat) findViewById(R.id.boolean_item_value);
         mValue.setOnCheckedChangeListener(this);
     }
 

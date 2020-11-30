@@ -43,7 +43,7 @@
             android:layout_centerVertical="true"
             android:contentDescription="@null"
             android:scaleType="centerInside"
-            android:tint="?attr/colorForegroundLight"
+            app:tint="?attr/colorForegroundLight"
             app:srcCompat="@drawable/ic_place_marker" />
 
         <ProgressBar

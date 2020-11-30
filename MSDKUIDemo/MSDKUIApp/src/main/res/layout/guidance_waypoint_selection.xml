@@ -29,7 +29,7 @@
         android:contentDescription="@null"
         android:focusable="false"
         android:scaleType="centerInside"
-        android:tint="?attr/colorForegroundLight"
+        app:tint="?attr/colorForegroundLight"
         app:srcCompat="@drawable/ic_place_marker" />
 
     <ProgressBar

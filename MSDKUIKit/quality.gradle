@@ -16,8 +16,9 @@
 
 apply plugin: 'checkstyle'
 apply plugin: 'pmd'
+apply plugin: 'com.github.spotbugs'
 
-check.dependsOn 'checkstyle', 'spotbugs', 'pmd', 'lint'
+check.dependsOn 'checkstyle', 'pmd', 'lint'
 
 checkstyle {
     toolVersion '8.12'
@@ -61,4 +62,11 @@ task pmd(type: Pmd, dependsOn: "assemble", group: 'verification') {
             destination file("$projectDir.absolutePath/build/reports/pmd/pmd.html")
         }
     }
+}
+
+spotbugs {
+    ignoreFailures = false
+    effort = "max"
+    reportLevel = "low"
+    excludeFilter = file("${project.rootDir}/quality/spotbugs/spotbugs-filter.xml")
 }

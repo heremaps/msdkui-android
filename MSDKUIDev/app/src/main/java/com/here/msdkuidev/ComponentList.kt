@@ -99,7 +99,7 @@ class ComponentList : AppCompatActivity(), ListFragment.Listener {
         })
     }
 
-    internal inner class ViewPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager) {
+    internal inner class ViewPagerAdapter(manager: FragmentManager) : FragmentStatePagerAdapter(manager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
         private val mFragmentList = arrayListOf<Fragment>()
 
         override fun getItem(position: Int): Fragment {

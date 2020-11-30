@@ -190,8 +190,10 @@ class RoutePlannerPresenterTest {
         verify(mockCoreRouter).setDynamicPenalty(mockDynamicPenalty)
         verify(mockCoreRouter).calculateRoute(eq(mockRoutePlan), listenerCaptor.capture())
 
+        val mockRouteResult = mock(RouteResult::class.java)
         val routeList = ArrayList<RouteResult>()
-        routeList.add(mock(RouteResult::class.java))
+        routeList.add(mockRouteResult)
+        `when`(mockRouteResult.route).thenReturn(mock(Route::class.java))
         listenerCaptor.value.onCalculateRouteFinished(routeList, mock(RoutingError::class.java))
         verify(mockContract).onProgress(false)
         verify(mockCoordinatorListener).onRouteCalculated(routeList.map { it.route })

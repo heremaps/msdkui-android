@@ -25,8 +25,9 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.6.3'
-        classpath "com.github.spotbugs:spotbugs-gradle-plugin:3.0.0"
+        classpath 'com.android.tools.build:gradle:4.1.1'
+        classpath "gradle.plugin.com.github.spotbugs.snom:spotbugs-gradle-plugin:4.6.0"
+
     }
 }
 

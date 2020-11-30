@@ -32,7 +32,7 @@
         tools:ignore="LabelFor"
         tools:layout_editor_absoluteY="0dp" /> <!-- dynamic generated labels -->
 
-    <Switch
+    <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/boolean_item_value"
         style="?attr/booleanOptionItemSwitch"
         app:layout_constraintBaseline_toBaselineOf="@id/boolean_item_label"

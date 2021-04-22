@@ -76,6 +76,10 @@ Please have a look at our [Quick Start](Documentation/Guides/QuickStart.md) tuto
 - You can find various _examples_ and _code snippets_ accompanying the Developer's Guide.
 - A more complex and fully functional _demo app_ can be found in this repository.
 
+## Maintenance Notice
+
+The MSDKUI project will be discontinued as it is incompatible with the new [4.x HERE SDK](https://developer.here.com/products/here-sdk) releases. The HERE team does not plan any additional feature implementation for the future. This repository will stay online and it can still be forked and used for commercial or non-commercial projects, but we plan only _limited maintenance work_ from now on. We recommend all users to [migrate](https://developer.here.com/documentation/android-sdk-navigate/4.7.0.0/dev_guide/topics/migration.html) to the new 4.x HERE SDK releases. Thanks to all users who contributed to the MSDKUI project!
+
 ## Get in Touch
 We are happy to hear your feedback. Please [contact us](https://developer.here.com/contact-us) for any questions, suggestions or improvements. Thank you for your using the HERE Mobile SDK UI Kit (MSDKUI).
 

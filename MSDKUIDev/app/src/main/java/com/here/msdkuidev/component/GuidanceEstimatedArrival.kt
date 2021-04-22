@@ -29,7 +29,7 @@ class GuidanceEstimatedArrival : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val setting =
-            intent.getParcelableExtra(ITEM) as GuidanceEstimatedArrivalSetting.GuidanceEstimatedArrivalSettingItem
+            intent.getParcelableExtra<GuidanceEstimatedArrivalSetting.GuidanceEstimatedArrivalSettingItem>(ITEM)!!
         setting.customTheme?.run {
             // for separate changes set multiple theme,
             // in case of multiple changes, it should b created one theme having all changes

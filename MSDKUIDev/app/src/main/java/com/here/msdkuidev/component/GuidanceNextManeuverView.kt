@@ -28,7 +28,7 @@ class GuidanceNextManeuverView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val setting =
-            intent.getParcelableExtra(Constant.ITEM) as GuidanceNextManeuverViewSetting.GuidanceNextManeuverViewSettingItem
+            intent.getParcelableExtra<GuidanceNextManeuverViewSetting.GuidanceNextManeuverViewSettingItem>(Constant.ITEM)!!
         title = setting.title.toLowerCase()
         val resourceId = if (setting.subTitle == Constant.DEFAULT) R.layout.guidance_next_maneuver_view else
             R.layout.guidance_next_maneuver_view_fix

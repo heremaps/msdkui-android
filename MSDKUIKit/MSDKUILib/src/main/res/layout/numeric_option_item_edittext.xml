@@ -22,5 +22,6 @@
     <EditText
         android:id="@+id/numeric_item_value_text"
         style="?attr/numericOptionItemEditTextValueText"
+        android:importantForAutofill="no"
         tools:ignore="LabelFor" />
 </LinearLayout>

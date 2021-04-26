@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-  ~ Copyright (C) 2017-2020 HERE Europe B.V.
+  ~ Copyright (C) 2017-2021 HERE Europe B.V.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -22,5 +22,6 @@
     <EditText
         android:id="@+id/numeric_item_value_text"
         style="?attr/numericOptionItemEditTextValueText"
+        android:importantForAutofill="no"
         tools:ignore="LabelFor" />
 </LinearLayout>

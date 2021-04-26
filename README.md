@@ -64,7 +64,7 @@ The HERE Mobile SDK UI Kit (MSDKUI) components are available for Android and [iO
 **Android Environment**
 - Minimum supported API version is 19 (KitKat), allowing you to reach more than 95% of all Android devices.
 - The Android Support Library is required, please always use to the latest one.
-- We recommend using Android Studio 4.1.1.
+- We recommend using Android Studio 4.1.3.
 - [AndroidX](https://developer.android.com/jetpack/androidx) is required.
 
 ## Quick Start
@@ -84,6 +84,6 @@ The MSDKUI project will be discontinued as it is incompatible with the new [4.x 
 We are happy to hear your feedback. Please [contact us](https://developer.here.com/contact-us) for any questions, suggestions or improvements. Thank you for your using the HERE Mobile SDK UI Kit (MSDKUI).
 
 ## License
-Copyright (c) 2017-2020 HERE Europe B.V.
+Copyright (c) 2017-2021 HERE Europe B.V.
 
 See the [LICENSE](LICENSE) file in the root of this project for license details.

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2020 HERE Europe B.V.
+ * Copyright (C) 2017-2021 HERE Europe B.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import kotlinx.android.synthetic.main.guidance_current_speed.*
 class GuidanceSpeedView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val setting = intent.getParcelableExtra(Constant.ITEM) as GuidanceSpeedViewSetting.GuidanceSpeedViewSettingItem
+        val setting = intent.getParcelableExtra<GuidanceSpeedViewSetting.GuidanceSpeedViewSettingItem>(Constant.ITEM)!!
         val resourceId = if (setting.subTitle == Constant.DEFAULT) R.layout.guidance_current_speed else
             R.layout.guidance_current_speed_fix
         title = setting.title.toLowerCase()

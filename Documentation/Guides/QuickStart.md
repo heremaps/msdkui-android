@@ -47,7 +47,7 @@ If you want to build your own app, it may be useful to follow the guide below wh
 Let's start by creating a new Android app. If you want to integrate the HERE Mobile SDK UI Kit (MSDKUI) into an existing app, you can skip this step. No HERE Mobile SDK or HERE Mobile SDK UI Kit (MSDKUI) specific code is involved here.
 If you are new to Android development, please follow the guides on [developer.android.com](https://developer.android.com/guide/) to help you get started with the first steps.
 
-For this Quick Start app, we used Android Studio 4.1.1.
+For this Quick Start app, we used Android Studio 4.1.3.
 
 - Start Android Studio and select _Start a new Android Studio project_.
 - Select an Application name of your choice, for example _HelloMSDKUI_.
@@ -95,7 +95,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.material:material:1.3.0'
     implementation(name: 'HERE-sdk', ext: 'aar')
     implementation(name: 'MSDKUILib-release', ext: 'aar')
 }
@@ -150,7 +150,10 @@ Since we are using the HERE Mobile SDK UI Kit (MSDKUI) along with the HERE Mobil
 
 ```xml
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28"
+        tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />

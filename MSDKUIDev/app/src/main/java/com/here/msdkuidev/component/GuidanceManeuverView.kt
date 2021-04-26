@@ -29,7 +29,7 @@ class GuidanceManeuverView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val setting =
-            intent.getParcelableExtra(Constant.ITEM) as GuidanceManeuverViewSetting.GuidanceManeuverViewSettingItem
+            intent.getParcelableExtra<GuidanceManeuverViewSetting.GuidanceManeuverViewSettingItem>(Constant.ITEM)!!
         setting.customTheme?.run {
             setTheme(this)
         }

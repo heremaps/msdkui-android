@@ -29,7 +29,7 @@ import kotlinx.android.synthetic.main.maneuver_item_view.*
 class ManeuverItemView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val setting = intent.getParcelableExtra(Constant.ITEM) as ManeuverItemViewSetting.ManeuverItemViewSettingItem
+        val setting = intent.getParcelableExtra<ManeuverItemViewSetting.ManeuverItemViewSettingItem>(Constant.ITEM)!!
         setting.customTheme?.run {
             setTheme(this)
         }

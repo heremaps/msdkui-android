@@ -28,7 +28,7 @@ class GuidanceSpeedLimit : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val setting =
-            intent.getParcelableExtra(Constant.ITEM) as GuidanceSpeedLimitSetting.GuidanceSpeedLimitSettingItem
+            intent.getParcelableExtra<GuidanceSpeedLimitSetting.GuidanceSpeedLimitSettingItem>(Constant.ITEM)!!
         setting.customTheme?.run {
             setTheme(this)
         }

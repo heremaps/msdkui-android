@@ -28,7 +28,7 @@ class GuidanceStreetLabel : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val setting =
-            intent.getParcelableExtra(Constant.ITEM) as GuidanceStreetLabelSetting.GuidanceStreetLabelSettingItem
+            intent.getParcelableExtra<GuidanceStreetLabelSetting.GuidanceStreetLabelSettingItem>(Constant.ITEM)!!
         val resourceId = if (setting.subTitle == Constant.DEFAULT) R.layout.guidance_street_label else
             R.layout.guidance_street_label_fix
         title = setting.title.toLowerCase()

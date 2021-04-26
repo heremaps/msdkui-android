@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017-2020 HERE Europe B.V.
+ * Copyright (C) 2017-2021 HERE Europe B.V.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ class GuidanceEstimatedArrival : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val setting =
-            intent.getParcelableExtra(ITEM) as GuidanceEstimatedArrivalSetting.GuidanceEstimatedArrivalSettingItem
+            intent.getParcelableExtra<GuidanceEstimatedArrivalSetting.GuidanceEstimatedArrivalSettingItem>(ITEM)!!
         setting.customTheme?.run {
             // for separate changes set multiple theme,
             // in case of multiple changes, it should b created one theme having all changes

@@ -47,7 +47,7 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation(name: 'HERE-sdk', ext: 'aar')
-    implementation(name: 'MSDKUILib', ext: 'aar')
+    implementation(name: 'MSDKUILib-release', ext: 'aar')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.2.0'
     testImplementation 'junit:junit:4.13.2'

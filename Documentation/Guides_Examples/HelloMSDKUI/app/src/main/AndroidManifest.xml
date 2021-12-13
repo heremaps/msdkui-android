@@ -47,8 +47,10 @@
             android:name="com.here.android.maps.license.key"
             android:value="YOUR_LICENSE_KEY" />
 
-        <activity android:name="com.here.msdkui.example.MainActivity"
-            android:screenOrientation="portrait">
+        <activity
+            android:name="com.here.msdkui.example.MainActivity"
+            android:screenOrientation="portrait"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />

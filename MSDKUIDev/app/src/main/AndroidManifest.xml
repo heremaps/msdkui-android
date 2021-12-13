@@ -25,7 +25,9 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning"
             android:allowBackup="true" android:fullBackupContent="true">
-        <activity android:name="com.here.msdkuidev.ComponentList">
+        <activity
+            android:name="com.here.msdkuidev.ComponentList"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

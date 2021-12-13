@@ -81,7 +81,7 @@ android {
     dependencies {
         implementation fileTree(include: ['*.jar'], dir: 'libs')
         implementation(name: 'HERE-sdk', ext: 'aar')
-        implementation(name: 'MSDKUILib', ext: 'aar')
+        implementation(name: 'MSDKUILib-release', ext: 'aar')
 
         implementation "androidx.appcompat:appcompat:$appcompat_version"
         implementation "com.google.android.material:material:$android_material_version"
